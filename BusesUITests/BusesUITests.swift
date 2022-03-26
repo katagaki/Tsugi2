@@ -1,13 +1,13 @@
 //
-//  Buses_2UITests.swift
-//  Buses 2UITests
+//  BusesUITests.swift
+//  BusesUITests
 //
 //  Created by 堅書 on 2022/03/26.
 //
 
 import XCTest
 
-class Buses_2UITests: XCTestCase {
+class BusesUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

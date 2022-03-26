@@ -1,13 +1,13 @@
 //
-//  Buses_2UITestsLaunchTests.swift
-//  Buses 2UITests
+//  BusesUITestsLaunchTests.swift
+//  BusesUITests
 //
 //  Created by 堅書 on 2022/03/26.
 //
 
 import XCTest
 
-class Buses_2UITestsLaunchTests: XCTestCase {
+class BusesUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
