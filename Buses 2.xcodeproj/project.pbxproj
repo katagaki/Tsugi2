@@ -24,6 +24,9 @@
 		E4A68D6827F7EF9600D3A6B2 /* BusesFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4A68D6027F7EF9600D3A6B2 /* BusesFramework.framework */; };
 		E4A68D6927F7EF9600D3A6B2 /* BusesFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E4A68D6027F7EF9600D3A6B2 /* BusesFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E4FFCAB927F94DFD00DCA0EC /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAB827F94DFD00DCA0EC /* FavoritesTableViewController.swift */; };
+		E4FFCABB27F9CD5C00DCA0EC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E4FFCABA27F9CD5C00DCA0EC /* Localizable.strings */; };
+		E4FFCABD27F9CF1D00DCA0EC /* BULocalizedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCABC27F9CF1D00DCA0EC /* BULocalizedLabel.swift */; };
+		E4FFCABF27F9D09600DCA0EC /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCABE27F9D09600DCA0EC /* MainTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,9 @@
 		E4A68D6227F7EF9600D3A6B2 /* BusesFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusesFramework.h; sourceTree = "<group>"; };
 		E4A68D6327F7EF9600D3A6B2 /* BusesFramework.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = BusesFramework.docc; sourceTree = "<group>"; };
 		E4FFCAB827F94DFD00DCA0EC /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
+		E4FFCABA27F9CD5C00DCA0EC /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		E4FFCABC27F9CF1D00DCA0EC /* BULocalizedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BULocalizedLabel.swift; sourceTree = "<group>"; };
+		E4FFCABE27F9D09600DCA0EC /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,10 +99,11 @@
 		E43C8CCC27F938970073F510 /* UI Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E43C8CD727F948F00073F510 /* BUBusServiceCollectionViewCell.swift */,
 				E43C8CD327F947E80073F510 /* BUBusStopCarouselTableViewCell.swift */,
 				E43C8CD527F948D20073F510 /* BUCollectionViewCell.swift */,
+				E4FFCABC27F9CF1D00DCA0EC /* BULocalizedLabel.swift */,
 				E43C8CCD27F938B30073F510 /* BUTableViewCell.swift */,
-				E43C8CD727F948F00073F510 /* BUBusServiceCollectionViewCell.swift */,
 			);
 			path = "UI Classes";
 			sourceTree = "<group>";
@@ -108,6 +115,7 @@
 				E43C8CC827F7F45D0073F510 /* OceanSansStd-Bold.otf */,
 				E43C8CC927F7F45D0073F510 /* OceanSansStd-Book.otf */,
 				E4406AB327EF182300819CDC /* Buses.xcdatamodeld */,
+				E4FFCABA27F9CD5C00DCA0EC /* Localizable.strings */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -158,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				E4FFCAB827F94DFD00DCA0EC /* FavoritesTableViewController.swift */,
+				E4FFCABE27F9D09600DCA0EC /* MainTabBarController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -256,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E43C8CCB27F7F45D0073F510 /* OceanSansStd-Book.otf in Resources */,
+				E4FFCABB27F9CD5C00DCA0EC /* Localizable.strings in Resources */,
 				E43C8CCA27F7F45D0073F510 /* OceanSansStd-Bold.otf in Resources */,
 				E4406ABA27EF182500819CDC /* LaunchScreen.storyboard in Resources */,
 				E4406AB727EF182500819CDC /* Assets.xcassets in Resources */,
@@ -279,8 +289,10 @@
 			files = (
 				E4406AB527EF182300819CDC /* Buses.xcdatamodeld in Sources */,
 				E4406AAB27EF182300819CDC /* AppDelegate.swift in Sources */,
+				E4FFCABF27F9D09600DCA0EC /* MainTabBarController.swift in Sources */,
 				E4FFCAB927F94DFD00DCA0EC /* FavoritesTableViewController.swift in Sources */,
 				E43C8CD427F947E80073F510 /* BUBusStopCarouselTableViewCell.swift in Sources */,
+				E4FFCABD27F9CF1D00DCA0EC /* BULocalizedLabel.swift in Sources */,
 				E43C8CD827F948F00073F510 /* BUBusServiceCollectionViewCell.swift in Sources */,
 				E43C8CCE27F938B30073F510 /* BUTableViewCell.swift in Sources */,
 				E4406AAD27EF182300819CDC /* SceneDelegate.swift in Sources */,
