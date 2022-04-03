@@ -9,8 +9,8 @@ import UIKit
 
 class FavoritesTableViewController: UITableViewController {
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        <#code#>
-    }
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        
+//    }
     
 }
