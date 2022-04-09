@@ -10,11 +10,8 @@ import UIKit
 class FavoritesCollectionViewController: UICollectionViewController {
     
     var sampleBusStops: [BABusStop] = []
-
-    // CollectionView
-    
     var listConfiguration: UICollectionLayoutListConfiguration = .init(appearance: .insetGrouped)
-    lazy var layout: UICollectionViewCompositionalLayout = .list(using: listConfiguration)
+    lazy var listLayout: UICollectionViewCompositionalLayout = .list(using: listConfiguration)
     var dataSource: UICollectionViewDiffableDataSource<BABusStop, ListItem>!
     var dataSourceSnapshot: NSDiffableDataSourceSnapshot<BABusStop, ListItem> = .init()
     var sectionSnapshot: NSDiffableDataSourceSectionSnapshot<ListItem> = .init()
@@ -22,7 +19,7 @@ class FavoritesCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Configure sample data
+        // Load sample data
         if let path = Bundle.main.path(forResource: "BusArrivalv2", ofType: "json") {
             do {
                 let decoder = JSONDecoder()
@@ -47,7 +44,9 @@ class FavoritesCollectionViewController: UICollectionViewController {
         // Configure layout
         listConfiguration.headerMode = .firstItemInSection
         listConfiguration.headerTopPadding = 16.0
-        collectionView.collectionViewLayout = layout
+        collectionView.collectionViewLayout = listLayout
+        
+        // Register cells
         let headerCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, BABusStop> {
             cell, indexPath, busStop in
             var content = cell.defaultContentConfiguration()
@@ -58,18 +57,18 @@ class FavoritesCollectionViewController: UICollectionViewController {
             cell.contentConfiguration = content
             cell.accessories = [.outlineDisclosure(options: UICellAccessory.OutlineDisclosureOptions(style: .header))]
         }
-        let itemCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, BABusService> {
-            cell, indexPath, busService in
-            var content = cell.defaultContentConfiguration()
-            content.image = UIImage(named: "CellBus")
-            content.text = busService.serviceNo
+        let carouselCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, BABusStop> {
+            cell, indexPath, busStop in
+            let content = BABusStopCellContentConfiguration(busStop: busStop)
             cell.contentConfiguration = content
         }
+        
+        // Set up data source
         dataSource = UICollectionViewDiffableDataSource<BABusStop, ListItem>(collectionView: collectionView) {
             collectionView, indexPath, listItem -> UICollectionViewCell? in
             switch listItem {
             case .header(let busStop): return collectionView.dequeueConfiguredReusableCell(using: headerCellRegistration, for: indexPath, item: busStop)
-            case .item(let busService): return collectionView.dequeueConfiguredReusableCell(using: itemCellRegistration, for: indexPath, item: busService)
+            case .item(let busStop): return collectionView.dequeueConfiguredReusableCell(using: carouselCellRegistration, for: indexPath, item: busStop)
             }
         }
         
@@ -78,19 +77,18 @@ class FavoritesCollectionViewController: UICollectionViewController {
         dataSource.apply(dataSourceSnapshot)
         for busStop: BABusStop in sampleBusStops {
             var sectionSnapshot = NSDiffableDataSourceSectionSnapshot<ListItem>()
-            let headerListItem = ListItem.header(busStop)
-            sectionSnapshot.append([headerListItem])
-            let itemListArray = busStop.busServices.map { ListItem.item($0) }
-            sectionSnapshot.append(itemListArray, to: headerListItem)
-            sectionSnapshot.expand([headerListItem])
+            let headerItem = ListItem.header(busStop)
+            sectionSnapshot.append([headerItem])
+            let carouselItem = ListItem.item(busStop)
+            sectionSnapshot.append([carouselItem], to: headerItem)
+            sectionSnapshot.expand([headerItem])
             dataSource.apply(sectionSnapshot, to: busStop, animatingDifferences: false)
         }
-        
     }
     
 }
 
 enum ListItem: Hashable {
     case header(BABusStop)
-    case item(BABusService)
+    case item(BABusStop)
 }
