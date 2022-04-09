@@ -8,11 +8,24 @@
 
 /* Common */
 
-/* Nearby */
+/* Tab Bar Item Titles */
+"TabTitle.Nearby" = "Nearby";
+"TabTitle.Favorites" = "Favorites";
+"TabTitle.Directory" = "Directory";
+"TabTitle.More" = "More";
 
-/* Favorites */
+/* Navigation Item Titles */
+"ViewTitle.Favorites" = "Favorites";
+"ViewTitle.Directory" = "Directory";
+"ViewTitle.More" = "More";
 
-/* Directory */
+/* Nearby View */
 
-/* More */
-"Notifications" = "Notifications";
+/* Favorites View */
+
+/* Directory View */
+
+/* More View */
+"More.Notifications" = "Notifications";
+"More.AboutTwitter" = "Developed by @katagaki_";
+"More.AboutEmail" = "Email Me";

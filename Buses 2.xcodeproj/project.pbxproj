@@ -18,6 +18,8 @@
 		E4A68D6527F7EF9600D3A6B2 /* BusesFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = E4A68D6227F7EF9600D3A6B2 /* BusesFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E4A68D6827F7EF9600D3A6B2 /* BusesFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4A68D6027F7EF9600D3A6B2 /* BusesFramework.framework */; };
 		E4A68D6927F7EF9600D3A6B2 /* BusesFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E4A68D6027F7EF9600D3A6B2 /* BusesFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E4F1FCBB2801B8EF005D400D /* BUNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F1FCBA2801B8EF005D400D /* BUNavigationItem.swift */; };
+		E4F1FCBD2801B9AA005D400D /* BUTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F1FCBC2801B9AA005D400D /* BUTabBarItem.swift */; };
 		E4FFCABB27F9CD5C00DCA0EC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E4FFCABA27F9CD5C00DCA0EC /* Localizable.strings */; };
 		E4FFCABD27F9CF1D00DCA0EC /* BULabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCABC27F9CF1D00DCA0EC /* BULabel.swift */; };
 		E4FFCABF27F9D09600DCA0EC /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCABE27F9D09600DCA0EC /* MainTabBarController.swift */; };
@@ -32,6 +34,7 @@
 		E4FFCAD62801A5AA00DCA0EC /* BABusStopCellContentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAD52801A5AA00DCA0EC /* BABusStopCellContentConfiguration.swift */; };
 		E4FFCAD82801A5BE00DCA0EC /* BABusStopCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAD72801A5BE00DCA0EC /* BABusStopCellContentView.swift */; };
 		E4FFCADB2801B23300DCA0EC /* DateUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCADA2801B23300DCA0EC /* DateUtilities.swift */; };
+		E4FFCADD2801B61F00DCA0EC /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCADC2801B61F00DCA0EC /* NearbyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +74,8 @@
 		E4A68D6027F7EF9600D3A6B2 /* BusesFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BusesFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4A68D6227F7EF9600D3A6B2 /* BusesFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusesFramework.h; sourceTree = "<group>"; };
 		E4A68D6327F7EF9600D3A6B2 /* BusesFramework.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = BusesFramework.docc; sourceTree = "<group>"; };
+		E4F1FCBA2801B8EF005D400D /* BUNavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BUNavigationItem.swift; sourceTree = "<group>"; };
+		E4F1FCBC2801B9AA005D400D /* BUTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BUTabBarItem.swift; sourceTree = "<group>"; };
 		E4FFCABA27F9CD5C00DCA0EC /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		E4FFCABC27F9CF1D00DCA0EC /* BULabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BULabel.swift; sourceTree = "<group>"; };
 		E4FFCABE27F9D09600DCA0EC /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -85,6 +90,7 @@
 		E4FFCAD52801A5AA00DCA0EC /* BABusStopCellContentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABusStopCellContentConfiguration.swift; sourceTree = "<group>"; };
 		E4FFCAD72801A5BE00DCA0EC /* BABusStopCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABusStopCellContentView.swift; sourceTree = "<group>"; };
 		E4FFCADA2801B23300DCA0EC /* DateUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtilities.swift; sourceTree = "<group>"; };
+		E4FFCADC2801B61F00DCA0EC /* NearbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				E4FFCABE27F9D09600DCA0EC /* MainTabBarController.swift */,
+				E4FFCADC2801B61F00DCA0EC /* NearbyViewController.swift */,
 				E4FFCACA2801703600DCA0EC /* FavoritesCollectionViewController.swift */,
 			);
 			path = "View Controllers";
@@ -214,6 +221,8 @@
 			isa = PBXGroup;
 			children = (
 				E4FFCABC27F9CF1D00DCA0EC /* BULabel.swift */,
+				E4F1FCBA2801B8EF005D400D /* BUNavigationItem.swift */,
+				E4F1FCBC2801B9AA005D400D /* BUTabBarItem.swift */,
 				E4FFCAD12801A05B00DCA0EC /* Bus Service Carousel */,
 			);
 			path = UI;
@@ -351,12 +360,15 @@
 				E4FFCABF27F9D09600DCA0EC /* MainTabBarController.swift in Sources */,
 				E4FFCACB2801703600DCA0EC /* FavoritesCollectionViewController.swift in Sources */,
 				E4FFCAD028019F8D00DCA0EC /* BABusStopCarouselCellContentConfiguration.swift in Sources */,
+				E4F1FCBB2801B8EF005D400D /* BUNavigationItem.swift in Sources */,
 				E4FFCAD62801A5AA00DCA0EC /* BABusStopCellContentConfiguration.swift in Sources */,
 				E4FFCABD27F9CF1D00DCA0EC /* BULabel.swift in Sources */,
+				E4FFCADD2801B61F00DCA0EC /* NearbyViewController.swift in Sources */,
 				E4FFCAD82801A5BE00DCA0EC /* BABusStopCellContentView.swift in Sources */,
 				E4406AAD27EF182300819CDC /* SceneDelegate.swift in Sources */,
 				E4FFCAC92801631800DCA0EC /* BABusOnRoad.swift in Sources */,
 				E4FFCADB2801B23300DCA0EC /* DateUtilities.swift in Sources */,
+				E4F1FCBD2801B9AA005D400D /* BUTabBarItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

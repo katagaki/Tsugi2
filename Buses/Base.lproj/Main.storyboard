@@ -29,17 +29,25 @@
                             <outlet property="delegate" destination="M7i-al-Ox8" id="1re-ea-9VY"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Favorites" id="fAQ-Jw-zFs"/>
+                    <navigationItem key="navigationItem" title="Favorites" id="fAQ-Jw-zFs" customClass="BUNavigationItem" customModule="Buses" customModuleProvider="target">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="ViewTitle.Favorites"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fsu-v4-WCG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1777" y="408"/>
         </scene>
-        <!--Favorites-->
+        <!--Navigation Controller-->
         <scene sceneID="Oec-Rf-yNK">
             <objects>
                 <navigationController id="oJi-PB-9UA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorites" image="TabFavorites" id="6at-eq-376"/>
+                    <tabBarItem key="tabBarItem" title="" image="TabFavorites" id="6at-eq-376" customClass="BUTabBarItem" customModule="Buses" customModuleProvider="target">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="TabTitle.Favorites"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="umT-oQ-PiU">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -52,10 +60,10 @@
             </objects>
             <point key="canvasLocation" x="890" y="409"/>
         </scene>
-        <!--Nearby-->
+        <!--Nearby View Controller-->
         <scene sceneID="eT3-Fr-Wi0">
             <objects>
-                <viewController id="WdN-pZ-N4t" sceneMemberID="viewController">
+                <viewController id="WdN-pZ-N4t" customClass="NearbyViewController" customModule="Buses" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gcL-vS-0cs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -73,7 +81,14 @@
                             <constraint firstItem="6RS-kI-Zr3" firstAttribute="top" secondItem="gcL-vS-0cs" secondAttribute="top" id="kvD-bv-k8I"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Nearby" image="TabNearby" id="ftB-Sp-Dzq"/>
+                    <tabBarItem key="tabBarItem" title="" image="TabNearby" id="ftB-Sp-Dzq" customClass="BUTabBarItem" customModule="Buses" customModuleProvider="target">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="TabTitle.Nearby"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="mapView" destination="6RS-kI-Zr3" id="obr-dV-b8P"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sq5-eq-G7c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -100,7 +115,7 @@
             </objects>
             <point key="canvasLocation" x="-12" y="-232"/>
         </scene>
-        <!--Directory-->
+        <!--Table View Controller-->
         <scene sceneID="Ujm-vz-5YK">
             <objects>
                 <tableViewController id="X8Y-I3-rZ9" sceneMemberID="viewController">
@@ -274,17 +289,25 @@
                             <outlet property="delegate" destination="X8Y-I3-rZ9" id="lfQ-8I-rWo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Directory" id="8C6-6h-YwF"/>
+                    <navigationItem key="navigationItem" id="8C6-6h-YwF" customClass="BUNavigationItem" customModule="Buses" customModuleProvider="target">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="ViewTitle.Directory"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gP2-um-eWZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1777" y="1055"/>
         </scene>
-        <!--Directory-->
+        <!--Navigation Controller-->
         <scene sceneID="KeW-Jd-GLW">
             <objects>
                 <navigationController id="okP-RC-oSp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Directory" image="TabDirectory" id="ByE-qA-yJx"/>
+                    <tabBarItem key="tabBarItem" title="" image="TabDirectory" id="ByE-qA-yJx" customClass="BUTabBarItem" customModule="Buses" customModuleProvider="target">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="TabTitle.Directory"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="XEw-ck-2Ae">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -297,7 +320,7 @@
             </objects>
             <point key="canvasLocation" x="890" y="1055"/>
         </scene>
-        <!--More-->
+        <!--Table View Controller-->
         <scene sceneID="i4I-9A-Oqu">
             <objects>
                 <tableViewController id="EgZ-pB-6zh" sceneMemberID="viewController">
@@ -314,14 +337,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="OXz-4O-YMf" customClass="BULabel" customModule="Buses" customModuleProvider="target">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="OXz-4O-YMf" customClass="BULabel" customModule="Buses" customModuleProvider="target">
                                                     <rect key="frame" x="65" y="0.0" width="272.5" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="Notifications"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="More.Notifications"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="CellNotifications" id="QHD-gf-Sgd">
@@ -333,21 +356,24 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="jeI-p4-ahO">
+                            <tableViewSection headerTitle="About" id="jeI-p4-ahO">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="MHo-8o-XkO" imageView="VHZ-C3-xvM" style="IBUITableViewCellStyleDefault" id="bHL-d8-W3B" customClass="BUTableViewCell" customModule="Buses" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="97.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="111.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bHL-d8-W3B" id="syb-Ky-dfQ">
                                             <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Developed by @katagaki_" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="MHo-8o-XkO">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="MHo-8o-XkO" customClass="BULabel" customModule="Buses" customModuleProvider="target">
                                                     <rect key="frame" x="65" y="0.0" width="272.5" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="More.AboutTwitter"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="CellTwitter" id="VHZ-C3-xvM">
                                                     <rect key="frame" x="20" y="6.5" width="30" height="30"/>
@@ -357,18 +383,21 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="U1P-yl-rjl" imageView="M5r-Zb-ham" style="IBUITableViewCellStyleDefault" id="s6F-kt-R7D" customClass="BUTableViewCell" customModule="Buses" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="141" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="155" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s6F-kt-R7D" id="5BB-eg-15Z">
                                             <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Email Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="U1P-yl-rjl">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="U1P-yl-rjl" customClass="BULabel" customModule="Buses" customModuleProvider="target">
                                                     <rect key="frame" x="65" y="0.0" width="272.5" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="More.AboutEmail"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="CellEmail" id="M5r-Zb-ham">
                                                     <rect key="frame" x="20" y="6.5" width="30" height="30"/>
@@ -385,17 +414,25 @@
                             <outlet property="delegate" destination="EgZ-pB-6zh" id="TBH-fN-igf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="More" id="usK-9Q-bh8"/>
+                    <navigationItem key="navigationItem" id="usK-9Q-bh8" customClass="BUNavigationItem" customModule="Buses" customModuleProvider="target">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="ViewTitle.More"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Twp-cv-Svm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1777" y="1700"/>
         </scene>
-        <!--More-->
+        <!--Navigation Controller-->
         <scene sceneID="yKb-ss-jMu">
             <objects>
                 <navigationController id="Xy1-V2-CMC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="More" image="TabMore" id="WzE-IA-Zcq"/>
+                    <tabBarItem key="tabBarItem" title="" image="TabMore" id="WzE-IA-Zcq" customClass="BUTabBarItem" customModule="Buses" customModuleProvider="target">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="TabTitle.More"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="NEi-MG-gqS">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
