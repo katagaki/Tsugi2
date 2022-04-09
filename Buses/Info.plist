@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationUsageDescription</key>
-	<string>Buses uses your location to look for bus stops nearby.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Buses uses your location to look for bus stops nearby.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>OceanSansStd-Bold.otf</string>

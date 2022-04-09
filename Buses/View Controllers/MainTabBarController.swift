@@ -5,13 +5,20 @@
 //  Created by 堅書 on 2022/04/03.
 //
 
+import CoreLocation
 import UIKit
 
-class MainTabBarController: UITabBarController {
+class MainTabBarController: UITabBarController, CLLocationManagerDelegate {
+    
+    let locationManager: CLLocationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO: Request Location When In Use access
+        switch locationManager.authorizationStatus {
+        case .notDetermined: locationManager.requestWhenInUseAuthorization()
+        case .denied, .restricted: break // TODO: Show popup to continue or go to Settings
+        default: break // All good
+        }
     }
     
 }

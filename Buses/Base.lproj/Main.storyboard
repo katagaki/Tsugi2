@@ -26,7 +26,7 @@
                             <tableViewSection headerTitle="Opposite Block 1234567890 1234567890" id="ovu-dW-mes">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BUBusStopCarouselTableViewCell" id="cRG-LH-JMl" customClass="BUBusStopCarouselTableViewCell" customModule="Buses" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="32" width="374" height="128.5"/>
+                                        <rect key="frame" x="20" y="49.5" width="374" height="128.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cRG-LH-JMl" id="7H5-lO-Ci3">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="128.5"/>
@@ -127,7 +127,7 @@
                             <tableViewSection headerTitle="Opposite Block 1234567890 1234567890" id="jgn-op-wYv">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BUBusStopCarouselTableViewCell" id="wPe-UN-6eh" customClass="BUBusStopCarouselTableViewCell" customModule="Buses" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="210.5" width="374" height="128.5"/>
+                                        <rect key="frame" x="20" y="228" width="374" height="128.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wPe-UN-6eh" id="LPv-xt-8J4">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="128.5"/>
@@ -228,7 +228,7 @@
                             <tableViewSection headerTitle="Opposite Block 1234567890 1234567890" id="fGk-C3-E6B">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BUBusStopCarouselTableViewCell" id="J51-sp-hck" customClass="BUBusStopCarouselTableViewCell" customModule="Buses" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="389" width="374" height="128.5"/>
+                                        <rect key="frame" x="20" y="406.5" width="374" height="128.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="J51-sp-hck" id="4GR-jY-sdQ">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="128.5"/>
@@ -329,7 +329,7 @@
                             <tableViewSection headerTitle="Opposite Block 1234567890 1234567890" id="KI5-FQ-P2o">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BUBusStopCarouselTableViewCell" id="ITy-73-Jq1" customClass="BUBusStopCarouselTableViewCell" customModule="Buses" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="567.5" width="374" height="128.5"/>
+                                        <rect key="frame" x="20" y="585" width="374" height="128.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ITy-73-Jq1" id="liU-QT-kQs">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="128.5"/>
@@ -437,12 +437,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZ5-AF-mDm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1778" y="409"/>
+            <point key="canvasLocation" x="2688" y="408"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Favorites-->
         <scene sceneID="Ug8-jR-Oao">
             <objects>
-                <collectionViewController id="M7i-al-Ox8" sceneMemberID="viewController">
+                <collectionViewController id="M7i-al-Ox8" customClass="FavoritesCollectionViewController" customModule="Buses" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="WjB-XG-udQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -453,25 +453,17 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="oxJ-fk-xL0">
-                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Wev-tq-Qbs">
-                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </collectionViewCellContentView>
-                            </collectionViewCell>
-                        </cells>
+                        <cells/>
                         <connections>
                             <outlet property="dataSource" destination="M7i-al-Ox8" id="Zui-vu-CFi"/>
                             <outlet property="delegate" destination="M7i-al-Ox8" id="1re-ea-9VY"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" title="Favorites" id="fAQ-Jw-zFs"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fsu-v4-WCG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2364" y="165"/>
+            <point key="canvasLocation" x="1777" y="408"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="Oec-Rf-yNK">
@@ -483,7 +475,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="fxL-oE-piM" kind="relationship" relationship="rootViewController" id="cOi-Xp-SJW"/>
+                        <segue destination="M7i-al-Ox8" kind="relationship" relationship="rootViewController" id="K9a-rT-VQh"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sQS-IK-bTA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -529,7 +521,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="WdN-pZ-N4t" kind="relationship" relationship="viewControllers" id="PAD-tC-HpJ"/>
-                        <segue destination="oJi-PB-9UA" kind="relationship" relationship="viewControllers" id="za4-me-zVR"/>
+                        <segue destination="oJi-PB-9UA" kind="relationship" relationship="viewControllers" id="3pv-0I-wQB"/>
                         <segue destination="okP-RC-oSp" kind="relationship" relationship="viewControllers" id="Fo9-BU-h0r"/>
                         <segue destination="Xy1-V2-CMC" kind="relationship" relationship="viewControllers" id="X50-5R-Xia"/>
                     </connections>

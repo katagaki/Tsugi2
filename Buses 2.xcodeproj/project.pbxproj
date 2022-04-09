@@ -16,7 +16,6 @@
 		E4406AAB27EF182300819CDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4406AAA27EF182300819CDC /* AppDelegate.swift */; };
 		E4406AAD27EF182300819CDC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4406AAC27EF182300819CDC /* SceneDelegate.swift */; };
 		E4406AB227EF182300819CDC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4406AB027EF182300819CDC /* Main.storyboard */; };
-		E4406AB527EF182300819CDC /* Buses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E4406AB327EF182300819CDC /* Buses.xcdatamodeld */; };
 		E4406AB727EF182500819CDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4406AB627EF182500819CDC /* Assets.xcassets */; };
 		E4406ABA27EF182500819CDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4406AB827EF182500819CDC /* LaunchScreen.storyboard */; };
 		E4A68D6427F7EF9600D3A6B2 /* BusesFramework.docc in Sources */ = {isa = PBXBuildFile; fileRef = E4A68D6327F7EF9600D3A6B2 /* BusesFramework.docc */; };
@@ -27,6 +26,12 @@
 		E4FFCABB27F9CD5C00DCA0EC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E4FFCABA27F9CD5C00DCA0EC /* Localizable.strings */; };
 		E4FFCABD27F9CF1D00DCA0EC /* BULocalizedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCABC27F9CF1D00DCA0EC /* BULocalizedLabel.swift */; };
 		E4FFCABF27F9D09600DCA0EC /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCABE27F9D09600DCA0EC /* MainTabBarController.swift */; };
+		E4FFCAC22801604300DCA0EC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4FFCAC12801604300DCA0EC /* MapKit.framework */; };
+		E4FFCAC52801627700DCA0EC /* BABusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC42801627700DCA0EC /* BABusStop.swift */; };
+		E4FFCAC72801627D00DCA0EC /* BABusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC62801627D00DCA0EC /* BABusService.swift */; };
+		E4FFCAC92801631800DCA0EC /* BABusOnRoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC82801631800DCA0EC /* BABusOnRoad.swift */; };
+		E4FFCACB2801703600DCA0EC /* FavoritesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCACA2801703600DCA0EC /* FavoritesCollectionViewController.swift */; };
+		E4FFCACE28018B3500DCA0EC /* BusArrivalv2.json in Resources */ = {isa = PBXBuildFile; fileRef = E4FFCACD28018B3500DCA0EC /* BusArrivalv2.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +69,6 @@
 		E4406AAA27EF182300819CDC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4406AAC27EF182300819CDC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E4406AB127EF182300819CDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E4406AB427EF182300819CDC /* Buses.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Buses.xcdatamodel; sourceTree = "<group>"; };
 		E4406AB627EF182500819CDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4406AB927EF182500819CDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E4406ABB27EF182500819CDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,6 +79,12 @@
 		E4FFCABA27F9CD5C00DCA0EC /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		E4FFCABC27F9CF1D00DCA0EC /* BULocalizedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BULocalizedLabel.swift; sourceTree = "<group>"; };
 		E4FFCABE27F9D09600DCA0EC /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		E4FFCAC12801604300DCA0EC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		E4FFCAC42801627700DCA0EC /* BABusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABusStop.swift; sourceTree = "<group>"; };
+		E4FFCAC62801627D00DCA0EC /* BABusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABusService.swift; sourceTree = "<group>"; };
+		E4FFCAC82801631800DCA0EC /* BABusOnRoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABusOnRoad.swift; sourceTree = "<group>"; };
+		E4FFCACA2801703600DCA0EC /* FavoritesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionViewController.swift; sourceTree = "<group>"; };
+		E4FFCACD28018B3500DCA0EC /* BusArrivalv2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BusArrivalv2.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4FFCAC22801604300DCA0EC /* MapKit.framework in Frameworks */,
 				E4A68D6827F7EF9600D3A6B2 /* BusesFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,7 +107,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E43C8CCC27F938970073F510 /* UI Classes */ = {
+		E43C8CCC27F938970073F510 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				E43C8CD727F948F00073F510 /* BUBusServiceCollectionViewCell.swift */,
@@ -105,7 +116,7 @@
 				E4FFCABC27F9CF1D00DCA0EC /* BULocalizedLabel.swift */,
 				E43C8CCD27F938B30073F510 /* BUTableViewCell.swift */,
 			);
-			path = "UI Classes";
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		E43C8CCF27F9390E0073F510 /* Assets */ = {
@@ -114,7 +125,6 @@
 				E4406AB627EF182500819CDC /* Assets.xcassets */,
 				E43C8CC827F7F45D0073F510 /* OceanSansStd-Bold.otf */,
 				E43C8CC927F7F45D0073F510 /* OceanSansStd-Book.otf */,
-				E4406AB327EF182300819CDC /* Buses.xcdatamodeld */,
 				E4FFCABA27F9CD5C00DCA0EC /* Localizable.strings */,
 			);
 			name = Assets;
@@ -126,6 +136,7 @@
 				E4406AA927EF182300819CDC /* Buses */,
 				E4A68D6127F7EF9600D3A6B2 /* BusesFramework */,
 				E4406A7327EF13E300819CDC /* Products */,
+				E4FFCAC02801604300DCA0EC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,12 +154,14 @@
 			children = (
 				E4406ABB27EF182500819CDC /* Info.plist */,
 				E43C8CCF27F9390E0073F510 /* Assets */,
+				E4FFCACC28018B1A00DCA0EC /* Sample Data */,
 				E4406AAA27EF182300819CDC /* AppDelegate.swift */,
 				E4406AAC27EF182300819CDC /* SceneDelegate.swift */,
 				E4406AB827EF182500819CDC /* LaunchScreen.storyboard */,
 				E4406AB027EF182300819CDC /* Main.storyboard */,
 				E4FFCAB727F94DE600DCA0EC /* View Controllers */,
-				E43C8CCC27F938970073F510 /* UI Classes */,
+				E43C8CCC27F938970073F510 /* Classes */,
+				E4FFCAC32801626200DCA0EC /* Structs */,
 			);
 			path = Buses;
 			sourceTree = "<group>";
@@ -165,10 +178,37 @@
 		E4FFCAB727F94DE600DCA0EC /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E4FFCAB827F94DFD00DCA0EC /* FavoritesTableViewController.swift */,
 				E4FFCABE27F9D09600DCA0EC /* MainTabBarController.swift */,
+				E4FFCAB827F94DFD00DCA0EC /* FavoritesTableViewController.swift */,
+				E4FFCACA2801703600DCA0EC /* FavoritesCollectionViewController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		E4FFCAC02801604300DCA0EC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E4FFCAC12801604300DCA0EC /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E4FFCAC32801626200DCA0EC /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				E4FFCAC42801627700DCA0EC /* BABusStop.swift */,
+				E4FFCAC62801627D00DCA0EC /* BABusService.swift */,
+				E4FFCAC82801631800DCA0EC /* BABusOnRoad.swift */,
+			);
+			path = Structs;
+			sourceTree = "<group>";
+		};
+		E4FFCACC28018B1A00DCA0EC /* Sample Data */ = {
+			isa = PBXGroup;
+			children = (
+				E4FFCACD28018B3500DCA0EC /* BusArrivalv2.json */,
+			);
+			path = "Sample Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E43C8CCB27F7F45D0073F510 /* OceanSansStd-Book.otf in Resources */,
+				E4FFCACE28018B3500DCA0EC /* BusArrivalv2.json in Resources */,
 				E4FFCABB27F9CD5C00DCA0EC /* Localizable.strings in Resources */,
 				E43C8CCA27F7F45D0073F510 /* OceanSansStd-Bold.otf in Resources */,
 				E4406ABA27EF182500819CDC /* LaunchScreen.storyboard in Resources */,
@@ -287,9 +328,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4406AB527EF182300819CDC /* Buses.xcdatamodeld in Sources */,
+				E4FFCAC72801627D00DCA0EC /* BABusService.swift in Sources */,
+				E4FFCAC52801627700DCA0EC /* BABusStop.swift in Sources */,
 				E4406AAB27EF182300819CDC /* AppDelegate.swift in Sources */,
 				E4FFCABF27F9D09600DCA0EC /* MainTabBarController.swift in Sources */,
+				E4FFCACB2801703600DCA0EC /* FavoritesCollectionViewController.swift in Sources */,
 				E4FFCAB927F94DFD00DCA0EC /* FavoritesTableViewController.swift in Sources */,
 				E43C8CD427F947E80073F510 /* BUBusStopCarouselTableViewCell.swift in Sources */,
 				E4FFCABD27F9CF1D00DCA0EC /* BULocalizedLabel.swift in Sources */,
@@ -297,6 +340,7 @@
 				E43C8CCE27F938B30073F510 /* BUTableViewCell.swift in Sources */,
 				E4406AAD27EF182300819CDC /* SceneDelegate.swift in Sources */,
 				E43C8CD627F948D20073F510 /* BUCollectionViewCell.swift in Sources */,
+				E4FFCAC92801631800DCA0EC /* BABusOnRoad.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,9 +506,12 @@
 				DEVELOPMENT_TEAM = YYM4Z6MU8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Buses/Info.plist;
+				INFOPLIST_KEY_NSLocationUsageDescription = "Buses uses your location to look for bus stops nearby.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Buses uses your location to look for bus stops nearby.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -491,9 +538,12 @@
 				DEVELOPMENT_TEAM = YYM4Z6MU8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Buses/Info.plist;
+				INFOPLIST_KEY_NSLocationUsageDescription = "Buses uses your location to look for bus stops nearby.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Buses uses your location to look for bus stops nearby.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -601,19 +651,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		E4406AB327EF182300819CDC /* Buses.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				E4406AB427EF182300819CDC /* Buses.xcdatamodel */,
-			);
-			currentVersion = E4406AB427EF182300819CDC /* Buses.xcdatamodel */;
-			path = Buses.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = E4406A6A27EF13E300819CDC /* Project object */;
 }
