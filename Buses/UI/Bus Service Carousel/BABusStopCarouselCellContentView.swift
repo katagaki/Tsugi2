@@ -82,7 +82,6 @@ class BABusStopCarouselCellContentView: UIView, UIContentView {
         self.serviceNameLabel.text = configuration.busService.serviceNo
         if let arrivalTime = configuration.busService.nextBus.estimatedArrivalTime() {
             self.arrivalTimeLabel.text = arrivalTimeTo(date: arrivalTime)
-            self.arrivalTimeLabel.text = "Arriving"
         } else {
             self.arrivalTimeLabel.text = "N/A"
         }
