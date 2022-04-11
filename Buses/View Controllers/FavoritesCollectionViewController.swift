@@ -20,25 +20,13 @@ class FavoritesCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         // Load sample data
-        if let path = Bundle.main.path(forResource: "BusArrivalv2", ofType: "json") {
-            do {
-                let decoder = JSONDecoder()
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                sampleBusStops.append(try decoder.decode(BABusStop.self, from: data))
-            } catch let DecodingError.dataCorrupted(context) {
-                print(context)
-            } catch let DecodingError.keyNotFound(key, context) {
-                print("Key '\(key)' not found:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch let DecodingError.valueNotFound(value, context) {
-                print("Value '\(value)' not found:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch let DecodingError.typeMismatch(type, context)  {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                print("error: ", error)
-            }
+        if let sampleDataPath1 = Bundle.main.path(forResource: "BusArrivalv2-1", ofType: "json"),
+           let sampleDataPath2 = Bundle.main.path(forResource: "BusArrivalv2-2", ofType: "json"),
+           let sampleDataPath3 = Bundle.main.path(forResource: "BusArrivalv2-3", ofType: "json") {
+            let sampleBusStop1: BABusStop? = decode(from: sampleDataPath1)
+            let sampleBusStop2: BABusStop? = decode(from: sampleDataPath2)
+            let sampleBusStop3: BABusStop? = decode(from: sampleDataPath3)
+            sampleBusStops.append(contentsOf: [sampleBusStop1!, sampleBusStop2!, sampleBusStop3!])
         }
         
         // Configure layout

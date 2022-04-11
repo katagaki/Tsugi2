@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		E4319EAE2801D57200D21531 /* Buses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E4319EAC2801D57200D21531 /* Buses.xcdatamodeld */; };
+		E4319EB0280413BA00D21531 /* BusArrivalv2-2.json in Resources */ = {isa = PBXBuildFile; fileRef = E4319EAF280413BA00D21531 /* BusArrivalv2-2.json */; };
+		E4319EB2280413D200D21531 /* BusArrivalv2-3.json in Resources */ = {isa = PBXBuildFile; fileRef = E4319EB1280413D200D21531 /* BusArrivalv2-3.json */; };
+		E4319EB4280413FA00D21531 /* JSONUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4319EB3280413FA00D21531 /* JSONUtilities.swift */; };
 		E43C8CCA27F7F45D0073F510 /* OceanSansStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E43C8CC827F7F45D0073F510 /* OceanSansStd-Bold.otf */; };
 		E43C8CCB27F7F45D0073F510 /* OceanSansStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = E43C8CC927F7F45D0073F510 /* OceanSansStd-Book.otf */; };
 		E4406AAB27EF182300819CDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4406AAA27EF182300819CDC /* AppDelegate.swift */; };
@@ -25,7 +28,7 @@
 		E4FFCAC72801627D00DCA0EC /* BABusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC62801627D00DCA0EC /* BABusService.swift */; };
 		E4FFCAC92801631800DCA0EC /* BABusOnRoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC82801631800DCA0EC /* BABusOnRoad.swift */; };
 		E4FFCACB2801703600DCA0EC /* FavoritesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCACA2801703600DCA0EC /* FavoritesCollectionViewController.swift */; };
-		E4FFCACE28018B3500DCA0EC /* BusArrivalv2.json in Resources */ = {isa = PBXBuildFile; fileRef = E4FFCACD28018B3500DCA0EC /* BusArrivalv2.json */; };
+		E4FFCACE28018B3500DCA0EC /* BusArrivalv2-1.json in Resources */ = {isa = PBXBuildFile; fileRef = E4FFCACD28018B3500DCA0EC /* BusArrivalv2-1.json */; };
 		E4FFCAD028019F8D00DCA0EC /* BABusStopCarouselCellContentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCACF28019F8D00DCA0EC /* BABusStopCarouselCellContentConfiguration.swift */; };
 		E4FFCAD42801A08A00DCA0EC /* BABusStopCarouselCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAD32801A08A00DCA0EC /* BABusStopCarouselCellContentView.swift */; };
 		E4FFCAD62801A5AA00DCA0EC /* BABusStopCellContentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAD52801A5AA00DCA0EC /* BABusStopCellContentConfiguration.swift */; };
@@ -49,6 +52,9 @@
 
 /* Begin PBXFileReference section */
 		E4319EAD2801D57200D21531 /* Buses.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Buses.xcdatamodel; sourceTree = "<group>"; };
+		E4319EAF280413BA00D21531 /* BusArrivalv2-2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "BusArrivalv2-2.json"; sourceTree = "<group>"; };
+		E4319EB1280413D200D21531 /* BusArrivalv2-3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "BusArrivalv2-3.json"; sourceTree = "<group>"; };
+		E4319EB3280413FA00D21531 /* JSONUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONUtilities.swift; sourceTree = "<group>"; };
 		E43C8CC827F7F45D0073F510 /* OceanSansStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OceanSansStd-Bold.otf"; sourceTree = "<group>"; };
 		E43C8CC927F7F45D0073F510 /* OceanSansStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OceanSansStd-Book.otf"; sourceTree = "<group>"; };
 		E4406AA827EF182300819CDC /* Buses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buses.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,7 +74,7 @@
 		E4FFCAC62801627D00DCA0EC /* BABusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABusService.swift; sourceTree = "<group>"; };
 		E4FFCAC82801631800DCA0EC /* BABusOnRoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABusOnRoad.swift; sourceTree = "<group>"; };
 		E4FFCACA2801703600DCA0EC /* FavoritesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionViewController.swift; sourceTree = "<group>"; };
-		E4FFCACD28018B3500DCA0EC /* BusArrivalv2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BusArrivalv2.json; sourceTree = "<group>"; };
+		E4FFCACD28018B3500DCA0EC /* BusArrivalv2-1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "BusArrivalv2-1.json"; sourceTree = "<group>"; };
 		E4FFCACF28019F8D00DCA0EC /* BABusStopCarouselCellContentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABusStopCarouselCellContentConfiguration.swift; sourceTree = "<group>"; };
 		E4FFCAD32801A08A00DCA0EC /* BABusStopCarouselCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABusStopCarouselCellContentView.swift; sourceTree = "<group>"; };
 		E4FFCAD52801A5AA00DCA0EC /* BABusStopCellContentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABusStopCellContentConfiguration.swift; sourceTree = "<group>"; };
@@ -167,7 +173,9 @@
 		E4FFCACC28018B1A00DCA0EC /* Sample Data */ = {
 			isa = PBXGroup;
 			children = (
-				E4FFCACD28018B3500DCA0EC /* BusArrivalv2.json */,
+				E4FFCACD28018B3500DCA0EC /* BusArrivalv2-1.json */,
+				E4319EAF280413BA00D21531 /* BusArrivalv2-2.json */,
+				E4319EB1280413D200D21531 /* BusArrivalv2-3.json */,
 			);
 			path = "Sample Data";
 			sourceTree = "<group>";
@@ -198,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				E4FFCADA2801B23300DCA0EC /* DateUtilities.swift */,
+				E4319EB3280413FA00D21531 /* JSONUtilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -262,12 +271,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E43C8CCB27F7F45D0073F510 /* OceanSansStd-Book.otf in Resources */,
-				E4FFCACE28018B3500DCA0EC /* BusArrivalv2.json in Resources */,
+				E4FFCACE28018B3500DCA0EC /* BusArrivalv2-1.json in Resources */,
 				E4FFCABB27F9CD5C00DCA0EC /* Localizable.strings in Resources */,
 				E43C8CCA27F7F45D0073F510 /* OceanSansStd-Bold.otf in Resources */,
 				E4406ABA27EF182500819CDC /* LaunchScreen.storyboard in Resources */,
+				E4319EB0280413BA00D21531 /* BusArrivalv2-2.json in Resources */,
 				E4406AB727EF182500819CDC /* Assets.xcassets in Resources */,
 				E4406AB227EF182300819CDC /* Main.storyboard in Resources */,
+				E4319EB2280413D200D21531 /* BusArrivalv2-3.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +297,7 @@
 				E4FFCABF27F9D09600DCA0EC /* MainTabBarController.swift in Sources */,
 				E4FFCACB2801703600DCA0EC /* FavoritesCollectionViewController.swift in Sources */,
 				E4FFCAD028019F8D00DCA0EC /* BABusStopCarouselCellContentConfiguration.swift in Sources */,
+				E4319EB4280413FA00D21531 /* JSONUtilities.swift in Sources */,
 				E4F1FCBB2801B8EF005D400D /* BUNavigationItem.swift in Sources */,
 				E4FFCAD62801A5AA00DCA0EC /* BABusStopCellContentConfiguration.swift in Sources */,
 				E4FFCABD27F9CF1D00DCA0EC /* BULabel.swift in Sources */,
