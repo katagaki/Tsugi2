@@ -10,11 +10,11 @@ import UIKit
 class FavoritesCollectionViewController: UICollectionViewController {
     
     var sampleBusStops: [BABusStop] = []
+    
     var listConfiguration: UICollectionLayoutListConfiguration = .init(appearance: .insetGrouped)
     lazy var listLayout: UICollectionViewCompositionalLayout = .list(using: listConfiguration)
     var dataSource: UICollectionViewDiffableDataSource<BABusStop, ListItem>!
     var dataSourceSnapshot: NSDiffableDataSourceSnapshot<BABusStop, ListItem> = .init()
-    var sectionSnapshot: NSDiffableDataSourceSectionSnapshot<ListItem> = .init()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +35,7 @@ class FavoritesCollectionViewController: UICollectionViewController {
         collectionView.collectionViewLayout = listLayout
         
         // Register cells
-        let headerCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, BABusStop> {
-            cell, indexPath, busStop in
+        let headerCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, BABusStop> { cell, indexPath, busStop in
             var content = cell.defaultContentConfiguration()
             content.text = busStop.code
             content.textProperties.color = .label
@@ -45,8 +44,7 @@ class FavoritesCollectionViewController: UICollectionViewController {
             cell.contentConfiguration = content
             cell.accessories = [.outlineDisclosure(options: UICellAccessory.OutlineDisclosureOptions(style: .header))]
         }
-        let carouselCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, BABusStop> {
-            cell, indexPath, busStop in
+        let carouselCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, BABusStop> { cell, indexPath, busStop in
             let content = BABusStopCellContentConfiguration(busStop: busStop)
             cell.contentConfiguration = content
         }
@@ -63,6 +61,7 @@ class FavoritesCollectionViewController: UICollectionViewController {
         // Configure snapshots
         dataSourceSnapshot.appendSections(sampleBusStops)
         dataSource.apply(dataSourceSnapshot)
+        
         for busStop: BABusStop in sampleBusStops {
             var sectionSnapshot = NSDiffableDataSourceSectionSnapshot<ListItem>()
             let headerItem = ListItem.header(busStop)
@@ -74,9 +73,9 @@ class FavoritesCollectionViewController: UICollectionViewController {
         }
     }
     
-}
-
-enum ListItem: Hashable {
-    case header(BABusStop)
-    case item(BABusStop)
+    enum ListItem: Hashable {
+        case header(BABusStop)
+        case item(BABusStop)
+    }
+    
 }

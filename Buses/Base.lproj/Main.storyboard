@@ -313,7 +313,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="X8Y-I3-rZ9" kind="relationship" relationship="rootViewController" id="9GR-u0-A0j"/>
+                        <segue destination="uER-5R-Pwh" kind="relationship" relationship="rootViewController" id="L0r-l3-7jE"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bCn-g1-zq4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -445,6 +445,37 @@
             </objects>
             <point key="canvasLocation" x="890" y="1700"/>
         </scene>
+        <!--Directory-->
+        <scene sceneID="WpC-L4-DgD">
+            <objects>
+                <collectionViewController id="uER-5R-Pwh" customClass="DirectoryCollectionViewController" customModule="Buses" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="8UJ-8h-aab">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="DirectoryBackgroundColor"/>
+                        <color key="tintColor" systemColor="labelColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lGy-ih-TTc">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
+                        <connections>
+                            <outlet property="dataSource" destination="uER-5R-Pwh" id="2zU-Z6-Z6A"/>
+                            <outlet property="delegate" destination="uER-5R-Pwh" id="013-Ui-IBA"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Directory" id="4Ay-c2-Sab" customClass="BUNavigationItem" customModule="Buses" customModuleProvider="target">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="ViewTitle.Directory"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EEE-6F-Ge1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2423" y="1055"/>
+        </scene>
     </scenes>
     <color key="tintColor" name="AccentColor"/>
     <resources>
@@ -464,6 +495,9 @@
         <namedColor name="DirectoryBackgroundColor">
             <color red="0.99599999189376831" green="0.97600001096725464" blue="0.88599997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

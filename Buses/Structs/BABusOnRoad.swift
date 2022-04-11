@@ -11,10 +11,10 @@ struct BABusOnRoad: Codable, Hashable {
     
     var firstBusStopCode: String?
     var lastBusStopCode: String?
-    var estimatedArrivalTime: String? // Should convert to Date
-    var latitude: String? // Should convert to Double
-    var longitude: String? // Should convert to Double
-    var visitNumber: String? // Should convert to Int
+    private var _estimatedArrivalTime: String?
+    private var _latitude: String?
+    private var _longitude: String?
+    private var _visitNumber: String?
     var load: BusLoad?
     var feature: BusFeature?
     var type: BusType?
@@ -22,13 +22,29 @@ struct BABusOnRoad: Codable, Hashable {
     enum CodingKeys: String, CodingKey {
         case firstBusStopCode = "OriginCode"
         case lastBusStopCode = "DestinationCode"
-        case estimatedArrivalTime = "EstimatedArrival"
-        case latitude = "Latitude"
-        case longitude = "Longitude"
-        case visitNumber = "VisitNumber"
+        case _estimatedArrivalTime = "EstimatedArrival"
+        case _latitude = "Latitude"
+        case _longitude = "Longitude"
+        case _visitNumber = "VisitNumber"
         case load = "Load"
         case feature = "Feature"
         case type = "Type"
+    }
+    
+    func estimatedArrivalTime() -> Date? {
+        return date(fromISO8601: _estimatedArrivalTime ?? "")
+    }
+    
+    func latitude() -> Double? {
+        return Double(_latitude ?? "0.0")
+    }
+    
+    func longitude() -> Double? {
+        return Double(_longitude ?? "0.0")
+    }
+    
+    func visitNumber() -> Int? {
+        return Int(_visitNumber ?? "0.0")
     }
     
 }

@@ -8,7 +8,8 @@
 import CoreLocation
 import UIKit
 
-class MainTabBarController: UITabBarController, CLLocationManagerDelegate {
+class MainTabBarController: UITabBarController,
+                            CLLocationManagerDelegate {
     
     let locationManager: CLLocationManager = CLLocationManager()
     

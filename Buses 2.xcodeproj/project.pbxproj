@@ -12,6 +12,8 @@
 		E4319EB2280413D200D21531 /* BusArrivalv2-3.json in Resources */ = {isa = PBXBuildFile; fileRef = E4319EB1280413D200D21531 /* BusArrivalv2-3.json */; };
 		E4319EB4280413FA00D21531 /* JSONUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4319EB3280413FA00D21531 /* JSONUtilities.swift */; };
 		E4319EB6280432C300D21531 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4319EB5280432C300D21531 /* APIKeys.plist */; };
+		E4319EBA280435B300D21531 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4319EB9280435B300D21531 /* BusStop.swift */; };
+		E4319EBC280437BA00D21531 /* BSBusStopList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4319EBB280437BA00D21531 /* BSBusStopList.swift */; };
 		E43C8CCA27F7F45D0073F510 /* OceanSansStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E43C8CC827F7F45D0073F510 /* OceanSansStd-Bold.otf */; };
 		E43C8CCB27F7F45D0073F510 /* OceanSansStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = E43C8CC927F7F45D0073F510 /* OceanSansStd-Book.otf */; };
 		E4406AAB27EF182300819CDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4406AAA27EF182300819CDC /* AppDelegate.swift */; };
@@ -19,6 +21,9 @@
 		E4406AB227EF182300819CDC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4406AB027EF182300819CDC /* Main.storyboard */; };
 		E4406AB727EF182500819CDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4406AB627EF182500819CDC /* Assets.xcassets */; };
 		E4406ABA27EF182500819CDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4406AB827EF182500819CDC /* LaunchScreen.storyboard */; };
+		E4E367852804381D0022A5CD /* BusStops.json in Resources */ = {isa = PBXBuildFile; fileRef = E4E367842804381D0022A5CD /* BusStops.json */; };
+		E4E36787280439080022A5CD /* DirectoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E36786280439080022A5CD /* DirectoryCollectionViewController.swift */; };
+		E4E367892804422B0022A5CD /* StringUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E367882804422B0022A5CD /* StringUtilities.swift */; };
 		E4F1FCBB2801B8EF005D400D /* BUNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F1FCBA2801B8EF005D400D /* BUNavigationItem.swift */; };
 		E4F1FCBD2801B9AA005D400D /* BUTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F1FCBC2801B9AA005D400D /* BUTabBarItem.swift */; };
 		E4FFCABB27F9CD5C00DCA0EC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E4FFCABA27F9CD5C00DCA0EC /* Localizable.strings */; };
@@ -58,6 +63,8 @@
 		E4319EB3280413FA00D21531 /* JSONUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONUtilities.swift; sourceTree = "<group>"; };
 		E4319EB5280432C300D21531 /* APIKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
 		E4319EB7280433B000D21531 /* APIKeys-Sample.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "APIKeys-Sample.plist"; sourceTree = "<group>"; };
+		E4319EB9280435B300D21531 /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
+		E4319EBB280437BA00D21531 /* BSBusStopList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSBusStopList.swift; sourceTree = "<group>"; };
 		E43C8CC827F7F45D0073F510 /* OceanSansStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OceanSansStd-Bold.otf"; sourceTree = "<group>"; };
 		E43C8CC927F7F45D0073F510 /* OceanSansStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OceanSansStd-Book.otf"; sourceTree = "<group>"; };
 		E4406AA827EF182300819CDC /* Buses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buses.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +74,9 @@
 		E4406AB627EF182500819CDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4406AB927EF182500819CDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E4406ABB27EF182500819CDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4E367842804381D0022A5CD /* BusStops.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BusStops.json; sourceTree = "<group>"; };
+		E4E36786280439080022A5CD /* DirectoryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryCollectionViewController.swift; sourceTree = "<group>"; };
+		E4E367882804422B0022A5CD /* StringUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtilities.swift; sourceTree = "<group>"; };
 		E4F1FCBA2801B8EF005D400D /* BUNavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BUNavigationItem.swift; sourceTree = "<group>"; };
 		E4F1FCBC2801B9AA005D400D /* BUTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BUTabBarItem.swift; sourceTree = "<group>"; };
 		E4FFCABA27F9CD5C00DCA0EC /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -153,6 +163,7 @@
 				E4FFCABE27F9D09600DCA0EC /* MainTabBarController.swift */,
 				E4FFCADC2801B61F00DCA0EC /* NearbyViewController.swift */,
 				E4FFCACA2801703600DCA0EC /* FavoritesCollectionViewController.swift */,
+				E4E36786280439080022A5CD /* DirectoryCollectionViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -171,6 +182,8 @@
 				E4FFCAC42801627700DCA0EC /* BABusStop.swift */,
 				E4FFCAC62801627D00DCA0EC /* BABusService.swift */,
 				E4FFCAC82801631800DCA0EC /* BABusOnRoad.swift */,
+				E4319EBB280437BA00D21531 /* BSBusStopList.swift */,
+				E4319EB9280435B300D21531 /* BusStop.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -181,6 +194,7 @@
 				E4FFCACD28018B3500DCA0EC /* BusArrivalv2-1.json */,
 				E4319EAF280413BA00D21531 /* BusArrivalv2-2.json */,
 				E4319EB1280413D200D21531 /* BusArrivalv2-3.json */,
+				E4E367842804381D0022A5CD /* BusStops.json */,
 			);
 			path = "Sample Data";
 			sourceTree = "<group>";
@@ -212,6 +226,7 @@
 			children = (
 				E4FFCADA2801B23300DCA0EC /* DateUtilities.swift */,
 				E4319EB3280413FA00D21531 /* JSONUtilities.swift */,
+				E4E367882804422B0022A5CD /* StringUtilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -275,6 +290,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4E367852804381D0022A5CD /* BusStops.json in Resources */,
 				E43C8CCB27F7F45D0073F510 /* OceanSansStd-Book.otf in Resources */,
 				E4319EB6280432C300D21531 /* APIKeys.plist in Resources */,
 				E4FFCACE28018B3500DCA0EC /* BusArrivalv2-1.json in Resources */,
@@ -300,11 +316,14 @@
 				E4FFCAC52801627700DCA0EC /* BABusStop.swift in Sources */,
 				E4406AAB27EF182300819CDC /* AppDelegate.swift in Sources */,
 				E4319EAE2801D57200D21531 /* Buses.xcdatamodeld in Sources */,
+				E4E367892804422B0022A5CD /* StringUtilities.swift in Sources */,
 				E4FFCABF27F9D09600DCA0EC /* MainTabBarController.swift in Sources */,
 				E4FFCACB2801703600DCA0EC /* FavoritesCollectionViewController.swift in Sources */,
 				E4FFCAD028019F8D00DCA0EC /* BABusStopCarouselCellContentConfiguration.swift in Sources */,
+				E4319EBA280435B300D21531 /* BusStop.swift in Sources */,
 				E4319EB4280413FA00D21531 /* JSONUtilities.swift in Sources */,
 				E4F1FCBB2801B8EF005D400D /* BUNavigationItem.swift in Sources */,
+				E4E36787280439080022A5CD /* DirectoryCollectionViewController.swift in Sources */,
 				E4FFCAD62801A5AA00DCA0EC /* BABusStopCellContentConfiguration.swift in Sources */,
 				E4FFCABD27F9CF1D00DCA0EC /* BULabel.swift in Sources */,
 				E4FFCADD2801B61F00DCA0EC /* NearbyViewController.swift in Sources */,
@@ -313,6 +332,7 @@
 				E4FFCAC92801631800DCA0EC /* BABusOnRoad.swift in Sources */,
 				E4FFCADB2801B23300DCA0EC /* DateUtilities.swift in Sources */,
 				E4F1FCBD2801B9AA005D400D /* BUTabBarItem.swift in Sources */,
+				E4319EBC280437BA00D21531 /* BSBusStopList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
