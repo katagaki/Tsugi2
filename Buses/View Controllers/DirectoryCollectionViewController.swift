@@ -36,7 +36,7 @@ class DirectoryCollectionViewController: UICollectionViewController,
         
         // Configure layout
         listConfiguration.headerMode = .firstItemInSection
-        listConfiguration.headerTopPadding = 16.0
+        listConfiguration.headerTopPadding = 8.0
         listConfiguration.backgroundColor = .init(named: "DirectoryBackgroundColor")
         collectionView.collectionViewLayout = listLayout
         
@@ -48,7 +48,6 @@ class DirectoryCollectionViewController: UICollectionViewController,
             content.textProperties.font = .preferredFont(forTextStyle: .headline)
             content.textProperties.adjustsFontForContentSizeCategory = true
             cell.contentConfiguration = content
-            // cell.accessories = [.outlineDisclosure(options: UICellAccessory.OutlineDisclosureOptions(style: .header))]
         }
         let mrtServiceMapCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, String> { cell, indexPath, string in
             var content = cell.defaultContentConfiguration()

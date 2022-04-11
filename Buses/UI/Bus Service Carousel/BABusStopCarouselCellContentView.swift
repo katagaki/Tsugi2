@@ -25,7 +25,7 @@ class BABusStopCarouselCellContentView: UIView, UIContentView {
         self.addSubview(serviceNameLabel)
         self.addSubview(arrivalTimeLabel)
         self.addSubview(arrivalTimeSubLabel)
-        
+                
         serviceNameLabel.textAlignment = .center
         serviceNameLabel.leftPadding = 4.0
         serviceNameLabel.rightPadding = 4.0
@@ -38,7 +38,7 @@ class BABusStopCarouselCellContentView: UIView, UIContentView {
         serviceNameLabel.clipsToBounds = true
         serviceNameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            serviceNameLabel.widthAnchor.constraint(equalToConstant: 90.0),
+            serviceNameLabel.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.size.width) / 5.0 - 12.0),
             serviceNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16.0),
             serviceNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8.0),
             serviceNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8.0),
@@ -46,7 +46,7 @@ class BABusStopCarouselCellContentView: UIView, UIContentView {
         ])
         
         arrivalTimeLabel.textAlignment = .center
-        arrivalTimeLabel.font = .preferredFont(forTextStyle: .body)
+        arrivalTimeLabel.font = .systemFont(ofSize: 16.0)
         arrivalTimeLabel.textColor = .label
         arrivalTimeLabel.numberOfLines = 1
         arrivalTimeLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +57,7 @@ class BABusStopCarouselCellContentView: UIView, UIContentView {
         ])
         
         arrivalTimeSubLabel.textAlignment = .center
-        arrivalTimeSubLabel.font = .preferredFont(forTextStyle: .body)
+        arrivalTimeSubLabel.font = .systemFont(ofSize: 16.0)
         arrivalTimeSubLabel.textColor = .secondaryLabel
         arrivalTimeSubLabel.numberOfLines = 1
         arrivalTimeSubLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -66,6 +66,8 @@ class BABusStopCarouselCellContentView: UIView, UIContentView {
             arrivalTimeSubLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8.0),
             arrivalTimeSubLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16.0)
         ])
+        
+        self.backgroundColor = .secondarySystemGroupedBackground
         
         self.configure(configuration: configuration)
     }
@@ -80,6 +82,7 @@ class BABusStopCarouselCellContentView: UIView, UIContentView {
         self.serviceNameLabel.text = configuration.busService.serviceNo
         if let arrivalTime = configuration.busService.nextBus.estimatedArrivalTime() {
             self.arrivalTimeLabel.text = arrivalTimeTo(date: arrivalTime)
+            self.arrivalTimeLabel.text = "Arriving"
         } else {
             self.arrivalTimeLabel.text = "N/A"
         }

@@ -30,10 +30,11 @@ class BABusStopCellContentView: UIView, UIContentView {
         carouselLayout.sectionInset.bottom = 0.0
         carouselLayout.sectionInset.left = 8.0
         carouselLayout.sectionInset.right = 8.0
-        carouselLayout.estimatedItemSize.width = 128.0
+        carouselLayout.estimatedItemSize.width = (UIScreen.main.bounds.size.width) / 4.0 - 12.0
         carouselLayout.estimatedItemSize.height = 120.0
         carouselLayout.minimumInteritemSpacing = 0.0
         carouselLayout.minimumLineSpacing = 0.0
+        carouselView.backgroundColor = .secondarySystemGroupedBackground
         carouselView.showsVerticalScrollIndicator = false
         carouselView.translatesAutoresizingMaskIntoConstraints = false
         let heightConstraint: NSLayoutConstraint = carouselView.heightAnchor.constraint(equalToConstant: 120.0)

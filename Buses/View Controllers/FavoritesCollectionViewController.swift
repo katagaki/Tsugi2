@@ -31,7 +31,7 @@ class FavoritesCollectionViewController: UICollectionViewController {
         
         // Configure layout
         listConfiguration.headerMode = .firstItemInSection
-        listConfiguration.headerTopPadding = 16.0
+        listConfiguration.headerTopPadding = 8.0
         collectionView.collectionViewLayout = listLayout
         
         // Register cells
