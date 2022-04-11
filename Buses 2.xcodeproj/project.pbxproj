@@ -11,6 +11,7 @@
 		E4319EB0280413BA00D21531 /* BusArrivalv2-2.json in Resources */ = {isa = PBXBuildFile; fileRef = E4319EAF280413BA00D21531 /* BusArrivalv2-2.json */; };
 		E4319EB2280413D200D21531 /* BusArrivalv2-3.json in Resources */ = {isa = PBXBuildFile; fileRef = E4319EB1280413D200D21531 /* BusArrivalv2-3.json */; };
 		E4319EB4280413FA00D21531 /* JSONUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4319EB3280413FA00D21531 /* JSONUtilities.swift */; };
+		E4319EB6280432C300D21531 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4319EB5280432C300D21531 /* APIKeys.plist */; };
 		E43C8CCA27F7F45D0073F510 /* OceanSansStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E43C8CC827F7F45D0073F510 /* OceanSansStd-Bold.otf */; };
 		E43C8CCB27F7F45D0073F510 /* OceanSansStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = E43C8CC927F7F45D0073F510 /* OceanSansStd-Book.otf */; };
 		E4406AAB27EF182300819CDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4406AAA27EF182300819CDC /* AppDelegate.swift */; };
@@ -55,6 +56,7 @@
 		E4319EAF280413BA00D21531 /* BusArrivalv2-2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "BusArrivalv2-2.json"; sourceTree = "<group>"; };
 		E4319EB1280413D200D21531 /* BusArrivalv2-3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "BusArrivalv2-3.json"; sourceTree = "<group>"; };
 		E4319EB3280413FA00D21531 /* JSONUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONUtilities.swift; sourceTree = "<group>"; };
+		E4319EB5280432C300D21531 /* APIKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
 		E43C8CC827F7F45D0073F510 /* OceanSansStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OceanSansStd-Bold.otf"; sourceTree = "<group>"; };
 		E43C8CC927F7F45D0073F510 /* OceanSansStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OceanSansStd-Book.otf"; sourceTree = "<group>"; };
 		E4406AA827EF182300819CDC /* Buses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buses.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +140,7 @@
 				E4FFCAC32801626200DCA0EC /* Structs */,
 				E4FFCAD22801A07700DCA0EC /* UI */,
 				E4FFCAD92801B22700DCA0EC /* Utilities */,
+				E4319EB5280432C300D21531 /* APIKeys.plist */,
 			);
 			path = Buses;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E43C8CCB27F7F45D0073F510 /* OceanSansStd-Book.otf in Resources */,
+				E4319EB6280432C300D21531 /* APIKeys.plist in Resources */,
 				E4FFCACE28018B3500DCA0EC /* BusArrivalv2-1.json in Resources */,
 				E4FFCABB27F9CD5C00DCA0EC /* Localizable.strings in Resources */,
 				E43C8CCA27F7F45D0073F510 /* OceanSansStd-Bold.otf in Resources */,
