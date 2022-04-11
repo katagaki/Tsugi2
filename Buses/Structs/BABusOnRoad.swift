@@ -9,15 +9,15 @@ import Foundation
 
 struct BABusOnRoad: Codable, Hashable {
     
-    var firstBusStopCode: String
-    var lastBusStopCode: String
-    var estimatedArrivalTime: String // Actually Date
-    var latitude: String // Actually Double
-    var longitude: String // Actually Double
-    var visitNumber: String // Actually Int
-    var load: BusLoad
-    var feature: BusFeature
-    var type: BusType
+    var firstBusStopCode: String?
+    var lastBusStopCode: String?
+    var estimatedArrivalTime: String? // Should convert to Date
+    var latitude: String? // Should convert to Double
+    var longitude: String? // Should convert to Double
+    var visitNumber: String? // Should convert to Int
+    var load: BusLoad?
+    var feature: BusFeature?
+    var type: BusType?
     
     enum CodingKeys: String, CodingKey {
         case firstBusStopCode = "OriginCode"
@@ -37,6 +37,7 @@ enum BusLoad: String, Codable {
     case SeatsAvailable = "SEA"
     case StandingAvailable = "SDA"
     case LimitedStanding = "LSD"
+    case NotApplicable = ""
 }
 
 enum BusFeature: String, Codable {
@@ -48,4 +49,5 @@ enum BusType: String, Codable {
     case SingleDeck = "SD"
     case DoubleDeck = "DD"
     case Bendy = "BD"
+    case NotApplicable = ""
 }

@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="true" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="FavoritedBusStop" representedClassName="FavoritedBusStop" syncable="YES" codeGenerationType="class">
+        <attribute name="metadataVersion" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="stopCode" optional="YES" attributeType="String"/>
+        <attribute name="userDefinedName" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="FavoritedBusStop" positionX="-63" positionY="-18" width="128" height="74"/>
+    </elements>
 </model>

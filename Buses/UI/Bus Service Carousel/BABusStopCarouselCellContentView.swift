@@ -78,8 +78,16 @@ class BABusStopCarouselCellContentView: UIView, UIContentView {
         guard let configuration = configuration as? BABusStopCarouselCellContentConfiguration else { return }
         
         self.serviceNameLabel.text = configuration.busService.serviceNo
-        self.arrivalTimeLabel.text = arrivalTimeTo(date: date(fromISO8601: configuration.busService.nextBus.estimatedArrivalTime)!)
-        self.arrivalTimeSubLabel.text = arrivalTimeTo(date: date(fromISO8601: configuration.busService.nextBus2.estimatedArrivalTime)!)
+        if let arrivalTime = configuration.busService.nextBus.estimatedArrivalTime, arrivalTime != "" {
+            self.arrivalTimeLabel.text = arrivalTimeTo(date: date(fromISO8601: arrivalTime)!)
+        } else {
+            self.arrivalTimeLabel.text = "N/A"
+        }
+        if let arrivalTime = configuration.busService.nextBus2.estimatedArrivalTime, arrivalTime != "" {
+            self.arrivalTimeSubLabel.text = arrivalTimeTo(date: date(fromISO8601: arrivalTime)!)
+        } else {
+            self.arrivalTimeSubLabel.text = "N/A"
+        }
     }
     
 }

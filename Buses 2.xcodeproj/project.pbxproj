@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E4319EAE2801D57200D21531 /* Buses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E4319EAC2801D57200D21531 /* Buses.xcdatamodeld */; };
 		E43C8CCA27F7F45D0073F510 /* OceanSansStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E43C8CC827F7F45D0073F510 /* OceanSansStd-Bold.otf */; };
 		E43C8CCB27F7F45D0073F510 /* OceanSansStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = E43C8CC927F7F45D0073F510 /* OceanSansStd-Book.otf */; };
 		E4406AAB27EF182300819CDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4406AAA27EF182300819CDC /* AppDelegate.swift */; };
@@ -14,10 +15,6 @@
 		E4406AB227EF182300819CDC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4406AB027EF182300819CDC /* Main.storyboard */; };
 		E4406AB727EF182500819CDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4406AB627EF182500819CDC /* Assets.xcassets */; };
 		E4406ABA27EF182500819CDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4406AB827EF182500819CDC /* LaunchScreen.storyboard */; };
-		E4A68D6427F7EF9600D3A6B2 /* BusesFramework.docc in Sources */ = {isa = PBXBuildFile; fileRef = E4A68D6327F7EF9600D3A6B2 /* BusesFramework.docc */; };
-		E4A68D6527F7EF9600D3A6B2 /* BusesFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = E4A68D6227F7EF9600D3A6B2 /* BusesFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E4A68D6827F7EF9600D3A6B2 /* BusesFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4A68D6027F7EF9600D3A6B2 /* BusesFramework.framework */; };
-		E4A68D6927F7EF9600D3A6B2 /* BusesFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E4A68D6027F7EF9600D3A6B2 /* BusesFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E4F1FCBB2801B8EF005D400D /* BUNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F1FCBA2801B8EF005D400D /* BUNavigationItem.swift */; };
 		E4F1FCBD2801B9AA005D400D /* BUTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F1FCBC2801B9AA005D400D /* BUTabBarItem.swift */; };
 		E4FFCABB27F9CD5C00DCA0EC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E4FFCABA27F9CD5C00DCA0EC /* Localizable.strings */; };
@@ -37,16 +34,6 @@
 		E4FFCADD2801B61F00DCA0EC /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCADC2801B61F00DCA0EC /* NearbyViewController.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		E4A68D6627F7EF9600D3A6B2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E4406A6A27EF13E300819CDC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E4A68D5F27F7EF9600D3A6B2;
-			remoteInfo = BusesFramework;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		E4A68D6A27F7EF9600D3A6B2 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -54,7 +41,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E4A68D6927F7EF9600D3A6B2 /* BusesFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,6 +48,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E4319EAD2801D57200D21531 /* Buses.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Buses.xcdatamodel; sourceTree = "<group>"; };
 		E43C8CC827F7F45D0073F510 /* OceanSansStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OceanSansStd-Bold.otf"; sourceTree = "<group>"; };
 		E43C8CC927F7F45D0073F510 /* OceanSansStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OceanSansStd-Book.otf"; sourceTree = "<group>"; };
 		E4406AA827EF182300819CDC /* Buses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buses.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,9 +58,6 @@
 		E4406AB627EF182500819CDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4406AB927EF182500819CDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E4406ABB27EF182500819CDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E4A68D6027F7EF9600D3A6B2 /* BusesFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BusesFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E4A68D6227F7EF9600D3A6B2 /* BusesFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusesFramework.h; sourceTree = "<group>"; };
-		E4A68D6327F7EF9600D3A6B2 /* BusesFramework.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = BusesFramework.docc; sourceTree = "<group>"; };
 		E4F1FCBA2801B8EF005D400D /* BUNavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BUNavigationItem.swift; sourceTree = "<group>"; };
 		E4F1FCBC2801B9AA005D400D /* BUTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BUTabBarItem.swift; sourceTree = "<group>"; };
 		E4FFCABA27F9CD5C00DCA0EC /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -99,14 +83,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4FFCAC22801604300DCA0EC /* MapKit.framework in Frameworks */,
-				E4A68D6827F7EF9600D3A6B2 /* BusesFramework.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E4A68D5D27F7EF9600D3A6B2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +96,7 @@
 				E43C8CC827F7F45D0073F510 /* OceanSansStd-Bold.otf */,
 				E43C8CC927F7F45D0073F510 /* OceanSansStd-Book.otf */,
 				E4FFCABA27F9CD5C00DCA0EC /* Localizable.strings */,
+				E4319EAC2801D57200D21531 /* Buses.xcdatamodeld */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -128,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				E4406AA927EF182300819CDC /* Buses */,
-				E4A68D6127F7EF9600D3A6B2 /* BusesFramework */,
 				E4406A7327EF13E300819CDC /* Products */,
 				E4FFCAC02801604300DCA0EC /* Frameworks */,
 			);
@@ -138,7 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				E4406AA827EF182300819CDC /* Buses.app */,
-				E4A68D6027F7EF9600D3A6B2 /* BusesFramework.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -159,15 +134,6 @@
 				E4FFCAD92801B22700DCA0EC /* Utilities */,
 			);
 			path = Buses;
-			sourceTree = "<group>";
-		};
-		E4A68D6127F7EF9600D3A6B2 /* BusesFramework */ = {
-			isa = PBXGroup;
-			children = (
-				E4A68D6227F7EF9600D3A6B2 /* BusesFramework.h */,
-				E4A68D6327F7EF9600D3A6B2 /* BusesFramework.docc */,
-			);
-			path = BusesFramework;
 			sourceTree = "<group>";
 		};
 		E4FFCAB727F94DE600DCA0EC /* View Controllers */ = {
@@ -238,17 +204,6 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		E4A68D5B27F7EF9600D3A6B2 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E4A68D6527F7EF9600D3A6B2 /* BusesFramework.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		E4406AA727EF182300819CDC /* Buses */ = {
 			isa = PBXNativeTarget;
@@ -262,30 +217,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				E4A68D6727F7EF9600D3A6B2 /* PBXTargetDependency */,
 			);
 			name = Buses;
 			productName = Buses;
 			productReference = E4406AA827EF182300819CDC /* Buses.app */;
 			productType = "com.apple.product-type.application";
-		};
-		E4A68D5F27F7EF9600D3A6B2 /* BusesFramework */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E4A68D6D27F7EF9600D3A6B2 /* Build configuration list for PBXNativeTarget "BusesFramework" */;
-			buildPhases = (
-				E4A68D5B27F7EF9600D3A6B2 /* Headers */,
-				E4A68D5C27F7EF9600D3A6B2 /* Sources */,
-				E4A68D5D27F7EF9600D3A6B2 /* Frameworks */,
-				E4A68D5E27F7EF9600D3A6B2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = BusesFramework;
-			productName = BusesFramework;
-			productReference = E4A68D6027F7EF9600D3A6B2 /* BusesFramework.framework */;
-			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -298,9 +234,6 @@
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
 					E4406AA727EF182300819CDC = {
-						CreatedOnToolsVersion = 13.3;
-					};
-					E4A68D5F27F7EF9600D3A6B2 = {
 						CreatedOnToolsVersion = 13.3;
 					};
 				};
@@ -319,7 +252,6 @@
 			projectRoot = "";
 			targets = (
 				E4406AA727EF182300819CDC /* Buses */,
-				E4A68D5F27F7EF9600D3A6B2 /* BusesFramework */,
 			);
 		};
 /* End PBXProject section */
@@ -339,13 +271,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E4A68D5E27F7EF9600D3A6B2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -357,6 +282,7 @@
 				E4FFCAC72801627D00DCA0EC /* BABusService.swift in Sources */,
 				E4FFCAC52801627700DCA0EC /* BABusStop.swift in Sources */,
 				E4406AAB27EF182300819CDC /* AppDelegate.swift in Sources */,
+				E4319EAE2801D57200D21531 /* Buses.xcdatamodeld in Sources */,
 				E4FFCABF27F9D09600DCA0EC /* MainTabBarController.swift in Sources */,
 				E4FFCACB2801703600DCA0EC /* FavoritesCollectionViewController.swift in Sources */,
 				E4FFCAD028019F8D00DCA0EC /* BABusStopCarouselCellContentConfiguration.swift in Sources */,
@@ -372,23 +298,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E4A68D5C27F7EF9600D3A6B2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E4A68D6427F7EF9600D3A6B2 /* BusesFramework.docc in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E4A68D6727F7EF9600D3A6B2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E4A68D5F27F7EF9600D3A6B2 /* BusesFramework */;
-			targetProxy = E4A68D6627F7EF9600D3A6B2 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E4406AB027EF182300819CDC /* Main.storyboard */ = {
@@ -588,66 +498,6 @@
 			};
 			name = Release;
 		};
-		E4A68D6B27F7EF9600D3A6B2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = YYM4Z6MU8F;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsubuzaki.BusesFramework;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		E4A68D6C27F7EF9600D3A6B2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = YYM4Z6MU8F;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsubuzaki.BusesFramework;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -669,16 +519,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E4A68D6D27F7EF9600D3A6B2 /* Build configuration list for PBXNativeTarget "BusesFramework" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E4A68D6B27F7EF9600D3A6B2 /* Debug */,
-				E4A68D6C27F7EF9600D3A6B2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E4319EAC2801D57200D21531 /* Buses.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E4319EAD2801D57200D21531 /* Buses.xcdatamodel */,
+			);
+			currentVersion = E4319EAD2801D57200D21531 /* Buses.xcdatamodel */;
+			path = Buses.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E4406A6A27EF13E300819CDC /* Project object */;
 }
