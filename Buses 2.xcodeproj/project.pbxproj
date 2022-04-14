@@ -21,6 +21,10 @@
 		E4406AB227EF182300819CDC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4406AB027EF182300819CDC /* Main.storyboard */; };
 		E4406AB727EF182500819CDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4406AB627EF182500819CDC /* Assets.xcassets */; };
 		E4406ABA27EF182500819CDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4406AB827EF182500819CDC /* LaunchScreen.storyboard */; };
+		E476BF1B280869A500B8524B /* DataFetchers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF1A280869A500B8524B /* DataFetchers.swift */; };
+		E476BF1E28086A2D00B8524B /* APIKeyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF1D28086A2D00B8524B /* APIKeyHandler.swift */; };
+		E476BF2028086AE500B8524B /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF1F28086AE500B8524B /* Logging.swift */; };
+		E476BF23280873E200B8524B /* DTBusStopDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF22280873E100B8524B /* DTBusStopDetailsViewController.swift */; };
 		E4E367852804381D0022A5CD /* BusStops.json in Resources */ = {isa = PBXBuildFile; fileRef = E4E367842804381D0022A5CD /* BusStops.json */; };
 		E4E36787280439080022A5CD /* DirectoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E36786280439080022A5CD /* DirectoryCollectionViewController.swift */; };
 		E4E367892804422B0022A5CD /* StringUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E367882804422B0022A5CD /* StringUtilities.swift */; };
@@ -74,6 +78,10 @@
 		E4406AB627EF182500819CDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4406AB927EF182500819CDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E4406ABB27EF182500819CDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E476BF1A280869A500B8524B /* DataFetchers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetchers.swift; sourceTree = "<group>"; };
+		E476BF1D28086A2D00B8524B /* APIKeyHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeyHandler.swift; sourceTree = "<group>"; };
+		E476BF1F28086AE500B8524B /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
+		E476BF22280873E100B8524B /* DTBusStopDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTBusStopDetailsViewController.swift; sourceTree = "<group>"; };
 		E4E367842804381D0022A5CD /* BusStops.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BusStops.json; sourceTree = "<group>"; };
 		E4E36786280439080022A5CD /* DirectoryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryCollectionViewController.swift; sourceTree = "<group>"; };
 		E4E367882804422B0022A5CD /* StringUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtilities.swift; sourceTree = "<group>"; };
@@ -157,13 +165,39 @@
 			path = Buses;
 			sourceTree = "<group>";
 		};
+		E476BF192808699300B8524B /* API Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E476BF1A280869A500B8524B /* DataFetchers.swift */,
+			);
+			path = "API Helpers";
+			sourceTree = "<group>";
+		};
+		E476BF1C28086A0F00B8524B /* Global Functions */ = {
+			isa = PBXGroup;
+			children = (
+				E476BF1D28086A2D00B8524B /* APIKeyHandler.swift */,
+				E476BF1F28086AE500B8524B /* Logging.swift */,
+			);
+			path = "Global Functions";
+			sourceTree = "<group>";
+		};
+		E476BF21280873C100B8524B /* Directory */ = {
+			isa = PBXGroup;
+			children = (
+				E4E36786280439080022A5CD /* DirectoryCollectionViewController.swift */,
+				E476BF22280873E100B8524B /* DTBusStopDetailsViewController.swift */,
+			);
+			path = Directory;
+			sourceTree = "<group>";
+		};
 		E4FFCAB727F94DE600DCA0EC /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				E4FFCABE27F9D09600DCA0EC /* MainTabBarController.swift */,
 				E4FFCADC2801B61F00DCA0EC /* NearbyViewController.swift */,
 				E4FFCACA2801703600DCA0EC /* FavoritesCollectionViewController.swift */,
-				E4E36786280439080022A5CD /* DirectoryCollectionViewController.swift */,
+				E476BF21280873C100B8524B /* Directory */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -224,6 +258,8 @@
 		E4FFCAD92801B22700DCA0EC /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				E476BF1C28086A0F00B8524B /* Global Functions */,
+				E476BF192808699300B8524B /* API Helpers */,
 				E4FFCADA2801B23300DCA0EC /* DateUtilities.swift */,
 				E4319EB3280413FA00D21531 /* JSONUtilities.swift */,
 				E4E367882804422B0022A5CD /* StringUtilities.swift */,
@@ -322,6 +358,7 @@
 				E4FFCAD028019F8D00DCA0EC /* BABusStopCarouselCellContentConfiguration.swift in Sources */,
 				E4319EBA280435B300D21531 /* BusStop.swift in Sources */,
 				E4319EB4280413FA00D21531 /* JSONUtilities.swift in Sources */,
+				E476BF2028086AE500B8524B /* Logging.swift in Sources */,
 				E4F1FCBB2801B8EF005D400D /* BUNavigationItem.swift in Sources */,
 				E4E36787280439080022A5CD /* DirectoryCollectionViewController.swift in Sources */,
 				E4FFCAD62801A5AA00DCA0EC /* BABusStopCellContentConfiguration.swift in Sources */,
@@ -329,10 +366,13 @@
 				E4FFCADD2801B61F00DCA0EC /* NearbyViewController.swift in Sources */,
 				E4FFCAD82801A5BE00DCA0EC /* BABusStopCellContentView.swift in Sources */,
 				E4406AAD27EF182300819CDC /* SceneDelegate.swift in Sources */,
+				E476BF1B280869A500B8524B /* DataFetchers.swift in Sources */,
 				E4FFCAC92801631800DCA0EC /* BABusOnRoad.swift in Sources */,
 				E4FFCADB2801B23300DCA0EC /* DateUtilities.swift in Sources */,
+				E476BF23280873E200B8524B /* DTBusStopDetailsViewController.swift in Sources */,
 				E4F1FCBD2801B9AA005D400D /* BUTabBarItem.swift in Sources */,
 				E4319EBC280437BA00D21531 /* BSBusStopList.swift in Sources */,
+				E476BF1E28086A2D00B8524B /* APIKeyHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

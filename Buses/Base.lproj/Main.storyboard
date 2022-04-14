@@ -115,190 +115,6 @@
             </objects>
             <point key="canvasLocation" x="-12" y="-232"/>
         </scene>
-        <!--Table View Controller-->
-        <scene sceneID="Ujm-vz-5YK">
-            <objects>
-                <tableViewController id="X8Y-I3-rZ9" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="zsz-vy-C9d">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" name="DirectoryBackgroundColor"/>
-                        <sections>
-                            <tableViewSection id="13E-s7-Vxg">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Gb1-hI-lTv" imageView="u9k-wP-7fi" style="IBUITableViewCellStyleDefault" id="Dbp-ah-FOI" customClass="BUTableViewCell" customModule="Buses" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="18" width="374" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dbp-ah-FOI" id="zfR-4H-WmA">
-                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="MRT Service Map" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="Gb1-hI-lTv">
-                                                    <rect key="frame" x="65" y="0.0" width="272.5" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="CellTrainMap" id="u9k-wP-7fi">
-                                                    <rect key="frame" x="20" y="6.5" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection id="l5s-Db-cgU">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="6Nk-7P-dcv" imageView="GPZ-Kq-a4B" style="IBUITableViewCellStyleDefault" id="nji-bC-QuU" customClass="BUTableViewCell" customModule="Buses" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="97.5" width="374" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nji-bC-QuU" id="1cH-CV-kN9">
-                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Bus Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="6Nk-7P-dcv">
-                                                    <rect key="frame" x="65" y="0.0" width="272.5" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="CellBus" id="GPZ-Kq-a4B">
-                                                    <rect key="frame" x="20" y="6.5" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="3dS-Gh-Zf7" imageView="fn9-Q2-Hph" style="IBUITableViewCellStyleDefault" id="lk0-MF-F2v" customClass="BUTableViewCell" customModule="Buses" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="141" width="374" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lk0-MF-F2v" id="BOm-xX-MYe">
-                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Bus Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="3dS-Gh-Zf7">
-                                                    <rect key="frame" x="65" y="0.0" width="272.5" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="CellBus" id="fn9-Q2-Hph">
-                                                    <rect key="frame" x="20" y="6.5" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="u1Y-YJ-1Mb" imageView="vSl-CC-lMu" style="IBUITableViewCellStyleDefault" id="RM7-uE-2eS" customClass="BUTableViewCell" customModule="Buses" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="184.5" width="374" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RM7-uE-2eS" id="D6i-uc-cV8">
-                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Bus Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="u1Y-YJ-1Mb">
-                                                    <rect key="frame" x="65" y="0.0" width="272.5" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="CellBus" id="vSl-CC-lMu">
-                                                    <rect key="frame" x="20" y="6.5" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection id="YbH-Wt-Fly">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="9V9-SD-Ntl" imageView="RgS-ZS-pdE" style="IBUITableViewCellStyleDefault" id="ujT-fl-2uh" customClass="BUTableViewCell" customModule="Buses" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="264" width="374" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ujT-fl-2uh" id="N65-SS-ofx">
-                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Bus Stop" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="9V9-SD-Ntl">
-                                                    <rect key="frame" x="65" y="0.0" width="272.5" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="CellBusStop" id="RgS-ZS-pdE">
-                                                    <rect key="frame" x="20" y="6.5" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="fva-Yz-Z1j" imageView="HK0-K8-Q1Q" style="IBUITableViewCellStyleDefault" id="aWe-Nt-5NF" customClass="BUTableViewCell" customModule="Buses" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="307.5" width="374" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aWe-Nt-5NF" id="w4r-q1-cKU">
-                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Bus Stop" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="fva-Yz-Z1j">
-                                                    <rect key="frame" x="65" y="0.0" width="272.5" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="CellBusStop" id="HK0-K8-Q1Q">
-                                                    <rect key="frame" x="20" y="6.5" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ik5-EP-tOM" imageView="LMo-P8-PMI" style="IBUITableViewCellStyleDefault" id="jF9-k8-sZ9" customClass="BUTableViewCell" customModule="Buses" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="351" width="374" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jF9-k8-sZ9" id="mTi-kd-Al9">
-                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Bus Stop" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="ik5-EP-tOM">
-                                                    <rect key="frame" x="65" y="0.0" width="272.5" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="CellBusStop" id="LMo-P8-PMI">
-                                                    <rect key="frame" x="20" y="6.5" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="X8Y-I3-rZ9" id="b7A-K6-wyr"/>
-                            <outlet property="delegate" destination="X8Y-I3-rZ9" id="lfQ-8I-rWo"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="8C6-6h-YwF" customClass="BUNavigationItem" customModule="Buses" customModuleProvider="target">
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="ViewTitle.Directory"/>
-                        </userDefinedRuntimeAttributes>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gP2-um-eWZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1777" y="1055"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="KeW-Jd-GLW">
             <objects>
@@ -471,19 +287,45 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="ViewTitle.Directory"/>
                         </userDefinedRuntimeAttributes>
                     </navigationItem>
+                    <connections>
+                        <segue destination="0n2-2z-wfp" kind="show" identifier="showBusStopDetails" id="Ajw-Uw-FNu"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EEE-6F-Ge1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2423" y="1055"/>
+            <point key="canvasLocation" x="1777" y="1055"/>
+        </scene>
+        <!--Bus Stop Details View Controller-->
+        <scene sceneID="Bl6-X7-WQe">
+            <objects>
+                <collectionViewController id="0n2-2z-wfp" customClass="DTBusStopDetailsViewController" customModule="Buses" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="8Dq-9H-UPG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NOh-zN-cJE">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
+                        <connections>
+                            <outlet property="dataSource" destination="0n2-2z-wfp" id="lMB-hs-tlu"/>
+                            <outlet property="delegate" destination="0n2-2z-wfp" id="QW4-aX-9pF"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="18T-Yc-zgE"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kku-Wn-Lnn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2612" y="1055"/>
         </scene>
     </scenes>
     <color key="tintColor" name="AccentColor"/>
     <resources>
-        <image name="CellBus" width="30" height="30"/>
-        <image name="CellBusStop" width="30" height="30"/>
         <image name="CellEmail" width="30" height="30"/>
         <image name="CellNotifications" width="30" height="30"/>
-        <image name="CellTrainMap" width="30" height="30"/>
         <image name="CellTwitter" width="30" height="30"/>
         <image name="TabDirectory" width="25" height="25"/>
         <image name="TabFavorites" width="25" height="25"/>

@@ -9,22 +9,34 @@ import Foundation
 
 func decode<T: Decodable>(from path: String) -> T? {
     do {
-        let decoder = JSONDecoder()
         let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+        return decode(fromData: data)
+    } catch {
+        log("Error while decoding an object: \(error.localizedDescription)")
+    }
+    return nil
+}
+
+func decode<T: Decodable>(fromData data: Data) -> T? {
+    do {
+        let decoder = JSONDecoder()
         return try decoder.decode(T.self, from: data)
     } catch let DecodingError.dataCorrupted(context) {
-        print(context)
+        log("Error while decoding an object: \(context.debugDescription)\n" +
+            "Coding Path: \(context.codingPath.description)\n" +
+            "Underlying Error: \(context.underlyingError?.localizedDescription ?? "(none)")",
+            level: .error)
     } catch let DecodingError.keyNotFound(key, context) {
-        print("Key '\(key)' not found:", context.debugDescription)
-        print("codingPath:", context.codingPath)
+        log("Error while decoding an object: \(context.debugDescription)\n" +
+            "Key: \(key)\nCoding Path: \(context.codingPath.description)", level: .error)
     } catch let DecodingError.valueNotFound(value, context) {
-        print("Value '\(value)' not found:", context.debugDescription)
-        print("codingPath:", context.codingPath)
+        log("Error while decoding an object: \(context.debugDescription)\n" +
+            "Value: \(value)\nCoding Path: \(context.codingPath.description)", level: .error)
     } catch let DecodingError.typeMismatch(type, context)  {
-        print("Type '\(type)' mismatch:", context.debugDescription)
-        print("codingPath:", context.codingPath)
+        log("Error while decoding an object: \(context.debugDescription)\n" +
+            "Type: \(type)\nCoding Path: \(context.codingPath.description)", level: .error)
     } catch {
-        print("error: ", error)
+        log("Error while decoding an object: \(error.localizedDescription)")
     }
     return nil
 }
