@@ -27,5 +27,9 @@
 
 /* More View */
 "More.Notifications" = "Notifications";
-"More.AboutTwitter" = "Developed by @katagaki_";
-"More.AboutEmail" = "Email Me";
+"More.AboutGitHub" = "Get the source code";
+"More.AboutGitHub.Subtitle" = "katagaki/Tsugi2";
+"More.AboutTwitter" = "Tweet me";
+"More.AboutTwitter.Subtitle" = "@katagaki_";
+"More.AboutEmail" = "Email me";
+"More.AboutEmail.Subtitle" = "ktgk.public@icloud.com";

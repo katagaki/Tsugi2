@@ -146,7 +146,7 @@
                         <sections>
                             <tableViewSection id="Cx3-C1-l0M">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="OXz-4O-YMf" imageView="QHD-gf-Sgd" style="IBUITableViewCellStyleDefault" id="e07-jV-oLW" customClass="BUTableViewCell" customModule="Buses" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="OXz-4O-YMf" imageView="QHD-gf-Sgd" style="IBUITableViewCellStyleDefault" id="e07-jV-oLW">
                                         <rect key="frame" x="20" y="18" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e07-jV-oLW" id="Ix4-ED-tOh">
@@ -174,15 +174,49 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="About" id="jeI-p4-ahO">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="MHo-8o-XkO" imageView="VHZ-C3-xvM" style="IBUITableViewCellStyleDefault" id="bHL-d8-W3B" customClass="BUTableViewCell" customModule="Buses" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="111.5" width="374" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ax5-rI-VGr" detailTextLabel="N2A-tb-nLr" imageView="IAU-vx-FKQ" style="IBUITableViewCellStyleSubtitle" id="OL9-I1-rvG">
+                                        <rect key="frame" x="20" y="111.5" width="374" height="49.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OL9-I1-rvG" id="S6q-I3-Frc">
+                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="ax5-rI-VGr" customClass="BULabel" customModule="Buses" customModuleProvider="target">
+                                                    <rect key="frame" x="65" y="7.5" width="28.5" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="More.AboutGitHub"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="CellGitHub" id="IAU-vx-FKQ">
+                                                    <rect key="frame" x="20" y="9.5" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="N2A-tb-nLr" customClass="BULabel" customModule="Buses" customModuleProvider="target">
+                                                    <rect key="frame" x="65" y="27" width="40.5" height="13.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="More.AboutGitHub.Subtitle"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="MHo-8o-XkO" detailTextLabel="yUL-fk-XuX" imageView="VHZ-C3-xvM" style="IBUITableViewCellStyleSubtitle" id="bHL-d8-W3B">
+                                        <rect key="frame" x="20" y="161" width="374" height="49.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bHL-d8-W3B" id="syb-Ky-dfQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="MHo-8o-XkO" customClass="BULabel" customModule="Buses" customModuleProvider="target">
-                                                    <rect key="frame" x="65" y="0.0" width="272.5" height="43.5"/>
+                                                    <rect key="frame" x="65" y="7.5" width="28.5" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
@@ -192,21 +226,31 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="CellTwitter" id="VHZ-C3-xvM">
-                                                    <rect key="frame" x="20" y="6.5" width="30" height="30"/>
+                                                    <rect key="frame" x="20" y="9.5" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="yUL-fk-XuX" customClass="BULabel" customModule="Buses" customModuleProvider="target">
+                                                    <rect key="frame" x="65" y="27" width="40.5" height="13.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="More.AboutTwitter.Subtitle"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="U1P-yl-rjl" imageView="M5r-Zb-ham" style="IBUITableViewCellStyleDefault" id="s6F-kt-R7D" customClass="BUTableViewCell" customModule="Buses" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="155" width="374" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="U1P-yl-rjl" detailTextLabel="4Yu-Ws-JCV" imageView="M5r-Zb-ham" style="IBUITableViewCellStyleSubtitle" id="s6F-kt-R7D">
+                                        <rect key="frame" x="20" y="210.5" width="374" height="49.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s6F-kt-R7D" id="5BB-eg-15Z">
-                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="U1P-yl-rjl" customClass="BULabel" customModule="Buses" customModuleProvider="target">
-                                                    <rect key="frame" x="65" y="0.0" width="272.5" height="43.5"/>
+                                                    <rect key="frame" x="65" y="7.5" width="28.5" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
@@ -216,9 +260,19 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="CellEmail" id="M5r-Zb-ham">
-                                                    <rect key="frame" x="20" y="6.5" width="30" height="30"/>
+                                                    <rect key="frame" x="20" y="9.5" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="4Yu-Ws-JCV" customClass="BULabel" customModule="Buses" customModuleProvider="target">
+                                                    <rect key="frame" x="65" y="27" width="40.5" height="13.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="More.AboutEmail.Subtitle"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -325,6 +379,7 @@
     <color key="tintColor" name="AccentColor"/>
     <resources>
         <image name="CellEmail" width="30" height="30"/>
+        <image name="CellGitHub" width="30" height="30"/>
         <image name="CellNotifications" width="30" height="30"/>
         <image name="CellTwitter" width="30" height="30"/>
         <image name="TabDirectory" width="25" height="25"/>
