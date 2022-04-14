@@ -24,7 +24,7 @@ func fetchBusStops() async throws -> BSBusStopList {
             }
             if let data = data {
                 if let busStopList: BSBusStopList = decode(fromData: data) {
-                    log("Fetched bus stop data from the API.", level: .info)
+                    log("Fetched bus stop data from the API.")
                     continuation.resume(returning: busStopList)
                 } else {
                     log("Could not decode the data successfully.", level: .error)

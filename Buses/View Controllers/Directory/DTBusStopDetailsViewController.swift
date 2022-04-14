@@ -21,7 +21,7 @@ class DTBusStopDetailsViewController: UICollectionViewController {
             label.numberOfLines = 2
             label.font = UIFont.boldSystemFont(ofSize: 16.0)
             label.textAlignment = .center
-            label.textColor = .white
+            label.textColor = .label
             label.text = busStop.description ?? ""
             self.navigationItem.titleView = label
         }
