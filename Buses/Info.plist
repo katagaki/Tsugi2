@@ -8,10 +8,10 @@
 		<dict>
 			<key>datamall2.mytransport.sg</key>
 			<dict>
-				<key>NSIncludesSubdomains</key>
-				<false/>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
+				<key>NSIncludesSubdomains</key>
+				<false/>
 			</dict>
 		</dict>
 	</dict>

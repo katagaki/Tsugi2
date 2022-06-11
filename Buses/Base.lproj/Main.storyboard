@@ -9,57 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Favorites-->
-        <scene sceneID="Ug8-jR-Oao">
-            <objects>
-                <collectionViewController id="M7i-al-Ox8" customClass="FavoritesCollectionViewController" customModule="Buses" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="WjB-XG-udQ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MKn-YD-iFT">
-                            <size key="itemSize" width="128" height="128"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells/>
-                        <connections>
-                            <outlet property="dataSource" destination="M7i-al-Ox8" id="Zui-vu-CFi"/>
-                            <outlet property="delegate" destination="M7i-al-Ox8" id="1re-ea-9VY"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" title="Favorites" id="fAQ-Jw-zFs" customClass="BUNavigationItem" customModule="Buses" customModuleProvider="target">
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="ViewTitle.Favorites"/>
-                        </userDefinedRuntimeAttributes>
-                    </navigationItem>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fsu-v4-WCG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1777" y="408"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Oec-Rf-yNK">
-            <objects>
-                <navigationController id="oJi-PB-9UA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="TabFavorites" id="6at-eq-376" customClass="BUTabBarItem" customModule="Buses" customModuleProvider="target">
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="TabTitle.Favorites"/>
-                        </userDefinedRuntimeAttributes>
-                    </tabBarItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="umT-oQ-PiU">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="M7i-al-Ox8" kind="relationship" relationship="rootViewController" id="K9a-rT-VQh"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sQS-IK-bTA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="890" y="409"/>
-        </scene>
         <!--Nearby View Controller-->
         <scene sceneID="eT3-Fr-Wi0">
             <objects>
@@ -106,7 +55,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="WdN-pZ-N4t" kind="relationship" relationship="viewControllers" id="PAD-tC-HpJ"/>
-                        <segue destination="oJi-PB-9UA" kind="relationship" relationship="viewControllers" id="3pv-0I-wQB"/>
+                        <segue destination="lwM-7X-hUf" kind="relationship" relationship="viewControllers" id="lPb-pv-LMz"/>
                         <segue destination="Nuu-HG-KUg" kind="relationship" relationship="viewControllers" id="KRr-RS-gD9"/>
                         <segue destination="UJX-Vu-HQl" kind="relationship" relationship="viewControllers" id="3rK-fd-z8L"/>
                     </connections>
@@ -142,6 +91,20 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xWn-hN-h6U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="890" y="1700"/>
+        </scene>
+        <!--Favorites Hosting Controller-->
+        <scene sceneID="7ZU-uZ-6tS">
+            <objects>
+                <hostingController id="lwM-7X-hUf" customClass="FavoritesHostingController" customModule="Buses" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="TabFavorites" id="0kn-Vt-XAv" customClass="BUTabBarItem" customModule="Buses" customModuleProvider="target">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="TabTitle.Favorites"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NQb-Rb-SeT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="890" y="408"/>
         </scene>
     </scenes>
     <color key="tintColor" name="AccentColor"/>
