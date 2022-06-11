@@ -51,7 +51,7 @@ struct FavoritesView: View {
                     .textCase(nil)
                 }
             }
-            .listStyle(.sidebar)
+            .listStyle(.insetGrouped)
             .navigationTitle("ViewTitle.Favorites")
         }
     }
