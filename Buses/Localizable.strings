@@ -24,9 +24,15 @@
 /* Favorites View */
 
 /* Directory View */
+"Directory.UsefulResources" = "Useful Resources";
+"Directory.BusStops" = "Bus Stops";
+"Directory.BusStopUnnamed" = "Unnamed Bus Stop";
+"Directory.BusStopsLoading" = "Getting bus stop information...";
+"Directory.MRTMap" = "MRT Service Map";
 
 /* More View */
 "More.Notifications" = "Notifications";
+"More.About" = "About";
 "More.AboutGitHub" = "Get the source code";
 "More.AboutGitHub.Subtitle" = "katagaki/Tsugi2";
 "More.AboutTwitter" = "Tweet me";

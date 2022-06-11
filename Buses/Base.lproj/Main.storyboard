@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="efq-nq-O8H">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21179.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="efq-nq-O8H">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21169.4"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -68,7 +68,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsTraffic="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6RS-kI-Zr3">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsTraffic="YES" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6RS-kI-Zr3">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </mapView>
                         </subviews>
@@ -107,294 +107,52 @@
                     <connections>
                         <segue destination="WdN-pZ-N4t" kind="relationship" relationship="viewControllers" id="PAD-tC-HpJ"/>
                         <segue destination="oJi-PB-9UA" kind="relationship" relationship="viewControllers" id="3pv-0I-wQB"/>
-                        <segue destination="okP-RC-oSp" kind="relationship" relationship="viewControllers" id="Fo9-BU-h0r"/>
-                        <segue destination="Xy1-V2-CMC" kind="relationship" relationship="viewControllers" id="X50-5R-Xia"/>
+                        <segue destination="Nuu-HG-KUg" kind="relationship" relationship="viewControllers" id="KRr-RS-gD9"/>
+                        <segue destination="UJX-Vu-HQl" kind="relationship" relationship="viewControllers" id="3rK-fd-z8L"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="avq-FY-lI1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-12" y="-232"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="KeW-Jd-GLW">
+        <!--Directory Hosting Controller-->
+        <scene sceneID="ICf-2H-9V5">
             <objects>
-                <navigationController id="okP-RC-oSp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="TabDirectory" id="ByE-qA-yJx" customClass="BUTabBarItem" customModule="Buses" customModuleProvider="target">
+                <hostingController id="Nuu-HG-KUg" customClass="DirectoryHostingController" customModule="Buses" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="TabDirectory" id="bwi-zo-CJB" customClass="BUTabBarItem" customModule="Buses" customModuleProvider="target">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="TabTitle.Directory"/>
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="XEw-ck-2Ae">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="uER-5R-Pwh" kind="relationship" relationship="rootViewController" id="L0r-l3-7jE"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bCn-g1-zq4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hu8-AU-IJl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="890" y="1055"/>
+            <point key="canvasLocation" x="890" y="1056"/>
         </scene>
-        <!--Table View Controller-->
-        <scene sceneID="i4I-9A-Oqu">
+        <!--More Hosting Controller-->
+        <scene sceneID="9dv-BX-lfM">
             <objects>
-                <tableViewController id="EgZ-pB-6zh" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="XwD-QN-9jb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <sections>
-                            <tableViewSection id="Cx3-C1-l0M">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="OXz-4O-YMf" imageView="QHD-gf-Sgd" style="IBUITableViewCellStyleDefault" id="e07-jV-oLW">
-                                        <rect key="frame" x="20" y="18" width="374" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e07-jV-oLW" id="Ix4-ED-tOh">
-                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="OXz-4O-YMf" customClass="BULabel" customModule="Buses" customModuleProvider="target">
-                                                    <rect key="frame" x="65" y="0.0" width="272.5" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="More.Notifications"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="CellNotifications" id="QHD-gf-Sgd">
-                                                    <rect key="frame" x="20" y="6.5" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="About" id="jeI-p4-ahO">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ax5-rI-VGr" detailTextLabel="N2A-tb-nLr" imageView="IAU-vx-FKQ" style="IBUITableViewCellStyleSubtitle" id="OL9-I1-rvG">
-                                        <rect key="frame" x="20" y="111.5" width="374" height="49.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OL9-I1-rvG" id="S6q-I3-Frc">
-                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="49.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="ax5-rI-VGr" customClass="BULabel" customModule="Buses" customModuleProvider="target">
-                                                    <rect key="frame" x="65" y="7.5" width="28.5" height="17"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="More.AboutGitHub"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="CellGitHub" id="IAU-vx-FKQ">
-                                                    <rect key="frame" x="20" y="9.5" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="N2A-tb-nLr" customClass="BULabel" customModule="Buses" customModuleProvider="target">
-                                                    <rect key="frame" x="65" y="27" width="40.5" height="13.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="More.AboutGitHub.Subtitle"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="MHo-8o-XkO" detailTextLabel="yUL-fk-XuX" imageView="VHZ-C3-xvM" style="IBUITableViewCellStyleSubtitle" id="bHL-d8-W3B">
-                                        <rect key="frame" x="20" y="161" width="374" height="49.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bHL-d8-W3B" id="syb-Ky-dfQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="49.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="MHo-8o-XkO" customClass="BULabel" customModule="Buses" customModuleProvider="target">
-                                                    <rect key="frame" x="65" y="7.5" width="28.5" height="17"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="More.AboutTwitter"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="CellTwitter" id="VHZ-C3-xvM">
-                                                    <rect key="frame" x="20" y="9.5" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="yUL-fk-XuX" customClass="BULabel" customModule="Buses" customModuleProvider="target">
-                                                    <rect key="frame" x="65" y="27" width="40.5" height="13.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="More.AboutTwitter.Subtitle"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="U1P-yl-rjl" detailTextLabel="4Yu-Ws-JCV" imageView="M5r-Zb-ham" style="IBUITableViewCellStyleSubtitle" id="s6F-kt-R7D">
-                                        <rect key="frame" x="20" y="210.5" width="374" height="49.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s6F-kt-R7D" id="5BB-eg-15Z">
-                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="49.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="U1P-yl-rjl" customClass="BULabel" customModule="Buses" customModuleProvider="target">
-                                                    <rect key="frame" x="65" y="7.5" width="28.5" height="17"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="More.AboutEmail"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="CellEmail" id="M5r-Zb-ham">
-                                                    <rect key="frame" x="20" y="9.5" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="4Yu-Ws-JCV" customClass="BULabel" customModule="Buses" customModuleProvider="target">
-                                                    <rect key="frame" x="65" y="27" width="40.5" height="13.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="More.AboutEmail.Subtitle"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="EgZ-pB-6zh" id="zmq-ZH-MQh"/>
-                            <outlet property="delegate" destination="EgZ-pB-6zh" id="TBH-fN-igf"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="usK-9Q-bh8" customClass="BUNavigationItem" customModule="Buses" customModuleProvider="target">
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="ViewTitle.More"/>
-                        </userDefinedRuntimeAttributes>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Twp-cv-Svm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1777" y="1700"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="yKb-ss-jMu">
-            <objects>
-                <navigationController id="Xy1-V2-CMC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="TabMore" id="WzE-IA-Zcq" customClass="BUTabBarItem" customModule="Buses" customModuleProvider="target">
+                <hostingController id="UJX-Vu-HQl" customClass="MoreHostingController" customModule="Buses" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="TabMore" id="zmV-30-Eeq" customClass="BUTabBarItem" customModule="Buses" customModuleProvider="target">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="TabTitle.More"/>
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="NEi-MG-gqS">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="EgZ-pB-6zh" kind="relationship" relationship="rootViewController" id="NQp-mJ-udo"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CGk-Dg-fAf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xWn-hN-h6U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="890" y="1700"/>
-        </scene>
-        <!--Directory-->
-        <scene sceneID="WpC-L4-DgD">
-            <objects>
-                <collectionViewController id="uER-5R-Pwh" customClass="DirectoryCollectionViewController" customModule="Buses" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="8UJ-8h-aab">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" name="DirectoryBackgroundColor"/>
-                        <color key="tintColor" systemColor="labelColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lGy-ih-TTc">
-                            <size key="itemSize" width="128" height="128"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells/>
-                        <connections>
-                            <outlet property="dataSource" destination="uER-5R-Pwh" id="2zU-Z6-Z6A"/>
-                            <outlet property="delegate" destination="uER-5R-Pwh" id="013-Ui-IBA"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" title="Directory" id="4Ay-c2-Sab" customClass="BUNavigationItem" customModule="Buses" customModuleProvider="target">
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="ViewTitle.Directory"/>
-                        </userDefinedRuntimeAttributes>
-                    </navigationItem>
-                    <connections>
-                        <segue destination="0n2-2z-wfp" kind="show" identifier="showBusStopDetails" id="Ajw-Uw-FNu"/>
-                    </connections>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EEE-6F-Ge1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1777" y="1055"/>
-        </scene>
-        <!--Bus Stop Details View Controller-->
-        <scene sceneID="Bl6-X7-WQe">
-            <objects>
-                <collectionViewController id="0n2-2z-wfp" customClass="DTBusStopDetailsViewController" customModule="Buses" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="8Dq-9H-UPG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NOh-zN-cJE">
-                            <size key="itemSize" width="128" height="128"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells/>
-                        <connections>
-                            <outlet property="dataSource" destination="0n2-2z-wfp" id="lMB-hs-tlu"/>
-                            <outlet property="delegate" destination="0n2-2z-wfp" id="QW4-aX-9pF"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="18T-Yc-zgE"/>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kku-Wn-Lnn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2612" y="1055"/>
         </scene>
     </scenes>
     <color key="tintColor" name="AccentColor"/>
     <resources>
-        <image name="CellEmail" width="30" height="30"/>
-        <image name="CellGitHub" width="30" height="30"/>
-        <image name="CellNotifications" width="30" height="30"/>
-        <image name="CellTwitter" width="30" height="30"/>
         <image name="TabDirectory" width="25" height="25"/>
         <image name="TabFavorites" width="25" height="25"/>
         <image name="TabMore" width="25" height="25"/>
         <image name="TabNearby" width="25" height="25"/>
         <namedColor name="AccentColor">
-            <color red="0.18000000715255737" green="0.80000001192092896" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.1803921568627451" green="0.71764705882352942" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="DirectoryBackgroundColor">
-            <color red="0.99599999189376831" green="0.97600001096725464" blue="0.88599997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
