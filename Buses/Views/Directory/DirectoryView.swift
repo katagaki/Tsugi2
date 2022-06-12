@@ -125,11 +125,11 @@ struct DirectoryView: View {
             if showsProgress {
                 isBusStopListLoaded = false
             }
-            let busStopList = try await fetchBusStops()
+            let busStopsFetched = try await fetchAllBusStops()
             busStops.removeAll()
-            busStops = busStopList.busStops.sorted(by: { a, b in
+            busStops.append(contentsOf: busStopsFetched.sorted(by: { a, b in
                 a.description ?? "" < b.description ?? ""
-            })
+            }))
             isBusStopListLoaded = true
         }
     }
