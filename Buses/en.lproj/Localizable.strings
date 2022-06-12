@@ -1,5 +1,5 @@
 /* 
-  Localizable.strings
+  Localizable.strings (en)
   Buses 2
 
   Created by 堅書 on 2022/04/03.
@@ -15,6 +15,7 @@
 /* Navigation Item Titles */
 "ViewTitle.Favorites" = "Favorites";
 "ViewTitle.Directory" = "Directory";
+"ViewTitle.MRTMap" = "MRT System Map";
 "ViewTitle.More" = "More";
 
 /* Nearby View */
@@ -25,11 +26,11 @@
 "Directory.UsefulResources" = "Useful Resources";
 "Directory.BusStops" = "Bus Stops";
 "Directory.BusStopsLoading" = "Getting bus stop information...";
-"Directory.MRTMap" = "MRT Service Map";
+"Directory.MRTMap" = "MRT System Map";
 
 /* More View */
 "More.Notifications" = "Notifications";
-"More.About" = "About";
+"More.Support" = "Support";
 "More.AboutGitHub" = "Get the source code";
 "More.AboutGitHub.Subtitle" = "katagaki/Tsugi2";
 "More.AboutTwitter" = "Tweet me";
@@ -43,3 +44,6 @@
 "Shared.BusStopCodeNone" = "No bus stop code";
 "Shared.BusStopRoadNone" = "No road name";
 "Shared.BusServices" = "Bus Services";
+"Shared.BusArrival.Arriving" = "Arriving";
+"Shared.BusArrival.JustLeft" = "Just Left";
+"Shared.BusArrival.NotInService" = "Not in Service";

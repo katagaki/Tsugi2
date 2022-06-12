@@ -19,13 +19,13 @@ func arrivalTimeTo(date: Date) -> String {
     let seconds = NSInteger(interval) % 60
     let minutes = (NSInteger(interval) / 60) % 60
     if minutes == 0 {
-        return "Arriving"
+        return localized("Shared.BusArrival.Arriving")
     } else if minutes <= 0 && seconds <= 0 {
-        return "Left"
+        return localized("Shared.BusArrival.JustLeft")
     } else {
         let formatter: DateComponentsFormatter = DateComponentsFormatter()
         formatter.unitsStyle = .short
         formatter.allowedUnits = [.minute]
-        return formatter.string(from: interval) ?? "N/A"
+        return formatter.string(from: interval) ?? localized("Shared.BusArrival.NotInService")
     }
 }

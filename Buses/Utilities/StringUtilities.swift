@@ -15,6 +15,6 @@ func getArrivalText(arrivalTime: Date?) -> String {
     if let arrivalTime = arrivalTime {
         return arrivalTimeTo(date: arrivalTime)
     } else {
-        return "N/A"
+        return localized("Shared.BusArrival.NotInService")
     }
 }

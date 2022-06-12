@@ -1,0 +1,49 @@
+/* 
+  Localizable.strings (zh-Hans)
+  Buses 2
+
+  Created by 堅書 on 2022/04/03.
+  
+*/
+
+/* Tab Bar Item Titles */
+"TabTitle.Nearby" = "附近";
+"TabTitle.Favorites" = "收藏夹";
+"TabTitle.Directory" = "目录";
+"TabTitle.More" = "更多";
+
+/* Navigation Item Titles */
+"ViewTitle.Favorites" = "收藏夹";
+"ViewTitle.Directory" = "目录";
+"ViewTitle.MRTMap" = "MRT路线图";
+"ViewTitle.More" = "更多";
+
+/* Nearby View */
+
+/* Favorites View */
+
+/* Directory View */
+"Directory.UsefulResources" = "有用信息";
+"Directory.BusStops" = "巴士站";
+"Directory.BusStopsLoading" = "正在获取巴士站的信息…";
+"Directory.MRTMap" = "MRT路线图";
+
+/* More View */
+"More.Notifications" = "通知";
+"More.Support" = "帮助";
+"More.AboutGitHub" = "查看源代码";
+"More.AboutGitHub.Subtitle" = "katagaki/Tsugi2";
+"More.AboutTwitter" = "发推文";
+"More.AboutTwitter.Subtitle" = "@katagaki_";
+"More.AboutEmail" = "发邮件";
+"More.AboutEmail.Subtitle" = "ktgk.public@icloud.com";
+
+/* Shared */
+"Shared.BusStopDescriptionNone" = "无名巴士站";
+"Shared.BusStopCode" = "巴士站代码";
+"Shared.BusStopCodeNone" = "无法获得";
+"Shared.BusStopRoadNone" = "无路名";
+"Shared.BusServices" = "巴士服务";
+"Shared.BusArrival.Arriving" = "即将抵达";
+"Shared.BusArrival.JustLeft" = "已经离开";
+"Shared.BusArrival.NotInService" = "停止服务";

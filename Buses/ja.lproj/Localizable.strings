@@ -1,0 +1,49 @@
+/* 
+  Localizable.strings (ja)
+  Buses 2
+
+  Created by 堅書 on 2022/04/03.
+  
+*/
+
+/* Tab Bar Item Titles */
+"TabTitle.Nearby" = "近くを検索";
+"TabTitle.Favorites" = "お気に入り";
+"TabTitle.Directory" = "情報センター";
+"TabTitle.More" = "その他";
+
+/* Navigation Item Titles */
+"ViewTitle.Favorites" = "お気に入り";
+"ViewTitle.Directory" = "情報センター";
+"ViewTitle.MRTMap" = "MRT路線図";
+"ViewTitle.More" = "その他";
+
+/* Nearby View */
+
+/* Favorites View */
+
+/* Directory View */
+"Directory.UsefulResources" = "便利な情報";
+"Directory.BusStops" = "バス停";
+"Directory.BusStopsLoading" = "バス停のデータを読み込み中…";
+"Directory.MRTMap" = "MRT路線図";
+
+/* More View */
+"More.Notifications" = "通知";
+"More.Support" = "サポート";
+"More.AboutGitHub" = "ソースコードを閲覧";
+"More.AboutGitHub.Subtitle" = "katagaki/Tsugi2";
+"More.AboutTwitter" = "ツイート";
+"More.AboutTwitter.Subtitle" = "@katagaki_";
+"More.AboutEmail" = "メールを送信";
+"More.AboutEmail.Subtitle" = "ktgk.public@icloud.com";
+
+/* Shared */
+"Shared.BusStopDescriptionNone" = "無名のバス停";
+"Shared.BusStopCode" = "バス停コード";
+"Shared.BusStopCodeNone" = "なし";
+"Shared.BusStopRoadNone" = "道路名なし";
+"Shared.BusServices" = "バス";
+"Shared.BusArrival.Arriving" = "まもなく到着";
+"Shared.BusArrival.JustLeft" = "発車済み";
+"Shared.BusArrival.NotInService" = "サービス時間外";

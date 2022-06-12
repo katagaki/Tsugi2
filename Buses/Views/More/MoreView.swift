@@ -27,7 +27,7 @@ struct MoreView: View {
                 .fontWeight(.bold)
                 .foregroundColor(.primary)
                 .textCase(nil)
-                Section(header: Text("More.About")) {
+                Section(header: Text("More.Support")) {
                     HStack(alignment: .center, spacing: 16.0) {
                         Image("CellGitHub")
                         VStack(alignment: .leading, spacing: 2.0) {

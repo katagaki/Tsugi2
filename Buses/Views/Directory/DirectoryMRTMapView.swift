@@ -10,7 +10,7 @@ import SwiftUI
 struct DirectoryMRTMapView: View {
     var body: some View {
         Text("")
-            .navigationTitle("MRT Service Map")
+            .navigationTitle("ViewTitle.MRTMap")
     }
 }
 
