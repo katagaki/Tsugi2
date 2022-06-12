@@ -20,15 +20,11 @@
 		E476BF1B280869A500B8524B /* DataFetchers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF1A280869A500B8524B /* DataFetchers.swift */; };
 		E476BF1E28086A2D00B8524B /* APIKeyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF1D28086A2D00B8524B /* APIKeyHandler.swift */; };
 		E476BF2028086AE500B8524B /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF1F28086AE500B8524B /* Logging.swift */; };
-		E4B700012856361C0019F71A /* NearbyHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B700002856361C0019F71A /* NearbyHostingController.swift */; };
 		E4B70003285637450019F71A /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B70002285637450019F71A /* MainTabView.swift */; };
 		E4B700052856387E0019F71A /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B700042856387E0019F71A /* App.swift */; };
 		E4B7FFE828544EBC0019F71A /* DirectoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7FFE728544EBC0019F71A /* DirectoryView.swift */; };
-		E4B7FFEA285456050019F71A /* DirectoryHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7FFE9285456050019F71A /* DirectoryHostingController.swift */; };
-		E4B7FFEF285462F30019F71A /* MoreHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7FFEE285462F30019F71A /* MoreHostingController.swift */; };
 		E4B7FFF0285467060019F71A /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7FFEB285460DE0019F71A /* MoreView.swift */; };
 		E4B7FFF32854693B0019F71A /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7FFF22854693B0019F71A /* FavoritesView.swift */; };
-		E4B7FFF528546FF50019F71A /* FavoritesHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7FFF428546FF50019F71A /* FavoritesHostingController.swift */; };
 		E4B7FFFA28561DBF0019F71A /* BusStopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7FFF928561DBF0019F71A /* BusStopDetailView.swift */; };
 		E4B7FFFC285620530019F71A /* DirectoryMRTMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7FFFB285620530019F71A /* DirectoryMRTMapView.swift */; };
 		E4B7FFFF285635470019F71A /* NearbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7FFFE285635470019F71A /* NearbyView.swift */; };
@@ -37,7 +33,6 @@
 		E4F1FCBD2801B9AA005D400D /* BUTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F1FCBC2801B9AA005D400D /* BUTabBarItem.swift */; };
 		E4FFCABB27F9CD5C00DCA0EC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E4FFCABA27F9CD5C00DCA0EC /* Localizable.strings */; };
 		E4FFCABD27F9CF1D00DCA0EC /* BULabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCABC27F9CF1D00DCA0EC /* BULabel.swift */; };
-		E4FFCABF27F9D09600DCA0EC /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCABE27F9D09600DCA0EC /* MainTabBarController.swift */; };
 		E4FFCAC22801604300DCA0EC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4FFCAC12801604300DCA0EC /* MapKit.framework */; };
 		E4FFCAC52801627700DCA0EC /* BABusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC42801627700DCA0EC /* BABusStop.swift */; };
 		E4FFCAC72801627D00DCA0EC /* BABusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC62801627D00DCA0EC /* BABusService.swift */; };
@@ -76,15 +71,11 @@
 		E476BF1A280869A500B8524B /* DataFetchers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetchers.swift; sourceTree = "<group>"; };
 		E476BF1D28086A2D00B8524B /* APIKeyHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeyHandler.swift; sourceTree = "<group>"; };
 		E476BF1F28086AE500B8524B /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
-		E4B700002856361C0019F71A /* NearbyHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyHostingController.swift; sourceTree = "<group>"; };
 		E4B70002285637450019F71A /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		E4B700042856387E0019F71A /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		E4B7FFE728544EBC0019F71A /* DirectoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryView.swift; sourceTree = "<group>"; };
-		E4B7FFE9285456050019F71A /* DirectoryHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryHostingController.swift; sourceTree = "<group>"; };
 		E4B7FFEB285460DE0019F71A /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
-		E4B7FFEE285462F30019F71A /* MoreHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreHostingController.swift; sourceTree = "<group>"; };
 		E4B7FFF22854693B0019F71A /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
-		E4B7FFF428546FF50019F71A /* FavoritesHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesHostingController.swift; sourceTree = "<group>"; };
 		E4B7FFF928561DBF0019F71A /* BusStopDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopDetailView.swift; sourceTree = "<group>"; };
 		E4B7FFFB285620530019F71A /* DirectoryMRTMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryMRTMapView.swift; sourceTree = "<group>"; };
 		E4B7FFFE285635470019F71A /* NearbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyView.swift; sourceTree = "<group>"; };
@@ -93,7 +84,6 @@
 		E4F1FCBC2801B9AA005D400D /* BUTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BUTabBarItem.swift; sourceTree = "<group>"; };
 		E4FFCABA27F9CD5C00DCA0EC /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		E4FFCABC27F9CF1D00DCA0EC /* BULabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BULabel.swift; sourceTree = "<group>"; };
-		E4FFCABE27F9D09600DCA0EC /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		E4FFCAC12801604300DCA0EC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E4FFCAC42801627700DCA0EC /* BABusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABusStop.swift; sourceTree = "<group>"; };
 		E4FFCAC62801627D00DCA0EC /* BABusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABusService.swift; sourceTree = "<group>"; };
@@ -181,7 +171,6 @@
 			isa = PBXGroup;
 			children = (
 				E4B7FFE728544EBC0019F71A /* DirectoryView.swift */,
-				E4B7FFE9285456050019F71A /* DirectoryHostingController.swift */,
 				E4B7FFFB285620530019F71A /* DirectoryMRTMapView.swift */,
 			);
 			path = Directory;
@@ -191,7 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				E4B7FFEB285460DE0019F71A /* MoreView.swift */,
-				E4B7FFEE285462F30019F71A /* MoreHostingController.swift */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -200,7 +188,6 @@
 			isa = PBXGroup;
 			children = (
 				E4B7FFF22854693B0019F71A /* FavoritesView.swift */,
-				E4B7FFF428546FF50019F71A /* FavoritesHostingController.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -217,7 +204,6 @@
 			isa = PBXGroup;
 			children = (
 				E4B7FFFE285635470019F71A /* NearbyView.swift */,
-				E4B700002856361C0019F71A /* NearbyHostingController.swift */,
 			);
 			path = Nearby;
 			sourceTree = "<group>";
@@ -226,7 +212,6 @@
 			isa = PBXGroup;
 			children = (
 				E4B70002285637450019F71A /* MainTabView.swift */,
-				E4FFCABE27F9D09600DCA0EC /* MainTabBarController.swift */,
 				E4B7FFFD2856353D0019F71A /* Nearby */,
 				E4B7FFF12854692E0019F71A /* Favorites */,
 				E476BF21280873C100B8524B /* Directory */,
@@ -366,7 +351,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4B7FFFC285620530019F71A /* DirectoryMRTMapView.swift in Sources */,
-				E4B7FFEA285456050019F71A /* DirectoryHostingController.swift in Sources */,
 				E4B7FFE828544EBC0019F71A /* DirectoryView.swift in Sources */,
 				E4B700052856387E0019F71A /* App.swift in Sources */,
 				E4FFCAC72801627D00DCA0EC /* BABusService.swift in Sources */,
@@ -374,8 +358,6 @@
 				E4319EAE2801D57200D21531 /* Buses.xcdatamodeld in Sources */,
 				E4B7FFF0285467060019F71A /* MoreView.swift in Sources */,
 				E4E367892804422B0022A5CD /* StringUtilities.swift in Sources */,
-				E4FFCABF27F9D09600DCA0EC /* MainTabBarController.swift in Sources */,
-				E4B7FFF528546FF50019F71A /* FavoritesHostingController.swift in Sources */,
 				E4319EBA280435B300D21531 /* BusStop.swift in Sources */,
 				E4319EB4280413FA00D21531 /* JSONUtilities.swift in Sources */,
 				E476BF2028086AE500B8524B /* Logging.swift in Sources */,
@@ -387,10 +369,8 @@
 				E476BF1B280869A500B8524B /* DataFetchers.swift in Sources */,
 				E4FFCAC92801631800DCA0EC /* BABusOnRoad.swift in Sources */,
 				E4FFCADB2801B23300DCA0EC /* DateUtilities.swift in Sources */,
-				E4B700012856361C0019F71A /* NearbyHostingController.swift in Sources */,
 				E4F1FCBD2801B9AA005D400D /* BUTabBarItem.swift in Sources */,
 				E4B70003285637450019F71A /* MainTabView.swift in Sources */,
-				E4B7FFEF285462F30019F71A /* MoreHostingController.swift in Sources */,
 				E4319EBC280437BA00D21531 /* BSBusStopList.swift in Sources */,
 				E476BF1E28086A2D00B8524B /* APIKeyHandler.swift in Sources */,
 			);

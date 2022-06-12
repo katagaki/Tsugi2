@@ -12,6 +12,9 @@ struct TsugiApp: App {
     var body: some Scene {
         WindowGroup {
             MainTabView()
+                .onAppear {
+                    loadAPIKeys()
+                }
         }
     }
 }

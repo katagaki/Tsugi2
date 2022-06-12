@@ -27,6 +27,11 @@ struct MainTabView: View {
                     Label("TabTitle.More", image: "TabMore")
                 }
         }
+        .onAppear {
+            if #available(iOS 15.0, *) {
+                UITabBar.appearance().scrollEdgeAppearance = UITabBarAppearance()
+            }
+        }
     }
 }
 
