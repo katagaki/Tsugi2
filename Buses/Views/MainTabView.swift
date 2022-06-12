@@ -12,19 +12,19 @@ struct MainTabView: View {
         TabView {
             NearbyView()
                 .tabItem {
-                    Label("TabTitle.Nearby", image: "TabNearby")
+                    Label("TabTitle.Nearby", systemImage: "map.fill")
                 }
             FavoritesView()
                 .tabItem {
-                    Label("TabTitle.Favorites", image: "TabFavorites")
+                    Label("TabTitle.Favorites", systemImage: "star.fill")
                 }
             DirectoryView()
                 .tabItem {
-                    Label("TabTitle.Directory", image: "TabDirectory")
+                    Label("TabTitle.Directory", systemImage: "book.closed.fill")
                 }
             MoreView()
                 .tabItem {
-                    Label("TabTitle.More", image: "TabMore")
+                    Label("TabTitle.More", systemImage: "ellipsis")
                 }
         }
         .onAppear {
