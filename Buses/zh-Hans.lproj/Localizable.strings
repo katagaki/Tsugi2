@@ -39,11 +39,12 @@
 "More.AboutEmail.Subtitle" = "ktgk.public@icloud.com";
 
 /* Shared */
-"Shared.BusStopDescriptionNone" = "无名巴士站";
-"Shared.BusStopCode" = "巴士站代码";
-"Shared.BusStopCodeNone" = "无法获得";
-"Shared.BusStopRoadNone" = "无路名";
-"Shared.BusServices" = "巴士服务";
+"Shared.BusStop.Description.None" = "无名巴士站";
+"Shared.BusStop.Code" = "巴士站代码";
+"Shared.BusStop.Code.None" = "无法获得";
+"Shared.BusStop.Road.None" = "无路名";
+"Shared.BusStop.NoBusServices" = "此巴士站目前没有能提供的巴士服务。";
+"Shared.BusStop.BusServices" = "巴士服务";
 "Shared.BusArrival.Arriving" = "即将抵达";
 "Shared.BusArrival.JustLeft" = "已经离开";
 "Shared.BusArrival.NotInService" = "停止服务";

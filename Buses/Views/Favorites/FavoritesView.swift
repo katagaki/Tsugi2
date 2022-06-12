@@ -33,10 +33,12 @@ struct FavoritesView: View {
                                         Text(getArrivalText(arrivalTime: service.nextBus.estimatedArrivalTime()))
                                             .font(.body)
                                             .fontWeight(.regular)
+                                            .lineLimit(1)
                                         Text(getArrivalText(arrivalTime: service.nextBus2.estimatedArrivalTime()))
                                             .font(.body)
                                             .fontWeight(.regular)
                                             .foregroundColor(.secondary)
+                                            .lineLimit(1)
                                     }
                                     .frame(minWidth: ((UIScreen.main.bounds.size.width) / 4.5), maxWidth: ((UIScreen.main.bounds.size.width) / 4.5), minHeight: 0, maxHeight: .infinity, alignment: .center)
                                 }

@@ -28,7 +28,7 @@ struct DirectoryView: View {
                                 HStack(alignment: .center, spacing: 16.0) {
                                     Image("CellBusStop")
                                     VStack(alignment: .leading, spacing: 2.0) {
-                                        Text(verbatim: stop.description ?? "Shared.BusStopDescriptionNone")
+                                        Text(verbatim: stop.description ?? "Shared.BusStop.Description.None")
                                             .font(.body)
                                             .fontWeight(.regular)
                                         Text(verbatim: stop.roadName ?? "")
@@ -82,7 +82,7 @@ struct DirectoryView: View {
                                     HStack(alignment: .center, spacing: 16.0) {
                                         Image("CellBusStop")
                                         VStack(alignment: .leading, spacing: 2.0) {
-                                            Text(verbatim: stop.description ?? "Shared.BusStopDescriptionNone")
+                                            Text(verbatim: stop.description ?? "Shared.BusStop.Description.None")
                                                 .font(.body)
                                                 .fontWeight(.regular)
                                             Text(verbatim: stop.roadName ?? "")

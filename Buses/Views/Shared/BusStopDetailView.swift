@@ -21,10 +21,10 @@ struct BusStopDetailView: View {
             Section {
                 HStack(alignment: .center, spacing: 16.0) {
                     Image("CellCode")
-                    Text("Shared.BusStopCode")
+                    Text("Shared.BusStop.Code")
                         .font(.body)
                     Spacer()
-                    Text(busStop.code ?? "Shared.BusStopCodeNone")
+                    Text(busStop.code ?? "Shared.BusStop.Code.None")
                         .font(.body.monospaced())
                         .foregroundColor(.secondary)
                 }
@@ -46,27 +46,42 @@ struct BusStopDetailView: View {
                     .listRowInsets(EdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 250.0, maxHeight: 250.0)
             }
-            Section("Shared.BusServices") {
-                ForEach(busArrivals, id: \.serviceNo) { service in
-                    NavigationLink {
-                        BusStopDetailView(busStop: busStop) // TODO: Change bus stop to bus service view when implemented
-                    } label: {
-                        HStack(alignment: .center, spacing: 16.0) {
-                            HStack(alignment: .center) {
-                                Text(service.serviceNo)
-                                    .font(Font.custom("OceanSansStd-Bold", size: 24.0))
-                                    .foregroundColor(.white)
-                                    .padding(EdgeInsets(top: 6.0, leading: 16.0, bottom: 2.0, trailing: 16.0))
-                                    .frame(minWidth: 0, maxWidth: .infinity)
-                                    .lineLimit(1)
-                            }
-                            .background(Color("PlateColor"))
-                            .clipShape(RoundedRectangle(cornerRadius: 7.0))
-                            .frame(minWidth: ((UIScreen.main.bounds.size.width) / 4.5), maxWidth: ((UIScreen.main.bounds.size.width) / 4.5), minHeight: 0, maxHeight: .infinity, alignment: .center)
-                            Spacer()
-                            Text(getArrivalText(arrivalTime: service.nextBus.estimatedArrivalTime()))
+            Section("Shared.BusStop.BusServices") {
+                if busArrivals.count == 0 {
+                    HStack {
+                        Spacer()
+                        VStack(alignment: .center, spacing: 8.0) {
+                            Image(systemName: "exclamationmark.circle.fill")
+                                .symbolRenderingMode(.multicolor)
+                            Text("Shared.BusStop.NoBusServices")
                                 .font(.body)
                                 .fontWeight(.regular)
+                        }
+                        Spacer()
+                    }
+                    .listRowBackground(Color.clear)
+                } else {
+                    ForEach(busArrivals, id: \.serviceNo) { service in
+                        NavigationLink {
+                            BusStopDetailView(busStop: busStop) // TODO: Change bus stop to bus service view when implemented
+                        } label: {
+                            HStack(alignment: .center, spacing: 16.0) {
+                                HStack(alignment: .center) {
+                                    Text(service.serviceNo)
+                                        .font(Font.custom("OceanSansStd-Bold", size: 24.0))
+                                        .foregroundColor(.white)
+                                        .padding(EdgeInsets(top: 6.0, leading: 16.0, bottom: 2.0, trailing: 16.0))
+                                        .frame(minWidth: 0, maxWidth: .infinity)
+                                        .lineLimit(1)
+                                }
+                                .background(Color("PlateColor"))
+                                .clipShape(RoundedRectangle(cornerRadius: 7.0))
+                                .frame(minWidth: ((UIScreen.main.bounds.size.width) / 4.5), maxWidth: ((UIScreen.main.bounds.size.width) / 4.5), minHeight: 0, maxHeight: .infinity, alignment: .center)
+                                Spacer()
+                                Text(getArrivalText(arrivalTime: service.nextBus.estimatedArrivalTime()))
+                                    .font(.body)
+                                    .fontWeight(.regular)
+                            }
                         }
                     }
                 }
@@ -83,7 +98,7 @@ struct BusStopDetailView: View {
         .refreshable {
             reloadBusArrivals()
         }
-        .navigationTitle(busStop.description ?? "Shared.BusStopDescriptionNone")
+        .navigationTitle(busStop.description ?? "Shared.BusStop.Description.None")
         .onAppear {
             coordinate = CLLocationCoordinate2D(latitude: busStop.latitude ?? 1.29516, longitude: busStop.longitude ?? 103.85892)
             coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 500.0, longitudinalMeters: 500.0)

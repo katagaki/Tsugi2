@@ -39,11 +39,12 @@
 "More.AboutEmail.Subtitle" = "ktgk.public@icloud.com";
 
 /* Shared */
-"Shared.BusStopDescriptionNone" = "無名のバス停";
-"Shared.BusStopCode" = "バス停コード";
-"Shared.BusStopCodeNone" = "なし";
-"Shared.BusStopRoadNone" = "道路名なし";
-"Shared.BusServices" = "バス";
+"Shared.BusStop.Description.None" = "無名のバス停";
+"Shared.BusStop.Code" = "バス停コード";
+"Shared.BusStop.Code.None" = "なし";
+"Shared.BusStop.Road.None" = "道路名なし";
+"Shared.BusStop.NoBusServices" = "本バス停では、現在すべてのバスがサービス時間外です。";
+"Shared.BusStop.BusServices" = "バス";
 "Shared.BusArrival.Arriving" = "まもなく到着";
 "Shared.BusArrival.JustLeft" = "発車済み";
 "Shared.BusArrival.NotInService" = "サービス時間外";
