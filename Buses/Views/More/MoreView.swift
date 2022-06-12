@@ -17,9 +17,6 @@ struct MoreView: View {
                         Text("More.Notifications")
                             .font(.body)
                             .fontWeight(.regular)
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(.secondary)
                     }
                 }
                 .font(.body)
@@ -39,8 +36,10 @@ struct MoreView: View {
                                 .foregroundColor(.secondary)
                         }
                         Spacer()
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(.secondary)
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        UIApplication.shared.open(URL(string: "https://github.com/katagaki/Tsugi2")!)
                     }
                     HStack(alignment: .center, spacing: 16.0) {
                         Image("CellTwitter")
@@ -54,8 +53,10 @@ struct MoreView: View {
                                 .foregroundColor(.secondary)
                         }
                         Spacer()
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(.secondary)
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        UIApplication.shared.open(URL(string: "https://twitter.com/katagaki_")!)
                     }
                     HStack(alignment: .center, spacing: 16.0) {
                         Image("CellEmail")
@@ -69,8 +70,10 @@ struct MoreView: View {
                                 .foregroundColor(.secondary)
                         }
                         Spacer()
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(.secondary)
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        UIApplication.shared.open(URL(string: "mailto:ktgk.public@icloud.com")!)
                     }
                 }
                 .font(.body)
