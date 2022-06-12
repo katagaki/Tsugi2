@@ -55,14 +55,6 @@ struct FavoritesView: View {
             .navigationTitle("ViewTitle.Favorites")
         }
     }
-    
-    func getArrivalText(arrivalTime: Date?) -> String {
-        if let arrivalTime = arrivalTime {
-            return arrivalTimeTo(date: arrivalTime)
-        } else {
-            return "N/A"
-        }
-    }
 }
 
 struct FavoritesView_Previews: PreviewProvider {

@@ -10,3 +10,11 @@ import Foundation
 func localized(_ key: String) -> String {
     return NSLocalizedString(key, comment: "")
 }
+
+func getArrivalText(arrivalTime: Date?) -> String {
+    if let arrivalTime = arrivalTime {
+        return arrivalTimeTo(date: arrivalTime)
+    } else {
+        return "N/A"
+    }
+}

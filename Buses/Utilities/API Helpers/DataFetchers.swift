@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: BusStops API
+
 func fetchAllBusStops() async throws -> [BusStop] {
     var allBusStops: [BusStop] = []
     var currentBusStopList: BSBusStopList?
@@ -54,3 +56,38 @@ func fetchBusStops(from firstIndex: Int = 0) async throws -> BSBusStopList {
     })
     return busStopList
 }
+
+// MARK: BusArrivalv2 API
+
+func fetchBusArrivals(for stopCode: String) async throws -> BABusStop {
+    let busArrivals: BABusStop = try await withCheckedThrowingContinuation({ continuation in
+        var request = URLRequest(url: URL(string: "http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode=\(stopCode)")!)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        if let apiKey = apiKeys["LTA"] {
+            request.addValue(apiKey, forHTTPHeaderField: "AccountKey")
+        } else {
+            log("API key is missing! Request may fail ungracefully.", level: .error)
+        }
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            if let error = error {
+                log(error.localizedDescription, level: .error)
+                continuation.resume(throwing: error)
+            }
+            if let data = data {
+                if let busArrivals: BABusStop = decode(fromData: data) {
+                    log("Fetched bus arrival data for \(stopCode) from the API.")
+                    continuation.resume(returning: busArrivals)
+                } else {
+                    log("Could not decode the data successfully.", level: .error)
+                    continuation.resume(throwing: NSError(domain: "", code: 1))
+                }
+            } else {
+                log("No data was returned.", level: .error)
+                continuation.resume(throwing: NSError(domain: "", code: 1))
+            }
+        }.resume()
+    })
+    return busArrivals
+}
+

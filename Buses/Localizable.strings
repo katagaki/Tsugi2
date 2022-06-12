@@ -6,8 +6,6 @@
   
 */
 
-/* Common */
-
 /* Tab Bar Item Titles */
 "TabTitle.Nearby" = "Nearby";
 "TabTitle.Favorites" = "Favorites";
@@ -26,7 +24,6 @@
 /* Directory View */
 "Directory.UsefulResources" = "Useful Resources";
 "Directory.BusStops" = "Bus Stops";
-"Directory.BusStopUnnamed" = "Unnamed Bus Stop";
 "Directory.BusStopsLoading" = "Getting bus stop information...";
 "Directory.MRTMap" = "MRT Service Map";
 
@@ -39,3 +36,9 @@
 "More.AboutTwitter.Subtitle" = "@katagaki_";
 "More.AboutEmail" = "Email me";
 "More.AboutEmail.Subtitle" = "ktgk.public@icloud.com";
+
+/* Shared */
+"Shared.BusStopDescriptionNone" = "Unnamed Bus Stop";
+"Shared.BusStopCode" = "Bus Stop Code";
+"Shared.BusStopCodeNone" = "No bus stop code";
+"Shared.BusStopRoadNone" = "No road name";

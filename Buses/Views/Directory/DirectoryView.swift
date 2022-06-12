@@ -22,20 +22,21 @@ struct DirectoryView: View {
                 if isSearching {
                     Section(header: Text("Directory.BusStops")) {
                         ForEach(searchResults, id: \.code) { stop in
-                            HStack(alignment: .center, spacing: 16.0) {
-                                Image("CellBusStop")
-                                VStack(alignment: .leading, spacing: 2.0) {
-                                    Text(verbatim: stop.description ?? "Directory.BusStopUnnamed")
-                                        .font(.body)
-                                        .fontWeight(.regular)
-                                    Text(verbatim: stop.roadName ?? "")
-                                        .font(.caption)
-                                        .fontWeight(.regular)
-                                        .foregroundColor(.secondary)
+                            NavigationLink {
+                                BusStopDetailView(busStop: stop)
+                            } label: {
+                                HStack(alignment: .center, spacing: 16.0) {
+                                    Image("CellBusStop")
+                                    VStack(alignment: .leading, spacing: 2.0) {
+                                        Text(verbatim: stop.description ?? "Shared.BusStopDescriptionNone")
+                                            .font(.body)
+                                            .fontWeight(.regular)
+                                        Text(verbatim: stop.roadName ?? "")
+                                            .font(.caption)
+                                            .fontWeight(.regular)
+                                            .foregroundColor(.secondary)
+                                    }
                                 }
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                                    .foregroundColor(.secondary)
                             }
                         }
                     }
@@ -45,14 +46,15 @@ struct DirectoryView: View {
                     .textCase(nil)
                 } else {
                     Section(header: Text("Directory.UsefulResources")) {
-                        HStack(alignment: .center, spacing: 16.0) {
-                            Image("CellTrainMap")
-                            Text("Directory.MRTMap")
-                                .font(.body)
-                                .fontWeight(.regular)
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .foregroundColor(.secondary)
+                        NavigationLink {
+                            DirectoryMRTMapView()
+                        } label: {
+                            HStack(alignment: .center, spacing: 16.0) {
+                                Image("CellTrainMap")
+                                Text("Directory.MRTMap")
+                                    .font(.body)
+                                    .fontWeight(.regular)
+                            }
                         }
                     }
                     .font(.body)
@@ -71,22 +73,24 @@ struct DirectoryView: View {
                                 .progressViewStyle(.circular)
                                 Spacer()
                             }
+                            .listRowBackground(Color.clear)
                         } else {
                             ForEach(busStops, id: \.code) { stop in
-                                HStack(alignment: .center, spacing: 16.0) {
-                                    Image("CellBusStop")
-                                    VStack(alignment: .leading, spacing: 2.0) {
-                                        Text(verbatim: stop.description ?? "Directory.BusStopUnnamed")
-                                            .font(.body)
-                                            .fontWeight(.regular)
-                                        Text(verbatim: stop.roadName ?? "")
-                                            .font(.caption)
-                                            .fontWeight(.regular)
-                                            .foregroundColor(.secondary)
+                                NavigationLink {
+                                    BusStopDetailView(busStop: stop)
+                                } label: {
+                                    HStack(alignment: .center, spacing: 16.0) {
+                                        Image("CellBusStop")
+                                        VStack(alignment: .leading, spacing: 2.0) {
+                                            Text(verbatim: stop.description ?? "Shared.BusStopDescriptionNone")
+                                                .font(.body)
+                                                .fontWeight(.regular)
+                                            Text(verbatim: stop.roadName ?? "")
+                                                .font(.caption)
+                                                .fontWeight(.regular)
+                                                .foregroundColor(.secondary)
+                                        }
                                     }
-                                    Spacer()
-                                    Image(systemName: "chevron.right")
-                                        .foregroundColor(.secondary)
                                 }
                             }
                         }
@@ -126,10 +130,9 @@ struct DirectoryView: View {
                 isBusStopListLoaded = false
             }
             let busStopsFetched = try await fetchAllBusStops()
-            busStops.removeAll()
-            busStops.append(contentsOf: busStopsFetched.sorted(by: { a, b in
+            busStops = busStopsFetched.sorted(by: { a, b in
                 a.description ?? "" < b.description ?? ""
-            }))
+            })
             isBusStopListLoaded = true
         }
     }
@@ -140,3 +143,4 @@ struct DirectoryView_Previews: PreviewProvider {
         DirectoryView()
     }
 }
+
