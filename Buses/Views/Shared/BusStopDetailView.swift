@@ -19,8 +19,8 @@ struct BusStopDetailView: View {
     var body: some View {
         List {
             Section {
-                HStack {
-                    Image("CellBusStop")
+                HStack(alignment: .center, spacing: 16.0) {
+                    Image("CellCode")
                     Text("Shared.BusStopCode")
                         .font(.body)
                     Spacer()
@@ -28,12 +28,14 @@ struct BusStopDetailView: View {
                         .font(.body.monospaced())
                         .foregroundColor(.secondary)
                 }
-                HStack {
-                    Image("CellBusStop")
+                HStack(alignment: .center, spacing: 16.0) {
+                    Image("CellRoad")
                     Text(busStop.roadName ?? "Shared.BusStopRoadNameNone")
                         .font(.body)
                     Spacer()
                 }
+            }
+            Section {
                 Map(coordinateRegion: $coordinateRegion,
                     interactionModes: .all,
                     showsUserLocation: true,
@@ -44,7 +46,7 @@ struct BusStopDetailView: View {
                     .listRowInsets(EdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 250.0, maxHeight: 250.0)
             }
-            Section {
+            Section("Shared.BusServices") {
                 ForEach(busArrivals, id: \.serviceNo) { service in
                     NavigationLink {
                         BusStopDetailView(busStop: busStop) // TODO: Change bus stop to bus service view when implemented
@@ -69,6 +71,10 @@ struct BusStopDetailView: View {
                     }
                 }
             }
+            .font(.body)
+            .fontWeight(.bold)
+            .foregroundColor(.primary)
+            .textCase(nil)
             .onReceive(timer, perform: { _ in
                 reloadBusArrivals()
             })
