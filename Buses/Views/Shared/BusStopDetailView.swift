@@ -90,9 +90,6 @@ struct BusStopDetailView: View {
             .fontWeight(.bold)
             .foregroundColor(.primary)
             .textCase(nil)
-            .onReceive(timer, perform: { _ in
-                reloadBusArrivals()
-            })
         }
         .listStyle(.insetGrouped)
         .refreshable {
@@ -103,6 +100,12 @@ struct BusStopDetailView: View {
             coordinate = CLLocationCoordinate2D(latitude: busStop.latitude ?? 1.29516, longitude: busStop.longitude ?? 103.85892)
             coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 500.0, longitudinalMeters: 500.0)
             reloadBusArrivals()
+        }
+        .onReceive(timer, perform: { _ in
+            reloadBusArrivals()
+        })
+        .onDisappear {
+            timer.upstream.connect().cancel()
         }
     }
     
