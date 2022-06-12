@@ -20,23 +20,12 @@
 		<string>OceanSansStd-Bold.otf</string>
 		<string>OceanSansStd-Book.otf</string>
 	</array>
-	<key>UIApplicationSceneManifest</key>
+	<key>UILaunchScreen</key>
 	<dict>
-		<key>UIApplicationSupportsMultipleScenes</key>
-		<false/>
-		<key>UISceneConfigurations</key>
+		<key>UITabBar</key>
 		<dict>
-			<key>UIWindowSceneSessionRoleApplication</key>
-			<array>
-				<dict>
-					<key>UISceneConfigurationName</key>
-					<string>Default Configuration</string>
-					<key>UISceneDelegateClassName</key>
-					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
-					<key>UISceneStoryboardFile</key>
-					<string>Main</string>
-				</dict>
-			</array>
+			<key>UIImageName</key>
+			<string></string>
 		</dict>
 	</dict>
 </dict>
