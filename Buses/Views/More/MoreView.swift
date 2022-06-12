@@ -12,11 +12,15 @@ struct MoreView: View {
         NavigationView {
             List {
                 Section(header: Text("")) {
-                    HStack(alignment: .center, spacing: 16.0) {
-                        Image("CellNotifications")
-                        Text("More.Notifications")
-                            .font(.body)
-                            .fontWeight(.regular)
+                    NavigationLink {
+                        MoreNotificationsView()
+                    } label: {
+                        HStack(alignment: .center, spacing: 16.0) {
+                            Image("CellNotifications")
+                            Text("More.Notifications")
+                                .font(.body)
+                                .fontWeight(.regular)
+                        }
                     }
                 }
                 .font(.body)
