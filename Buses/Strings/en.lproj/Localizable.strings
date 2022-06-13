@@ -19,6 +19,7 @@
 "ViewTitle.More" = "More";
 "ViewTitle.More.AppIcon" = "App Icon";
 "ViewTitle.More.Notifications" = "Notifications";
+"ViewTitle.More.Donate" = "Donate";
 
 /* Nearby View */
 
@@ -38,12 +39,14 @@
 "More.AppIcon.Purple" = "Purple";
 "More.Notifications" = "Notifications";
 "More.Support" = "Support";
-"More.AboutGitHub" = "Get the source code";
-"More.AboutGitHub.Subtitle" = "katagaki/Tsugi2";
-"More.AboutTwitter" = "Tweet me";
-"More.AboutTwitter.Subtitle" = "@katagaki_";
-"More.AboutEmail" = "Email me";
-"More.AboutEmail.Subtitle" = "ktgk.public@icloud.com";
+"More.Support.GitHub" = "Contribute with Code";
+"More.Support.GitHub.Subtitle" = "katagaki/Tsugi2";
+"More.Support.Donate" = "Donate";
+"More.Help" = "Help";
+"More.Help.Twitter" = "Tweet Me";
+"More.Help.Twitter.Subtitle" = "@katagaki_";
+"More.Help.Email" = "Email Me";
+"More.Help.Email.Subtitle" = "ktgk.public@icloud.com";
 
 /* Shared */
 "Shared.BusStop.Description.None" = "Unnamed Bus Stop";

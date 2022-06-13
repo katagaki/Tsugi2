@@ -19,6 +19,7 @@
 "ViewTitle.More" = "更多";
 "ViewTitle.More.AppIcon" = "图标";
 "ViewTitle.More.Notifications" = "通知";
+"ViewTitle.More.Donate" = "捐赠";
 
 /* Nearby View */
 
@@ -37,13 +38,15 @@
 "More.AppIcon.Red" = "红色";
 "More.AppIcon.Purple" = "紫色";
 "More.Notifications" = "通知";
-"More.Support" = "帮助";
-"More.AboutGitHub" = "查看源代码";
-"More.AboutGitHub.Subtitle" = "katagaki/Tsugi2";
-"More.AboutTwitter" = "发推文";
-"More.AboutTwitter.Subtitle" = "@katagaki_";
-"More.AboutEmail" = "发邮件";
-"More.AboutEmail.Subtitle" = "ktgk.public@icloud.com";
+"More.Support" = "支持";
+"More.Support.GitHub" = "协助开发";
+"More.Support.GitHub.Subtitle" = "katagaki/Tsugi2";
+"More.Support.Donate" = "捐赠";
+"More.Help" = "帮助";
+"More.Help.Twitter" = "发推文";
+"More.Help.Twitter.Subtitle" = "@katagaki_";
+"More.Help.Email" = "发邮件";
+"More.Help.Email.Subtitle" = "ktgk.public@icloud.com";
 
 /* Shared */
 "Shared.BusStop.Description.None" = "无名巴士站";

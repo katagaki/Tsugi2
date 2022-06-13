@@ -19,6 +19,7 @@
 "ViewTitle.More" = "その他";
 "ViewTitle.More.AppIcon" = "アイコン";
 "ViewTitle.More.Notifications" = "通知";
+"ViewTitle.More.Donate" = "寄付";
 
 /* Nearby View */
 
@@ -37,13 +38,15 @@
 "More.AppIcon.Red" = "レッド";
 "More.AppIcon.Purple" = "パープル";
 "More.Notifications" = "通知";
-"More.Support" = "サポート";
-"More.AboutGitHub" = "ソースコードを閲覧";
-"More.AboutGitHub.Subtitle" = "katagaki/Tsugi2";
-"More.AboutTwitter" = "ツイート";
-"More.AboutTwitter.Subtitle" = "@katagaki_";
-"More.AboutEmail" = "メールを送信";
-"More.AboutEmail.Subtitle" = "ktgk.public@icloud.com";
+"More.Support" = "支援";
+"More.Support.GitHub" = "開発を手伝う";
+"More.Support.GitHub.Subtitle" = "katagaki/Tsugi2";
+"More.Support.Donate" = "寄付";
+"More.Help" = "お問い合わせ";
+"More.Help.Twitter" = "ツイート";
+"More.Help.Twitter.Subtitle" = "@katagaki_";
+"More.Help.Email" = "メールを送信";
+"More.Help.Email.Subtitle" = "ktgk.public@icloud.com";
 
 /* Shared */
 "Shared.BusStop.Description.None" = "無名のバス停";

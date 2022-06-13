@@ -41,10 +41,10 @@ struct MoreView: View {
                     HStack(alignment: .center, spacing: 16.0) {
                         Image("CellGitHub")
                         VStack(alignment: .leading, spacing: 2.0) {
-                            Text("More.AboutGitHub")
+                            Text("More.Support.GitHub")
                                 .font(.body)
                                 .fontWeight(.regular)
-                            Text("More.AboutGitHub.Subtitle")
+                            Text("More.Support.GitHub.Subtitle")
                                 .font(.caption)
                                 .fontWeight(.regular)
                                 .foregroundColor(.secondary)
@@ -55,13 +55,29 @@ struct MoreView: View {
                     .onTapGesture {
                         UIApplication.shared.open(URL(string: "https://github.com/katagaki/Tsugi2")!)
                     }
+                    NavigationLink {
+                        MoreDonateView()
+                    } label: {
+                        HStack(alignment: .center, spacing: 16.0) {
+                            Image("CellDonate")
+                            Text("More.Support.Donate")
+                                .font(.body)
+                                .fontWeight(.regular)
+                        }
+                    }
+                }
+                .font(.body)
+                .fontWeight(.bold)
+                .foregroundColor(.primary)
+                .textCase(nil)
+                Section(header: Text("More.Help")) {
                     HStack(alignment: .center, spacing: 16.0) {
                         Image("CellTwitter")
                         VStack(alignment: .leading, spacing: 2.0) {
-                            Text("More.AboutTwitter")
+                            Text("More.Help.Twitter")
                                 .font(.body)
                                 .fontWeight(.regular)
-                            Text("More.AboutTwitter.Subtitle")
+                            Text("More.Help.Twitter.Subtitle")
                                 .font(.caption)
                                 .fontWeight(.regular)
                                 .foregroundColor(.secondary)
@@ -75,10 +91,10 @@ struct MoreView: View {
                     HStack(alignment: .center, spacing: 16.0) {
                         Image("CellEmail")
                         VStack(alignment: .leading, spacing: 2.0) {
-                            Text("More.AboutEmail")
+                            Text("More.Help.Email")
                                 .font(.body)
                                 .fontWeight(.regular)
-                            Text(verbatim: localized("More.AboutEmail.Subtitle"))
+                            Text(verbatim: localized("More.Help.Email.Subtitle"))
                                 .font(.caption)
                                 .fontWeight(.regular)
                                 .foregroundColor(.secondary)

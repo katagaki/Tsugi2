@@ -16,6 +16,7 @@
 		E42C82462856C8FE00D64DF9 /* Red@3x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E42C82422856C8FE00D64DF9 /* Red@3x~ipad.png */; };
 		E42C82472856C8FE00D64DF9 /* Red@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E42C82432856C8FE00D64DF9 /* Red@2x~ipad.png */; };
 		E42C82492856C9C600D64DF9 /* MoreAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42C82482856C9C600D64DF9 /* MoreAppIconView.swift */; };
+		E42C824E2856D4FA00D64DF9 /* MoreDonateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42C824D2856D4FA00D64DF9 /* MoreDonateView.swift */; };
 		E4319EB0280413BA00D21531 /* BusArrivalv2-2.json in Resources */ = {isa = PBXBuildFile; fileRef = E4319EAF280413BA00D21531 /* BusArrivalv2-2.json */; };
 		E4319EB2280413D200D21531 /* BusArrivalv2-3.json in Resources */ = {isa = PBXBuildFile; fileRef = E4319EB1280413D200D21531 /* BusArrivalv2-3.json */; };
 		E4319EB4280413FA00D21531 /* JSONUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4319EB3280413FA00D21531 /* JSONUtilities.swift */; };
@@ -71,6 +72,7 @@
 		E42C82422856C8FE00D64DF9 /* Red@3x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red@3x~ipad.png"; sourceTree = "<group>"; };
 		E42C82432856C8FE00D64DF9 /* Red@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red@2x~ipad.png"; sourceTree = "<group>"; };
 		E42C82482856C9C600D64DF9 /* MoreAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreAppIconView.swift; sourceTree = "<group>"; };
+		E42C824D2856D4FA00D64DF9 /* MoreDonateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreDonateView.swift; sourceTree = "<group>"; };
 		E4319EAF280413BA00D21531 /* BusArrivalv2-2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "BusArrivalv2-2.json"; sourceTree = "<group>"; };
 		E4319EB1280413D200D21531 /* BusArrivalv2-3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "BusArrivalv2-3.json"; sourceTree = "<group>"; };
 		E4319EB3280413FA00D21531 /* JSONUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONUtilities.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				E4B7FFEB285460DE0019F71A /* MoreView.swift */,
 				E42C82482856C9C600D64DF9 /* MoreAppIconView.swift */,
 				E4B700062856406D0019F71A /* MoreNotificationsView.swift */,
+				E42C824D2856D4FA00D64DF9 /* MoreDonateView.swift */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				E4FFCADB2801B23300DCA0EC /* DateUtilities.swift in Sources */,
 				E4B70003285637450019F71A /* MainTabView.swift in Sources */,
 				E4319EBC280437BA00D21531 /* BSBusStopList.swift in Sources */,
+				E42C824E2856D4FA00D64DF9 /* MoreDonateView.swift in Sources */,
 				E476BF1E28086A2D00B8524B /* APIKeyHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
