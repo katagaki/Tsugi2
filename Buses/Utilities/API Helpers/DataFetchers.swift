@@ -38,6 +38,7 @@ func fetchBusStops(from firstIndex: Int = 0) async throws -> BSBusStopList {
         URLSession.shared.dataTask(with: request) { data, _, error in
             if let error = error {
                 log(error.localizedDescription, level: .error)
+                log(String(data: data ?? Data(), encoding: .utf8) ?? "No data found.")
                 continuation.resume(throwing: error)
             }
             if let data = data {
@@ -72,6 +73,7 @@ func fetchBusArrivals(for stopCode: String) async throws -> BABusStop {
         URLSession.shared.dataTask(with: request) { data, _, error in
             if let error = error {
                 log(error.localizedDescription, level: .error)
+                log(String(data: data ?? Data(), encoding: .utf8) ?? "No data found.")
                 continuation.resume(throwing: error)
             }
             if let data = data {

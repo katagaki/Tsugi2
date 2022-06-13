@@ -12,6 +12,7 @@ struct BusStopDetailView: View {
     
     var busStop: BusStop
     @State var busArrivals: [BABusService] = []
+    @State var isInitialDataLoaded: Bool = true
     @EnvironmentObject var displayedCoordinates: DisplayedCoordinates
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
@@ -36,17 +37,27 @@ struct BusStopDetailView: View {
             }
             Section {
                 if busArrivals.count == 0 {
-                    HStack {
-                        Spacer()
-                        VStack(alignment: .center, spacing: 8.0) {
-                            Image(systemName: "exclamationmark.circle.fill")
-                                .symbolRenderingMode(.multicolor)
-                            Text("Shared.BusStop.NoBusServices")
-                                .font(.body)
+                    if isInitialDataLoaded {
+                        HStack(alignment: .center, spacing: 16.0) {
+                            Spacer()
+                            ProgressView()
+                            .progressViewStyle(.circular)
+                            Spacer()
                         }
-                        Spacer()
+                        .listRowBackground(Color.clear)
+                    } else {
+                        HStack {
+                            Spacer()
+                            VStack(alignment: .center, spacing: 8.0) {
+                                Image(systemName: "exclamationmark.circle.fill")
+                                    .symbolRenderingMode(.multicolor)
+                                Text("Shared.BusStop.NoBusServices")
+                                    .font(.body)
+                            }
+                            Spacer()
+                        }
+                        .listRowBackground(Color.clear)
                     }
-                    .listRowBackground(Color.clear)
                 } else {
                     ForEach(busArrivals, id: \.serviceNo) { service in
                         NavigationLink {
@@ -63,7 +74,7 @@ struct BusStopDetailView: View {
                                 }
                                 .background(Color("PlateColor"))
                                 .clipShape(RoundedRectangle(cornerRadius: 7.0))
-                                .frame(minWidth: 85.0, maxWidth: 85.0, minHeight: 0, maxHeight: .infinity, alignment: .center)
+                                .frame(minWidth: 88.0, maxWidth: 88.0, minHeight: 0, maxHeight: .infinity, alignment: .center)
                                 Spacer()
                                 Text(getArrivalText(arrivalTime: service.nextBus.estimatedArrivalTime()))
                                     .font(.body)
@@ -86,7 +97,9 @@ struct BusStopDetailView: View {
         .navigationTitle(busStop.description ?? "Shared.BusStop.Description.None")
         .onAppear {
             displayedCoordinates.addCoordinate(from: CLLocationCoordinate2D(latitude: busStop.latitude ?? 1.29516, longitude: busStop.longitude ?? 103.85892))
-            reloadBusArrivals()
+            if isInitialDataLoaded {
+                reloadBusArrivals()
+            }
         }
         .onReceive(timer, perform: { _ in
             reloadBusArrivals()
@@ -103,13 +116,14 @@ struct BusStopDetailView: View {
             busArrivals = busStopsFetched.busServices.sorted(by: { a, b in
                 a.serviceNo < b.serviceNo
             })
+            isInitialDataLoaded = false
         }
     }
 }
 
 struct BusStopDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        let sampleBusStop: BusStop = BusStop(code: "97311", roadName: "Lorem Ipsum Dolor Street", description: "Opp Sample Bus Stop Secondary", latitude: 1.28459, longitude: 103.83275)
+        let sampleBusStop: BusStop = BusStop(code: "46779", roadName: "Lorem Ipsum Dolor Street", description: "Opp Sample Bus Stop Secondary", latitude: 1.28459, longitude: 103.83275)
         BusStopDetailView(busStop: sampleBusStop)
     }
 }
