@@ -20,6 +20,9 @@ struct MainTabView: View {
             showsUserLocation: true,
             userTrackingMode: $userTrackingMode)
         .edgesIgnoringSafeArea(.all)
+        .onTapGesture {
+            isSheetPresenting = true
+        }
         .sheet(isPresented: $isSheetPresenting) {
             TabView {
                 NearbyView()
@@ -39,7 +42,6 @@ struct MainTabView: View {
                         Label("TabTitle.More", systemImage: "ellipsis")
                     }
             }
-            .interactiveDismissDisabled(true)
             .presentationDetents([.medium, .large])
         }
     }
