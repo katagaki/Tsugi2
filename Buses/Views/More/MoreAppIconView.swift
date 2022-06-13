@@ -12,12 +12,14 @@ struct MoreAppIconView: View {
         List {
             HStack(alignment: .center, spacing: 16.0) {
                 Image("AppIconGreen")
+                    .resizable()
+                    .frame(width: 60.0, height: 60.0)
                     .clipped(antialiased: true)
                     .mask {
-                        RoundedRectangle(cornerRadius: 16.0)
+                        RoundedRectangle(cornerRadius: 14.0)
                     }
                     .overlay {
-                        RoundedRectangle(cornerRadius: 16.0)
+                        RoundedRectangle(cornerRadius: 14.0)
                             .stroke(.thickMaterial, lineWidth: 1.0)
                     }
                 Text("More.AppIcon.Green")
@@ -29,12 +31,14 @@ struct MoreAppIconView: View {
             }
             HStack(alignment: .center, spacing: 16.0) {
                 Image("AppIconRed")
+                    .resizable()
+                    .frame(width: 60.0, height: 60.0)
                     .clipped(antialiased: true)
                     .mask {
-                        RoundedRectangle(cornerRadius: 16.0)
+                        RoundedRectangle(cornerRadius: 14.0)
                     }
                     .overlay {
-                        RoundedRectangle(cornerRadius: 16.0)
+                        RoundedRectangle(cornerRadius: 14.0)
                             .stroke(.thickMaterial, lineWidth: 1.0)
                     }
                 Text("More.AppIcon.Red")
@@ -46,12 +50,14 @@ struct MoreAppIconView: View {
             }
             HStack(alignment: .center, spacing: 16.0) {
                 Image("AppIconPurple")
+                    .resizable()
+                    .frame(width: 60.0, height: 60.0)
                     .clipped(antialiased: true)
                     .mask {
-                        RoundedRectangle(cornerRadius: 16.0)
+                        RoundedRectangle(cornerRadius: 14.0)
                     }
                     .overlay {
-                        RoundedRectangle(cornerRadius: 16.0)
+                        RoundedRectangle(cornerRadius: 14.0)
                             .stroke(.thickMaterial, lineWidth: 1.0)
                     }
                 Text("More.AppIcon.Purple")
