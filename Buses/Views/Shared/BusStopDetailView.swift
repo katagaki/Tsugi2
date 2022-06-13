@@ -12,8 +12,7 @@ struct BusStopDetailView: View {
     
     var busStop: BusStop
     @State var busArrivals: [BABusService] = []
-    @State var coordinate = CLLocationCoordinate2D(latitude: 1.29516, longitude: 103.85892)
-    @State var coordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 1.29516, longitude: 103.85892), latitudinalMeters: 500.0, longitudinalMeters: 500.0)
+    @EnvironmentObject var displayedCoordinates: DisplayedCoordinates
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
     var body: some View {
@@ -34,17 +33,6 @@ struct BusStopDetailView: View {
                         .font(.body)
                     Spacer()
                 }
-            }
-            Section {
-                Map(coordinateRegion: $coordinateRegion,
-                    interactionModes: .all,
-                    showsUserLocation: true,
-                    userTrackingMode: .none,
-                    annotationItems: [coordinate]) { annotations in
-                    MapMarker(coordinate: annotations)
-                }
-                    .listRowInsets(EdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 150.0, maxHeight: 150.0)
             }
             Section("Shared.BusStop.BusServices") {
                 if busArrivals.count == 0 {
@@ -97,14 +85,14 @@ struct BusStopDetailView: View {
         }
         .navigationTitle(busStop.description ?? "Shared.BusStop.Description.None")
         .onAppear {
-            coordinate = CLLocationCoordinate2D(latitude: busStop.latitude ?? 1.29516, longitude: busStop.longitude ?? 103.85892)
-            coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 500.0, longitudinalMeters: 500.0)
+            displayedCoordinates.addCoordinate(from: CLLocationCoordinate2D(latitude: busStop.latitude ?? 1.29516, longitude: busStop.longitude ?? 103.85892))
             reloadBusArrivals()
         }
         .onReceive(timer, perform: { _ in
             reloadBusArrivals()
         })
         .onDisappear {
+            displayedCoordinates.removeAll()
             timer.upstream.connect().cancel()
         }
     }

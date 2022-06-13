@@ -15,6 +15,7 @@ struct TsugiApp: App {
                 .onAppear {
                     loadAPIKeys()
                 }
+                .environmentObject(DisplayedCoordinates())
         }
     }
 }
