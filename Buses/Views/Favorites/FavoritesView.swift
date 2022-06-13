@@ -15,7 +15,7 @@ struct FavoritesView: View {
         NavigationView {
             List {
                 ForEach(busStops, id: \.code) { stop in
-                    Section(header: Text(stop.code)) {
+                    Section {
                         ScrollView(.horizontal) {
                             LazyHStack(spacing: 16.0) {
                                 ForEach(stop.busServices, id: \.serviceNo) { service in
@@ -32,11 +32,9 @@ struct FavoritesView: View {
                                         .clipShape(RoundedRectangle(cornerRadius: 7.0))
                                         Text(getArrivalText(arrivalTime: service.nextBus.estimatedArrivalTime()))
                                             .font(.body)
-                                            .fontWeight(.regular)
                                             .lineLimit(1)
                                         Text(getArrivalText(arrivalTime: service.nextBus2.estimatedArrivalTime()))
                                             .font(.body)
-                                            .fontWeight(.regular)
                                             .foregroundColor(.secondary)
                                             .lineLimit(1)
                                     }
@@ -46,11 +44,13 @@ struct FavoritesView: View {
                             .padding(EdgeInsets(top: 0.0, leading: 16.0, bottom: 0.0, trailing: 16.0))
                         }
                         .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
+                    } header: {
+                        Text(stop.code)
+                            .font(.body)
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+                            .textCase(nil)
                     }
-                    .font(.body)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                    .textCase(nil)
                 }
             }
             .listStyle(.insetGrouped)

@@ -20,7 +20,7 @@ struct DirectoryView: View {
         NavigationView {
             List {
                 if isSearching {
-                    Section(header: Text("Directory.BusStops")) {
+                    Section {
                         ForEach(searchResults, id: \.code) { stop in
                             NavigationLink {
                                 BusStopDetailView(busStop: stop)
@@ -30,22 +30,22 @@ struct DirectoryView: View {
                                     VStack(alignment: .leading, spacing: 2.0) {
                                         Text(verbatim: stop.description ?? "Shared.BusStop.Description.None")
                                             .font(.body)
-                                            .fontWeight(.regular)
                                         Text(verbatim: stop.roadName ?? "")
                                             .font(.caption)
-                                            .fontWeight(.regular)
                                             .foregroundColor(.secondary)
                                     }
                                 }
                             }
                         }
+                    } header: {
+                        Text("Directory.BusStops")
+                            .font(.body)
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+                            .textCase(nil)
                     }
-                    .font(.body)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                    .textCase(nil)
                 } else {
-                    Section(header: Text("Directory.UsefulResources")) {
+                    Section {
                         NavigationLink {
                             DirectoryMRTMapView()
                         } label: {
@@ -53,22 +53,22 @@ struct DirectoryView: View {
                                 Image("CellTrainMap")
                                 Text("Directory.MRTMap")
                                     .font(.body)
-                                    .fontWeight(.regular)
                             }
                         }
+                    } header: {
+                        Text("Directory.UsefulResources")
+                            .font(.body)
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+                            .textCase(nil)
                     }
-                    .font(.body)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                    .textCase(nil)
-                    Section(header: Text("Directory.BusStops")) {
+                    Section {
                         if !isBusStopListLoaded {
                             HStack(alignment: .center, spacing: 16.0) {
                                 Spacer()
                                 ProgressView {
                                     Text("Directory.BusStopsLoading")
                                         .font(.body)
-                                        .fontWeight(.regular)
                                 }
                                 .progressViewStyle(.circular)
                                 Spacer()
@@ -84,21 +84,21 @@ struct DirectoryView: View {
                                         VStack(alignment: .leading, spacing: 2.0) {
                                             Text(verbatim: stop.description ?? "Shared.BusStop.Description.None")
                                                 .font(.body)
-                                                .fontWeight(.regular)
                                             Text(verbatim: stop.roadName ?? "")
                                                 .font(.caption)
-                                                .fontWeight(.regular)
                                                 .foregroundColor(.secondary)
                                         }
                                     }
                                 }
                             }
                         }
+                    } header: {
+                        Text("Directory.BusStops")
+                            .font(.body)
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+                            .textCase(nil)
                     }
-                    .font(.body)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                    .textCase(nil)
                 }
             }
             .listStyle(.insetGrouped)

@@ -34,7 +34,7 @@ struct BusStopDetailView: View {
                     Spacer()
                 }
             }
-            Section("Shared.BusStop.BusServices") {
+            Section {
                 if busArrivals.count == 0 {
                     HStack {
                         Spacer()
@@ -43,7 +43,6 @@ struct BusStopDetailView: View {
                                 .symbolRenderingMode(.multicolor)
                             Text("Shared.BusStop.NoBusServices")
                                 .font(.body)
-                                .fontWeight(.regular)
                         }
                         Spacer()
                     }
@@ -68,16 +67,17 @@ struct BusStopDetailView: View {
                                 Spacer()
                                 Text(getArrivalText(arrivalTime: service.nextBus.estimatedArrivalTime()))
                                     .font(.body)
-                                    .fontWeight(.regular)
                             }
                         }
                     }
                 }
+            } header: {
+                Text("Shared.BusStop.BusServices")
+                    .font(.body)
+                    .fontWeight(.bold)
+                    .foregroundColor(.primary)
+                    .textCase(nil)
             }
-            .font(.body)
-            .fontWeight(.bold)
-            .foregroundColor(.primary)
-            .textCase(nil)
         }
         .listStyle(.insetGrouped)
         .refreshable {

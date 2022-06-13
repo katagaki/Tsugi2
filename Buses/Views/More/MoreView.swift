@@ -11,7 +11,7 @@ struct MoreView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("More.General")) {
+                Section {
                     NavigationLink {
                         MoreAppIconView()
                     } label: {
@@ -19,7 +19,6 @@ struct MoreView: View {
                             Image("CellAppIcon")
                             Text("More.AppIcon")
                                 .font(.body)
-                                .fontWeight(.regular)
                         }
                     }
                     NavigationLink {
@@ -29,24 +28,23 @@ struct MoreView: View {
                             Image("CellNotifications")
                             Text("More.Notifications")
                                 .font(.body)
-                                .fontWeight(.regular)
                         }
                     }
+                } header: {
+                    Text("More.General")
+                        .font(.body)
+                        .fontWeight(.bold)
+                        .foregroundColor(.primary)
+                        .textCase(nil)
                 }
-                .font(.body)
-                .fontWeight(.bold)
-                .foregroundColor(.primary)
-                .textCase(nil)
-                Section(header: Text("More.Support")) {
+                Section {
                     HStack(alignment: .center, spacing: 16.0) {
                         Image("CellGitHub")
                         VStack(alignment: .leading, spacing: 2.0) {
                             Text("More.Support.GitHub")
                                 .font(.body)
-                                .fontWeight(.regular)
                             Text("More.Support.GitHub.Subtitle")
                                 .font(.caption)
-                                .fontWeight(.regular)
                                 .foregroundColor(.secondary)
                         }
                         Spacer()
@@ -62,24 +60,23 @@ struct MoreView: View {
                             Image("CellDonate")
                             Text("More.Support.Donate")
                                 .font(.body)
-                                .fontWeight(.regular)
                         }
                     }
+                } header: {
+                    Text("More.Support")
+                        .font(.body)
+                        .fontWeight(.bold)
+                        .foregroundColor(.primary)
+                        .textCase(nil)
                 }
-                .font(.body)
-                .fontWeight(.bold)
-                .foregroundColor(.primary)
-                .textCase(nil)
-                Section(header: Text("More.Help")) {
+                Section {
                     HStack(alignment: .center, spacing: 16.0) {
                         Image("CellTwitter")
                         VStack(alignment: .leading, spacing: 2.0) {
                             Text("More.Help.Twitter")
                                 .font(.body)
-                                .fontWeight(.regular)
                             Text("More.Help.Twitter.Subtitle")
                                 .font(.caption)
-                                .fontWeight(.regular)
                                 .foregroundColor(.secondary)
                         }
                         Spacer()
@@ -93,10 +90,8 @@ struct MoreView: View {
                         VStack(alignment: .leading, spacing: 2.0) {
                             Text("More.Help.Email")
                                 .font(.body)
-                                .fontWeight(.regular)
                             Text(verbatim: localized("More.Help.Email.Subtitle"))
                                 .font(.caption)
-                                .fontWeight(.regular)
                                 .foregroundColor(.secondary)
                         }
                         Spacer()
@@ -105,11 +100,13 @@ struct MoreView: View {
                     .onTapGesture {
                         UIApplication.shared.open(URL(string: "mailto:ktgk.public@icloud.com")!)
                     }
+                } header: {
+                    Text("More.Help")
+                        .font(.body)
+                        .fontWeight(.bold)
+                        .foregroundColor(.primary)
+                        .textCase(nil)
                 }
-                .font(.body)
-                .fontWeight(.bold)
-                .foregroundColor(.primary)
-                .textCase(nil)
             }
             .listStyle(.insetGrouped)
             .navigationTitle("ViewTitle.More")
