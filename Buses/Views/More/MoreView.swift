@@ -11,7 +11,17 @@ struct MoreView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("")) {
+                Section(header: Text("More.General")) {
+                    NavigationLink {
+                        MoreAppIconView()
+                    } label: {
+                        HStack(alignment: .center, spacing: 16.0) {
+                            Image("CellAppIcon")
+                            Text("More.AppIcon")
+                                .font(.body)
+                                .fontWeight(.regular)
+                        }
+                    }
                     NavigationLink {
                         MoreNotificationsView()
                     } label: {

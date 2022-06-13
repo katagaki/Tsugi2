@@ -3,7 +3,7 @@
     "BusStopCode": "76241",
     "Services": [
         {
-            "ServiceNo": "12",
+            "ServiceNo": "XYZ",
             "Operator": "GAS",
             "NextBus": {
                 "OriginCode": "10499",

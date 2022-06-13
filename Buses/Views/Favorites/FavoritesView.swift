@@ -40,7 +40,7 @@ struct FavoritesView: View {
                                             .foregroundColor(.secondary)
                                             .lineLimit(1)
                                     }
-                                    .frame(minWidth: ((UIScreen.main.bounds.size.width) / 4.5), maxWidth: ((UIScreen.main.bounds.size.width) / 4.5), minHeight: 0, maxHeight: .infinity, alignment: .center)
+                                    .frame(minWidth: 85.0, maxWidth: 85.0, minHeight: 0, maxHeight: .infinity, alignment: .center)
                                 }
                             }
                             .padding(EdgeInsets(top: 0.0, leading: 16.0, bottom: 0.0, trailing: 16.0))

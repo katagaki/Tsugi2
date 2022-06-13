@@ -17,6 +17,8 @@
 "ViewTitle.Directory" = "情報センター";
 "ViewTitle.MRTMap" = "MRT路線図";
 "ViewTitle.More" = "その他";
+"ViewTitle.More.AppIcon" = "アイコン";
+"ViewTitle.More.Notifications" = "通知";
 
 /* Nearby View */
 
@@ -29,6 +31,11 @@
 "Directory.MRTMap" = "MRT路線図";
 
 /* More View */
+"More.General" = "一般";
+"More.AppIcon" = "アイコン";
+"More.AppIcon.Green" = "グリーン（デフォルト）";
+"More.AppIcon.Red" = "レッド";
+"More.AppIcon.Purple" = "パープル";
 "More.Notifications" = "通知";
 "More.Support" = "サポート";
 "More.AboutGitHub" = "ソースコードを閲覧";

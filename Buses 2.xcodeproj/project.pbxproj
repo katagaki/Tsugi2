@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E42C823C2856C8C900D64DF9 /* Purple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E42C82382856C8C900D64DF9 /* Purple@2x.png */; };
+		E42C823D2856C8C900D64DF9 /* Purple@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E42C82392856C8C900D64DF9 /* Purple@3x.png */; };
+		E42C823E2856C8C900D64DF9 /* Purple@3x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E42C823A2856C8C900D64DF9 /* Purple@3x~ipad.png */; };
+		E42C823F2856C8C900D64DF9 /* Purple@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E42C823B2856C8C900D64DF9 /* Purple@2x~ipad.png */; };
+		E42C82442856C8FE00D64DF9 /* Red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E42C82402856C8FD00D64DF9 /* Red@2x.png */; };
+		E42C82452856C8FE00D64DF9 /* Red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E42C82412856C8FD00D64DF9 /* Red@3x.png */; };
+		E42C82462856C8FE00D64DF9 /* Red@3x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E42C82422856C8FE00D64DF9 /* Red@3x~ipad.png */; };
+		E42C82472856C8FE00D64DF9 /* Red@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E42C82432856C8FE00D64DF9 /* Red@2x~ipad.png */; };
+		E42C82492856C9C600D64DF9 /* MoreAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42C82482856C9C600D64DF9 /* MoreAppIconView.swift */; };
 		E4319EB0280413BA00D21531 /* BusArrivalv2-2.json in Resources */ = {isa = PBXBuildFile; fileRef = E4319EAF280413BA00D21531 /* BusArrivalv2-2.json */; };
 		E4319EB2280413D200D21531 /* BusArrivalv2-3.json in Resources */ = {isa = PBXBuildFile; fileRef = E4319EB1280413D200D21531 /* BusArrivalv2-3.json */; };
 		E4319EB4280413FA00D21531 /* JSONUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4319EB3280413FA00D21531 /* JSONUtilities.swift */; };
@@ -53,6 +62,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E42C82382856C8C900D64DF9 /* Purple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Purple@2x.png"; sourceTree = "<group>"; };
+		E42C82392856C8C900D64DF9 /* Purple@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Purple@3x.png"; sourceTree = "<group>"; };
+		E42C823A2856C8C900D64DF9 /* Purple@3x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Purple@3x~ipad.png"; sourceTree = "<group>"; };
+		E42C823B2856C8C900D64DF9 /* Purple@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Purple@2x~ipad.png"; sourceTree = "<group>"; };
+		E42C82402856C8FD00D64DF9 /* Red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red@2x.png"; sourceTree = "<group>"; };
+		E42C82412856C8FD00D64DF9 /* Red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red@3x.png"; sourceTree = "<group>"; };
+		E42C82422856C8FE00D64DF9 /* Red@3x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red@3x~ipad.png"; sourceTree = "<group>"; };
+		E42C82432856C8FE00D64DF9 /* Red@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red@2x~ipad.png"; sourceTree = "<group>"; };
+		E42C82482856C9C600D64DF9 /* MoreAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreAppIconView.swift; sourceTree = "<group>"; };
 		E4319EAF280413BA00D21531 /* BusArrivalv2-2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "BusArrivalv2-2.json"; sourceTree = "<group>"; };
 		E4319EB1280413D200D21531 /* BusArrivalv2-3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "BusArrivalv2-3.json"; sourceTree = "<group>"; };
 		E4319EB3280413FA00D21531 /* JSONUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONUtilities.swift; sourceTree = "<group>"; };
@@ -104,9 +122,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E42C82372856C85500D64DF9 /* Alternate Icons */ = {
+			isa = PBXGroup;
+			children = (
+				E42C82402856C8FD00D64DF9 /* Red@2x.png */,
+				E42C82432856C8FE00D64DF9 /* Red@2x~ipad.png */,
+				E42C82412856C8FD00D64DF9 /* Red@3x.png */,
+				E42C82422856C8FE00D64DF9 /* Red@3x~ipad.png */,
+				E42C82382856C8C900D64DF9 /* Purple@2x.png */,
+				E42C823B2856C8C900D64DF9 /* Purple@2x~ipad.png */,
+				E42C82392856C8C900D64DF9 /* Purple@3x.png */,
+				E42C823A2856C8C900D64DF9 /* Purple@3x~ipad.png */,
+			);
+			name = "Alternate Icons";
+			sourceTree = "<group>";
+		};
 		E43C8CCF27F9390E0073F510 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				E42C82372856C85500D64DF9 /* Alternate Icons */,
 				E4406AB627EF182500819CDC /* Assets.xcassets */,
 				E43C8CC827F7F45D0073F510 /* OceanSansStd-Bold.otf */,
 				E43C8CC927F7F45D0073F510 /* OceanSansStd-Book.otf */,
@@ -179,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				E4B7FFEB285460DE0019F71A /* MoreView.swift */,
+				E42C82482856C9C600D64DF9 /* MoreAppIconView.swift */,
 				E4B700062856406D0019F71A /* MoreNotificationsView.swift */,
 			);
 			path = More;
@@ -324,12 +359,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E42C823E2856C8C900D64DF9 /* Purple@3x~ipad.png in Resources */,
+				E42C823C2856C8C900D64DF9 /* Purple@2x.png in Resources */,
 				E4B7000F285649070019F71A /* Info.strings in Resources */,
 				E43C8CCB27F7F45D0073F510 /* OceanSansStd-Book.otf in Resources */,
+				E42C82462856C8FE00D64DF9 /* Red@3x~ipad.png in Resources */,
+				E42C82472856C8FE00D64DF9 /* Red@2x~ipad.png in Resources */,
 				E4319EB6280432C300D21531 /* APIKeys.plist in Resources */,
 				E4FFCACE28018B3500DCA0EC /* BusArrivalv2-1.json in Resources */,
+				E42C823D2856C8C900D64DF9 /* Purple@3x.png in Resources */,
 				E4B70008285642280019F71A /* Localizable.strings in Resources */,
+				E42C82452856C8FE00D64DF9 /* Red@3x.png in Resources */,
+				E42C823F2856C8C900D64DF9 /* Purple@2x~ipad.png in Resources */,
 				E43C8CCA27F7F45D0073F510 /* OceanSansStd-Bold.otf in Resources */,
+				E42C82442856C8FE00D64DF9 /* Red@2x.png in Resources */,
 				E4319EB0280413BA00D21531 /* BusArrivalv2-2.json in Resources */,
 				E4406AB727EF182500819CDC /* Assets.xcassets in Resources */,
 				E4319EB2280413D200D21531 /* BusArrivalv2-3.json in Resources */,
@@ -349,6 +392,7 @@
 				E4FFCAC72801627D00DCA0EC /* BABusService.swift in Sources */,
 				E4FFCAC52801627700DCA0EC /* BABusStop.swift in Sources */,
 				E4B7FFF0285467060019F71A /* MoreView.swift in Sources */,
+				E42C82492856C9C600D64DF9 /* MoreAppIconView.swift in Sources */,
 				E4E367892804422B0022A5CD /* StringUtilities.swift in Sources */,
 				E4319EBA280435B300D21531 /* BusStop.swift in Sources */,
 				E4319EB4280413FA00D21531 /* JSONUtilities.swift in Sources */,
@@ -518,6 +562,7 @@
 				DEVELOPMENT_TEAM = YYM4Z6MU8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Buses/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_NSLocationUsageDescription = "Buses uses your location to look for bus stops nearby.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Buses uses your location to look for bus stops nearby.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -532,9 +577,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsubuzaki.Tsugi2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -548,6 +596,7 @@
 				DEVELOPMENT_TEAM = YYM4Z6MU8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Buses/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_NSLocationUsageDescription = "Buses uses your location to look for bus stops nearby.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Buses uses your location to look for bus stops nearby.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -562,9 +611,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsubuzaki.Tsugi2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

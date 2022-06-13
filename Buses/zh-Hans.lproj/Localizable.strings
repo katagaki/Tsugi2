@@ -17,6 +17,8 @@
 "ViewTitle.Directory" = "目录";
 "ViewTitle.MRTMap" = "MRT路线图";
 "ViewTitle.More" = "更多";
+"ViewTitle.More.AppIcon" = "图标";
+"ViewTitle.More.Notifications" = "通知";
 
 /* Nearby View */
 
@@ -29,6 +31,11 @@
 "Directory.MRTMap" = "MRT路线图";
 
 /* More View */
+"More.General" = "通用";
+"More.AppIcon" = "图标";
+"More.AppIcon.Green" = "绿色（默认）";
+"More.AppIcon.Red" = "红色";
+"More.AppIcon.Purple" = "紫色";
 "More.Notifications" = "通知";
 "More.Support" = "帮助";
 "More.AboutGitHub" = "查看源代码";

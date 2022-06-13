@@ -17,6 +17,8 @@
 "ViewTitle.Directory" = "Directory";
 "ViewTitle.MRTMap" = "MRT System Map";
 "ViewTitle.More" = "More";
+"ViewTitle.More.AppIcon" = "App Icon";
+"ViewTitle.More.Notifications" = "Notifications";
 
 /* Nearby View */
 
@@ -29,6 +31,11 @@
 "Directory.MRTMap" = "MRT System Map";
 
 /* More View */
+"More.General" = "General";
+"More.AppIcon" = "App Icon";
+"More.AppIcon.Green" = "Green (Default)";
+"More.AppIcon.Red" = "Red";
+"More.AppIcon.Purple" = "Purple";
 "More.Notifications" = "Notifications";
 "More.Support" = "Support";
 "More.AboutGitHub" = "Get the source code";

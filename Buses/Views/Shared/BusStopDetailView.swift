@@ -76,7 +76,7 @@ struct BusStopDetailView: View {
                                 }
                                 .background(Color("PlateColor"))
                                 .clipShape(RoundedRectangle(cornerRadius: 7.0))
-                                .frame(minWidth: ((UIScreen.main.bounds.size.width) / 4.5), maxWidth: ((UIScreen.main.bounds.size.width) / 4.5), minHeight: 0, maxHeight: .infinity, alignment: .center)
+                                .frame(minWidth: 85.0, maxWidth: 85.0, minHeight: 0, maxHeight: .infinity, alignment: .center)
                                 Spacer()
                                 Text(getArrivalText(arrivalTime: service.nextBus.estimatedArrivalTime()))
                                     .font(.body)
