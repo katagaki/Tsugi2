@@ -22,7 +22,7 @@ struct FavoritesView: View {
                                     VStack(alignment: .center, spacing: 6.0) {
                                         HStack(alignment: .center) {
                                             Text(service.serviceNo)
-                                                .font(Font.custom("OceanSansStd-Bold", size: 24.0))
+                                                .font(Font.custom("OceanSansStd-Bold", fixedSize: 24.0))
                                                 .foregroundColor(.white)
                                                 .padding(EdgeInsets(top: 6.0, leading: 16.0, bottom: 2.0, trailing: 16.0))
                                                 .frame(minWidth: 0, maxWidth: .infinity)
