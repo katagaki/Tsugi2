@@ -13,6 +13,7 @@
 "TabTitle.More" = "更多";
 
 /* Navigation Item Titles */
+"ViewTitle.Nearby" = "附近";
 "ViewTitle.Favorites" = "收藏夹";
 "ViewTitle.Directory" = "目录";
 "ViewTitle.MRTMap" = "MRT路线图";

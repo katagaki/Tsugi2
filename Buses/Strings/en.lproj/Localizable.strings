@@ -13,6 +13,7 @@
 "TabTitle.More" = "More";
 
 /* Navigation Item Titles */
+"ViewTitle.Nearby" = "Nearby";
 "ViewTitle.Favorites" = "Favorites";
 "ViewTitle.Directory" = "Directory";
 "ViewTitle.MRTMap" = "MRT System Map";

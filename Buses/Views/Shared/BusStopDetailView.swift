@@ -44,7 +44,7 @@ struct BusStopDetailView: View {
                     MapMarker(coordinate: annotations)
                 }
                     .listRowInsets(EdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 250.0, maxHeight: 250.0)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 150.0, maxHeight: 150.0)
             }
             Section("Shared.BusStop.BusServices") {
                 if busArrivals.count == 0 {

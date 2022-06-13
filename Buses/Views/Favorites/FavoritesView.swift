@@ -55,6 +55,7 @@ struct FavoritesView: View {
             }
             .listStyle(.insetGrouped)
             .navigationTitle("ViewTitle.Favorites")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

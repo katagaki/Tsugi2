@@ -115,6 +115,7 @@ struct DirectoryView: View {
                 reloadBusStops()
             }
             .navigationTitle("ViewTitle.Directory")
+            .navigationBarTitleDisplayMode(.inline)
         }
         .onAppear {
             if isInitialLoad {

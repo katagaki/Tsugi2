@@ -13,6 +13,7 @@
 "TabTitle.More" = "その他";
 
 /* Navigation Item Titles */
+"ViewTitle.Nearby" = "近くを検索";
 "ViewTitle.Favorites" = "お気に入り";
 "ViewTitle.Directory" = "情報センター";
 "ViewTitle.MRTMap" = "MRT路線図";
