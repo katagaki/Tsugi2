@@ -13,9 +13,6 @@ struct NearbyView: View {
     var body: some View {
         NavigationView {
             List {
-                Text("Some nearby bus stop")
-                Text("Some nearby bus stop")
-                Text("Some nearby bus stop")
             }
             .navigationTitle("ViewTitle.Nearby")
             .navigationBarTitleDisplayMode(.inline)
