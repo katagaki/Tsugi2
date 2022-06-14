@@ -18,9 +18,11 @@
 "ViewTitle.Directory" = "Directory";
 "ViewTitle.MRTMap" = "MRT System Map";
 "ViewTitle.More" = "More";
+"ViewTitle.More.StartupTab" = "Startup Tab";
 "ViewTitle.More.AppIcon" = "App Icon";
 "ViewTitle.More.Notifications" = "Notifications";
 "ViewTitle.More.Donate" = "Donate";
+"ViewTitle.More.Attribution" = "Data Attribution";
 
 /* Nearby View */
 
@@ -49,6 +51,7 @@
 "More.Help.Twitter.Subtitle" = "@katagaki_";
 "More.Help.Email" = "Email Me";
 "More.Help.Email.Subtitle" = "ktgk.public@icloud.com";
+"More.Attribution" = "Data Attribution";
 
 /* Shared */
 "Shared.BusStop.Description.None" = "Unnamed Bus Stop";
@@ -61,3 +64,4 @@
 "Shared.BusArrival.Arriving" = "Arriving";
 "Shared.BusArrival.JustLeft" = "Just Left";
 "Shared.BusArrival.NotInService" = "No Service";
+"Shared.BusArrival.Subsequent" = "Next Bus: ";

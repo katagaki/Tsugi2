@@ -38,5 +38,6 @@ func decode<T: Decodable>(fromData data: Data) -> T? {
     } catch {
         log("Error while decoding an object: \(error.localizedDescription)")
     }
+    log(String(data: data, encoding: .utf8) ?? "No content found.")
     return nil
 }

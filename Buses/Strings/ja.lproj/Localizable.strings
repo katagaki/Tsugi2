@@ -18,9 +18,11 @@
 "ViewTitle.Directory" = "情報センター";
 "ViewTitle.MRTMap" = "MRT路線図";
 "ViewTitle.More" = "その他";
+"ViewTitle.More.StartupTab" = "デフォルトタブ";
 "ViewTitle.More.AppIcon" = "アイコン";
 "ViewTitle.More.Notifications" = "通知";
 "ViewTitle.More.Donate" = "寄付";
+"ViewTitle.More.Attribution" = "データソース情報";
 
 /* Nearby View */
 
@@ -49,6 +51,7 @@
 "More.Help.Twitter.Subtitle" = "@katagaki_";
 "More.Help.Email" = "メールを送信";
 "More.Help.Email.Subtitle" = "ktgk.public@icloud.com";
+"More.Attribution" = "データソース情報";
 
 /* Shared */
 "Shared.BusStop.Description.None" = "無名のバス停";
@@ -61,3 +64,4 @@
 "Shared.BusArrival.Arriving" = "まもなく到着";
 "Shared.BusArrival.JustLeft" = "発車済み";
 "Shared.BusArrival.NotInService" = "サービス時間外";
+"Shared.BusArrival.Subsequent" = "次：";

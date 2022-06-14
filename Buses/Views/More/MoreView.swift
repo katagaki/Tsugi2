@@ -13,7 +13,7 @@ struct MoreView: View {
             List {
                 Section {
                     NavigationLink {
-                        MoreAppIconView()
+                        MoreStartupTabView()
                     } label: {
                         HStack(alignment: .center, spacing: 16.0) {
                             Image("ListIcon.Startup")
@@ -30,6 +30,14 @@ struct MoreView: View {
                                 .font(.body)
                         }
                     }
+                } header: {
+                    Text("More.General")
+                        .font(.body)
+                        .fontWeight(.bold)
+                        .foregroundColor(.primary)
+                        .textCase(nil)
+                }
+                Section {
                     NavigationLink {
                         MoreNotificationsView()
                     } label: {
@@ -39,12 +47,6 @@ struct MoreView: View {
                                 .font(.body)
                         }
                     }
-                } header: {
-                    Text("More.General")
-                        .font(.body)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
-                        .textCase(nil)
                 }
                 Section {
                     HStack(alignment: .center, spacing: 16.0) {
@@ -115,6 +117,17 @@ struct MoreView: View {
                         .fontWeight(.bold)
                         .foregroundColor(.primary)
                         .textCase(nil)
+                }
+                Section {
+                    NavigationLink {
+                        MoreAttributionView()
+                    } label: {
+                        HStack(alignment: .center, spacing: 16.0) {
+                            Image("ListIcon.Attribution")
+                            Text("More.Attribution")
+                                .font(.body)
+                        }
+                    }
                 }
             }
             .listStyle(.insetGrouped)

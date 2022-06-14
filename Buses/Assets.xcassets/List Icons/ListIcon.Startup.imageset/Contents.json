@@ -3,16 +3,6 @@
     {
       "filename" : "icons8-start.pdf",
       "idiom" : "universal"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
-      "filename" : "icons8-start 1.pdf",
-      "idiom" : "universal"
     }
   ],
   "info" : {

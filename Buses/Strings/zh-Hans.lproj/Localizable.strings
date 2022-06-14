@@ -18,9 +18,11 @@
 "ViewTitle.Directory" = "目录";
 "ViewTitle.MRTMap" = "MRT路线图";
 "ViewTitle.More" = "更多";
+"ViewTitle.More.StartupTab" = "默认标签页";
 "ViewTitle.More.AppIcon" = "图标";
 "ViewTitle.More.Notifications" = "通知";
 "ViewTitle.More.Donate" = "捐赠";
+"ViewTitle.More.Attribution" = "数据源信息";
 
 /* Nearby View */
 
@@ -49,6 +51,7 @@
 "More.Help.Twitter.Subtitle" = "@katagaki_";
 "More.Help.Email" = "发邮件";
 "More.Help.Email.Subtitle" = "ktgk.public@icloud.com";
+"More.Attribution" = "数据源信息";
 
 /* Shared */
 "Shared.BusStop.Description.None" = "无名巴士站";
@@ -61,3 +64,4 @@
 "Shared.BusArrival.Arriving" = "即将抵达";
 "Shared.BusArrival.JustLeft" = "已经离开";
 "Shared.BusArrival.NotInService" = "停止服务";
+"Shared.BusArrival.Subsequent" = "下一班车：";

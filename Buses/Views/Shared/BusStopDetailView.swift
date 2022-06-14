@@ -69,8 +69,15 @@ struct BusStopDetailView: View {
                             HStack(alignment: .center, spacing: 16.0) {
                                 BusNumberPlateView(serviceNo: service.serviceNo)
                                 Spacer()
-                                Text(getArrivalText(arrivalTime: service.nextBus.estimatedArrivalTime()))
-                                    .font(.body)
+                                VStack(alignment: .trailing, spacing: 1.0) {
+                                    Text(getArrivalText(arrivalTime: service.nextBus.estimatedArrivalTime()))
+                                        .font(.body)
+                                    if let arrivalTime = service.nextBus2.estimatedArrivalTime() {
+                                        Text(localized("Shared.BusArrival.Subsequent") + getArrivalText(arrivalTime: arrivalTime))
+                                            .font(.caption)
+                                            .foregroundColor(.secondary)
+                                    }
+                                }
                             }
                         }
                     }
