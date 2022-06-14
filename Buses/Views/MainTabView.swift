@@ -5,6 +5,7 @@
 //  Created by 堅書 on 2022/06/12.
 //
 
+import CoreLocation
 import MapKit
 import SwiftUI
 
@@ -24,7 +25,15 @@ struct MainTabView: View {
                     annotationItems: displayedCoordinates.coordinates) { coordinate in
                     MapMarker(coordinate: coordinate.clCoordinate())
                 }
-                .edgesIgnoringSafeArea(.all)
+                    .edgesIgnoringSafeArea(.all)
+                    .onAppear {
+                        let locationManager: CLLocationManager = CLLocationManager()
+                        switch locationManager.authorizationStatus {
+                                case .notDetermined: locationManager.requestWhenInUseAuthorization()
+                                case .denied, .restricted: break // TODO: Show popup to continue or go to Settings
+                                default: break // All good
+                                }
+                    }
                 TabView {
                     NearbyView()
                         .tabItem {
