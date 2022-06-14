@@ -34,6 +34,7 @@
 
 /* More View */
 "More.General" = "General";
+"More.StartupTab" = "Startup Tab";
 "More.AppIcon" = "App Icon";
 "More.AppIcon.Green" = "Green (Default)";
 "More.AppIcon.Red" = "Red";
@@ -52,10 +53,11 @@
 /* Shared */
 "Shared.BusStop.Description.None" = "Unnamed Bus Stop";
 "Shared.BusStop.Code" = "Bus Stop Code";
-"Shared.BusStop.Code.None" = "No bus stop code";
-"Shared.BusStop.Road.None" = "No road name";
-"Shared.BusStop.NoBusServices" = "This bus stop has no bus services at this time.";
+"Shared.BusStop.Code.None" = "N/A";
+"Shared.BusStop.Road" = "Road Name";
+"Shared.BusStop.Road.None" = "N/A";
 "Shared.BusStop.BusServices" = "Bus Services";
+"Shared.BusStop.BusServices.None" = "This bus stop has no bus services at this time.";
 "Shared.BusArrival.Arriving" = "Arriving";
 "Shared.BusArrival.JustLeft" = "Just Left";
 "Shared.BusArrival.NotInService" = "No Service";

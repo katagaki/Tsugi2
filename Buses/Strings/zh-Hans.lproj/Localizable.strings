@@ -34,6 +34,7 @@
 
 /* More View */
 "More.General" = "通用";
+"More.StartupTab" = "默认标签页";
 "More.AppIcon" = "图标";
 "More.AppIcon.Green" = "绿色（默认）";
 "More.AppIcon.Red" = "红色";
@@ -53,9 +54,10 @@
 "Shared.BusStop.Description.None" = "无名巴士站";
 "Shared.BusStop.Code" = "巴士站代码";
 "Shared.BusStop.Code.None" = "无法获得";
+"Shared.BusStop.Road" = "路名";
 "Shared.BusStop.Road.None" = "无路名";
-"Shared.BusStop.NoBusServices" = "此巴士站目前没有能提供的巴士服务。";
 "Shared.BusStop.BusServices" = "巴士服务";
+"Shared.BusStop.BusServices.None" = "此巴士站目前没有能提供的巴士服务。";
 "Shared.BusArrival.Arriving" = "即将抵达";
 "Shared.BusArrival.JustLeft" = "已经离开";
 "Shared.BusArrival.NotInService" = "停止服务";

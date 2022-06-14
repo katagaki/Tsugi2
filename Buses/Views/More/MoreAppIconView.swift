@@ -11,7 +11,7 @@ struct MoreAppIconView: View {
     var body: some View {
         List {
             HStack(alignment: .center, spacing: 16.0) {
-                Image("AppIconGreen")
+                Image("AppIcon.Green")
                     .resizable()
                     .frame(width: 60.0, height: 60.0)
                     .clipped(antialiased: true)
@@ -30,7 +30,7 @@ struct MoreAppIconView: View {
                 UIApplication.shared.setAlternateIconName(nil)
             }
             HStack(alignment: .center, spacing: 16.0) {
-                Image("AppIconRed")
+                Image("AppIcon.Red")
                     .resizable()
                     .frame(width: 60.0, height: 60.0)
                     .clipped(antialiased: true)
@@ -49,7 +49,7 @@ struct MoreAppIconView: View {
                 UIApplication.shared.setAlternateIconName("Red")
             }
             HStack(alignment: .center, spacing: 16.0) {
-                Image("AppIconPurple")
+                Image("AppIcon.Purple")
                     .resizable()
                     .frame(width: 60.0, height: 60.0)
                     .clipped(antialiased: true)

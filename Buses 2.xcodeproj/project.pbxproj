@@ -10,6 +10,7 @@
 		E41C1B98285706AB003F1BFB /* RoundedCornersShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B97285706AB003F1BFB /* RoundedCornersShape.swift */; };
 		E41C1B9A285706BE003F1BFB /* DisplayedCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B99285706BE003F1BFB /* DisplayedCoordinate.swift */; };
 		E41C1B9C28570CA1003F1BFB /* DisplayedCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B9B28570CA1003F1BFB /* DisplayedCoordinates.swift */; };
+		E41C1B9E285806A4003F1BFB /* BusNumberPlateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B9D285806A4003F1BFB /* BusNumberPlateView.swift */; };
 		E42C823C2856C8C900D64DF9 /* Purple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E42C82382856C8C900D64DF9 /* Purple@2x.png */; };
 		E42C823D2856C8C900D64DF9 /* Purple@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E42C82392856C8C900D64DF9 /* Purple@3x.png */; };
 		E42C823E2856C8C900D64DF9 /* Purple@3x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E42C823A2856C8C900D64DF9 /* Purple@3x~ipad.png */; };
@@ -69,6 +70,7 @@
 		E41C1B97285706AB003F1BFB /* RoundedCornersShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornersShape.swift; sourceTree = "<group>"; };
 		E41C1B99285706BE003F1BFB /* DisplayedCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayedCoordinate.swift; sourceTree = "<group>"; };
 		E41C1B9B28570CA1003F1BFB /* DisplayedCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayedCoordinates.swift; sourceTree = "<group>"; };
+		E41C1B9D285806A4003F1BFB /* BusNumberPlateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusNumberPlateView.swift; sourceTree = "<group>"; };
 		E42C82382856C8C900D64DF9 /* Purple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Purple@2x.png"; sourceTree = "<group>"; };
 		E42C82392856C8C900D64DF9 /* Purple@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Purple@3x.png"; sourceTree = "<group>"; };
 		E42C823A2856C8C900D64DF9 /* Purple@3x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Purple@3x~ipad.png"; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				E4B7FFF928561DBF0019F71A /* BusStopDetailView.swift */,
+				E41C1B9D285806A4003F1BFB /* BusNumberPlateView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				E41C1B9C28570CA1003F1BFB /* DisplayedCoordinates.swift in Sources */,
 				E4B7FFFC285620530019F71A /* DirectoryMRTMapView.swift in Sources */,
 				E4B7FFE828544EBC0019F71A /* DirectoryView.swift in Sources */,
+				E41C1B9E285806A4003F1BFB /* BusNumberPlateView.swift in Sources */,
 				E4B700052856387E0019F71A /* App.swift in Sources */,
 				E4FFCAC72801627D00DCA0EC /* BABusService.swift in Sources */,
 				E4FFCAC52801627700DCA0EC /* BABusStop.swift in Sources */,

@@ -26,7 +26,7 @@ struct DirectoryView: View {
                                 BusStopDetailView(busStop: stop)
                             } label: {
                                 HStack(alignment: .center, spacing: 16.0) {
-                                    Image("CellBusStop")
+                                    Image("ListIcon.BusStop")
                                     VStack(alignment: .leading, spacing: 2.0) {
                                         Text(verbatim: stop.description ?? "Shared.BusStop.Description.None")
                                             .font(.body)
@@ -50,7 +50,7 @@ struct DirectoryView: View {
                             DirectoryMRTMapView()
                         } label: {
                             HStack(alignment: .center, spacing: 16.0) {
-                                Image("CellTrainMap")
+                                Image("ListIcon.TrainMap")
                                 Text("Directory.MRTMap")
                                     .font(.body)
                             }
@@ -80,7 +80,7 @@ struct DirectoryView: View {
                                     BusStopDetailView(busStop: stop)
                                 } label: {
                                     HStack(alignment: .center, spacing: 16.0) {
-                                        Image("CellBusStop")
+                                        Image("ListIcon.BusStop")
                                         VStack(alignment: .leading, spacing: 2.0) {
                                             Text(verbatim: stop.description ?? "Shared.BusStop.Description.None")
                                                 .font(.body)

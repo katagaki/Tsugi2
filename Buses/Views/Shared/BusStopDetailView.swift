@@ -20,7 +20,7 @@ struct BusStopDetailView: View {
         List {
             Section {
                 HStack(alignment: .center, spacing: 16.0) {
-                    Image("CellCode")
+                    Image("ListIcon.Code")
                     Text("Shared.BusStop.Code")
                         .font(.body)
                     Spacer()
@@ -29,10 +29,13 @@ struct BusStopDetailView: View {
                         .foregroundColor(.secondary)
                 }
                 HStack(alignment: .center, spacing: 16.0) {
-                    Image("CellRoad")
-                    Text(busStop.roadName ?? "Shared.BusStopRoadNameNone")
+                    Image("ListIcon.Road")
+                    Text("Shared.BusStop.Road")
                         .font(.body)
                     Spacer()
+                    Text(busStop.roadName ?? "Shared.BusStop.Road.None")
+                        .font(.body)
+                        .foregroundColor(.secondary)
                 }
             }
             Section {
@@ -51,7 +54,7 @@ struct BusStopDetailView: View {
                             VStack(alignment: .center, spacing: 8.0) {
                                 Image(systemName: "exclamationmark.circle.fill")
                                     .symbolRenderingMode(.multicolor)
-                                Text("Shared.BusStop.NoBusServices")
+                                Text("Shared.BusStop.BusServices.None")
                                     .font(.body)
                             }
                             Spacer()
@@ -64,17 +67,7 @@ struct BusStopDetailView: View {
                             BusStopDetailView(busStop: busStop) // TODO: Change bus stop to bus service view when implemented
                         } label: {
                             HStack(alignment: .center, spacing: 16.0) {
-                                HStack(alignment: .center) {
-                                    Text(service.serviceNo)
-                                        .font(Font.custom("OceanSansStd-Bold", fixedSize: 24.0))
-                                        .foregroundColor(.white)
-                                        .padding(EdgeInsets(top: 6.0, leading: 16.0, bottom: 2.0, trailing: 16.0))
-                                        .frame(minWidth: 0, maxWidth: .infinity)
-                                        .lineLimit(1)
-                                }
-                                .background(Color("PlateColor"))
-                                .clipShape(RoundedRectangle(cornerRadius: 7.0))
-                                .frame(minWidth: 88.0, maxWidth: 88.0, minHeight: 0, maxHeight: .infinity, alignment: .center)
+                                BusNumberPlateView(serviceNo: service.serviceNo)
                                 Spacer()
                                 Text(getArrivalText(arrivalTime: service.nextBus.estimatedArrivalTime()))
                                     .font(.body)

@@ -16,7 +16,16 @@ struct MoreView: View {
                         MoreAppIconView()
                     } label: {
                         HStack(alignment: .center, spacing: 16.0) {
-                            Image("CellAppIcon")
+                            Image("ListIcon.Startup")
+                            Text("More.StartupTab")
+                                .font(.body)
+                        }
+                    }
+                    NavigationLink {
+                        MoreAppIconView()
+                    } label: {
+                        HStack(alignment: .center, spacing: 16.0) {
+                            Image("ListIcon.AppIcon")
                             Text("More.AppIcon")
                                 .font(.body)
                         }
@@ -25,7 +34,7 @@ struct MoreView: View {
                         MoreNotificationsView()
                     } label: {
                         HStack(alignment: .center, spacing: 16.0) {
-                            Image("CellNotifications")
+                            Image("ListIcon.Notifications")
                             Text("More.Notifications")
                                 .font(.body)
                         }
@@ -39,7 +48,7 @@ struct MoreView: View {
                 }
                 Section {
                     HStack(alignment: .center, spacing: 16.0) {
-                        Image("CellGitHub")
+                        Image("ListIcon.GitHub")
                         VStack(alignment: .leading, spacing: 2.0) {
                             Text("More.Support.GitHub")
                                 .font(.body)
@@ -57,7 +66,7 @@ struct MoreView: View {
                         MoreDonateView()
                     } label: {
                         HStack(alignment: .center, spacing: 16.0) {
-                            Image("CellDonate")
+                            Image("ListIcon.Donate")
                             Text("More.Support.Donate")
                                 .font(.body)
                         }
@@ -71,7 +80,7 @@ struct MoreView: View {
                 }
                 Section {
                     HStack(alignment: .center, spacing: 16.0) {
-                        Image("CellTwitter")
+                        Image("ListIcon.Twitter")
                         VStack(alignment: .leading, spacing: 2.0) {
                             Text("More.Help.Twitter")
                                 .font(.body)
@@ -86,7 +95,7 @@ struct MoreView: View {
                         UIApplication.shared.open(URL(string: "https://twitter.com/katagaki_")!)
                     }
                     HStack(alignment: .center, spacing: 16.0) {
-                        Image("CellEmail")
+                        Image("ListIcon.Email")
                         VStack(alignment: .leading, spacing: 2.0) {
                             Text("More.Help.Email")
                                 .font(.body)

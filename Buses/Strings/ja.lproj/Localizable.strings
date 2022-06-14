@@ -34,6 +34,7 @@
 
 /* More View */
 "More.General" = "一般";
+"More.StartupTab" = "デフォルトタブ";
 "More.AppIcon" = "アイコン";
 "More.AppIcon.Green" = "グリーン（デフォルト）";
 "More.AppIcon.Red" = "レッド";
@@ -53,9 +54,10 @@
 "Shared.BusStop.Description.None" = "無名のバス停";
 "Shared.BusStop.Code" = "バス停コード";
 "Shared.BusStop.Code.None" = "なし";
-"Shared.BusStop.Road.None" = "道路名なし";
-"Shared.BusStop.NoBusServices" = "本バス停では、現在すべてのバスがサービス時間外です。";
+"Shared.BusStop.Road" = "道路名";
+"Shared.BusStop.Road.None" = "なし";
 "Shared.BusStop.BusServices" = "バス";
+"Shared.BusStop.BusServices.None" = "本バス停では、現在すべてのバスがサービス時間外です。";
 "Shared.BusArrival.Arriving" = "まもなく到着";
 "Shared.BusArrival.JustLeft" = "発車済み";
 "Shared.BusArrival.NotInService" = "サービス時間外";

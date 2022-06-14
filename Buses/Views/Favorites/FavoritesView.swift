@@ -20,16 +20,8 @@ struct FavoritesView: View {
                             LazyHStack(spacing: 16.0) {
                                 ForEach(stop.busServices, id: \.serviceNo) { service in
                                     VStack(alignment: .center, spacing: 6.0) {
-                                        HStack(alignment: .center) {
-                                            Text(service.serviceNo)
-                                                .font(Font.custom("OceanSansStd-Bold", fixedSize: 24.0))
-                                                .foregroundColor(.white)
-                                                .padding(EdgeInsets(top: 6.0, leading: 16.0, bottom: 2.0, trailing: 16.0))
-                                                .frame(minWidth: 0, maxWidth: .infinity)
-                                                .lineLimit(1)
-                                        }
-                                        .background(Color("PlateColor"))
-                                        .clipShape(RoundedRectangle(cornerRadius: 7.0))
+                                        BusNumberPlateView(serviceNo: service.serviceNo)
+                                            .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: -8.0, trailing: 0.0))
                                         Text(getArrivalText(arrivalTime: service.nextBus.estimatedArrivalTime()))
                                             .font(.body)
                                             .lineLimit(1)
@@ -41,7 +33,7 @@ struct FavoritesView: View {
                                     .frame(minWidth: 88.0, maxWidth: 88.0, minHeight: 0, maxHeight: .infinity, alignment: .center)
                                 }
                             }
-                            .padding(EdgeInsets(top: 0.0, leading: 16.0, bottom: 0.0, trailing: 16.0))
+                            .padding(EdgeInsets(top: 0.0, leading: 16.0, bottom: 8.0, trailing: 16.0))
                         }
                         .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
                     } header: {
