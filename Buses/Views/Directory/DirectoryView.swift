@@ -10,6 +10,7 @@ import SwiftUI
 struct DirectoryView: View {
     
     @State var busStops: [BusStop] = []
+    @State var previousSearchTerm: String = ""
     @State var searchTerm: String = ""
     @State var searchResults: [BusStop] = []
     @State var isSearching: Bool = false
@@ -108,11 +109,18 @@ struct DirectoryView: View {
             }
             .searchable(text: $searchTerm, placement: .navigationBarDrawer(displayMode: .always))
             .onChange(of: searchTerm) { _ in
-                isSearching = (searchTerm != "")
+                isSearching = (searchTerm != "" && searchTerm.count > 2)
                 if isSearching {
-                    searchResults = busStops.filter({ stop in
-                        stop.description?.localizedCaseInsensitiveContains(searchTerm) ?? false || stop.roadName?.localizedCaseInsensitiveContains(searchTerm) ?? false || stop.code.localizedCaseInsensitiveContains(searchTerm)
-                    })
+                    if searchTerm.contains(previousSearchTerm) {
+                        searchResults = searchResults.filter({ stop in
+                            stop.description?.localizedCaseInsensitiveContains(searchTerm) ?? false || stop.roadName?.localizedCaseInsensitiveContains(searchTerm) ?? false || stop.code.localizedCaseInsensitiveContains(searchTerm)
+                        })
+                    } else {
+                        searchResults = busStops.filter({ stop in
+                            stop.description?.localizedCaseInsensitiveContains(searchTerm) ?? false || stop.roadName?.localizedCaseInsensitiveContains(searchTerm) ?? false || stop.code.localizedCaseInsensitiveContains(searchTerm)
+                        })
+                    }
+                    previousSearchTerm = searchTerm
                 }
             }
             .onAppear {

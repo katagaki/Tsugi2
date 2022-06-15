@@ -17,7 +17,7 @@ struct MainTabView: View {
     
     var body: some View {
         GeometryReader { metrics in
-            VStack(alignment: .center, spacing: 0.0) {
+            ZStack(alignment: .bottom) {
                 Map(coordinateRegion: $coordinateRegion,
                     interactionModes: .all,
                     showsUserLocation: true,
@@ -25,6 +25,11 @@ struct MainTabView: View {
                     annotationItems: displayedCoordinates.coordinates) { coordinate in
                     MapMarker(coordinate: coordinate.clCoordinate())
                 }
+                    .safeAreaInset(edge: .bottom) {
+                        Text("")
+                            .frame(width: metrics.size.width, height: metrics.size.height * 0.50)
+                    }
+                    .frame(width: metrics.size.width, height: metrics.size.height)
                     .edgesIgnoringSafeArea(.all)
                     .onAppear {
                         let locationManager: CLLocationManager = CLLocationManager()
@@ -52,10 +57,15 @@ struct MainTabView: View {
                             Label("TabTitle.More", systemImage: "ellipsis")
                         }
                 }
-                .edgesIgnoringSafeArea(.all)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: metrics.size.height * 0.60, maxHeight: metrics.size.height * 0.60)
+                .mask {
+                    RoundedCornersShape(corners: [.topLeft, .topRight], radius: 12.0)
+                }
+                .shadow(radius: 5.0)
+                .zIndex(1)
             }
         }
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
