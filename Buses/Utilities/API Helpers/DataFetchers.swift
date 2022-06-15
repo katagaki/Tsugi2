@@ -28,7 +28,7 @@ func fetchAllBusStops() async throws -> [BusStop] {
 func fetchBusStops(from firstIndex: Int = 0) async throws -> BusStopList {
     let busStopList: BusStopList = try await withCheckedThrowingContinuation({ continuation in
         var request = URLRequest(url: URL(string: "http://datamall2.mytransport.sg/ltaodataservice/BusStops?$skip=\(firstIndex)")!)
-        request.httpMethod = "POST"
+        request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         if let apiKey = apiKeys["LTA"] {
             request.addValue(apiKey, forHTTPHeaderField: "AccountKey")
