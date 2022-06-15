@@ -37,14 +37,15 @@ struct MainTabView: View {
                         locationManager.startUpdatingLocation()
                     }
                 TabView {
-                    NearbyView()
-                        .tabItem {
-                            Label("TabTitle.Nearby", systemImage: "map.fill")
-                        }
-                    FavoritesView()
-                        .tabItem {
-                            Label("TabTitle.Favorites", systemImage: "star.fill")
-                        }
+                    // TODO: To implement
+//                    NearbyView()
+//                        .tabItem {
+//                            Label("TabTitle.Nearby", systemImage: "map.fill")
+//                        }
+//                    FavoritesView()
+//                        .tabItem {
+//                            Label("TabTitle.Favorites", systemImage: "star.fill")
+//                        }
                     DirectoryView()
                         .tabItem {
                             Label("TabTitle.Directory", systemImage: "book.closed.fill")

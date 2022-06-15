@@ -21,6 +21,7 @@ struct MoreView: View {
                                 .font(.body)
                         }
                     }
+                    .disabled(true) // TODO: To implement
                     NavigationLink {
                         MoreAppIconView()
                     } label: {
@@ -47,6 +48,7 @@ struct MoreView: View {
                                 .font(.body)
                         }
                     }
+                    .disabled(true) // TODO: To implement
                 }
                 Section {
                     HStack(alignment: .center, spacing: 16.0) {
@@ -73,6 +75,7 @@ struct MoreView: View {
                                 .font(.body)
                         }
                     }
+                    .disabled(true) // TODO: To implement
                 } header: {
                     Text("More.Support")
                         .font(.body)
