@@ -127,7 +127,7 @@ struct BusStopDetailView: View {
                     Text(busStop.description ?? "Shared.BusStop.Description.None")
                         .font(.system(size: 16.0, weight: .bold))
                     Text(busStop.roadName ?? "Shared.BusStop.Road.None")
-                        .font(.system(size: 10.0, weight: .regular))
+                        .font(.system(size: 12.0, weight: .regular))
                         .foregroundColor(.secondary)
                 }
             }
