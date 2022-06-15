@@ -10,9 +10,15 @@ import SwiftUI
 
 struct NearbyView: View {
     
+    @EnvironmentObject var displayedCoordinates: DisplayedCoordinates
+    
     var body: some View {
         NavigationView {
             List {
+            }
+            .onAppear {
+                displayedCoordinates.removeAll()
+                // TODO: Display all bus stops nearby
             }
             .navigationTitle("ViewTitle.Nearby")
             .navigationBarTitleDisplayMode(.inline)

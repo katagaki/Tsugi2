@@ -15,6 +15,7 @@ struct DirectoryView: View {
     @State var isSearching: Bool = false
     @State var isBusStopListLoaded: Bool = true
     @State var isInitialLoad: Bool = true
+    @EnvironmentObject var displayedCoordinates: DisplayedCoordinates
     
     var body: some View {
         NavigationView {
@@ -102,6 +103,9 @@ struct DirectoryView: View {
                 }
             }
             .listStyle(.insetGrouped)
+            .refreshable {
+                reloadBusStops()
+            }
             .searchable(text: $searchTerm, placement: .navigationBarDrawer(displayMode: .always))
             .onChange(of: searchTerm) { _ in
                 isSearching = (searchTerm != "")
@@ -111,8 +115,9 @@ struct DirectoryView: View {
                     })
                 }
             }
-            .refreshable {
-                reloadBusStops()
+            .onAppear {
+                displayedCoordinates.removeAll()
+                // TODO: Display all bus stops in view area
             }
             .navigationTitle("ViewTitle.Directory")
             .navigationBarTitleDisplayMode(.inline)

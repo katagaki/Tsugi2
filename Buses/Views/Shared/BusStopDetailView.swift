@@ -127,7 +127,6 @@ struct BusStopDetailView: View {
             reloadBusArrivals()
         })
         .onDisappear {
-            displayedCoordinates.removeAll()
             timer.upstream.connect().cancel()
         }
     }
