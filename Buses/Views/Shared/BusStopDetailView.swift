@@ -28,15 +28,6 @@ struct BusStopDetailView: View {
                         .font(.body.monospaced())
                         .foregroundColor(.secondary)
                 }
-                HStack(alignment: .center, spacing: 16.0) {
-                    Image("ListIcon.Road")
-                    Text("Shared.BusStop.Road")
-                        .font(.body)
-                    Spacer()
-                    Text(busStop.roadName ?? "Shared.BusStop.Road.None")
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                }
             }
             Section {
                 if busArrivals.count == 0 {
@@ -116,7 +107,6 @@ struct BusStopDetailView: View {
         .refreshable {
             reloadBusArrivals()
         }
-        .navigationTitle(busStop.description ?? "Shared.BusStop.Description.None")
         .onAppear {
             displayedCoordinates.addCoordinate(from: CLLocationCoordinate2D(latitude: busStop.latitude ?? 1.29516, longitude: busStop.longitude ?? 103.85892))
             if isInitialDataLoaded {
@@ -129,6 +119,46 @@ struct BusStopDetailView: View {
         .onDisappear {
             timer.upstream.connect().cancel()
         }
+        .navigationTitle(busStop.description ?? "Shared.BusStop.Description.None")
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                VStack {
+                    Text(busStop.description ?? "Shared.BusStop.Description.None")
+                        .font(.headline)
+                    Text(busStop.roadName ?? "Shared.BusStop.Road.None")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
+            ToolbarItem(placement: .primaryAction) {
+                HStack(alignment: .center, spacing: 4.0) {
+                    Menu {
+                        Button("Shared.BusStop.Description.Copy", action: copyBusStopName)
+                        Button("Shared.BusStop.Code.Copy", action: copyBusStopCode)
+                    } label: {
+                        Button {
+                        } label: {
+                            Image(systemName: "doc.on.doc.fill")
+                                .font(.caption)
+                        }
+                        .buttonStyle(.bordered)
+                        .mask {
+                            Circle()
+                        }
+                    }
+                    Button {
+                        // TODO: Add to favorites
+                    } label: {
+                        Image(systemName: "star.fill")
+                            .font(.caption)
+                    }
+                    .buttonStyle(.bordered)
+                    .mask {
+                        Circle()
+                    }
+                }
+            }
+        }
     }
     
     func reloadBusArrivals() {
@@ -140,6 +170,15 @@ struct BusStopDetailView: View {
             isInitialDataLoaded = false
         }
     }
+    
+    func copyBusStopName() {
+        UIPasteboard.general.string = busStop.description ?? localized("Shared.BusStop.Description.None")
+    }
+    
+    func copyBusStopCode() {
+        UIPasteboard.general.string = busStop.code
+    }
+    
 }
 
 struct BusStopDetailView_Previews: PreviewProvider {

@@ -22,6 +22,15 @@ struct NearbyView: View {
             }
             .navigationTitle("ViewTitle.Nearby")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Text("ViewTitle.Nearby")
+                        .font(.system(size: 24.0, weight: .bold))
+                }
+                ToolbarItem(placement: .principal) {
+                    Spacer()
+                }
+            }
         }
     }
 }

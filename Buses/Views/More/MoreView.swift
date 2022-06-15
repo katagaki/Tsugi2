@@ -133,6 +133,15 @@ struct MoreView: View {
             .listStyle(.insetGrouped)
             .navigationTitle("ViewTitle.More")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Text("ViewTitle.More")
+                        .font(.system(size: 24.0, weight: .bold))
+                }
+                ToolbarItem(placement: .principal) {
+                    Spacer()
+                }
+            }
         }
     }
 }

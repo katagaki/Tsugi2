@@ -48,6 +48,15 @@ struct FavoritesView: View {
             .listStyle(.insetGrouped)
             .navigationTitle("ViewTitle.Favorites")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Text("ViewTitle.Favorites")
+                        .font(.system(size: 24.0, weight: .bold))
+                }
+                ToolbarItem(placement: .principal) {
+                    Spacer()
+                }
+            }
         }
     }
 }

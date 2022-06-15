@@ -55,9 +55,10 @@
 
 /* Shared */
 "Shared.BusStop.Description.None" = "無名のバス停";
+"Shared.BusStop.Description.Copy" = "バス停名をコピー";
 "Shared.BusStop.Code" = "バス停コード";
 "Shared.BusStop.Code.None" = "なし";
-"Shared.BusStop.Road" = "道路名";
+"Shared.BusStop.Code.Copy" = "バス停コードをコピー";
 "Shared.BusStop.Road.None" = "なし";
 "Shared.BusStop.BusServices" = "バス";
 "Shared.BusStop.BusServices.None" = "本バス停では、現在すべてのバスがサービス時間外です。";

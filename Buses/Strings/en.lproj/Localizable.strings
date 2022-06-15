@@ -55,9 +55,10 @@
 
 /* Shared */
 "Shared.BusStop.Description.None" = "Unnamed Bus Stop";
+"Shared.BusStop.Description.Copy" = "Copy Bus Stop Name";
 "Shared.BusStop.Code" = "Bus Stop Code";
 "Shared.BusStop.Code.None" = "N/A";
-"Shared.BusStop.Road" = "Road Name";
+"Shared.BusStop.Code.Copy" = "Copy Bus Stop Code";
 "Shared.BusStop.Road.None" = "N/A";
 "Shared.BusStop.BusServices" = "Bus Services";
 "Shared.BusStop.BusServices.None" = "This bus stop has no bus services at this time.";

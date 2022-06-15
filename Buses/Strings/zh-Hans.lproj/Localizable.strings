@@ -55,9 +55,10 @@
 
 /* Shared */
 "Shared.BusStop.Description.None" = "无名巴士站";
+"Shared.BusStop.Description.Copy" = "复制巴士站名";
 "Shared.BusStop.Code" = "巴士站代码";
 "Shared.BusStop.Code.None" = "无法获得";
-"Shared.BusStop.Road" = "路名";
+"Shared.BusStop.Code.Copy" = "复制巴士站代码";
 "Shared.BusStop.Road.None" = "无路名";
 "Shared.BusStop.BusServices" = "巴士服务";
 "Shared.BusStop.BusServices.None" = "此巴士站目前没有能提供的巴士服务。";

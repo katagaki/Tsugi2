@@ -16,6 +16,7 @@ struct DirectoryView: View {
     @State var isSearching: Bool = false
     @State var isBusStopListLoaded: Bool = true
     @State var isInitialLoad: Bool = true
+    @State var updatedDate: String = ""
     @EnvironmentObject var displayedCoordinates: DisplayedCoordinates
     
     var body: some View {
@@ -129,6 +130,20 @@ struct DirectoryView: View {
             }
             .navigationTitle("ViewTitle.Directory")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Text("ViewTitle.Directory")
+                        .font(.system(size: 24.0, weight: .bold))
+                }
+                ToolbarItem(placement: .principal) {
+                    Spacer()
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Text("\(updatedDate)")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
         }
         .onAppear {
             if isInitialLoad {
@@ -143,10 +158,14 @@ struct DirectoryView: View {
             if showsProgress {
                 isBusStopListLoaded = false
             }
+            let dateFormatter = DateFormatter()
             let busStopsFetched = try await fetchAllBusStops()
             busStops = busStopsFetched.sorted(by: { a, b in
                 a.description ?? "" < b.description ?? ""
             })
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .medium
+            updatedDate = dateFormatter.string(from: Date.now)
             isBusStopListLoaded = true
         }
     }
