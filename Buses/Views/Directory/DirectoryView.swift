@@ -140,7 +140,7 @@ struct DirectoryView: View {
                     Spacer()
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    VStack {
+                    VStack(alignment: .trailing) {
                         Text("\(updatedDate)")
                             .font(.caption)
                             .foregroundColor(.secondary)
