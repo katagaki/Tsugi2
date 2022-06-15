@@ -11,14 +11,15 @@ import SwiftUI
 
 struct MainTabView: View {
     
-    @State var coordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 1.30437, longitude: 103.82458), latitudinalMeters: 40000.0, longitudinalMeters: 40000.0)
+    @State var locationManager: CLLocationManager = CLLocationManager()
+    @StateObject var locationManagerDelegate: LocationDelegate = LocationDelegate()
     @State var userTrackingMode: MapUserTrackingMode = .follow
     @EnvironmentObject var displayedCoordinates: DisplayedCoordinates
     
     var body: some View {
         GeometryReader { metrics in
             ZStack(alignment: .bottom) {
-                Map(coordinateRegion: $coordinateRegion,
+                Map(coordinateRegion: $locationManagerDelegate.region,
                     interactionModes: .all,
                     showsUserLocation: true,
                     userTrackingMode: $userTrackingMode,
@@ -27,17 +28,13 @@ struct MainTabView: View {
                 }
                     .safeAreaInset(edge: .bottom) {
                         Text("")
-                            .frame(width: metrics.size.width, height: metrics.size.height * 0.50)
+                            .frame(width: metrics.size.width, height: metrics.size.height * 0.60 - 30)
                     }
                     .frame(width: metrics.size.width, height: metrics.size.height)
                     .edgesIgnoringSafeArea(.all)
                     .onAppear {
-                        let locationManager: CLLocationManager = CLLocationManager()
-                        switch locationManager.authorizationStatus {
-                                case .notDetermined: locationManager.requestWhenInUseAuthorization()
-                                case .denied, .restricted: break // TODO: Show popup to continue or go to Settings
-                                default: break // All good
-                                }
+                        locationManager.delegate = locationManagerDelegate
+                        locationManager.startUpdatingLocation()
                     }
                 TabView {
                     NearbyView()
@@ -73,5 +70,28 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainTabView()
             .environmentObject(DisplayedCoordinates())
+    }
+}
+
+class LocationDelegate: NSObject, ObservableObject, CLLocationManagerDelegate {
+
+    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 1.30437, longitude: 103.82458), latitudinalMeters: 400.0, longitudinalMeters: 400.0)
+
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        if manager.authorizationStatus == .authorizedWhenInUse {
+            log("Location Services authorization changed to When In Use.")
+            manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            manager.startUpdatingLocation()
+        } else {
+            log("Location Services authorization changed to Don't Allow.")
+            manager.requestWhenInUseAuthorization()
+        }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        log("Updating location...")
+        region.center.latitude = (manager.location?.coordinate.latitude)!
+        region.center.longitude = (manager.location?.coordinate.longitude)!
+        manager.stopUpdatingLocation()
     }
 }

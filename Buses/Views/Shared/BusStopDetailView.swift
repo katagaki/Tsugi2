@@ -124,22 +124,22 @@ struct BusStopDetailView: View {
             ToolbarItem(placement: .principal) {
                 VStack {
                     Text(busStop.description ?? "Shared.BusStop.Description.None")
-                        .font(.headline)
+                        .font(.system(size: 16.0, weight: .bold))
                     Text(busStop.roadName ?? "Shared.BusStop.Road.None")
-                        .font(.caption)
+                        .font(.system(size: 10.0, weight: .regular))
                         .foregroundColor(.secondary)
                 }
             }
             ToolbarItem(placement: .primaryAction) {
-                HStack(alignment: .center, spacing: 4.0) {
+                HStack(alignment: .center, spacing: 0.0) {
                     Menu {
                         Button("Shared.BusStop.Description.Copy", action: copyBusStopName)
                         Button("Shared.BusStop.Code.Copy", action: copyBusStopCode)
                     } label: {
                         Button {
                         } label: {
-                            Image(systemName: "doc.on.doc.fill")
-                                .font(.caption)
+                            Image(systemName: "square.fill.on.square.fill")
+                                .font(.system(size: 14.0, weight: .regular))
                         }
                         .buttonStyle(.bordered)
                         .mask {
@@ -150,7 +150,7 @@ struct BusStopDetailView: View {
                         // TODO: Add to favorites
                     } label: {
                         Image(systemName: "star.fill")
-                            .font(.caption)
+                            .font(.system(size: 14.0, weight: .regular))
                     }
                     .buttonStyle(.bordered)
                     .mask {
