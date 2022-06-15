@@ -53,6 +53,7 @@ struct ArrivalInfoDetailView: View {
                     .mask {
                         Circle()
                     }
+                    .disabled(true) // TODO: To implement
                 }
             }
         }
