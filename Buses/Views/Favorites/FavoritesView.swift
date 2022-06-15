@@ -18,14 +18,14 @@ struct FavoritesView: View {
                     Section {
                         ScrollView(.horizontal) {
                             LazyHStack(spacing: 16.0) {
-                                ForEach(stop.arrivals ?? [], id: \.serviceNo) { service in
+                                ForEach(stop.arrivals ?? [], id: \.serviceNo) { bus in
                                     VStack(alignment: .center, spacing: 6.0) {
-                                        BusNumberPlateView(serviceNo: service.serviceNo)
+                                        BusNumberPlateView(serviceNo: bus.serviceNo)
                                             .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: -8.0, trailing: 0.0))
-                                        Text(arrivalTimeTo(date: service.nextBus?.estimatedArrivalTime()))
+                                        Text(arrivalTimeTo(date: bus.nextBus?.estimatedArrivalTime()))
                                             .font(.body)
                                             .lineLimit(1)
-                                        Text(arrivalTimeTo(date: service.nextBus2?.estimatedArrivalTime()))
+                                        Text(arrivalTimeTo(date: bus.nextBus2?.estimatedArrivalTime()))
                                             .font(.body)
                                             .foregroundColor(.secondary)
                                             .lineLimit(1)

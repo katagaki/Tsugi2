@@ -66,3 +66,4 @@
 "Shared.BusArrival.JustLeft" = "発車済み";
 "Shared.BusArrival.NotInService" = "サービス時間外";
 "Shared.BusArrival.Subsequent" = "次：";
+"Shared.BusArrival.Crowded" = "混雑している";

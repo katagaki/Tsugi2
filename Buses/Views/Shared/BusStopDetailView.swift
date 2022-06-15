@@ -53,17 +53,18 @@ struct BusStopDetailView: View {
                         .listRowBackground(Color.clear)
                     }
                 } else {
-                    ForEach(busArrivals, id: \.serviceNo) { service in
+                    ForEach(busArrivals, id: \.serviceNo) { bus in
                         NavigationLink {
-                            BusStopDetailView(busStop: busStop) // TODO: Change bus stop to bus service view when implemented
+                            ArrivalInfoDetailView(busStop: busStop, bus: bus)
                         } label: {
-                            HStack(alignment: .center, spacing: 16.0) {
-                                BusNumberPlateView(serviceNo: service.serviceNo)
+                            HStack(alignment: .center, spacing: 8.0) {
+                                BusNumberPlateView(serviceNo: bus.serviceNo)
+                                Divider()
                                 VStack(alignment: .leading, spacing: 2.0) {
                                     HStack(alignment: .center, spacing: 4.0) {
-                                        Text(arrivalTimeTo(date: service.nextBus?.estimatedArrivalTime()))
+                                        Text(arrivalTimeTo(date: bus.nextBus?.estimatedArrivalTime()))
                                             .font(.body)
-                                        switch service.nextBus?.feature {
+                                        switch bus.nextBus?.feature {
                                         case .WheelchairAccessible:
                                             Image(systemName: "figure.roll")
                                                 .font(.caption)
@@ -71,7 +72,7 @@ struct BusStopDetailView: View {
                                         default:
                                             Text("")
                                         }
-                                        switch service.nextBus?.type {
+                                        switch bus.nextBus?.type {
                                         case .DoubleDeck:
                                             Image(systemName: "bus.doubledecker")
                                                 .font(.caption)
@@ -84,7 +85,7 @@ struct BusStopDetailView: View {
                                                 .foregroundColor(.secondary)
                                         }
                                     }
-                                    if let arrivalTime = service.nextBus2?.estimatedArrivalTime() {
+                                    if let arrivalTime = bus.nextBus2?.estimatedArrivalTime() {
                                         Text(localized("Shared.BusArrival.Subsequent") + arrivalTimeTo(date: arrivalTime))
                                             .font(.caption)
                                             .foregroundColor(.secondary)
