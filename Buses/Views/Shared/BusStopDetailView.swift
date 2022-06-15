@@ -11,7 +11,7 @@ import SwiftUI
 struct BusStopDetailView: View {
     
     var busStop: BusStop
-    @State var busArrivals: [BABusService] = []
+    @State var busArrivals: [BusService] = []
     @State var isInitialDataLoaded: Bool = true
     @EnvironmentObject var displayedCoordinates: DisplayedCoordinates
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
@@ -24,7 +24,7 @@ struct BusStopDetailView: View {
                     Text("Shared.BusStop.Code")
                         .font(.body)
                     Spacer()
-                    Text(busStop.code ?? "Shared.BusStop.Code.None")
+                    Text(busStop.code)
                         .font(.body.monospaced())
                         .foregroundColor(.secondary)
                 }
@@ -68,16 +68,38 @@ struct BusStopDetailView: View {
                         } label: {
                             HStack(alignment: .center, spacing: 16.0) {
                                 BusNumberPlateView(serviceNo: service.serviceNo)
-                                Spacer()
-                                VStack(alignment: .trailing, spacing: 1.0) {
-                                    Text(getArrivalText(arrivalTime: service.nextBus.estimatedArrivalTime()))
-                                        .font(.body)
-                                    if let arrivalTime = service.nextBus2.estimatedArrivalTime() {
-                                        Text(localized("Shared.BusArrival.Subsequent") + getArrivalText(arrivalTime: arrivalTime))
+                                VStack(alignment: .leading, spacing: 2.0) {
+                                    HStack(alignment: .center, spacing: 4.0) {
+                                        Text(arrivalTimeTo(date: service.nextBus?.estimatedArrivalTime()))
+                                            .font(.body)
+                                        switch service.nextBus?.feature {
+                                        case .WheelchairAccessible:
+                                            Image(systemName: "figure.roll")
+                                                .font(.caption)
+                                                .foregroundColor(.secondary)
+                                        default:
+                                            Text("")
+                                        }
+                                        switch service.nextBus?.type {
+                                        case .DoubleDeck:
+                                            Image(systemName: "bus.doubledecker")
+                                                .font(.caption)
+                                                .foregroundColor(.secondary)
+                                        case .none:
+                                            Text("")
+                                        default:
+                                            Image(systemName: "bus")
+                                                .font(.caption)
+                                                .foregroundColor(.secondary)
+                                        }
+                                    }
+                                    if let arrivalTime = service.nextBus2?.estimatedArrivalTime() {
+                                        Text(localized("Shared.BusArrival.Subsequent") + arrivalTimeTo(date: arrivalTime))
                                             .font(.caption)
                                             .foregroundColor(.secondary)
                                     }
                                 }
+                                Spacer()
                             }
                         }
                     }
@@ -112,8 +134,8 @@ struct BusStopDetailView: View {
     
     func reloadBusArrivals() {
         Task {
-            let busStopsFetched = try await fetchBusArrivals(for: busStop.code ?? "97311")
-            busArrivals = busStopsFetched.busServices.sorted(by: { a, b in
+            let busStopsFetched = try await fetchBusArrivals(for: busStop.code)
+            busArrivals = (busStopsFetched.arrivals ?? []).sorted(by: { a, b in
                 a.serviceNo < b.serviceNo
             })
             isInitialDataLoaded = false

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FavoritesView: View {
     
-    var busStops: [BABusStop] = []
+    var busStops: [BusStop] = []
     
     var body: some View {
         NavigationView {
@@ -18,14 +18,14 @@ struct FavoritesView: View {
                     Section {
                         ScrollView(.horizontal) {
                             LazyHStack(spacing: 16.0) {
-                                ForEach(stop.busServices, id: \.serviceNo) { service in
+                                ForEach(stop.arrivals ?? [], id: \.serviceNo) { service in
                                     VStack(alignment: .center, spacing: 6.0) {
                                         BusNumberPlateView(serviceNo: service.serviceNo)
                                             .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: -8.0, trailing: 0.0))
-                                        Text(getArrivalText(arrivalTime: service.nextBus.estimatedArrivalTime()))
+                                        Text(arrivalTimeTo(date: service.nextBus?.estimatedArrivalTime()))
                                             .font(.body)
                                             .lineLimit(1)
-                                        Text(getArrivalText(arrivalTime: service.nextBus2.estimatedArrivalTime()))
+                                        Text(arrivalTimeTo(date: service.nextBus2?.estimatedArrivalTime()))
                                             .font(.body)
                                             .foregroundColor(.secondary)
                                             .lineLimit(1)
@@ -54,7 +54,7 @@ struct FavoritesView: View {
 
 struct FavoritesView_Previews: PreviewProvider {
     
-    static var sampleBusStops: [BABusStop] = loadPreviewData()
+    static var sampleBusStops: [BusStop] = loadPreviewData()
     
     static var previews: some View {
         FavoritesView(busStops: sampleBusStops)
@@ -65,13 +65,13 @@ struct FavoritesView_Previews: PreviewProvider {
             .previewDevice(PreviewDevice(rawValue: "iPhone SE (3rd generation)"))
     }
     
-    static private func loadPreviewData() -> [BABusStop] {
+    static private func loadPreviewData() -> [BusStop] {
         if let sampleDataPath1 = Bundle.main.path(forResource: "BusArrivalv2-1", ofType: "json"),
            let sampleDataPath2 = Bundle.main.path(forResource: "BusArrivalv2-2", ofType: "json"),
            let sampleDataPath3 = Bundle.main.path(forResource: "BusArrivalv2-3", ofType: "json") {
-            let sampleBusStop1: BABusStop? = decode(from: sampleDataPath1)
-            let sampleBusStop2: BABusStop? = decode(from: sampleDataPath2)
-            let sampleBusStop3: BABusStop? = decode(from: sampleDataPath3)
+            let sampleBusStop1: BusStop? = decode(from: sampleDataPath1)
+            let sampleBusStop2: BusStop? = decode(from: sampleDataPath2)
+            let sampleBusStop3: BusStop? = decode(from: sampleDataPath3)
             return [sampleBusStop1!, sampleBusStop2!, sampleBusStop3!]
         } else {
             return []

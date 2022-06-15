@@ -11,7 +11,7 @@ import Foundation
 
 func fetchAllBusStops() async throws -> [BusStop] {
     var allBusStops: [BusStop] = []
-    var currentBusStopList: BSBusStopList?
+    var currentBusStopList: BusStopList?
     var currentSkipIndex: Int = 0
     repeat {
         currentBusStopList = try await fetchBusStops(from: currentSkipIndex)
@@ -19,14 +19,14 @@ func fetchAllBusStops() async throws -> [BusStop] {
             allBusStops.append(contentsOf: busStopList.busStops)
             currentSkipIndex += 500
         } else {
-            currentBusStopList = BSBusStopList(metadata: "", busStops: [])
+            currentBusStopList = BusStopList(metadata: "", busStops: [])
         }
     } while currentBusStopList?.busStops.count != 0
     return allBusStops
 }
 
-func fetchBusStops(from firstIndex: Int = 0) async throws -> BSBusStopList {
-    let busStopList: BSBusStopList = try await withCheckedThrowingContinuation({ continuation in
+func fetchBusStops(from firstIndex: Int = 0) async throws -> BusStopList {
+    let busStopList: BusStopList = try await withCheckedThrowingContinuation({ continuation in
         var request = URLRequest(url: URL(string: "http://datamall2.mytransport.sg/ltaodataservice/BusStops?$skip=\(firstIndex)")!)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -42,7 +42,7 @@ func fetchBusStops(from firstIndex: Int = 0) async throws -> BSBusStopList {
                 continuation.resume(throwing: error)
             }
             if let data = data {
-                if let busStopList: BSBusStopList = decode(fromData: data) {
+                if let busStopList: BusStopList = decode(fromData: data) {
                     log("Fetched bus stop data from the API for skip index \(firstIndex).")
                     continuation.resume(returning: busStopList)
                 } else {
@@ -60,8 +60,8 @@ func fetchBusStops(from firstIndex: Int = 0) async throws -> BSBusStopList {
 
 // MARK: BusArrivalv2 API
 
-func fetchBusArrivals(for stopCode: String) async throws -> BABusStop {
-    let busArrivals: BABusStop = try await withCheckedThrowingContinuation({ continuation in
+func fetchBusArrivals(for stopCode: String) async throws -> BusStop {
+    let busArrivals: BusStop = try await withCheckedThrowingContinuation({ continuation in
         var request = URLRequest(url: URL(string: "http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode=\(stopCode)")!)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -77,7 +77,7 @@ func fetchBusArrivals(for stopCode: String) async throws -> BABusStop {
                 continuation.resume(throwing: error)
             }
             if let data = data {
-                if let busArrivals: BABusStop = decode(fromData: data) {
+                if let busArrivals: BusStop = decode(fromData: data) {
                     log("Fetched bus arrival data for \(stopCode) from the API.")
                     continuation.resume(returning: busArrivals)
                 } else {

@@ -107,7 +107,7 @@ struct DirectoryView: View {
                 isSearching = (searchTerm != "")
                 if isSearching {
                     searchResults = busStops.filter({ stop in
-                        stop.description?.localizedCaseInsensitiveContains(searchTerm) ?? false || stop.roadName?.localizedCaseInsensitiveContains(searchTerm) ?? false || stop.code?.localizedCaseInsensitiveContains(searchTerm) ?? false
+                        stop.description?.localizedCaseInsensitiveContains(searchTerm) ?? false || stop.roadName?.localizedCaseInsensitiveContains(searchTerm) ?? false || stop.code.localizedCaseInsensitiveContains(searchTerm)
                     })
                 }
             }

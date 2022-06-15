@@ -2,14 +2,21 @@
 //  BusStop.swift
 //  Buses
 //
-//  Created by 堅書 on 2022/04/11.
+//  Created by 堅書 on 2022/04/09.
 //
 
 import Foundation
 
 struct BusStop: Codable, Hashable {
     
-    var code: String?
+    // Shared variables
+    var code: String
+    
+    // BusArrivalv2 API
+    var metadata: String?
+    var arrivals: [BusService]?
+    
+    // BusStops API
     var roadName: String?
     var description: String?
     var latitude: Double?
@@ -17,6 +24,8 @@ struct BusStop: Codable, Hashable {
     
     enum CodingKeys: String, CodingKey {
         case code = "BusStopCode"
+        case metadata = "odata.metadata"
+        case arrivals = "Services"
         case roadName = "RoadName"
         case description = "Description"
         case latitude = "Latitude"

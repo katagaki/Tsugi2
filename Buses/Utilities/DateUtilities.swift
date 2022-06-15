@@ -14,18 +14,22 @@ func date(fromISO8601 dateString: String) -> Date? {
     return formatter.date(from: dateString)
 }
 
-func arrivalTimeTo(date: Date) -> String {
-    let interval: TimeInterval = date.timeIntervalSinceReferenceDate - Date().timeIntervalSinceReferenceDate
-    let seconds = NSInteger(interval) % 60
-    let minutes = (NSInteger(interval) / 60) % 60
-    if minutes == 0 {
-        return localized("Shared.BusArrival.Arriving")
-    } else if minutes <= 0 && seconds <= 0 {
-        return localized("Shared.BusArrival.JustLeft")
+func arrivalTimeTo(date: Date?) -> String {
+    if let date = date {
+        let interval: TimeInterval = date.timeIntervalSinceReferenceDate - Date().timeIntervalSinceReferenceDate
+        let seconds = NSInteger(interval) % 60
+        let minutes = (NSInteger(interval) / 60) % 60
+        if minutes == 0 {
+            return localized("Shared.BusArrival.Arriving")
+        } else if minutes <= 0 && seconds <= 0 {
+            return localized("Shared.BusArrival.JustLeft")
+        } else {
+            let formatter: DateComponentsFormatter = DateComponentsFormatter()
+            formatter.unitsStyle = .short
+            formatter.allowedUnits = [.minute]
+            return formatter.string(from: interval) ?? localized("Shared.BusArrival.NotInService")
+        }
     } else {
-        let formatter: DateComponentsFormatter = DateComponentsFormatter()
-        formatter.unitsStyle = .short
-        formatter.allowedUnits = [.minute]
-        return formatter.string(from: interval) ?? localized("Shared.BusArrival.NotInService")
+        return localized("Shared.BusArrival.NotInService")
     }
 }

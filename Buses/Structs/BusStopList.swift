@@ -1,5 +1,5 @@
 //
-//  BSBusStopList.swift
+//  BusStopList.swift
 //  Buses
 //
 //  Created by 堅書 on 2022/04/11.
@@ -7,10 +7,9 @@
 
 import Foundation
 
-struct BSBusStopList: Codable, Hashable {
+struct BusStopList: Codable, Hashable {
     
-    // Results from the call to http://datamall2.mytransport.sg/ltaodataservice/BusStops
-    
+    // BusStops API
     var metadata: String
     var busStops: [BusStop]
     

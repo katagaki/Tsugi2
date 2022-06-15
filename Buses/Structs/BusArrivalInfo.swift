@@ -1,5 +1,5 @@
 //
-//  BABusOnRoad.swift
+//  BusArrivalInfo.swift
 //  Buses
 //
 //  Created by 堅書 on 2022/04/09.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BABusOnRoad: Codable, Hashable {
+struct BusArrivalInfo: Codable, Hashable {
     
     var firstBusStopCode: String?
     var lastBusStopCode: String?
