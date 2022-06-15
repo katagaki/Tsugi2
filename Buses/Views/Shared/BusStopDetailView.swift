@@ -165,7 +165,7 @@ struct BusStopDetailView: View {
         Task {
             let busStopsFetched = try await fetchBusArrivals(for: busStop.code)
             busArrivals = (busStopsFetched.arrivals ?? []).sorted(by: { a, b in
-                a.serviceNo < b.serviceNo
+                intFrom(a.serviceNo) ?? 9999 < intFrom(b.serviceNo) ?? 9999
             })
             isInitialDataLoaded = false
         }

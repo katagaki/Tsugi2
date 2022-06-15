@@ -161,7 +161,7 @@ struct DirectoryView: View {
             let dateFormatter = DateFormatter()
             let busStopsFetched = try await fetchAllBusStops()
             busStops = busStopsFetched.sorted(by: { a, b in
-                a.description ?? "" < b.description ?? ""
+                a.description?.lowercased() ?? "" < b.description?.lowercased() ?? ""
             })
             dateFormatter.dateStyle = .medium
             dateFormatter.timeStyle = .medium
