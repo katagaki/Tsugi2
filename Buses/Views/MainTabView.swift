@@ -28,7 +28,7 @@ struct MainTabView: View {
                 }
                     .safeAreaInset(edge: .bottom) {
                         Text("")
-                            .frame(width: metrics.size.width, height: metrics.size.height * 0.60 - 30)
+                            .frame(width: metrics.size.width, height: metrics.size.height * 0.60 - 12.0)
                     }
                     .frame(width: metrics.size.width, height: metrics.size.height)
                     .edgesIgnoringSafeArea(.all)
@@ -56,7 +56,7 @@ struct MainTabView: View {
                 }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: metrics.size.height * 0.60, maxHeight: metrics.size.height * 0.60)
                 .mask {
-                    RoundedCornersShape(corners: [.topLeft, .topRight], radius: 12.0)
+                    RoundedCornersShape(corners: [.topLeft, .topRight], radius: 6.0)
                 }
                 .shadow(radius: 5.0)
                 .zIndex(1)
