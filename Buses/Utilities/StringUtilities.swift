@@ -14,6 +14,5 @@ func localized(_ key: String) -> String {
 func intFrom(_ string: String) -> Int? {
     let digitComponents = string.components(separatedBy: .letters)
     let digits = digitComponents.joined()
-    print(digits)
     return Int(digits)
 }
