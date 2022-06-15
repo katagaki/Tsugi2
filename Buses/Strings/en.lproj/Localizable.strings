@@ -65,5 +65,6 @@
 "Shared.BusArrival.Arriving" = "Arriving";
 "Shared.BusArrival.JustLeft" = "Just Left";
 "Shared.BusArrival.NotInService" = "No Service";
+"Shared.BusArrival.NotInService.Subtitle" = "The bus service is currently unavailable.";
 "Shared.BusArrival.Subsequent" = "Next Bus: ";
 "Shared.BusArrival.Crowded" = "CROWDED";

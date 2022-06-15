@@ -61,9 +61,10 @@
 "Shared.BusStop.Code.Copy" = "バス停コードをコピー";
 "Shared.BusStop.Road.None" = "なし";
 "Shared.BusStop.BusServices" = "バス";
-"Shared.BusStop.BusServices.None" = "本バス停では、現在すべてのバスがサービス時間外です。";
+"Shared.BusStop.BusServices.None" = "このバス停では、現在すべてのバスがサービス時間外です。";
 "Shared.BusArrival.Arriving" = "まもなく到着";
 "Shared.BusArrival.JustLeft" = "発車済み";
 "Shared.BusArrival.NotInService" = "サービス時間外";
+"Shared.BusArrival.NotInService.Subtitle" = "このバスは、現在サービスが提供していません。";
 "Shared.BusArrival.Subsequent" = "次：";
 "Shared.BusArrival.Crowded" = "混雑している";

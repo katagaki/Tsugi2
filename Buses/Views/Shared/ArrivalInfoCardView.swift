@@ -21,6 +21,10 @@ struct ArrivalInfoCardView: View {
                     Text(arrivalTime)
                         .font(.caption)
                         .foregroundColor(.secondary)
+                } else {
+                    Text("Shared.BusArrival.NotInService.Subtitle")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
                 }
             }
             Spacer()

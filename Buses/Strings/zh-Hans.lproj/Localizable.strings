@@ -65,5 +65,6 @@
 "Shared.BusArrival.Arriving" = "即将抵达";
 "Shared.BusArrival.JustLeft" = "已经离开";
 "Shared.BusArrival.NotInService" = "停止服务";
+"Shared.BusArrival.NotInService.Subtitle" = "此巴士此刻不提供服务。";
 "Shared.BusArrival.Subsequent" = "下一班车：";
 "Shared.BusArrival.Crowded" = "拥挤";
