@@ -4,6 +4,27 @@
 <dict>
 	<key>CFBundleIcons</key>
 	<dict>
+		<key>CFBundleAlternateIcons</key>
+		<dict>
+			<key>Purple</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Purple</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>Red</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Red</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+		</dict>
 		<key>CFBundlePrimaryIcon</key>
 		<dict>
 			<key>CFBundleIconFiles</key>
@@ -13,61 +34,40 @@
 			<key>UIPrerenderedIcon</key>
 			<false/>
 		</dict>
-        <key>CFBundleAlternateIcons</key>
-        <dict>
-            <key>Red</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>Red</string>
-                </array>
-                <key>UIPrerenderedIcon</key>
-                <false/>
-            </dict>
-            <key>Purple</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>Purple</string>
-                </array>
-                <key>UIPrerenderedIcon</key>
-                <false/>
-            </dict>
-        </dict>
 	</dict>
-    <key>CFBundleIcons~ipad</key>
-    <dict>
-        <key>CFBundlePrimaryIcon</key>
-        <dict>
-            <key>CFBundleIconFiles</key>
-            <array>
-                <string></string>
-            </array>
-            <key>UIPrerenderedIcon</key>
-            <false/>
-        </dict>
-        <key>CFBundleAlternateIcons</key>
-        <dict>
-            <key>Red</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>Red</string>
-                </array>
-                <key>UIPrerenderedIcon</key>
-                <false/>
-            </dict>
-            <key>Purple</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>Purple</string>
-                </array>
-                <key>UIPrerenderedIcon</key>
-                <false/>
-            </dict>
-        </dict>
-    </dict>
+	<key>CFBundleIcons~ipad</key>
+	<dict>
+		<key>CFBundleAlternateIcons</key>
+		<dict>
+			<key>Purple</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Purple</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>Red</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Red</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+		</dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string></string>
+			</array>
+			<key>UIPrerenderedIcon</key>
+			<false/>
+		</dict>
+	</dict>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
