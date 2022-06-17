@@ -19,7 +19,7 @@ func fetchAllBusStops() async throws -> [BusStop] {
             allBusStops.append(contentsOf: busStopList.busStops)
             currentSkipIndex += 500
         } else {
-            currentBusStopList = BusStopList(metadata: "", busStops: [])
+            currentBusStopList = BusStopList()
         }
     } while currentBusStopList?.busStops.count != 0
     return allBusStops

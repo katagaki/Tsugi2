@@ -9,16 +9,14 @@ import SwiftUI
 
 struct DirectoryView: View {
     
-    @State var busStops: [BusStop] = []
     @State var previousSearchTerm: String = ""
     @State var searchTerm: String = ""
     @State var searchResults: [BusStop] = []
     @State var isSearching: Bool = false
-    @State var isBusStopListLoaded: Bool = true
-    @State var isInitialLoad: Bool = true
-    @State var updatedDate: String = ""
-    @State var updatedTime: String = ""
-    @EnvironmentObject var displayedCoordinates: DisplayedCoordinates
+    @State var updatedDate: Binding<String>
+    @State var updatedTime: Binding<String>
+    @EnvironmentObject var busStopList: BusStopList
+    @EnvironmentObject var displayedCoordinates: CoordinateList
     
     var body: some View {
         NavigationView {
@@ -68,31 +66,18 @@ struct DirectoryView: View {
                             .textCase(nil)
                     }
                     Section {
-                        if !isBusStopListLoaded {
-                            HStack(alignment: .center, spacing: 16.0) {
-                                Spacer()
-                                ProgressView {
-                                    Text("Directory.BusStopsLoading")
-                                        .font(.body)
-                                }
-                                .progressViewStyle(.circular)
-                                Spacer()
-                            }
-                            .listRowBackground(Color.clear)
-                        } else {
-                            ForEach(busStops, id: \.code) { stop in
-                                NavigationLink {
-                                    BusStopDetailView(busStop: stop)
-                                } label: {
-                                    HStack(alignment: .center, spacing: 16.0) {
-                                        Image("ListIcon.BusStop")
-                                        VStack(alignment: .leading, spacing: 2.0) {
-                                            Text(verbatim: stop.description ?? "Shared.BusStop.Description.None")
-                                                .font(.body)
-                                            Text(verbatim: stop.roadName ?? "")
-                                                .font(.caption)
-                                                .foregroundColor(.secondary)
-                                        }
+                        ForEach(busStopList.busStops, id: \.code) { stop in
+                            NavigationLink {
+                                BusStopDetailView(busStop: stop)
+                            } label: {
+                                HStack(alignment: .center, spacing: 16.0) {
+                                    Image("ListIcon.BusStop")
+                                    VStack(alignment: .leading, spacing: 2.0) {
+                                        Text(verbatim: stop.description ?? "Shared.BusStop.Description.None")
+                                            .font(.body)
+                                        Text(verbatim: stop.roadName ?? "")
+                                            .font(.caption)
+                                            .foregroundColor(.secondary)
                                     }
                                 }
                             }
@@ -107,9 +92,6 @@ struct DirectoryView: View {
                 }
             }
             .listStyle(.insetGrouped)
-            .refreshable {
-                reloadBusStops()
-            }
             .searchable(text: $searchTerm, placement: .navigationBarDrawer(displayMode: .always))
             .onChange(of: searchTerm) { _ in
                 isSearching = (searchTerm != "" && searchTerm.count > 2)
@@ -119,7 +101,7 @@ struct DirectoryView: View {
                             stop.description?.localizedCaseInsensitiveContains(searchTerm) ?? false || stop.roadName?.localizedCaseInsensitiveContains(searchTerm) ?? false || stop.code.localizedCaseInsensitiveContains(searchTerm)
                         })
                     } else {
-                        searchResults = busStops.filter({ stop in
+                        searchResults = busStopList.busStops.filter({ stop in
                             stop.description?.localizedCaseInsensitiveContains(searchTerm) ?? false || stop.roadName?.localizedCaseInsensitiveContains(searchTerm) ?? false || stop.code.localizedCaseInsensitiveContains(searchTerm)
                         })
                     }
@@ -142,47 +124,27 @@ struct DirectoryView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     VStack(alignment: .trailing) {
-                        Text("\(updatedDate)")
+                        Text("\(updatedDate.wrappedValue)")
                             .font(.caption)
                             .foregroundColor(.secondary)
-                        Text("\(updatedTime)")
+                        Text("\(updatedTime.wrappedValue)")
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }
                 }
             }
         }
-        .onAppear {
-            if isInitialLoad {
-                reloadBusStops(showsProgress: (true))
-                isInitialLoad = false
-            }
-        }
     }
     
-    func reloadBusStops(showsProgress: Bool = false) {
-        Task {
-            if showsProgress {
-                isBusStopListLoaded = false
-            }
-            let dateFormatter = DateFormatter()
-            let timeFormatter = DateFormatter()
-            let busStopsFetched = try await fetchAllBusStops()
-            busStops = busStopsFetched.sorted(by: { a, b in
-                a.description?.lowercased() ?? "" < b.description?.lowercased() ?? ""
-            })
-            dateFormatter.dateStyle = .medium
-            timeFormatter.timeStyle = .medium
-            updatedDate = dateFormatter.string(from: Date.now)
-            updatedTime = timeFormatter.string(from: Date.now)
-            isBusStopListLoaded = true
-        }
-    }
 }
 
 struct DirectoryView_Previews: PreviewProvider {
+    
+    @State static var updatedDate: String = ""
+    @State static var updatedTime: String = ""
+    
     static var previews: some View {
-        DirectoryView()
+        DirectoryView(updatedDate: $updatedTime, updatedTime: $updatedTime)
     }
 }
 

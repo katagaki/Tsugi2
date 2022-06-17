@@ -11,11 +11,12 @@ import SwiftUI
 struct TsugiApp: App {
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            MainTabView(updatedDate: "", updatedTime: "")
                 .onAppear {
                     loadAPIKeys()
                 }
-                .environmentObject(DisplayedCoordinates())
+                .environmentObject(BusStopList())
+                .environmentObject(CoordinateList())
         }
     }
 }

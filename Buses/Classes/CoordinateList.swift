@@ -1,5 +1,5 @@
 //
-//  DisplayedCoordinates.swift
+//  CoordinateList.swift
 //  Buses
 //
 //  Created by 堅書 on 2022/06/13.
@@ -8,8 +8,8 @@
 import CoreLocation
 import SwiftUI
 
-class DisplayedCoordinates: ObservableObject {
-    @Published var coordinates: [DisplayedCoordinate]
+class CoordinateList: ObservableObject {
+    @Published var coordinates: [Coordinate]
     
     init() {
         coordinates = []
@@ -18,15 +18,15 @@ class DisplayedCoordinates: ObservableObject {
     init(coordinates: [CLLocationCoordinate2D]) {
         self.coordinates = []
         for coordinate in coordinates {
-            self.coordinates.append(DisplayedCoordinate(latitude: coordinate.latitude, longitude: coordinate.longitude))
+            self.coordinates.append(Coordinate(latitude: coordinate.latitude, longitude: coordinate.longitude))
         }
     }
     
     func addCoordinate(from newCoordinate: CLLocationCoordinate2D) {
-        self.coordinates.append(DisplayedCoordinate(latitude: newCoordinate.latitude, longitude: newCoordinate.longitude))
+        self.coordinates.append(Coordinate(latitude: newCoordinate.latitude, longitude: newCoordinate.longitude))
     }
     
-    func addCoordinate(from newCoordinate: DisplayedCoordinate) {
+    func addCoordinate(from newCoordinate: Coordinate) {
         self.coordinates.append(newCoordinate)
     }
     

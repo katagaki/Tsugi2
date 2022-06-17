@@ -10,7 +10,7 @@ import SwiftUI
 
 struct NearbyView: View {
     
-    @EnvironmentObject var displayedCoordinates: DisplayedCoordinates
+    @EnvironmentObject var displayedCoordinates: CoordinateList
     
     var body: some View {
         NavigationView {

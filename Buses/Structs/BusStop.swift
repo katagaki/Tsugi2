@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BusStop: Codable, Hashable {
+class BusStop: Codable, Hashable, ObservableObject, Identifiable {
     
     // Shared variables
     var code: String
@@ -22,6 +22,14 @@ struct BusStop: Codable, Hashable {
     var latitude: Double?
     var longitude: Double?
     
+    init() {
+        code = "46779"
+        roadName = "Lorem Ipsum Dolor Street"
+        description = "Opp Sample Bus Stop Secondary"
+        latitude = 1.28459
+        longitude = 103.83275
+    }
+    
     enum CodingKeys: String, CodingKey {
         case code = "BusStopCode"
         case metadata = "odata.metadata"
@@ -30,6 +38,14 @@ struct BusStop: Codable, Hashable {
         case description = "Description"
         case latitude = "Latitude"
         case longitude = "Longitude"
+    }
+    
+    static func == (lhs: BusStop, rhs: BusStop) -> Bool {
+        return lhs.code == rhs.code
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(code)
     }
     
 }

@@ -13,7 +13,7 @@ struct BusStopDetailView: View {
     var busStop: BusStop
     @State var busArrivals: [BusService] = []
     @State var isInitialDataLoaded: Bool = true
-    @EnvironmentObject var displayedCoordinates: DisplayedCoordinates
+    @EnvironmentObject var displayedCoordinates: CoordinateList
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
     var body: some View {
@@ -185,7 +185,7 @@ struct BusStopDetailView: View {
 
 struct BusStopDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        let sampleBusStop: BusStop = BusStop(code: "46779", roadName: "Lorem Ipsum Dolor Street", description: "Opp Sample Bus Stop Secondary", latitude: 1.28459, longitude: 103.83275)
+        let sampleBusStop: BusStop = BusStop()
         BusStopDetailView(busStop: sampleBusStop)
     }
 }

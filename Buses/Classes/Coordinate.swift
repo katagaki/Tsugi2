@@ -1,5 +1,5 @@
 //
-//  DisplayedCoordinate.swift
+//  Coordinate.swift
 //  Buses
 //
 //  Created by 堅書 on 2022/06/13.
@@ -8,7 +8,7 @@
 import CoreLocation
 import SwiftUI
 
-class DisplayedCoordinate: ObservableObject, Identifiable {
+class Coordinate: ObservableObject, Identifiable {
     @Published var latitude: Double
     @Published var longitude: Double
     

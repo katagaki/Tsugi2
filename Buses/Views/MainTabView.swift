@@ -14,7 +14,13 @@ struct MainTabView: View {
     @State var locationManager: CLLocationManager = CLLocationManager()
     @StateObject var locationManagerDelegate: LocationDelegate = LocationDelegate()
     @State var userTrackingMode: MapUserTrackingMode = .follow
-    @EnvironmentObject var displayedCoordinates: DisplayedCoordinates
+    @EnvironmentObject var displayedCoordinates: CoordinateList
+    
+    @EnvironmentObject var busStopList: BusStopList
+    @State var isBusStopListLoaded: Bool = true
+    @State var isInitialLoad: Bool = true
+    @State var updatedDate: String
+    @State var updatedTime: String
     
     var body: some View {
         GeometryReader { metrics in
@@ -26,6 +32,7 @@ struct MainTabView: View {
                     annotationItems: displayedCoordinates.coordinates) { coordinate in
                     MapMarker(coordinate: coordinate.clCoordinate())
                 }
+                    .edgesIgnoringSafeArea(.all)
                     .safeAreaInset(edge: .bottom) {
                         Text("")
                             .frame(width: metrics.size.width, height: metrics.size.height * 0.60 - 12.0)
@@ -38,15 +45,15 @@ struct MainTabView: View {
                     }
                 TabView {
                     // TODO: To implement
-//                    NearbyView()
-//                        .tabItem {
-//                            Label("TabTitle.Nearby", systemImage: "map.fill")
-//                        }
+                    NearbyView()
+                        .tabItem {
+                            Label("TabTitle.Nearby", systemImage: "map.fill")
+                        }
 //                    FavoritesView()
 //                        .tabItem {
 //                            Label("TabTitle.Favorites", systemImage: "star.fill")
 //                        }
-                    DirectoryView()
+                    DirectoryView(updatedDate: $updatedDate, updatedTime: $updatedTime)
                         .tabItem {
                             Label("TabTitle.Directory", systemImage: "book.closed.fill")
                         }
@@ -62,15 +69,63 @@ struct MainTabView: View {
                 .shadow(radius: 5.0)
                 .zIndex(1)
             }
+            .onChange(of: isBusStopListLoaded, perform: { newValue in
+                reloadBusStops()
+            })
+            .onAppear {
+                if isInitialLoad {
+                    reloadBusStops(showsProgress: (true))
+                    isInitialLoad = false
+                }
+            }
+            .overlay {
+                if !isBusStopListLoaded {
+                    ZStack(alignment: .top) {
+                        HStack(alignment: .center, spacing: 8.0) {
+                            ProgressView()
+                                .progressViewStyle(.circular)
+                            Text("Directory.BusStopsLoading")
+                                .font(.body)
+                        }
+                        .padding(EdgeInsets(top: 8.0, leading: 8.0, bottom: 8.0, trailing: 8.0))
+                        .background(Color(uiColor: .systemBackground))
+                        .mask {
+                            RoundedRectangle(cornerRadius: 8.0)
+                        }
+                        .shadow(radius: 5.0)
+                        Color.clear
+                    }
+                    .padding(EdgeInsets(top: 8.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
+                }
+            }
         }
-        .edgesIgnoringSafeArea(.all)
+        .edgesIgnoringSafeArea(.bottom)
+    }
+    
+    func reloadBusStops(showsProgress: Bool = false) {
+        Task {
+            if showsProgress {
+                isBusStopListLoaded = false
+            }
+            let dateFormatter = DateFormatter()
+            let timeFormatter = DateFormatter()
+            let busStopsFetched = try await fetchAllBusStops()
+            busStopList.busStops = busStopsFetched.sorted(by: { a, b in
+                a.description?.lowercased() ?? "" < b.description?.lowercased() ?? ""
+            })
+            dateFormatter.dateStyle = .medium
+            timeFormatter.timeStyle = .medium
+            updatedDate = dateFormatter.string(from: Date.now)
+            updatedTime = timeFormatter.string(from: Date.now)
+            isBusStopListLoaded = true
+        }
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabView()
-            .environmentObject(DisplayedCoordinates())
+        MainTabView(updatedDate: "", updatedTime: "")
+            .environmentObject(CoordinateList())
     }
 }
 
