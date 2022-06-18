@@ -34,13 +34,13 @@ struct MainTabView: View {
                     annotationItems: displayedCoordinates.coordinates) { coordinate in
                     MapMarker(coordinate: coordinate.clCoordinate())
                 }
-                    .edgesIgnoringSafeArea(.all)
+                    .edgesIgnoringSafeArea(.top)
                     .safeAreaInset(edge: .bottom) {
                         Text("")
                             .frame(width: metrics.size.width, height: metrics.size.height * 0.60 - 12.0)
                     }
                     .frame(width: metrics.size.width, height: metrics.size.height)
-                    .edgesIgnoringSafeArea(.all)
+//                    .edgesIgnoringSafeArea(.all)
                     .onAppear {
                         locationManager.delegate = locationManagerDelegate
                         locationManager.startUpdatingLocation()
