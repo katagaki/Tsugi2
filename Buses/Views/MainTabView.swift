@@ -83,8 +83,8 @@ struct MainTabView: View {
                 }
             }
             .overlay {
-                if !isBusStopListLoaded {
-                    ZStack(alignment: .top) {
+                ZStack(alignment: .top) {
+                    if !isBusStopListLoaded {
                         HStack(alignment: .center, spacing: 8.0) {
                             ProgressView()
                                 .progressViewStyle(.circular)
@@ -97,10 +97,12 @@ struct MainTabView: View {
                             RoundedRectangle(cornerRadius: 8.0)
                         }
                         .shadow(radius: 5.0)
-                        Color.clear
+                        .transition(AnyTransition.move(edge: .top).combined(with: .opacity))
                     }
-                    .padding(EdgeInsets(top: 8.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
+                    Color.clear
                 }
+                .padding(EdgeInsets(top: 8.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
+                .animation(.default, value: isBusStopListLoaded)
             }
         }
         .edgesIgnoringSafeArea(.bottom)

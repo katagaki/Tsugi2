@@ -54,7 +54,7 @@ class FavoriteList: ObservableObject {
                 mainContext.delete(busService)
             }
         } catch let error {
-            print(error.localizedDescription)
+            log(error.localizedDescription)
         }
         reloadData()
     }
@@ -77,7 +77,7 @@ class FavoriteList: ObservableObject {
                 try self.context.save()
             }
         } catch {
-            print(error.localizedDescription)
+            log(error.localizedDescription)
         }
         reloadData()
     }

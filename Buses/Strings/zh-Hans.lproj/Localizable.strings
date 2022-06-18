@@ -27,6 +27,8 @@
 /* Nearby View */
 
 /* Favorites View */
+"Favorites.Edit" = "编辑";
+"Favorites.Save" = "保存";
 
 /* Directory View */
 "Directory.UsefulResources" = "有用信息";

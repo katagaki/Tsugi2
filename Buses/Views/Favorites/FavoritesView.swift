@@ -26,9 +26,6 @@ struct FavoritesView: View {
                             .foregroundColor(.primary)
                             .textCase(nil)
                     }
-                    .onAppear {
-                        debugPrint("Found favorite")
-                    }
                 }
             }
             .listStyle(.insetGrouped)
@@ -41,6 +38,14 @@ struct FavoritesView: View {
                 }
                 ToolbarItem(placement: .principal) {
                     Spacer()
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        // TODO: Toggle editing
+                    } label: {
+                        Text("Favorites.Edit")
+                    }
+
                 }
             }
         }

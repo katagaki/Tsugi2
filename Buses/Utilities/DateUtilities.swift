@@ -14,7 +14,7 @@ func date(fromISO8601 dateString: String) -> Date? {
     return formatter.date(from: dateString)
 }
 
-func arrivalTimeTo(date: Date?) -> String {
+func arrivalTimeTo(date: Date?, returnBlankWhenNotInService: Bool = false) -> String {
     if let date = date {
         let interval: TimeInterval = date.timeIntervalSinceReferenceDate - Date().timeIntervalSinceReferenceDate
         let seconds = NSInteger(interval) % 60
@@ -30,6 +30,10 @@ func arrivalTimeTo(date: Date?) -> String {
             return formatter.string(from: interval) ?? localized("Shared.BusArrival.NotInService")
         }
     } else {
-        return localized("Shared.BusArrival.NotInService")
+        if returnBlankWhenNotInService {
+            return "　"
+        } else {
+            return localized("Shared.BusArrival.NotInService")
+        }
     }
 }
