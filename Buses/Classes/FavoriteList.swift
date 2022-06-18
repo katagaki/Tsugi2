@@ -34,6 +34,7 @@ class FavoriteList: ObservableObject {
             do {
                 favoriteLocations = try context.fetch(fetchRequestForLocations)
                 favoriteBusServices = try context.fetch(fetchRequestForBusServices)
+                log("Favorites data reloaded.")
             }
             catch {
                 favoriteLocations = []
@@ -42,61 +43,63 @@ class FavoriteList: ObservableObject {
         }
     }
     
-    func deleteLocation(at offsets: IndexSet) async {
+    func deleteLocation(at offsets: IndexSet) {
         do {
             let locations = try context.fetch(fetchRequestForLocations)
-            try await context.perform { [self] in
-                for offset in offsets {
-                    context.delete(locations[offset])
-                }
-                try context.save()
+            for offset in offsets {
+                context.delete(locations[offset])
             }
+            log("Favorites indexes deleted.")
         } catch let error {
             log(error.localizedDescription)
         }
-        reloadData()
     }
     
-    func deleteAllData(_ entity:String) async {
+    func deleteAllData(_ entity:String) {
         do {
             let busServices = try context.fetch(fetchRequestForBusServices)
             let locations = try context.fetch(fetchRequestForLocations)
-            try await context.perform { [self] in
-                for location in locations {
-                    context.delete(location)
-                }
-                for busService in busServices {
-                    context.delete(busService)
-                }
-                try context.save()
+            for location in locations {
+                context.delete(location)
             }
+            for busService in busServices {
+                context.delete(busService)
+            }
+            log("All favorites deleted.")
         } catch let error {
             log(error.localizedDescription)
         }
         reloadData()
     }
     
-    func addFavoriteLocation(busStopCode: String = "", nickname: String = "", usesLiveBusStopData: Bool = false, containing busServices: [BusService] = []) async {
+    func addFavoriteLocation(busStopCode: String = "", nickname: String = "", usesLiveBusStopData: Bool = false, containing busServices: [BusService] = []) {
+        let favoriteLocationEntity = FavoriteLocation.entity()
+        let favoriteLocation = FavoriteLocation(entity: favoriteLocationEntity, insertInto: context)
+        favoriteLocation.busStopCode = busStopCode
+        favoriteLocation.nickname = (nickname == "" ? busStopCode : nickname)
+        favoriteLocation.usesLiveBusStopData = usesLiveBusStopData
+        for busService in busServices {
+            let favoriteBusServiceEntity = FavoriteBusService.entity()
+            let favoriteBusService = FavoriteBusService(entity: favoriteBusServiceEntity, insertInto: context)
+            favoriteBusService.busStopCode = busService.busStopCode
+            favoriteBusService.serviceNo = busService.serviceNo
+            favoriteLocation.addToBusServices(favoriteBusService)
+        }
+        log("Favorite added.")
+    }
+    
+    func saveChanges() async {
         do {
             try await context.perform { [self] in
-                let favoriteLocationEntity = FavoriteLocation.entity()
-                let favoriteLocation = FavoriteLocation(entity: favoriteLocationEntity, insertInto: context)
-                favoriteLocation.busStopCode = busStopCode
-                favoriteLocation.nickname = (nickname == "" ? busStopCode : nickname)
-                favoriteLocation.usesLiveBusStopData = usesLiveBusStopData
-                for busService in busServices {
-                    let favoriteBusServiceEntity = FavoriteBusService.entity()
-                    let favoriteBusService = FavoriteBusService(entity: favoriteBusServiceEntity, insertInto: context)
-                    favoriteBusService.busStopCode = busService.busStopCode
-                    favoriteBusService.serviceNo = busService.serviceNo
-                    favoriteLocation.addToBusServices(favoriteBusService)
+                if context.hasChanges {
+                    try context.save()
+                    log("Favorites saved.")
+                    reloadData()
                 }
-                try self.context.save()
             }
         } catch {
             log(error.localizedDescription)
         }
-        reloadData()
     }
     
 }

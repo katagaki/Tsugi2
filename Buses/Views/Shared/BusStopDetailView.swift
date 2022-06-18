@@ -149,8 +149,9 @@ struct BusStopDetailView: View {
                         }
                     }
                     Button {
+                        favorites.addFavoriteLocation(busStopCode: busStop.code, usesLiveBusStopData: true)
                         Task {
-                            await favorites.addFavoriteLocation(busStopCode: busStop.code, usesLiveBusStopData: true)
+                            await favorites.saveChanges()
                         }
                     } label: {
                         Image(systemName: "star.fill")

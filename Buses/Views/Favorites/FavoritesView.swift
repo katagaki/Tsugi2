@@ -48,8 +48,9 @@ struct FavoritesView: View {
     }
     
     func delete(at offsets: IndexSet) {
+        favorites.deleteLocation(at: offsets)
         Task {
-            await favorites.deleteLocation(at: offsets)
+            await favorites.saveChanges()
         }
     }
     
