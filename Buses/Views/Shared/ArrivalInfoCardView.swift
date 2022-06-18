@@ -29,12 +29,19 @@ struct ArrivalInfoCardView: View {
             }
             Spacer()
             switch arrivalInfo.load {
-            case .LimitedStanding:
-                Text("CROWDED")
+            case .StandingAvailable:
+                Text("Shared.BusArrival.Crowded")
                     .font(.system(size: 10.5, weight: .bold))
                     .foregroundColor(.white)
                     .padding(EdgeInsets(top: 3.0, leading: 6.0, bottom: 3.0, trailing: 6.0))
                     .background(Color.orange)
+                    .clipShape(RoundedRectangle(cornerRadius: 6.0))
+            case .LimitedStanding:
+                Text("Shared.BusArrival.Crowded")
+                    .font(.system(size: 10.5, weight: .bold))
+                    .foregroundColor(.white)
+                    .padding(EdgeInsets(top: 3.0, leading: 6.0, bottom: 3.0, trailing: 6.0))
+                    .background(Color.red)
                     .clipShape(RoundedRectangle(cornerRadius: 6.0))
             default:
                 Text("")

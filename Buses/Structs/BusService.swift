@@ -32,6 +32,11 @@ struct BusService: Codable, Hashable {
     // Favorites data model
     var busStopCode: String? = ""
     
+    init(serviceNo: String, operator: BusOperator) {
+        self.serviceNo = serviceNo
+        self.operator = `operator`
+    }
+    
     enum CodingKeys: String, CodingKey {
         case serviceNo = "ServiceNo"
         case `operator` = "Operator"

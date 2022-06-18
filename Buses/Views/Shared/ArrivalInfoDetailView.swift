@@ -9,8 +9,12 @@ import SwiftUI
 
 struct ArrivalInfoDetailView: View {
     
-    var busStop: BusStop
-    var bus: BusService
+    @State var busStop: BusStop
+    @State var bus: BusService
+    @State var isInitialDataLoading: Bool = true
+    @State var usesNickname: Bool = false
+    @EnvironmentObject var busStopList: BusStopList
+    let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
     var body: some View {
         List {
@@ -27,16 +31,24 @@ struct ArrivalInfoDetailView: View {
             }
         }
         .listStyle(.insetGrouped)
-        .refreshable {
-            reloadBusArrivals()
+        .onAppear {
+            if !isInitialDataLoading {
+                reloadArrivalTimes()
+            }
         }
+        .refreshable {
+            reloadArrivalTimes()
+        }
+        .onReceive(timer, perform: { _ in
+            reloadArrivalTimes()
+        })
         .navigationTitle(bus.serviceNo)
         .toolbar {
             ToolbarItem(placement: .principal) {
                 VStack {
                     Text(bus.serviceNo)
                         .font(.system(size: 16.0, weight: .bold))
-                    Text(busStop.description ?? "Shared.BusStop.Description.None")
+                    Text(busStop.description ?? localized("Shared.BusStop.Description.None"))
                         .font(.system(size: 12.0, weight: .regular))
                         .foregroundColor(.secondary)
                 }
@@ -59,8 +71,23 @@ struct ArrivalInfoDetailView: View {
         }
     }
     
-    func reloadBusArrivals() {
-        
+    func reloadArrivalTimes() {
+        Task {
+            let busStop = try await fetchBusArrivals(for: busStop.code)
+            if usesNickname {
+                busStop.description = self.busStop.description
+            } else {
+                busStop.description = busStopList.busStops.first(where: { busStopInBusStopList in
+                    busStopInBusStopList.code == busStop.code
+                })?.description ?? nil
+            }
+            let bus = busStop.arrivals?.first(where: { bus in
+                bus.serviceNo == self.bus.serviceNo
+            }) ?? BusService(serviceNo: bus.serviceNo, operator: bus.operator)
+            self.busStop = busStop
+            self.bus = bus
+            isInitialDataLoading = false
+        }
     }
     
 }

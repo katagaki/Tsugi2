@@ -12,7 +12,7 @@ struct BusStopDetailView: View {
     
     var busStop: BusStop
     @State var busArrivals: [BusService] = []
-    @State var isInitialDataLoaded: Bool = true
+    @State var isInitialDataLoading: Bool = true
     @EnvironmentObject var displayedCoordinates: CoordinateList
     @EnvironmentObject var favorites: FavoriteList
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
@@ -32,7 +32,7 @@ struct BusStopDetailView: View {
             }
             Section {
                 if busArrivals.count == 0 {
-                    if isInitialDataLoaded {
+                    if isInitialDataLoading {
                         HStack(alignment: .center, spacing: 16.0) {
                             Spacer()
                             ProgressView()
@@ -111,16 +111,16 @@ struct BusStopDetailView: View {
         }
         .onAppear {
             displayedCoordinates.addCoordinate(from: CLLocationCoordinate2D(latitude: busStop.latitude ?? 1.29516, longitude: busStop.longitude ?? 103.85892))
-            if isInitialDataLoaded {
+            if isInitialDataLoading {
                 reloadBusArrivals()
             }
         }
         .onReceive(timer, perform: { _ in
             reloadBusArrivals()
         })
-        .onDisappear {
-            timer.upstream.connect().cancel()
-        }
+//        .onDisappear {
+//            timer.upstream.connect().cancel()
+//        }
         .navigationTitle(busStop.description ?? "Shared.BusStop.Description.None")
         .toolbar {
             ToolbarItem(placement: .principal) {
@@ -149,7 +149,7 @@ struct BusStopDetailView: View {
                         }
                     }
                     Button {
-                        favorites.addFavoriteLocation(busStopCode: busStop.code, usesLiveBusStopData: true)
+                        favorites.addFavoriteLocation(busStop: busStop, usesLiveBusStopData: true)
                         Task {
                             await favorites.saveChanges()
                         }
@@ -172,7 +172,7 @@ struct BusStopDetailView: View {
             busArrivals = (busStopsFetched.arrivals ?? []).sorted(by: { a, b in
                 intFrom(a.serviceNo) ?? 9999 < intFrom(b.serviceNo) ?? 9999
             })
-            isInitialDataLoaded = false
+            isInitialDataLoading = false
         }
     }
     

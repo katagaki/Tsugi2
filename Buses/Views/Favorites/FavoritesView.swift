@@ -30,6 +30,9 @@ struct FavoritesView: View {
                 .onDelete(perform: delete)
             }
             .listStyle(.insetGrouped)
+            .refreshable {
+                favorites.reloadData()
+            }
             .navigationTitle("ViewTitle.Favorites")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

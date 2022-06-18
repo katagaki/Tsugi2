@@ -30,6 +30,11 @@ class BusStop: Codable, Hashable, ObservableObject, Identifiable {
         longitude = 103.83275
     }
     
+    init(code: String, description: String?) {
+        self.code = code
+        self.description = description
+    }
+    
     enum CodingKeys: String, CodingKey {
         case code = "BusStopCode"
         case metadata = "odata.metadata"

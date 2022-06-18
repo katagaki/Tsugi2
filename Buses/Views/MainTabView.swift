@@ -70,9 +70,6 @@ struct MainTabView: View {
                 .shadow(radius: 2.5)
                 .zIndex(1)
             }
-            .onChange(of: isBusStopListLoaded, perform: { newValue in
-                reloadBusStops()
-            })
             .onAppear {
                 if isInitialLoad {
                     Task {

@@ -72,11 +72,11 @@ class FavoriteList: ObservableObject {
         reloadData()
     }
     
-    func addFavoriteLocation(busStopCode: String = "", nickname: String = "", usesLiveBusStopData: Bool = false, containing busServices: [BusService] = []) {
+    func addFavoriteLocation(busStop: BusStop, nickname: String = "", usesLiveBusStopData: Bool = false, containing busServices: [BusService] = []) {
         let favoriteLocationEntity = FavoriteLocation.entity()
         let favoriteLocation = FavoriteLocation(entity: favoriteLocationEntity, insertInto: context)
-        favoriteLocation.busStopCode = busStopCode
-        favoriteLocation.nickname = (nickname == "" ? busStopCode : nickname)
+        favoriteLocation.busStopCode = busStop.code
+        favoriteLocation.nickname = (nickname == "" ? busStop.description : nickname)
         favoriteLocation.usesLiveBusStopData = usesLiveBusStopData
         for busService in busServices {
             let favoriteBusServiceEntity = FavoriteBusService.entity()
