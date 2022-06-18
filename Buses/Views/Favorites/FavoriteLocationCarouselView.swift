@@ -55,7 +55,9 @@ struct FavoriteLocationCarouselView: View {
         }.onAppear {
             if favoriteLocation.usesLiveBusStopData {
                 Task {
-                    busServices = try await fetchBusArrivals(for: favoriteLocation.busStopCode!).arrivals ?? []
+                    busServices = (try await fetchBusArrivals(for: favoriteLocation.busStopCode!).arrivals ?? []).sorted(by: { a, b in
+                        intFrom(a.serviceNo) ?? 9999 < intFrom(b.serviceNo) ?? 9999
+                    })
                 }
             }
         }
