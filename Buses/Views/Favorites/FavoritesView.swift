@@ -27,6 +27,7 @@ struct FavoritesView: View {
                             .textCase(nil)
                     }
                 }
+                .onMove(perform: move)
                 .onDelete(perform: delete)
             }
             .listStyle(.insetGrouped)
@@ -44,10 +45,26 @@ struct FavoritesView: View {
                     Spacer()
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+                    HStack(alignment: .center, spacing: 8.0) {
+                        EditButton()
+                        Button {
+                            // TODO: Show add location alert
+                        } label: {
+                            Image(systemName: "rectangle.stack.fill.badge.plus")
+                                .font(.system(size: 14.0, weight: .regular))
+                        }
+                        .buttonStyle(.bordered)
+                        .mask {
+                            Circle()
+                        }
+                    }
                 }
             }
         }
+    }
+    
+    func move(from source: IndexSet, to destination: Int) {
+        // TODO: Reorder favorites
     }
     
     func delete(at offsets: IndexSet) {
