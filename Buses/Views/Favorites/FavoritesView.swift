@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FavoritesView: View {
     
-    var busStops: [BusStop] = []
+    @State var isEditing: Bool = false
     @EnvironmentObject var favorites: FavoriteList
     
     var body: some View {
@@ -27,6 +27,7 @@ struct FavoritesView: View {
                             .textCase(nil)
                     }
                 }
+                .onDelete(perform: delete)
             }
             .listStyle(.insetGrouped)
             .navigationTitle("ViewTitle.Favorites")
@@ -40,14 +41,15 @@ struct FavoritesView: View {
                     Spacer()
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        // TODO: Toggle editing
-                    } label: {
-                        Text("Favorites.Edit")
-                    }
-
+                    EditButton()
                 }
             }
+        }
+    }
+    
+    func delete(at offsets: IndexSet) {
+        Task {
+            await favorites.deleteLocation(at: offsets)
         }
     }
     
@@ -55,27 +57,8 @@ struct FavoritesView: View {
 
 struct FavoritesView_Previews: PreviewProvider {
     
-    static var sampleBusStops: [BusStop] = loadPreviewData()
-    
     static var previews: some View {
-        FavoritesView(busStops: sampleBusStops)
-            .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-        FavoritesView(busStops: sampleBusStops)
-            .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro Max"))
-        FavoritesView(busStops: sampleBusStops)
-            .previewDevice(PreviewDevice(rawValue: "iPhone SE (3rd generation)"))
+        FavoritesView()
     }
     
-    static private func loadPreviewData() -> [BusStop] {
-        if let sampleDataPath1 = Bundle.main.path(forResource: "BusArrivalv2-1", ofType: "json"),
-           let sampleDataPath2 = Bundle.main.path(forResource: "BusArrivalv2-2", ofType: "json"),
-           let sampleDataPath3 = Bundle.main.path(forResource: "BusArrivalv2-3", ofType: "json") {
-            let sampleBusStop1: BusStop? = decode(from: sampleDataPath1)
-            let sampleBusStop2: BusStop? = decode(from: sampleDataPath2)
-            let sampleBusStop3: BusStop? = decode(from: sampleDataPath3)
-            return [sampleBusStop1!, sampleBusStop2!, sampleBusStop3!]
-        } else {
-            return []
-        }
-    }
 }

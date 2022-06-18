@@ -40,7 +40,6 @@ struct MainTabView: View {
                             .frame(width: metrics.size.width, height: metrics.size.height * 0.60 - 12.0)
                     }
                     .frame(width: metrics.size.width, height: metrics.size.height)
-//                    .edgesIgnoringSafeArea(.all)
                     .onAppear {
                         locationManager.delegate = locationManagerDelegate
                         locationManager.startUpdatingLocation()
@@ -68,7 +67,7 @@ struct MainTabView: View {
                 .mask {
                     RoundedCornersShape(corners: [.topLeft, .topRight], radius: 6.0)
                 }
-                .shadow(radius: 5.0)
+                .shadow(radius: 2.5)
                 .zIndex(1)
             }
             .onChange(of: isBusStopListLoaded, perform: { newValue in
@@ -76,10 +75,11 @@ struct MainTabView: View {
             })
             .onAppear {
                 if isInitialLoad {
-                    // TODO: Delete all favorite data when app loads for now, will be removed when Add to Favorites alert is implemented
-                    favorites.deleteAllData("FavoriteLocation")
-                    reloadBusStops(showsProgress: (true))
-                    isInitialLoad = false
+                    Task {
+//                        await favorites.deleteAllData("FavoriteLocation")
+                        reloadBusStops(showsProgress: (true))
+                        isInitialLoad = false
+                    }
                 }
             }
             .overlay {
@@ -96,7 +96,7 @@ struct MainTabView: View {
                         .mask {
                             RoundedRectangle(cornerRadius: 8.0)
                         }
-                        .shadow(radius: 5.0)
+                        .shadow(radius: 2.5)
                         .transition(AnyTransition.move(edge: .top).combined(with: .opacity))
                     }
                     Color.clear

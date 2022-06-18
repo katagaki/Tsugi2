@@ -10,19 +10,18 @@ import SwiftUI
 
 class FavoriteList: ObservableObject {
     
-    let context = FavoritesManager.shared.backgroundContext()
+    private let context = FavoritesManager.shared.mainContext
+    private let fetchRequestForLocations: NSFetchRequest<FavoriteLocation> = FavoriteLocation.fetchRequest()
+    private let fetchRequestForBusServices: NSFetchRequest<FavoriteBusService> = FavoriteBusService.fetchRequest()
     
     @Published var favoriteLocations: [FavoriteLocation]
     @Published var favoriteBusServices: [FavoriteBusService]
     
-    private let mainContext = FavoritesManager.shared.mainContext
-    private let fetchRequestForLocations: NSFetchRequest<FavoriteLocation> = FavoriteLocation.fetchRequest()
-    private let fetchRequestForBusServices: NSFetchRequest<FavoriteBusService> = FavoriteBusService.fetchRequest()
     
     init() {
         do {
-            favoriteLocations = try mainContext.fetch(fetchRequestForLocations)
-            favoriteBusServices = try mainContext.fetch(fetchRequestForBusServices)
+            favoriteLocations = try context.fetch(fetchRequestForLocations)
+            favoriteBusServices = try context.fetch(fetchRequestForBusServices)
         }
         catch {
             favoriteLocations = []
@@ -33,8 +32,8 @@ class FavoriteList: ObservableObject {
     func reloadData() {
         DispatchQueue.main.async { [self] in
             do {
-                favoriteLocations = try mainContext.fetch(fetchRequestForLocations)
-                favoriteBusServices = try mainContext.fetch(fetchRequestForBusServices)
+                favoriteLocations = try context.fetch(fetchRequestForLocations)
+                favoriteBusServices = try context.fetch(fetchRequestForBusServices)
             }
             catch {
                 favoriteLocations = []
@@ -43,15 +42,33 @@ class FavoriteList: ObservableObject {
         }
     }
     
-    func deleteAllData(_ entity:String) {
+    func deleteLocation(at offsets: IndexSet) async {
         do {
-            let busServices = try mainContext.fetch(fetchRequestForBusServices)
-            let locations = try mainContext.fetch(fetchRequestForLocations)
-            for location in locations {
-                mainContext.delete(location)
+            let locations = try context.fetch(fetchRequestForLocations)
+            try await context.perform { [self] in
+                for offset in offsets {
+                    context.delete(locations[offset])
+                }
+                try context.save()
             }
-            for busService in busServices {
-                mainContext.delete(busService)
+        } catch let error {
+            log(error.localizedDescription)
+        }
+        reloadData()
+    }
+    
+    func deleteAllData(_ entity:String) async {
+        do {
+            let busServices = try context.fetch(fetchRequestForBusServices)
+            let locations = try context.fetch(fetchRequestForLocations)
+            try await context.perform { [self] in
+                for location in locations {
+                    context.delete(location)
+                }
+                for busService in busServices {
+                    context.delete(busService)
+                }
+                try context.save()
             }
         } catch let error {
             log(error.localizedDescription)
