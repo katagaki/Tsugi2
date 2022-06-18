@@ -10,38 +10,24 @@ import SwiftUI
 struct FavoritesView: View {
     
     var busStops: [BusStop] = []
+    @EnvironmentObject var favorites: FavoriteList
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(busStops, id: \.code) { stop in
+                ForEach(favorites.favoriteLocations, id: \.busStopCode) { stop in
                     Section {
-                        ScrollView(.horizontal) {
-                            LazyHStack(spacing: 16.0) {
-                                ForEach(stop.arrivals ?? [], id: \.serviceNo) { bus in
-                                    VStack(alignment: .center, spacing: 6.0) {
-                                        BusNumberPlateView(serviceNo: bus.serviceNo)
-                                            .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: -8.0, trailing: 0.0))
-                                        Text(arrivalTimeTo(date: bus.nextBus?.estimatedArrivalTime()))
-                                            .font(.body)
-                                            .lineLimit(1)
-                                        Text(arrivalTimeTo(date: bus.nextBus2?.estimatedArrivalTime()))
-                                            .font(.body)
-                                            .foregroundColor(.secondary)
-                                            .lineLimit(1)
-                                    }
-                                    .frame(minWidth: 88.0, maxWidth: 88.0, minHeight: 0, maxHeight: .infinity, alignment: .center)
-                                }
-                            }
-                            .padding(EdgeInsets(top: 0.0, leading: 16.0, bottom: 8.0, trailing: 16.0))
-                        }
+                        FavoriteLocationCarouselView(favoriteLocation: stop)
                         .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
                     } header: {
-                        Text(stop.code)
+                        Text((stop.nickname ?? stop.busStopCode!)) // TODO: Get bus stop name using API
                             .font(.body)
                             .fontWeight(.bold)
                             .foregroundColor(.primary)
                             .textCase(nil)
+                    }
+                    .onAppear {
+                        debugPrint("Found favorite")
                     }
                 }
             }
@@ -59,6 +45,7 @@ struct FavoritesView: View {
             }
         }
     }
+    
 }
 
 struct FavoritesView_Previews: PreviewProvider {

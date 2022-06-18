@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0011E1F285D75FE00742687 /* Favorites.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0011E1D285D75FE00742687 /* Favorites.xcdatamodeld */; };
+		D0011E21285D770000742687 /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0011E20285D770000742687 /* FavoritesManager.swift */; };
+		D0011E23285D78D300742687 /* FavoriteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0011E22285D78D300742687 /* FavoriteList.swift */; };
+		D0011E25285D7D6B00742687 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0011E24285D7D6A00742687 /* Location.swift */; };
+		D0011E29285D828800742687 /* FavoriteLocationCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0011E28285D828800742687 /* FavoriteLocationCarouselView.swift */; };
 		E407BC96285818490054893A /* MoreAttributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E407BC95285818490054893A /* MoreAttributionView.swift */; };
 		E407BC98285818A70054893A /* MoreStartupTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E407BC97285818A70054893A /* MoreStartupTabView.swift */; };
 		E41C1B98285706AB003F1BFB /* RoundedCornersShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B97285706AB003F1BFB /* RoundedCornersShape.swift */; };
-		E41C1B9A285706BE003F1BFB /* DisplayedCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B99285706BE003F1BFB /* DisplayedCoordinate.swift */; };
-		E41C1B9C28570CA1003F1BFB /* DisplayedCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B9B28570CA1003F1BFB /* DisplayedCoordinates.swift */; };
+		E41C1B9A285706BE003F1BFB /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B99285706BE003F1BFB /* Coordinate.swift */; };
+		E41C1B9C28570CA1003F1BFB /* CoordinateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B9B28570CA1003F1BFB /* CoordinateList.swift */; };
 		E41C1B9E285806A4003F1BFB /* BusNumberPlateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B9D285806A4003F1BFB /* BusNumberPlateView.swift */; };
 		E42C823C2856C8C900D64DF9 /* Purple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E42C82382856C8C900D64DF9 /* Purple@2x.png */; };
 		E42C823D2856C8C900D64DF9 /* Purple@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E42C82392856C8C900D64DF9 /* Purple@3x.png */; };
@@ -70,11 +75,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D0011E1E285D75FE00742687 /* Favorites.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Favorites.xcdatamodel; sourceTree = "<group>"; };
+		D0011E20285D770000742687 /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
+		D0011E22285D78D300742687 /* FavoriteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteList.swift; sourceTree = "<group>"; };
+		D0011E24285D7D6A00742687 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		D0011E28285D828800742687 /* FavoriteLocationCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteLocationCarouselView.swift; sourceTree = "<group>"; };
 		E407BC95285818490054893A /* MoreAttributionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreAttributionView.swift; sourceTree = "<group>"; };
 		E407BC97285818A70054893A /* MoreStartupTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreStartupTabView.swift; sourceTree = "<group>"; };
 		E41C1B97285706AB003F1BFB /* RoundedCornersShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornersShape.swift; sourceTree = "<group>"; };
-		E41C1B99285706BE003F1BFB /* DisplayedCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayedCoordinate.swift; sourceTree = "<group>"; };
-		E41C1B9B28570CA1003F1BFB /* DisplayedCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayedCoordinates.swift; sourceTree = "<group>"; };
+		E41C1B99285706BE003F1BFB /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		E41C1B9B28570CA1003F1BFB /* CoordinateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateList.swift; sourceTree = "<group>"; };
 		E41C1B9D285806A4003F1BFB /* BusNumberPlateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusNumberPlateView.swift; sourceTree = "<group>"; };
 		E42C82382856C8C900D64DF9 /* Purple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Purple@2x.png"; sourceTree = "<group>"; };
 		E42C82392856C8C900D64DF9 /* Purple@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Purple@3x.png"; sourceTree = "<group>"; };
@@ -139,11 +149,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D0011E1C285D75CB00742687 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D0011E1D285D75FE00742687 /* Favorites.xcdatamodeld */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		E41C1B9628570692003F1BFB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				E41C1B9B28570CA1003F1BFB /* DisplayedCoordinates.swift */,
-				E41C1B99285706BE003F1BFB /* DisplayedCoordinate.swift */,
+				E4FFCAC42801627700DCA0EC /* BusStop.swift */,
+				E4319EBB280437BA00D21531 /* BusStopList.swift */,
+				E41C1B99285706BE003F1BFB /* Coordinate.swift */,
+				E41C1B9B28570CA1003F1BFB /* CoordinateList.swift */,
+				D0011E20285D770000742687 /* FavoritesManager.swift */,
+				D0011E22285D78D300742687 /* FavoriteList.swift */,
+				D0011E24285D7D6A00742687 /* Location.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -211,6 +234,7 @@
 				E4FFCAC32801626200DCA0EC /* Structs */,
 				E41C1B9628570692003F1BFB /* Classes */,
 				E4FFCAD92801B22700DCA0EC /* Utilities */,
+				D0011E1C285D75CB00742687 /* Data */,
 				E4FFCACC28018B1A00DCA0EC /* Sample Data */,
 				E4319EB5280432C300D21531 /* APIKeys.plist */,
 				E4319EB7280433B000D21531 /* APIKeys-Sample.plist */,
@@ -261,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				E4B7FFF22854693B0019F71A /* FavoritesView.swift */,
+				D0011E28285D828800742687 /* FavoriteLocationCarouselView.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -309,8 +334,6 @@
 		E4FFCAC32801626200DCA0EC /* Structs */ = {
 			isa = PBXGroup;
 			children = (
-				E4319EBB280437BA00D21531 /* BusStopList.swift */,
-				E4FFCAC42801627700DCA0EC /* BusStop.swift */,
 				E4FFCAC62801627D00DCA0EC /* BusService.swift */,
 				E4FFCAC82801631800DCA0EC /* BusArrivalInfo.swift */,
 				E41C1B97285706AB003F1BFB /* RoundedCornersShape.swift */,
@@ -428,7 +451,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E41C1B9C28570CA1003F1BFB /* DisplayedCoordinates.swift in Sources */,
+				E41C1B9C28570CA1003F1BFB /* CoordinateList.swift in Sources */,
+				D0011E25285D7D6B00742687 /* Location.swift in Sources */,
 				E4B7FFFC285620530019F71A /* DirectoryMRTMapView.swift in Sources */,
 				E4BD94AB2859C87300030C7C /* ArrivalInfoCardView.swift in Sources */,
 				E4B7FFE828544EBC0019F71A /* DirectoryView.swift in Sources */,
@@ -445,18 +469,22 @@
 				E4B7FFF32854693B0019F71A /* FavoritesView.swift in Sources */,
 				E4B700072856406D0019F71A /* MoreNotificationsView.swift in Sources */,
 				E4B7FFFA28561DBF0019F71A /* BusStopDetailView.swift in Sources */,
-				E41C1B9A285706BE003F1BFB /* DisplayedCoordinate.swift in Sources */,
+				E41C1B9A285706BE003F1BFB /* Coordinate.swift in Sources */,
 				E4B7FFFF285635470019F71A /* NearbyView.swift in Sources */,
 				E4BD94A92859C3E900030C7C /* ArrivalInfoDetailView.swift in Sources */,
 				E476BF1B280869A500B8524B /* DataFetchers.swift in Sources */,
 				E4FFCAC92801631800DCA0EC /* BusArrivalInfo.swift in Sources */,
+				D0011E21285D770000742687 /* FavoritesManager.swift in Sources */,
 				E4FFCADB2801B23300DCA0EC /* DateUtilities.swift in Sources */,
 				E4B70003285637450019F71A /* MainTabView.swift in Sources */,
 				E4319EBC280437BA00D21531 /* BusStopList.swift in Sources */,
 				E42C824E2856D4FA00D64DF9 /* MoreDonateView.swift in Sources */,
 				E407BC98285818A70054893A /* MoreStartupTabView.swift in Sources */,
+				D0011E1F285D75FE00742687 /* Favorites.xcdatamodeld in Sources */,
+				D0011E23285D78D300742687 /* FavoriteList.swift in Sources */,
 				E476BF1E28086A2D00B8524B /* APIKeyHandler.swift in Sources */,
 				E407BC96285818490054893A /* MoreAttributionView.swift in Sources */,
+				D0011E29285D828800742687 /* FavoriteLocationCarouselView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,6 +724,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D0011E1D285D75FE00742687 /* Favorites.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D0011E1E285D75FE00742687 /* Favorites.xcdatamodel */,
+			);
+			currentVersion = D0011E1E285D75FE00742687 /* Favorites.xcdatamodel */;
+			path = Favorites.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E4406A6A27EF13E300819CDC /* Project object */;
 }

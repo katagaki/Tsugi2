@@ -17,6 +17,7 @@ struct TsugiApp: App {
                 }
                 .environmentObject(BusStopList())
                 .environmentObject(CoordinateList())
+                .environmentObject(FavoriteList())
         }
     }
 }

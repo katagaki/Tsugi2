@@ -29,6 +29,9 @@ struct BusService: Codable, Hashable {
     private var _pmOffpeakFreq: String?
     var loopDescription: String?
     
+    // Favorites data model
+    var busStopCode: String? = ""
+    
     enum CodingKeys: String, CodingKey {
         case serviceNo = "ServiceNo"
         case `operator` = "Operator"

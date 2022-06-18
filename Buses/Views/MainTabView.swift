@@ -22,6 +22,8 @@ struct MainTabView: View {
     @State var updatedDate: String
     @State var updatedTime: String
     
+    @EnvironmentObject var favorites: FavoriteList
+    
     var body: some View {
         GeometryReader { metrics in
             ZStack(alignment: .bottom) {
@@ -45,14 +47,14 @@ struct MainTabView: View {
                     }
                 TabView {
                     // TODO: To implement
-                    NearbyView()
-                        .tabItem {
-                            Label("TabTitle.Nearby", systemImage: "map.fill")
-                        }
-//                    FavoritesView()
+//                    NearbyView()
 //                        .tabItem {
-//                            Label("TabTitle.Favorites", systemImage: "star.fill")
+//                            Label("TabTitle.Nearby", systemImage: "map.fill")
 //                        }
+                    FavoritesView()
+                        .tabItem {
+                            Label("TabTitle.Favorites", systemImage: "star.fill")
+                        }
                     DirectoryView(updatedDate: $updatedDate, updatedTime: $updatedTime)
                         .tabItem {
                             Label("TabTitle.Directory", systemImage: "book.closed.fill")
@@ -74,6 +76,8 @@ struct MainTabView: View {
             })
             .onAppear {
                 if isInitialLoad {
+                    // TODO: Delete all favorite data when app loads for now, will be removed when Add to Favorites alert is implemented
+                    favorites.deleteAllData("FavoriteLocation")
                     reloadBusStops(showsProgress: (true))
                     isInitialLoad = false
                 }

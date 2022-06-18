@@ -14,6 +14,7 @@ struct BusStopDetailView: View {
     @State var busArrivals: [BusService] = []
     @State var isInitialDataLoaded: Bool = true
     @EnvironmentObject var displayedCoordinates: CoordinateList
+    @EnvironmentObject var favorites: FavoriteList
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
     var body: some View {
@@ -148,7 +149,9 @@ struct BusStopDetailView: View {
                         }
                     }
                     Button {
-                        // TODO: Add to favorites
+                        Task {
+                            await favorites.addFavoriteLocation(busStopCode: busStop.code, usesLiveBusStopData: true)
+                        }
                     } label: {
                         Image(systemName: "star.fill")
                             .font(.system(size: 14.0, weight: .regular))
@@ -157,7 +160,6 @@ struct BusStopDetailView: View {
                     .mask {
                         Circle()
                     }
-                    .disabled(true) // TODO: To implement
                 }
             }
         }
