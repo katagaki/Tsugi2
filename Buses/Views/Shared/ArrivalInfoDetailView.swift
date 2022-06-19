@@ -43,6 +43,7 @@ struct ArrivalInfoDetailView: View {
             reloadArrivalTimes()
         })
         .navigationTitle(bus.serviceNo)
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .principal) {
                 VStack {
