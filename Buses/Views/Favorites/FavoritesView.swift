@@ -26,25 +26,29 @@ struct FavoritesView: View {
                                 .fontWeight(.bold)
                                 .foregroundColor(.primary)
                                 .textCase(nil)
-                            Button {
-                                // TODO: Edit
-                            } label: {
-                                Image(systemName: "pencil")
+                            if isEditing == .active {
+                                Button {
+                                    // TODO: Edit
+                                } label: {
+                                    Image(systemName: "pencil")
+                                }
+                                .disabled(true)
                             }
-                            .disabled(true)
                             Spacer()
-                            Button {
-                                // TODO: Move up
-                            } label: {
-                                Image(systemName: "chevron.up")
+                            if isEditing == .active {
+                                Button {
+                                    // TODO: Move up
+                                } label: {
+                                    Image(systemName: "chevron.up")
+                                }
+                                .disabled(true)
+                                Button {
+                                    // TODO: Move down
+                                } label: {
+                                    Image(systemName: "chevron.down")
+                                }
+                                .disabled(true)
                             }
-                            .disabled(true)
-                            Button {
-                                // TODO: Move down
-                            } label: {
-                                Image(systemName: "chevron.down")
-                            }
-                            .disabled(true)
                         }
                     }
                 }
