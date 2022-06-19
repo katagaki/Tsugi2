@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FavoritesView: View {
     
-    @State var isEditing: Bool = false
+    @State var isEditing: EditMode = .inactive
     @EnvironmentObject var favorites: FavoriteList
     
     var body: some View {
@@ -18,7 +18,7 @@ struct FavoritesView: View {
                 ForEach(favorites.favoriteLocations, id: \.busStopCode) { stop in
                     Section {
                         FavoriteLocationCarouselView(favoriteLocation: stop)
-                        .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
+                            .listRowInsets(EdgeInsets(top: 16.0, leading: (isEditing == .active ? 16.0 : 0.0), bottom: 16.0, trailing: 0.0))
                     } header: {
                         HStack {
                             Text((stop.nickname ?? stop.busStopCode!)) // TODO: Get bus stop name using API
@@ -81,6 +81,7 @@ struct FavoritesView: View {
                     }
                 }
             }
+            .environment(\.editMode, self.$isEditing)
         }
     }
     
