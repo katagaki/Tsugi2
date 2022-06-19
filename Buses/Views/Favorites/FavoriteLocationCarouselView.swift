@@ -16,7 +16,7 @@ struct FavoriteLocationCarouselView: View {
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        ScrollView(.horizontal) {
+        ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(spacing: 16.0) {
                 if favoriteLocation.usesLiveBusStopData {
                     ForEach(busServices, id: \.serviceNo) { bus in

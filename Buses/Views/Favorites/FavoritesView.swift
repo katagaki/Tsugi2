@@ -20,14 +20,34 @@ struct FavoritesView: View {
                         FavoriteLocationCarouselView(favoriteLocation: stop)
                         .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
                     } header: {
-                        Text((stop.nickname ?? stop.busStopCode!)) // TODO: Get bus stop name using API
-                            .font(.body)
-                            .fontWeight(.bold)
-                            .foregroundColor(.primary)
-                            .textCase(nil)
+                        HStack {
+                            Text((stop.nickname ?? stop.busStopCode!)) // TODO: Get bus stop name using API
+                                .font(.body)
+                                .fontWeight(.bold)
+                                .foregroundColor(.primary)
+                                .textCase(nil)
+                            Button {
+                                // TODO: Edit
+                            } label: {
+                                Image(systemName: "pencil")
+                            }
+                            .disabled(true)
+                            Spacer()
+                            Button {
+                                // TODO: Move up
+                            } label: {
+                                Image(systemName: "chevron.up")
+                            }
+                            .disabled(true)
+                            Button {
+                                // TODO: Move down
+                            } label: {
+                                Image(systemName: "chevron.down")
+                            }
+                            .disabled(true)
+                        }
                     }
                 }
-                .onMove(perform: move)
                 .onDelete(perform: delete)
             }
             .listStyle(.insetGrouped)
@@ -57,14 +77,11 @@ struct FavoritesView: View {
                         .mask {
                             Circle()
                         }
+                        .disabled(true) // TODO: To implement
                     }
                 }
             }
         }
-    }
-    
-    func move(from source: IndexSet, to destination: Int) {
-        // TODO: Reorder favorites
     }
     
     func delete(at offsets: IndexSet) {
