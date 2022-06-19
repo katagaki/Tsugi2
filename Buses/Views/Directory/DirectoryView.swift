@@ -5,6 +5,7 @@
 //  Created by 堅書 on 2022/06/11.
 //
 
+import CoreLocation
 import SwiftUI
 
 struct DirectoryView: View {
@@ -25,7 +26,7 @@ struct DirectoryView: View {
                     Section {
                         ForEach(searchResults, id: \.code) { stop in
                             NavigationLink {
-                                BusStopDetailView(busStop: stop)
+                                BusStopDetailView(busStop: stop, displayedCoordinate: CLLocationCoordinate2D(latitude: stop.latitude ?? 1.29516, longitude: stop.longitude ?? 103.85892))
                             } label: {
                                 HStack(alignment: .center, spacing: 16.0) {
                                     Image("ListIcon.BusStop")
@@ -68,7 +69,7 @@ struct DirectoryView: View {
                     Section {
                         ForEach(busStopList.busStops, id: \.code) { stop in
                             NavigationLink {
-                                BusStopDetailView(busStop: stop)
+                                BusStopDetailView(busStop: stop, displayedCoordinate: CLLocationCoordinate2D(latitude: stop.latitude ?? 1.29516, longitude: stop.longitude ?? 103.85892))
                             } label: {
                                 HStack(alignment: .center, spacing: 16.0) {
                                     Image("ListIcon.BusStop")
