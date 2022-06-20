@@ -11,6 +11,8 @@ import SwiftUI
 
 struct MainTabView: View {
     
+    @State var defaultTab: Int = 0
+    
     @State var locationManager: CLLocationManager = CLLocationManager()
     @StateObject var locationManagerDelegate: LocationDelegate = LocationDelegate()
     @State var userTrackingMode: MapUserTrackingMode = .follow
@@ -44,25 +46,33 @@ struct MainTabView: View {
                         locationManager.delegate = locationManagerDelegate
                         locationManager.startUpdatingLocation()
                     }
-                TabView {
+                TabView(selection: $defaultTab) {
                     // TODO: To implement
-//                    NearbyView()
-//                        .tabItem {
-//                            Label("TabTitle.Nearby", systemImage: "map.fill")
-//                        }
+                    NearbyView()
+                        .tabItem {
+                            Label("TabTitle.Nearby", systemImage: "location.circle.fill")
+                        }
                     FavoritesView()
                         .tabItem {
-                            Label("TabTitle.Favorites", systemImage: "star.fill")
+                            Label("TabTitle.Favorites", systemImage: "rectangle.stack.fill")
                         }
+                        .tag(0)
+                    NavigationView() {
+                        
+                    }
+                    .tabItem {
+                        Label("TabTitle.Notifications", systemImage: "bell.fill")
+                    }
                     DirectoryView(updatedDate: $updatedDate, updatedTime: $updatedTime)
                         .tabItem {
-                            Label("TabTitle.Directory", systemImage: "book.closed.fill")
+                            Label("TabTitle.Directory", systemImage: "magnifyingglass")
                         }
                     MoreView()
                         .tabItem {
                             Label("TabTitle.More", systemImage: "ellipsis")
                         }
                 }
+                
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: metrics.size.height * 0.60, maxHeight: metrics.size.height * 0.60)
                 .mask {
                     RoundedCornersShape(corners: [.topLeft, .topRight], radius: 6.0)

@@ -30,6 +30,9 @@ struct BusStopDetailView: View {
                         .font(.body.monospaced())
                         .foregroundColor(.secondary)
                 }
+                .listRowBackground(Color.clear)
+            } header: {
+                Text("")
             }
             Section {
                 if busArrivals.count == 0 {
@@ -141,7 +144,7 @@ struct BusStopDetailView: View {
                     } label: {
                         Button {
                         } label: {
-                            Image(systemName: "square.fill.on.square.fill")
+                            Image(systemName: "square.on.square")
                                 .font(.system(size: 14.0, weight: .regular))
                         }
                         .buttonStyle(.bordered)
@@ -155,8 +158,8 @@ struct BusStopDetailView: View {
                             await favorites.saveChanges()
                         }
                     } label: {
-                        Image(systemName: "star.fill")
-                            .font(.system(size: 14.0, weight: .regular))
+                        Image(systemName: "rectangle.stack.badge.plus")
+                            .font(.system(size: 12.5, weight: .regular))
                     }
                     .buttonStyle(.bordered)
                     .mask {

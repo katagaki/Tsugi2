@@ -8,14 +8,15 @@
 
 /* Tab Bar Item Titles */
 "TabTitle.Nearby" = "Nearby";
-"TabTitle.Favorites" = "Favorites";
-"TabTitle.Directory" = "Directory";
+"TabTitle.Favorites" = "Locations";
+"TabTitle.Directory" = "Search";
+"TabTitle.Notifications" = "Notifications";
 "TabTitle.More" = "More";
 
 /* Navigation Item Titles */
-"ViewTitle.Nearby" = "Nearby";
-"ViewTitle.Favorites" = "Favorites";
-"ViewTitle.Directory" = "Directory";
+"ViewTitle.Nearby" = "Nearby Bus Stops";
+"ViewTitle.Favorites" = "Saved Locations";
+"ViewTitle.Directory" = "Search Bus Stops";
 "ViewTitle.MRTMap" = "MRT System Map";
 "ViewTitle.More" = "More";
 "ViewTitle.More.StartupTab" = "Startup Tab";

@@ -9,13 +9,14 @@
 /* Tab Bar Item Titles */
 "TabTitle.Nearby" = "附近";
 "TabTitle.Favorites" = "收藏夹";
-"TabTitle.Directory" = "目录";
+"TabTitle.Directory" = "搜索";
+"TabTitle.Notifications" = "通知";
 "TabTitle.More" = "更多";
 
 /* Navigation Item Titles */
-"ViewTitle.Nearby" = "附近";
-"ViewTitle.Favorites" = "收藏夹";
-"ViewTitle.Directory" = "目录";
+"ViewTitle.Nearby" = "附近的巴士站";
+"ViewTitle.Favorites" = "地点收藏夹";
+"ViewTitle.Directory" = "搜索巴士站";
 "ViewTitle.MRTMap" = "MRT路线图";
 "ViewTitle.More" = "更多";
 "ViewTitle.More.StartupTab" = "默认标签页";

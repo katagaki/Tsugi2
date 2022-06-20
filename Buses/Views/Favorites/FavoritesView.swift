@@ -74,8 +74,8 @@ struct FavoritesView: View {
                         Button {
                             // TODO: Show add location alert
                         } label: {
-                            Image(systemName: "rectangle.stack.fill.badge.plus")
-                                .font(.system(size: 14.0, weight: .regular))
+                            Image(systemName: "rectangle.stack.badge.plus")
+                                .font(.system(size: 12.5, weight: .regular))
                         }
                         .buttonStyle(.bordered)
                         .mask {

@@ -7,15 +7,16 @@
 */
 
 /* Tab Bar Item Titles */
-"TabTitle.Nearby" = "近くを検索";
-"TabTitle.Favorites" = "お気に入り";
-"TabTitle.Directory" = "情報センター";
+"TabTitle.Nearby" = "近所";
+"TabTitle.Favorites" = "場所";
+"TabTitle.Directory" = "検索";
+"TabTitle.Notifications" = "通知";
 "TabTitle.More" = "その他";
 
 /* Navigation Item Titles */
-"ViewTitle.Nearby" = "近くを検索";
-"ViewTitle.Favorites" = "お気に入り";
-"ViewTitle.Directory" = "情報センター";
+"ViewTitle.Nearby" = "近くのバス停";
+"ViewTitle.Favorites" = "保存した場所";
+"ViewTitle.Directory" = "バス停を検索";
 "ViewTitle.MRTMap" = "MRT路線図";
 "ViewTitle.More" = "その他";
 "ViewTitle.More.StartupTab" = "デフォルトタブ";
