@@ -21,20 +21,6 @@ struct BusStopDetailView: View {
     var body: some View {
         List {
             Section {
-                HStack(alignment: .center, spacing: 16.0) {
-                    Image("ListIcon.Code")
-                    Text("Shared.BusStop.Code")
-                        .font(.body)
-                    Spacer()
-                    Text(busStop.code)
-                        .font(.body.monospaced())
-                        .foregroundColor(.secondary)
-                }
-                .listRowBackground(Color.clear)
-            } header: {
-                Text("")
-            }
-            Section {
                 if busArrivals.count == 0 {
                     if isInitialDataLoading {
                         HStack(alignment: .center, spacing: 16.0) {
@@ -109,7 +95,7 @@ struct BusStopDetailView: View {
                     .textCase(nil)
             }
         }
-        .listStyle(.insetGrouped)
+        .listStyle(.grouped)
         .refreshable {
             reloadBusArrivals()
         }

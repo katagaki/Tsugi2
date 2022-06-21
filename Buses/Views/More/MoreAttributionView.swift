@@ -26,6 +26,7 @@ struct MoreAttributionView: View {
             }
             .padding()
         }
+        .background(Color(UIColor.systemGroupedBackground))
         .navigationTitle("ViewTitle.More.Attribution")
     }
 }

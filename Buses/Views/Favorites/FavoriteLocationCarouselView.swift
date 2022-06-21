@@ -23,9 +23,9 @@ struct FavoriteLocationCarouselView: View {
                         NavigationLink {
                             ArrivalInfoDetailView(busStop: BusStop(code: favoriteLocation.busStopCode ?? bus.busStopCode!, description: favoriteLocation.nickname), bus: bus, usesNickname: true)
                         } label: {
-                            VStack(alignment: .center, spacing: 6.0) {
+                            VStack(alignment: .center, spacing: 4.0) {
                                 BusNumberPlateView(serviceNo: bus.serviceNo)
-                                    .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: -8.0, trailing: 0.0))
+                                    .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
                                 Text(arrivalTimeTo(date: bus.nextBus?.estimatedArrivalTime()))
                                     .font(.body)
                                     .foregroundColor(.primary)
@@ -44,7 +44,7 @@ struct FavoriteLocationCarouselView: View {
                         if bus.parentLocations?.contains(favoriteLocation) ?? false {
                             VStack(alignment: .center, spacing: 6.0) {
                                 BusNumberPlateView(serviceNo: bus.serviceNo ?? "")
-                                    .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: -8.0, trailing: 0.0))
+                                    .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
 //                                Text(arrivalTimeTo(date: bus.nextBus?.estimatedArrivalTime()))
 //                                    .font(.body)
 //                                    .lineLimit(1)
@@ -59,7 +59,7 @@ struct FavoriteLocationCarouselView: View {
                     }
                 }
             }
-            .padding(EdgeInsets(top: 0.0, leading: 16.0, bottom: 8.0, trailing: 16.0))
+            .padding(EdgeInsets(top: 0.0, leading: 16.0, bottom: 0.0, trailing: 16.0))
         }
         .onAppear {
             reloadArrivalTimes()

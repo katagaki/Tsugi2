@@ -30,7 +30,7 @@ struct ArrivalInfoDetailView: View {
                 }
             }
         }
-        .listStyle(.insetGrouped)
+        .listStyle(.grouped)
         .onAppear {
             if !isInitialDataLoading {
                 reloadArrivalTimes()
