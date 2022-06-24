@@ -24,16 +24,30 @@ struct FavoriteLocationCarouselView: View {
                             ArrivalInfoDetailView(busStop: BusStop(code: favoriteLocation.busStopCode ?? bus.busStopCode!, description: favoriteLocation.nickname), bus: bus, usesNickname: true)
                         } label: {
                             VStack(alignment: .center, spacing: 4.0) {
-                                BusNumberPlateView(serviceNo: bus.serviceNo)
-                                    .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
+                                // Fix layout issues in iOS 16
+                                if #available(iOS 16, *) {
+                                    BusNumberPlateView(serviceNo: bus.serviceNo)
+                                        .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: -8.0, trailing: 0.0))
+                                } else {
+                                    BusNumberPlateView(serviceNo: bus.serviceNo)
+                                }
                                 Text(arrivalTimeTo(date: bus.nextBus?.estimatedArrivalTime()))
                                     .font(.body)
                                     .foregroundColor(.primary)
                                     .lineLimit(1)
-                                Text(arrivalTimeTo(date: bus.nextBus2?.estimatedArrivalTime(), returnBlankWhenNotInService: true))
-                                    .font(.body)
-                                    .foregroundColor(.secondary)
-                                    .lineLimit(1)
+                                // Fix layout issues in iOS 16
+                                if #available(iOS 16, *) {
+                                    Text(arrivalTimeTo(date: bus.nextBus2?.estimatedArrivalTime(), returnBlankWhenNotInService: true))
+                                        .font(.body)
+                                        .foregroundColor(.secondary)
+                                        .lineLimit(1)
+                                        .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: 8.0, trailing: 0.0))
+                                } else {
+                                    Text(arrivalTimeTo(date: bus.nextBus2?.estimatedArrivalTime(), returnBlankWhenNotInService: true))
+                                        .font(.body)
+                                        .foregroundColor(.secondary)
+                                        .lineLimit(1)
+                                }
                             }
                             .frame(minWidth: 88.0, maxWidth: 88.0, minHeight: 0, maxHeight: .infinity, alignment: .center)
                         }
