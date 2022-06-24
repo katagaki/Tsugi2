@@ -125,8 +125,12 @@ struct BusStopDetailView: View {
             ToolbarItem(placement: .primaryAction) {
                 HStack(alignment: .center, spacing: 0.0) {
                     Menu {
-                        Button("Shared.BusStop.Description.Copy", action: copyBusStopName)
-                        Button("Shared.BusStop.Code.Copy", action: copyBusStopCode)
+                        Button(action: copyBusStopName) {
+                            Label("Shared.BusStop.Description.Copy", systemImage: "mappin.circle")
+                        }
+                        Button(action: copyBusStopCode) {
+                            Label("Shared.BusStop.Code.Copy", systemImage: "number")
+                        }
                     } label: {
                         Button {
                         } label: {
