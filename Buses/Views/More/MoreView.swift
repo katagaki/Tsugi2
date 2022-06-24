@@ -21,7 +21,6 @@ struct MoreView: View {
                                 .font(.body)
                         }
                     }
-                    .disabled(true) // TODO: To implement
                     NavigationLink {
                         MoreAppIconView()
                     } label: {

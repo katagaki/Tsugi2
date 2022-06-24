@@ -11,6 +11,8 @@ import SwiftUI
 
 struct MainTabView: View {
     
+    let defaults = UserDefaults.standard
+    
     @State var defaultTab: Int = 0
     
     @State var locationManager: CLLocationManager = CLLocationManager()
@@ -48,29 +50,33 @@ struct MainTabView: View {
                     }
                 TabView(selection: $defaultTab) {
                     // TODO: To implement
-//                    NearbyView()
-//                        .tabItem {
-//                            Label("TabTitle.Nearby", systemImage: "location.circle.fill")
-//                        }
+                    NearbyView()
+                        .tabItem {
+                            Label("TabTitle.Nearby", systemImage: "location.circle.fill")
+                        }
+                        .tag(0)
                     FavoritesView()
                         .tabItem {
                             Label("TabTitle.Favorites", systemImage: "rectangle.stack.fill")
                         }
-                        .tag(0)
-//                    NavigationView() {
-//
-//                    }
-//                    .tabItem {
-//                        Label("TabTitle.Notifications", systemImage: "bell.fill")
-//                    }
+                        .tag(1)
+                    NavigationView() {
+
+                    }
+                    .tabItem {
+                        Label("TabTitle.Notifications", systemImage: "bell.fill")
+                    }
+                    .tag(2)
                     DirectoryView(updatedDate: $updatedDate, updatedTime: $updatedTime)
                         .tabItem {
                             Label("TabTitle.Directory", systemImage: "magnifyingglass")
                         }
+                        .tag(3)
                     MoreView()
                         .tabItem {
                             Label("TabTitle.More", systemImage: "ellipsis")
                         }
+                        .tag(4)
                 }
                 
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: metrics.size.height * 0.60, maxHeight: metrics.size.height * 0.60)
@@ -82,8 +88,8 @@ struct MainTabView: View {
             }
             .onAppear {
                 if isInitialLoad {
+                    defaultTab = defaults.integer(forKey: "StartupTab")
                     Task {
-//                        await favorites.deleteAllData("FavoriteLocation")
                         reloadBusStops(showsProgress: (true))
                         isInitialLoad = false
                     }
