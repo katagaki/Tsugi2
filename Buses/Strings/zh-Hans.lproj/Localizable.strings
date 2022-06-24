@@ -34,6 +34,7 @@
 "Directory.BusStops" = "巴士站";
 "Directory.BusStopsLoading" = "正在获取巴士站的信息…";
 "Directory.MRTMap" = "MRT路线图";
+"Directory.SearchResults" = "搜索结果";
 
 /* More View */
 "More.General" = "通用";

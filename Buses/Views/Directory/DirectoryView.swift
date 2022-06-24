@@ -41,7 +41,7 @@ struct DirectoryView: View {
                             }
                         }
                     } header: {
-                        Text("Directory.BusStops")
+                        Text("Directory.SearchResults")
                             .font(.body)
                             .fontWeight(.bold)
                             .foregroundColor(.primary)
