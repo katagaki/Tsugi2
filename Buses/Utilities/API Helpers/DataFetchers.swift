@@ -40,18 +40,19 @@ func fetchBusStops(from firstIndex: Int = 0) async throws -> BusStopList {
                 log(error.localizedDescription, level: .error)
                 log(String(data: data ?? Data(), encoding: .utf8) ?? "No data found.")
                 continuation.resume(throwing: error)
-            }
-            if let data = data {
-                if let busStopList: BusStopList = decode(fromData: data) {
-                    log("Fetched bus stop data from the API for skip index \(firstIndex).")
-                    continuation.resume(returning: busStopList)
+            } else {
+                if let data = data {
+                    if let busStopList: BusStopList = decode(fromData: data) {
+                        log("Fetched bus stop data from the API for skip index \(firstIndex).")
+                        continuation.resume(returning: busStopList)
+                    } else {
+                        log("Could not decode the data successfully.", level: .error)
+                        continuation.resume(throwing: NSError(domain: "", code: 1))
+                    }
                 } else {
-                    log("Could not decode the data successfully.", level: .error)
+                    log("No data was returned.", level: .error)
                     continuation.resume(throwing: NSError(domain: "", code: 1))
                 }
-            } else {
-                log("No data was returned.", level: .error)
-                continuation.resume(throwing: NSError(domain: "", code: 1))
             }
         }.resume()
     })
@@ -75,18 +76,19 @@ func fetchBusArrivals(for stopCode: String) async throws -> BusStop {
                 log(error.localizedDescription, level: .error)
                 log(String(data: data ?? Data(), encoding: .utf8) ?? "No data found.")
                 continuation.resume(throwing: error)
-            }
-            if let data = data {
-                if let busArrivals: BusStop = decode(fromData: data) {
-                    log("Fetched bus arrival data for \(stopCode) from the API.")
-                    continuation.resume(returning: busArrivals)
+            } else {
+                if let data = data {
+                    if let busArrivals: BusStop = decode(fromData: data) {
+                        log("Fetched bus arrival data for \(stopCode) from the API.")
+                        continuation.resume(returning: busArrivals)
+                    } else {
+                        log("Could not decode the data successfully.", level: .error)
+                        continuation.resume(throwing: NSError(domain: "", code: 1))
+                    }
                 } else {
-                    log("Could not decode the data successfully.", level: .error)
+                    log("No data was returned.", level: .error)
                     continuation.resume(throwing: NSError(domain: "", code: 1))
                 }
-            } else {
-                log("No data was returned.", level: .error)
-                continuation.resume(throwing: NSError(domain: "", code: 1))
             }
         }.resume()
     })
