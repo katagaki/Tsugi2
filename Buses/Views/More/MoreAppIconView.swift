@@ -69,7 +69,7 @@ struct MoreAppIconView: View {
             }
         }
         .font(.body)
-        .listStyle(.grouped)
+        .listStyle(.insetGrouped)
         .navigationTitle("ViewTitle.More.AppIcon")
     }
 }

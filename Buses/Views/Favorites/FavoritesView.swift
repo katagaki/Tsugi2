@@ -54,7 +54,7 @@ struct FavoritesView: View {
                 }
                 .onDelete(perform: delete)
             }
-            .listStyle(.grouped)
+            .listStyle(.insetGrouped)
             .refreshable {
                 favorites.reloadData()
             }

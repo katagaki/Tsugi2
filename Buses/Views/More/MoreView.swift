@@ -133,7 +133,7 @@ struct MoreView: View {
                     }
                 }
             }
-            .listStyle(.grouped)
+            .listStyle(.insetGrouped)
             .navigationTitle("ViewTitle.More")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

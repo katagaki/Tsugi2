@@ -48,21 +48,21 @@ struct MainTabView: View {
                     }
                 TabView(selection: $defaultTab) {
                     // TODO: To implement
-                    NearbyView()
-                        .tabItem {
-                            Label("TabTitle.Nearby", systemImage: "location.circle.fill")
-                        }
+//                    NearbyView()
+//                        .tabItem {
+//                            Label("TabTitle.Nearby", systemImage: "location.circle.fill")
+//                        }
                     FavoritesView()
                         .tabItem {
                             Label("TabTitle.Favorites", systemImage: "rectangle.stack.fill")
                         }
                         .tag(0)
-                    NavigationView() {
-                        
-                    }
-                    .tabItem {
-                        Label("TabTitle.Notifications", systemImage: "bell.fill")
-                    }
+//                    NavigationView() {
+//
+//                    }
+//                    .tabItem {
+//                        Label("TabTitle.Notifications", systemImage: "bell.fill")
+//                    }
                     DirectoryView(updatedDate: $updatedDate, updatedTime: $updatedTime)
                         .tabItem {
                             Label("TabTitle.Directory", systemImage: "magnifyingglass")
