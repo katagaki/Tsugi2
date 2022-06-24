@@ -43,6 +43,8 @@
 "More.AppIcon.Green" = "Green (Default)";
 "More.AppIcon.Red" = "Red";
 "More.AppIcon.Purple" = "Purple";
+"More.AppIcon.Blue" = "Blue";
+"More.AppIcon.Laze" = "Laze";
 "More.Notifications" = "Notifications";
 "More.Support" = "Support";
 "More.Support.GitHub" = "Contribute with Code";

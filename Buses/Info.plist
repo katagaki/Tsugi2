@@ -6,6 +6,26 @@
 	<dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
+			<key>Laze</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Laze</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>Blue</key>
+			<dict>
+				<key>Blue</key>
+				<string></string>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Blue</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
 			<key>Purple</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
@@ -39,6 +59,26 @@
 	<dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
+			<key>Laze</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Laze</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>Blue</key>
+			<dict>
+				<key>Blue</key>
+				<string></string>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Blue</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
 			<key>Purple</key>
 			<dict>
 				<key>CFBundleIconFiles</key>

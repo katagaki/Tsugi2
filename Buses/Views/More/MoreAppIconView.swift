@@ -67,6 +67,44 @@ struct MoreAppIconView: View {
             .onTapGesture {
                 UIApplication.shared.setAlternateIconName("Purple")
             }
+            HStack(alignment: .center, spacing: 16.0) {
+                Image("AppIcon.Blue")
+                    .resizable()
+                    .frame(width: 60.0, height: 60.0)
+                    .clipped(antialiased: true)
+                    .mask {
+                        RoundedRectangle(cornerRadius: 14.0)
+                    }
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 14.0)
+                            .stroke(.thickMaterial, lineWidth: 1.0)
+                    }
+                Text("More.AppIcon.Blue")
+                Spacer()
+            }
+            .contentShape(Rectangle())
+            .onTapGesture {
+                UIApplication.shared.setAlternateIconName("Blue")
+            }
+            HStack(alignment: .center, spacing: 16.0) {
+                Image("AppIcon.Laze")
+                    .resizable()
+                    .frame(width: 60.0, height: 60.0)
+                    .clipped(antialiased: true)
+                    .mask {
+                        RoundedRectangle(cornerRadius: 14.0)
+                    }
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 14.0)
+                            .stroke(.thickMaterial, lineWidth: 1.0)
+                    }
+                Text("More.AppIcon.Laze")
+                Spacer()
+            }
+            .contentShape(Rectangle())
+            .onTapGesture {
+                UIApplication.shared.setAlternateIconName("Laze")
+            }
         }
         .font(.body)
         .listStyle(.insetGrouped)

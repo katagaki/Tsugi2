@@ -43,6 +43,8 @@
 "More.AppIcon.Green" = "绿色（默认）";
 "More.AppIcon.Red" = "红色";
 "More.AppIcon.Purple" = "紫色";
+"More.AppIcon.Blue" = "蓝色";
+"More.AppIcon.Laze" = "懒色";
 "More.Notifications" = "通知";
 "More.Support" = "支持";
 "More.Support.GitHub" = "协助开发";

@@ -43,6 +43,8 @@
 "More.AppIcon.Green" = "グリーン（デフォルト）";
 "More.AppIcon.Red" = "レッド";
 "More.AppIcon.Purple" = "パープル";
+"More.AppIcon.Blue" = "ブルー";
+"More.AppIcon.Laze" = "ナマケモノ";
 "More.Notifications" = "通知";
 "More.Support" = "支援";
 "More.Support.GitHub" = "開発を手伝う";
