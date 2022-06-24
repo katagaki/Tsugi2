@@ -63,6 +63,7 @@ class FavoriteList: ObservableObject {
         favoriteLocation.busStopCode = busStop.code
         favoriteLocation.nickname = (nickname == "" ? busStop.description : nickname)
         favoriteLocation.usesLiveBusStopData = usesLiveBusStopData
+        favoriteLocation.viewIndex = Int16(favoriteLocations.count)
         for busService in busServices {
             let favoriteBusServiceEntity = FavoriteBusService.entity()
             let favoriteBusService = FavoriteBusService(entity: favoriteBusServiceEntity, insertInto: context)
@@ -101,6 +102,12 @@ class FavoriteList: ObservableObject {
             locationToSwapWith.viewIndex = Int16(originalIndex)
         }
         log("Favorite location moved down.")
+        await saveChanges()
+    }
+    
+    func rename(_ favoriteLocation: FavoriteLocation, to newNickname: String) async {
+        favoriteLocation.nickname = newNickname
+        log("Favorite location renamed.")
         await saveChanges()
     }
     
