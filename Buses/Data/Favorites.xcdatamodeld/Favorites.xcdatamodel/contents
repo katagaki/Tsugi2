@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21223.11" systemVersion="22A5266r" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21223.12" systemVersion="22A5286j" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="FavoriteBusService" representedClassName="FavoriteBusService" syncable="YES" codeGenerationType="class">
         <attribute name="busStopCode" optional="YES" attributeType="String"/>
         <attribute name="serviceNo" optional="YES" attributeType="String"/>
-        <relationship name="parentLocations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FavoriteLocation" inverseName="busServices" inverseEntity="FavoriteLocation"/>
+        <relationship name="parentLocations" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="FavoriteLocation" inverseName="busServices" inverseEntity="FavoriteLocation"/>
     </entity>
     <entity name="FavoriteLocation" representedClassName="FavoriteLocation" syncable="YES" codeGenerationType="class">
         <attribute name="busStopCode" optional="YES" attributeType="String"/>
         <attribute name="nickname" optional="YES" attributeType="String"/>
         <attribute name="usesLiveBusStopData" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="busServices" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FavoriteBusService" inverseName="parentLocations" inverseEntity="FavoriteBusService"/>
+        <attribute name="viewIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="busServices" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="FavoriteBusService" inverseName="parentLocations" inverseEntity="FavoriteBusService"/>
     </entity>
     <elements>
-        <element name="FavoriteBusService" positionX="-54" positionY="0" width="128" height="14"/>
-        <element name="FavoriteLocation" positionX="-63" positionY="-18" width="128" height="14"/>
+        <element name="FavoriteBusService" positionX="-54" positionY="0" width="128" height="74"/>
+        <element name="FavoriteLocation" positionX="-63" positionY="-18" width="128" height="104"/>
     </elements>
 </model>
