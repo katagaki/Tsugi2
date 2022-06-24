@@ -144,6 +144,7 @@
 		E4D65F112865BACA00FE78F4 /* Laze@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Laze@2x~ipad.png"; sourceTree = "<group>"; };
 		E4D65F122865BACA00FE78F4 /* Laze@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Laze@3x.png"; sourceTree = "<group>"; };
 		E4D65F182865BF9400FE78F4 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		E4D65F1A2865C58700FE78F4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		E4E367882804422B0022A5CD /* StringUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtilities.swift; sourceTree = "<group>"; };
 		E4FFCAC12801604300DCA0EC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E4FFCAC42801627700DCA0EC /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
@@ -261,6 +262,7 @@
 				E4FFCACC28018B1A00DCA0EC /* Sample Data */,
 				E4319EB5280432C300D21531 /* APIKeys.plist */,
 				E4319EB7280433B000D21531 /* APIKeys-Sample.plist */,
+				E4D65F1A2865C58700FE78F4 /* README.md */,
 			);
 			path = Buses;
 			sourceTree = "<group>";
@@ -678,7 +680,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Buses/Buses.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = YYM4Z6MU8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Buses/Info.plist;
@@ -714,7 +716,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Buses/Buses.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = YYM4Z6MU8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Buses/Info.plist;
