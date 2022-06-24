@@ -28,6 +28,9 @@
 /* Nearby View */
 
 /* Favorites View */
+"Favorites.Hint" = "No locations saved.\nTo create a new location, tap the Add Location button on the top right of this tab.\nYou can also add a bus stop as a location.";
+
+/* Notifications View */
 
 /* Directory View */
 "Directory.UsefulResources" = "Useful Resources";

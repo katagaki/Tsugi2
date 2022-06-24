@@ -60,13 +60,11 @@ struct MainTabView: View {
                             Label("TabTitle.Favorites", systemImage: "rectangle.stack.fill")
                         }
                         .tag(1)
-                    NavigationView() {
-
-                    }
-                    .tabItem {
-                        Label("TabTitle.Notifications", systemImage: "bell.fill")
-                    }
-                    .tag(2)
+                    NotificationsView()
+                        .tabItem {
+                            Label("TabTitle.Notifications", systemImage: "bell.fill")
+                        }
+                        .tag(2)
                     DirectoryView(updatedDate: $updatedDate, updatedTime: $updatedTime)
                         .tabItem {
                             Label("TabTitle.Directory", systemImage: "magnifyingglass")

@@ -15,7 +15,7 @@
 
 /* Navigation Item Titles */
 "ViewTitle.Nearby" = "近くのバス停";
-"ViewTitle.Favorites" = "保存した場所";
+"ViewTitle.Favorites" = "追加した場所";
 "ViewTitle.Directory" = "バス停を検索";
 "ViewTitle.MRTMap" = "MRT路線図";
 "ViewTitle.More" = "その他";
@@ -28,6 +28,9 @@
 /* Nearby View */
 
 /* Favorites View */
+"Favorites.Hint" = "追加した場所はありません。\n新しい場所を作成するには、右上の新規場所ボタンを選択してください。\nバス停を直接的に追加することもできます。";
+
+/* Notifications View */
 
 /* Directory View */
 "Directory.UsefulResources" = "便利な情報";

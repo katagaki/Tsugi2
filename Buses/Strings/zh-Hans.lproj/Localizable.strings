@@ -28,6 +28,9 @@
 /* Nearby View */
 
 /* Favorites View */
+"Favorites.Hint" = "没有地点添加到您的收藏夹。\n点击此选项卡右上角的添加位置按钮以创建新地点。\n巴士站也可以添加作为地点。";
+
+/* Notifications View */
 
 /* Directory View */
 "Directory.UsefulResources" = "有用信息";

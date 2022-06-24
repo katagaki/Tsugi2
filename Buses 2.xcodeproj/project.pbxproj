@@ -59,6 +59,7 @@
 		E4D65F142865BACA00FE78F4 /* Laze@3x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D65F102865BACA00FE78F4 /* Laze@3x~ipad.png */; };
 		E4D65F152865BACA00FE78F4 /* Laze@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D65F112865BACA00FE78F4 /* Laze@2x~ipad.png */; };
 		E4D65F162865BACA00FE78F4 /* Laze@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D65F122865BACA00FE78F4 /* Laze@3x.png */; };
+		E4D65F192865BF9400FE78F4 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D65F182865BF9400FE78F4 /* NotificationsView.swift */; };
 		E4E367892804422B0022A5CD /* StringUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E367882804422B0022A5CD /* StringUtilities.swift */; };
 		E4FFCAC22801604300DCA0EC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4FFCAC12801604300DCA0EC /* MapKit.framework */; };
 		E4FFCAC52801627700DCA0EC /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC42801627700DCA0EC /* BusStop.swift */; };
@@ -142,6 +143,7 @@
 		E4D65F102865BACA00FE78F4 /* Laze@3x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Laze@3x~ipad.png"; sourceTree = "<group>"; };
 		E4D65F112865BACA00FE78F4 /* Laze@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Laze@2x~ipad.png"; sourceTree = "<group>"; };
 		E4D65F122865BACA00FE78F4 /* Laze@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Laze@3x.png"; sourceTree = "<group>"; };
+		E4D65F182865BF9400FE78F4 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		E4E367882804422B0022A5CD /* StringUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtilities.swift; sourceTree = "<group>"; };
 		E4FFCAC12801604300DCA0EC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E4FFCAC42801627700DCA0EC /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
@@ -330,6 +332,14 @@
 			path = Nearby;
 			sourceTree = "<group>";
 		};
+		E4D65F172865BF8A00FE78F4 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				E4D65F182865BF9400FE78F4 /* NotificationsView.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		E4FFCAB727F94DE600DCA0EC /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -337,6 +347,7 @@
 				E4B70002285637450019F71A /* MainTabView.swift */,
 				E4B7FFFD2856353D0019F71A /* Nearby */,
 				E4B7FFF12854692E0019F71A /* Favorites */,
+				E4D65F172865BF8A00FE78F4 /* Notifications */,
 				E476BF21280873C100B8524B /* Directory */,
 				E4B7FFED285462E50019F71A /* More */,
 				E4B7FFF628561DA30019F71A /* Shared */,
@@ -497,6 +508,7 @@
 				E4B7FFF32854693B0019F71A /* FavoritesView.swift in Sources */,
 				E4B700072856406D0019F71A /* MoreNotificationsView.swift in Sources */,
 				E4B7FFFA28561DBF0019F71A /* BusStopDetailView.swift in Sources */,
+				E4D65F192865BF9400FE78F4 /* NotificationsView.swift in Sources */,
 				E41C1B9A285706BE003F1BFB /* Coordinate.swift in Sources */,
 				E4B7FFFF285635470019F71A /* NearbyView.swift in Sources */,
 				E4BD94A92859C3E900030C7C /* ArrivalInfoDetailView.swift in Sources */,

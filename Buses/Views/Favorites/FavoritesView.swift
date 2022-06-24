@@ -71,6 +71,20 @@ struct FavoritesView: View {
             .refreshable {
                 favorites.reloadData()
             }
+            .overlay {
+                if favorites.favoriteLocations.count == 0 {
+                    VStack(alignment: .center, spacing: 4.0) {
+                        Image(systemName: "questionmark.app.dashed")
+                            .font(.system(size: 32.0, weight: .regular))
+                            .foregroundColor(.secondary)
+                        Text("Favorites.Hint")
+                            .font(.body)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                    }
+                    .padding(16.0)
+                }
+            }
             .navigationTitle("ViewTitle.Favorites")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

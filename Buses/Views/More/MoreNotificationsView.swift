@@ -9,8 +9,13 @@ import SwiftUI
 
 struct MoreNotificationsView: View {
     var body: some View {
-        Text("Feature is unavailable at the moment.")
-            .navigationTitle("ViewTitle.More.Notifications")
+        VStack(alignment: .center, spacing: 4.0) {
+            Image(systemName: "questionmark.app.dashed")
+                .font(.system(size: 32.0, weight: .regular))
+                .foregroundColor(.secondary)
+        }
+        .padding(16.0)
+        .navigationTitle("ViewTitle.More.Notifications")
     }
 }
 

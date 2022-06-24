@@ -16,6 +16,14 @@ struct NearbyView: View {
         NavigationView {
             List {
             }
+            .overlay {
+                VStack(alignment: .center, spacing: 4.0) {
+                    Image(systemName: "questionmark.app.dashed")
+                        .font(.system(size: 32.0, weight: .regular))
+                        .foregroundColor(.secondary)
+                }
+                .padding(16.0)
+            }
             .onAppear {
                 displayedCoordinates.removeAll()
                 // TODO: Display all bus stops nearby
