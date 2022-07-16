@@ -17,12 +17,13 @@ struct MainTabView: View {
     
     @State var locationManager: CLLocationManager = CLLocationManager()
     @StateObject var locationManagerDelegate: LocationDelegate = LocationDelegate()
-    @State var userTrackingMode: MapUserTrackingMode = .follow
+    @State var userTrackingMode: MapUserTrackingMode = .none
     @EnvironmentObject var displayedCoordinates: CoordinateList
     
     @EnvironmentObject var busStopList: BusStopList
     @State var isBusStopListLoaded: Bool = true
     @State var isInitialLoad: Bool = true
+    @State var isLocationManagerDelegateAssigned: Bool = false
     @State var updatedDate: String
     @State var updatedTime: String
     
@@ -49,7 +50,10 @@ struct MainTabView: View {
                     }
                     .frame(width: metrics.size.width, height: metrics.size.height)
                     .onAppear {
-                        locationManager.delegate = locationManagerDelegate
+                        if !isLocationManagerDelegateAssigned {
+                            locationManager.delegate = locationManagerDelegate
+                            isLocationManagerDelegateAssigned = true
+                        }
                         locationManager.startUpdatingLocation()
                     }
                 TabView(selection: $defaultTab) {
