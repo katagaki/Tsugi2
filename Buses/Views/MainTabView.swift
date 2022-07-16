@@ -26,6 +26,10 @@ struct MainTabView: View {
     @State var updatedDate: String
     @State var updatedTime: String
     
+    @State var isToastShowing: Bool = false
+    @State var toastMessage: String = ""
+    @State var toastCheckmark: Bool = false
+    
     @EnvironmentObject var favorites: FavoriteList
     
     var body: some View {
@@ -65,7 +69,9 @@ struct MainTabView: View {
                             Label("TabTitle.Notifications", systemImage: "bell.fill")
                         }
                         .tag(2)
-                    DirectoryView(updatedDate: $updatedDate, updatedTime: $updatedTime)
+                    DirectoryView(updatedDate: $updatedDate,
+                                  updatedTime: $updatedTime,
+                                  showToast: self.showToast)
                         .tabItem {
                             Label("TabTitle.Directory", systemImage: "magnifyingglass")
                         }
@@ -96,27 +102,34 @@ struct MainTabView: View {
             .overlay {
                 ZStack(alignment: .top) {
                     if !isBusStopListLoaded {
-                        HStack(alignment: .center, spacing: 8.0) {
-                            ProgressView()
-                                .progressViewStyle(.circular)
-                            Text("Directory.BusStopsLoading")
-                                .font(.body)
-                        }
-                        .padding(EdgeInsets(top: 8.0, leading: 8.0, bottom: 8.0, trailing: 8.0))
-                        .background(Color(uiColor: .systemBackground))
-                        .mask {
-                            RoundedRectangle(cornerRadius: 8.0)
-                        }
-                        .shadow(radius: 2.5)
-                        .transition(AnyTransition.move(edge: .top).combined(with: .opacity))
+                        ToastView(message: localized("Directory.BusStopsLoading"), showsProgressView: true)
                     }
                     Color.clear
                 }
                 .padding(EdgeInsets(top: 8.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
                 .animation(.default, value: isBusStopListLoaded)
             }
+            .overlay {
+                ZStack(alignment: .top) {
+                    if isToastShowing {
+                        ToastView(message: toastMessage, showsCheckmark: toastCheckmark)
+                    }
+                    Color.clear
+                }
+                .padding(EdgeInsets(top: 8.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
+                .animation(.default, value: isToastShowing)
+            }
         }
         .edgesIgnoringSafeArea(.bottom)
+    }
+    
+    func showToast(message: String, showsCheckmark: Bool = false) {
+        toastMessage = message
+        toastCheckmark = showsCheckmark
+        isToastShowing = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            isToastShowing = false
+        }
     }
     
     func reloadBusStops(showsProgress: Bool = false) {

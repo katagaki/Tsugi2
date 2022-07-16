@@ -19,6 +19,8 @@ struct DirectoryView: View {
     @EnvironmentObject var busStopList: BusStopList
     @EnvironmentObject var displayedCoordinates: CoordinateList
     
+    var showToast: (String, Bool) -> Void
+    
     var body: some View {
         NavigationView {
             List {
@@ -26,7 +28,9 @@ struct DirectoryView: View {
                     Section {
                         ForEach(searchResults, id: \.code) { stop in
                             NavigationLink {
-                                BusStopDetailView(busStop: stop, displayedCoordinate: CLLocationCoordinate2D(latitude: stop.latitude ?? 1.29516, longitude: stop.longitude ?? 103.85892))
+                                BusStopDetailView(busStop: stop,
+                                                  displayedCoordinate: CLLocationCoordinate2D(latitude: stop.latitude ?? 1.29516, longitude: stop.longitude ?? 103.85892),
+                                                  showToast: self.showToast)
                             } label: {
                                 HStack(alignment: .center, spacing: 16.0) {
                                     Image("ListIcon.BusStop")
@@ -69,7 +73,9 @@ struct DirectoryView: View {
                     Section {
                         ForEach(busStopList.busStops, id: \.code) { stop in
                             NavigationLink {
-                                BusStopDetailView(busStop: stop, displayedCoordinate: CLLocationCoordinate2D(latitude: stop.latitude ?? 1.29516, longitude: stop.longitude ?? 103.85892))
+                                BusStopDetailView(busStop: stop,
+                                                  displayedCoordinate: CLLocationCoordinate2D(latitude: stop.latitude ?? 1.29516, longitude: stop.longitude ?? 103.85892),
+                                                  showToast: self.showToast)
                             } label: {
                                 HStack(alignment: .center, spacing: 16.0) {
                                     Image("ListIcon.BusStop")
@@ -145,7 +151,9 @@ struct DirectoryView_Previews: PreviewProvider {
     @State static var updatedTime: String = ""
     
     static var previews: some View {
-        DirectoryView(updatedDate: $updatedTime, updatedTime: $updatedTime)
+        DirectoryView(updatedDate: $updatedTime,
+                      updatedTime: $updatedTime,
+                      showToast: { _, _ in })
     }
 }
 

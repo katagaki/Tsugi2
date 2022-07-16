@@ -25,10 +25,20 @@
 "ViewTitle.More.Donate" = "寄付";
 "ViewTitle.More.Attribution" = "データソース情報";
 
+/* Alert Button Titles */
+"Alert.Yes" = "はい";
+"Alert.No" = "いいえ";
+"Alert.Save" = "保存";
+"Alert.Cancel" = "キャンセル";
+
 /* Nearby View */
 
 /* Favorites View */
 "Favorites.Hint" = "追加した場所はありません。\n新しい場所を作成するには、右上の新規場所ボタンを選択してください。\nバス停を直接的に追加することもできます。";
+"Favorites.Delete.Confirm.Title" = "場所の削除";
+"Favorites.Delete.Confirm.Message" = "%LOCATION%を削除してよろしいですか？";
+"Favorites.Delete.Confirm.GenericLocationText" = "この場所";
+"Favorites.Edit.Title" = "場所名を変更";
 
 /* Notifications View */
 
@@ -69,6 +79,7 @@
 "Shared.BusStop.Road.None" = "なし";
 "Shared.BusStop.BusServices" = "バス";
 "Shared.BusStop.BusServices.None" = "このバス停では、現在すべてのバスがサービス時間外です。";
+"Shared.BusStop.Toast.Favorited" = "このバス停は、場所として保存されました。";
 "Shared.BusArrival.Arriving" = "まもなく到着";
 "Shared.BusArrival.JustLeft" = "発車済み";
 "Shared.BusArrival.NotInService" = "サービス時間外";

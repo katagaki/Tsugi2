@@ -18,6 +18,8 @@ struct BusStopDetailView: View {
     @EnvironmentObject var favorites: FavoriteList
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
+    var showToast: (String, Bool) -> Void
+    
     var body: some View {
         List {
             Section {
@@ -146,6 +148,7 @@ struct BusStopDetailView: View {
                         favorites.addFavoriteLocation(busStop: busStop, usesLiveBusStopData: true)
                         Task {
                             await favorites.saveChanges()
+                            showToast(localized("Shared.BusStop.Toast.Favorited"), true)
                         }
                     } label: {
                         Image(systemName: "rectangle.stack.badge.plus")
@@ -183,7 +186,9 @@ struct BusStopDetailView: View {
 struct BusStopDetailView_Previews: PreviewProvider {
     static var previews: some View {
         let sampleBusStop: BusStop = BusStop()
-        BusStopDetailView(busStop: sampleBusStop, displayedCoordinate: CLLocationCoordinate2D(latitude: 1.29516, longitude: 103.85892))
+        BusStopDetailView(busStop: sampleBusStop,
+                          displayedCoordinate: CLLocationCoordinate2D(latitude: 1.29516, longitude: 103.85892),
+                          showToast: { _, _ in })
     }
 }
 

@@ -25,10 +25,20 @@
 "ViewTitle.More.Donate" = "Donate";
 "ViewTitle.More.Attribution" = "Data Attribution";
 
+/* Alert Button Titles */
+"Alert.Yes" = "Yes";
+"Alert.No" = "No";
+"Alert.Save" = "Save";
+"Alert.Cancel" = "Cancel";
+
 /* Nearby View */
 
 /* Favorites View */
 "Favorites.Hint" = "No locations saved.\nTo create a new location, tap the Add Location button on the top right of this tab.\nYou can also add a bus stop as a location.";
+"Favorites.Delete.Confirm.Title" = "Delete Location";
+"Favorites.Delete.Confirm.Message" = "Are you sure you want to delete %LOCATION%?";
+"Favorites.Delete.Confirm.GenericLocationText" = "this location";
+"Favorites.Edit.Title" = "Edit Location Name";
 
 /* Notifications View */
 
@@ -69,6 +79,7 @@
 "Shared.BusStop.Road.None" = "N/A";
 "Shared.BusStop.BusServices" = "Bus Services";
 "Shared.BusStop.BusServices.None" = "This bus stop has no bus services at this time.";
+"Shared.BusStop.Toast.Favorited" = "This bus stop has been added to your locations.";
 "Shared.BusArrival.Arriving" = "Arriving";
 "Shared.BusArrival.JustLeft" = "Just Left";
 "Shared.BusArrival.NotInService" = "No Service";
