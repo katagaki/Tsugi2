@@ -21,6 +21,9 @@ struct NearbyView: View {
                     Image(systemName: "questionmark.app.dashed")
                         .font(.system(size: 32.0, weight: .regular))
                         .foregroundColor(.secondary)
+                    Text("Shared.General.ComingSoon")
+                        .font(.body)
+                        .foregroundColor(.secondary)
                 }
                 .padding(16.0)
             }

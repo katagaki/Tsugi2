@@ -86,3 +86,4 @@
 "Shared.BusArrival.NotInService.Subtitle" = "The bus service is currently unavailable.";
 "Shared.BusArrival.Subsequent" = "Next Bus: ";
 "Shared.BusArrival.Crowded" = "CROWDED";
+"Shared.General.ComingSoon" = "Coming Soon";
