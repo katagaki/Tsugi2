@@ -143,6 +143,11 @@ struct MainTabView: View {
             busStopList.busStops = busStopsFetched.sorted(by: { a, b in
                 a.description?.lowercased() ?? "" < b.description?.lowercased() ?? ""
             })
+            DispatchQueue.main.async {
+                for busStop in busStopList.busStops {
+                    displayedCoordinates.addCoordinate(from: CLLocationCoordinate2D(latitude: busStop.latitude ?? 0.0, longitude: busStop.longitude ?? 0.0))
+                }
+            }
             dateFormatter.dateStyle = .medium
             timeFormatter.timeStyle = .medium
             updatedDate = dateFormatter.string(from: Date.now)

@@ -29,7 +29,7 @@ struct DirectoryView: View {
                         ForEach(searchResults, id: \.code) { stop in
                             NavigationLink {
                                 BusStopDetailView(busStop: stop,
-                                                  displayedCoordinate: CLLocationCoordinate2D(latitude: stop.latitude ?? 1.29516, longitude: stop.longitude ?? 103.85892),
+                                                  displayedCoordinate: CLLocationCoordinate2D(latitude: stop.latitude ?? 0.0, longitude: stop.longitude ?? 0.0),
                                                   showToast: self.showToast)
                             } label: {
                                 HStack(alignment: .center, spacing: 16.0) {
@@ -74,7 +74,7 @@ struct DirectoryView: View {
                         ForEach(busStopList.busStops, id: \.code) { stop in
                             NavigationLink {
                                 BusStopDetailView(busStop: stop,
-                                                  displayedCoordinate: CLLocationCoordinate2D(latitude: stop.latitude ?? 1.29516, longitude: stop.longitude ?? 103.85892),
+                                                  displayedCoordinate: CLLocationCoordinate2D(latitude: stop.latitude ?? 0.0, longitude: stop.longitude ?? 0.0),
                                                   showToast: self.showToast)
                             } label: {
                                 HStack(alignment: .center, spacing: 16.0) {

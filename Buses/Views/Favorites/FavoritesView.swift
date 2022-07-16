@@ -44,6 +44,7 @@ struct FavoritesView: View {
                                     .textInputAutocapitalization(.words)
                                 Button(role: .cancel, action: {
                                     favoriteLocationPendingEdit = nil
+                                    favoriteLocationPendingEditNewNickname = ""
                                 }, label: {
                                     Text("Alert.Cancel")
                                 })
