@@ -14,8 +14,8 @@ struct DirectoryView: View {
     @State var searchTerm: String = ""
     @State var searchResults: [BusStop] = []
     @State var isSearching: Bool = false
-    @State var updatedDate: Binding<String>
-    @State var updatedTime: Binding<String>
+    @Binding var updatedDate: String
+    @Binding var updatedTime: String
     @EnvironmentObject var busStopList: BusStopList
     @EnvironmentObject var displayedCoordinates: CoordinateList
     
@@ -131,10 +131,10 @@ struct DirectoryView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     VStack(alignment: .trailing) {
-                        Text("\(updatedDate.wrappedValue)")
+                        Text("\(updatedDate)")
                             .font(.caption)
                             .foregroundColor(.secondary)
-                        Text("\(updatedTime.wrappedValue)")
+                        Text("\(updatedTime)")
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }

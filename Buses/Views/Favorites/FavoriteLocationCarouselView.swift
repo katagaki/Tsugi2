@@ -51,7 +51,6 @@ struct FavoriteLocationCarouselView: View {
                             }
                             .frame(minWidth: 88.0, maxWidth: 88.0, minHeight: 0, maxHeight: .infinity, alignment: .center)
                         }
-
                     }
                 } else {
                     ForEach(favorites.favoriteBusServices, id: \.serviceNo) { bus in
