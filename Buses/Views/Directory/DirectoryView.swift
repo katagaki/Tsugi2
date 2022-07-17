@@ -115,10 +115,6 @@ struct DirectoryView: View {
                     previousSearchTerm = searchTerm
                 }
             }
-            .onAppear {
-                displayedCoordinates.removeAll()
-                // TODO: Display all bus stops in view area
-            }
             .navigationTitle("ViewTitle.Directory")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
