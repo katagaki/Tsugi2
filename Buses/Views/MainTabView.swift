@@ -17,7 +17,7 @@ struct MainTabView: View {
     
     @State var locationManager: CLLocationManager = CLLocationManager()
     @StateObject var locationManagerDelegate: LocationDelegate = LocationDelegate()
-    @State var userTrackingMode: MapUserTrackingMode = .none
+    @State var userTrackingMode: MapUserTrackingMode = .follow
     @EnvironmentObject var displayedCoordinates: CoordinateList
     
     @EnvironmentObject var busStopList: BusStopList
@@ -167,7 +167,8 @@ struct MainView_Previews: PreviewProvider {
 
 class LocationDelegate: NSObject, ObservableObject, CLLocationManagerDelegate {
 
-    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 1.30437, longitude: 103.82458), latitudinalMeters: 400.0, longitudinalMeters: 400.0)
+//    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 1.30437, longitude: 103.82458), latitudinalMeters: 400.0, longitudinalMeters: 400.0)
+    var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 1.30437, longitude: 103.82458), latitudinalMeters: 400.0, longitudinalMeters: 400.0)
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         if manager.authorizationStatus == .authorizedWhenInUse {
