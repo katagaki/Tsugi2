@@ -16,7 +16,7 @@ struct BusStopDetailView: View {
     @State var displayedCoordinate: CLLocationCoordinate2D
     @EnvironmentObject var displayedCoordinates: CoordinateList
     @EnvironmentObject var favorites: FavoriteList
-    let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
+//    let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
     var showToast: (String, Bool) -> Void
     
@@ -107,9 +107,9 @@ struct BusStopDetailView: View {
                 reloadBusArrivals()
             }
         }
-        .onReceive(timer, perform: { _ in
-            reloadBusArrivals()
-        })
+//        .onReceive(timer, perform: { _ in
+//            reloadBusArrivals()
+//        })
 //        .onDisappear {
 //            timer.upstream.connect().cancel()
 //        }

@@ -13,11 +13,11 @@ struct FavoriteLocationCarouselView: View {
     @EnvironmentObject var busStopList: BusStopList
     @State var busServices: [BusService] = []
     var favoriteLocation: FavoriteLocation
-    let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
+//    let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack(spacing: 16.0) {
+            HStack(spacing: 16.0) {
                 if favoriteLocation.usesLiveBusStopData {
                     ForEach(busServices, id: \.serviceNo) { bus in
                         NavigationLink {
@@ -77,9 +77,9 @@ struct FavoriteLocationCarouselView: View {
         .onAppear {
             reloadArrivalTimes()
         }
-        .onReceive(timer, perform: { _ in
-            reloadArrivalTimes()
-        })
+//        .onReceive(timer, perform: { _ in
+//            reloadArrivalTimes()
+//        })
     }
     
     func reloadArrivalTimes() {

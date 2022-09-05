@@ -14,7 +14,7 @@ struct ArrivalInfoDetailView: View {
     @State var isInitialDataLoading: Bool = true
     @State var usesNickname: Bool = false
     @EnvironmentObject var busStopList: BusStopList
-    let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
+//    let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
     var body: some View {
         List {
@@ -39,9 +39,9 @@ struct ArrivalInfoDetailView: View {
         .refreshable {
             reloadArrivalTimes()
         }
-        .onReceive(timer, perform: { _ in
-            reloadArrivalTimes()
-        })
+//        .onReceive(timer, perform: { _ in
+//            reloadArrivalTimes()
+//        })
         .navigationTitle(bus.serviceNo)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
