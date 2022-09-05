@@ -15,8 +15,8 @@ struct MainTabView: View {
     
     @State var defaultTab: Int = 0
     
-    @State var locationManager: CLLocationManager = CLLocationManager()
-    @StateObject var locationManagerDelegate: LocationDelegate = LocationDelegate()
+    @State private var locationManager: CLLocationManager = CLLocationManager()
+    @StateObject private var locationManagerDelegate: LocationDelegate = LocationDelegate()
     @State var userTrackingMode: MapUserTrackingMode = .follow
     @EnvironmentObject var displayedCoordinates: CoordinateList
     
@@ -41,7 +41,24 @@ struct MainTabView: View {
                     showsUserLocation: true,
                     userTrackingMode: $userTrackingMode,
                     annotationItems: displayedCoordinates.coordinates) { coordinate in
-                    MapMarker(coordinate: coordinate.clCoordinate())
+                    MapAnnotation(coordinate: coordinate.clCoordinate()) {
+                        // TODO: Fix opening bus stop view
+                        NavigationLink(destination: BusStopDetailView(busStop: coordinate.busStop, showToast: self.showToast)) {
+                            Button(action: {}) {
+                                VStack(alignment: .center, spacing: 4.0) {
+                                    Image("ListIcon.Bus")
+                                        .resizable()
+                                        .frame(minWidth: 20.0, maxWidth: 20.0, minHeight: 20.0, maxHeight: 20.0)
+                                        .shadow(radius: 6.0)
+                                    StrokeText(text: coordinate.busStop.description ?? "", width: 1.0, color: Color.init(uiColor: .systemBackground).opacity(0.5))
+                                        .foregroundColor(.primary)
+                                        .font(.caption)
+                                        .shadow(radius: 6.0)
+                                }
+                            }
+                        }
+                    }
+//                    MapMarker(coordinate: coordinate.clCoordinate())
                 }
                     .edgesIgnoringSafeArea(.top)
                     .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: metrics.size.height * 0.60, trailing: 0.0))
@@ -125,13 +142,12 @@ struct MainTabView: View {
         .edgesIgnoringSafeArea(.bottom)
     }
     
-    func showToast(message: String, showsCheckmark: Bool = false) {
+    func showToast(message: String, showsCheckmark: Bool = false) async {
         toastMessage = message
         toastCheckmark = showsCheckmark
         isToastShowing = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            isToastShowing = false
-        }
+        try! await Task.sleep(nanoseconds: UInt64(2 * Double(NSEC_PER_SEC)))
+        isToastShowing = false
     }
     
     func reloadBusStops(showsProgress: Bool = false) {
@@ -145,10 +161,8 @@ struct MainTabView: View {
             busStopList.busStops = busStopsFetched.sorted(by: { a, b in
                 a.description?.lowercased() ?? "" < b.description?.lowercased() ?? ""
             })
-            DispatchQueue.main.async {
-                for busStop in busStopList.busStops {
-                    displayedCoordinates.addCoordinate(from: CLLocationCoordinate2D(latitude: busStop.latitude ?? 0.0, longitude: busStop.longitude ?? 0.0))
-                }
+            for busStop in busStopList.busStops {
+                displayedCoordinates.addCoordinate(from: busStop)
             }
             dateFormatter.dateStyle = .medium
             timeFormatter.timeStyle = .medium
@@ -170,7 +184,7 @@ class LocationDelegate: NSObject, ObservableObject, CLLocationManagerDelegate {
 
 //    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 1.30437, longitude: 103.82458), latitudinalMeters: 400.0, longitudinalMeters: 400.0)
     var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 1.30437, longitude: 103.82458), latitudinalMeters: 400.0, longitudinalMeters: 400.0)
-
+    
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         if manager.authorizationStatus == .authorizedWhenInUse {
             log("Location Services authorization changed to When In Use.")
@@ -187,5 +201,24 @@ class LocationDelegate: NSObject, ObservableObject, CLLocationManagerDelegate {
         region.center.latitude = (manager.location?.coordinate.latitude)!
         region.center.longitude = (manager.location?.coordinate.longitude)!
         manager.stopUpdatingLocation()
+    }
+}
+
+struct StrokeText: View {
+    let text: String
+    let width: CGFloat
+    let color: Color
+
+    var body: some View {
+        ZStack{
+            ZStack{
+                Text(text).offset(x:  width, y:  width)
+                Text(text).offset(x: -width, y: -width)
+                Text(text).offset(x: -width, y:  width)
+                Text(text).offset(x:  width, y: -width)
+            }
+            .foregroundColor(color)
+            Text(text)
+        }
     }
 }

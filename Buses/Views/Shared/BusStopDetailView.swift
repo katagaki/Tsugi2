@@ -13,7 +13,6 @@ struct BusStopDetailView: View {
     var busStop: BusStop
     @State var busArrivals: [BusService] = []
     @State var isInitialDataLoading: Bool = true
-    @State var displayedCoordinate: CLLocationCoordinate2D
     @EnvironmentObject var displayedCoordinates: CoordinateList
     @EnvironmentObject var favorites: FavoriteList
 //    let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
@@ -103,7 +102,8 @@ struct BusStopDetailView: View {
         }
         .onAppear {
             if isInitialDataLoading {
-                displayedCoordinates.addCoordinate(from: displayedCoordinate)
+                // TODO: Show only 1 annotation when bus stop view is active
+//                displayedCoordinates.addCoordinate(from: busStop)
                 reloadBusArrivals()
             }
         }
@@ -187,7 +187,6 @@ struct BusStopDetailView_Previews: PreviewProvider {
     static var previews: some View {
         let sampleBusStop: BusStop = BusStop()
         BusStopDetailView(busStop: sampleBusStop,
-                          displayedCoordinate: CLLocationCoordinate2D(latitude: 1.29516, longitude: 103.85892),
                           showToast: { _, _ in })
     }
 }

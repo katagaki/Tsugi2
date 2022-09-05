@@ -9,17 +9,14 @@ import CoreLocation
 import SwiftUI
 
 class Coordinate: ObservableObject, Identifiable {
+    var busStop: BusStop
     @Published var latitude: Double
     @Published var longitude: Double
     
-    init(coordinate: CLLocationCoordinate2D) {
-        self.latitude = coordinate.latitude
-        self.longitude = coordinate.longitude
-    }
-    
-    init(latitude: Double, longitude: Double) {
-        self.latitude = latitude
-        self.longitude = longitude
+    init(busStop: BusStop) {
+        self.busStop = busStop
+        self.latitude = busStop.latitude ?? 0.0
+        self.longitude = busStop.longitude ?? 0.0
     }
     
     func updateCoordinates(to newCoordinate: CLLocationCoordinate2D) {

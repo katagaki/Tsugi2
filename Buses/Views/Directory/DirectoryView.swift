@@ -10,13 +10,13 @@ import SwiftUI
 
 struct DirectoryView: View {
     
-    @State var previousSearchTerm: String = ""
-    @State var searchTerm: String = ""
-    @State var searchResults: [BusStop] = []
-    @State var isSearching: Bool = false
+    @State private var previousSearchTerm: String = ""
+    @State private var searchTerm: String = ""
+    @State private var searchResults: [BusStop] = []
+    @State private var isSearching: Bool = false
     @Binding var updatedDate: String
     @Binding var updatedTime: String
-    @EnvironmentObject var busStopList: BusStopList
+    @EnvironmentObject private var busStopList: BusStopList
     @EnvironmentObject var displayedCoordinates: CoordinateList
     
     var showToast: (String, Bool) async -> Void
@@ -29,7 +29,6 @@ struct DirectoryView: View {
                         ForEach(searchResults, id: \.code) { stop in
                             NavigationLink {
                                 BusStopDetailView(busStop: stop,
-                                                  displayedCoordinate: CLLocationCoordinate2D(latitude: stop.latitude ?? 0.0, longitude: stop.longitude ?? 0.0),
                                                   showToast: self.showToast)
                             } label: {
                                 HStack(alignment: .center, spacing: 16.0) {
@@ -73,7 +72,6 @@ struct DirectoryView: View {
                         ForEach(busStopList.busStops, id: \.code) { stop in
                             NavigationLink {
                                 BusStopDetailView(busStop: stop,
-                                                  displayedCoordinate: CLLocationCoordinate2D(latitude: stop.latitude ?? 0.0, longitude: stop.longitude ?? 0.0),
                                                   showToast: self.showToast)
                             } label: {
                                 HStack(alignment: .center, spacing: 16.0) {

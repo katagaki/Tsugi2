@@ -15,15 +15,8 @@ class CoordinateList: ObservableObject {
         coordinates = []
     }
     
-    init(coordinates: [CLLocationCoordinate2D]) {
-        self.coordinates = []
-        for coordinate in coordinates {
-            self.coordinates.append(Coordinate(latitude: coordinate.latitude, longitude: coordinate.longitude))
-        }
-    }
-    
-    func addCoordinate(from newCoordinate: CLLocationCoordinate2D) {
-        self.coordinates.append(Coordinate(latitude: newCoordinate.latitude, longitude: newCoordinate.longitude))
+    func addCoordinate(from busStop: BusStop) {
+        self.coordinates.append(Coordinate(busStop: busStop))
     }
     
     func addCoordinate(from newCoordinate: Coordinate) {
