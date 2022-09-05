@@ -97,7 +97,7 @@ struct BusStopDetailView: View {
                     .textCase(nil)
             }
         }
-        .listStyle(.insetGrouped)
+        .listStyle(.grouped)
         .refreshable {
             reloadBusArrivals()
         }
