@@ -62,7 +62,6 @@ struct DirectoryView: View {
                                     .font(.body)
                             }
                         }
-                        .disabled(true) // TODO: To implement
                     } header: {
                         Text("Directory.UsefulResources")
                             .font(.body)

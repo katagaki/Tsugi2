@@ -44,11 +44,7 @@ struct MainTabView: View {
                     MapMarker(coordinate: coordinate.clCoordinate())
                 }
                     .edgesIgnoringSafeArea(.top)
-                    .safeAreaInset(edge: .bottom) {
-                        Text("")
-                            .frame(width: metrics.size.width, height: metrics.size.height * 0.60 - 12.0)
-                    }
-                    .frame(width: metrics.size.width, height: metrics.size.height)
+                    .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: metrics.size.height * 0.60, trailing: 0.0))
                     .onAppear {
                         if !isLocationManagerDelegateAssigned {
                             locationManager.delegate = locationManagerDelegate
@@ -88,9 +84,10 @@ struct MainTabView: View {
                 }
                 
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: metrics.size.height * 0.60, maxHeight: metrics.size.height * 0.60)
-                .mask {
-                    RoundedCornersShape(corners: [.topLeft, .topRight], radius: 6.0)
-                }
+                // TODO: Restore rounded corners when it's possible to manually offset Map elements like in UIKit
+//                .mask {
+//                    RoundedCornersShape(corners: [.topLeft, .topRight], radius: 12.0)
+//                }
                 .shadow(radius: 2.5)
                 .zIndex(1)
             }

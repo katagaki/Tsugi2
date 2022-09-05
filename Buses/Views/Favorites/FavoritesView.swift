@@ -32,33 +32,13 @@ struct FavoritesView: View {
                                 .foregroundColor(.primary)
                                 .textCase(nil)
                             Button {
-                                isEditPending = true
                                 favoriteLocationPendingEdit = location
                                 favoriteLocationPendingEditNewNickname = location.nickname ?? location.busStopCode!
+                                isEditPending = true
                             } label: {
                                 Image(systemName: "pencil")
                                     .font(.body)
                             }
-                            .alert("Favorites.Edit.Title", isPresented: $isEditPending, actions: {
-                                TextField("", text: $favoriteLocationPendingEditNewNickname)
-                                    .textInputAutocapitalization(.words)
-                                Button(role: .cancel, action: {
-                                    favoriteLocationPendingEdit = nil
-                                    favoriteLocationPendingEditNewNickname = ""
-                                }, label: {
-                                    Text("Alert.Cancel")
-                                })
-                                Button(action: {
-                                    Task {
-                                        if let favoriteLocationPendingEdit = favoriteLocationPendingEdit {
-                                            await favorites.rename(favoriteLocationPendingEdit, to: favoriteLocationPendingEditNewNickname)
-                                        }
-                                    }
-                                }, label: {
-                                    Text("Alert.Save")
-                                })
-                            })
-                            .textCase(nil)
                             Spacer()
                             HStack(alignment: .center, spacing: 16.0) {
                                 Button {
@@ -80,38 +60,19 @@ struct FavoritesView: View {
                                 }
                                 .disabled(location.viewIndex == favorites.favoriteLocations.count - 1)
                                 Button {
-                                    isDeletionPending = true
                                     favoriteLocationPendingDeletion = location
+                                    isDeletionPending = true
                                 } label: {
                                     Image(systemName: "minus.circle")
                                         .font(.body)
                                         .foregroundColor(.red)
                                 }
-                                .alert("Favorites.Delete.Confirm.Title", isPresented: $isDeletionPending, actions: {
-                                    Button(role: .cancel, action: {
-                                        favoriteLocationPendingDeletion = nil
-                                    }, label: {
-                                        Text("Alert.No")
-                                    })
-                                    Button(role: .destructive, action: {
-                                        Task {
-                                            if let favoriteLocationPendingDeletion = favoriteLocationPendingDeletion {
-                                                await favorites.deleteLocation(favoriteLocationPendingDeletion)
-                                            }
-                                        }
-                                    }, label: {
-                                        Text("Alert.Yes")
-                                    })
-                                }, message: {
-                                    Text(localized("Favorites.Delete.Confirm.Message").replacingOccurrences(of: "%LOCATION%", with: favoriteLocationPendingDeletion?.nickname ?? localized("Favorites.Delete.Confirm.GenericLocationText")))
-                                })
-                                .textCase(nil)
                             }
                         }
                     }
                 }
             }
-            .listStyle(.insetGrouped)
+            .listStyle(.grouped)
             .refreshable {
                 favorites.reloadData()
             }
@@ -156,6 +117,43 @@ struct FavoritesView: View {
                 }
             }
         }
+        .alert("Favorites.Edit.Title", isPresented: $isEditPending, actions: {
+            TextField("", text: $favoriteLocationPendingEditNewNickname)
+                .textInputAutocapitalization(.words)
+            Button(role: .cancel, action: {
+                favoriteLocationPendingEdit = nil
+                favoriteLocationPendingEditNewNickname = ""
+            }, label: {
+                Text("Alert.Cancel")
+            })
+            Button(action: {
+                Task {
+                    if let favoriteLocationPendingEdit = favoriteLocationPendingEdit {
+                        await favorites.rename(favoriteLocationPendingEdit, to: favoriteLocationPendingEditNewNickname)
+                    }
+                }
+            }, label: {
+                Text("Alert.Save")
+            })
+        })
+        .alert("Favorites.Delete.Confirm.Title", isPresented: $isDeletionPending, actions: {
+            Button(role: .cancel, action: {
+                favoriteLocationPendingDeletion = nil
+            }, label: {
+                Text("Alert.No")
+            })
+            Button(role: .destructive, action: {
+                Task {
+                    if let favoriteLocationPendingDeletion = favoriteLocationPendingDeletion {
+                        await favorites.deleteLocation(favoriteLocationPendingDeletion)
+                    }
+                }
+            }, label: {
+                Text("Alert.Yes")
+            })
+        }, message: {
+            Text(localized("Favorites.Delete.Confirm.Message").replacingOccurrences(of: "%LOCATION%", with: favoriteLocationPendingDeletion?.nickname ?? localized("Favorites.Delete.Confirm.GenericLocationText")))
+        })
     }
     
 }
