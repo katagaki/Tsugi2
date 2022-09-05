@@ -45,13 +45,6 @@ struct MainTabView: View {
                 }
                     .edgesIgnoringSafeArea(.top)
                     .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: metrics.size.height * 0.60, trailing: 0.0))
-                    .onAppear {
-                        if !isLocationManagerDelegateAssigned {
-                            locationManager.delegate = locationManagerDelegate
-                            isLocationManagerDelegateAssigned = true
-                        }
-                        locationManager.startUpdatingLocation()
-                    }
                 TabView(selection: $defaultTab) {
                     // TODO: To implement
                     NearbyView()
@@ -99,6 +92,14 @@ struct MainTabView: View {
                         isInitialLoad = false
                     }
                 }
+                if !isLocationManagerDelegateAssigned {
+                    locationManager.delegate = locationManagerDelegate
+                    isLocationManagerDelegateAssigned = true
+                }
+                if locationManager.authorizationStatus != .authorizedWhenInUse {
+                    locationManager.requestWhenInUseAuthorization()
+                }
+                locationManager.startUpdatingLocation()
             }
             .overlay {
                 ZStack(alignment: .top) {
