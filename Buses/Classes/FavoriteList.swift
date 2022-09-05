@@ -33,27 +33,25 @@ class FavoriteList: ObservableObject {
     }
     
     func reloadData() {
-        DispatchQueue.main.async { [self] in
-            do {
-                favoriteLocations = try context.fetch(fetchRequestForLocations)
-                favoriteBusServices = try context.fetch(fetchRequestForBusServices)
-                favoriteLocations.sort { a, b in
-                    a.viewIndex < b.viewIndex
-                }
-                
-                // Retroactively add indexes (should be removed in final build)
-                for i in 0..<favoriteLocations.count {
-                    favoriteLocations[i].viewIndex = Int16(i)
-                }
-                Task {
-                    await saveChanges(andReload: false)
-                }
-                
-                log("Favorites data reloaded.")
-            } catch {
-                favoriteLocations = []
-                favoriteBusServices = []
+        do {
+            favoriteLocations = try context.fetch(fetchRequestForLocations)
+            favoriteBusServices = try context.fetch(fetchRequestForBusServices)
+            favoriteLocations.sort { a, b in
+                a.viewIndex < b.viewIndex
             }
+            
+            // Retroactively add indexes (should be removed in final build)
+            for i in 0..<favoriteLocations.count {
+                favoriteLocations[i].viewIndex = Int16(i)
+            }
+            Task {
+                await saveChanges(andReload: false)
+            }
+            
+            log("Favorites data reloaded.")
+        } catch {
+            favoriteLocations = []
+            favoriteBusServices = []
         }
     }
     

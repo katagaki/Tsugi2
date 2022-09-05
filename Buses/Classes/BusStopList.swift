@@ -12,10 +12,12 @@ class BusStopList: Codable, Hashable, ObservableObject, Identifiable {
     // BusStops API
     var metadata: String
     var busStops: [BusStop]
+    var combinedBusStopCodes: String?
     
     init() {
         metadata = "created.from.init"
         busStops = []
+        combinedBusStopCodes = busStops.reduce("") { $0 + $1.code }
     }
     
     enum CodingKeys: String, CodingKey {
@@ -28,8 +30,7 @@ class BusStopList: Codable, Hashable, ObservableObject, Identifiable {
     }
     
     func hash(into hasher: inout Hasher) {
-        let combinedBusStopCodes: String = busStops.reduce("") { $0 + $1.code }
-        hasher.combine(combinedBusStopCodes)
+        hasher.combine(combinedBusStopCodes!)
     }
     
 }

@@ -27,10 +27,8 @@ struct WebView: UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
         webView.navigationDelegate = context.coordinator
-        DispatchQueue.main.async {
-            webView.layer.opacity = 0.0
-            webView.load(URLRequest(url: url))
-        }
+        webView.layer.opacity = 0.0
+        webView.load(URLRequest(url: url))
         return webView
     }
     
