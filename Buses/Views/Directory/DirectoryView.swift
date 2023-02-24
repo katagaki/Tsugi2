@@ -124,10 +124,10 @@ struct DirectoryView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     VStack(alignment: .trailing) {
-                        Text("\(updatedDate)")
+                        Text("Directory.LastUpdated")
                             .font(.caption)
                             .foregroundColor(.secondary)
-                        Text("\(updatedTime)")
+                        Text("\(updatedDate)")
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }

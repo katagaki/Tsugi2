@@ -48,6 +48,7 @@
 "Directory.BusStopsLoading" = "Getting bus stop information...";
 "Directory.MRTMap" = "MRT System Map";
 "Directory.SearchResults" = "Search Results";
+"Directory.LastUpdated" = "Last Updated";
 
 /* More View */
 "More.General" = "General";

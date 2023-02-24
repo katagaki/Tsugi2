@@ -48,6 +48,7 @@
 "Directory.BusStopsLoading" = "バス停のデータを読み込み中…";
 "Directory.MRTMap" = "MRT路線図";
 "Directory.SearchResults" = "検索結果";
+"Directory.LastUpdated" = "最後更新";
 
 /* More View */
 "More.General" = "一般";
