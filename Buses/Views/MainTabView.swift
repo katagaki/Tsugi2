@@ -112,6 +112,13 @@ struct MainTabView: View {
                     locationManager.startUpdatingLocation()
                 }
             })
+            .onChange(of: nearbyBusStops, perform: { newValue in
+                displayedCoordinates.removeAll()
+                for busStop in nearbyBusStops {
+                    displayedCoordinates.addCoordinate(from: busStop)
+                }
+                log("Updated displayed coordinates.")
+            })
             .onAppear {
                 if isInitialLoad {
                     defaultTab = defaults.integer(forKey: "StartupTab")
@@ -172,10 +179,6 @@ struct MainTabView: View {
             busStopList.busStops = busStopsFetched.sorted(by: { a, b in
                 a.description?.lowercased() ?? "" < b.description?.lowercased() ?? ""
             })
-            // TODO: Removed due to performance issue
-//            for busStop in busStopList.busStops {
-//                displayedCoordinates.addCoordinate(from: busStop)
-//            }
             dateFormatter.dateStyle = .medium
             timeFormatter.timeStyle = .medium
             updatedDate = dateFormatter.string(from: Date.now)

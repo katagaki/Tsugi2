@@ -10,8 +10,8 @@ import SwiftUI
 
 class Coordinate: ObservableObject, Identifiable {
     var busStop: BusStop
-    @Published var latitude: Double
-    @Published var longitude: Double
+    var latitude: Double
+    var longitude: Double
     
     init(busStop: BusStop) {
         self.busStop = busStop

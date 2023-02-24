@@ -9,7 +9,7 @@ import CoreLocation
 import SwiftUI
 
 class CoordinateList: ObservableObject {
-    @Published var coordinates: [Coordinate]
+    var coordinates: [Coordinate]
     
     init() {
         coordinates = []
