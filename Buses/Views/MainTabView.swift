@@ -17,6 +17,7 @@ struct MainTabView: View {
     
     @State private var locationManager: CLLocationManager = CLLocationManager()
     @StateObject private var locationManagerDelegate: LocationDelegate = LocationDelegate()
+    @State var region: MKCoordinateRegion = MKCoordinateRegion()
     @State var userTrackingMode: MapUserTrackingMode = .follow
     @EnvironmentObject var displayedCoordinates: CoordinateList
     
@@ -27,16 +28,20 @@ struct MainTabView: View {
     @State var updatedDate: String
     @State var updatedTime: String
     
+    @State var nearbyBusStops: [BusStop] = []
+    
     @State var isToastShowing: Bool = false
     @State var toastMessage: String = ""
     @State var toastCheckmark: Bool = false
+    
+    let locationUpdateTimer = Timer.publish(every: 3.0, on: .main, in: .common).autoconnect()
     
     @EnvironmentObject var favorites: FavoriteList
     
     var body: some View {
         GeometryReader { metrics in
             ZStack(alignment: .bottom) {
-                Map(coordinateRegion: $locationManagerDelegate.region,
+                Map(coordinateRegion: $region,
                     interactionModes: .all,
                     showsUserLocation: true,
                     userTrackingMode: $userTrackingMode,
@@ -64,7 +69,8 @@ struct MainTabView: View {
                     .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: metrics.size.height * 0.60, trailing: 0.0))
                 TabView(selection: $defaultTab) {
                     // TODO: To implement
-                    NearbyView()
+                    NearbyView(nearbyBusStops: $nearbyBusStops,
+                               showToast: self.showToast)
                         .tabItem {
                             Label("TabTitle.Nearby", systemImage: "location.circle.fill")
                         }
@@ -101,6 +107,11 @@ struct MainTabView: View {
                 .shadow(radius: 2.5)
                 .zIndex(1)
             }
+            .onReceive(locationUpdateTimer, perform: { _ in
+                if locationManager.authorizationStatus == .authorizedWhenInUse {
+                    locationManager.startUpdatingLocation()
+                }
+            })
             .onAppear {
                 if isInitialLoad {
                     defaultTab = defaults.integer(forKey: "StartupTab")
@@ -110,13 +121,13 @@ struct MainTabView: View {
                     }
                 }
                 if !isLocationManagerDelegateAssigned {
+                    locationManagerDelegate.completion = self.reloadNearbyBusStops
                     locationManager.delegate = locationManagerDelegate
                     isLocationManagerDelegateAssigned = true
                 }
                 if locationManager.authorizationStatus != .authorizedWhenInUse {
                     locationManager.requestWhenInUseAuthorization()
                 }
-                locationManager.startUpdatingLocation()
             }
             .overlay {
                 ZStack(alignment: .top) {
@@ -161,14 +172,33 @@ struct MainTabView: View {
             busStopList.busStops = busStopsFetched.sorted(by: { a, b in
                 a.description?.lowercased() ?? "" < b.description?.lowercased() ?? ""
             })
-            for busStop in busStopList.busStops {
-                displayedCoordinates.addCoordinate(from: busStop)
-            }
+            // TODO: Removed due to performance issue
+//            for busStop in busStopList.busStops {
+//                displayedCoordinates.addCoordinate(from: busStop)
+//            }
             dateFormatter.dateStyle = .medium
             timeFormatter.timeStyle = .medium
             updatedDate = dateFormatter.string(from: Date.now)
             updatedTime = timeFormatter.string(from: Date.now)
             isBusStopListLoaded = true
+            log("Reloaded bus stop data.")
+        }
+    }
+    
+    func reloadNearbyBusStops() {
+        Task {
+            let currentCoordinate = CLLocation(latitude: locationManagerDelegate.region.center.latitude, longitude: locationManagerDelegate.region.center.longitude)
+            var busStopListSortedByDistance: [BusStop] = busStopList.busStops
+            busStopListSortedByDistance.sort { a, b in
+                let busStopCoordinateA = CLLocation(latitude: a.latitude ?? 0.0, longitude: a.longitude ?? 0.0)
+                let busStopCoordinateB = CLLocation(latitude: b.latitude ?? 0.0, longitude: b.longitude ?? 0.0)
+                let distanceA = currentCoordinate.distance(from: busStopCoordinateA)
+                let distanceB = currentCoordinate.distance(from: busStopCoordinateB)
+                return distanceA < distanceB
+            }
+            nearbyBusStops.removeAll()
+            nearbyBusStops.append(contentsOf: busStopListSortedByDistance[0..<(busStopListSortedByDistance.count >= 10 ? 10 : busStopListSortedByDistance.count)])
+            log("Reloaded nearby bus stop data.")
         }
     }
 }
@@ -182,8 +212,8 @@ struct MainView_Previews: PreviewProvider {
 
 class LocationDelegate: NSObject, ObservableObject, CLLocationManagerDelegate {
 
-//    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 1.30437, longitude: 103.82458), latitudinalMeters: 400.0, longitudinalMeters: 400.0)
     var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 1.30437, longitude: 103.82458), latitudinalMeters: 400.0, longitudinalMeters: 400.0)
+    var completion: () -> Void = {}
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         if manager.authorizationStatus == .authorizedWhenInUse {
@@ -197,11 +227,13 @@ class LocationDelegate: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        log("Updating location...")
         region.center.latitude = (manager.location?.coordinate.latitude)!
         region.center.longitude = (manager.location?.coordinate.longitude)!
+        log("Updated location.")
         manager.stopUpdatingLocation()
+        completion()
     }
+    
 }
 
 struct StrokeText: View {
