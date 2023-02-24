@@ -13,7 +13,7 @@ struct FavoriteLocationCarouselView: View {
     @EnvironmentObject var busStopList: BusStopList
     @State var busServices: [BusService] = []
     var favoriteLocation: FavoriteLocation
-//    let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -24,13 +24,8 @@ struct FavoriteLocationCarouselView: View {
                             ArrivalInfoDetailView(busStop: BusStop(code: favoriteLocation.busStopCode ?? bus.busStopCode!, description: favoriteLocation.nickname), bus: bus, usesNickname: true)
                         } label: {
                             VStack(alignment: .center, spacing: 4.0) {
-                                // Fix layout issues in iOS 16
-                                if #available(iOS 16, *) {
-                                    BusNumberPlateView(serviceNo: bus.serviceNo)
-                                        .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: -8.0, trailing: 0.0))
-                                } else {
-                                    BusNumberPlateView(serviceNo: bus.serviceNo)
-                                }
+                                BusNumberPlateView(serviceNo: bus.serviceNo)
+                                    .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: -8.0, trailing: 0.0))
                                 Text(arrivalTimeTo(date: bus.nextBus?.estimatedArrivalTime()))
                                     .font(.body)
                                     .foregroundColor(.primary)
@@ -77,9 +72,9 @@ struct FavoriteLocationCarouselView: View {
         .onAppear {
             reloadArrivalTimes()
         }
-//        .onReceive(timer, perform: { _ in
-//            reloadArrivalTimes()
-//        })
+        .onReceive(timer, perform: { _ in
+            reloadArrivalTimes()
+        })
     }
     
     func reloadArrivalTimes() {

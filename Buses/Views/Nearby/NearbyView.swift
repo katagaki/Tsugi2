@@ -21,24 +21,20 @@ struct NearbyView: View {
         NavigationView {
             List {
                 ForEach(nearbyBusStops, id: \.code) { stop in
-                    NavigationLink {
-                        BusStopDetailView(busStop: stop,
-                                          showToast: self.showToast)
-                    } label: {
-                        HStack(alignment: .center, spacing: 16.0) {
-                            Image("ListIcon.BusStop")
-                            VStack(alignment: .leading, spacing: 2.0) {
-                                Text(verbatim: stop.description ?? "Shared.BusStop.Description.None")
-                                    .font(.body)
-                                Text(verbatim: stop.roadName ?? "")
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                            }
-                        }
+                    Section {
+                        NearbyBusStopCarouselView(nearbyBusStops: $nearbyBusStops,
+                                                  busStop: stop)
+                            .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
+                    } header: {
+                        Text((stop.description ?? "Shared.BusStop.Description.None")) // TODO: Get bus stop name using API
+                            .font(.body)
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+                            .textCase(nil)
                     }
                 }
             }
-            .listStyle(.plain)
+            .listStyle(.grouped)
             .navigationTitle("ViewTitle.Nearby")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

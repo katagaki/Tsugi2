@@ -108,9 +108,7 @@ struct MainTabView: View {
                 .zIndex(1)
             }
             .onReceive(locationUpdateTimer, perform: { _ in
-                if locationManager.authorizationStatus == .authorizedWhenInUse {
-                    locationManager.startUpdatingLocation()
-                }
+                updateLocation()
             })
             .onChange(of: nearbyBusStops, perform: { newValue in
                 displayedCoordinates.removeAll()
@@ -135,6 +133,7 @@ struct MainTabView: View {
                 if locationManager.authorizationStatus != .authorizedWhenInUse {
                     locationManager.requestWhenInUseAuthorization()
                 }
+                updateLocation()
             }
             .overlay {
                 ZStack(alignment: .top) {
@@ -185,6 +184,7 @@ struct MainTabView: View {
             updatedTime = timeFormatter.string(from: Date.now)
             isBusStopListLoaded = true
             log("Reloaded bus stop data.")
+            updateLocation()
         }
     }
     
@@ -202,6 +202,12 @@ struct MainTabView: View {
             nearbyBusStops.removeAll()
             nearbyBusStops.append(contentsOf: busStopListSortedByDistance[0..<(busStopListSortedByDistance.count >= 10 ? 10 : busStopListSortedByDistance.count)])
             log("Reloaded nearby bus stop data.")
+        }
+    }
+    
+    func updateLocation() {
+        if locationManager.authorizationStatus == .authorizedWhenInUse {
+            locationManager.startUpdatingLocation()
         }
     }
 }
