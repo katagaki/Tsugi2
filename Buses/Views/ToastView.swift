@@ -10,18 +10,22 @@ import SwiftUI
 struct ToastView: View {
     
     var message: String
-    var showsProgressView: Bool = false
-    var showsCheckmark: Bool = false
+    var toastType: ToastType = .Spinner
     
     var body: some View {
         HStack(alignment: .center, spacing: 8.0) {
-            if showsProgressView {
+            switch toastType {
+            case .Spinner:
                 ProgressView()
                     .progressViewStyle(.circular)
-            }
-            if showsCheckmark {
+            case .Checkmark:
                 Image(systemName: "checkmark.circle.fill")
                     .symbolRenderingMode(.multicolor)
+            case .Exclamation:
+                Image(systemName: "exclamationmark.circle.fill")
+                    .symbolRenderingMode(.multicolor)
+            case .None:
+                Color.clear
             }
             Text(message)
                 .font(.body)
@@ -36,4 +40,12 @@ struct ToastView: View {
         .shadow(radius: 2.5)
         .transition(AnyTransition.move(edge: .top).combined(with: .opacity))
     }
+    
+}
+
+enum ToastType {
+    case Spinner
+    case Checkmark
+    case Exclamation
+    case None
 }

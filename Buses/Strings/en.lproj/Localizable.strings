@@ -73,6 +73,8 @@
 
 /* Notifications */
 "Notification.Set" = "You will be notified 2 minutes before this bus is scheduled to arrive.";
+"Notification.Error" = "An error occurred while setting up your notification.";
+"Notification.NoPermissions" = "Buses has not been granted permissions to send notifications. Please check whether Buses is allowed to send notifications in the Settings app.";
 "Notification.Arriving.Title" = "Bus Arriving";
 "Notification.Arriving.Description" = "Bus %s1 is scheduled to arrive at %s2.\nHead to the bus stop early to avoid missing the bus.";
 

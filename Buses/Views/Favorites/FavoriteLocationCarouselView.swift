@@ -16,7 +16,7 @@ struct FavoriteLocationCarouselView: View {
     var favoriteLocation: FavoriteLocation
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
-    var showToast: (String, Bool) async -> Void
+    var showToast: (String, ToastType) async -> Void
     
     var body: some View {
         if !isInitialDataLoaded {

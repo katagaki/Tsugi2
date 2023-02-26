@@ -19,7 +19,7 @@ struct DirectoryView: View {
     @EnvironmentObject private var busStopList: BusStopList
     @EnvironmentObject var displayedCoordinates: CoordinateList
     
-    var showToast: (String, Bool) async -> Void
+    var showToast: (String, ToastType) async -> Void
     
     var body: some View {
         NavigationView {

@@ -15,7 +15,7 @@ struct NearbyView: View {
     
     @Binding var nearbyBusStops: [BusStop]
     
-    var showToast: (String, Bool) async -> Void
+    var showToast: (String, ToastType) async -> Void
     
     var reloadNearbyBusStops: () -> Void
     
@@ -70,7 +70,7 @@ struct NearbyView_Previews: PreviewProvider {
                    reloadNearbyBusStops: self.reloadNearbyBusStops)
     }
     
-    static func showToast(message: String, showsCheckmark: Bool = false) async { }
+    static func showToast(message: String, type: ToastType = .None) async { }
     static func reloadNearbyBusStops() { }
     
 }

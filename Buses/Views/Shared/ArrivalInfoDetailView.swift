@@ -16,7 +16,7 @@ struct ArrivalInfoDetailView: View {
     @EnvironmentObject var busStopList: BusStopList
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
-    var showToast: (String, Bool) async -> Void
+    var showToast: (String, ToastType) async -> Void
     
     var body: some View {
         List {
@@ -111,7 +111,7 @@ struct ArrivalInfoDetailView_Previews: PreviewProvider {
                               showToast: self.showToast)
     }
     
-    static func showToast(message: String, showsCheckmark: Bool = false) async { }
+    static func showToast(message: String, type: ToastType = .None) async { }
     
     static private func loadPreviewData() -> BusStop? {
         if let sampleDataPath = Bundle.main.path(forResource: "BusArrivalv2-1", ofType: "json") {

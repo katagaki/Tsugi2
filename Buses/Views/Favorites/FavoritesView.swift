@@ -19,7 +19,7 @@ struct FavoritesView: View {
     @State var favoriteLocationPendingEdit: FavoriteLocation? = nil
     @State var favoriteLocationPendingEditNewNickname: String = ""
     
-    var showToast: (String, Bool) async -> Void
+    var showToast: (String, ToastType) async -> Void
     
     var body: some View {
         NavigationView {
@@ -174,6 +174,6 @@ struct FavoritesView_Previews: PreviewProvider {
         FavoritesView(showToast: self.showToast)
     }
     
-    static func showToast(message: String, showsCheckmark: Bool = false) async { }
+    static func showToast(message: String, type: ToastType = .None) async { }
     
 }

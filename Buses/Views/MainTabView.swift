@@ -32,7 +32,7 @@ struct MainTabView: View {
     
     @State var isToastShowing: Bool = false
     @State var toastMessage: String = ""
-    @State var toastCheckmark: Bool = false
+    @State var toastType: ToastType = .None
     
     let locationUpdateTimer = Timer.publish(every: 3.0, on: .main, in: .common).autoconnect()
     
@@ -128,7 +128,7 @@ struct MainTabView: View {
             .overlay {
                 ZStack(alignment: .topLeading) {
                     if !isBusStopListLoaded {
-                        ToastView(message: localized("Directory.BusStopsLoading"), showsProgressView: true)
+                        ToastView(message: localized("Directory.BusStopsLoading"), toastType: .Spinner)
                     }
                     Color.clear
                 }
@@ -138,7 +138,7 @@ struct MainTabView: View {
             .overlay {
                 ZStack(alignment: .top) {
                     if isToastShowing {
-                        ToastView(message: toastMessage, showsCheckmark: toastCheckmark)
+                        ToastView(message: toastMessage, toastType: toastType)
                     }
                     Color.clear
                 }
@@ -149,9 +149,9 @@ struct MainTabView: View {
         .edgesIgnoringSafeArea(.bottom)
     }
     
-    func showToast(message: String, showsCheckmark: Bool = false) async {
+    func showToast(message: String, type: ToastType = .None) async {
         toastMessage = message
-        toastCheckmark = showsCheckmark
+        toastType = type
         isToastShowing = true
         try! await Task.sleep(nanoseconds: UInt64(3 * Double(NSEC_PER_SEC)))
         isToastShowing = false

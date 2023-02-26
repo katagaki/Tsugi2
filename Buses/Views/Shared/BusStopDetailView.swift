@@ -17,7 +17,7 @@ struct BusStopDetailView: View {
     @EnvironmentObject var favorites: FavoriteList
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
-    var showToast: (String, Bool) async -> Void
+    var showToast: (String, ToastType) async -> Void
     
     var body: some View {
         List {
@@ -147,7 +147,7 @@ struct BusStopDetailView: View {
                         favorites.addFavoriteLocation(busStop: busStop, usesLiveBusStopData: true)
                         Task {
                             await favorites.saveChanges()
-                            await showToast(localized("Shared.BusStop.Toast.Favorited").replacingOccurrences(of: "%s", with: busStop.description ?? localized("Shared.BusStop.Description.None")), true)
+                            await showToast(localized("Shared.BusStop.Toast.Favorited").replacingOccurrences(of: "%s", with: busStop.description ?? localized("Shared.BusStop.Description.None")), .Checkmark)
                         }
                     } label: {
                         Image(systemName: "rectangle.stack.badge.plus")

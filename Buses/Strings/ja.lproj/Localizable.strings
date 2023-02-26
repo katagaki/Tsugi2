@@ -73,6 +73,8 @@
 
 /* Notifications */
 "Notification.Set" = "このバスの到着予定時間の2分前に通知されます。";
+"Notification.Error" = "通知を設定する際にエラーが発生しました。";
+"Notification.NoPermissions" = "通知を設定するには、通知の権限が必要です。設定アプリで「バス」アプリの通知権限をご確認ください。";
 "Notification.Arriving.Title" = "バスが到着します";
 "Notification.Arriving.Description" = "%s1号バスが%s2に到着する予定です。\nお早めにバス停に行って、遅れないようにしましょう。";
 
