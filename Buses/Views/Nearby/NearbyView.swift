@@ -37,7 +37,7 @@ struct NearbyView: View {
                     }
                 }
             }
-            .listStyle(.grouped)
+            .listStyle(.insetGrouped)
             .refreshable {
                 reloadNearbyBusStops()
             }

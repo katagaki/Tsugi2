@@ -77,7 +77,7 @@ struct FavoritesView: View {
                     }
                 }
             }
-            .listStyle(.grouped)
+            .listStyle(.insetGrouped)
             .refreshable {
                 favorites.reloadData()
             }
