@@ -7,3 +7,4 @@
 */
 
 "CFBundleDisplayName" = "Buses";
+"NSLocationWhenInUseUsageDescription" = "Buses uses your location to look for bus stops nearby.";

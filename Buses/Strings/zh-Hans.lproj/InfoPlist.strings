@@ -7,3 +7,4 @@
 */
 
 "CFBundleDisplayName" = "巴士精灵";
+"NSLocationWhenInUseUsageDescription" = "使用位置信息查找附近的公交车站。";

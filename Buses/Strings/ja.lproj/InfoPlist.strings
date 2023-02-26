@@ -7,3 +7,4 @@
 */
 
 "CFBundleDisplayName" = "バス";
+"NSLocationWhenInUseUsageDescription" = "近くにあるバス停を見つけるために位置情報を利用します。";

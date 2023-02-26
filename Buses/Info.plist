@@ -2,21 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
 	<key>CFBundleIcons</key>
 	<dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
-			<key>Laze</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>Laze</string>
-				</array>
-				<key>UIPrerenderedIcon</key>
-				<false/>
-			</dict>
 			<key>Blue</key>
 			<dict>
 				<key>Blue</key>
@@ -24,6 +13,15 @@
 				<key>CFBundleIconFiles</key>
 				<array>
 					<string>Blue</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>Laze</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Laze</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
@@ -61,15 +59,6 @@
 	<dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
-			<key>Laze</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>Laze</string>
-				</array>
-				<key>UIPrerenderedIcon</key>
-				<false/>
-			</dict>
 			<key>Blue</key>
 			<dict>
 				<key>Blue</key>
@@ -77,6 +66,15 @@
 				<key>CFBundleIconFiles</key>
 				<array>
 					<string>Blue</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>Laze</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Laze</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
