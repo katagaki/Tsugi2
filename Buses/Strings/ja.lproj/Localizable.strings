@@ -93,5 +93,5 @@
 "Shared.BusArrival.NotInService" = "サービス時間外";
 "Shared.BusArrival.NotInService.Subtitle" = "このバスは、現在サービスが提供していません。";
 "Shared.BusArrival.Subsequent" = "次：";
-"Shared.BusArrival.Crowded" = "混雑している";
+"Shared.BusArrival.Crowded" = "混雑中";
 "Shared.General.ComingSoon" = "近日公開";
