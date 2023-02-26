@@ -15,7 +15,7 @@ struct BusStopDetailView: View {
     @State var isInitialDataLoading: Bool = true
     @EnvironmentObject var displayedCoordinates: CoordinateList
     @EnvironmentObject var favorites: FavoriteList
-//    let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
     var showToast: (String, Bool) async -> Void
     
@@ -47,7 +47,9 @@ struct BusStopDetailView: View {
                 } else {
                     ForEach(busArrivals, id: \.serviceNo) { bus in
                         NavigationLink {
-                            ArrivalInfoDetailView(busStop: busStop, bus: bus)
+                            ArrivalInfoDetailView(busStop: busStop,
+                                                  bus: bus,
+                                                  showToast: self.showToast)
                         } label: {
                             HStack(alignment: .center, spacing: 8.0) {
                                 BusNumberPlateView(serviceNo: bus.serviceNo)
@@ -107,12 +109,9 @@ struct BusStopDetailView: View {
                 reloadBusArrivals()
             }
         }
-//        .onReceive(timer, perform: { _ in
-//            reloadBusArrivals()
-//        })
-//        .onDisappear {
-//            timer.upstream.connect().cancel()
-//        }
+        .onReceive(timer, perform: { _ in
+            reloadBusArrivals()
+        })
         .navigationTitle(busStop.description ?? "Shared.BusStop.Description.None")
         .toolbar {
             ToolbarItem(placement: .principal) {
@@ -148,7 +147,7 @@ struct BusStopDetailView: View {
                         favorites.addFavoriteLocation(busStop: busStop, usesLiveBusStopData: true)
                         Task {
                             await favorites.saveChanges()
-                            await showToast(localized("Shared.BusStop.Toast.Favorited"), true)
+                            await showToast(localized("Shared.BusStop.Toast.Favorited").replacingOccurrences(of: "%s", with: busStop.description ?? localized("Shared.BusStop.Description.None")), true)
                         }
                     } label: {
                         Image(systemName: "rectangle.stack.badge.plus")

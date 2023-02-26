@@ -9,20 +9,25 @@ import SwiftUI
 
 struct FavoritesView: View {
     
+    @EnvironmentObject var displayedCoordinates: CoordinateList
+    @EnvironmentObject var favorites: FavoriteList
+    
     @State var listInset: Double = 0.0
     @State var isDeletionPending: Bool = false
     @State var favoriteLocationPendingDeletion: FavoriteLocation? = nil
     @State var isEditPending: Bool = false
     @State var favoriteLocationPendingEdit: FavoriteLocation? = nil
     @State var favoriteLocationPendingEditNewNickname: String = ""
-    @EnvironmentObject var favorites: FavoriteList
+    
+    var showToast: (String, Bool) async -> Void
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(favorites.favoriteLocations, id: \.busStopCode) { location in
                     Section {
-                        FavoriteLocationCarouselView(favoriteLocation: location)
+                        FavoriteLocationCarouselView(favoriteLocation: location,
+                                                     showToast: self.showToast)
                             .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
                     } header: {
                         HStack(alignment: .center, spacing: 6.0) {
@@ -75,6 +80,11 @@ struct FavoritesView: View {
             .listStyle(.grouped)
             .refreshable {
                 favorites.reloadData()
+            }
+            .onAppear {
+                displayedCoordinates.removeAll()
+                // TODO: Display favorite locations on Map view
+                log("Updated displayed coordinates to favorite locations.")
             }
             .overlay {
                 if favorites.favoriteLocations.count == 0 {
@@ -161,7 +171,9 @@ struct FavoritesView: View {
 struct FavoritesView_Previews: PreviewProvider {
     
     static var previews: some View {
-        FavoritesView()
+        FavoritesView(showToast: self.showToast)
     }
+    
+    static func showToast(message: String, showsCheckmark: Bool = false) async { }
     
 }

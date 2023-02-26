@@ -71,6 +71,10 @@
 "More.Help.Email.Subtitle" = "ktgk.public@icloud.com";
 "More.Attribution" = "数据源信息";
 
+/* Notifications */
+"Notification.Arriving.Title" = "巴士要到达";
+"Notification.Arriving.Description" = "%s1巴士将在%s2到达。\n尽快前往公共汽车停下来，以免迟到。";
+
 /* Shared */
 "Shared.BusStop.Description.None" = "无名巴士站";
 "Shared.BusStop.Description.Copy" = "复制巴士站名";
@@ -80,7 +84,7 @@
 "Shared.BusStop.Road.None" = "无路名";
 "Shared.BusStop.BusServices" = "巴士服务";
 "Shared.BusStop.BusServices.None" = "此巴士站目前没有能提供的巴士服务。";
-"Shared.BusStop.Toast.Favorited" = "此巴士站已保存为地点。";
+"Shared.BusStop.Toast.Favorited" = "%s已保存为地点。";
 "Shared.BusArrival.Arriving" = "即将抵达";
 "Shared.BusArrival.JustLeft" = "已经离开";
 "Shared.BusArrival.NotInService" = "停止服务";

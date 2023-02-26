@@ -39,6 +39,7 @@
 		E476BF1E28086A2D00B8524B /* APIKeyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF1D28086A2D00B8524B /* APIKeyHandler.swift */; };
 		E476BF2028086AE500B8524B /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF1F28086AE500B8524B /* Logging.swift */; };
 		E482AC8829A90CAB008DAD30 /* NearbyBusStopCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482AC8729A90CAB008DAD30 /* NearbyBusStopCarouselView.swift */; };
+		E482AC8A29AAFAF6008DAD30 /* LocationUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482AC8929AAFAF6008DAD30 /* LocationUtilities.swift */; };
 		E4AAD7FC2882C0D800CC63E8 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AAD7FB2882C0D800CC63E8 /* ToastView.swift */; };
 		E4B70003285637450019F71A /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B70002285637450019F71A /* MainTabView.swift */; };
 		E4B700052856387E0019F71A /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B700042856387E0019F71A /* App.swift */; };
@@ -120,6 +121,7 @@
 		E476BF1D28086A2D00B8524B /* APIKeyHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeyHandler.swift; sourceTree = "<group>"; };
 		E476BF1F28086AE500B8524B /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		E482AC8729A90CAB008DAD30 /* NearbyBusStopCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyBusStopCarouselView.swift; sourceTree = "<group>"; };
+		E482AC8929AAFAF6008DAD30 /* LocationUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUtilities.swift; sourceTree = "<group>"; };
 		E4AAD7FB2882C0D800CC63E8 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		E4ADDDF42859978900C8DE21 /* Buses.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Buses.entitlements; sourceTree = "<group>"; };
 		E4B70002285637450019F71A /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -399,6 +401,7 @@
 				E4FFCADA2801B23300DCA0EC /* DateUtilities.swift */,
 				E4319EB3280413FA00D21531 /* JSONUtilities.swift */,
 				E4E367882804422B0022A5CD /* StringUtilities.swift */,
+				E482AC8929AAFAF6008DAD30 /* LocationUtilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				E4B7FFE828544EBC0019F71A /* DirectoryView.swift in Sources */,
 				E41C1B9E285806A4003F1BFB /* BusNumberPlateView.swift in Sources */,
 				E4B700052856387E0019F71A /* App.swift in Sources */,
+				E482AC8A29AAFAF6008DAD30 /* LocationUtilities.swift in Sources */,
 				E4FFCAC72801627D00DCA0EC /* BusService.swift in Sources */,
 				E4FFCAC52801627700DCA0EC /* BusStop.swift in Sources */,
 				E4B7FFF0285467060019F71A /* MoreView.swift in Sources */,

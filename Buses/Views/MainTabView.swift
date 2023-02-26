@@ -68,14 +68,14 @@ struct MainTabView: View {
                     .edgesIgnoringSafeArea(.top)
                     .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: metrics.size.height * 0.60, trailing: 0.0))
                 TabView(selection: $defaultTab) {
-                    // TODO: To implement
                     NearbyView(nearbyBusStops: $nearbyBusStops,
-                               showToast: self.showToast)
+                               showToast: self.showToast,
+                               reloadNearbyBusStops: self.reloadNearbyBusStops)
                         .tabItem {
                             Label("TabTitle.Nearby", systemImage: "location.circle.fill")
                         }
                         .tag(0)
-                    FavoritesView()
+                    FavoritesView(showToast: self.showToast)
                         .tabItem {
                             Label("TabTitle.Favorites", systemImage: "rectangle.stack.fill")
                         }
@@ -110,39 +110,29 @@ struct MainTabView: View {
             .onReceive(locationUpdateTimer, perform: { _ in
                 updateLocation()
             })
-            .onChange(of: nearbyBusStops, perform: { newValue in
-                displayedCoordinates.removeAll()
-                for busStop in nearbyBusStops {
-                    displayedCoordinates.addCoordinate(from: busStop)
-                }
-                log("Updated displayed coordinates.")
-            })
             .onAppear {
                 if isInitialLoad {
                     defaultTab = defaults.integer(forKey: "StartupTab")
-                    Task {
-                        reloadBusStops(showsProgress: (true))
-                        isInitialLoad = false
+                    if !isLocationManagerDelegateAssigned {
+                        locationManagerDelegate.completion = self.reloadNearbyBusStops
+                        locationManager.delegate = locationManagerDelegate
+                        isLocationManagerDelegateAssigned = true
                     }
+                    if locationManager.authorizationStatus != .authorizedWhenInUse {
+                        locationManager.requestWhenInUseAuthorization()
+                    }
+                    reloadBusStops(showsProgress: (true))
+                    isInitialLoad = false
                 }
-                if !isLocationManagerDelegateAssigned {
-                    locationManagerDelegate.completion = self.reloadNearbyBusStops
-                    locationManager.delegate = locationManagerDelegate
-                    isLocationManagerDelegateAssigned = true
-                }
-                if locationManager.authorizationStatus != .authorizedWhenInUse {
-                    locationManager.requestWhenInUseAuthorization()
-                }
-                updateLocation()
             }
             .overlay {
-                ZStack(alignment: .top) {
+                ZStack(alignment: .topLeading) {
                     if !isBusStopListLoaded {
                         ToastView(message: localized("Directory.BusStopsLoading"), showsProgressView: true)
                     }
                     Color.clear
                 }
-                .padding(EdgeInsets(top: 8.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
+                .padding(EdgeInsets(top: 8.0, leading: 8.0, bottom: 0.0, trailing: 8.0))
                 .animation(.default, value: isBusStopListLoaded)
             }
             .overlay {
@@ -152,7 +142,7 @@ struct MainTabView: View {
                     }
                     Color.clear
                 }
-                .padding(EdgeInsets(top: 8.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
+                .padding(EdgeInsets(top: 8.0, leading: 8.0, bottom: 0.0, trailing: 8.0))
                 .animation(.default, value: isToastShowing)
             }
         }
@@ -163,7 +153,7 @@ struct MainTabView: View {
         toastMessage = message
         toastCheckmark = showsCheckmark
         isToastShowing = true
-        try! await Task.sleep(nanoseconds: UInt64(2 * Double(NSEC_PER_SEC)))
+        try! await Task.sleep(nanoseconds: UInt64(3 * Double(NSEC_PER_SEC)))
         isToastShowing = false
     }
     
@@ -184,7 +174,7 @@ struct MainTabView: View {
             updatedTime = timeFormatter.string(from: Date.now)
             isBusStopListLoaded = true
             log("Reloaded bus stop data.")
-            updateLocation()
+            updateLocation(usingOnlySignificantChanges: false)
         }
     }
     
@@ -192,12 +182,11 @@ struct MainTabView: View {
         Task {
             let currentCoordinate = CLLocation(latitude: locationManagerDelegate.region.center.latitude, longitude: locationManagerDelegate.region.center.longitude)
             var busStopListSortedByDistance: [BusStop] = busStopList.busStops
+            busStopListSortedByDistance = busStopListSortedByDistance.filter { busStop in
+                distanceBetween(location: currentCoordinate, busStop: busStop) < 250.0
+            }
             busStopListSortedByDistance.sort { a, b in
-                let busStopCoordinateA = CLLocation(latitude: a.latitude ?? 0.0, longitude: a.longitude ?? 0.0)
-                let busStopCoordinateB = CLLocation(latitude: b.latitude ?? 0.0, longitude: b.longitude ?? 0.0)
-                let distanceA = currentCoordinate.distance(from: busStopCoordinateA)
-                let distanceB = currentCoordinate.distance(from: busStopCoordinateB)
-                return distanceA < distanceB
+                return distanceBetween(location: currentCoordinate, busStop: a) < distanceBetween(location: currentCoordinate, busStop: b)
             }
             nearbyBusStops.removeAll()
             nearbyBusStops.append(contentsOf: busStopListSortedByDistance[0..<(busStopListSortedByDistance.count >= 10 ? 10 : busStopListSortedByDistance.count)])
@@ -205,9 +194,13 @@ struct MainTabView: View {
         }
     }
     
-    func updateLocation() {
+    func updateLocation(usingOnlySignificantChanges: Bool = true) {
         if locationManager.authorizationStatus == .authorizedWhenInUse {
-            locationManager.startUpdatingLocation()
+            if usingOnlySignificantChanges {
+                locationManager.startMonitoringSignificantLocationChanges()
+            } else {
+                locationManager.startUpdatingLocation()
+            }
         }
     }
 }

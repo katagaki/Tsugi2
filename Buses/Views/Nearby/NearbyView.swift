@@ -17,13 +17,16 @@ struct NearbyView: View {
     
     var showToast: (String, Bool) async -> Void
     
+    var reloadNearbyBusStops: () -> Void
+    
     var body: some View {
         NavigationView {
             List {
                 ForEach(nearbyBusStops, id: \.code) { stop in
                     Section {
                         NearbyBusStopCarouselView(nearbyBusStops: $nearbyBusStops,
-                                                  busStop: stop)
+                                                  busStop: stop,
+                                                  showToast: self.showToast)
                             .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
                     } header: {
                         Text((stop.description ?? "Shared.BusStop.Description.None")) // TODO: Get bus stop name using API
@@ -35,6 +38,16 @@ struct NearbyView: View {
                 }
             }
             .listStyle(.grouped)
+            .refreshable {
+                reloadNearbyBusStops()
+            }
+            .onAppear {
+                displayedCoordinates.removeAll()
+                for busStop in nearbyBusStops {
+                    displayedCoordinates.addCoordinate(from: busStop)
+                }
+                log("Updated displayed coordinates to nearby bus stops.")
+            }
             .navigationTitle("ViewTitle.Nearby")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -45,14 +58,6 @@ struct NearbyView: View {
                 ToolbarItem(placement: .principal) {
                     Spacer()
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    HStack(alignment: .center, spacing: 8.0) {
-                        if nearbyBusStops.count == 0 {
-                            ProgressView()
-                                .progressViewStyle(.circular)
-                        }
-                    }
-                }
             }
         }
     }
@@ -60,9 +65,12 @@ struct NearbyView: View {
 
 struct NearbyView_Previews: PreviewProvider {
     static var previews: some View {
-        NearbyView(nearbyBusStops: .constant([]), showToast: self.showToast)
+        NearbyView(nearbyBusStops: .constant([]),
+                   showToast: self.showToast,
+                   reloadNearbyBusStops: self.reloadNearbyBusStops)
     }
     
     static func showToast(message: String, showsCheckmark: Bool = false) async { }
+    static func reloadNearbyBusStops() { }
     
 }

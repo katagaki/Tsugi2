@@ -9,8 +9,11 @@ import SwiftUI
 
 struct ArrivalInfoCardView: View {
     
+    var busService: BusService
     var arrivalInfo: BusArrivalInfo
     @State var arrivalTime: String = ""
+    
+    var showToast: (String, Bool) async -> Void
     
     var body: some View {
         HStack(alignment: .center, spacing: 8.0) {
@@ -69,18 +72,20 @@ struct ArrivalInfoCardView: View {
                             .foregroundColor(.secondary)
                     }
                 }
-                Divider()
-                Button {
-                    // TODO: Implement notifications
-                } label: {
-                    Image(systemName: "bell.fill")
-                        .font(.system(size: 14.0, weight: .regular))
+                if let date = arrivalInfo.estimatedArrivalTime() {
+                    Divider()
+                    Button {
+                        setNotification()
+                    } label: {
+                        Image(systemName: "bell.fill")
+                            .font(.system(size: 14.0, weight: .regular))
+                    }
+                    .buttonStyle(.bordered)
+                    .mask {
+                        Circle()
+                    }
+                    .disabled(date < (Date() + (2 * 60)))
                 }
-                .buttonStyle(.bordered)
-                .mask {
-                    Circle()
-                }
-                .disabled(true) // TODO: To implement
             }
         }
         .onAppear {
@@ -93,6 +98,40 @@ struct ArrivalInfoCardView: View {
             }
         }
     }
+    
+    func setNotification() {
+        if let date = arrivalInfo.estimatedArrivalTime() {
+            let notificationCenter = UNUserNotificationCenter.current()
+            notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+                if let error = error {
+                    log("Error occurred while reqesting for notification permissions: \(error.localizedDescription)")
+                } else {
+                    let content = UNMutableNotificationContent()
+                    let trigger = UNCalendarNotificationTrigger(
+                             dateMatching: Calendar.current.dateComponents([.weekday, .hour, .minute, .second],
+                                                                           from: date - (2 * 60)), repeats: false)
+                    let uuidString = UUID().uuidString
+                    let request = UNNotificationRequest(identifier: uuidString,
+                                                        content: content,
+                                                        trigger: trigger)
+                    content.title = localized("Notification.Arriving.Title")
+                    content.body = localized("Notification.Arriving.Description").replacingOccurrences(of: "%s1", with: busService.serviceNo).replacingOccurrences(of: "%s2", with: date.formatted(date: .omitted, time: .standard))
+                    content.interruptionLevel = .timeSensitive
+                    notificationCenter.add(request) { (error) in
+                       if let error = error {
+                           log("Error occurred while setting notifications: \(error.localizedDescription)")
+                       } else {
+                           log("Notification set with content: \(content.body), and will appear at \((date - (2 * 60)).formatted(date: .complete, time: .complete)).")
+                           Task {
+                               await showToast("Notification set", true)
+                           }
+                       }
+                    }
+                }
+            }
+        }
+    }
+    
 }
 
 struct ArrivalInfoCardView_Previews: PreviewProvider {
@@ -100,8 +139,12 @@ struct ArrivalInfoCardView_Previews: PreviewProvider {
     static var sampleBusStop: BusStop? = loadPreviewData()
     
     static var previews: some View {
-        ArrivalInfoDetailView(busStop: sampleBusStop!, bus: sampleBusStop!.arrivals!.randomElement()!)
+        ArrivalInfoDetailView(busStop: sampleBusStop!,
+                              bus: sampleBusStop!.arrivals!.randomElement()!,
+                              showToast: self.showToast)
     }
+    
+    static func showToast(message: String, showsCheckmark: Bool = false) async { }
     
     static private func loadPreviewData() -> BusStop? {
         if let sampleDataPath = Bundle.main.path(forResource: "BusArrivalv2-1", ofType: "json") {

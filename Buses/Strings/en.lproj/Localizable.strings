@@ -71,6 +71,10 @@
 "More.Help.Email.Subtitle" = "ktgk.public@icloud.com";
 "More.Attribution" = "Data Attribution";
 
+/* Notifications */
+"Notification.Arriving.Title" = "Bus Arriving";
+"Notification.Arriving.Description" = "Bus %s1 is scheduled to arrive at %s2.\nHead to the bus stop early to avoid missing the bus.";
+
 /* Shared */
 "Shared.BusStop.Description.None" = "Unnamed Bus Stop";
 "Shared.BusStop.Description.Copy" = "Copy Bus Stop Name";
@@ -80,7 +84,7 @@
 "Shared.BusStop.Road.None" = "N/A";
 "Shared.BusStop.BusServices" = "Bus Services";
 "Shared.BusStop.BusServices.None" = "This bus stop has no bus services at this time.";
-"Shared.BusStop.Toast.Favorited" = "This bus stop has been added to your locations.";
+"Shared.BusStop.Toast.Favorited" = "%s has been added to your locations.";
 "Shared.BusArrival.Arriving" = "Arriving";
 "Shared.BusArrival.JustLeft" = "Just Left";
 "Shared.BusArrival.NotInService" = "No Service";

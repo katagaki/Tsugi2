@@ -14,19 +14,27 @@ struct ArrivalInfoDetailView: View {
     @State var isInitialDataLoading: Bool = true
     @State var usesNickname: Bool = false
     @EnvironmentObject var busStopList: BusStopList
-//    let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
+    
+    var showToast: (String, Bool) async -> Void
     
     var body: some View {
         List {
             Section {
                 if let nextBus = bus.nextBus {
-                    ArrivalInfoCardView(arrivalInfo: nextBus)
+                    ArrivalInfoCardView(busService: bus,
+                                        arrivalInfo: nextBus,
+                                        showToast: self.showToast)
                 }
                 if let nextBus = bus.nextBus2, nextBus.estimatedArrivalTime() != nil {
-                    ArrivalInfoCardView(arrivalInfo: nextBus)
+                    ArrivalInfoCardView(busService: bus,
+                                        arrivalInfo: nextBus,
+                                        showToast: self.showToast)
                 }
                 if let nextBus = bus.nextBus3, nextBus.estimatedArrivalTime() != nil {
-                    ArrivalInfoCardView(arrivalInfo: nextBus)
+                    ArrivalInfoCardView(busService: bus,
+                                        arrivalInfo: nextBus,
+                                        showToast: self.showToast)
                 }
             }
         }
@@ -39,9 +47,9 @@ struct ArrivalInfoDetailView: View {
         .refreshable {
             reloadArrivalTimes()
         }
-//        .onReceive(timer, perform: { _ in
-//            reloadArrivalTimes()
-//        })
+        .onReceive(timer, perform: { _ in
+            reloadArrivalTimes()
+        })
         .navigationTitle(bus.serviceNo)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -98,8 +106,12 @@ struct ArrivalInfoDetailView_Previews: PreviewProvider {
     static var sampleBusStop: BusStop? = loadPreviewData()
     
     static var previews: some View {
-        ArrivalInfoDetailView(busStop: sampleBusStop!, bus: sampleBusStop!.arrivals!.randomElement()!)
+        ArrivalInfoDetailView(busStop: sampleBusStop!,
+                              bus: sampleBusStop!.arrivals!.randomElement()!,
+                              showToast: self.showToast)
     }
+    
+    static func showToast(message: String, showsCheckmark: Bool = false) async { }
     
     static private func loadPreviewData() -> BusStop? {
         if let sampleDataPath = Bundle.main.path(forResource: "BusArrivalv2-1", ofType: "json") {

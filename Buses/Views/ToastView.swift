@@ -25,9 +25,11 @@ struct ToastView: View {
             }
             Text(message)
                 .font(.body)
+                .multilineTextAlignment(.leading)
+            Spacer()
         }
         .padding(EdgeInsets(top: 8.0, leading: 8.0, bottom: 8.0, trailing: 8.0))
-        .background(Color(uiColor: .systemBackground))
+        .background(.regularMaterial)
         .mask {
             RoundedRectangle(cornerRadius: 8.0)
         }

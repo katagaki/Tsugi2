@@ -71,6 +71,10 @@
 "More.Help.Email.Subtitle" = "ktgk.public@icloud.com";
 "More.Attribution" = "データソース情報";
 
+/* Notifications */
+"Notification.Arriving.Title" = "バスが到着します";
+"Notification.Arriving.Description" = "%s1号バスが%s2に到着する予定です。\nお早めにバス停に行って、遅れないようにしましょう。";
+
 /* Shared */
 "Shared.BusStop.Description.None" = "無名のバス停";
 "Shared.BusStop.Description.Copy" = "バス停名をコピー";
@@ -80,7 +84,7 @@
 "Shared.BusStop.Road.None" = "なし";
 "Shared.BusStop.BusServices" = "バス";
 "Shared.BusStop.BusServices.None" = "このバス停では、現在すべてのバスがサービス時間外です。";
-"Shared.BusStop.Toast.Favorited" = "このバス停は、場所として保存されました。";
+"Shared.BusStop.Toast.Favorited" = "%sは、場所として保存されました。";
 "Shared.BusArrival.Arriving" = "まもなく到着";
 "Shared.BusArrival.JustLeft" = "発車済み";
 "Shared.BusArrival.NotInService" = "サービス時間外";
