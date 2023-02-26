@@ -72,6 +72,7 @@
 "More.Attribution" = "数据源信息";
 
 /* Notifications */
+"Notification.Set" = "您将在该巴士预定到达时间前2分钟收到通知。";
 "Notification.Arriving.Title" = "巴士要到达";
 "Notification.Arriving.Description" = "%s1巴士将在%s2到达。\n尽快前往公共汽车停下来，以免迟到。";
 

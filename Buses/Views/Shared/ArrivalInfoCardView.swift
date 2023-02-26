@@ -123,7 +123,7 @@ struct ArrivalInfoCardView: View {
                        } else {
                            log("Notification set with content: \(content.body), and will appear at \((date - (2 * 60)).formatted(date: .complete, time: .complete)).")
                            Task {
-                               await showToast("Notification set", true)
+                               await showToast(localized("Notification.Set"), true)
                            }
                        }
                     }

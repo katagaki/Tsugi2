@@ -72,6 +72,7 @@
 "More.Attribution" = "データソース情報";
 
 /* Notifications */
+"Notification.Set" = "このバスの到着予定時間の2分前に通知されます。";
 "Notification.Arriving.Title" = "バスが到着します";
 "Notification.Arriving.Description" = "%s1号バスが%s2に到着する予定です。\nお早めにバス停に行って、遅れないようにしましょう。";
 

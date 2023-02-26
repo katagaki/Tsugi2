@@ -72,6 +72,7 @@
 "More.Attribution" = "Data Attribution";
 
 /* Notifications */
+"Notification.Set" = "You will be notified 2 minutes before this bus is scheduled to arrive.";
 "Notification.Arriving.Title" = "Bus Arriving";
 "Notification.Arriving.Description" = "Bus %s1 is scheduled to arrive at %s2.\nHead to the bus stop early to avoid missing the bus.";
 
