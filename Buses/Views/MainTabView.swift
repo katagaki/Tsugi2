@@ -65,6 +65,16 @@ struct MainTabView: View {
                     }
 //                    MapMarker(coordinate: coordinate.clCoordinate())
                 }
+                    .overlay {
+                        ZStack(alignment: .topLeading) {
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .background(.thinMaterial)
+                                .ignoresSafeArea()
+                                .frame(height: metrics.safeAreaInsets.top)
+                            Color.clear
+                        }
+                    }
                     .edgesIgnoringSafeArea(.top)
                     .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: metrics.size.height * 0.60, trailing: 0.0))
                 TabView(selection: $defaultTab) {
@@ -98,7 +108,6 @@ struct MainTabView: View {
                         }
                         .tag(4)
                 }
-                
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: metrics.size.height * 0.60, maxHeight: metrics.size.height * 0.60)
                 // TODO: Restore rounded corners when it's possible to manually offset Map elements like in UIKit
 //                .mask {
