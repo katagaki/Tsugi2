@@ -32,13 +32,11 @@ struct AssistantLiveActivity: Widget {
                         .frame(minWidth: 88.0, maxWidth: 88.0, minHeight: 40.0, maxHeight: 40.0, alignment: .center)
                     Text(context.state.busService.nextBus?.estimatedArrivalTime() ?? Date(), style: .relative)
                         .font(.body)
-                        .foregroundColor(.primary)
                     Spacer()
                     switch context.state.busService.nextBus?.feature {
                     case .WheelchairAccessible:
                         Image(systemName: "figure.roll")
                             .font(.body)
-                            .foregroundColor(.primary)
                     default:
                         Text("")
                     }
@@ -46,18 +44,15 @@ struct AssistantLiveActivity: Widget {
                     case .DoubleDeck:
                         Image(systemName: "bus.doubledecker")
                             .font(.body)
-                            .foregroundColor(.primary)
                     case .none:
                         Text("")
                     default:
                         Image(systemName: "bus")
                             .font(.body)
-                            .foregroundColor(.primary)
                     }
                 }
             }
             .padding(16.0)
-            .activityBackgroundTint(.black.opacity(0.5))
             .activitySystemActionForegroundColor(Color.black)
 
         } dynamicIsland: { context in
