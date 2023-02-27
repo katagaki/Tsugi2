@@ -55,6 +55,14 @@ struct ArrivalInfoDetailView: View {
                 }
             }
         }
+        .onDisappear {
+            for activity in Activity<AssistantAttributes>.activities {
+                Task {
+                    await activity.end(nil, dismissalPolicy: .default)
+                    log("Live Activity ended.")
+                }
+            }
+        }
         .refreshable {
             Task {
                 await reloadArrivalTimes()
