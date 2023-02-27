@@ -30,7 +30,7 @@ struct AssistantLiveActivity: Widget {
                         .background(Color("PlateColor"))
                         .clipShape(RoundedRectangle(cornerRadius: 8.0))
                         .frame(minWidth: 88.0, maxWidth: 88.0, minHeight: 40.0, maxHeight: 40.0, alignment: .center)
-                    Text(arrivalTimeTo(date: context.state.busService.nextBus?.estimatedArrivalTime()))
+                    Text(context.state.busService.nextBus?.estimatedArrivalTime() ?? Date(), style: .relative)
                         .font(.body)
                         .foregroundColor(.primary)
                     Spacer()
@@ -55,9 +55,6 @@ struct AssistantLiveActivity: Widget {
                             .foregroundColor(.primary)
                     }
                 }
-                ProgressBarView(value: Float(secondsSince(date: context.attributes.currentDate)),
-                                total: Float(secondsTo(date: context.state.busService.nextBus?.estimatedArrivalTime())))
-                .frame(height: 16.0)
             }
             .padding(16.0)
             .activityBackgroundTint(.black.opacity(0.5))
@@ -96,17 +93,14 @@ struct AssistantLiveActivity: Widget {
                                     .foregroundColor(.primary)
                             }
                         }
-                        HStack(alignment: .center) {
-                            Text(arrivalTimeTo(date: context.state.busService.nextBus?.estimatedArrivalTime()))
-                                .font(.body)
-                                .foregroundColor(.primary)
-                        }
                     }
                     .padding(8.0)
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    ProgressBarView(value: Float(secondsSince(date: context.attributes.currentDate)),
-                                    total: Float(secondsTo(date: context.state.busService.nextBus?.estimatedArrivalTime())))
+                    ProgressView(timerInterval: Date()...(context.state.busService.nextBus?.estimatedArrivalTime() ?? Date()))
+                        .tint(Color("AccentColor"))
+                        .font(.body)
+                        .foregroundColor(.white)
                     .frame(height: 20.0)
                     .padding([.leading, .trailing], 16.0)
                 }
@@ -118,15 +112,24 @@ struct AssistantLiveActivity: Widget {
                     .clipShape(RoundedRectangle(cornerRadius: 16.0))
             } compactTrailing: {
                 if let date = context.state.busService.nextBus?.estimatedArrivalTime() {
-                    Text(arrivalTimeTo(date: date))
+                    ProgressView(timerInterval: Date()...date, countsDown: true, label: {
+                        // Hide default label
+                    }, currentValueLabel: {
+                        Image(systemName: "bus")
+                            .font(.system(size: 10.0))
+                            .foregroundColor(Color("AccentColor"))
+                    })
+                        .tint(Color("AccentColor"))
+                        .progressViewStyle(.circular)
+                        .labelsHidden()
                 } else {
-                    Text("0")
+                    Text("?")
                 }
             } minimal: {
                 if let date = context.state.busService.nextBus?.estimatedArrivalTime() {
-                    Text(arrivalTimeTo(date: date))
+                    Text(date, style: .relative)
                 } else {
-                    Text("0")
+                    Text("?")
                 }
             }
             .keylineTint(Color("PlateColor"))

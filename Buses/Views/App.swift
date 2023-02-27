@@ -5,6 +5,8 @@
 //  Created by 堅書 on 2022/06/12.
 //
 
+import ActivityKit
+import BackgroundTasks
 import SwiftUI
 
 @main

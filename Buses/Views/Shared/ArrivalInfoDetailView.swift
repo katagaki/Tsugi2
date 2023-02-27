@@ -47,14 +47,8 @@ struct ArrivalInfoDetailView: View {
                 }
             }
             if ActivityAuthorizationInfo().areActivitiesEnabled {
-                let initialContentState = AssistantAttributes.ContentState(busService: bus)
-                let activityAttributes = AssistantAttributes(serviceNo: bus.serviceNo, currentDate: Date())
-                let activityContent = ActivityContent(state: initialContentState,
-                                                      staleDate: Calendar.current.date(byAdding: .second,
-                                                                                       value: 15,
-                                                                                       to: Date()))
                 do {
-                    _ = try Activity.request(attributes: activityAttributes, content: activityContent)
+                    liveActivity = try Activity.request(attributes: getLiveActivityConfiguration().0, content: getLiveActivityConfiguration().1)
                     log("Live Activity requested.")
                 } catch {
                     log(error.localizedDescription)
@@ -69,6 +63,8 @@ struct ArrivalInfoDetailView: View {
         .onReceive(timer, perform: { _ in
             Task {
                 await reloadArrivalTimes()
+                await liveActivity?.update(getLiveActivityConfiguration().1)
+                log("Live Activity updated.")
             }
         })
         .navigationTitle(bus.serviceNo)
@@ -120,6 +116,16 @@ struct ArrivalInfoDetailView: View {
         } catch {
             log(error.localizedDescription)
         }
+    }
+    
+    func getLiveActivityConfiguration() -> (AssistantAttributes, ActivityContent<AssistantAttributes.ContentState>) {
+        let initialContentState = AssistantAttributes.ContentState(busService: bus)
+        let activityAttributes = AssistantAttributes(serviceNo: bus.serviceNo, currentDate: Date())
+        let activityContent = ActivityContent(state: initialContentState,
+                                              staleDate: Calendar.current.date(byAdding: .second,
+                                                                               value: 15,
+                                                                               to: Date()))
+        return (activityAttributes, activityContent)
     }
     
 }
