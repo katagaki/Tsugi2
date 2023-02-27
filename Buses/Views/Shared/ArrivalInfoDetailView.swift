@@ -5,6 +5,7 @@
 //  Created by 堅書 on 2022/06/15.
 //
 
+import ActivityKit
 import SwiftUI
 
 struct ArrivalInfoDetailView: View {
@@ -41,14 +42,34 @@ struct ArrivalInfoDetailView: View {
         .listStyle(.grouped)
         .onAppear {
             if !isInitialDataLoading {
-                reloadArrivalTimes()
+                Task {
+                    await reloadArrivalTimes()
+                }
+            }
+            if ActivityAuthorizationInfo().areActivitiesEnabled {
+                let initialContentState = AssistantAttributes.ContentState(busService: bus)
+                let activityAttributes = AssistantAttributes(serviceNo: bus.serviceNo, currentDate: Date())
+                let activityContent = ActivityContent(state: initialContentState,
+                                                      staleDate: Calendar.current.date(byAdding: .second,
+                                                                                       value: 15,
+                                                                                       to: Date()))
+                do {
+                    _ = try Activity.request(attributes: activityAttributes, content: activityContent)
+                    log("Live Activity requested.")
+                } catch {
+                    log(error.localizedDescription)
+                }
             }
         }
         .refreshable {
-            reloadArrivalTimes()
+            Task {
+                await reloadArrivalTimes()
+            }
         }
         .onReceive(timer, perform: { _ in
-            reloadArrivalTimes()
+            Task {
+                await reloadArrivalTimes()
+            }
         })
         .navigationTitle(bus.serviceNo)
         .navigationBarTitleDisplayMode(.inline)
@@ -80,8 +101,8 @@ struct ArrivalInfoDetailView: View {
         }
     }
     
-    func reloadArrivalTimes() {
-        Task {
+    func reloadArrivalTimes() async {
+        do {
             let busStop = try await fetchBusArrivals(for: busStop.code)
             if usesNickname {
                 busStop.description = self.busStop.description
@@ -96,6 +117,8 @@ struct ArrivalInfoDetailView: View {
             self.busStop = busStop
             self.bus = bus
             isInitialDataLoading = false
+        } catch {
+            log(error.localizedDescription)
         }
     }
     

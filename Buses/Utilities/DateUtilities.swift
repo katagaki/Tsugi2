@@ -37,3 +37,25 @@ func arrivalTimeTo(date: Date?, returnBlankWhenNotInService: Bool = false) -> St
         }
     }
 }
+
+func secondsTo(date: Date?) -> Int {
+    if let date = date {
+        let interval: TimeInterval = date.timeIntervalSinceReferenceDate - Date().timeIntervalSinceReferenceDate
+        let seconds = NSInteger(interval) % 60
+        let minutes = ((NSInteger(interval) / 60) % 60) * 60
+        return seconds + minutes
+    } else {
+        return 0
+    }
+}
+
+func secondsSince(date: Date?) -> Int {
+    if let date = date {
+        let interval: TimeInterval = Date().timeIntervalSinceReferenceDate - date.timeIntervalSinceReferenceDate
+        let seconds = NSInteger(interval) % 60
+        let minutes = ((NSInteger(interval) / 60) % 60) * 60
+        return seconds + minutes
+    } else {
+        return 0
+    }
+}
