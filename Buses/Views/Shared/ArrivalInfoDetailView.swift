@@ -92,12 +92,8 @@ struct ArrivalInfoDetailView: View {
                     Button {
                         // TODO: Add to favorites
                     } label: {
-                        Image(systemName: "star.fill")
-                            .font(.system(size: 14.0, weight: .regular))
-                    }
-                    .buttonStyle(.bordered)
-                    .mask {
-                        Circle()
+                        Image(systemName: "rectangle.stack.badge.plus")
+                            .font(.body)
                     }
                     .disabled(true) // TODO: To implement
                 }

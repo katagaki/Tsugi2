@@ -122,40 +122,31 @@ struct BusStopDetailView: View {
                         .font(.system(size: 12.0, weight: .regular))
                         .foregroundColor(.secondary)
                 }
+                .padding([.leading, .trailing], 8.0)
+                .contextMenu {
+                    Button(action: copyBusStopName) {
+                        Label("Shared.BusStop.Description.Copy", systemImage: "mappin.circle")
+                    }
+                    Button(action: copyBusStopCode) {
+                        Label("Shared.BusStop.Code.Copy", systemImage: "number")
+                    }
+                }
             }
             ToolbarItem(placement: .primaryAction) {
-                HStack(alignment: .center, spacing: 0.0) {
-                    Menu {
-                        Button(action: copyBusStopName) {
-                            Label("Shared.BusStop.Description.Copy", systemImage: "mappin.circle")
-                        }
-                        Button(action: copyBusStopCode) {
-                            Label("Shared.BusStop.Code.Copy", systemImage: "number")
-                        }
-                    } label: {
+                HStack(alignment: .center, spacing: 8.0) {
+                    if favorites.favoriteLocations.contains(where: { location in
+                        location.busStopCode == busStop.code && location.usesLiveBusStopData == true
+                    }) == false {
                         Button {
+                            favorites.addFavoriteLocation(busStop: busStop, usesLiveBusStopData: true)
+                            Task {
+                                await favorites.saveChanges()
+                                await showToast(localized("Shared.BusStop.Toast.Favorited").replacingOccurrences(of: "%s", with: busStop.description ?? localized("Shared.BusStop.Description.None")), .Checkmark)
+                            }
                         } label: {
-                            Image(systemName: "square.on.square")
-                                .font(.system(size: 14.0, weight: .regular))
+                            Image(systemName: "rectangle.stack.badge.plus")
+                                .font(.body)
                         }
-                        .buttonStyle(.bordered)
-                        .mask {
-                            Circle()
-                        }
-                    }
-                    Button {
-                        favorites.addFavoriteLocation(busStop: busStop, usesLiveBusStopData: true)
-                        Task {
-                            await favorites.saveChanges()
-                            await showToast(localized("Shared.BusStop.Toast.Favorited").replacingOccurrences(of: "%s", with: busStop.description ?? localized("Shared.BusStop.Description.None")), .Checkmark)
-                        }
-                    } label: {
-                        Image(systemName: "rectangle.stack.badge.plus")
-                            .font(.system(size: 12.5, weight: .regular))
-                    }
-                    .buttonStyle(.bordered)
-                    .mask {
-                        Circle()
                     }
                 }
             }

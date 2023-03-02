@@ -126,7 +126,6 @@ struct FavoritesView: View {
                         } label: {
                             Image(systemName: "plus")
                                 .font(.body)
-//                                .font(.system(size: 12.5, weight: .regular))
                         }
                         .disabled(true) // TODO: To implement
                     }
