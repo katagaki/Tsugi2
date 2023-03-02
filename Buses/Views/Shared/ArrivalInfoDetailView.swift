@@ -139,13 +139,12 @@ struct ArrivalInfoDetailView: View {
                     let trigger = UNCalendarNotificationTrigger(
                              dateMatching: Calendar.current.dateComponents([.weekday, .hour, .minute, .second],
                                                                            from: date - (2 * 60)), repeats: false)
-                    let request = UNNotificationRequest(identifier: "\(busStop.code).\(bus.serviceNo).\(date.formatted(date: .abbreviated, time: .shortened))",
-                                                        content: content,
-                                                        trigger: trigger)
                     content.title = localized("Notification.Arriving.Title")
-                    content.body = localized("Notification.Arriving.Description").replacingOccurrences(of: "%s1", with: bus.serviceNo).replacingOccurrences(of: "%s2", with: date.formatted(date: .omitted, time: .standard))
+                    content.body = localized("Notification.Arriving.Description").replacingOccurrences(of: "%s1", with: bus.serviceNo).replacingOccurrences(of: "%s2", with: date.formatted(date: .omitted, time: .shortened))
                     content.interruptionLevel = .timeSensitive
-                    center.add(request) { (error) in
+                    center.add(UNNotificationRequest(identifier: "\(busStop.code).\(bus.serviceNo).\(date.formatted(date: .abbreviated, time: .shortened))",
+                                                     content: content,
+                                                     trigger: trigger)) { (error) in
                        if let error = error {
                            log("Error occurred while setting notifications: \(error.localizedDescription)")
                            Task {
