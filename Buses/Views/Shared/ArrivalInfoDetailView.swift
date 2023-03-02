@@ -123,8 +123,7 @@ struct ArrivalInfoDetailView: View {
     
     func setNotification(for arrivalInfo: BusArrivalInfo) {
         if let date = arrivalInfo.estimatedArrivalTime() {
-            let notificationCenter = UNUserNotificationCenter.current()
-            notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            center.requestAuthorization(options: [.alert, .sound]) { granted, error in
                 if let error = error {
                     log("Error occurred while reqesting for notification permissions: \(error.localizedDescription)")
                     Task {
@@ -140,14 +139,13 @@ struct ArrivalInfoDetailView: View {
                     let trigger = UNCalendarNotificationTrigger(
                              dateMatching: Calendar.current.dateComponents([.weekday, .hour, .minute, .second],
                                                                            from: date - (2 * 60)), repeats: false)
-                    let uuidString = UUID().uuidString
-                    let request = UNNotificationRequest(identifier: uuidString,
+                    let request = UNNotificationRequest(identifier: "\(busStop.code).\(bus.serviceNo).\(date.formatted(date: .abbreviated, time: .shortened))",
                                                         content: content,
                                                         trigger: trigger)
                     content.title = localized("Notification.Arriving.Title")
                     content.body = localized("Notification.Arriving.Description").replacingOccurrences(of: "%s1", with: bus.serviceNo).replacingOccurrences(of: "%s2", with: date.formatted(date: .omitted, time: .standard))
                     content.interruptionLevel = .timeSensitive
-                    notificationCenter.add(request) { (error) in
+                    center.add(request) { (error) in
                        if let error = error {
                            log("Error occurred while setting notifications: \(error.localizedDescription)")
                            Task {
