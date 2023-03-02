@@ -39,7 +39,7 @@ struct ArrivalInfoDetailView: View {
                 }
             }
         }
-        .listStyle(.grouped)
+        .listStyle(.insetGrouped)
         .onAppear {
             if !isInitialDataLoading {
                 Task {

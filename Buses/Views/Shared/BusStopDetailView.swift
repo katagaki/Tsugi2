@@ -87,6 +87,9 @@ struct BusStopDetailView: View {
                                 }
                                 Spacer()
                             }
+                            .alignmentGuide(.listRowSeparatorLeading) { _ in
+                                return 0
+                            }
                         }
                     }
                 }
@@ -98,7 +101,7 @@ struct BusStopDetailView: View {
                     .textCase(nil)
             }
         }
-        .listStyle(.grouped)
+        .listStyle(.insetGrouped)
         .refreshable {
             reloadBusArrivals()
         }
