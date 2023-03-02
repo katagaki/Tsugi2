@@ -7,7 +7,7 @@
 */
 
 /* Tab Bar Item Titles */
-"TabTitle.Nearby" = "近所";
+"TabTitle.Nearby" = "付近";
 "TabTitle.Favorites" = "場所";
 "TabTitle.Directory" = "検索";
 "TabTitle.Notifications" = "通知";
