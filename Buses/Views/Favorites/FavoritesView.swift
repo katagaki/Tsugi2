@@ -30,6 +30,8 @@ struct FavoritesView: View {
                         FavoriteLocationCarouselView(favoriteLocation: location,
                                                      showToast: self.showToast)
                             .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
+                            .opacity((isEditing ? 0.5 : 1.0))
+                            .disabled(isEditing)
                     } header: {
                         HStack(alignment: .center, spacing: 6.0) {
                             Text((location.nickname ?? location.busStopCode!)) // TODO: Get bus stop name using API
