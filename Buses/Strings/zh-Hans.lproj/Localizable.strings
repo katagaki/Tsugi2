@@ -16,6 +16,7 @@
 /* Navigation Item Titles */
 "ViewTitle.Nearby" = "附近的巴士站";
 "ViewTitle.Favorites" = "地点收藏夹";
+"ViewTitle.Notifications" = "已设置的通知";
 "ViewTitle.Directory" = "搜索巴士站";
 "ViewTitle.MRTMap" = "MRT路线图";
 "ViewTitle.More" = "更多";

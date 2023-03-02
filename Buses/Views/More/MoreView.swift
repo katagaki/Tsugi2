@@ -9,8 +9,6 @@ import SwiftUI
 
 struct MoreView: View {
     
-    let defaults = UserDefaults.standard
-    
     @State var currentlySelectedStartupTab: Int = 0
     
     var body: some View {

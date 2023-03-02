@@ -16,6 +16,7 @@
 /* Navigation Item Titles */
 "ViewTitle.Nearby" = "Nearby Bus Stops";
 "ViewTitle.Favorites" = "Saved Locations";
+"ViewTitle.Notifications" = "Scheduled Notifications";
 "ViewTitle.Directory" = "Search Bus Stops";
 "ViewTitle.MRTMap" = "MRT System Map";
 "ViewTitle.More" = "More";

@@ -11,8 +11,6 @@ import SwiftUI
 
 struct MainTabView: View {
     
-    let defaults = UserDefaults.standard
-    
     @State var defaultTab: Int = 0
     
     @State private var locationManager: CLLocationManager = CLLocationManager()

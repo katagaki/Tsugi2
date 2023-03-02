@@ -16,6 +16,7 @@
 /* Navigation Item Titles */
 "ViewTitle.Nearby" = "近くのバス停";
 "ViewTitle.Favorites" = "追加した場所";
+"ViewTitle.Notifications" = "設定した通知";
 "ViewTitle.Directory" = "バス停を検索";
 "ViewTitle.MRTMap" = "MRT路線図";
 "ViewTitle.More" = "その他";
