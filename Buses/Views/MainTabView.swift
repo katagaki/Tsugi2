@@ -17,7 +17,7 @@ struct MainTabView: View {
     
     @State private var locationManager: CLLocationManager = CLLocationManager()
     @StateObject private var locationManagerDelegate: LocationDelegate = LocationDelegate()
-    @State var region: MKCoordinateRegion = MKCoordinateRegion()
+    @StateObject var regionManager: RegionManager = RegionManager()
     @State var userTrackingMode: MapUserTrackingMode = .follow
     @EnvironmentObject var displayedCoordinates: CoordinateList
     
@@ -41,7 +41,7 @@ struct MainTabView: View {
     var body: some View {
         GeometryReader { metrics in
             ZStack(alignment: .bottom) {
-                Map(coordinateRegion: $region,
+                Map(coordinateRegion: regionManager.region,
                     interactionModes: .all,
                     showsUserLocation: true,
                     userTrackingMode: $userTrackingMode,
@@ -199,6 +199,7 @@ struct MainTabView: View {
             }
             nearbyBusStops.removeAll()
             nearbyBusStops.append(contentsOf: busStopListSortedByDistance[0..<(busStopListSortedByDistance.count >= 10 ? 10 : busStopListSortedByDistance.count)])
+            updateRegion(newRegion: locationManagerDelegate.region)
             log("Reloaded nearby bus stop data.")
         }
     }
@@ -210,6 +211,13 @@ struct MainTabView: View {
             } else {
                 locationManager.startUpdatingLocation()
             }
+        }
+    }
+    
+    func updateRegion(newRegion: MKCoordinateRegion) {
+        withAnimation {
+            regionManager.region.wrappedValue = newRegion
+            regionManager.updateViewFlag.toggle()
         }
     }
 }
