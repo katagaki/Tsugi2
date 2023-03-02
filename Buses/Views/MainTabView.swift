@@ -68,7 +68,7 @@ struct MainTabView: View {
                         ZStack(alignment: .topLeading) {
                             Rectangle()
                                 .foregroundColor(.clear)
-                                .background(.thinMaterial)
+                                .background(.ultraThinMaterial)
                                 .ignoresSafeArea()
                                 .frame(height: metrics.safeAreaInsets.top)
                             Color.clear
