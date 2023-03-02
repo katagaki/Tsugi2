@@ -39,7 +39,7 @@ struct NearbyBusStopCarouselView: View {
                         NavigationLink {
                             ArrivalInfoDetailView(busStop: BusStop(code: busStop.code,
                                                                    description: busStop.description ?? "Shared.BusStop.Description.None"),
-                                                  bus: bus,
+                                                  busService: bus,
                                                   usesNickname: false,
                                                   showToast: self.showToast)
                         } label: {

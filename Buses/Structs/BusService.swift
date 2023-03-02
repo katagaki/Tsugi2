@@ -123,6 +123,7 @@ enum BusOperator: String, Codable {
     case SMRT = "SMRT"
     case TowerTransit = "TTS"
     case GoAheadSingapore = "GAS"
+    case Unknown = "U"
 }
 
 enum BusCategory: String, Codable {

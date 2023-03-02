@@ -40,7 +40,7 @@ struct FavoriteLocationCarouselView: View {
                             NavigationLink {
                                 ArrivalInfoDetailView(busStop: BusStop(code: favoriteLocation.busStopCode ?? bus.busStopCode!,
                                                                        description: favoriteLocation.nickname),
-                                                      bus: bus,
+                                                      busService: bus,
                                                       usesNickname: true,
                                                       showToast: self.showToast)
                             } label: {

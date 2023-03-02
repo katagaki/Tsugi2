@@ -11,29 +11,29 @@ import SwiftUI
 struct ArrivalInfoDetailView: View {
     
     @State var busStop: BusStop
-    @State var bus: BusService
+    @State var busService: BusService
     @State var isInitialDataLoading: Bool = true
     @State var usesNickname: Bool = false
     @EnvironmentObject var busStopList: BusStopList
-    let timer = Timer.publish(every: 30.0, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
     var showToast: (String, ToastType) async -> Void
     
     var body: some View {
         List {
             Section {
-                if let nextBus = bus.nextBus {
-                    ArrivalInfoCardView(busService: bus,
+                if let nextBus = busService.nextBus {
+                    ArrivalInfoCardView(busService: busService,
                                         arrivalInfo: nextBus,
                                         setNotification: self.setNotification)
                 }
-                if let nextBus = bus.nextBus2, nextBus.estimatedArrivalTime() != nil {
-                    ArrivalInfoCardView(busService: bus,
+                if let nextBus = busService.nextBus2, nextBus.estimatedArrivalTime() != nil {
+                    ArrivalInfoCardView(busService: busService,
                                         arrivalInfo: nextBus,
                                         setNotification: self.setNotification)
                 }
-                if let nextBus = bus.nextBus3, nextBus.estimatedArrivalTime() != nil {
-                    ArrivalInfoCardView(busService: bus,
+                if let nextBus = busService.nextBus3, nextBus.estimatedArrivalTime() != nil {
+                    ArrivalInfoCardView(busService: busService,
                                         arrivalInfo: nextBus,
                                         setNotification: self.setNotification)
                 }
@@ -41,10 +41,8 @@ struct ArrivalInfoDetailView: View {
         }
         .listStyle(.insetGrouped)
         .onAppear {
-            if !isInitialDataLoading {
-                Task {
-                    await reloadArrivalTimes()
-                }
+            Task {
+                await reloadArrivalTimes()
             }
             if ActivityAuthorizationInfo().areActivitiesEnabled {
                 do {
@@ -70,16 +68,15 @@ struct ArrivalInfoDetailView: View {
         }
         .onReceive(timer, perform: { _ in
             Task {
-                await liveActivity?.update(getLiveActivityConfiguration().1)
-                log("Live Activity updated.")
+                await reloadArrivalTimes()
             }
         })
-        .navigationTitle(bus.serviceNo)
+        .navigationTitle(busService.serviceNo)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .principal) {
                 VStack {
-                    Text(bus.serviceNo)
+                    Text(busService.serviceNo)
                         .font(.system(size: 16.0, weight: .bold))
                     Text(busStop.description ?? localized("Shared.BusStop.Description.None"))
                         .font(.system(size: 12.0, weight: .regular))
@@ -110,11 +107,14 @@ struct ArrivalInfoDetailView: View {
                     busStopInBusStopList.code == busStop.code
                 })?.description ?? nil
             }
-            let bus = busStop.arrivals?.first(where: { bus in
-                bus.serviceNo == self.bus.serviceNo
-            }) ?? BusService(serviceNo: bus.serviceNo, operator: bus.operator)
+            let busService = busStop.arrivals?.first(where: { busService in
+                busService.serviceNo == self.busService.serviceNo
+            }) ?? BusService(serviceNo: busService.serviceNo, operator: busService.operator)
             self.busStop = busStop
-            self.bus = bus
+            self.busService = busService
+            log("Arrival time data updated.")
+            await liveActivity?.update(getLiveActivityConfiguration().1)
+            log("Live Activity updated.")
             isInitialDataLoading = false
         } catch {
             log(error.localizedDescription)
@@ -139,10 +139,11 @@ struct ArrivalInfoDetailView: View {
                     let trigger = UNCalendarNotificationTrigger(
                              dateMatching: Calendar.current.dateComponents([.weekday, .hour, .minute, .second],
                                                                            from: date - (2 * 60)), repeats: false)
-                    content.title = localized("Notification.Arriving.Title")
-                    content.body = localized("Notification.Arriving.Description").replacingOccurrences(of: "%s1", with: bus.serviceNo).replacingOccurrences(of: "%s2", with: date.formatted(date: .omitted, time: .shortened))
+                    content.title = localized("Notification.Arriving.Title").replacingOccurrences(of: "%1", with: busStop.description ?? localized("Shared.BusStop.Description.None"))
+                    content.body = localized("Notification.Arriving.Description").replacingOccurrences(of: "%s1", with: busService.serviceNo).replacingOccurrences(of: "%s2", with: date.formatted(date: .omitted, time: .shortened))
+                    content.userInfo = ["busService": busService.serviceNo, "stopCode": busStop.code, "stopDescription": busStop.description ?? localized("Shared.BusStop.Description.None")]
                     content.interruptionLevel = .timeSensitive
-                    center.add(UNNotificationRequest(identifier: "\(busStop.code).\(bus.serviceNo).\(date.formatted(date: .abbreviated, time: .shortened))",
+                    center.add(UNNotificationRequest(identifier: "\(busStop.code).\(busService.serviceNo).\(date.formatted(date: .numeric, time: .shortened))",
                                                      content: content,
                                                      trigger: trigger)) { (error) in
                        if let error = error {
@@ -163,8 +164,8 @@ struct ArrivalInfoDetailView: View {
     }
     
     func getLiveActivityConfiguration() -> (AssistantAttributes, ActivityContent<AssistantAttributes.ContentState>) {
-        let initialContentState = AssistantAttributes.ContentState(busService: bus)
-        let activityAttributes = AssistantAttributes(serviceNo: bus.serviceNo, currentDate: Date())
+        let initialContentState = AssistantAttributes.ContentState(busService: busService)
+        let activityAttributes = AssistantAttributes(serviceNo: busService.serviceNo, currentDate: Date())
         let activityContent = ActivityContent(state: initialContentState,
                                               staleDate: Calendar.current.date(byAdding: .second,
                                                                                value: 15,
@@ -180,7 +181,7 @@ struct ArrivalInfoDetailView_Previews: PreviewProvider {
     
     static var previews: some View {
         ArrivalInfoDetailView(busStop: sampleBusStop!,
-                              bus: sampleBusStop!.arrivals!.randomElement()!,
+                              busService: sampleBusStop!.arrivals!.randomElement()!,
                               showToast: self.showToast)
     }
     

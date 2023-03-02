@@ -30,7 +30,11 @@
 "Alert.Save" = "Save";
 "Alert.Cancel" = "Cancel";
 
+/* Swipe Action Titles */
+"Swipe.Cancel" = "Cancel";
+
 /* Nearby View */
+"Nearby.Hint" = "No bus stops nearby.\nTry moving closer to a bus stop, or checking your Location Services settings.";
 
 /* Favorites View */
 "Favorites.Hint" = "No locations saved.\nTo create a new location, tap the Add Location button on the top right of this tab.\nYou can also add a bus stop as a location.";
@@ -40,6 +44,8 @@
 "Favorites.Edit.Title" = "Edit Location Name";
 
 /* Notifications View */
+"Notifications.ArrivalAlerts" = "Arrival Alerts";
+"Notifications.ArrivalAlerts.Hint" = "No arrival alerts set.\nTo set a new arrival alert, open a bus service's arrival information page, then tap the bell icon of the bus you want to set an arrival alert for.";
 
 /* Directory View */
 "Directory.UsefulResources" = "Useful Resources";
@@ -74,7 +80,7 @@
 "Notification.Set" = "You will be notified 2 minutes before this bus is scheduled to arrive.";
 "Notification.Error" = "An error occurred while setting up your notification.";
 "Notification.NoPermissions" = "Buses has not been granted permissions to send notifications. Please check whether Buses is allowed to send notifications in the Settings app.";
-"Notification.Arriving.Title" = "Bus Arriving";
+"Notification.Arriving.Title" = "Bus Arriving at %1";
 "Notification.Arriving.Description" = "Bus %s1 is scheduled to arrive at %s2.\nHead to the bus stop early to avoid missing the bus.";
 
 /* Live Activity */

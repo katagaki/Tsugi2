@@ -48,7 +48,7 @@ struct BusStopDetailView: View {
                     ForEach(busArrivals, id: \.serviceNo) { bus in
                         NavigationLink {
                             ArrivalInfoDetailView(busStop: busStop,
-                                                  bus: bus,
+                                                  busService: bus,
                                                   showToast: self.showToast)
                         } label: {
                             HStack(alignment: .center, spacing: 8.0) {

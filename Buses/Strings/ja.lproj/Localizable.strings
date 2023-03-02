@@ -30,7 +30,11 @@
 "Alert.Save" = "保存";
 "Alert.Cancel" = "キャンセル";
 
+/* Swipe Action Titles */
+"Swipe.Cancel" = "キャンセル";
+
 /* Nearby View */
+"Nearby.Hint" = "近くにバス停はありません。\nバス停の近くに移動する、または位置情報の設定をご確認ください。";
 
 /* Favorites View */
 "Favorites.Hint" = "追加した場所はありません。\n新しい場所を作成するには、右上の新規場所ボタンを選択してください。\nバス停を直接的に追加することもできます。";
@@ -40,6 +44,8 @@
 "Favorites.Edit.Title" = "場所名を変更";
 
 /* Notifications View */
+"Notifications.ArrivalAlerts" = "到着通知";
+"Notifications.ArrivalAlerts.Hint" = "設定した到着通知はありません。\n到着通知を設定するには、バスの詳細ページを開き、乗る予定のバスの右にあるベルアイコンを選択してください。";
 
 /* Directory View */
 "Directory.UsefulResources" = "便利な情報";
@@ -74,7 +80,7 @@
 "Notification.Set" = "このバスの到着予定時間の2分前に通知されます。";
 "Notification.Error" = "通知を設定する際にエラーが発生しました。";
 "Notification.NoPermissions" = "通知を設定するには、通知の権限が必要です。設定アプリで「バス」アプリの通知権限をご確認ください。";
-"Notification.Arriving.Title" = "バスが到着します";
+"Notification.Arriving.Title" = "バスが%1に到着します";
 "Notification.Arriving.Description" = "%s1号バスは%s2に到着する予定です。\nお早めにバス停に行って、遅れないようにしましょう。";
 
 /* Live Activity */

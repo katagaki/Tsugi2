@@ -30,7 +30,11 @@
 "Alert.Save" = "保存";
 "Alert.Cancel" = "取消";
 
+/* Swipe Action Titles */
+"Swipe.Cancel" = "取消";
+
 /* Nearby View */
+"Nearby.Hint" = "附近没有公交车站。\n请移动到公交车站附近或确认位置信息的设定。";
 
 /* Favorites View */
 "Favorites.Hint" = "没有地点添加到您的收藏夹。\n点击此选项卡右上角的添加位置按钮以创建新地点。\n巴士站也可以添加作为地点。";
@@ -40,6 +44,8 @@
 "Favorites.Edit.Title" = "编辑地点名称";
 
 /* Notifications View */
+"Notifications.ArrivalAlerts" = "到达通知";
+"Notifications.ArrivalAlerts.Hint" = "没有设置到达通知。\n要设置新到达通知，请打开总线服务的到达信息页面，然后单击要设置到达警报的总线的铃铛图标。";
 
 /* Directory View */
 "Directory.UsefulResources" = "有用信息";
@@ -74,7 +80,7 @@
 "Notification.Set" = "您将在该巴士预定到达时间前2分钟收到通知。";
 "Notification.Error" = "设置通知时出错。";
 "Notification.NoPermissions" = "设置通知需要通知权限。 请在设置APP中检查“巴士精灵”APP的通知权限。";
-"Notification.Arriving.Title" = "巴士要到达";
+"Notification.Arriving.Title" = "巴士要到达%1";
 "Notification.Arriving.Description" = "%s1巴士将在%s2到达。\n尽快前往公共汽车停下来，以免迟到。";
 
 /* Live Activity */

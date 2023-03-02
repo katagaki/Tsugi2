@@ -96,7 +96,8 @@ struct FavoritesView: View {
             .overlay {
                 if favorites.favoriteLocations.count == 0 {
                     VStack(alignment: .center, spacing: 4.0) {
-                        Image(systemName: "questionmark.app.dashed")
+                        Image(systemName: "questionmark.circle.fill")
+                            .symbolRenderingMode(.multicolor)
                             .font(.system(size: 32.0, weight: .regular))
                             .foregroundColor(.secondary)
                         Text("Favorites.Hint")

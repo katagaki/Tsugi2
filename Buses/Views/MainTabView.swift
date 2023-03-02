@@ -87,7 +87,7 @@ struct MainTabView: View {
                             Label("TabTitle.Favorites", systemImage: "rectangle.stack.fill")
                         }
                         .tag(1)
-                    NotificationsView()
+                    NotificationsView(showToast: self.showToast)
                         .tabItem {
                             Label("TabTitle.Notifications", systemImage: "bell.fill")
                         }
