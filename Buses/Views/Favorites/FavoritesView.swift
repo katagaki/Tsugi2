@@ -34,7 +34,7 @@ struct FavoritesView: View {
                             .disabled(isEditing)
                     } header: {
                         HStack(alignment: .center, spacing: 6.0) {
-                            Text((location.nickname ?? location.busStopCode!)) // TODO: Get bus stop name using API
+                            Text((location.nickname ?? location.busStopCode ?? "")) // TODO: Get bus stop name using API
                                 .font(.body)
                                 .fontWeight(.bold)
                                 .foregroundColor(.primary)
