@@ -95,7 +95,7 @@ struct DirectoryView: View {
                     }
                 }
             }
-            .listStyle(.plain)
+            .listStyle(.grouped)
             .searchable(text: $searchTerm, placement: .navigationBarDrawer(displayMode: .always))
             .onChange(of: searchTerm) { _ in
                 isSearching = (searchTerm != "" && searchTerm.count > 2)

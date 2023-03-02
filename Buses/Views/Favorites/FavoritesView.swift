@@ -123,13 +123,6 @@ struct FavoritesView: View {
                             Image(systemName: "pencil")
                                 .font(.body)
                         }
-                        Button {
-                            // TODO: Show add location alert
-                        } label: {
-                            Image(systemName: "plus")
-                                .font(.body)
-                        }
-                        .disabled(true) // TODO: To implement
                     }
                 }
             }
