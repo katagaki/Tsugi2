@@ -199,8 +199,14 @@ struct MainTabView: View {
             }
             nearbyBusStops.removeAll()
             nearbyBusStops.append(contentsOf: busStopListSortedByDistance[0..<(busStopListSortedByDistance.count >= 10 ? 10 : busStopListSortedByDistance.count)])
-            updateRegion(newRegion: locationManagerDelegate.region)
             log("Reloaded nearby bus stop data.")
+            updateRegion(newRegion: locationManagerDelegate.region)
+            log("Updated Map region.")
+            displayedCoordinates.removeAll()
+            for busStop in nearbyBusStops {
+                displayedCoordinates.addCoordinate(from: busStop)
+            }
+            log("Updated displayed coordinates to nearby bus stops.")
         }
     }
     

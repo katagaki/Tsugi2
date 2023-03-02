@@ -41,13 +41,6 @@ struct NearbyView: View {
             .refreshable {
                 reloadNearbyBusStops()
             }
-            .onAppear {
-                displayedCoordinates.removeAll()
-                for busStop in nearbyBusStops {
-                    displayedCoordinates.addCoordinate(from: busStop)
-                }
-                log("Updated displayed coordinates to nearby bus stops.")
-            }
             .navigationTitle("ViewTitle.Nearby")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
