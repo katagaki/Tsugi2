@@ -16,6 +16,7 @@ struct FavoritesView: View {
     @State var isDeletionPending: Bool = false
     @State var favoriteLocationPendingDeletion: FavoriteLocation? = nil
     @State var isEditPending: Bool = false
+    @State var isEditing: Bool = false
     @State var favoriteLocationPendingEdit: FavoriteLocation? = nil
     @State var favoriteLocationPendingEditNewNickname: String = ""
     
@@ -36,41 +37,45 @@ struct FavoritesView: View {
                                 .fontWeight(.bold)
                                 .foregroundColor(.primary)
                                 .textCase(nil)
-                            Button {
-                                favoriteLocationPendingEdit = location
-                                favoriteLocationPendingEditNewNickname = location.nickname ?? location.busStopCode!
-                                isEditPending = true
-                            } label: {
-                                Image(systemName: "pencil")
-                                    .font(.body)
+                            if isEditing {
+                                Button {
+                                    favoriteLocationPendingEdit = location
+                                    favoriteLocationPendingEditNewNickname = location.nickname ?? location.busStopCode!
+                                    isEditPending = true
+                                } label: {
+                                    Image(systemName: "pencil")
+                                        .font(.body)
+                                }
                             }
                             Spacer()
-                            HStack(alignment: .center, spacing: 16.0) {
-                                Button {
-                                    Task {
-                                        await favorites.moveUp(location)
+                            if isEditing {
+                                HStack(alignment: .center, spacing: 16.0) {
+                                    Button {
+                                        Task {
+                                            await favorites.moveUp(location)
+                                        }
+                                    } label: {
+                                        Image(systemName: "chevron.up")
+                                            .font(.body)
                                     }
-                                } label: {
-                                    Image(systemName: "chevron.up")
-                                        .font(.body)
-                                }
-                                .disabled(location.viewIndex == 0)
-                                Button {
-                                    Task {
-                                        await favorites.moveDown(location)
+                                    .disabled(location.viewIndex == 0)
+                                    Button {
+                                        Task {
+                                            await favorites.moveDown(location)
+                                        }
+                                    } label: {
+                                        Image(systemName: "chevron.down")
+                                            .font(.body)
                                     }
-                                } label: {
-                                    Image(systemName: "chevron.down")
-                                        .font(.body)
-                                }
-                                .disabled(location.viewIndex == favorites.favoriteLocations.count - 1)
-                                Button {
-                                    favoriteLocationPendingDeletion = location
-                                    isDeletionPending = true
-                                } label: {
-                                    Image(systemName: "minus.circle")
-                                        .font(.body)
-                                        .foregroundColor(.red)
+                                    .disabled(location.viewIndex == favorites.favoriteLocations.count - 1)
+                                    Button {
+                                        favoriteLocationPendingDeletion = location
+                                        isDeletionPending = true
+                                    } label: {
+                                        Image(systemName: "minus.circle")
+                                            .font(.body)
+                                            .foregroundColor(.red)
+                                    }
                                 }
                             }
                         }
@@ -112,15 +117,16 @@ struct FavoritesView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     HStack(alignment: .center, spacing: 8.0) {
+                        Toggle(isOn: $isEditing) {
+                            Image(systemName: "pencil")
+                                .font(.body)
+                        }
                         Button {
                             // TODO: Show add location alert
                         } label: {
-                            Image(systemName: "rectangle.stack.badge.plus")
-                                .font(.system(size: 12.5, weight: .regular))
-                        }
-                        .buttonStyle(.bordered)
-                        .mask {
-                            Circle()
+                            Image(systemName: "plus")
+                                .font(.body)
+//                                .font(.system(size: 12.5, weight: .regular))
                         }
                         .disabled(true) // TODO: To implement
                     }
