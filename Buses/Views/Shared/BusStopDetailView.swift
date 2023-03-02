@@ -156,32 +156,7 @@ struct BusStopDetailView: View {
     func reloadBusArrivals() {
         Task {
             let busStopsFetched = try await fetchBusArrivals(for: busStop.code)
-            if isInitialDataLoading {
-                busArrivals = busStopsFetched.arrivals ?? []
-            } else {
-                // Remove bus services that are no longer in service
-                busArrivals.removeAll { busService in
-                    busStopsFetched.arrivals?.contains(where: { fetchedBusService in
-                        fetchedBusService.busStopCode == busService.busStopCode
-                    }) == false
-                }
-                // Add bus services that are now in service
-                for fetchedBusService in busStopsFetched.arrivals ?? [] {
-                    if busArrivals.contains(where: { busService in
-                        fetchedBusService.busStopCode == busService.busStopCode
-                    }) == false {
-                        busArrivals.append(fetchedBusService)
-                    }
-                }
-                // Update next bus objects
-                for i in busArrivals.indices {
-                    if let fetchedBusService = busStopsFetched.arrivals?.first(where: { fetchedBusService in
-                        fetchedBusService.busStopCode == busArrivals[i].busStopCode
-                    }) {
-                        busArrivals[i].updateNextBuses(with: fetchedBusService)
-                    }
-                }
-            }
+            busArrivals = busStopsFetched.arrivals ?? []
             busArrivals.sort(by: { a, b in
                 intFrom(a.serviceNo) ?? 9999 < intFrom(b.serviceNo) ?? 9999
             })
