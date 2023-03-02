@@ -78,6 +78,9 @@
 "Notification.Arriving.Title" = "Bus Arriving";
 "Notification.Arriving.Description" = "Bus %s1 is scheduled to arrive at %s2.\nHead to the bus stop early to avoid missing the bus.";
 
+/* Live Activity */
+"LiveActivity.ArrivingAt" = "Arriving at %1";
+
 /* Shared */
 "Shared.BusStop.Description.None" = "Unnamed Bus Stop";
 "Shared.BusStop.Description.Copy" = "Copy Bus Stop Name";

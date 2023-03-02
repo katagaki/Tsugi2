@@ -78,6 +78,9 @@
 "Notification.Arriving.Title" = "バスが到着します";
 "Notification.Arriving.Description" = "%s1号バスは%s2に到着する予定です。\nお早めにバス停に行って、遅れないようにしましょう。";
 
+/* Live Activity */
+"LiveActivity.ArrivingAt" = "%1に到着予定";
+
 /* Shared */
 "Shared.BusStop.Description.None" = "無名のバス停";
 "Shared.BusStop.Description.Copy" = "バス停名をコピー";

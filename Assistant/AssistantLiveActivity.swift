@@ -24,32 +24,39 @@ struct AssistantLiveActivity: Widget {
     
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: AssistantAttributes.self) { context in
-            VStack(alignment: .center, spacing: 16.0) {
-                HStack(alignment: .center) {
+            HStack(alignment: .center) {
+                HStack(alignment: .center, spacing: 16.0) {
                     BusNumberPlateView(serviceNo: context.state.busService.serviceNo)
                         .background(Color("PlateColor"))
                         .clipShape(RoundedRectangle(cornerRadius: 8.0))
                         .frame(minWidth: 88.0, maxWidth: 88.0, minHeight: 40.0, maxHeight: 40.0, alignment: .center)
-                    Text(context.state.busService.nextBus?.estimatedArrivalTime() ?? Date(), style: .relative)
+                    VStack(alignment: .leading) {
+                        if let date = context.state.busService.nextBus?.estimatedArrivalTime() {
+                            Text(date, style: .relative)
+                                .font(.body)
+                            Text(localized("LiveActivity.ArrivingAt").replacingOccurrences(of: "%1", with: date.formatted(date: .omitted, time: .standard)))
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                }
+                Spacer()
+                switch context.state.busService.nextBus?.feature {
+                case .WheelchairAccessible:
+                    Image(systemName: "figure.roll")
                         .font(.body)
-                    Spacer()
-                    switch context.state.busService.nextBus?.feature {
-                    case .WheelchairAccessible:
-                        Image(systemName: "figure.roll")
-                            .font(.body)
-                    default:
-                        Text("")
-                    }
-                    switch context.state.busService.nextBus?.type {
-                    case .DoubleDeck:
-                        Image(systemName: "bus.doubledecker")
-                            .font(.body)
-                    case .none:
-                        Text("")
-                    default:
-                        Image(systemName: "bus")
-                            .font(.body)
-                    }
+                default:
+                    Text("")
+                }
+                switch context.state.busService.nextBus?.type {
+                case .DoubleDeck:
+                    Image(systemName: "bus.doubledecker")
+                        .font(.body)
+                case .none:
+                    Text("")
+                default:
+                    Image(systemName: "bus")
+                        .font(.body)
                 }
             }
             .padding(16.0)

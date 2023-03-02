@@ -78,6 +78,9 @@
 "Notification.Arriving.Title" = "巴士要到达";
 "Notification.Arriving.Description" = "%s1巴士将在%s2到达。\n尽快前往公共汽车停下来，以免迟到。";
 
+/* Live Activity */
+"LiveActivity.ArrivingAt" = "%1到达";
+
 /* Shared */
 "Shared.BusStop.Description.None" = "无名巴士站";
 "Shared.BusStop.Description.Copy" = "复制巴士站名";
