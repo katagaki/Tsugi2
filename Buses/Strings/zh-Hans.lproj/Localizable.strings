@@ -23,7 +23,6 @@
 "ViewTitle.More.AppIcon" = "图标";
 "ViewTitle.More.Notifications" = "通知";
 "ViewTitle.More.Donate" = "捐赠";
-"ViewTitle.More.Attribution" = "数据源信息";
 
 /* Alert Button Titles */
 "Alert.Yes" = "确定";

@@ -121,15 +121,13 @@ struct MoreView: View {
                         .textCase(nil)
                 }
                 Section {
-                    NavigationLink {
-                        MoreAttributionView()
-                    } label: {
-                        HStack(alignment: .center, spacing: 16.0) {
-                            Image("ListIcon.Attribution")
-                            Text("More.Attribution")
-                                .font(.body)
-                        }
+                } header: {
+                    VStack(alignment: .leading, spacing: 4.0) {
+                        Text("Data in this app is provided by LTA's DataMall service. LTA's DataMall service provides live data about Singapore's roads and public transit services.\nDue to limitations in the LTA DataMall API, HTTPS is not used by the API.")
+                        Link("Learn More", destination: URL(string: "https://datamall.lta.gov.sg/")!)
                     }
+                    .font(.caption)
+                    .textCase(.none)
                 }
             }
             .listStyle(.insetGrouped)
