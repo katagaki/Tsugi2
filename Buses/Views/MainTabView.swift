@@ -63,7 +63,6 @@ struct MainTabView: View {
                             }
                         }
                     }
-//                    MapMarker(coordinate: coordinate.clCoordinate())
                 }
                     .overlay {
                         ZStack(alignment: .topLeading) {

@@ -8,12 +8,24 @@
 import SwiftUI
 
 struct MoreView: View {
+    
+    let defaults = UserDefaults.standard
+    
+    @State var currentlySelectedStartupTab: Int = 0
+    
     var body: some View {
         NavigationStack {
             List {
                 Section {
-                    NavigationLink {
-                        MoreStartupTabView()
+                    Picker(selection: $currentlySelectedStartupTab) {
+                        Text("TabTitle.Nearby")
+                            .tag(0)
+                        Text("TabTitle.Favorites")
+                            .tag(1)
+                        Text("TabTitle.Notifications")
+                            .tag(2)
+                        Text("TabTitle.Directory")
+                            .tag(3)
                     } label: {
                         HStack(alignment: .center, spacing: 16.0) {
                             Image("ListIcon.Startup")
@@ -131,6 +143,12 @@ struct MoreView: View {
                 }
             }
             .listStyle(.insetGrouped)
+            .onChange(of: currentlySelectedStartupTab, perform: { newValue in
+                defaults.set(newValue, forKey: "StartupTab")
+            })
+            .onAppear {
+                currentlySelectedStartupTab = defaults.integer(forKey: "StartupTab")
+            }
             .navigationTitle("ViewTitle.More")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
