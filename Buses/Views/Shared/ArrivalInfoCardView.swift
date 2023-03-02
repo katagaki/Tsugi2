@@ -13,7 +13,7 @@ struct ArrivalInfoCardView: View {
     var arrivalInfo: BusArrivalInfo
     @State var arrivalTime: String = ""
     
-    var showToast: (String, ToastType) async -> Void
+    var setNotification: (BusArrivalInfo) -> Void
     
     var body: some View {
         HStack(alignment: .center, spacing: 8.0) {
@@ -75,7 +75,7 @@ struct ArrivalInfoCardView: View {
                 if let date = arrivalInfo.estimatedArrivalTime() {
                     Divider()
                     Button {
-                        setNotification()
+                        setNotification(arrivalInfo)
                     } label: {
                         Image(systemName: "bell.fill")
                             .font(.system(size: 14.0, weight: .regular))
@@ -95,50 +95,6 @@ struct ArrivalInfoCardView: View {
                 arrivalTime = dateFormatter.string(from: estimatedArrivalTime)
             } else {
                 arrivalTime = ""
-            }
-        }
-    }
-    
-    func setNotification() {
-        if let date = arrivalInfo.estimatedArrivalTime() {
-            let notificationCenter = UNUserNotificationCenter.current()
-            notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-                if let error = error {
-                    log("Error occurred while reqesting for notification permissions: \(error.localizedDescription)")
-                    Task {
-                        await showToast(localized("Notification.Error"), .Exclamation)
-                    }
-                } else if granted == false {
-                    log("Permissions for notifications was not granted, not setting notifications.")
-                    Task {
-                        await showToast(localized("Notification.NoPermissions"), .Exclamation)
-                    }
-                } else {
-                    let content = UNMutableNotificationContent()
-                    let trigger = UNCalendarNotificationTrigger(
-                             dateMatching: Calendar.current.dateComponents([.weekday, .hour, .minute, .second],
-                                                                           from: date - (2 * 60)), repeats: false)
-                    let uuidString = UUID().uuidString
-                    let request = UNNotificationRequest(identifier: uuidString,
-                                                        content: content,
-                                                        trigger: trigger)
-                    content.title = localized("Notification.Arriving.Title")
-                    content.body = localized("Notification.Arriving.Description").replacingOccurrences(of: "%s1", with: busService.serviceNo).replacingOccurrences(of: "%s2", with: date.formatted(date: .omitted, time: .standard))
-                    content.interruptionLevel = .timeSensitive
-                    notificationCenter.add(request) { (error) in
-                       if let error = error {
-                           log("Error occurred while setting notifications: \(error.localizedDescription)")
-                           Task {
-                               await showToast(localized("Notification.Error"), .Exclamation)
-                           }
-                       } else {
-                           log("Notification set with content: \(content.body), and will appear at \((date - (2 * 60)).formatted(date: .complete, time: .complete)).")
-                           Task {
-                               await showToast(localized("Notification.Set"), .Checkmark)
-                           }
-                       }
-                    }
-                }
             }
         }
     }

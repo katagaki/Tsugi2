@@ -22,7 +22,7 @@ struct DirectoryView: View {
     var showToast: (String, ToastType) async -> Void
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 if isSearching {
                     Section {

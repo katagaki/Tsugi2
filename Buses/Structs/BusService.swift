@@ -110,6 +110,12 @@ struct BusService: Codable, Hashable {
         return nil
     }
     
+    mutating func updateNextBuses(with busService: BusService) {
+        nextBus = busService.nextBus
+        nextBus2 = busService.nextBus2
+        nextBus3 = busService.nextBus3
+    }
+    
 }
 
 enum BusOperator: String, Codable {

@@ -15,7 +15,7 @@ struct ArrivalInfoDetailView: View {
     @State var isInitialDataLoading: Bool = true
     @State var usesNickname: Bool = false
     @EnvironmentObject var busStopList: BusStopList
-    let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 30.0, on: .main, in: .common).autoconnect()
     
     var showToast: (String, ToastType) async -> Void
     
@@ -25,17 +25,17 @@ struct ArrivalInfoDetailView: View {
                 if let nextBus = bus.nextBus {
                     ArrivalInfoCardView(busService: bus,
                                         arrivalInfo: nextBus,
-                                        showToast: self.showToast)
+                                        setNotification: self.setNotification)
                 }
                 if let nextBus = bus.nextBus2, nextBus.estimatedArrivalTime() != nil {
                     ArrivalInfoCardView(busService: bus,
                                         arrivalInfo: nextBus,
-                                        showToast: self.showToast)
+                                        setNotification: self.setNotification)
                 }
                 if let nextBus = bus.nextBus3, nextBus.estimatedArrivalTime() != nil {
                     ArrivalInfoCardView(busService: bus,
                                         arrivalInfo: nextBus,
-                                        showToast: self.showToast)
+                                        setNotification: self.setNotification)
                 }
             }
         }
@@ -70,7 +70,6 @@ struct ArrivalInfoDetailView: View {
         }
         .onReceive(timer, perform: { _ in
             Task {
-                await reloadArrivalTimes()
                 await liveActivity?.update(getLiveActivityConfiguration().1)
                 log("Live Activity updated.")
             }
@@ -119,6 +118,50 @@ struct ArrivalInfoDetailView: View {
             isInitialDataLoading = false
         } catch {
             log(error.localizedDescription)
+        }
+    }
+    
+    func setNotification(for arrivalInfo: BusArrivalInfo) {
+        if let date = arrivalInfo.estimatedArrivalTime() {
+            let notificationCenter = UNUserNotificationCenter.current()
+            notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+                if let error = error {
+                    log("Error occurred while reqesting for notification permissions: \(error.localizedDescription)")
+                    Task {
+                        await showToast(localized("Notification.Error"), .Exclamation)
+                    }
+                } else if granted == false {
+                    log("Permissions for notifications was not granted, not setting notifications.")
+                    Task {
+                        await showToast(localized("Notification.NoPermissions"), .Exclamation)
+                    }
+                } else {
+                    let content = UNMutableNotificationContent()
+                    let trigger = UNCalendarNotificationTrigger(
+                             dateMatching: Calendar.current.dateComponents([.weekday, .hour, .minute, .second],
+                                                                           from: date - (2 * 60)), repeats: false)
+                    let uuidString = UUID().uuidString
+                    let request = UNNotificationRequest(identifier: uuidString,
+                                                        content: content,
+                                                        trigger: trigger)
+                    content.title = localized("Notification.Arriving.Title")
+                    content.body = localized("Notification.Arriving.Description").replacingOccurrences(of: "%s1", with: bus.serviceNo).replacingOccurrences(of: "%s2", with: date.formatted(date: .omitted, time: .standard))
+                    content.interruptionLevel = .timeSensitive
+                    notificationCenter.add(request) { (error) in
+                       if let error = error {
+                           log("Error occurred while setting notifications: \(error.localizedDescription)")
+                           Task {
+                               await showToast(localized("Notification.Error"), .Exclamation)
+                           }
+                       } else {
+                           log("Notification set with content: \(content.body), and will appear at \((date - (2 * 60)).formatted(date: .complete, time: .complete)).")
+                           Task {
+                               await showToast(localized("Notification.Set"), .Checkmark)
+                           }
+                       }
+                    }
+                }
+            }
         }
     }
     
