@@ -10,11 +10,14 @@ import SwiftUI
 
 struct ArrivalInfoDetailView: View {
     
+    @EnvironmentObject var busStopList: BusStopList
+    
+    @State var liveActivityID: String = ""
+    
     @State var busStop: BusStop
     @State var busService: BusService
     @State var isInitialDataLoading: Bool = true
     @State var usesNickname: Bool = false
-    @EnvironmentObject var busStopList: BusStopList
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
     var showToast: (String, ToastType) async -> Void
@@ -43,21 +46,14 @@ struct ArrivalInfoDetailView: View {
         .onAppear {
             Task {
                 await reloadArrivalTimes()
-            }
-            if ActivityAuthorizationInfo().areActivitiesEnabled {
-                do {
-                    liveActivity = try Activity.request(attributes: getLiveActivityConfiguration().0, content: getLiveActivityConfiguration().1)
-                    log("Live Activity requested.")
-                } catch {
-                    log(error.localizedDescription)
-                }
+                startLiveActivity()
             }
         }
         .onDisappear {
-            for activity in Activity<AssistantAttributes>.activities {
-                Task {
-                    await activity.end(nil, dismissalPolicy: .default)
-                    log("Live Activity ended.")
+            Task {
+                if let liveActivity = Activity<AssistantAttributes>.activities.first(where: {$0.id == liveActivityID}) {
+                    await liveActivity.end(nil, dismissalPolicy: .default)
+                    log("Live Activity \(liveActivityID) ended.")
                 }
             }
         }
@@ -113,8 +109,6 @@ struct ArrivalInfoDetailView: View {
             self.busStop = busStop
             self.busService = busService
             log("Arrival time data updated.")
-            await liveActivity?.update(getLiveActivityConfiguration().1)
-            log("Live Activity updated.")
             isInitialDataLoading = false
         } catch {
             log(error.localizedDescription)
@@ -163,14 +157,23 @@ struct ArrivalInfoDetailView: View {
         }
     }
     
-    func getLiveActivityConfiguration() -> (AssistantAttributes, ActivityContent<AssistantAttributes.ContentState>) {
+    func startLiveActivity() {
         let initialContentState = AssistantAttributes.ContentState(busService: busService)
         let activityAttributes = AssistantAttributes(serviceNo: busService.serviceNo, currentDate: Date())
         let activityContent = ActivityContent(state: initialContentState,
                                               staleDate: Calendar.current.date(byAdding: .second,
                                                                                value: 15,
                                                                                to: Date()))
-        return (activityAttributes, activityContent)
+        if ActivityAuthorizationInfo().areActivitiesEnabled {
+            do {
+                var liveActivity: Activity<AssistantAttributes>?
+                liveActivity = try Activity.request(attributes: activityAttributes, content: activityContent)
+                liveActivityID = liveActivity?.id ?? ""
+                log("Live Activity requested with id \(liveActivityID).")
+            } catch {
+                log(error.localizedDescription)
+            }
+        }
     }
     
 }

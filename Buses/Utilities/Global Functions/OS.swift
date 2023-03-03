@@ -14,6 +14,3 @@ let defaults = UserDefaults.standard
 
 // Notification Center for sending locally scheduled notifications
 let center = UNUserNotificationCenter.current()
-
-// Live Activity for managing live activities
-var liveActivity: Activity<AssistantAttributes>?

@@ -11,7 +11,6 @@ import SwiftUI
 struct NearbyView: View {
     
     @EnvironmentObject var displayedCoordinates: CoordinateList
-    @EnvironmentObject var busStopList: BusStopList
     
     @Binding var nearbyBusStops: [BusStop]
     

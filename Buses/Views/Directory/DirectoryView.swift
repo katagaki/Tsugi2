@@ -10,14 +10,15 @@ import SwiftUI
 
 struct DirectoryView: View {
     
-    @State private var previousSearchTerm: String = ""
-    @State private var searchTerm: String = ""
-    @State private var searchResults: [BusStop] = []
-    @State private var isSearching: Bool = false
+    @EnvironmentObject var displayedCoordinates: CoordinateList
+    @EnvironmentObject var busStopList: BusStopList
+    
+    @State var previousSearchTerm: String = ""
+    @State var searchTerm: String = ""
+    @State var searchResults: [BusStop] = []
+    @State var isSearching: Bool = false
     @Binding var updatedDate: String
     @Binding var updatedTime: String
-    @EnvironmentObject private var busStopList: BusStopList
-    @EnvironmentObject var displayedCoordinates: CoordinateList
     
     var showToast: (String, ToastType) async -> Void
     

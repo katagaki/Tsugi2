@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct BusStopCarouselView: View {
-    
+        
     var mode: CarouselMode
     
     @State var isInitialDataLoaded: Bool = false
-    @EnvironmentObject var favorites: FavoriteList
-    @EnvironmentObject var busStopList: BusStopList
     @State var busServices: [BusService] = []
-    var busStop: BusStop?
+    @State var busStop: BusStop?
     var favoriteLocation: FavoriteLocation?
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
@@ -31,23 +29,20 @@ struct BusStopCarouselView: View {
             }
             .onAppear {
                 if !isInitialDataLoaded {
-                    reloadArrivalTimes()
-                    isInitialDataLoaded = true
+                    Task {
+                        await reloadArrivalTimes()
+                        isInitialDataLoaded = true
+                    }
                 }
             }
         } else {
-            if busServices.count == 0 {
-                Text("Shared.BusStop.BusServices.None")
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                    .padding([.leading, .trailing])
-            } else {
+            if busServices.count > 0 {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 16.0) {
                         ForEach(busServices, id: \.serviceNo) { bus in
                             NavigationLink {
-                                ArrivalInfoDetailView(busStop: BusStop(code: busStop?.code ?? "00000",
-                                                                       description: busStop?.description ?? "Shared.BusStop.Description.None"),
+                                ArrivalInfoDetailView(busStop: busStop ?? BusStop(code: favoriteLocation?.busStopCode ?? "00000",
+                                                                                  description: favoriteLocation?.nickname ?? localized("Shared.BusStop.Description.None")),
                                                       busService: bus,
                                                       usesNickname: false,
                                                       showToast: self.showToast)
@@ -72,32 +67,40 @@ struct BusStopCarouselView: View {
                     .padding(EdgeInsets(top: 0.0, leading: 16.0, bottom: 0.0, trailing: 16.0))
                 }
                 .onReceive(timer, perform: { _ in
-                    reloadArrivalTimes()
+                    Task {
+                        await reloadArrivalTimes()
+                        log("Arrival time data updated.")
+                    }
                 })
+            } else {
+                Text("Shared.BusStop.BusServices.None")
+                    .font(.body)
+                    .foregroundColor(.secondary)
+                    .padding([.leading, .trailing])
             }
         }
     }
     
-    func reloadArrivalTimes() {
-        switch mode {
-        case .BusStop:
-            if let busStop = busStop {
-                Task {
+    func reloadArrivalTimes() async {
+        do {
+            switch mode {
+            case .BusStop:
+                if let busStop = busStop {
                     busServices = (try await fetchBusArrivals(for: busStop.code).arrivals ?? []).sorted(by: { a, b in
                         intFrom(a.serviceNo) ?? 9999 < intFrom(b.serviceNo) ?? 9999
                     })
                 }
-            }
-        case .FavoriteLocationCustomData:
-            busServices = []
-        case .FavoriteLocationLiveData:
-            if let favoriteLocation = favoriteLocation {
-                Task {
+            case .FavoriteLocationCustomData:
+                busServices = []
+            case .FavoriteLocationLiveData:
+                if let favoriteLocation = favoriteLocation {
                     busServices = (try await fetchBusArrivals(for: favoriteLocation.busStopCode!).arrivals ?? []).sorted(by: { a, b in
                         intFrom(a.serviceNo) ?? 9999 < intFrom(b.serviceNo) ?? 9999
                     })
                 }
             }
+        } catch {
+            log(error.localizedDescription)
         }
     }
     
