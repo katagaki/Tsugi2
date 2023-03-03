@@ -11,7 +11,7 @@ set -e
 echo "Appending LTA DataMall API key to APIKeys.plist."
 echo $APIKEY_LTADATAMALL
 
-cd $CI_PROJECT_FILE_PATH/Buses
+cd $CI_WORKSPACE/Buses
 plutil -create xml1 APIKeys.plist
 plutil -insert LTA -string $APIKEY_LTADATAMALL APIKeys.plist
 
