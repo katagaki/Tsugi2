@@ -38,7 +38,7 @@ struct BusStopCarouselView: View {
         } else {
             if busServices.count > 0 {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 16.0) {
+                    LazyHStack(spacing: 16.0) {
                         ForEach(busServices, id: \.serviceNo) { bus in
                             NavigationLink {
                                 ArrivalInfoDetailView(busStop: busStop ?? BusStop(code: favoriteLocation?.busStopCode ?? "00000",
@@ -62,6 +62,7 @@ struct BusStopCarouselView: View {
                                 }
                                 .frame(minWidth: 88.0, maxWidth: 88.0, minHeight: 0, maxHeight: .infinity, alignment: .center)
                             }
+
                         }
                     }
                     .padding(EdgeInsets(top: 0.0, leading: 16.0, bottom: 0.0, trailing: 16.0))
