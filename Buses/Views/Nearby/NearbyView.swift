@@ -25,7 +25,6 @@ struct NearbyView: View {
                 ForEach(nearbyBusStops, id: \.code) { stop in
                     Section {
                         BusStopCarouselView(mode: .BusStop,
-                                            nearbyBusStops: $nearbyBusStops,
                                             busStop: stop,
                                             showToast: self.showToast)
                             .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))

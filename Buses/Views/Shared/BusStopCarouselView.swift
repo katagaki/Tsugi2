@@ -14,7 +14,6 @@ struct BusStopCarouselView: View {
     @State var isInitialDataLoaded: Bool = false
     @EnvironmentObject var favorites: FavoriteList
     @EnvironmentObject var busStopList: BusStopList
-    @Binding var nearbyBusStops: [BusStop]
     @State var busServices: [BusService] = []
     var busStop: BusStop?
     var favoriteLocation: FavoriteLocation?

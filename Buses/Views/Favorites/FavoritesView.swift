@@ -28,7 +28,6 @@ struct FavoritesView: View {
                 ForEach(favorites.favoriteLocations, id: \.busStopCode) { location in
                     Section {
                         BusStopCarouselView(mode : .FavoriteLocationLiveData,
-                                            nearbyBusStops: .constant([]),
                                             favoriteLocation: location,
                                             showToast: self.showToast)
                             .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
