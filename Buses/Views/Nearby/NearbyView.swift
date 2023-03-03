@@ -24,9 +24,10 @@ struct NearbyView: View {
             List {
                 ForEach(nearbyBusStops, id: \.code) { stop in
                     Section {
-                        NearbyBusStopCarouselView(nearbyBusStops: $nearbyBusStops,
-                                                  busStop: stop,
-                                                  showToast: self.showToast)
+                        BusStopCarouselView(mode: .BusStop,
+                                            nearbyBusStops: $nearbyBusStops,
+                                            busStop: stop,
+                                            showToast: self.showToast)
                             .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
                     } header: {
                         Text((stop.description ?? "Shared.BusStop.Description.None")) // TODO: Get bus stop name using API
