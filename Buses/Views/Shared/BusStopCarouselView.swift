@@ -38,7 +38,7 @@ struct BusStopCarouselView: View {
         } else {
             if busServices.count > 0 {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack(spacing: 16.0) {
+                    LazyHStack(spacing: 8.0) {
                         ForEach(busServices, id: \.serviceNo) { bus in
                             NavigationLink {
                                 ArrivalInfoDetailView(busStop: busStop ?? BusStop(code: favoriteLocation?.busStopCode ?? "00000",
@@ -47,7 +47,7 @@ struct BusStopCarouselView: View {
                                                       usesNickname: false,
                                                       showToast: self.showToast)
                             } label: {
-                                VStack(alignment: .center, spacing: 4.0) {
+                                VStack(alignment: .center, spacing: 2.0) {
                                     BusNumberPlateView(serviceNo: bus.serviceNo)
                                         .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: -8.0, trailing: 0.0))
                                     Text(arrivalTimeTo(date: bus.nextBus?.estimatedArrivalTime()))
