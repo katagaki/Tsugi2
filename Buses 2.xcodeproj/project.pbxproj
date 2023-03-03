@@ -140,6 +140,7 @@
 		D0011E1E285D75FE00742687 /* Favorites.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Favorites.xcdatamodel; sourceTree = "<group>"; };
 		D0011E20285D770000742687 /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
 		D0011E22285D78D300742687 /* FavoriteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteList.swift; sourceTree = "<group>"; };
+		E41518EF29B1C31E00E50BB7 /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		E41C1B97285706AB003F1BFB /* RoundedCornersShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornersShape.swift; sourceTree = "<group>"; };
 		E41C1B99285706BE003F1BFB /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		E41C1B9B28570CA1003F1BFB /* CoordinateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateList.swift; sourceTree = "<group>"; };
@@ -249,6 +250,14 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		E41518EE29B1C30300E50BB7 /* ci_scripts */ = {
+			isa = PBXGroup;
+			children = (
+				E41518EF29B1C31E00E50BB7 /* ci_post_clone.sh */,
+			);
+			path = ci_scripts;
+			sourceTree = "<group>";
+		};
 		E41C1B9628570692003F1BFB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,6 +316,7 @@
 		E4406A6927EF13E300819CDC = {
 			isa = PBXGroup;
 			children = (
+				E41518EE29B1C30300E50BB7 /* ci_scripts */,
 				E4406AA927EF182300819CDC /* Buses */,
 				E482AC9429AC53B2008DAD30 /* Assistant */,
 				E4406A7327EF13E300819CDC /* Products */,
