@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MapStopView: View {
     
-    @State var busStop: BusStop
+    let busStop: BusStop
     
     var body: some View {
         VStack(alignment: .center, spacing: 4.0) {
