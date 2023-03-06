@@ -73,7 +73,7 @@ struct MainTabView: View {
                         }
                     }
                     .edgesIgnoringSafeArea(.top)
-                    .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: metrics.size.height * 0.60, trailing: 0.0))
+                    .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: metrics.size.height * 0.70, trailing: 0.0))
                 TabView(selection: $defaultTab) {
                     NearbyView(nearbyBusStops: $nearbyBusStops,
                                showToast: self.showToast,
@@ -105,7 +105,7 @@ struct MainTabView: View {
                         }
                         .tag(4)
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: metrics.size.height * 0.60, maxHeight: metrics.size.height * 0.60)
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: metrics.size.height * 0.70, maxHeight: metrics.size.height * 0.70)
                 // TODO: Restore rounded corners when it's possible to manually offset Map elements like in UIKit
 //                .mask {
 //                    RoundedCornersShape(corners: [.topLeft, .topRight], radius: 12.0)

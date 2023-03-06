@@ -108,9 +108,12 @@ struct BusStopDetailView: View {
         .onAppear {
             if isInitialDataLoading {
                 // TODO: Show only 1 annotation when bus stop view is active
-//                displayedCoordinates.addCoordinate(from: busStop)
+                displayedCoordinates.addCoordinate(from: busStop)
                 reloadBusArrivals()
             }
+        }
+        .onDisappear {
+            displayedCoordinates.removeAll()
         }
         .onReceive(timer, perform: { _ in
             reloadBusArrivals()
