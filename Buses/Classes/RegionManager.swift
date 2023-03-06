@@ -15,7 +15,7 @@ class RegionManager: ObservableObject {
     
     @Published var updateViewFlag = false
     
-    var _region: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 30, longitude: -90),
+    var _region: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 1.284987, longitude: 103.851721),
                                                          span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10))
     
     var region: Binding<MKCoordinateRegion> {
