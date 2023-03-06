@@ -115,11 +115,19 @@ struct AssistantLiveActivity: Widget {
             } compactTrailing: {
                 if let date = context.state.busService.nextBus?.estimatedArrivalTime() {
                     ProgressView(timerInterval: Date()...date, countsDown: true, label: {
-                        // Hide default label
                     }, currentValueLabel: {
-                        Image(systemName: "bus")
-                            .font(.system(size: 10.0))
-                            .foregroundColor(Color("AccentColor"))
+                        switch context.state.busService.nextBus?.type {
+                        case .DoubleDeck:
+                            Image(systemName: "bus.doubledecker")
+                                .font(.system(size: 10.0))
+                                .foregroundColor(Color("AccentColor"))
+                        case .none:
+                            Text("")
+                        default:
+                            Image(systemName: "bus")
+                                .font(.system(size: 10.0))
+                                .foregroundColor(Color("AccentColor"))
+                        }
                     })
                         .tint(Color("AccentColor"))
                         .progressViewStyle(.circular)
@@ -129,7 +137,14 @@ struct AssistantLiveActivity: Widget {
                 }
             } minimal: {
                 if let date = context.state.busService.nextBus?.estimatedArrivalTime() {
-                    Text(date, style: .relative)
+                    ProgressView(timerInterval: Date()...date, countsDown: true, label: {
+                    }, currentValueLabel: {
+                        Text(context.state.busService.serviceNo)
+                            .foregroundColor(Color("AccentColor"))
+                    })
+                        .tint(Color("AccentColor"))
+                        .progressViewStyle(.circular)
+                        .labelsHidden()
                 } else {
                     Text("?")
                 }
