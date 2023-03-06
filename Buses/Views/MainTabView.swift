@@ -13,16 +13,9 @@ struct MainTabView: View {
     
     @State var defaultTab: Int = 0
     
-    @State private var locationManager: CLLocationManager = CLLocationManager()
-    @StateObject private var locationManagerDelegate: LocationDelegate = LocationDelegate()
-    @StateObject var regionManager: RegionManager = RegionManager()
-    @State var userTrackingMode: MapUserTrackingMode = .follow
-    @EnvironmentObject var displayedCoordinates: CoordinateList
-    
     @EnvironmentObject var busStopList: BusStopList
     @State var isBusStopListLoaded: Bool = true
     @State var isInitialLoad: Bool = true
-    @State var isLocationManagerDelegateAssigned: Bool = false
     @State var updatedDate: String
     @State var updatedTime: String
     
@@ -32,125 +25,66 @@ struct MainTabView: View {
     @State var toastMessage: String = ""
     @State var toastType: ToastType = .None
     
-    let locationUpdateTimer = Timer.publish(every: 3.0, on: .main, in: .common).autoconnect()
     
     @EnvironmentObject var favorites: FavoriteList
     
     var body: some View {
-        GeometryReader { metrics in
-            ZStack(alignment: .bottom) {
-                Map(coordinateRegion: regionManager.region,
-                    interactionModes: .all,
-                    showsUserLocation: true,
-                    userTrackingMode: $userTrackingMode,
-                    annotationItems: displayedCoordinates.coordinates) { coordinate in
-                    MapAnnotation(coordinate: coordinate.clCoordinate()) {
-                        // TODO: Fix opening bus stop view
-                        NavigationLink(destination: BusStopDetailView(busStop: coordinate.busStop, showToast: self.showToast)) {
-                            Button(action: {}) {
-                                VStack(alignment: .center, spacing: 4.0) {
-                                    Image("ListIcon.Bus")
-                                        .resizable()
-                                        .frame(minWidth: 20.0, maxWidth: 20.0, minHeight: 20.0, maxHeight: 20.0)
-                                        .shadow(radius: 6.0)
-                                    StrokeText(text: coordinate.busStop.description ?? "", width: 1.0, color: Color.init(uiColor: .systemBackground).opacity(0.5))
-                                        .foregroundColor(.primary)
-                                        .font(.caption)
-                                        .shadow(radius: 6.0)
-                                }
-                            }
-                        }
-                    }
+        TabView(selection: $defaultTab) {
+            NearbyView(nearbyBusStops: $nearbyBusStops,
+                       showToast: self.showToast)
+                .tabItem {
+                    Label("TabTitle.Nearby", systemImage: "location.circle.fill")
                 }
-                    .overlay {
-                        ZStack(alignment: .topLeading) {
-                            Rectangle()
-                                .foregroundColor(.clear)
-                                .background(.ultraThinMaterial)
-                                .ignoresSafeArea()
-                                .frame(height: metrics.safeAreaInsets.top)
-                            Color.clear
-                        }
-                    }
-                    .edgesIgnoringSafeArea(.top)
-                    .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: metrics.size.height * 0.70, trailing: 0.0))
-                TabView(selection: $defaultTab) {
-                    NearbyView(nearbyBusStops: $nearbyBusStops,
-                               showToast: self.showToast,
-                               reloadNearbyBusStops: self.reloadNearbyBusStops)
-                        .tabItem {
-                            Label("TabTitle.Nearby", systemImage: "location.circle.fill")
-                        }
-                        .tag(0)
-                    FavoritesView(showToast: self.showToast)
-                        .tabItem {
-                            Label("TabTitle.Favorites", systemImage: "rectangle.stack.fill")
-                        }
-                        .tag(1)
-                    NotificationsView(showToast: self.showToast)
-                        .tabItem {
-                            Label("TabTitle.Notifications", systemImage: "bell.fill")
-                        }
-                        .tag(2)
-                    DirectoryView(updatedDate: $updatedDate,
-                                  updatedTime: $updatedTime,
-                                  showToast: self.showToast)
-                        .tabItem {
-                            Label("TabTitle.Directory", systemImage: "magnifyingglass")
-                        }
-                        .tag(3)
-                    MoreView()
-                        .tabItem {
-                            Label("TabTitle.More", systemImage: "ellipsis")
-                        }
-                        .tag(4)
+                .tag(0)
+            FavoritesView(showToast: self.showToast)
+                .tabItem {
+                    Label("TabTitle.Favorites", systemImage: "rectangle.stack.fill")
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: metrics.size.height * 0.70, maxHeight: metrics.size.height * 0.70)
-                // TODO: Restore rounded corners when it's possible to manually offset Map elements like in UIKit
-//                .mask {
-//                    RoundedCornersShape(corners: [.topLeft, .topRight], radius: 12.0)
-//                }
-                .shadow(radius: 2.5)
-                .zIndex(1)
+                .tag(1)
+            NotificationsView(showToast: self.showToast)
+                .tabItem {
+                    Label("TabTitle.Notifications", systemImage: "bell.fill")
+                }
+                .tag(2)
+            DirectoryView(updatedDate: $updatedDate,
+                          updatedTime: $updatedTime,
+                          showToast: self.showToast)
+                .tabItem {
+                    Label("TabTitle.Directory", systemImage: "magnifyingglass")
+                }
+                .tag(3)
+            MoreView()
+                .tabItem {
+                    Label("TabTitle.More", systemImage: "ellipsis")
+                }
+                .tag(4)
+        }
+        .onAppear {
+            if isInitialLoad {
+                defaultTab = defaults.integer(forKey: "StartupTab")
+                reloadBusStops(showsProgress: (true))
+                isInitialLoad = false
             }
-            .onReceive(locationUpdateTimer, perform: { _ in
-                updateLocation()
-            })
-            .onAppear {
-                if isInitialLoad {
-                    defaultTab = defaults.integer(forKey: "StartupTab")
-                    if !isLocationManagerDelegateAssigned {
-                        locationManagerDelegate.completion = self.reloadNearbyBusStops
-                        locationManager.delegate = locationManagerDelegate
-                        isLocationManagerDelegateAssigned = true
-                    }
-                    if locationManager.authorizationStatus != .authorizedWhenInUse {
-                        locationManager.requestWhenInUseAuthorization()
-                    }
-                    reloadBusStops(showsProgress: (true))
-                    isInitialLoad = false
+        }
+        .overlay {
+            ZStack(alignment: .top) {
+                if !isBusStopListLoaded {
+                    ToastView(message: localized("Directory.BusStopsLoading"), toastType: .Spinner)
                 }
+                Color.clear
             }
-            .overlay {
-                ZStack(alignment: .topLeading) {
-                    if !isBusStopListLoaded {
-                        ToastView(message: localized("Directory.BusStopsLoading"), toastType: .Spinner)
-                    }
-                    Color.clear
+            .padding(EdgeInsets(top: 52.0, leading: 8.0, bottom: 0.0, trailing: 8.0))
+            .animation(.default, value: isBusStopListLoaded)
+        }
+        .overlay {
+            ZStack(alignment: .top) {
+                if isToastShowing {
+                    ToastView(message: toastMessage, toastType: toastType)
                 }
-                .padding(EdgeInsets(top: 8.0, leading: 8.0, bottom: 0.0, trailing: 8.0))
-                .animation(.default, value: isBusStopListLoaded)
+                Color.clear
             }
-            .overlay {
-                ZStack(alignment: .top) {
-                    if isToastShowing {
-                        ToastView(message: toastMessage, toastType: toastType)
-                    }
-                    Color.clear
-                }
-                .padding(EdgeInsets(top: 8.0, leading: 8.0, bottom: 0.0, trailing: 8.0))
-                .animation(.default, value: isToastShowing)
-            }
+            .padding(EdgeInsets(top: 52.0, leading: 8.0, bottom: 0.0, trailing: 8.0))
+            .animation(.default, value: isToastShowing)
         }
         .edgesIgnoringSafeArea(.bottom)
     }
@@ -180,49 +114,9 @@ struct MainTabView: View {
             updatedTime = timeFormatter.string(from: Date.now)
             isBusStopListLoaded = true
             log("Reloaded bus stop data.")
-            updateLocation(usingOnlySignificantChanges: false)
         }
     }
     
-    func reloadNearbyBusStops() {
-        Task {
-            let currentCoordinate = CLLocation(latitude: locationManagerDelegate.region.center.latitude, longitude: locationManagerDelegate.region.center.longitude)
-            var busStopListSortedByDistance: [BusStop] = busStopList.busStops
-            busStopListSortedByDistance = busStopListSortedByDistance.filter { busStop in
-                distanceBetween(location: currentCoordinate, busStop: busStop) < 250.0
-            }
-            busStopListSortedByDistance.sort { a, b in
-                return distanceBetween(location: currentCoordinate, busStop: a) < distanceBetween(location: currentCoordinate, busStop: b)
-            }
-            nearbyBusStops.removeAll()
-            nearbyBusStops.append(contentsOf: busStopListSortedByDistance[0..<(busStopListSortedByDistance.count >= 10 ? 10 : busStopListSortedByDistance.count)])
-            log("Reloaded nearby bus stop data.")
-            updateRegion(newRegion: locationManagerDelegate.region)
-            log("Updated Map region.")
-            displayedCoordinates.removeAll()
-            for busStop in nearbyBusStops {
-                displayedCoordinates.addCoordinate(from: busStop)
-            }
-            log("Updated displayed coordinates to nearby bus stops.")
-        }
-    }
-    
-    func updateLocation(usingOnlySignificantChanges: Bool = true) {
-        if locationManager.authorizationStatus == .authorizedWhenInUse {
-            if usingOnlySignificantChanges {
-                locationManager.startMonitoringSignificantLocationChanges()
-            } else {
-                locationManager.startUpdatingLocation()
-            }
-        }
-    }
-    
-    func updateRegion(newRegion: MKCoordinateRegion) {
-        withAnimation {
-            regionManager.region.wrappedValue = newRegion
-            regionManager.updateViewFlag.toggle()
-        }
-    }
 }
 
 struct MainView_Previews: PreviewProvider {
@@ -230,32 +124,6 @@ struct MainView_Previews: PreviewProvider {
         MainTabView(updatedDate: "", updatedTime: "")
             .environmentObject(CoordinateList())
     }
-}
-
-class LocationDelegate: NSObject, ObservableObject, CLLocationManagerDelegate {
-
-    var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 1.30437, longitude: 103.82458), latitudinalMeters: 400.0, longitudinalMeters: 400.0)
-    var completion: () -> Void = {}
-    
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        if manager.authorizationStatus == .authorizedWhenInUse {
-            log("Location Services authorization changed to When In Use.")
-            manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            manager.startUpdatingLocation()
-        } else {
-            log("Location Services authorization changed to Don't Allow.")
-            manager.requestWhenInUseAuthorization()
-        }
-    }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        region.center.latitude = (manager.location?.coordinate.latitude)!
-        region.center.longitude = (manager.location?.coordinate.longitude)!
-        log("Updated location.")
-        manager.stopUpdatingLocation()
-        completion()
-    }
-    
 }
 
 struct StrokeText: View {

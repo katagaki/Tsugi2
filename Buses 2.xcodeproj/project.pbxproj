@@ -10,6 +10,7 @@
 		D0011E1F285D75FE00742687 /* Favorites.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0011E1D285D75FE00742687 /* Favorites.xcdatamodeld */; };
 		D0011E21285D770000742687 /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0011E20285D770000742687 /* FavoritesManager.swift */; };
 		D0011E23285D78D300742687 /* FavoriteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0011E22285D78D300742687 /* FavoriteList.swift */; };
+		E41518F129B5848F00E50BB7 /* MapStopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41518F029B5848F00E50BB7 /* MapStopView.swift */; };
 		E41C1B98285706AB003F1BFB /* RoundedCornersShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B97285706AB003F1BFB /* RoundedCornersShape.swift */; };
 		E41C1B9A285706BE003F1BFB /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B99285706BE003F1BFB /* Coordinate.swift */; };
 		E41C1B9C28570CA1003F1BFB /* CoordinateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B9B28570CA1003F1BFB /* CoordinateList.swift */; };
@@ -141,6 +142,7 @@
 		D0011E20285D770000742687 /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
 		D0011E22285D78D300742687 /* FavoriteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteList.swift; sourceTree = "<group>"; };
 		E41518EF29B1C31E00E50BB7 /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
+		E41518F029B5848F00E50BB7 /* MapStopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapStopView.swift; sourceTree = "<group>"; };
 		E41C1B97285706AB003F1BFB /* RoundedCornersShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornersShape.swift; sourceTree = "<group>"; };
 		E41C1B99285706BE003F1BFB /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		E41C1B9B28570CA1003F1BFB /* CoordinateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateList.swift; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 			isa = PBXGroup;
 			children = (
 				E4B7FFFE285635470019F71A /* NearbyView.swift */,
+				E41518F029B5848F00E50BB7 /* MapStopView.swift */,
 			);
 			path = Nearby;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				E41C1B9C28570CA1003F1BFB /* CoordinateList.swift in Sources */,
 				E4B7FFFC285620530019F71A /* DirectoryMRTMapView.swift in Sources */,
 				E4BD94AB2859C87300030C7C /* ArrivalInfoCardView.swift in Sources */,
+				E41518F129B5848F00E50BB7 /* MapStopView.swift in Sources */,
 				E4B7FFE828544EBC0019F71A /* DirectoryView.swift in Sources */,
 				E41C1B9E285806A4003F1BFB /* BusNumberPlateView.swift in Sources */,
 				E4B700052856387E0019F71A /* App.swift in Sources */,

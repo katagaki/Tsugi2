@@ -23,7 +23,7 @@ struct FavoritesView: View {
     var showToast: (String, ToastType) async -> Void
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 ForEach(favorites.favoriteLocations, id: \.busStopCode) { location in
                     Section {

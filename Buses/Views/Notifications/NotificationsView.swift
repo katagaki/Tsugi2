@@ -14,7 +14,7 @@ struct NotificationsView: View {
     var showToast: (String, ToastType) async -> Void
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 Section {
                     if notificationRequests.count == 0 {
