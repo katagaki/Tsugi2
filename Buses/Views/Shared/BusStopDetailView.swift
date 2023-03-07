@@ -19,7 +19,6 @@ struct BusStopDetailView: View {
     var showToast: (String, ToastType) async -> Void
     
     var body: some View {
-        
         GeometryReader { metrics in
             VStack(alignment: .trailing, spacing: 0) {
                 Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: busStop.latitude ?? 0.0, longitude: busStop.longitude ?? 0.0),
@@ -145,6 +144,7 @@ struct BusStopDetailView: View {
             reloadBusArrivals()
         })
         .navigationTitle(busStop.description ?? "Shared.BusStop.Description.None")
+        .toolbarBackground(.visible, for: .tabBar)
         .toolbar {
             ToolbarItem(placement: .principal) {
                 VStack {
