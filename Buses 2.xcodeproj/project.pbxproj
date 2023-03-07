@@ -71,6 +71,7 @@
 		E482ACC129AC6DEE008DAD30 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482ACBF29AC6DEE008DAD30 /* ProgressBarView.swift */; };
 		E482ACC329AC7CBC008DAD30 /* OS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482ACC229AC7CBC008DAD30 /* OS.swift */; };
 		E482ACC429AC7CBC008DAD30 /* OS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482ACC229AC7CBC008DAD30 /* OS.swift */; };
+		E49DFA5129B6DEB800654FBD /* BlurGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49DFA5029B6DEB800654FBD /* BlurGradientView.swift */; };
 		E4AAD7FC2882C0D800CC63E8 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AAD7FB2882C0D800CC63E8 /* ToastView.swift */; };
 		E4B70003285637450019F71A /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B70002285637450019F71A /* MainTabView.swift */; };
 		E4B700052856387E0019F71A /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B700042856387E0019F71A /* App.swift */; };
@@ -185,6 +186,7 @@
 		E482AC9E29AC53B3008DAD30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E482ACBF29AC6DEE008DAD30 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		E482ACC229AC7CBC008DAD30 /* OS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OS.swift; sourceTree = "<group>"; };
+		E49DFA5029B6DEB800654FBD /* BlurGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurGradientView.swift; sourceTree = "<group>"; };
 		E4AAD7FB2882C0D800CC63E8 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		E4ADDDF42859978900C8DE21 /* Buses.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Buses.entitlements; sourceTree = "<group>"; };
 		E4B70002285637450019F71A /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 				E4BD94AA2859C87300030C7C /* ArrivalInfoCardView.swift */,
 				E41C1B9D285806A4003F1BFB /* BusNumberPlateView.swift */,
 				E482ACBF29AC6DEE008DAD30 /* ProgressBarView.swift */,
+				E49DFA5029B6DEB800654FBD /* BlurGradientView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -671,6 +674,7 @@
 				D0011E21285D770000742687 /* FavoritesManager.swift in Sources */,
 				E4FFCADB2801B23300DCA0EC /* DateUtilities.swift in Sources */,
 				E482ACC029AC6DEE008DAD30 /* ProgressBarView.swift in Sources */,
+				E49DFA5129B6DEB800654FBD /* BlurGradientView.swift in Sources */,
 				E4B70003285637450019F71A /* MainTabView.swift in Sources */,
 				E4319EBC280437BA00D21531 /* BusStopList.swift in Sources */,
 				E4225ABC29B0529600F1CF82 /* RegionManager.swift in Sources */,

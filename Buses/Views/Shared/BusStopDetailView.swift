@@ -35,11 +35,9 @@ struct BusStopDetailView: View {
                     }
                 .overlay {
                     ZStack(alignment: .topLeading) {
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .background(.ultraThinMaterial)
+                        BlurGradientView()
                             .ignoresSafeArea()
-                            .frame(height: metrics.safeAreaInsets.top)
+                            .frame(height: metrics.safeAreaInsets.top + 20.0)
                         Color.clear
                     }
                 }
