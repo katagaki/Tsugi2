@@ -66,6 +66,7 @@ struct NearbyView: View {
                         }
                     }
                     .frame(width: metrics.size.width, height: metrics.size.height * 0.55)
+                    .scrollIndicators(.never)
                     .shadow(radius: 2.5)
                     .zIndex(1)
                     .listStyle(.insetGrouped)
@@ -175,7 +176,9 @@ struct NearbyView_Previews: PreviewProvider {
 
 class LocationDelegate: NSObject, ObservableObject, CLLocationManagerDelegate {
 
-    var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 1.284987, longitude: 103.851721), latitudinalMeters: 250.0, longitudinalMeters: 250.0)
+    var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 1.284987, longitude: 103.851721),
+                                    latitudinalMeters: 250.0,
+                                    longitudinalMeters: 250.0)
     var completion: () -> Void = {}
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

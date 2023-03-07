@@ -13,107 +13,133 @@ struct BusStopDetailView: View {
     var busStop: BusStop
     @State var busArrivals: [BusService] = []
     @State var isInitialDataLoading: Bool = true
-    @EnvironmentObject var displayedCoordinates: CoordinateList
     @EnvironmentObject var favorites: FavoriteList
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
     var showToast: (String, ToastType) async -> Void
     
     var body: some View {
-        List {
-            Section {
-                if busArrivals.count == 0 {
-                    if isInitialDataLoading {
-                        HStack(alignment: .center, spacing: 16.0) {
-                            Spacer()
-                            ProgressView()
-                            .progressViewStyle(.circular)
-                            Spacer()
+        
+        GeometryReader { metrics in
+            VStack(alignment: .trailing, spacing: 0) {
+                Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: busStop.latitude ?? 0.0, longitude: busStop.longitude ?? 0.0),
+                                                                   latitudinalMeters: 100.0,
+                                                                   longitudinalMeters: 100.0)),
+                    interactionModes: .all,
+                    showsUserLocation: true,
+                    userTrackingMode: .constant(.none),
+                    annotationItems: [busStop]) { busStop in
+                    MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: busStop.latitude ?? 0.0,
+                                                                     longitude: busStop.longitude ?? 0.0)) {
+                        MapStopView(busStop: busStop)
                         }
-                        .listRowBackground(Color.clear)
-                    } else {
-                        HStack {
-                            Spacer()
-                            VStack(alignment: .center, spacing: 8.0) {
-                                Image(systemName: "exclamationmark.circle.fill")
-                                    .symbolRenderingMode(.multicolor)
-                                Text("Shared.BusStop.BusServices.None")
-                                    .font(.body)
-                            }
-                            Spacer()
-                        }
-                        .listRowBackground(Color.clear)
                     }
-                } else {
-                    ForEach(busArrivals, id: \.serviceNo) { bus in
-                        NavigationLink {
-                            ArrivalInfoDetailView(busStop: busStop,
-                                                  busService: bus,
-                                                  showToast: self.showToast)
-                        } label: {
-                            HStack(alignment: .center, spacing: 8.0) {
-                                BusNumberPlateView(serviceNo: bus.serviceNo)
-                                Divider()
-                                VStack(alignment: .leading, spacing: 2.0) {
-                                    HStack(alignment: .center, spacing: 4.0) {
-                                        Text(arrivalTimeTo(date: bus.nextBus?.estimatedArrivalTime()))
-                                            .font(.body)
-                                        switch bus.nextBus?.feature {
-                                        case .WheelchairAccessible:
-                                            Image(systemName: "figure.roll")
-                                                .font(.caption)
-                                                .foregroundColor(.secondary)
-                                        default:
-                                            Text("")
-                                        }
-                                        switch bus.nextBus?.type {
-                                        case .DoubleDeck:
-                                            Image(systemName: "bus.doubledecker")
-                                                .font(.caption)
-                                                .foregroundColor(.secondary)
-                                        case .none:
-                                            Text("")
-                                        default:
-                                            Image(systemName: "bus")
-                                                .font(.caption)
-                                                .foregroundColor(.secondary)
-                                        }
-                                    }
-                                    if let arrivalTime = bus.nextBus2?.estimatedArrivalTime() {
-                                        Text(localized("Shared.BusArrival.Subsequent") + arrivalTimeTo(date: arrivalTime))
-                                            .font(.caption)
-                                            .foregroundColor(.secondary)
-                                    }
-                                }
-                                Spacer()
-                            }
-                            .alignmentGuide(.listRowSeparatorLeading) { _ in
-                                return 0
-                            }
-                        }
+                .overlay {
+                    ZStack(alignment: .topLeading) {
+                        Rectangle()
+                            .foregroundColor(.clear)
+                            .background(.ultraThinMaterial)
+                            .ignoresSafeArea()
+                            .frame(height: metrics.safeAreaInsets.top)
+                        Color.clear
                     }
                 }
-            } header: {
-                Text("Shared.BusStop.BusServices")
-                    .font(.body)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                    .textCase(nil)
+                .ignoresSafeArea(edges: [.top])
+                List {
+                    Section {
+                        if busArrivals.count == 0 {
+                            if isInitialDataLoading {
+                                HStack(alignment: .center, spacing: 16.0) {
+                                    Spacer()
+                                    ProgressView()
+                                        .progressViewStyle(.circular)
+                                    Spacer()
+                                }
+                                .listRowBackground(Color.clear)
+                            } else {
+                                HStack {
+                                    Spacer()
+                                    VStack(alignment: .center, spacing: 8.0) {
+                                        Image(systemName: "exclamationmark.circle.fill")
+                                            .symbolRenderingMode(.multicolor)
+                                        Text("Shared.BusStop.BusServices.None")
+                                            .font(.body)
+                                    }
+                                    Spacer()
+                                }
+                                .listRowBackground(Color.clear)
+                            }
+                        } else {
+                            ForEach(busArrivals, id: \.serviceNo) { bus in
+                                NavigationLink {
+                                    ArrivalInfoDetailView(busStop: busStop,
+                                                          busService: bus,
+                                                          showToast: self.showToast)
+                                } label: {
+                                    HStack(alignment: .center, spacing: 8.0) {
+                                        BusNumberPlateView(serviceNo: bus.serviceNo)
+                                        Divider()
+                                        VStack(alignment: .leading, spacing: 2.0) {
+                                            HStack(alignment: .center, spacing: 4.0) {
+                                                Text(arrivalTimeTo(date: bus.nextBus?.estimatedArrivalTime()))
+                                                    .font(.body)
+                                                switch bus.nextBus?.feature {
+                                                case .WheelchairAccessible:
+                                                    Image(systemName: "figure.roll")
+                                                        .font(.caption)
+                                                        .foregroundColor(.secondary)
+                                                default:
+                                                    Text("")
+                                                }
+                                                switch bus.nextBus?.type {
+                                                case .DoubleDeck:
+                                                    Image(systemName: "bus.doubledecker")
+                                                        .font(.caption)
+                                                        .foregroundColor(.secondary)
+                                                case .none:
+                                                    Text("")
+                                                default:
+                                                    Image(systemName: "bus")
+                                                        .font(.caption)
+                                                        .foregroundColor(.secondary)
+                                                }
+                                            }
+                                            if let arrivalTime = bus.nextBus2?.estimatedArrivalTime() {
+                                                Text(localized("Shared.BusArrival.Subsequent") + arrivalTimeTo(date: arrivalTime))
+                                                    .font(.caption)
+                                                    .foregroundColor(.secondary)
+                                            }
+                                        }
+                                        Spacer()
+                                    }
+                                    .alignmentGuide(.listRowSeparatorLeading) { _ in
+                                        return 0
+                                    }
+                                }
+                            }
+                        }
+                    } header: {
+                        Text("Shared.BusStop.BusServices")
+                            .font(.body)
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+                            .textCase(nil)
+                    }
+                }
+                .frame(width: metrics.size.width, height: metrics.size.height * 0.6)
+                .scrollIndicators(.never)
+                .shadow(radius: 2.5)
+                .zIndex(1)
+                .listStyle(.insetGrouped)
+                .refreshable {
+                    reloadBusArrivals()
+                }
             }
-        }
-        .listStyle(.insetGrouped)
-        .refreshable {
-            reloadBusArrivals()
         }
         .onAppear {
             if isInitialDataLoading {
-                // TODO: Show only 1 annotation when bus stop view is active
-                displayedCoordinates.addCoordinate(from: busStop)
                 reloadBusArrivals()
             }
-        }
-        .onDisappear {
-            displayedCoordinates.removeAll()
         }
         .onReceive(timer, perform: { _ in
             reloadBusArrivals()
