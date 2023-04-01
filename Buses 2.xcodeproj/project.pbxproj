@@ -16,6 +16,7 @@
 		E41C1B9C28570CA1003F1BFB /* CoordinateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B9B28570CA1003F1BFB /* CoordinateList.swift */; };
 		E41C1B9E285806A4003F1BFB /* BusNumberPlateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B9D285806A4003F1BFB /* BusNumberPlateView.swift */; };
 		E4225ABC29B0529600F1CF82 /* RegionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4225ABB29B0529600F1CF82 /* RegionManager.swift */; };
+		E42A04BC29D87FB800B76ED6 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42A04BB29D87FB800B76ED6 /* NetworkMonitor.swift */; };
 		E42C823C2856C8C900D64DF9 /* Purple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E42C82382856C8C900D64DF9 /* Purple@2x.png */; };
 		E42C823D2856C8C900D64DF9 /* Purple@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E42C82392856C8C900D64DF9 /* Purple@3x.png */; };
 		E42C823E2856C8C900D64DF9 /* Purple@3x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E42C823A2856C8C900D64DF9 /* Purple@3x~ipad.png */; };
@@ -149,6 +150,7 @@
 		E41C1B9B28570CA1003F1BFB /* CoordinateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateList.swift; sourceTree = "<group>"; };
 		E41C1B9D285806A4003F1BFB /* BusNumberPlateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusNumberPlateView.swift; sourceTree = "<group>"; };
 		E4225ABB29B0529600F1CF82 /* RegionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionManager.swift; sourceTree = "<group>"; };
+		E42A04BB29D87FB800B76ED6 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		E42C82382856C8C900D64DF9 /* Purple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Purple@2x.png"; sourceTree = "<group>"; };
 		E42C82392856C8C900D64DF9 /* Purple@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Purple@3x.png"; sourceTree = "<group>"; };
 		E42C823A2856C8C900D64DF9 /* Purple@3x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Purple@3x~ipad.png"; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				E41C1B9B28570CA1003F1BFB /* CoordinateList.swift */,
 				D0011E20285D770000742687 /* FavoritesManager.swift */,
 				D0011E22285D78D300742687 /* FavoriteList.swift */,
+				E42A04BB29D87FB800B76ED6 /* NetworkMonitor.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -679,6 +682,7 @@
 				E4319EBC280437BA00D21531 /* BusStopList.swift in Sources */,
 				E4225ABC29B0529600F1CF82 /* RegionManager.swift in Sources */,
 				E42C824E2856D4FA00D64DF9 /* MoreDonateView.swift in Sources */,
+				E42A04BC29D87FB800B76ED6 /* NetworkMonitor.swift in Sources */,
 				E4AAD7FC2882C0D800CC63E8 /* ToastView.swift in Sources */,
 				D0011E1F285D75FE00742687 /* Favorites.xcdatamodeld in Sources */,
 				D0011E23285D78D300742687 /* FavoriteList.swift in Sources */,

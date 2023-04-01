@@ -75,6 +75,7 @@
 "More.Help.Email" = "发邮件";
 "More.Help.Email.Subtitle" = "ktgk.public@icloud.com";
 "More.Attribution" = "数据源信息";
+"More.UnderTheHood" = "应用日志";
 
 /* Notifications */
 "Notification.Set" = "您将在该巴士预定到达时间前2分钟收到通知。";
@@ -103,3 +104,4 @@
 "Shared.BusArrival.NotInService.Subtitle" = "此巴士此刻不提供服务。";
 "Shared.BusArrival.Subsequent" = "下一班车：";
 "Shared.BusArrival.Crowded" = "拥挤";
+"Shared.Error.InternetConnection" = "连接时出现问题。请确认网络后再试一次。";

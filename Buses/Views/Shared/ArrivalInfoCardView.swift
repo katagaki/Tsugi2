@@ -111,8 +111,8 @@ struct ArrivalInfoCardView_Previews: PreviewProvider {
                               showToast: self.showToast)
     }
     
-    static func showToast(message: String, type: ToastType = .None) async { }
-    
+    static func showToast(message: String, type: ToastType = .None, hideAutomatically: Bool = true) async { }
+
     static private func loadPreviewData() -> BusStop? {
         if let sampleDataPath = Bundle.main.path(forResource: "BusArrivalv2-1", ofType: "json") {
             let sampleBusStop: BusStop? = decode(from: sampleDataPath)

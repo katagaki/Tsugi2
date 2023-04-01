@@ -24,6 +24,9 @@ struct ToastView: View {
             case .Exclamation:
                 Image(systemName: "exclamationmark.circle.fill")
                     .symbolRenderingMode(.multicolor)
+            case .PersistentError:
+                Image(systemName: "xmark.circle.fill")
+                    .symbolRenderingMode(.multicolor)
             case .None:
                 Color.clear
             }
@@ -47,5 +50,6 @@ enum ToastType {
     case Spinner
     case Checkmark
     case Exclamation
+    case PersistentError
     case None
 }

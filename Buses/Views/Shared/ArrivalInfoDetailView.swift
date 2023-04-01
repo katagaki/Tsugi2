@@ -20,7 +20,7 @@ struct ArrivalInfoDetailView: View {
     @State var usesNickname: Bool = false
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
-    var showToast: (String, ToastType) async -> Void
+    var showToast: (String, ToastType, Bool) async -> Void
     
     var body: some View {
         List {
@@ -121,12 +121,12 @@ struct ArrivalInfoDetailView: View {
                 if let error = error {
                     log("Error occurred while reqesting for notification permissions: \(error.localizedDescription)")
                     Task {
-                        await showToast(localized("Notification.Error"), .Exclamation)
+                        await showToast(localized("Notification.Error"), .Exclamation, true)
                     }
                 } else if granted == false {
                     log("Permissions for notifications was not granted, not setting notifications.")
                     Task {
-                        await showToast(localized("Notification.NoPermissions"), .Exclamation)
+                        await showToast(localized("Notification.NoPermissions"), .Exclamation, true)
                     }
                 } else {
                     let content = UNMutableNotificationContent()
@@ -143,12 +143,12 @@ struct ArrivalInfoDetailView: View {
                        if let error = error {
                            log("Error occurred while setting notifications: \(error.localizedDescription)")
                            Task {
-                               await showToast(localized("Notification.Error"), .Exclamation)
+                               await showToast(localized("Notification.Error"), .Exclamation, true)
                            }
                        } else {
                            log("Notification set with content: \(content.body), and will appear at \((date - (2 * 60)).formatted(date: .complete, time: .complete)).")
                            Task {
-                               await showToast(localized("Notification.Set"), .Checkmark)
+                               await showToast(localized("Notification.Set"), .Checkmark, true)
                            }
                        }
                     }
@@ -188,8 +188,8 @@ struct ArrivalInfoDetailView_Previews: PreviewProvider {
                               showToast: self.showToast)
     }
     
-    static func showToast(message: String, type: ToastType = .None) async { }
-    
+    static func showToast(message: String, type: ToastType = .None, hideAutomatically: Bool = true) async { }
+
     static private func loadPreviewData() -> BusStop? {
         if let sampleDataPath = Bundle.main.path(forResource: "BusArrivalv2-1", ofType: "json") {
             let sampleBusStop: BusStop? = decode(from: sampleDataPath)

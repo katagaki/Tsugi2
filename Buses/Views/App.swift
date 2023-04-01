@@ -10,15 +10,20 @@ import SwiftUI
 
 @main
 struct TsugiApp: App {
+    
+    @StateObject var networkMonitor = NetworkMonitor()
+    @StateObject var busStopList = BusStopList()
+    @StateObject var favorites = FavoriteList()
+    
     var body: some Scene {
         WindowGroup {
             MainTabView(updatedDate: "", updatedTime: "")
                 .onAppear {
                     loadAPIKeys()
                 }
-                .environmentObject(BusStopList())
-                .environmentObject(CoordinateList())
-                .environmentObject(FavoriteList())
+                .environmentObject(networkMonitor)
+                .environmentObject(busStopList)
+                .environmentObject(favorites)
         }
     }
 }

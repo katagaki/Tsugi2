@@ -23,7 +23,7 @@ struct NearbyView: View {
     
     @Binding var nearbyBusStops: [BusStop]
     
-    var showToast: (String, ToastType) async -> Void
+    var showToast: (String, ToastType, Bool) async -> Void
     
     var body: some View {
         NavigationStack {
@@ -186,7 +186,7 @@ struct NearbyView_Previews: PreviewProvider {
                    showToast: self.showToast)
     }
     
-    static func showToast(message: String, type: ToastType = .None) async { }
+    static func showToast(message: String, type: ToastType = .None, hideAutomatically: Bool = true) async { }
     
 }
 

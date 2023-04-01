@@ -11,7 +11,7 @@ struct NotificationsView: View {
     
     @State var notificationRequests: [UNNotificationRequest] = []
     
-    var showToast: (String, ToastType) async -> Void
+    var showToast: (String, ToastType, Bool) async -> Void
     
     var body: some View {
         NavigationStack {
@@ -101,6 +101,6 @@ struct NotificationsView_Previews: PreviewProvider {
         NotificationsView(showToast: self.showToast)
     }
     
-    static func showToast(message: String, type: ToastType = .None) async { }
-    
+    static func showToast(message: String, type: ToastType = .None, hideAutomatically: Bool = true) async { }
+
 }

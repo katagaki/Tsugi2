@@ -75,6 +75,7 @@
 "More.Help.Email" = "メールを送信";
 "More.Help.Email.Subtitle" = "ktgk.public@icloud.com";
 "More.Attribution" = "データソース情報";
+"More.UnderTheHood" = "アプリログ";
 
 /* Notifications */
 "Notification.Set" = "このバスの到着予定時間の2分前に通知されます。";
@@ -103,3 +104,4 @@
 "Shared.BusArrival.NotInService.Subtitle" = "このバスは、現在サービスが提供していません。";
 "Shared.BusArrival.Subsequent" = "次：";
 "Shared.BusArrival.Crowded" = "混雑中";
+"Shared.Error.InternetConnection" = "インターネットに接続されていないようです。ネットワークを確認して、もう一度お試しください。";

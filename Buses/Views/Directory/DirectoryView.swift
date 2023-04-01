@@ -10,7 +10,6 @@ import SwiftUI
 
 struct DirectoryView: View {
     
-    @EnvironmentObject var displayedCoordinates: CoordinateList
     @EnvironmentObject var busStopList: BusStopList
     
     @State var previousSearchTerm: String = ""
@@ -20,7 +19,7 @@ struct DirectoryView: View {
     @Binding var updatedDate: String
     @Binding var updatedTime: String
     
-    var showToast: (String, ToastType) async -> Void
+    var showToast: (String, ToastType, Bool) async -> Void
     
     var body: some View {
         NavigationStack {
@@ -99,18 +98,19 @@ struct DirectoryView: View {
             .listStyle(.insetGrouped)
             .searchable(text: $searchTerm, placement: .navigationBarDrawer(displayMode: .always))
             .onChange(of: searchTerm) { _ in
-                isSearching = (searchTerm != "" && searchTerm.count > 2)
+                let searchTermTrimmed = searchTerm.trimmingCharacters(in: .whitespaces)
+                isSearching = (searchTermTrimmed != "" && searchTermTrimmed.count > 2)
                 if isSearching {
-                    if searchTerm.contains(previousSearchTerm) {
+                    if searchTermTrimmed.contains(previousSearchTerm) {
                         searchResults = searchResults.filter({ stop in
-                            stop.description?.localizedCaseInsensitiveContains(searchTerm) ?? false || stop.roadName?.localizedCaseInsensitiveContains(searchTerm) ?? false || stop.code.localizedCaseInsensitiveContains(searchTerm)
+                            stop.description?.localizedCaseInsensitiveContains(searchTermTrimmed) ?? false || stop.roadName?.localizedCaseInsensitiveContains(searchTermTrimmed) ?? false || stop.code.localizedCaseInsensitiveContains(searchTermTrimmed)
                         })
                     } else {
                         searchResults = busStopList.busStops.filter({ stop in
-                            stop.description?.localizedCaseInsensitiveContains(searchTerm) ?? false || stop.roadName?.localizedCaseInsensitiveContains(searchTerm) ?? false || stop.code.localizedCaseInsensitiveContains(searchTerm)
+                            stop.description?.localizedCaseInsensitiveContains(searchTermTrimmed) ?? false || stop.roadName?.localizedCaseInsensitiveContains(searchTermTrimmed) ?? false || stop.code.localizedCaseInsensitiveContains(searchTermTrimmed)
                         })
                     }
-                    previousSearchTerm = searchTerm
+                    previousSearchTerm = searchTermTrimmed
                 }
             }
             .navigationTitle("ViewTitle.Directory")
@@ -147,7 +147,7 @@ struct DirectoryView_Previews: PreviewProvider {
     static var previews: some View {
         DirectoryView(updatedDate: $updatedTime,
                       updatedTime: $updatedTime,
-                      showToast: { _, _ in })
+                      showToast: { _, _, _ in })
     }
 }
 

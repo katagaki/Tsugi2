@@ -11,9 +11,12 @@ import SwiftUI
 
 struct MainTabView: View {
     
+    @EnvironmentObject var networkMonitor: NetworkMonitor
+    @EnvironmentObject var busStopList: BusStopList
+    @EnvironmentObject var favorites: FavoriteList
+    
     @State var defaultTab: Int = 0
     
-    @EnvironmentObject var busStopList: BusStopList
     @State var isBusStopListLoaded: Bool = true
     @State var isInitialLoad: Bool = true
     @State var updatedDate: String
@@ -25,8 +28,6 @@ struct MainTabView: View {
     @State var toastMessage: String = ""
     @State var toastType: ToastType = .None
     
-    
-    @EnvironmentObject var favorites: FavoriteList
     
     var body: some View {
         TabView(selection: $defaultTab) {
@@ -66,15 +67,19 @@ struct MainTabView: View {
                 isInitialLoad = false
             }
         }
-        .overlay {
-            ZStack(alignment: .top) {
-                if !isBusStopListLoaded {
-                    ToastView(message: localized("Directory.BusStopsLoading"), toastType: .Spinner)
+        .onChange(of: networkMonitor.isConnected) { isConnected in
+            if isConnected {
+                log("Network connection reappeared!")
+                isToastShowing = false
+                log("Retrying fetch of bus stop data.")
+                isBusStopListLoaded = false
+                reloadBusStops(showsProgress: (true))
+            } else {
+                log("Network connection disappeared!")
+                Task {
+                    await showToast(message: localized("Shared.Error.InternetConnection"), type: .PersistentError, hideAutomatically: false)
                 }
-                Color.clear
             }
-            .padding(EdgeInsets(top: 52.0, leading: 8.0, bottom: 0.0, trailing: 8.0))
-            .animation(.default, value: isBusStopListLoaded)
         }
         .overlay {
             ZStack(alignment: .top) {
@@ -89,12 +94,14 @@ struct MainTabView: View {
         .edgesIgnoringSafeArea(.bottom)
     }
     
-    func showToast(message: String, type: ToastType = .None) async {
+    func showToast(message: String, type: ToastType = .None, hideAutomatically: Bool = true) async {
         toastMessage = message
         toastType = type
         isToastShowing = true
-        try! await Task.sleep(nanoseconds: UInt64(3 * Double(NSEC_PER_SEC)))
-        isToastShowing = false
+        if hideAutomatically {
+            try! await Task.sleep(nanoseconds: UInt64(3 * Double(NSEC_PER_SEC)))
+            isToastShowing = false
+        }
     }
     
     func reloadBusStops(showsProgress: Bool = false) {
@@ -104,16 +111,24 @@ struct MainTabView: View {
             }
             let dateFormatter = DateFormatter()
             let timeFormatter = DateFormatter()
-            let busStopsFetched = try await fetchAllBusStops()
-            busStopList.busStops = busStopsFetched.sorted(by: { a, b in
-                a.description?.lowercased() ?? "" < b.description?.lowercased() ?? ""
-            })
-            dateFormatter.dateStyle = .medium
-            timeFormatter.timeStyle = .medium
-            updatedDate = dateFormatter.string(from: Date.now)
-            updatedTime = timeFormatter.string(from: Date.now)
-            isBusStopListLoaded = true
-            log("Reloaded bus stop data.")
+            await showToast(message: localized("Directory.BusStopsLoading"), type: .Spinner, hideAutomatically: false)
+            do {
+                let busStopsFetched = try await fetchAllBusStops()
+                busStopList.busStops = busStopsFetched.sorted(by: { a, b in
+                    a.description?.lowercased() ?? "" < b.description?.lowercased() ?? ""
+                })
+                dateFormatter.dateStyle = .medium
+                timeFormatter.timeStyle = .medium
+                updatedDate = dateFormatter.string(from: Date.now)
+                updatedTime = timeFormatter.string(from: Date.now)
+                isBusStopListLoaded = true
+                log("Reloaded bus stop data.")
+                isToastShowing = false
+            } catch {
+                log("WARNING×WARNING×WARNING")
+                log("Network does not look like it's loading, bus stop data may be incomplete!")
+                await showToast(message: localized("Shared.Error.InternetConnection"), type: .PersistentError, hideAutomatically: false)
+            }
         }
     }
     
@@ -122,7 +137,6 @@ struct MainTabView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainTabView(updatedDate: "", updatedTime: "")
-            .environmentObject(CoordinateList())
     }
 }
 

@@ -75,6 +75,7 @@
 "More.Help.Email" = "Email Me";
 "More.Help.Email.Subtitle" = "ktgk.public@icloud.com";
 "More.Attribution" = "Data Attribution";
+"More.UnderTheHood" = "App Logs";
 
 /* Notifications */
 "Notification.Set" = "You will be notified 2 minutes before this bus is scheduled to arrive.";
@@ -103,3 +104,4 @@
 "Shared.BusArrival.NotInService.Subtitle" = "The bus service is currently unavailable.";
 "Shared.BusArrival.Subsequent" = "Next Bus: ";
 "Shared.BusArrival.Crowded" = "CROWDED";
+"Shared.Error.InternetConnection" = "The Internet connecction appears to be offline. Please check your Internet connection and try again.";

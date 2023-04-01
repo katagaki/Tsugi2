@@ -16,7 +16,7 @@ struct BusStopDetailView: View {
     @EnvironmentObject var favorites: FavoriteList
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
-    var showToast: (String, ToastType) async -> Void
+    var showToast: (String, ToastType, Bool) async -> Void
     
     var body: some View {
         GeometryReader { metrics in
@@ -171,7 +171,7 @@ struct BusStopDetailView: View {
                             favorites.addFavoriteLocation(busStop: busStop, usesLiveBusStopData: true)
                             Task {
                                 await favorites.saveChanges()
-                                await showToast(localized("Shared.BusStop.Toast.Favorited").replacingOccurrences(of: "%s", with: busStop.description ?? localized("Shared.BusStop.Description.None")), .Checkmark)
+                                await showToast(localized("Shared.BusStop.Toast.Favorited").replacingOccurrences(of: "%s", with: busStop.description ?? localized("Shared.BusStop.Description.None")), .Checkmark, true)
                             }
                         } label: {
                             Image(systemName: "rectangle.stack.badge.plus")
@@ -208,7 +208,7 @@ struct BusStopDetailView_Previews: PreviewProvider {
     static var previews: some View {
         let sampleBusStop: BusStop = BusStop()
         BusStopDetailView(busStop: sampleBusStop,
-                          showToast: { _, _ in })
+                          showToast: { _, _, _ in })
     }
 }
 

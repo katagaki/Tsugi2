@@ -9,7 +9,6 @@ import SwiftUI
 
 struct FavoritesView: View {
     
-    @EnvironmentObject var displayedCoordinates: CoordinateList
     @EnvironmentObject var favorites: FavoriteList
     
     @State var listInset: Double = 0.0
@@ -20,7 +19,7 @@ struct FavoritesView: View {
     @State var favoriteLocationPendingEdit: FavoriteLocation? = nil
     @State var favoriteLocationPendingEditNewNickname: String = ""
     
-    var showToast: (String, ToastType) async -> Void
+    var showToast: (String, ToastType, Bool) async -> Void
     
     var body: some View {
         NavigationStack {
@@ -88,11 +87,6 @@ struct FavoritesView: View {
             .listStyle(.insetGrouped)
             .refreshable {
                 favorites.reloadData()
-            }
-            .onAppear {
-                displayedCoordinates.removeAll()
-                // TODO: Display favorite locations on Map view
-                log("Updated displayed coordinates to favorite locations.")
             }
             .overlay {
                 if favorites.favoriteLocations.count == 0 {
@@ -177,6 +171,6 @@ struct FavoritesView_Previews: PreviewProvider {
         FavoritesView(showToast: self.showToast)
     }
     
-    static func showToast(message: String, type: ToastType = .None) async { }
-    
+    static func showToast(message: String, type: ToastType = .None, hideAutomatically: Bool = true) async { }
+
 }
