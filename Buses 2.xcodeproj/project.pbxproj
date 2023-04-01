@@ -44,10 +44,7 @@
 		E482AC9329AC53B2008DAD30 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E482AC9229AC53B2008DAD30 /* SwiftUI.framework */; };
 		E482AC9629AC53B2008DAD30 /* AssistantBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482AC9529AC53B2008DAD30 /* AssistantBundle.swift */; };
 		E482AC9829AC53B2008DAD30 /* AssistantLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482AC9729AC53B2008DAD30 /* AssistantLiveActivity.swift */; };
-		E482AC9A29AC53B2008DAD30 /* Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482AC9929AC53B2008DAD30 /* Assistant.swift */; };
 		E482AC9D29AC53B3008DAD30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E482AC9C29AC53B3008DAD30 /* Assets.xcassets */; };
-		E482AC9F29AC53B3008DAD30 /* Assistant.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E482AC9B29AC53B2008DAD30 /* Assistant.intentdefinition */; };
-		E482ACA029AC53B3008DAD30 /* Assistant.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E482AC9B29AC53B2008DAD30 /* Assistant.intentdefinition */; };
 		E482ACA329AC53B3008DAD30 /* AssistantExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E482AC8F29AC53B2008DAD30 /* AssistantExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E482ACAB29AC555C008DAD30 /* BusArrivalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC82801631800DCA0EC /* BusArrivalInfo.swift */; };
 		E482ACAC29AC5561008DAD30 /* BusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC62801627D00DCA0EC /* BusService.swift */; };
@@ -653,7 +650,6 @@
 				E41C1B9E285806A4003F1BFB /* BusNumberPlateView.swift in Sources */,
 				E4B700052856387E0019F71A /* App.swift in Sources */,
 				E482AC8A29AAFAF6008DAD30 /* LocationUtilities.swift in Sources */,
-				E482ACA029AC53B3008DAD30 /* Assistant.intentdefinition in Sources */,
 				E4FFCAC72801627D00DCA0EC /* BusService.swift in Sources */,
 				E4FFCAC52801627700DCA0EC /* BusStop.swift in Sources */,
 				E4B7FFF0285467060019F71A /* MoreView.swift in Sources */,
@@ -698,10 +694,8 @@
 				E482ACAC29AC5561008DAD30 /* BusService.swift in Sources */,
 				E482ACB329AC5821008DAD30 /* Logging.swift in Sources */,
 				E482AC9629AC53B2008DAD30 /* AssistantBundle.swift in Sources */,
-				E482AC9F29AC53B3008DAD30 /* Assistant.intentdefinition in Sources */,
 				E482ACB529AC5896008DAD30 /* BusStopList.swift in Sources */,
 				E482ACC129AC6DEE008DAD30 /* ProgressBarView.swift in Sources */,
-				E482AC9A29AC53B2008DAD30 /* Assistant.swift in Sources */,
 				E482ACB429AC588C008DAD30 /* BusStop.swift in Sources */,
 				E482ACAB29AC555C008DAD30 /* BusArrivalInfo.swift in Sources */,
 				E482AC9829AC53B2008DAD30 /* AssistantLiveActivity.swift in Sources */,
