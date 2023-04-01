@@ -11,6 +11,8 @@ struct MoreView: View {
     
     @State var currentlySelectedStartupTab: Int = 0
     
+    @State var showLogsView: Bool = false
+    
     var body: some View {
         NavigationStack {
             List {
@@ -153,9 +155,21 @@ struct MoreView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Text("ViewTitle.More")
                         .font(.system(size: 24.0, weight: .bold))
+                        .onTapGesture(count: 5) {
+                            showLogsView = true
+                        }
                 }
                 ToolbarItem(placement: .principal) {
                     Spacer()
+                }
+            }
+            .sheet(isPresented: $showLogsView) {
+                NavigationStack {
+                    TextEditor(text: .constant(appLogs))
+                        .font(.system(size: 12.0))
+                        .monospaced()
+                        .navigationTitle("More.UnderTheHood")
+                        .navigationBarTitleDisplayMode(.inline)
                 }
             }
         }
