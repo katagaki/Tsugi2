@@ -84,6 +84,7 @@
 "Notification.Arriving.Description" = "%s1巴士将在%s2到达。\n尽快前往公共汽车停下来，以免迟到。";
 
 /* Live Activity */
+"LiveActivity.EstimatedArrival" = "预计到达时间";
 "LiveActivity.ArrivingAt" = "%1到达";
 
 /* Shared */

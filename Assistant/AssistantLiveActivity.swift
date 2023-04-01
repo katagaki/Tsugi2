@@ -32,11 +32,14 @@ struct AssistantLiveActivity: Widget {
                         .frame(minWidth: 88.0, maxWidth: 88.0, minHeight: 40.0, maxHeight: 40.0, alignment: .center)
                     VStack(alignment: .leading) {
                         if let date = context.state.busService.nextBus?.estimatedArrivalTime() {
-                            Text(date, style: .relative)
-                                .font(.body)
-                            Text(localized("LiveActivity.ArrivingAt").replacingOccurrences(of: "%1", with: date.formatted(date: .omitted, time: .standard)))
+                            Text("LiveActivity.EstimatedArrival")
                                 .font(.caption)
                                 .foregroundColor(.secondary)
+                            Text(date, style: .time)
+                                .font(.body)
+//                            Text(localized("LiveActivity.ArrivingAt").replacingOccurrences(of: "%1", with: date.formatted(date: .omitted, time: .standard)))
+//                                .font(.caption)
+//                                .foregroundColor(.secondary)
                         }
                     }
                 }
@@ -68,7 +71,7 @@ struct AssistantLiveActivity: Widget {
                     BusNumberPlateView(serviceNo: context.state.busService.serviceNo)
                         .background(Color("PlateColor"))
                         .clipShape(RoundedRectangle(cornerRadius: 16.0))
-                        .frame(minWidth: 88.0, maxWidth: 88.0, minHeight: 40.0, maxHeight: 40.0, alignment: .center)
+                        .frame(minWidth: 88.0, maxWidth: 88.0, minHeight: 40.0, maxHeight: 40.0, alignment: .leading)
                         .padding(8.0)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
@@ -96,14 +99,20 @@ struct AssistantLiveActivity: Widget {
                             }
                         }
                     }
+                    .frame(minWidth: .zero, maxWidth: .infinity, minHeight: 40.0, maxHeight: 40.0, alignment: .trailing)
                     .padding(8.0)
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    ProgressView(timerInterval: Date()...(context.state.busService.nextBus?.estimatedArrivalTime() ?? Date()))
-                        .tint(Color("AccentColor"))
-                        .font(.body)
-                        .foregroundColor(.white)
-                    .frame(height: 20.0)
+                    Text("LiveActivity.EstimatedArrival")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    Text(context.state.busService.nextBus?.estimatedArrivalTime() ?? Date(), style: .time)
+                        .font(.largeTitle)
+//                    ProgressView(timerInterval: Date()...(context.state.busService.nextBus?.estimatedArrivalTime() ?? Date()))
+//                        .tint(Color("AccentColor"))
+//                        .font(.body)
+//                        .foregroundColor(.white)
+//                    .frame(height: 20.0)
                     .padding([.leading, .trailing], 16.0)
                 }
             } compactLeading: {
