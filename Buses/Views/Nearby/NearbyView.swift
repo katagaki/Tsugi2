@@ -10,6 +10,8 @@ import SwiftUI
 
 struct NearbyView: View {
     
+    @Environment(\.scenePhase) var scenePhase
+    
     @EnvironmentObject var busStopList: BusStopList
     
     @State var isLocationManagerDelegateAssigned: Bool = false
@@ -106,6 +108,19 @@ struct NearbyView: View {
             .onChange(of: busStopList.busStops, perform: { _ in
                 updateLocation(usingOnlySignificantChanges: false)
             })
+            .onChange(of: scenePhase, perform: { newPhase in
+                switch newPhase {
+                    case .inactive:
+                        log("Scene became inactive from Nearby view.")
+                    case .active:
+                        log("Scene became active from Nearby view.")
+                        updateLocation(usingOnlySignificantChanges: false)
+                    case .background:
+                        log("Scene went into the background from Nearby view.")
+                    @unknown default:
+                        log("Scene change detected, but we don't know what the change was!")
+                }
+            })
             .navigationTitle("ViewTitle.Nearby")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .tabBar)
@@ -147,8 +162,10 @@ struct NearbyView: View {
     func updateLocation(usingOnlySignificantChanges: Bool = true) {
         if locationManager.authorizationStatus == .authorizedWhenInUse {
             if usingOnlySignificantChanges {
+                log("Start monitoring for significant location changes.")
                 locationManager.startMonitoringSignificantLocationChanges()
             } else {
+                log("Start updating location.")
                 locationManager.startUpdatingLocation()
             }
         }

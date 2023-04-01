@@ -125,6 +125,7 @@ struct FavoritesView: View {
                             Image(systemName: "pencil")
                                 .font(.body)
                         }
+                        .disabled(favorites.favoriteLocations.count == 0)
                     }
                 }
             }
