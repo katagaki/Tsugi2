@@ -16,7 +16,7 @@
 /* Navigation Item Titles */
 "ViewTitle.Nearby" = "近くのバス停";
 "ViewTitle.Favorites" = "追加した場所";
-"ViewTitle.Notifications" = "設定した通知";
+"ViewTitle.Notifications" = "予定していた通知";
 "ViewTitle.Directory" = "バス停を検索";
 "ViewTitle.MRTMap" = "MRT路線図";
 "ViewTitle.More" = "その他";
@@ -45,7 +45,7 @@
 
 /* Notifications View */
 "Notifications.ArrivalAlerts" = "到着通知";
-"Notifications.ArrivalAlerts.Hint" = "設定した到着通知はありません。\n到着通知を設定するには、バスの詳細ページを開き、乗る予定のバスの右にあるベルアイコンを選択してください。";
+"Notifications.ArrivalAlerts.Hint" = "予定していた到着通知はありません。\n到着通知を設定するには、バスの詳細ページを開き、乗る予定のバスの右にあるベルアイコンを選択してください。";
 
 /* Directory View */
 "Directory.UsefulResources" = "便利な情報";
