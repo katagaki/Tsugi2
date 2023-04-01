@@ -47,18 +47,18 @@ struct MoreView: View {
                         .foregroundColor(.primary)
                         .textCase(nil)
                 }
-                Section {
-                    NavigationLink {
-                        MoreNotificationsView()
-                    } label: {
-                        HStack(alignment: .center, spacing: 16.0) {
-                            Image("ListIcon.Notifications")
-                            Text("More.Notifications")
-                                .font(.body)
-                        }
-                    }
-                    .disabled(true) // TODO: To implement
-                }
+                // TODO: Include some notification sounds, settings, etc
+//                Section {
+//                    NavigationLink {
+//                        MoreNotificationsView()
+//                    } label: {
+//                        HStack(alignment: .center, spacing: 16.0) {
+//                            Image("ListIcon.Notifications")
+//                            Text("More.Notifications")
+//                                .font(.body)
+//                        }
+//                    }
+//                }
                 Section {
                     HStack(alignment: .center, spacing: 16.0) {
                         Image("ListIcon.GitHub")
@@ -75,16 +75,16 @@ struct MoreView: View {
                     .onTapGesture {
                         UIApplication.shared.open(URL(string: "https://github.com/katagaki/Tsugi2")!)
                     }
-                    NavigationLink {
-                        MoreDonateView()
-                    } label: {
-                        HStack(alignment: .center, spacing: 16.0) {
-                            Image("ListIcon.Donate")
-                            Text("More.Support.Donate")
-                                .font(.body)
-                        }
-                    }
-                    .disabled(true) // TODO: To implement
+                    // TODO: Add donation options
+//                    NavigationLink {
+//                        MoreDonateView()
+//                    } label: {
+//                        HStack(alignment: .center, spacing: 16.0) {
+//                            Image("ListIcon.Donate")
+//                            Text("More.Support.Donate")
+//                                .font(.body)
+//                        }
+//                    }
                 } header: {
                     Text("More.Support")
                         .font(.body)

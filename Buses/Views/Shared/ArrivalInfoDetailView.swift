@@ -81,13 +81,13 @@ struct ArrivalInfoDetailView: View {
             }
             ToolbarItem(placement: .primaryAction) {
                 HStack(alignment: .center, spacing: 0.0) {
-                    Button {
-                        // TODO: Add to favorites
-                    } label: {
-                        Image(systemName: "rectangle.stack.badge.plus")
-                            .font(.body)
-                    }
-                    .disabled(true) // TODO: To implement
+                    // TODO: Implement support for locations with customizable sets of bus services
+//                    Button {
+//                        // TODO: Add to favorites
+//                    } label: {
+//                        Image(systemName: "rectangle.stack.badge.plus")
+//                            .font(.body)
+//                    }
                 }
             }
         }
