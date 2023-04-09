@@ -23,7 +23,6 @@ struct TsugiApp: App {
                     initializeDefaultConfiguration()
                     loadAPIKeys()
                     initializeProperTextFramework()
-                    shouldReloadBusStopList.state = true
                 }
                 .environmentObject(networkMonitor)
                 .environmentObject(busStopList)

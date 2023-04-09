@@ -63,12 +63,13 @@ struct MainTabView: View {
         .onAppear {
             if isInitialLoad {
                 defaultTab = defaults.integer(forKey: "StartupTab")
+                reloadBusStopList()
                 isInitialLoad = false
             }
         }
         .onChange(of: shouldReloadBusStopList.state, perform: { newValue in
             if newValue == true {
-                reloadBusStops()
+                reloadBusStopList(forceServer: true)
             }
         })
         .onChange(of: networkMonitor.isConnected) { isConnected in
@@ -76,7 +77,7 @@ struct MainTabView: View {
                 log("Network connection reappeared!")
                 isToastShowing = false
                 log("Retrying fetch of bus stop data.")
-                reloadBusStops()
+                reloadBusStopList()
             } else {
                 log("Network connection disappeared!")
                 Task {
@@ -107,34 +108,63 @@ struct MainTabView: View {
         }
     }
     
-    func reloadBusStops() {
+    func reloadBusStopList(forceServer: Bool = false) {
         Task {
-            let dateFormatter = DateFormatter()
-            let timeFormatter = DateFormatter()
             await showToast(message: localized("Directory.BusStopsLoading"), type: .Spinner, hideAutomatically: false)
-            do {
-                let busStopsFetched = try await fetchAllBusStops()
-                busStopList.busStops = busStopsFetched.sorted(by: { a, b in
-                    a.description?.lowercased() ?? "" < b.description?.lowercased() ?? ""
-                })
-                if defaults.bool(forKey: "UseProperText") {
-                    busStopList.busStops.forEach { busStop in
-                        busStop.description = properName(for: busStop.description ?? localized("Shared.BusStop.Description.None"))
-                        busStop.roadName = properName(for: busStop.roadName ?? localized("Shared.BusStop.Description.None"))
-                    }
-                }
-                dateFormatter.dateStyle = .medium
-                timeFormatter.timeStyle = .medium
-                updatedDate = dateFormatter.string(from: Date.now)
-                updatedTime = timeFormatter.string(from: Date.now)
-                shouldReloadBusStopList.state = false
-                log("Reloaded bus stop data.")
-                isToastShowing = false
-            } catch {
-                log("WARNING×WARNING×WARNING\nNetwork does not look like it's working, bus stop data may be incomplete!")
-                await showToast(message: localized("Shared.Error.InternetConnection"), type: .PersistentError, hideAutomatically: false)
+            if defaults.object(forKey: "StoredBusStopList") == nil || forceServer {
+                await reloadBusStopListFromServer()
+                log("Reloaded bus stop data from server.")
+            } else {
+                reloadBusStopListFromStoredMemory()
+                log("Reloaded bus stop data from memory.")
             }
+            shouldReloadBusStopList.state = false
+            isToastShowing = false
         }
+    }
+    
+    func reloadBusStopListFromServer() async {
+        do {
+            let busStopsFetched = try await fetchAllBusStops()
+            busStopList.busStops = busStopsFetched.sorted(by: { a, b in
+                a.description?.lowercased() ?? "" < b.description?.lowercased() ?? ""
+            })
+            if defaults.bool(forKey: "UseProperText") {
+                busStopList.busStops.forEach { busStop in
+                    busStop.description = properName(for: busStop.description ?? localized("Shared.BusStop.Description.None"))
+                    busStop.roadName = properName(for: busStop.roadName ?? localized("Shared.BusStop.Description.None"))
+                }
+            }
+            defaults.set(encode(busStopList), forKey: "StoredBusStopList")
+            defaults.set(Date.now, forKey: "StoredBusStopListUpdatedDate")
+            setLastUpdatedTimeForBusStopData()
+        } catch {
+            log("WARNING×WARNING×WARNING\nNetwork does not look like it's working, bus stop data may be incomplete!")
+            await showToast(message: localized("Shared.Error.InternetConnection"), type: .PersistentError, hideAutomatically: false)
+        }
+    }
+    
+    func reloadBusStopListFromStoredMemory() {
+        if let storedBusStopListJSON = defaults.string(forKey: "StoredBusStopList"),
+           let storedUpdatedDate = defaults.object(forKey: "StoredBusStopListUpdatedDate") as? Date,
+           let storedBusStopList: BusStopList = decode(fromData: storedBusStopListJSON.data(using: .utf8) ?? Data()) {
+            log("Fetched bus stop data from memory with \(busStopList.busStops.count) bus stop(s).")
+            busStopList.metadata = storedBusStopList.metadata
+            busStopList.busStops = storedBusStopList.busStops
+            setLastUpdatedTimeForBusStopData(storedUpdatedDate)
+            return
+        }
+        log("Could not decode stored data successfully, re-fetching bus stop data from server...", level: .error)
+        reloadBusStopListFromStoredMemory()
+    }
+    
+    func setLastUpdatedTimeForBusStopData(_ date: Date = Date.now) {
+        let dateFormatter = DateFormatter()
+        let timeFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        timeFormatter.timeStyle = .medium
+        updatedDate = dateFormatter.string(from: date)
+        updatedTime = timeFormatter.string(from: date)
     }
     
 }

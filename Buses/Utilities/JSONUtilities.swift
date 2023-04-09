@@ -7,6 +7,17 @@
 
 import Foundation
 
+func encode<T: Encodable>(_ object: T) -> String? {
+    do {
+        let jsonData = try JSONEncoder().encode(object)
+        let jsonString = String(data: jsonData, encoding: .utf8)!
+        return jsonString
+    } catch {
+        log("Error while encoding an object: \(error.localizedDescription)")
+    }
+    return nil
+}
+
 func decode<T: Decodable>(from path: String) -> T? {
     do {
         let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)

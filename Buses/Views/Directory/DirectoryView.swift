@@ -11,6 +11,7 @@ import SwiftUI
 struct DirectoryView: View {
     
     @EnvironmentObject var busStopList: BusStopList
+    @EnvironmentObject var shouldReloadBusStopList: BoolState
     
     @State var previousSearchTerm: String = ""
     @State var searchTerm: String = ""
@@ -84,6 +85,9 @@ struct DirectoryView: View {
                 }
             }
             .listStyle(.insetGrouped)
+            .refreshable {
+                shouldReloadBusStopList.state = true
+            }
             .searchable(text: $searchTerm, placement: .navigationBarDrawer(displayMode: .always))
             .onChange(of: searchTerm) { _ in
                 let searchTermTrimmed = searchTerm.trimmingCharacters(in: .whitespaces)
