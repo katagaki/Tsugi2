@@ -37,6 +37,7 @@ struct WebView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: WKWebView, context: Context) {
+        // Blank function to conform to protocol
     }
 }
 

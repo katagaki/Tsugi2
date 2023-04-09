@@ -288,6 +288,7 @@
 		E41C1B9628570692003F1BFB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E4BCFDC529E2FC2100E4D2AD /* BoolState.swift */,
 				E4FFCAC42801627700DCA0EC /* BusStop.swift */,
 				E4319EBB280437BA00D21531 /* BusStopList.swift */,
 				E41C1B99285706BE003F1BFB /* Coordinate.swift */,
@@ -296,7 +297,6 @@
 				D0011E20285D770000742687 /* FavoritesManager.swift */,
 				E42A04BB29D87FB800B76ED6 /* NetworkMonitor.swift */,
 				E4225ABB29B0529600F1CF82 /* RegionManager.swift */,
-				E4BCFDC529E2FC2100E4D2AD /* BoolState.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";

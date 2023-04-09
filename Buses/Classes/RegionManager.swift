@@ -15,13 +15,13 @@ class RegionManager: ObservableObject {
     
     @Published var updateViewFlag = false
     
-    var _region: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 1.284987, longitude: 103.851721),
+    var storedRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 1.284987, longitude: 103.851721),
                                                          span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10))
     
     var region: Binding<MKCoordinateRegion> {
         Binding(
-            get: { self._region },
-            set: { self._region = $0 }
+            get: { self.storedRegion },
+            set: { self.storedRegion = $0 }
         )
     }
     

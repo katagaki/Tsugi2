@@ -77,22 +77,16 @@ struct AssistantLiveActivity: Widget {
                 DynamicIslandExpandedRegion(.trailing) {
                     VStack(alignment: .trailing, spacing: 8.0) {
                         HStack(alignment: .center, spacing: 4.0) {
-                            switch context.state.busService.nextBus?.feature {
-                            case .WheelchairAccessible:
+                            if context.state.busService.nextBus?.feature == .WheelchairAccessible {
                                 Image(systemName: "figure.roll")
                                     .font(.body)
                                     .foregroundColor(.primary)
-                            default:
-                                Text("")
                             }
-                            switch context.state.busService.nextBus?.type {
-                            case .DoubleDeck:
+                            if context.state.busService.nextBus?.type == .DoubleDeck {
                                 Image(systemName: "bus.doubledecker")
                                     .font(.body)
                                     .foregroundColor(.primary)
-                            case .none:
-                                Text("")
-                            default:
+                            } else {
                                 Image(systemName: "bus")
                                     .font(.body)
                                     .foregroundColor(.primary)
@@ -124,15 +118,13 @@ struct AssistantLiveActivity: Widget {
             } compactTrailing: {
                 if let date = context.state.busService.nextBus?.estimatedArrivalTime() {
                     ProgressView(timerInterval: Date()...date, countsDown: true, label: {
+                        // No label implemented
                     }, currentValueLabel: {
-                        switch context.state.busService.nextBus?.type {
-                        case .DoubleDeck:
+                        if context.state.busService.nextBus?.type == .DoubleDeck {
                             Image(systemName: "bus.doubledecker")
                                 .font(.system(size: 10.0))
                                 .foregroundColor(Color("AccentColor"))
-                        case .none:
-                            Text("")
-                        default:
+                        } else {
                             Image(systemName: "bus")
                                 .font(.system(size: 10.0))
                                 .foregroundColor(Color("AccentColor"))
@@ -147,6 +139,7 @@ struct AssistantLiveActivity: Widget {
             } minimal: {
                 if let date = context.state.busService.nextBus?.estimatedArrivalTime() {
                     ProgressView(timerInterval: Date()...date, countsDown: true, label: {
+                        // No label implemented
                     }, currentValueLabel: {
                         Text(context.state.busService.serviceNo)
                             .foregroundColor(Color("AccentColor"))

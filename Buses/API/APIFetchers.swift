@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: BusStops API
+let apiEndpoint = "http://datamall2.mytransport.sg/ltaodataservice"
 
 func fetchAllBusStops() async throws -> [BusStop] {
     var allBusStops: [BusStop] = []
@@ -27,7 +27,7 @@ func fetchAllBusStops() async throws -> [BusStop] {
 
 func fetchBusStops(from firstIndex: Int = 0) async throws -> BusStopList {
     let busStopList: BusStopList = try await withCheckedThrowingContinuation({ continuation in
-        var request = URLRequest(url: URL(string: "http://datamall2.mytransport.sg/ltaodataservice/BusStops?$skip=\(firstIndex)")!)
+        var request = URLRequest(url: URL(string: "\(apiEndpoint)/BusStops?$skip=\(firstIndex)")!)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         if let apiKey = apiKeys["LTA"] {
@@ -59,11 +59,9 @@ func fetchBusStops(from firstIndex: Int = 0) async throws -> BusStopList {
     return busStopList
 }
 
-// MARK: BusArrivalv2 API
-
 func fetchBusArrivals(for stopCode: String) async throws -> BusStop {
     let busArrivals: BusStop = try await withCheckedThrowingContinuation({ continuation in
-        var request = URLRequest(url: URL(string: "http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode=\(stopCode)")!)
+        var request = URLRequest(url: URL(string: "\(apiEndpoint)/BusArrivalv2?BusStopCode=\(stopCode)")!)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         if let apiKey = apiKeys["LTA"] {
