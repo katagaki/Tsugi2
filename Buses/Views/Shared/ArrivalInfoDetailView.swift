@@ -136,6 +136,7 @@ struct ArrivalInfoDetailView: View {
                     content.title = localized("Notification.Arriving.Title").replacingOccurrences(of: "%1", with: busStop.description ?? localized("Shared.BusStop.Description.None"))
                     content.body = localized("Notification.Arriving.Description").replacingOccurrences(of: "%s1", with: busService.serviceNo).replacingOccurrences(of: "%s2", with: date.formatted(date: .omitted, time: .shortened))
                     content.userInfo = ["busService": busService.serviceNo, "stopCode": busStop.code, "stopDescription": busStop.description ?? localized("Shared.BusStop.Description.None")]
+                    content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "Ding.caf"))
                     content.interruptionLevel = .timeSensitive
                     center.add(UNNotificationRequest(identifier: "\(busStop.code).\(busService.serviceNo).\(date.formatted(date: .numeric, time: .shortened))",
                                                      content: content,

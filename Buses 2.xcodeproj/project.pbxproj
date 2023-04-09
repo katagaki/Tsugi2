@@ -94,6 +94,7 @@
 		E4BCFDC229E2EE5D00E4D2AD /* ListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BCFDC129E2EE5D00E4D2AD /* ListRow.swift */; };
 		E4BCFDC429E2F91400E4D2AD /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BCFDC329E2F91400E4D2AD /* Defaults.swift */; };
 		E4BCFDC629E2FC2100E4D2AD /* BoolState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BCFDC529E2FC2100E4D2AD /* BoolState.swift */; };
+		E4BCFDC829E300FF00E4D2AD /* Ding.caf in Resources */ = {isa = PBXBuildFile; fileRef = E4BCFDC729E2FFE100E4D2AD /* Ding.caf */; };
 		E4BD94A92859C3E900030C7C /* ArrivalInfoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BD94A82859C3E900030C7C /* ArrivalInfoDetailView.swift */; };
 		E4BD94AB2859C87300030C7C /* ArrivalInfoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BD94AA2859C87300030C7C /* ArrivalInfoCardView.swift */; };
 		E4D65F0B2865B97700FE78F4 /* Blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D65F072865B97700FE78F4 /* Blue@3x.png */; };
@@ -372,6 +373,7 @@
 				E4FFCAB727F94DE600DCA0EC /* Views */,
 				E4FFCAC32801626200DCA0EC /* Structs */,
 				E41C1B9628570692003F1BFB /* Classes */,
+				E476BF192808699300B8524B /* API */,
 				E4FFCAD92801B22700DCA0EC /* Utilities */,
 				D0011E1C285D75CB00742687 /* Data */,
 				E4FFCACC28018B1A00DCA0EC /* Sample Data */,
@@ -391,14 +393,14 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		E476BF1C28086A0F00B8524B /* Global Functions */ = {
+		E476BF1C28086A0F00B8524B /* Global */ = {
 			isa = PBXGroup;
 			children = (
 				E4BCFDC329E2F91400E4D2AD /* Defaults.swift */,
 				E476BF1F28086AE500B8524B /* Logging.swift */,
 				E482ACC229AC7CBC008DAD30 /* Notifications.swift */,
 			);
-			path = "Global Functions";
+			path = Global;
 			sourceTree = "<group>";
 		};
 		E476BF21280873C100B8524B /* Directory */ = {
@@ -534,8 +536,7 @@
 		E4FFCAD92801B22700DCA0EC /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				E476BF192808699300B8524B /* API */,
-				E476BF1C28086A0F00B8524B /* Global Functions */,
+				E476BF1C28086A0F00B8524B /* Global */,
 				E4BCFDAD29E2E3C500E4D2AD /* ProperText */,
 				E4BCFDB929E2E52800E4D2AD /* BundleUtilities.swift */,
 				E4FFCADA2801B23300DCA0EC /* DateUtilities.swift */,
@@ -652,6 +653,7 @@
 				E43C8CCA27F7F45D0073F510 /* OceanSansStd-Bold.otf in Resources */,
 				E42C82442856C8FE00D64DF9 /* Red@2x.png in Resources */,
 				E4319EB0280413BA00D21531 /* BusArrivalv2-2.json in Resources */,
+				E4BCFDC829E300FF00E4D2AD /* Ding.caf in Resources */,
 				E4D65F142865BACA00FE78F4 /* Laze@3x~ipad.png in Resources */,
 				E4D65F0B2865B97700FE78F4 /* Blue@3x.png in Resources */,
 				E4D65F152865BACA00FE78F4 /* Laze@2x~ipad.png in Resources */,
