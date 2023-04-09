@@ -20,7 +20,7 @@
 "ViewTitle.Directory" = "Search Bus Stops";
 "ViewTitle.MRTMap" = "MRT System Map";
 "ViewTitle.More" = "More";
-"ViewTitle.More.AppIcon" = "App Icon";
+"ViewTitle.More.General.AppIcon" = "App Icon";
 "ViewTitle.More.Notifications" = "Notifications";
 "ViewTitle.More.Donate" = "Donate";
 
@@ -57,13 +57,16 @@
 
 /* More View */
 "More.General" = "General";
-"More.StartupTab" = "Startup Tab";
-"More.AppIcon" = "App Icon";
-"More.AppIcon.Green" = "Green (Default)";
-"More.AppIcon.Red" = "Red";
-"More.AppIcon.Purple" = "Purple";
-"More.AppIcon.Blue" = "Blue";
-"More.AppIcon.Laze" = "Laze";
+"More.General.StartupTab" = "Startup Tab";
+"More.General.AppIcon" = "App Icon";
+"More.General.AppIcon.Green" = "Green (Default)";
+"More.General.AppIcon.Red" = "Red";
+"More.General.AppIcon.Purple" = "Purple";
+"More.General.AppIcon.Blue" = "Blue";
+"More.General.AppIcon.Laze" = "Laze";
+"More.Customization" = "Customization";
+"More.Customization.ProperText" = "Expand Bus Stop Names";
+"More.Customization.ProperText.Subtitle" = "Remove and expand abbreviations in bus stop names to make bus stops easier to find.";
 "More.Notifications" = "Notifications";
 "More.Support" = "Support";
 "More.Support.GitHub" = "Contribute with Code";

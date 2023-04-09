@@ -9,7 +9,11 @@ import SwiftUI
 
 struct MoreView: View {
     
+    @EnvironmentObject var busStopList: BusStopList
+    @EnvironmentObject var shouldReloadBusStopList: BoolState
+    
     @State var currentlySelectedStartupTab: Int = 0
+    @State var useProperText: Bool = true
     
     @State var showLogsView: Bool = false
     
@@ -27,110 +31,48 @@ struct MoreView: View {
                         Text("TabTitle.Directory")
                             .tag(3)
                     } label: {
-                        HStack(alignment: .center, spacing: 16.0) {
-                            Image("ListIcon.Startup")
-                            Text("More.StartupTab")
-                                .font(.body)
-                        }
+                        ListRow(image: "ListIcon.Startup", title: "More.General.StartupTab")
                     }
                     NavigationLink {
                         MoreAppIconView()
                     } label: {
-                        HStack(alignment: .center, spacing: 16.0) {
-                            Image("ListIcon.AppIcon")
-                            Text("More.AppIcon")
-                                .font(.body)
-                        }
+                        ListRow(image: "ListIcon.AppIcon", title: "More.General.AppIcon")
                     }
                 } header: {
-                    Text("More.General")
-                        .font(.body)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
-                        .textCase(nil)
+                    ListSectionHeader(text: "More.General")
+                }
+                Section {
+                    Toggle(isOn: $useProperText) {
+                        ListRow(image: "ListIcon.ProperText", title: "More.Customization.ProperText", subtitle: "More.Customization.ProperText.Subtitle")
+                    }
+                    .disabled(shouldReloadBusStopList.state)
+                } header: {
+                    ListSectionHeader(text: "More.Customization")
                 }
                 // TODO: Include some notification sounds, settings, etc
-//                Section {
-//                    NavigationLink {
-//                        MoreNotificationsView()
-//                    } label: {
-//                        HStack(alignment: .center, spacing: 16.0) {
-//                            Image("ListIcon.Notifications")
-//                            Text("More.Notifications")
-//                                .font(.body)
-//                        }
-//                    }
-//                }
                 Section {
-                    HStack(alignment: .center, spacing: 16.0) {
-                        Image("ListIcon.GitHub")
-                        VStack(alignment: .leading, spacing: 2.0) {
-                            Text("More.Support.GitHub")
-                                .font(.body)
-                            Text("More.Support.GitHub.Subtitle")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        }
-                        Spacer()
-                    }
+                    ListRow(image: "ListIcon.GitHub", title: "More.Support.GitHub", subtitle: "More.Support.GitHub.Subtitle", includeSpacer: true)
                     .contentShape(Rectangle())
                     .onTapGesture {
                         UIApplication.shared.open(URL(string: "https://github.com/katagaki/Tsugi2")!)
                     }
                     // TODO: Add donation options
-//                    NavigationLink {
-//                        MoreDonateView()
-//                    } label: {
-//                        HStack(alignment: .center, spacing: 16.0) {
-//                            Image("ListIcon.Donate")
-//                            Text("More.Support.Donate")
-//                                .font(.body)
-//                        }
-//                    }
                 } header: {
-                    Text("More.Support")
-                        .font(.body)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
-                        .textCase(nil)
+                    ListSectionHeader(text: "More.Support")
                 }
                 Section {
-                    HStack(alignment: .center, spacing: 16.0) {
-                        Image("ListIcon.Twitter")
-                        VStack(alignment: .leading, spacing: 2.0) {
-                            Text("More.Help.Twitter")
-                                .font(.body)
-                            Text("More.Help.Twitter.Subtitle")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        }
-                        Spacer()
-                    }
+                    ListRow(image: "ListIcon.Twitter", title: "More.Help.Twitter", subtitle: "More.Help.Twitter.Subtitle", includeSpacer: true)
                     .contentShape(Rectangle())
                     .onTapGesture {
                         UIApplication.shared.open(URL(string: "https://twitter.com/katagaki_")!)
                     }
-                    HStack(alignment: .center, spacing: 16.0) {
-                        Image("ListIcon.Email")
-                        VStack(alignment: .leading, spacing: 2.0) {
-                            Text("More.Help.Email")
-                                .font(.body)
-                            Text(verbatim: localized("More.Help.Email.Subtitle"))
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        }
-                        Spacer()
-                    }
+                    ListRow(image: "ListIcon.Email", title: "More.Help.Email", subtitle: "More.Help.Email.Subtitle", includeSpacer: true)
                     .contentShape(Rectangle())
                     .onTapGesture {
                         UIApplication.shared.open(URL(string: "mailto:ktgk.public@icloud.com")!)
                     }
                 } header: {
-                    Text("More.Help")
-                        .font(.body)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
-                        .textCase(nil)
+                    ListSectionHeader(text: "More.Help")
                 }
                 Section {
                 } header: {
@@ -146,8 +88,13 @@ struct MoreView: View {
             .onChange(of: currentlySelectedStartupTab, perform: { newValue in
                 defaults.set(newValue, forKey: "StartupTab")
             })
+            .onChange(of: useProperText, perform: { newValue in
+                defaults.set(newValue, forKey: "UseProperText")
+                shouldReloadBusStopList.state = true
+            })
             .onAppear {
                 currentlySelectedStartupTab = defaults.integer(forKey: "StartupTab")
+                useProperText = defaults.bool(forKey: "UseProperText")
             }
             .navigationTitle("ViewTitle.More")
             .navigationBarTitleDisplayMode(.inline)

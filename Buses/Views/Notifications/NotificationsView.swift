@@ -59,11 +59,7 @@ struct NotificationsView: View {
                         }
                     }
                 } header: {
-                    Text("Notifications.ArrivalAlerts")
-                        .font(.body)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
-                        .textCase(nil)
+                    ListSectionHeader(text: "Notifications.ArrivalAlerts")
                 }
             }
             .listStyle(.insetGrouped)

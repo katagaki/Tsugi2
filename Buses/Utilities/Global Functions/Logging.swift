@@ -11,7 +11,7 @@ import os
 let loggingQueue = DispatchQueue(label: "log", attributes: .concurrent)
 let versionNumber: String = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "Dev"
 let buildNumber: String = Bundle.main.infoDictionary!["CFBundleVersion"] as? String ?? "Dev"
-var appLogs: String = "Buses 2 (version \(versionNumber), build\(buildNumber))"
+var appLogs: String = "Buses 2 (version \(versionNumber), build \(buildNumber))"
 
 public func log(_ text: String, level: OSLogType = .info) {
     let dateString = String(Date().timeIntervalSince1970).components(separatedBy: ".")[0]

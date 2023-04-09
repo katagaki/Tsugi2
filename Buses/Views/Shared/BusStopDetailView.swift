@@ -116,11 +116,7 @@ struct BusStopDetailView: View {
                             }
                         }
                     } header: {
-                        Text("Shared.BusStop.BusServices")
-                            .font(.body)
-                            .fontWeight(.bold)
-                            .foregroundColor(.primary)
-                            .textCase(nil)
+                        ListSectionHeader(text: "Shared.BusStop.BusServices")
                     }
                 }
                 .frame(width: metrics.size.width, height: metrics.size.height * 0.6)

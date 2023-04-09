@@ -14,10 +14,10 @@ struct MainTabView: View {
     @EnvironmentObject var networkMonitor: NetworkMonitor
     @EnvironmentObject var busStopList: BusStopList
     @EnvironmentObject var favorites: FavoriteList
+    @EnvironmentObject var shouldReloadBusStopList: BoolState
     
     @State var defaultTab: Int = 0
     
-    @State var isBusStopListLoaded: Bool = true
     @State var isInitialLoad: Bool = true
     @State var updatedDate: String
     @State var updatedTime: String
@@ -63,17 +63,20 @@ struct MainTabView: View {
         .onAppear {
             if isInitialLoad {
                 defaultTab = defaults.integer(forKey: "StartupTab")
-                reloadBusStops(showsProgress: (true))
                 isInitialLoad = false
             }
         }
+        .onChange(of: shouldReloadBusStopList.state, perform: { newValue in
+            if newValue == true {
+                reloadBusStops()
+            }
+        })
         .onChange(of: networkMonitor.isConnected) { isConnected in
             if isConnected {
                 log("Network connection reappeared!")
                 isToastShowing = false
                 log("Retrying fetch of bus stop data.")
-                isBusStopListLoaded = false
-                reloadBusStops(showsProgress: (true))
+                reloadBusStops()
             } else {
                 log("Network connection disappeared!")
                 Task {
@@ -104,11 +107,8 @@ struct MainTabView: View {
         }
     }
     
-    func reloadBusStops(showsProgress: Bool = false) {
+    func reloadBusStops() {
         Task {
-            if showsProgress {
-                isBusStopListLoaded = false
-            }
             let dateFormatter = DateFormatter()
             let timeFormatter = DateFormatter()
             await showToast(message: localized("Directory.BusStopsLoading"), type: .Spinner, hideAutomatically: false)
@@ -117,16 +117,21 @@ struct MainTabView: View {
                 busStopList.busStops = busStopsFetched.sorted(by: { a, b in
                     a.description?.lowercased() ?? "" < b.description?.lowercased() ?? ""
                 })
+                if defaults.bool(forKey: "UseProperText") {
+                    busStopList.busStops.forEach { busStop in
+                        busStop.description = properName(for: busStop.description ?? localized("Shared.BusStop.Description.None"))
+                        busStop.roadName = properName(for: busStop.roadName ?? localized("Shared.BusStop.Description.None"))
+                    }
+                }
                 dateFormatter.dateStyle = .medium
                 timeFormatter.timeStyle = .medium
                 updatedDate = dateFormatter.string(from: Date.now)
                 updatedTime = timeFormatter.string(from: Date.now)
-                isBusStopListLoaded = true
+                shouldReloadBusStopList.state = false
                 log("Reloaded bus stop data.")
                 isToastShowing = false
             } catch {
-                log("WARNING×WARNING×WARNING")
-                log("Network does not look like it's loading, bus stop data may be incomplete!")
+                log("WARNING×WARNING×WARNING\nNetwork does not look like it's working, bus stop data may be incomplete!")
                 await showToast(message: localized("Shared.Error.InternetConnection"), type: .PersistentError, hideAutomatically: false)
             }
         }

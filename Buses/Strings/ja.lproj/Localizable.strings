@@ -20,7 +20,7 @@
 "ViewTitle.Directory" = "バス停を検索";
 "ViewTitle.MRTMap" = "MRT路線図";
 "ViewTitle.More" = "その他";
-"ViewTitle.More.AppIcon" = "アイコン";
+"ViewTitle.More.General.AppIcon" = "アイコン";
 "ViewTitle.More.Notifications" = "通知";
 "ViewTitle.More.Donate" = "寄付";
 
@@ -57,13 +57,16 @@
 
 /* More View */
 "More.General" = "一般";
-"More.StartupTab" = "デフォルトタブ";
-"More.AppIcon" = "アイコン";
-"More.AppIcon.Green" = "グリーン（デフォルト）";
-"More.AppIcon.Red" = "レッド";
-"More.AppIcon.Purple" = "パープル";
-"More.AppIcon.Blue" = "ブルー";
-"More.AppIcon.Laze" = "ナマケモノ";
+"More.General.StartupTab" = "デフォルトタブ";
+"More.General.AppIcon" = "アイコン";
+"More.General.AppIcon.Green" = "グリーン（デフォルト）";
+"More.General.AppIcon.Red" = "レッド";
+"More.General.AppIcon.Purple" = "パープル";
+"More.General.AppIcon.Blue" = "ブルー";
+"More.General.AppIcon.Laze" = "ナマケモノ";
+"More.Customization" = "カスタマイズ";
+"More.Customization.ProperText" = "バス停名の略語を復元";
+"More.Customization.ProperText.Subtitle" = "バス停名にある略語を元の言葉にし、分かりやすくします。";
 "More.Notifications" = "通知";
 "More.Support" = "支援";
 "More.Support.GitHub" = "開発を手伝う";

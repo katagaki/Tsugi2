@@ -44,11 +44,7 @@ struct DirectoryView: View {
                             }
                         }
                     } header: {
-                        Text("Directory.SearchResults")
-                            .font(.body)
-                            .fontWeight(.bold)
-                            .foregroundColor(.primary)
-                            .textCase(nil)
+                        ListSectionHeader(text: "Directory.SearchResults")
                     }
                 } else {
                     Section {
@@ -62,11 +58,7 @@ struct DirectoryView: View {
                             }
                         }
                     } header: {
-                        Text("Directory.UsefulResources")
-                            .font(.body)
-                            .fontWeight(.bold)
-                            .foregroundColor(.primary)
-                            .textCase(nil)
+                        ListSectionHeader(text: "Directory.UsefulResources")
                     }
                     Section {
                         ForEach(busStopList.busStops, id: \.code) { stop in
@@ -87,11 +79,7 @@ struct DirectoryView: View {
                             }
                         }
                     } header: {
-                        Text("Directory.BusStops")
-                            .font(.body)
-                            .fontWeight(.bold)
-                            .foregroundColor(.primary)
-                            .textCase(nil)
+                        ListSectionHeader(text: "Directory.BusStops")
                     }
                 }
             }

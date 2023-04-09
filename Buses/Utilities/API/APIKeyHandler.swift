@@ -10,10 +10,8 @@ import Foundation
 var apiKeys:[String:String] = [:]
 
 func loadAPIKeys() {
-    if let path = Bundle.main.path(forResource: "APIKeys", ofType: "plist") {
-        for (key, value) in NSDictionary(contentsOfFile: path)! {
-            apiKeys[key as! String] = (value as! String)
-        }
+    if let storedAPIKeys = plist(named: "APIKeys") {
+        apiKeys = storedAPIKeys
         log("Loaded \(apiKeys.count) API key(s).")
     } else {
         log("Could not load API keys.", level: .error)

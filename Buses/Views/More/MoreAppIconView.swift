@@ -22,7 +22,7 @@ struct MoreAppIconView: View {
                         RoundedRectangle(cornerRadius: 14.0)
                             .stroke(.thickMaterial, lineWidth: 1.0)
                     }
-                Text("More.AppIcon.Green")
+                Text("More.General.AppIcon.Green")
                 Spacer()
             }
             .contentShape(Rectangle())
@@ -41,7 +41,7 @@ struct MoreAppIconView: View {
                         RoundedRectangle(cornerRadius: 14.0)
                             .stroke(.thickMaterial, lineWidth: 1.0)
                     }
-                Text("More.AppIcon.Red")
+                Text("More.General.AppIcon.Red")
                 Spacer()
             }
             .contentShape(Rectangle())
@@ -60,7 +60,7 @@ struct MoreAppIconView: View {
                         RoundedRectangle(cornerRadius: 14.0)
                             .stroke(.thickMaterial, lineWidth: 1.0)
                     }
-                Text("More.AppIcon.Purple")
+                Text("More.General.AppIcon.Purple")
                 Spacer()
             }
             .contentShape(Rectangle())
@@ -79,7 +79,7 @@ struct MoreAppIconView: View {
                         RoundedRectangle(cornerRadius: 14.0)
                             .stroke(.thickMaterial, lineWidth: 1.0)
                     }
-                Text("More.AppIcon.Blue")
+                Text("More.General.AppIcon.Blue")
                 Spacer()
             }
             .contentShape(Rectangle())
@@ -98,7 +98,7 @@ struct MoreAppIconView: View {
                         RoundedRectangle(cornerRadius: 14.0)
                             .stroke(.thickMaterial, lineWidth: 1.0)
                     }
-                Text("More.AppIcon.Laze")
+                Text("More.General.AppIcon.Laze")
                 Spacer()
             }
             .contentShape(Rectangle())
@@ -108,7 +108,7 @@ struct MoreAppIconView: View {
         }
         .font(.body)
         .listStyle(.insetGrouped)
-        .navigationTitle("ViewTitle.More.AppIcon")
+        .navigationTitle("ViewTitle.More.General.AppIcon")
     }
 }
 

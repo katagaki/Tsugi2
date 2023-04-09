@@ -57,11 +57,7 @@ struct NearbyView: View {
                                                     showToast: self.showToast)
                                 .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
                             } header: {
-                                Text((stop.description ?? "Shared.BusStop.Description.None")) // TODO: Get bus stop name using API
-                                    .font(.body)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.primary)
-                                    .textCase(nil)
+                                ListSectionHeader(text: (stop.description ?? "Shared.BusStop.Description.None"))
                             }
                         }
                     }
