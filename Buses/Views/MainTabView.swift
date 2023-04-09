@@ -148,10 +148,10 @@ struct MainTabView: View {
         if let storedBusStopListJSON = defaults.string(forKey: "StoredBusStopList"),
            let storedUpdatedDate = defaults.object(forKey: "StoredBusStopListUpdatedDate") as? Date,
            let storedBusStopList: BusStopList = decode(fromData: storedBusStopListJSON.data(using: .utf8) ?? Data()) {
-            log("Fetched bus stop data from memory with \(busStopList.busStops.count) bus stop(s).")
             busStopList.metadata = storedBusStopList.metadata
             busStopList.busStops = storedBusStopList.busStops
             setLastUpdatedTimeForBusStopData(storedUpdatedDate)
+            log("Fetched bus stop data from memory with \(busStopList.busStops.count) bus stop(s).")
             return
         }
         log("Could not decode stored data successfully, re-fetching bus stop data from server...", level: .error)
