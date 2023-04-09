@@ -8,102 +8,17 @@
 import SwiftUI
 
 struct MoreAppIconView: View {
+    
+    var icons: [AppIcon] = [AppIcon(previewImageName: "AppIcon.Green", name: "More.General.AppIcon.Green"),
+                            AppIcon(previewImageName: "AppIcon.Red", name: "More.General.AppIcon.Red", iconName: "Red"),
+                            AppIcon(previewImageName: "AppIcon.Purple", name: "More.General.AppIcon.Purple", iconName: "Purple"),
+                            AppIcon(previewImageName: "AppIcon.Blue", name: "More.General.AppIcon.Blue", iconName: "Blue"),
+                            AppIcon(previewImageName: "AppIcon.Laze", name: "More.General.AppIcon.Laze", iconName: "Laze")]
+    
     var body: some View {
         List {
-            HStack(alignment: .center, spacing: 16.0) {
-                Image("AppIcon.Green")
-                    .resizable()
-                    .frame(width: 60.0, height: 60.0)
-                    .clipped(antialiased: true)
-                    .mask {
-                        RoundedRectangle(cornerRadius: 14.0)
-                    }
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 14.0)
-                            .stroke(.thickMaterial, lineWidth: 1.0)
-                    }
-                Text("More.General.AppIcon.Green")
-                Spacer()
-            }
-            .contentShape(Rectangle())
-            .onTapGesture {
-                UIApplication.shared.setAlternateIconName(nil)
-            }
-            HStack(alignment: .center, spacing: 16.0) {
-                Image("AppIcon.Red")
-                    .resizable()
-                    .frame(width: 60.0, height: 60.0)
-                    .clipped(antialiased: true)
-                    .mask {
-                        RoundedRectangle(cornerRadius: 14.0)
-                    }
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 14.0)
-                            .stroke(.thickMaterial, lineWidth: 1.0)
-                    }
-                Text("More.General.AppIcon.Red")
-                Spacer()
-            }
-            .contentShape(Rectangle())
-            .onTapGesture {
-                UIApplication.shared.setAlternateIconName("Red")
-            }
-            HStack(alignment: .center, spacing: 16.0) {
-                Image("AppIcon.Purple")
-                    .resizable()
-                    .frame(width: 60.0, height: 60.0)
-                    .clipped(antialiased: true)
-                    .mask {
-                        RoundedRectangle(cornerRadius: 14.0)
-                    }
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 14.0)
-                            .stroke(.thickMaterial, lineWidth: 1.0)
-                    }
-                Text("More.General.AppIcon.Purple")
-                Spacer()
-            }
-            .contentShape(Rectangle())
-            .onTapGesture {
-                UIApplication.shared.setAlternateIconName("Purple")
-            }
-            HStack(alignment: .center, spacing: 16.0) {
-                Image("AppIcon.Blue")
-                    .resizable()
-                    .frame(width: 60.0, height: 60.0)
-                    .clipped(antialiased: true)
-                    .mask {
-                        RoundedRectangle(cornerRadius: 14.0)
-                    }
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 14.0)
-                            .stroke(.thickMaterial, lineWidth: 1.0)
-                    }
-                Text("More.General.AppIcon.Blue")
-                Spacer()
-            }
-            .contentShape(Rectangle())
-            .onTapGesture {
-                UIApplication.shared.setAlternateIconName("Blue")
-            }
-            HStack(alignment: .center, spacing: 16.0) {
-                Image("AppIcon.Laze")
-                    .resizable()
-                    .frame(width: 60.0, height: 60.0)
-                    .clipped(antialiased: true)
-                    .mask {
-                        RoundedRectangle(cornerRadius: 14.0)
-                    }
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 14.0)
-                            .stroke(.thickMaterial, lineWidth: 1.0)
-                    }
-                Text("More.General.AppIcon.Laze")
-                Spacer()
-            }
-            .contentShape(Rectangle())
-            .onTapGesture {
-                UIApplication.shared.setAlternateIconName("Laze")
+            ForEach(icons, id: \.name) { icon in
+                ListAppIconRow(image: icon.previewImageName, text: localized(icon.name), iconToSet: icon.iconName)
             }
         }
         .font(.body)

@@ -32,6 +32,8 @@
 		E4319EB4280413FA00D21531 /* JSONUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4319EB3280413FA00D21531 /* JSONUtilities.swift */; };
 		E4319EB6280432C300D21531 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4319EB5280432C300D21531 /* APIKeys.plist */; };
 		E4319EBC280437BA00D21531 /* BusStopList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4319EBB280437BA00D21531 /* BusStopList.swift */; };
+		E4377ACC29E3254F0036003E /* ListAppIconRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4377ACB29E3254F0036003E /* ListAppIconRow.swift */; };
+		E4377ACE29E325C90036003E /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4377ACD29E325C90036003E /* AppIcon.swift */; };
 		E43C8CCA27F7F45D0073F510 /* OceanSansStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E43C8CC827F7F45D0073F510 /* OceanSansStd-Bold.otf */; };
 		E43C8CCB27F7F45D0073F510 /* OceanSansStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = E43C8CC927F7F45D0073F510 /* OceanSansStd-Book.otf */; };
 		E4406AB727EF182500819CDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4406AB627EF182500819CDC /* Assets.xcassets */; };
@@ -178,6 +180,8 @@
 		E4319EB5280432C300D21531 /* APIKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
 		E4319EB7280433B000D21531 /* APIKeys-Sample.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "APIKeys-Sample.plist"; sourceTree = "<group>"; };
 		E4319EBB280437BA00D21531 /* BusStopList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopList.swift; sourceTree = "<group>"; };
+		E4377ACB29E3254F0036003E /* ListAppIconRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAppIconRow.swift; sourceTree = "<group>"; };
+		E4377ACD29E325C90036003E /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
 		E43C8CC827F7F45D0073F510 /* OceanSansStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OceanSansStd-Bold.otf"; sourceTree = "<group>"; };
 		E43C8CC927F7F45D0073F510 /* OceanSansStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OceanSansStd-Book.otf"; sourceTree = "<group>"; };
 		E4406AA827EF182300819CDC /* Buses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buses.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -455,6 +459,7 @@
 				E41C1B9D285806A4003F1BFB /* BusNumberPlateView.swift */,
 				E482AC8729A90CAB008DAD30 /* BusStopCarouselView.swift */,
 				E4B7FFF928561DBF0019F71A /* BusStopDetailView.swift */,
+				E4377ACB29E3254F0036003E /* ListAppIconRow.swift */,
 				E4BCFDC929E302B700E4D2AD /* ListHintOverlay.swift */,
 				E4BCFDC129E2EE5D00E4D2AD /* ListRow.swift */,
 				E4BCFDBF29E2EC6E00E4D2AD /* ListSectionHeader.swift */,
@@ -519,8 +524,9 @@
 		E4FFCAC32801626200DCA0EC /* Structs */ = {
 			isa = PBXGroup;
 			children = (
-				E4FFCAC62801627D00DCA0EC /* BusService.swift */,
+				E4377ACD29E325C90036003E /* AppIcon.swift */,
 				E4FFCAC82801631800DCA0EC /* BusArrivalInfo.swift */,
+				E4FFCAC62801627D00DCA0EC /* BusService.swift */,
 				E41C1B97285706AB003F1BFB /* RoundedCornersShape.swift */,
 			);
 			path = Structs;
@@ -709,6 +715,7 @@
 				E4319EB4280413FA00D21531 /* JSONUtilities.swift in Sources */,
 				E476BF2028086AE500B8524B /* Logging.swift in Sources */,
 				E4B7FFF32854693B0019F71A /* FavoritesView.swift in Sources */,
+				E4377ACE29E325C90036003E /* AppIcon.swift in Sources */,
 				E4B700072856406D0019F71A /* MoreNotificationsView.swift in Sources */,
 				E4BCFDC629E2FC2100E4D2AD /* BoolState.swift in Sources */,
 				E482AC8829A90CAB008DAD30 /* BusStopCarouselView.swift in Sources */,
@@ -717,6 +724,7 @@
 				E41C1B9A285706BE003F1BFB /* Coordinate.swift in Sources */,
 				E4B7FFFF285635470019F71A /* NearbyView.swift in Sources */,
 				E4BD94A92859C3E900030C7C /* ArrivalInfoDetailView.swift in Sources */,
+				E4377ACC29E3254F0036003E /* ListAppIconRow.swift in Sources */,
 				E476BF1B280869A500B8524B /* APIFetchers.swift in Sources */,
 				E4FFCAC92801631800DCA0EC /* BusArrivalInfo.swift in Sources */,
 				E482ACC329AC7CBC008DAD30 /* Notifications.swift in Sources */,
