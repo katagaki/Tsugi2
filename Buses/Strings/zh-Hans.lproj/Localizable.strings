@@ -50,6 +50,9 @@
 /* Directory View */
 "Directory.UsefulResources" = "有用信息";
 "Directory.BusStops" = "巴士站";
+"Directory.BusStops.Sort.AlphabeticalAscending" = "按字母顺序（升序）";
+"Directory.BusStops.Sort.AlphabeticalDescending" = "按字母顺序（降序）";
+"Directory.BusStops.Sort.DistanceClosest" = "距离（最近的优先）";
 "Directory.BusStopsLoading" = "正在获取巴士站的信息…";
 "Directory.MRTMap" = "MRT路线图";
 "Directory.SearchResults" = "搜索结果";

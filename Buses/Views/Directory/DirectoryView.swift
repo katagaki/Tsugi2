@@ -11,6 +11,7 @@ import SwiftUI
 struct DirectoryView: View {
     
     @EnvironmentObject var busStopList: BusStopList
+    @EnvironmentObject var regionManager: RegionManager
     @EnvironmentObject var shouldReloadBusStopList: BoolState
     
     @State var previousSearchTerm: String = ""
@@ -19,6 +20,10 @@ struct DirectoryView: View {
     @State var isSearching: Bool = false
     @Binding var updatedDate: String
     @Binding var updatedTime: String
+    
+    @State var shouldSortAlphabeticalAscending: Bool = true
+    @State var shouldSortAlphabeticalDescending: Bool = false
+    @State var shouldSortDistanceClosest: Bool = false
     
     var showToast: (String, ToastType, Bool) async -> Void
     
@@ -80,7 +85,25 @@ struct DirectoryView: View {
                             }
                         }
                     } header: {
-                        ListSectionHeader(text: "Directory.BusStops")
+                        HStack {
+                            ListSectionHeader(text: "Directory.BusStops")
+                            Spacer()
+                            Menu {
+                                Toggle(isOn: $shouldSortAlphabeticalAscending) {
+                                    Text("Directory.BusStops.Sort.AlphabeticalAscending")
+                                }
+                                Toggle(isOn: $shouldSortAlphabeticalDescending) {
+                                    Text("Directory.BusStops.Sort.AlphabeticalDescending")
+                                }
+                                Toggle(isOn: $shouldSortDistanceClosest) {
+                                    Text("Directory.BusStops.Sort.DistanceClosest")
+                                }
+                            } label: {
+                                Image(systemName: "arrow.up.arrow.down")
+                            }
+                            .labelsHidden()
+                            .textCase(nil)
+                        }
                     }
                 }
             }
@@ -105,6 +128,53 @@ struct DirectoryView: View {
                     previousSearchTerm = searchTermTrimmed
                 }
             }
+            .onChange(of: shouldSortAlphabeticalAscending, perform: { newValue in
+                if newValue {
+                    shouldSortAlphabeticalDescending = false
+                    shouldSortDistanceClosest = false
+                    busStopList.busStops.sort { a, b in
+                        a.description ?? "" < b.description ?? ""
+                    }
+                } else {
+                    if !shouldSortAlphabeticalAscending &&
+                        !shouldSortAlphabeticalDescending &&
+                        !shouldSortDistanceClosest {
+                        shouldSortAlphabeticalAscending = true
+                    }
+                }
+            })
+            .onChange(of: shouldSortAlphabeticalDescending, perform: { newValue in
+                if newValue {
+                    shouldSortAlphabeticalAscending = false
+                    shouldSortDistanceClosest = false
+                    busStopList.busStops.sort { a, b in
+                        a.description ?? "" > b.description ?? ""
+                    }
+                } else {
+                    if !shouldSortAlphabeticalAscending &&
+                        !shouldSortAlphabeticalDescending &&
+                        !shouldSortDistanceClosest {
+                        shouldSortAlphabeticalDescending = true
+                    }
+                }
+            })
+            .onChange(of: shouldSortDistanceClosest, perform: { newValue in
+                if newValue {
+                    shouldSortAlphabeticalAscending = false
+                    shouldSortAlphabeticalDescending = false
+                    let currentCoordinate = CLLocation(latitude: regionManager.region.wrappedValue.center.latitude,
+                                                       longitude: regionManager.region.wrappedValue.center.longitude)
+                    busStopList.busStops.sort { a, b in
+                        return distanceBetween(location: currentCoordinate, busStop: a) < distanceBetween(location: currentCoordinate, busStop: b)
+                    }
+                } else {
+                    if !shouldSortAlphabeticalAscending &&
+                        !shouldSortAlphabeticalDescending &&
+                        !shouldSortDistanceClosest {
+                        shouldSortDistanceClosest = true
+                    }
+                }
+            })
             .navigationTitle("ViewTitle.Directory")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

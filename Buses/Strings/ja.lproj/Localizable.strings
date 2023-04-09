@@ -50,6 +50,9 @@
 /* Directory View */
 "Directory.UsefulResources" = "便利な情報";
 "Directory.BusStops" = "バス停";
+"Directory.BusStops.Sort.AlphabeticalAscending" = "アルファベット順（昇順）";
+"Directory.BusStops.Sort.AlphabeticalDescending" = "アルファベット順（降順）";
+"Directory.BusStops.Sort.DistanceClosest" = "距離（近い順）";
 "Directory.BusStopsLoading" = "バス停のデータを読み込み中…";
 "Directory.MRTMap" = "MRT路線図";
 "Directory.SearchResults" = "検索結果";
@@ -99,7 +102,7 @@
 "Shared.BusStop.Code.Copy" = "バス停コードをコピー";
 "Shared.BusStop.Road.None" = "なし";
 "Shared.BusStop.BusServices" = "バス";
-"Shared.BusStop.BusServices.None" = "このバス停では、現在すべてのバスがサービス時間外です。";
+"Shared.BusStop.BusServices.None" = "このバス停に止まるバスはすべてサービス時間外です。";
 "Shared.BusStop.Toast.Favorited" = "%sは、場所として保存されました。";
 "Shared.BusArrival.Arriving" = "まもなく到着";
 "Shared.BusArrival.JustLeft" = "発車済み";

@@ -16,5 +16,8 @@ struct ListSectionHeader: View {
             .fontWeight(.bold)
             .foregroundColor(.primary)
             .textCase(nil)
+            .lineLimit(1)
+            .truncationMode(.middle)
+            .allowsTightening(true)
     }
 }

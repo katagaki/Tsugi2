@@ -50,6 +50,9 @@
 /* Directory View */
 "Directory.UsefulResources" = "Useful Resources";
 "Directory.BusStops" = "Bus Stops";
+"Directory.BusStops.Sort.AlphabeticalAscending" = "Alphabetical (Ascending)";
+"Directory.BusStops.Sort.AlphabeticalDescending" = "Alphabetical (Descending)";
+"Directory.BusStops.Sort.DistanceClosest" = "Distance (Closest First)";
 "Directory.BusStopsLoading" = "Getting bus stop information...";
 "Directory.MRTMap" = "MRT System Map";
 "Directory.SearchResults" = "Search Results";

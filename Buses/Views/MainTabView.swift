@@ -68,7 +68,7 @@ struct MainTabView: View {
             }
         }
         .onChange(of: shouldReloadBusStopList.state, perform: { newValue in
-            if newValue == true {
+            if newValue {
                 reloadBusStopList(forceServer: true)
             }
         })

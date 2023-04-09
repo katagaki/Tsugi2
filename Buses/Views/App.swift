@@ -14,6 +14,7 @@ struct TsugiApp: App {
     @StateObject var networkMonitor = NetworkMonitor()
     @StateObject var busStopList = BusStopList()
     @StateObject var favorites = FavoriteList()
+    @StateObject var regionManager = RegionManager()
     @StateObject var shouldReloadBusStopList = BoolState()
     
     var body: some Scene {
@@ -27,6 +28,7 @@ struct TsugiApp: App {
                 .environmentObject(networkMonitor)
                 .environmentObject(busStopList)
                 .environmentObject(favorites)
+                .environmentObject(regionManager)
                 .environmentObject(shouldReloadBusStopList)
         }
     }

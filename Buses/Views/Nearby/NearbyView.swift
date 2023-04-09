@@ -13,11 +13,11 @@ struct NearbyView: View {
     @Environment(\.scenePhase) var scenePhase
     
     @EnvironmentObject var busStopList: BusStopList
+    @EnvironmentObject var regionManager: RegionManager
     
     @State var isLocationManagerDelegateAssigned: Bool = false
     @State private var locationManager: CLLocationManager = CLLocationManager()
     @StateObject private var locationManagerDelegate: LocationDelegate = LocationDelegate()
-    @StateObject var regionManager: RegionManager = RegionManager()
     @State var displayedCoordinates: CoordinateList = CoordinateList()
     @State var userTrackingMode: MapUserTrackingMode = .follow
     
@@ -123,25 +123,29 @@ struct NearbyView: View {
     }
     
     func reloadNearbyBusStops() {
-        Task {
-            let currentCoordinate = CLLocation(latitude: locationManagerDelegate.region.center.latitude, longitude: locationManagerDelegate.region.center.longitude)
-            var busStopListSortedByDistance: [BusStop] = busStopList.busStops
-            busStopListSortedByDistance = busStopListSortedByDistance.filter { busStop in
-                distanceBetween(location: currentCoordinate, busStop: busStop) < 250.0
+        if locationManager.authorizationStatus == .authorizedWhenInUse {
+            Task {
+                let currentCoordinate = CLLocation(latitude: locationManagerDelegate.region.center.latitude, longitude: locationManagerDelegate.region.center.longitude)
+                var busStopListSortedByDistance: [BusStop] = busStopList.busStops
+                busStopListSortedByDistance = busStopListSortedByDistance.filter { busStop in
+                    distanceBetween(location: currentCoordinate, busStop: busStop) < 250.0
+                }
+                busStopListSortedByDistance.sort { a, b in
+                    return distanceBetween(location: currentCoordinate, busStop: a) < distanceBetween(location: currentCoordinate, busStop: b)
+                }
+                nearbyBusStops.removeAll()
+                nearbyBusStops.append(contentsOf: busStopListSortedByDistance[0..<(busStopListSortedByDistance.count >= 10 ? 10 : busStopListSortedByDistance.count)])
+                log("Reloaded nearby bus stop data.")
+                updateRegion(newRegion: locationManagerDelegate.region)
+                log("Updated Map region.")
+                displayedCoordinates.removeAll()
+                for busStop in nearbyBusStops {
+                    displayedCoordinates.addCoordinate(from: busStop)
+                }
+                log("Updated displayed coordinates to nearby bus stops.")
             }
-            busStopListSortedByDistance.sort { a, b in
-                return distanceBetween(location: currentCoordinate, busStop: a) < distanceBetween(location: currentCoordinate, busStop: b)
-            }
-            nearbyBusStops.removeAll()
-            nearbyBusStops.append(contentsOf: busStopListSortedByDistance[0..<(busStopListSortedByDistance.count >= 10 ? 10 : busStopListSortedByDistance.count)])
-            log("Reloaded nearby bus stop data.")
-            updateRegion(newRegion: locationManagerDelegate.region)
-            log("Updated Map region.")
-            displayedCoordinates.removeAll()
-            for busStop in nearbyBusStops {
-                displayedCoordinates.addCoordinate(from: busStop)
-            }
-            log("Updated displayed coordinates to nearby bus stops.")
+        } else {
+            log("Location Services permission not given!")
         }
     }
     
