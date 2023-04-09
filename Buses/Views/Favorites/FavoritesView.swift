@@ -86,17 +86,7 @@ struct FavoritesView: View {
             }
             .overlay {
                 if favorites.favoriteLocations.count == 0 {
-                    VStack(alignment: .center, spacing: 4.0) {
-                        Image(systemName: "questionmark.circle.fill")
-                            .symbolRenderingMode(.multicolor)
-                            .font(.system(size: 32.0, weight: .regular))
-                            .foregroundColor(.secondary)
-                        Text("Favorites.Hint")
-                            .font(.body)
-                            .foregroundColor(.secondary)
-                            .multilineTextAlignment(.center)
-                    }
-                    .padding(16.0)
+                    ListHintOverlay(image: "info.circle.fill", text: "Favorites.Hint")
                 }
             }
             .navigationTitle("ViewTitle.Favorites")

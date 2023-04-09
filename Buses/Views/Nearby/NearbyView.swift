@@ -75,17 +75,7 @@ struct NearbyView: View {
                                 .progressViewStyle(.circular)
                         } else {
                             if nearbyBusStops.count == 0 {
-                                VStack(alignment: .center, spacing: 4.0) {
-                                    Image(systemName: "exclamationmark.triangle.fill")
-                                        .symbolRenderingMode(.multicolor)
-                                        .font(.system(size: 32.0, weight: .regular))
-                                        .foregroundColor(.secondary)
-                                    Text("Nearby.Hint")
-                                        .font(.body)
-                                        .foregroundColor(.secondary)
-                                        .multilineTextAlignment(.center)
-                                }
-                                .padding(16.0)
+                                ListHintOverlay(image: "exclamationmark.triangle.fill", text: "Nearby.Hint")
                             }
                         }
                     }

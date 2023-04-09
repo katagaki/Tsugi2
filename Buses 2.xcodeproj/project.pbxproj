@@ -95,6 +95,7 @@
 		E4BCFDC429E2F91400E4D2AD /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BCFDC329E2F91400E4D2AD /* Defaults.swift */; };
 		E4BCFDC629E2FC2100E4D2AD /* BoolState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BCFDC529E2FC2100E4D2AD /* BoolState.swift */; };
 		E4BCFDC829E300FF00E4D2AD /* Ding.caf in Resources */ = {isa = PBXBuildFile; fileRef = E4BCFDC729E2FFE100E4D2AD /* Ding.caf */; };
+		E4BCFDCA29E302B700E4D2AD /* ListHintOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BCFDC929E302B700E4D2AD /* ListHintOverlay.swift */; };
 		E4BD94A92859C3E900030C7C /* ArrivalInfoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BD94A82859C3E900030C7C /* ArrivalInfoDetailView.swift */; };
 		E4BD94AB2859C87300030C7C /* ArrivalInfoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BD94AA2859C87300030C7C /* ArrivalInfoCardView.swift */; };
 		E4D65F0B2865B97700FE78F4 /* Blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D65F072865B97700FE78F4 /* Blue@3x.png */; };
@@ -225,6 +226,7 @@
 		E4BCFDC329E2F91400E4D2AD /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		E4BCFDC529E2FC2100E4D2AD /* BoolState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolState.swift; sourceTree = "<group>"; };
 		E4BCFDC729E2FFE100E4D2AD /* Ding.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ding.caf; sourceTree = "<group>"; };
+		E4BCFDC929E302B700E4D2AD /* ListHintOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHintOverlay.swift; sourceTree = "<group>"; };
 		E4BD94A82859C3E900030C7C /* ArrivalInfoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalInfoDetailView.swift; sourceTree = "<group>"; };
 		E4BD94AA2859C87300030C7C /* ArrivalInfoCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalInfoCardView.swift; sourceTree = "<group>"; };
 		E4D65F072865B97700FE78F4 /* Blue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Blue@3x.png"; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 				E41C1B9D285806A4003F1BFB /* BusNumberPlateView.swift */,
 				E482AC8729A90CAB008DAD30 /* BusStopCarouselView.swift */,
 				E4B7FFF928561DBF0019F71A /* BusStopDetailView.swift */,
+				E4BCFDC929E302B700E4D2AD /* ListHintOverlay.swift */,
 				E4BCFDC129E2EE5D00E4D2AD /* ListRow.swift */,
 				E4BCFDBF29E2EC6E00E4D2AD /* ListSectionHeader.swift */,
 				E482ACBF29AC6DEE008DAD30 /* ProgressBarView.swift */,
@@ -719,6 +722,7 @@
 				E482ACC329AC7CBC008DAD30 /* Notifications.swift in Sources */,
 				D0011E21285D770000742687 /* FavoritesManager.swift in Sources */,
 				E4FFCADB2801B23300DCA0EC /* DateUtilities.swift in Sources */,
+				E4BCFDCA29E302B700E4D2AD /* ListHintOverlay.swift in Sources */,
 				E482ACC029AC6DEE008DAD30 /* ProgressBarView.swift in Sources */,
 				E49DFA5129B6DEB800654FBD /* BlurGradientView.swift in Sources */,
 				E4B70003285637450019F71A /* MainTabView.swift in Sources */,

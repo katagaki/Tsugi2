@@ -16,20 +16,8 @@ struct NotificationsView: View {
     var body: some View {
         NavigationStack {
             List {
-                Section {
-                    if notificationRequests.count == 0 {
-                        VStack(alignment: .center, spacing: 4.0) {
-                            Image(systemName: "questionmark.circle.fill")
-                                .symbolRenderingMode(.multicolor)
-                                .font(.system(size: 32.0, weight: .regular))
-                                .foregroundColor(.secondary)
-                            Text("Notifications.ArrivalAlerts.Hint")
-                                .font(.body)
-                                .foregroundColor(.secondary)
-                                .multilineTextAlignment(.center)
-                        }
-                        .padding(16.0)
-                    } else {
+                if notificationRequests.count > 0 {
+                    Section {
                         ForEach(notificationRequests, id: \.identifier) { request in
                             if let busService = request.content.userInfo["busService"] as? String,
                                let stopCode = request.content.userInfo["stopCode"] as? String,
@@ -57,9 +45,9 @@ struct NotificationsView: View {
                                 }
                             }
                         }
+                    } header: {
+                        ListSectionHeader(text: "Notifications.ArrivalAlerts")
                     }
-                } header: {
-                    ListSectionHeader(text: "Notifications.ArrivalAlerts")
                 }
             }
             .listStyle(.insetGrouped)
@@ -68,6 +56,11 @@ struct NotificationsView: View {
             }
             .refreshable {
                 reloadNotificationRequests()
+            }
+            .overlay {
+                if notificationRequests.count == 0 {
+                    ListHintOverlay(image: "info.circle.fill", text: "Notifications.ArrivalAlerts.Hint")
+                }
             }
             .navigationTitle("ViewTitle.Notifications")
             .navigationBarTitleDisplayMode(.inline)
