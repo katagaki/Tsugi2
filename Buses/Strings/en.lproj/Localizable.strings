@@ -28,6 +28,7 @@
 "Alert.Yes" = "Yes";
 "Alert.No" = "No";
 "Alert.Save" = "Save";
+"Alert.Create" = "Create";
 "Alert.Cancel" = "Cancel";
 
 /* Swipe Action Titles */
@@ -43,6 +44,7 @@
 "Favorites.Delete.Confirm.Message" = "Are you sure you want to delete %LOCATION%?";
 "Favorites.Delete.Confirm.GenericLocationText" = "this location";
 "Favorites.Edit.Title" = "Edit Location Name";
+"Favorites.New.Title" = "New Location";
 
 /* Notifications View */
 "Notifications.ArrivalAlerts" = "Arrival Alerts";
@@ -111,4 +113,5 @@
 "Shared.BusArrival.NotInService.Subtitle" = "The bus service is currently unavailable.";
 "Shared.BusArrival.Subsequent" = "Next Bus: ";
 "Shared.BusArrival.Crowded" = "CROWDED";
+"Shared.BusArrival.Toast.Favorited" = "%1 has been added to %2.";
 "Shared.Error.InternetConnection" = "The Internet connecction appears to be offline. Please check your Internet connection and try again.";

@@ -34,6 +34,8 @@
 		E4319EBC280437BA00D21531 /* BusStopList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4319EBB280437BA00D21531 /* BusStopList.swift */; };
 		E4377ACC29E3254F0036003E /* ListAppIconRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4377ACB29E3254F0036003E /* ListAppIconRow.swift */; };
 		E4377ACE29E325C90036003E /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4377ACD29E325C90036003E /* AppIcon.swift */; };
+		E4377AD029E3F60D0036003E /* DataDisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4377ACF29E3F60D0036003E /* DataDisplayMode.swift */; };
+		E4377AD229E4099C0036003E /* FavoritesReorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4377AD129E4099C0036003E /* FavoritesReorderView.swift */; };
 		E43C8CCA27F7F45D0073F510 /* OceanSansStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E43C8CC827F7F45D0073F510 /* OceanSansStd-Bold.otf */; };
 		E43C8CCB27F7F45D0073F510 /* OceanSansStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = E43C8CC927F7F45D0073F510 /* OceanSansStd-Book.otf */; };
 		E4406AB727EF182500819CDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4406AB627EF182500819CDC /* Assets.xcassets */; };
@@ -182,6 +184,8 @@
 		E4319EBB280437BA00D21531 /* BusStopList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopList.swift; sourceTree = "<group>"; };
 		E4377ACB29E3254F0036003E /* ListAppIconRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAppIconRow.swift; sourceTree = "<group>"; };
 		E4377ACD29E325C90036003E /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
+		E4377ACF29E3F60D0036003E /* DataDisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDisplayMode.swift; sourceTree = "<group>"; };
+		E4377AD129E4099C0036003E /* FavoritesReorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesReorderView.swift; sourceTree = "<group>"; };
 		E43C8CC827F7F45D0073F510 /* OceanSansStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OceanSansStd-Bold.otf"; sourceTree = "<group>"; };
 		E43C8CC927F7F45D0073F510 /* OceanSansStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OceanSansStd-Book.otf"; sourceTree = "<group>"; };
 		E4406AA827EF182300819CDC /* Buses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buses.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -446,6 +450,7 @@
 			isa = PBXGroup;
 			children = (
 				E4B7FFF22854693B0019F71A /* FavoritesView.swift */,
+				E4377AD129E4099C0036003E /* FavoritesReorderView.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -548,6 +553,7 @@
 				E476BF1C28086A0F00B8524B /* Global */,
 				E4BCFDAD29E2E3C500E4D2AD /* ProperText */,
 				E4BCFDB929E2E52800E4D2AD /* BundleUtilities.swift */,
+				E4377ACF29E3F60D0036003E /* DataDisplayMode.swift */,
 				E4FFCADA2801B23300DCA0EC /* DateUtilities.swift */,
 				E4319EB3280413FA00D21531 /* JSONUtilities.swift */,
 				E482AC8929AAFAF6008DAD30 /* LocationUtilities.swift */,
@@ -710,12 +716,14 @@
 				E42C82492856C9C600D64DF9 /* MoreAppIconView.swift in Sources */,
 				E41C1B98285706AB003F1BFB /* RoundedCornersShape.swift in Sources */,
 				E482ACB829AC5D32008DAD30 /* AssistantLiveActivity.swift in Sources */,
+				E4377AD029E3F60D0036003E /* DataDisplayMode.swift in Sources */,
 				E4BCFDB829E2E44B00E4D2AD /* ProperText.swift in Sources */,
 				E4E367892804422B0022A5CD /* StringUtilities.swift in Sources */,
 				E4319EB4280413FA00D21531 /* JSONUtilities.swift in Sources */,
 				E476BF2028086AE500B8524B /* Logging.swift in Sources */,
 				E4B7FFF32854693B0019F71A /* FavoritesView.swift in Sources */,
 				E4377ACE29E325C90036003E /* AppIcon.swift in Sources */,
+				E4377AD229E4099C0036003E /* FavoritesReorderView.swift in Sources */,
 				E4B700072856406D0019F71A /* MoreNotificationsView.swift in Sources */,
 				E4BCFDC629E2FC2100E4D2AD /* BoolState.swift in Sources */,
 				E482AC8829A90CAB008DAD30 /* BusStopCarouselView.swift in Sources */,

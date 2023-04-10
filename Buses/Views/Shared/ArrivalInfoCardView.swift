@@ -106,8 +106,10 @@ struct ArrivalInfoCardView_Previews: PreviewProvider {
     static var sampleBusStop: BusStop? = loadPreviewData()
     
     static var previews: some View {
-        ArrivalInfoDetailView(busStop: sampleBusStop!,
+        ArrivalInfoDetailView(mode: .BusStop,
                               busService: sampleBusStop!.arrivals!.randomElement()!,
+                              busStop: sampleBusStop!,
+                              showsAddToLocationButton: true,
                               showToast: self.showToast)
     }
     

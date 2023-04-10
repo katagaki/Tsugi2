@@ -10,10 +10,11 @@ import SwiftUI
 
 struct BusStopDetailView: View {
     
+    @EnvironmentObject var favorites: FavoriteList
+    
     var busStop: BusStop
     @State var busArrivals: [BusService] = []
     @State var isInitialDataLoading: Bool = true
-    @EnvironmentObject var favorites: FavoriteList
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
     var showToast: (String, ToastType, Bool) async -> Void
@@ -54,10 +55,12 @@ struct BusStopDetailView: View {
                     } else {
                         if busArrivals.count > 0 {
                             Section {
-                                ForEach(busArrivals, id: \.serviceNo) { bus in
+                                ForEach(busArrivals, id: \.hashValue) { bus in
                                     NavigationLink {
-                                        ArrivalInfoDetailView(busStop: busStop,
+                                        ArrivalInfoDetailView(mode: .BusStop,
                                                               busService: bus,
+                                                              busStop: busStop,
+                                                              showsAddToLocationButton: true,
                                                               showToast: self.showToast)
                                     } label: {
                                         HStack(alignment: .center, spacing: 8.0) {
@@ -157,8 +160,8 @@ struct BusStopDetailView: View {
                         location.busStopCode == busStop.code && location.usesLiveBusStopData == true
                     }) == false {
                         Button {
-                            favorites.addFavoriteLocation(busStop: busStop, usesLiveBusStopData: true)
                             Task {
+                                await favorites.addFavoriteLocation(busStop: busStop, usesLiveBusStopData: true)
                                 await favorites.saveChanges()
                                 await showToast(localized("Shared.BusStop.Toast.Favorited").replacingOccurrences(of: "%s", with: busStop.description ?? localized("Shared.BusStop.Description.None")), .Checkmark, true)
                             }

@@ -28,6 +28,7 @@
 "Alert.Yes" = "确定";
 "Alert.No" = "取消";
 "Alert.Save" = "保存";
+"Alert.Create" = "创建";
 "Alert.Cancel" = "取消";
 
 /* Swipe Action Titles */
@@ -43,6 +44,7 @@
 "Favorites.Delete.Confirm.Message" = "确定要删除%LOCATION%吗？";
 "Favorites.Delete.Confirm.GenericLocationText" = "这个地点";
 "Favorites.Edit.Title" = "编辑地点名称";
+"Favorites.New.Title" = "新地点";
 
 /* Notifications View */
 "Notifications.ArrivalAlerts" = "到达通知";
@@ -111,4 +113,5 @@
 "Shared.BusArrival.NotInService.Subtitle" = "此巴士此刻不提供服务。";
 "Shared.BusArrival.Subsequent" = "下一班车：";
 "Shared.BusArrival.Crowded" = "拥挤";
+"Shared.BusArrival.Toast.Favorited" = "%1已添加到%2。";
 "Shared.Error.InternetConnection" = "连接时出现问题。请确认网络后再试一次。";

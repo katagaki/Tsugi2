@@ -10,15 +10,21 @@ import SwiftUI
 
 struct ArrivalInfoDetailView: View {
     
+    var mode: DataDisplayMode
+    
     @EnvironmentObject var busStopList: BusStopList
+    @EnvironmentObject var favorites: FavoriteList
     
     @State var liveActivityID: String = ""
     
-    @State var busStop: BusStop
-    @State var busService: BusService
     @State var isInitialDataLoading: Bool = true
-    @State var usesNickname: Bool = false
+    @State var busService: BusService
+    @State var busStop: BusStop?
+    var favoriteLocation: FavoriteLocation?
+    
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
+    
+    @State var showsAddToLocationButton: Bool
     
     var showToast: (String, ToastType, Bool) async -> Void
     
@@ -52,7 +58,7 @@ struct ArrivalInfoDetailView: View {
         .onDisappear {
             Task {
                 if let liveActivity = Activity<AssistantAttributes>.activities.first(where: {$0.id == liveActivityID}) {
-                    await liveActivity.end(nil, dismissalPolicy: .default)
+                    await liveActivity.end(nil, dismissalPolicy: .immediate)
                     log("Live Activity \(liveActivityID) ended.")
                 }
             }
@@ -74,20 +80,39 @@ struct ArrivalInfoDetailView: View {
                 VStack {
                     Text(busService.serviceNo)
                         .font(.system(size: 16.0, weight: .bold))
-                    Text(busStop.description ?? localized("Shared.BusStop.Description.None"))
-                        .font(.system(size: 12.0, weight: .regular))
-                        .foregroundColor(.secondary)
+                    switch mode {
+                    case .BusStop, .NotificationItem:
+                        Text(busStop?.description ?? localized("Shared.BusStop.Description.None"))
+                            .font(.system(size: 12.0, weight: .regular))
+                            .foregroundColor(.secondary)
+                    case .FavoriteLocationLiveData, .FavoriteLocationCustomData:
+                        Text(favoriteLocation?.nickname ?? "")
+                            .font(.system(size: 12.0, weight: .regular))
+                            .foregroundColor(.secondary)
+                    }
                 }
             }
             ToolbarItem(placement: .primaryAction) {
                 HStack(alignment: .center, spacing: 0.0) {
-                    // TODO: Implement support for locations with customizable sets of bus services
-//                    Button {
-//                        // TODO: Add to favorites
-//                    } label: {
-//                        Image(systemName: "rectangle.stack.badge.plus")
-//                            .font(.body)
-//                    }
+                    if showsAddToLocationButton {
+                        Menu {
+                            ForEach(favorites.favoriteLocations, id: \.hash) { location in
+                                if !location.usesLiveBusStopData {
+                                    Button(location.nickname ?? localized("Shared.BusStop.Description.None")) {
+                                        Task {
+                                            await favorites.addBusStopToFavoriteLocation(location, busStop: busStop!, busService: busService)
+                                            await favorites.saveChanges()
+                                            await showToast(localized("Shared.BusArrival.Toast.Favorited").replacingOccurrences(of: "%1", with: busService.serviceNo).replacingOccurrences(of: "%2", with: location.nickname ?? localized("Shared.BusStop.Description.None")), .Checkmark, true)
+                                        }
+                                    }
+                                    .disabled(favorites.find(busService.serviceNo, in: location))
+                                }
+                            }
+                        } label: {
+                            Image(systemName: "rectangle.stack.badge.plus")
+                                .font(.body)
+                        }
+                    }
                 }
             }
         }
@@ -95,19 +120,28 @@ struct ArrivalInfoDetailView: View {
     
     func reloadArrivalTimes() async {
         do {
-            let busStop = try await fetchBusArrivals(for: busStop.code)
-            if usesNickname {
-                busStop.description = self.busStop.description
-            } else {
-                busStop.description = busStopList.busStops.first(where: { busStopInBusStopList in
-                    busStopInBusStopList.code == busStop.code
-                })?.description ?? nil
+            switch mode {
+            case .BusStop, .FavoriteLocationLiveData:
+                if let busStop = self.busStop {
+                    let fetchedBusStop = try await fetchBusArrivals(for: busStop.code)
+                    self.busStop?.description = busStopList.busStops.first(where: { busStopInBusStopList in
+                        busStopInBusStopList.code == busStop.code
+                    })?.description ?? nil
+                    busService = fetchedBusStop.arrivals?.first(where: { busService in
+                        busService.serviceNo == self.busService.serviceNo
+                    }) ?? BusService(serviceNo: busService.serviceNo, operator: busService.operator)
+                }
+            case .FavoriteLocationCustomData:
+                self.busStop = try await fetchBusArrivals(for: busService.busStopCode ?? "")
+                self.busStop?.description = favoriteLocation?.nickname ?? ""
+            case .NotificationItem:
+                if let busStop = self.busStop {
+                    let fetchedBusStop = try await fetchBusArrivals(for: busStop.code)
+                    busService = fetchedBusStop.arrivals?.first(where: { busService in
+                        busService.serviceNo == self.busService.serviceNo
+                    }) ?? BusService(serviceNo: busService.serviceNo, operator: busService.operator)
+                }
             }
-            let busService = busStop.arrivals?.first(where: { busService in
-                busService.serviceNo == self.busService.serviceNo
-            }) ?? BusService(serviceNo: busService.serviceNo, operator: busService.operator)
-            self.busStop = busStop
-            self.busService = busService
             log("Arrival time data updated.")
             isInitialDataLoading = false
         } catch {
@@ -129,29 +163,32 @@ struct ArrivalInfoDetailView: View {
                         await showToast(localized("Notification.NoPermissions"), .Exclamation, true)
                     }
                 } else {
-                    let content = UNMutableNotificationContent()
-                    let trigger = UNCalendarNotificationTrigger(
-                             dateMatching: Calendar.current.dateComponents([.weekday, .hour, .minute, .second],
-                                                                           from: date - (2 * 60)), repeats: false)
-                    content.title = localized("Notification.Arriving.Title").replacingOccurrences(of: "%1", with: busStop.description ?? localized("Shared.BusStop.Description.None"))
-                    content.body = localized("Notification.Arriving.Description").replacingOccurrences(of: "%s1", with: busService.serviceNo).replacingOccurrences(of: "%s2", with: date.formatted(date: .omitted, time: .shortened))
-                    content.userInfo = ["busService": busService.serviceNo, "stopCode": busStop.code, "stopDescription": busStop.description ?? localized("Shared.BusStop.Description.None")]
-                    content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "Ding.caf"))
-                    content.interruptionLevel = .timeSensitive
-                    center.add(UNNotificationRequest(identifier: "\(busStop.code).\(busService.serviceNo).\(date.formatted(date: .numeric, time: .shortened))",
-                                                     content: content,
-                                                     trigger: trigger)) { (error) in
-                       if let error = error {
-                           log("Error occurred while setting notifications: \(error.localizedDescription)")
-                           Task {
-                               await showToast(localized("Notification.Error"), .Exclamation, true)
-                           }
-                       } else {
-                           log("Notification set with content: \(content.body), and will appear at \((date - (2 * 60)).formatted(date: .complete, time: .complete)).")
-                           Task {
-                               await showToast(localized("Notification.Set"), .Checkmark, true)
-                           }
-                       }
+                    if let busStop = self.busStop {
+                        let content = UNMutableNotificationContent()
+                        let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.weekday, .hour, .minute, .second],
+                                                                                                                  from: date - (2 * 60)), repeats: false)
+                        content.title = localized("Notification.Arriving.Title").replacingOccurrences(of: "%1", with: busStop.description ?? localized("Shared.BusStop.Description.None"))
+                        content.body = localized("Notification.Arriving.Description").replacingOccurrences(of: "%s1", with: busService.serviceNo).replacingOccurrences(of: "%s2", with: date.formatted(date: .omitted, time: .shortened))
+                        content.userInfo = ["busService": busService.serviceNo,
+                                            "stopCode": busStop.code,
+                                            "stopDescription": busStop.description ?? localized("Shared.BusStop.Description.None")]
+                        content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "Ding.caf"))
+                        content.interruptionLevel = .timeSensitive
+                        center.add(UNNotificationRequest(identifier: "\(busStop.code).\(busService.serviceNo).\(date.formatted(date: .numeric, time: .shortened))",
+                                                         content: content,
+                                                         trigger: trigger)) { (error) in
+                            if let error = error {
+                                log("Error occurred while setting notifications: \(error.localizedDescription)")
+                                Task {
+                                    await showToast(localized("Notification.Error"), .Exclamation, true)
+                                }
+                            } else {
+                                log("Notification set with content: \(content.body), and will appear at \((date - (2 * 60)).formatted(date: .complete, time: .complete)).")
+                                Task {
+                                    await showToast(localized("Notification.Set"), .Checkmark, true)
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -184,8 +221,10 @@ struct ArrivalInfoDetailView_Previews: PreviewProvider {
     static var sampleBusStop: BusStop? = loadPreviewData()
     
     static var previews: some View {
-        ArrivalInfoDetailView(busStop: sampleBusStop!,
+        ArrivalInfoDetailView(mode: .BusStop,
                               busService: sampleBusStop!.arrivals!.randomElement()!,
+                              busStop: sampleBusStop!,
+                              showsAddToLocationButton: true,
                               showToast: self.showToast)
     }
     

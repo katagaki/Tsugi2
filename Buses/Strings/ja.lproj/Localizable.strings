@@ -28,6 +28,7 @@
 "Alert.Yes" = "はい";
 "Alert.No" = "いいえ";
 "Alert.Save" = "保存";
+"Alert.Create" = "作成";
 "Alert.Cancel" = "キャンセル";
 
 /* Swipe Action Titles */
@@ -43,6 +44,7 @@
 "Favorites.Delete.Confirm.Message" = "%LOCATION%を削除してよろしいですか？";
 "Favorites.Delete.Confirm.GenericLocationText" = "この場所";
 "Favorites.Edit.Title" = "場所名を変更";
+"Favorites.New.Title" = "新規場所";
 
 /* Notifications View */
 "Notifications.ArrivalAlerts" = "到着通知";
@@ -111,4 +113,5 @@
 "Shared.BusArrival.NotInService.Subtitle" = "このバスは、現在サービスが提供していません。";
 "Shared.BusArrival.Subsequent" = "次：";
 "Shared.BusArrival.Crowded" = "混雑中";
+"Shared.BusArrival.Toast.Favorited" = "%1は、%2に追加されました。";
 "Shared.Error.InternetConnection" = "インターネットに接続されていないようです。ネットワークを確認して、もう一度お試しください。";

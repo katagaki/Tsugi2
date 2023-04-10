@@ -23,7 +23,11 @@ struct NotificationsView: View {
                                let stopCode = request.content.userInfo["stopCode"] as? String,
                                let stopDescription = request.content.userInfo["stopDescription"] as? String {
                                 NavigationLink {
-                                    ArrivalInfoDetailView(busStop: BusStop(code: stopCode, description: stopDescription), busService: BusService(serviceNo: busService, operator: .Unknown), showToast: self.showToast)
+                                    ArrivalInfoDetailView(mode: .NotificationItem,
+                                                          busService: BusService(serviceNo: busService, operator: .Unknown),
+                                                          busStop: BusStop(code: stopCode, description: stopDescription),
+                                                          showsAddToLocationButton: false,
+                                                          showToast: self.showToast)
                                 } label: {
                                     HStack(alignment: .center, spacing: 16.0) {
                                         Image("ListIcon.Bus")

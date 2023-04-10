@@ -14,19 +14,26 @@ struct FavoritesView: View {
     @State var listInset: Double = 0.0
     @State var isDeletionPending: Bool = false
     @State var favoriteLocationPendingDeletion: FavoriteLocation? = nil
-    @State var isEditPending: Bool = false
+    
     @State var isEditing: Bool = false
+    @State var isEditPending: Bool = false
     @State var favoriteLocationPendingEdit: FavoriteLocation? = nil
     @State var favoriteLocationPendingEditNewNickname: String = ""
+    
+    @State var isNewPending: Bool = false
+    @State var favoriteLocationNewNickname: String = ""
+    
+    @State var isBusServiceReorderPending: Bool = false
+    @State var favoriteLocationPendingServiceReorder: FavoriteLocation? = nil
     
     var showToast: (String, ToastType, Bool) async -> Void
     
     var body: some View {
         NavigationStack {
             List {
-                ForEach(favorites.favoriteLocations, id: \.busStopCode) { location in
+                ForEach(favorites.favoriteLocations, id: \.hash) { location in
                     Section {
-                        BusStopCarouselView(mode: .FavoriteLocationLiveData,
+                        BusStopCarouselView(mode: (location.usesLiveBusStopData ? .FavoriteLocationLiveData : .FavoriteLocationCustomData),
                                             favoriteLocation: location,
                                             showToast: self.showToast)
                             .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
@@ -48,6 +55,15 @@ struct FavoritesView: View {
                             Spacer()
                             if isEditing {
                                 HStack(alignment: .center, spacing: 16.0) {
+                                    if !location.usesLiveBusStopData {
+                                        Button {
+                                            favoriteLocationPendingServiceReorder = location
+                                            isBusServiceReorderPending = true
+                                        } label: {
+                                            Image(systemName: "arrow.left.arrow.right.circle")
+                                                .font(.body)
+                                        }
+                                    }
                                     Button {
                                         Task {
                                             await favorites.moveUp(location)
@@ -106,10 +122,39 @@ struct FavoritesView: View {
                                 .font(.body)
                         }
                         .disabled(favorites.favoriteLocations.count == 0)
+                        Button {
+                            isNewPending = true
+                        } label: {
+                            Image(systemName: "plus")
+                                .font(.body)
+                        }
                     }
                 }
             }
+            .sheet(isPresented: $isBusServiceReorderPending, content: {
+                FavoritesReorderView(locationToReorder: $favoriteLocationPendingServiceReorder)
+                    .presentationDetents([.medium])
+                    .presentationDragIndicator(.visible)
+            })
         }
+        .alert("Favorites.New.Title", isPresented: $isNewPending, actions: {
+            TextField("", text: $favoriteLocationNewNickname)
+                .textInputAutocapitalization(.words)
+            Button(role: .cancel, action: {
+                favoriteLocationNewNickname = ""
+            }, label: {
+                Text("Alert.Cancel")
+            })
+            Button(action: {
+                Task {
+                    await favorites.addNewFavoriteLocation(nickname: favoriteLocationNewNickname)
+                    await favorites.saveChanges()
+                    favoriteLocationNewNickname = ""
+                }
+            }, label: {
+                Text("Alert.Create")
+            })
+        })
         .alert("Favorites.Edit.Title", isPresented: $isEditPending, actions: {
             TextField("", text: $favoriteLocationPendingEditNewNickname)
                 .textInputAutocapitalization(.words)

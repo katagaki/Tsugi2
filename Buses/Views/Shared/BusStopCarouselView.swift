@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct BusStopCarouselView: View {
-        
-    var mode: CarouselMode
+    
+    @EnvironmentObject var busStopList: BusStopList
+    @EnvironmentObject var favorites: FavoriteList
+    
+    var mode: DataDisplayMode
     
     @State var isInitialDataLoaded: Bool = false
     @State var busServices: [BusService] = []
     @State var busStop: BusStop?
-    var favoriteLocation: FavoriteLocation?
+    @State var favoriteLocation: FavoriteLocation?
+    
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
     var showToast: (String, ToastType, Bool) async -> Void
@@ -39,12 +43,13 @@ struct BusStopCarouselView: View {
             if busServices.count > 0 {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack(spacing: 8.0) {
-                        ForEach(busServices, id: \.serviceNo) { bus in
+                        ForEach(busServices, id: \.hashValue) { bus in
                             NavigationLink {
-                                ArrivalInfoDetailView(busStop: busStop ?? BusStop(code: favoriteLocation?.busStopCode ?? "00000",
-                                                                                  description: favoriteLocation?.nickname ?? localized("Shared.BusStop.Description.None")),
+                                ArrivalInfoDetailView(mode: mode,
                                                       busService: bus,
-                                                      usesNickname: false,
+                                                      busStop: busStop,
+                                                      favoriteLocation: favoriteLocation,
+                                                      showsAddToLocationButton: mode == .BusStop,
                                                       showToast: self.showToast)
                             } label: {
                                 VStack(alignment: .center, spacing: 2.0) {
@@ -62,7 +67,6 @@ struct BusStopCarouselView: View {
                                 }
                                 .frame(minWidth: 88.0, maxWidth: 88.0, minHeight: 0, maxHeight: .infinity, alignment: .center)
                             }
-
                         }
                     }
                     .padding(EdgeInsets(top: 0.0, leading: 16.0, bottom: 0.0, trailing: 16.0))
@@ -92,23 +96,42 @@ struct BusStopCarouselView: View {
                     })
                 }
             case .FavoriteLocationCustomData:
-                busServices = []
+                if let favoriteLocation = favoriteLocation,
+                   let favoriteBusServices = favoriteLocation.busServices {
+                    busServices = favoriteBusServices.reduce(into: [BusService](), { partialResult, favoriteBusService in
+                        var busService: BusService = BusService(serviceNo: (favoriteBusService as! FavoriteBusService).serviceNo!, operator: .Unknown)
+                        busService.busStopCode = (favoriteBusService as! FavoriteBusService).busStopCode
+                        partialResult.append(busService)
+                    })
+                    var fetchedBusServices: [BusService] = []
+                    for busService in busServices {
+                        if var fetchedBusService = try await fetchBusArrivals(for: busService.busStopCode ?? "").arrivals?.first(where: { fetchedBusService in
+                            fetchedBusService.serviceNo == busService.serviceNo
+                        }) {
+                            fetchedBusService.busStopCode = busService.busStopCode
+                            fetchedBusServices.append(fetchedBusService)
+                        }
+                    }
+                    busServices = fetchedBusServices
+                    // TODO: When a change is detected in Core Data, encourage reloading of bus service list
+                }
             case .FavoriteLocationLiveData:
                 if let favoriteLocation = favoriteLocation {
-                    busServices = (try await fetchBusArrivals(for: favoriteLocation.busStopCode ?? "00000").arrivals ?? []).sorted(by: { a, b in
+                    busServices = (try await fetchBusArrivals(for: favoriteLocation.busStopCode ?? "").arrivals ?? []).sorted(by: { a, b in
                         intFrom(a.serviceNo) ?? 9999 < intFrom(b.serviceNo) ?? 9999
                     })
+                    if busStop == nil {
+                        busStop = busStopList.busStops.first(where: { fetchedBusStop in
+                            fetchedBusStop.code == favoriteLocation.busStopCode
+                        })
+                    }
                 }
+            case .NotificationItem:
+                break // Mode not supported
             }
         } catch {
             log(error.localizedDescription)
         }
     }
     
-}
-
-enum CarouselMode {
-    case BusStop
-    case FavoriteLocationCustomData
-    case FavoriteLocationLiveData
 }
