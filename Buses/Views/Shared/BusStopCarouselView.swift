@@ -95,7 +95,7 @@ struct BusStopCarouselView: View {
                 busServices = []
             case .FavoriteLocationLiveData:
                 if let favoriteLocation = favoriteLocation {
-                    busServices = (try await fetchBusArrivals(for: favoriteLocation.busStopCode!).arrivals ?? []).sorted(by: { a, b in
+                    busServices = (try await fetchBusArrivals(for: favoriteLocation.busStopCode ?? "00000").arrivals ?? []).sorted(by: { a, b in
                         intFrom(a.serviceNo) ?? 9999 < intFrom(b.serviceNo) ?? 9999
                     })
                 }
