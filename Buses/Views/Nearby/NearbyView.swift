@@ -96,6 +96,11 @@ struct NearbyView: View {
                     }
                 }
             }
+            .onAppear {
+                if locationManager.authorizationStatus == .notDetermined {
+                    locationManager.requestWhenInUseAuthorization()
+                }
+            }
             .onChange(of: locationManagerDelegate.authorizationStatus, perform: { newValue in
                 switch newValue {
                 case .authorizedWhenInUse:
