@@ -34,7 +34,8 @@
 "Swipe.Cancel" = "Cancel";
 
 /* Nearby View */
-"Nearby.Hint" = "No bus stops nearby.\nTry moving closer to a bus stop, or checking your Location Services settings.";
+"Nearby.Hint.NoBusStops" = "No bus stops nearby.\nTry moving closer to a bus stop, or checking your Location Services settings.";
+"Nearby.Hint.NoLocation" = "Location Services was not enabled. Select the button below to tell Buses your location without enabling Location Services.";
 
 /* Favorites View */
 "Favorites.Hint" = "No locations saved.\nTo create a new location, tap the Add Location button on the top right of this tab.\nYou can also add a bus stop as a location.";
