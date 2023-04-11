@@ -163,13 +163,13 @@ struct NearbyView: View {
             let currentCoordinate = CLLocation(latitude: locationManagerDelegate.region.center.latitude, longitude: locationManagerDelegate.region.center.longitude)
             var busStopListSortedByDistance: [BusStop] = busStopList.busStops
             busStopListSortedByDistance = busStopListSortedByDistance.filter { busStop in
-                currentCoordinate.distanceTo(busStop: busStop) < 250.0
+                currentCoordinate.distanceTo(busStop: busStop) < 500.0
             }
             busStopListSortedByDistance.sort { a, b in
                 return currentCoordinate.distanceTo(busStop: a) < currentCoordinate.distanceTo(busStop: b)
             }
             nearbyBusStops.removeAll()
-            nearbyBusStops.append(contentsOf: busStopListSortedByDistance[0..<(busStopListSortedByDistance.count >= 10 ? 10 : busStopListSortedByDistance.count)])
+            nearbyBusStops.append(contentsOf: busStopListSortedByDistance)
             log("Reloaded nearby bus stop data.")
             updateRegion(newRegion: locationManagerDelegate.region)
             log("Updated Map region.")
