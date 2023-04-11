@@ -32,6 +32,17 @@ func properName(for originalString: String) -> String {
     for i in 0..<ptStringTokens.count {
         if let term = ptTerms[ptStringTokens[i]] {
             ptStringTokens[i] = term
+            continue
+        }
+        var ptSpecialTokens: [String] = ptStringTokens[i].components(separatedBy: "/")
+        if ptSpecialTokens.count > 1 {
+            for j in 0..<ptSpecialTokens.count {
+                if let term = ptTerms[ptSpecialTokens[j]] {
+                    ptSpecialTokens[j] = term
+                    continue
+                }
+            }
+            ptStringTokens[i] = ptSpecialTokens.joined(separator: "/")
         }
     }
     ptString = ptStringTokens.joined(separator: " ")
