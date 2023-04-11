@@ -39,6 +39,7 @@
 		E43C8CCA27F7F45D0073F510 /* OceanSansStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E43C8CC827F7F45D0073F510 /* OceanSansStd-Bold.otf */; };
 		E43C8CCB27F7F45D0073F510 /* OceanSansStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = E43C8CC927F7F45D0073F510 /* OceanSansStd-Book.otf */; };
 		E4406AB727EF182500819CDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4406AB627EF182500819CDC /* Assets.xcassets */; };
+		E467E24929E59A0E005E188C /* PTReplace.plist in Resources */ = {isa = PBXBuildFile; fileRef = E467E24829E59A0E005E188C /* PTReplace.plist */; };
 		E476BF1B280869A500B8524B /* APIFetchers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF1A280869A500B8524B /* APIFetchers.swift */; };
 		E476BF1E28086A2D00B8524B /* APIKeyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF1D28086A2D00B8524B /* APIKeyHandler.swift */; };
 		E476BF2028086AE500B8524B /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF1F28086AE500B8524B /* Logging.swift */; };
@@ -62,7 +63,7 @@
 		E482ACB429AC588C008DAD30 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC42801627700DCA0EC /* BusStop.swift */; };
 		E482ACB529AC5896008DAD30 /* BusStopList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4319EBB280437BA00D21531 /* BusStopList.swift */; };
 		E482ACB629AC58E5008DAD30 /* DateUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCADA2801B23300DCA0EC /* DateUtilities.swift */; };
-		E482ACB729AC58EC008DAD30 /* StringUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E367882804422B0022A5CD /* StringUtilities.swift */; };
+		E482ACB729AC58EC008DAD30 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E367882804422B0022A5CD /* String.swift */; };
 		E482ACB829AC5D32008DAD30 /* AssistantLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482AC9729AC53B2008DAD30 /* AssistantLiveActivity.swift */; };
 		E482ACB929AC6085008DAD30 /* OceanSansStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E43C8CC827F7F45D0073F510 /* OceanSansStd-Bold.otf */; };
 		E482ACBA29AC6085008DAD30 /* OceanSansStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = E43C8CC927F7F45D0073F510 /* OceanSansStd-Book.otf */; };
@@ -111,7 +112,7 @@
 		E4D65F152865BACA00FE78F4 /* Laze@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D65F112865BACA00FE78F4 /* Laze@2x~ipad.png */; };
 		E4D65F162865BACA00FE78F4 /* Laze@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D65F122865BACA00FE78F4 /* Laze@3x.png */; };
 		E4D65F192865BF9400FE78F4 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D65F182865BF9400FE78F4 /* NotificationsView.swift */; };
-		E4E367892804422B0022A5CD /* StringUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E367882804422B0022A5CD /* StringUtilities.swift */; };
+		E4E367892804422B0022A5CD /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E367882804422B0022A5CD /* String.swift */; };
 		E4FFCAC22801604300DCA0EC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4FFCAC12801604300DCA0EC /* MapKit.framework */; };
 		E4FFCAC52801627700DCA0EC /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC42801627700DCA0EC /* BusStop.swift */; };
 		E4FFCAC72801627D00DCA0EC /* BusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC62801627D00DCA0EC /* BusService.swift */; };
@@ -191,6 +192,7 @@
 		E4406AA827EF182300819CDC /* Buses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4406AB627EF182500819CDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4406ABB27EF182500819CDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E467E24829E59A0E005E188C /* PTReplace.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PTReplace.plist; sourceTree = "<group>"; };
 		E476BF1A280869A500B8524B /* APIFetchers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFetchers.swift; sourceTree = "<group>"; };
 		E476BF1D28086A2D00B8524B /* APIKeyHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeyHandler.swift; sourceTree = "<group>"; };
 		E476BF1F28086AE500B8524B /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
@@ -247,7 +249,7 @@
 		E4D65F122865BACA00FE78F4 /* Laze@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Laze@3x.png"; sourceTree = "<group>"; };
 		E4D65F182865BF9400FE78F4 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		E4D65F1A2865C58700FE78F4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
-		E4E367882804422B0022A5CD /* StringUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtilities.swift; sourceTree = "<group>"; };
+		E4E367882804422B0022A5CD /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		E4FFCAC12801604300DCA0EC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E4FFCAC42801627700DCA0EC /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
 		E4FFCAC62801627D00DCA0EC /* BusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusService.swift; sourceTree = "<group>"; };
@@ -488,6 +490,7 @@
 				E4BCFDB729E2E44B00E4D2AD /* ProperText.swift */,
 				E4BCFDB429E2E42200E4D2AD /* PTTerms.plist */,
 				E4BCFDB329E2E42200E4D2AD /* PTCapitalization.plist */,
+				E467E24829E59A0E005E188C /* PTReplace.plist */,
 			);
 			path = ProperText;
 			sourceTree = "<group>";
@@ -557,7 +560,7 @@
 				E4FFCADA2801B23300DCA0EC /* DateUtilities.swift */,
 				E4319EB3280413FA00D21531 /* JSONUtilities.swift */,
 				E482AC8929AAFAF6008DAD30 /* LocationUtilities.swift */,
-				E4E367882804422B0022A5CD /* StringUtilities.swift */,
+				E4E367882804422B0022A5CD /* String.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -666,6 +669,7 @@
 				E42C82452856C8FE00D64DF9 /* Red@3x.png in Resources */,
 				E42C823F2856C8C900D64DF9 /* Purple@2x~ipad.png in Resources */,
 				E43C8CCA27F7F45D0073F510 /* OceanSansStd-Bold.otf in Resources */,
+				E467E24929E59A0E005E188C /* PTReplace.plist in Resources */,
 				E42C82442856C8FE00D64DF9 /* Red@2x.png in Resources */,
 				E4319EB0280413BA00D21531 /* BusArrivalv2-2.json in Resources */,
 				E4BCFDC829E300FF00E4D2AD /* Ding.caf in Resources */,
@@ -718,7 +722,7 @@
 				E482ACB829AC5D32008DAD30 /* AssistantLiveActivity.swift in Sources */,
 				E4377AD029E3F60D0036003E /* DataDisplayMode.swift in Sources */,
 				E4BCFDB829E2E44B00E4D2AD /* ProperText.swift in Sources */,
-				E4E367892804422B0022A5CD /* StringUtilities.swift in Sources */,
+				E4E367892804422B0022A5CD /* String.swift in Sources */,
 				E4319EB4280413FA00D21531 /* JSONUtilities.swift in Sources */,
 				E476BF2028086AE500B8524B /* Logging.swift in Sources */,
 				E4B7FFF32854693B0019F71A /* FavoritesView.swift in Sources */,
@@ -774,7 +778,7 @@
 				E482ACAD29AC5689008DAD30 /* APIFetchers.swift in Sources */,
 				E482ACB129AC57C1008DAD30 /* APIKeyHandler.swift in Sources */,
 				E4BCFDBC29E2E7D600E4D2AD /* ProperText.swift in Sources */,
-				E482ACB729AC58EC008DAD30 /* StringUtilities.swift in Sources */,
+				E482ACB729AC58EC008DAD30 /* String.swift in Sources */,
 				E482ACB229AC581A008DAD30 /* JSONUtilities.swift in Sources */,
 				E482ACB629AC58E5008DAD30 /* DateUtilities.swift in Sources */,
 			);

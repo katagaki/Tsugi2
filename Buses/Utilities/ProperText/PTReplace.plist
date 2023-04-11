@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>STREET AERO</key>
+	<string>ST Aero</string>
+	<key>STREET AEROSPACE</key>
+	<string>ST Aerospace</string>
+	<key>STREET ELECTRONICS</key>
+	<string>ST Electronics</string>
+	<key>STREET KINETICS</key>
+	<string>ST Kinetics</string>
+	<key>STREET MARINE</key>
+	<string>ST Marine</string>
+	<key>ANG MO KIO COMMISSION HOSPITAL</key>
+	<string>Ang Mo Kio Community Hospital</string>
+</dict>
+</plist>

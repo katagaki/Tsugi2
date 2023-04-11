@@ -14,7 +14,7 @@ func initializeDefaultConfiguration() {
        let previouslyDetectedVersion = defaults.string(forKey: "CurrentVersion"),
        previouslyDetectedVersion != "\(versionNumber).\(buildNumber)" {
         log("App was either updated or downgraded! Previously detected version was \(previouslyDetectedVersion), current version is \(versionNumber).\(buildNumber).")
-        // Perform future schema/data updates here
+        defaults.set(nil, forKey: "StoredBusStopList")
     }
     defaults.setValue("\(versionNumber).\(buildNumber)", forKey: "CurrentVersion")
     if defaults.value(forKey: "StartupTab") == nil {

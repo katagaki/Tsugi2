@@ -7,8 +7,9 @@
 
 import Foundation
 
-var ptTerms:[String:String] = [:]
-var ptCapitalization:[String:String] = [:]
+var ptTerms: [String:String] = [:]
+var ptCapitalization: [String:String] = [:]
+var ptReplace: [String:String] = [:]
 
 func initializeProperTextFramework() {
     if let storedTerms = plist(named: "PTTerms") {
@@ -17,22 +18,40 @@ func initializeProperTextFramework() {
     if let storedCapitalization = plist(named: "PTCapitalization") {
         ptCapitalization = storedCapitalization
     }
-    log("Loaded ProperText framework with \(ptTerms.count) acronym definitions, and \(ptCapitalization.count) capitalization definitions.")
+    if let storedReplacements = plist(named: "PTReplace") {
+        ptReplace = storedReplacements
+    }
+    log("Loaded ProperText framework with \(ptTerms.count) acronym definitions, \(ptCapitalization.count) capitalization definitions, and \(ptReplace.count) replacement definitions.")
 }
 
 func properName(for originalString: String) -> String {
-    var ptString: String = originalString.capitalized
-    for term in ptTerms.keys {
-        if ptString.localizedCaseInsensitiveContains(term) {
-            ptString = ptString.replacingOccurrences(of: "(?i)\\b\(term)\\b", with: ptTerms[term]!,
-                                                     options: .regularExpression)
+    var ptString: String = originalString.uppercased()
+    
+    // Replace tokens in bus stop names
+    var ptStringTokens: [String] = ptString.components(separatedBy: .whitespaces)
+    for i in 0..<ptStringTokens.count {
+        if let term = ptTerms[ptStringTokens[i]] {
+            ptStringTokens[i] = term
         }
     }
+    ptString = ptStringTokens.joined(separator: " ")
+    
+    // Revert capitalization where inappropriate
+    ptString = ptString.localizedCapitalized
     for term in ptCapitalization.keys {
         if ptString.localizedCaseInsensitiveContains(term) {
             ptString = ptString.replacingOccurrences(of: "(?i)\\b\(term)\\b", with: ptCapitalization[term]!,
                                                      options: .regularExpression)
         }
     }
+    
+    // Replace special terms
+    for term in ptReplace.keys {
+        if ptString.localizedCaseInsensitiveContains(term) {
+            ptString = ptString.replacingOccurrences(of: term, with: ptReplace[term]!,
+                                                     options: .caseInsensitive)
+        }
+    }
+    
     return ptString
 }
