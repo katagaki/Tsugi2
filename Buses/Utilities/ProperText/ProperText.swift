@@ -12,16 +12,16 @@ var ptCapitalization: [String:String] = [:]
 var ptReplace: [String:String] = [:]
 
 func initializeProperTextFramework() {
-    if let storedTerms = plist(named: "PTTerms") {
+    if let storedTerms = Bundle.main.plist(named: "PTTerms") {
         ptTerms = storedTerms
     }
-    if let storedCapitalization = plist(named: "PTCapitalization") {
+    if let storedCapitalization = Bundle.main.plist(named: "PTCapitalization") {
         ptCapitalization = storedCapitalization
     }
-    if let storedReplacements = plist(named: "PTReplace") {
+    if let storedReplacements = Bundle.main.plist(named: "PTReplace") {
         ptReplace = storedReplacements
     }
-    log("Loaded ProperText framework with \(ptTerms.count) acronym definitions, \(ptCapitalization.count) capitalization definitions, and \(ptReplace.count) replacement definitions.")
+    log("Loaded ProperText framework with \(ptTerms.count) abbreviation definitions, \(ptCapitalization.count) capitalization definitions, and \(ptReplace.count) replacement definitions.")
 }
 
 func properName(for originalString: String) -> String {

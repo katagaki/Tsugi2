@@ -10,7 +10,7 @@ import Foundation
 var apiKeys:[String:String] = [:]
 
 func loadAPIKeys() {
-    if let storedAPIKeys = plist(named: "APIKeys") {
+    if let storedAPIKeys = Bundle.main.plist(named: "APIKeys") {
         apiKeys = storedAPIKeys
         log("Loaded \(apiKeys.count) API key(s).")
     } else {

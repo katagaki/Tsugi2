@@ -55,11 +55,11 @@ struct BusStopCarouselView: View {
                                 VStack(alignment: .center, spacing: 2.0) {
                                     BusNumberPlateView(serviceNo: bus.serviceNo)
                                         .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: -8.0, trailing: 0.0))
-                                    Text(arrivalTimeTo(date: bus.nextBus?.estimatedArrivalTime()))
+                                    Text(bus.nextBus?.estimatedArrivalTime()?.arrivalFormat() ?? localized("Shared.BusArrival.NotInService"))
                                         .font(.body)
                                         .foregroundColor(.primary)
                                         .lineLimit(1)
-                                    Text(arrivalTimeTo(date: bus.nextBus2?.estimatedArrivalTime(), returnBlankWhenNotInService: true))
+                                    Text(bus.nextBus2?.estimatedArrivalTime()?.arrivalFormat() ?? " ")
                                         .font(.body)
                                         .foregroundColor(.secondary)
                                         .lineLimit(1)

@@ -44,7 +44,7 @@
 		E476BF1E28086A2D00B8524B /* APIKeyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF1D28086A2D00B8524B /* APIKeyHandler.swift */; };
 		E476BF2028086AE500B8524B /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF1F28086AE500B8524B /* Logging.swift */; };
 		E482AC8829A90CAB008DAD30 /* BusStopCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482AC8729A90CAB008DAD30 /* BusStopCarouselView.swift */; };
-		E482AC8A29AAFAF6008DAD30 /* LocationUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482AC8929AAFAF6008DAD30 /* LocationUtilities.swift */; };
+		E482AC8A29AAFAF6008DAD30 /* CLLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482AC8929AAFAF6008DAD30 /* CLLocation.swift */; };
 		E482AC9129AC53B2008DAD30 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E482AC9029AC53B2008DAD30 /* WidgetKit.framework */; };
 		E482AC9329AC53B2008DAD30 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E482AC9229AC53B2008DAD30 /* SwiftUI.framework */; };
 		E482AC9629AC53B2008DAD30 /* AssistantBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482AC9529AC53B2008DAD30 /* AssistantBundle.swift */; };
@@ -62,7 +62,7 @@
 		E482ACB329AC5821008DAD30 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF1F28086AE500B8524B /* Logging.swift */; };
 		E482ACB429AC588C008DAD30 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC42801627700DCA0EC /* BusStop.swift */; };
 		E482ACB529AC5896008DAD30 /* BusStopList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4319EBB280437BA00D21531 /* BusStopList.swift */; };
-		E482ACB629AC58E5008DAD30 /* DateUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCADA2801B23300DCA0EC /* DateUtilities.swift */; };
+		E482ACB629AC58E5008DAD30 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCADA2801B23300DCA0EC /* Date.swift */; };
 		E482ACB729AC58EC008DAD30 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E367882804422B0022A5CD /* String.swift */; };
 		E482ACB829AC5D32008DAD30 /* AssistantLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482AC9729AC53B2008DAD30 /* AssistantLiveActivity.swift */; };
 		E482ACB929AC6085008DAD30 /* OceanSansStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E43C8CC827F7F45D0073F510 /* OceanSansStd-Bold.otf */; };
@@ -90,8 +90,8 @@
 		E4BCFDB529E2E42200E4D2AD /* PTCapitalization.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4BCFDB329E2E42200E4D2AD /* PTCapitalization.plist */; };
 		E4BCFDB629E2E42200E4D2AD /* PTTerms.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4BCFDB429E2E42200E4D2AD /* PTTerms.plist */; };
 		E4BCFDB829E2E44B00E4D2AD /* ProperText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BCFDB729E2E44B00E4D2AD /* ProperText.swift */; };
-		E4BCFDBA29E2E52800E4D2AD /* BundleUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BCFDB929E2E52800E4D2AD /* BundleUtilities.swift */; };
-		E4BCFDBB29E2E5F100E4D2AD /* BundleUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BCFDB929E2E52800E4D2AD /* BundleUtilities.swift */; };
+		E4BCFDBA29E2E52800E4D2AD /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BCFDB929E2E52800E4D2AD /* Bundle.swift */; };
+		E4BCFDBB29E2E5F100E4D2AD /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BCFDB929E2E52800E4D2AD /* Bundle.swift */; };
 		E4BCFDBC29E2E7D600E4D2AD /* ProperText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BCFDB729E2E44B00E4D2AD /* ProperText.swift */; };
 		E4BCFDBD29E2E7D800E4D2AD /* PTCapitalization.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4BCFDB329E2E42200E4D2AD /* PTCapitalization.plist */; };
 		E4BCFDBE29E2E7D800E4D2AD /* PTTerms.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4BCFDB429E2E42200E4D2AD /* PTTerms.plist */; };
@@ -118,7 +118,7 @@
 		E4FFCAC72801627D00DCA0EC /* BusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC62801627D00DCA0EC /* BusService.swift */; };
 		E4FFCAC92801631800DCA0EC /* BusArrivalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC82801631800DCA0EC /* BusArrivalInfo.swift */; };
 		E4FFCACE28018B3500DCA0EC /* BusArrivalv2-1.json in Resources */ = {isa = PBXBuildFile; fileRef = E4FFCACD28018B3500DCA0EC /* BusArrivalv2-1.json */; };
-		E4FFCADB2801B23300DCA0EC /* DateUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCADA2801B23300DCA0EC /* DateUtilities.swift */; };
+		E4FFCADB2801B23300DCA0EC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCADA2801B23300DCA0EC /* Date.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -197,7 +197,7 @@
 		E476BF1D28086A2D00B8524B /* APIKeyHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeyHandler.swift; sourceTree = "<group>"; };
 		E476BF1F28086AE500B8524B /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		E482AC8729A90CAB008DAD30 /* BusStopCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopCarouselView.swift; sourceTree = "<group>"; };
-		E482AC8929AAFAF6008DAD30 /* LocationUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUtilities.swift; sourceTree = "<group>"; };
+		E482AC8929AAFAF6008DAD30 /* CLLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocation.swift; sourceTree = "<group>"; };
 		E482AC8F29AC53B2008DAD30 /* AssistantExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AssistantExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E482AC9029AC53B2008DAD30 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		E482AC9229AC53B2008DAD30 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -230,7 +230,7 @@
 		E4BCFDB329E2E42200E4D2AD /* PTCapitalization.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = PTCapitalization.plist; sourceTree = "<group>"; };
 		E4BCFDB429E2E42200E4D2AD /* PTTerms.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = PTTerms.plist; sourceTree = "<group>"; };
 		E4BCFDB729E2E44B00E4D2AD /* ProperText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProperText.swift; sourceTree = "<group>"; };
-		E4BCFDB929E2E52800E4D2AD /* BundleUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleUtilities.swift; sourceTree = "<group>"; };
+		E4BCFDB929E2E52800E4D2AD /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		E4BCFDBF29E2EC6E00E4D2AD /* ListSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSectionHeader.swift; sourceTree = "<group>"; };
 		E4BCFDC129E2EE5D00E4D2AD /* ListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRow.swift; sourceTree = "<group>"; };
 		E4BCFDC329E2F91400E4D2AD /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
@@ -255,7 +255,7 @@
 		E4FFCAC62801627D00DCA0EC /* BusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusService.swift; sourceTree = "<group>"; };
 		E4FFCAC82801631800DCA0EC /* BusArrivalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusArrivalInfo.swift; sourceTree = "<group>"; };
 		E4FFCACD28018B3500DCA0EC /* BusArrivalv2-1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "BusArrivalv2-1.json"; sourceTree = "<group>"; };
-		E4FFCADA2801B23300DCA0EC /* DateUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtilities.swift; sourceTree = "<group>"; };
+		E4FFCADA2801B23300DCA0EC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -394,6 +394,17 @@
 				E4D65F1A2865C58700FE78F4 /* README.md */,
 			);
 			path = Buses;
+			sourceTree = "<group>";
+		};
+		E467E24A29E5A66B005E188C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E4BCFDB929E2E52800E4D2AD /* Bundle.swift */,
+				E482AC8929AAFAF6008DAD30 /* CLLocation.swift */,
+				E4FFCADA2801B23300DCA0EC /* Date.swift */,
+				E4E367882804422B0022A5CD /* String.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		E476BF192808699300B8524B /* API */ = {
@@ -554,13 +565,10 @@
 			isa = PBXGroup;
 			children = (
 				E476BF1C28086A0F00B8524B /* Global */,
+				E467E24A29E5A66B005E188C /* Extensions */,
 				E4BCFDAD29E2E3C500E4D2AD /* ProperText */,
-				E4BCFDB929E2E52800E4D2AD /* BundleUtilities.swift */,
 				E4377ACF29E3F60D0036003E /* DataDisplayMode.swift */,
-				E4FFCADA2801B23300DCA0EC /* DateUtilities.swift */,
 				E4319EB3280413FA00D21531 /* JSONUtilities.swift */,
-				E482AC8929AAFAF6008DAD30 /* LocationUtilities.swift */,
-				E4E367882804422B0022A5CD /* String.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -712,7 +720,7 @@
 				E4B7FFE828544EBC0019F71A /* DirectoryView.swift in Sources */,
 				E41C1B9E285806A4003F1BFB /* BusNumberPlateView.swift in Sources */,
 				E4B700052856387E0019F71A /* App.swift in Sources */,
-				E482AC8A29AAFAF6008DAD30 /* LocationUtilities.swift in Sources */,
+				E482AC8A29AAFAF6008DAD30 /* CLLocation.swift in Sources */,
 				E4BCFDC029E2EC6E00E4D2AD /* ListSectionHeader.swift in Sources */,
 				E4FFCAC72801627D00DCA0EC /* BusService.swift in Sources */,
 				E4FFCAC52801627700DCA0EC /* BusStop.swift in Sources */,
@@ -741,7 +749,7 @@
 				E4FFCAC92801631800DCA0EC /* BusArrivalInfo.swift in Sources */,
 				E482ACC329AC7CBC008DAD30 /* Notifications.swift in Sources */,
 				D0011E21285D770000742687 /* FavoritesManager.swift in Sources */,
-				E4FFCADB2801B23300DCA0EC /* DateUtilities.swift in Sources */,
+				E4FFCADB2801B23300DCA0EC /* Date.swift in Sources */,
 				E4BCFDCA29E302B700E4D2AD /* ListHintOverlay.swift in Sources */,
 				E482ACC029AC6DEE008DAD30 /* ProgressBarView.swift in Sources */,
 				E49DFA5129B6DEB800654FBD /* BlurGradientView.swift in Sources */,
@@ -753,7 +761,7 @@
 				E4AAD7FC2882C0D800CC63E8 /* ToastView.swift in Sources */,
 				D0011E1F285D75FE00742687 /* Favorites.xcdatamodeld in Sources */,
 				E4BCFDC429E2F91400E4D2AD /* Defaults.swift in Sources */,
-				E4BCFDBA29E2E52800E4D2AD /* BundleUtilities.swift in Sources */,
+				E4BCFDBA29E2E52800E4D2AD /* Bundle.swift in Sources */,
 				D0011E23285D78D300742687 /* FavoriteList.swift in Sources */,
 				E476BF1E28086A2D00B8524B /* APIKeyHandler.swift in Sources */,
 				E4BCFDC229E2EE5D00E4D2AD /* ListRow.swift in Sources */,
@@ -770,7 +778,7 @@
 				E482AC9629AC53B2008DAD30 /* AssistantBundle.swift in Sources */,
 				E482ACB529AC5896008DAD30 /* BusStopList.swift in Sources */,
 				E482ACC129AC6DEE008DAD30 /* ProgressBarView.swift in Sources */,
-				E4BCFDBB29E2E5F100E4D2AD /* BundleUtilities.swift in Sources */,
+				E4BCFDBB29E2E5F100E4D2AD /* Bundle.swift in Sources */,
 				E482ACB429AC588C008DAD30 /* BusStop.swift in Sources */,
 				E482ACAB29AC555C008DAD30 /* BusArrivalInfo.swift in Sources */,
 				E482AC9829AC53B2008DAD30 /* AssistantLiveActivity.swift in Sources */,
@@ -780,7 +788,7 @@
 				E4BCFDBC29E2E7D600E4D2AD /* ProperText.swift in Sources */,
 				E482ACB729AC58EC008DAD30 /* String.swift in Sources */,
 				E482ACB229AC581A008DAD30 /* JSONUtilities.swift in Sources */,
-				E482ACB629AC58E5008DAD30 /* DateUtilities.swift in Sources */,
+				E482ACB629AC58E5008DAD30 /* Date.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -68,7 +68,7 @@ struct BusStopDetailView: View {
                                             Divider()
                                             VStack(alignment: .leading, spacing: 2.0) {
                                                 HStack(alignment: .center, spacing: 4.0) {
-                                                    Text(arrivalTimeTo(date: bus.nextBus?.estimatedArrivalTime()))
+                                                    Text(bus.nextBus?.estimatedArrivalTime()?.arrivalFormat() ?? localized("Shared.BusArrival.NotInService"))
                                                         .font(.body)
                                                     switch bus.nextBus?.feature {
                                                     case .WheelchairAccessible:
@@ -92,7 +92,7 @@ struct BusStopDetailView: View {
                                                     }
                                                 }
                                                 if let arrivalTime = bus.nextBus2?.estimatedArrivalTime() {
-                                                    Text(localized("Shared.BusArrival.Subsequent") + arrivalTimeTo(date: arrivalTime))
+                                                    Text(localized("Shared.BusArrival.Subsequent") + arrivalTime.arrivalFormat())
                                                         .font(.caption)
                                                         .foregroundColor(.secondary)
                                                 }

@@ -18,7 +18,7 @@ struct ArrivalInfoCardView: View {
     var body: some View {
         HStack(alignment: .center, spacing: 8.0) {
             VStack(alignment: .leading, spacing: 2.0) {
-                Text(arrivalTimeTo(date: arrivalInfo.estimatedArrivalTime()))
+                Text(arrivalInfo.estimatedArrivalTime()?.arrivalFormat() ?? localized("Shared.BusArrival.NotInService"))
                     .font(.system(size: 20.0, weight: .medium))
                 if arrivalTime != "" {
                     Text(arrivalTime)

@@ -165,7 +165,7 @@ struct DirectoryView: View {
                     let currentCoordinate = CLLocation(latitude: regionManager.region.wrappedValue.center.latitude,
                                                        longitude: regionManager.region.wrappedValue.center.longitude)
                     busStopList.busStops.sort { a, b in
-                        return distanceBetween(location: currentCoordinate, busStop: a) < distanceBetween(location: currentCoordinate, busStop: b)
+                        return currentCoordinate.distanceTo(busStop: a) < currentCoordinate.distanceTo(busStop: b)
                     }
                 } else {
                     if !shouldSortAlphabeticalAscending &&

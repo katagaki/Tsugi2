@@ -163,10 +163,10 @@ struct NearbyView: View {
             let currentCoordinate = CLLocation(latitude: locationManagerDelegate.region.center.latitude, longitude: locationManagerDelegate.region.center.longitude)
             var busStopListSortedByDistance: [BusStop] = busStopList.busStops
             busStopListSortedByDistance = busStopListSortedByDistance.filter { busStop in
-                distanceBetween(location: currentCoordinate, busStop: busStop) < 250.0
+                currentCoordinate.distanceTo(busStop: busStop) < 250.0
             }
             busStopListSortedByDistance.sort { a, b in
-                return distanceBetween(location: currentCoordinate, busStop: a) < distanceBetween(location: currentCoordinate, busStop: b)
+                return currentCoordinate.distanceTo(busStop: a) < currentCoordinate.distanceTo(busStop: b)
             }
             nearbyBusStops.removeAll()
             nearbyBusStops.append(contentsOf: busStopListSortedByDistance[0..<(busStopListSortedByDistance.count >= 10 ? 10 : busStopListSortedByDistance.count)])

@@ -13,6 +13,13 @@ func localized(_ key: String) -> String {
 
 extension String {
     
+    func toDateFromISO8601() -> Date? {
+        let formatter: DateFormatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return formatter.date(from: self)
+    }
+    
     func toInt() -> Int? {
         let digitComponents = self.components(separatedBy: .letters)
         let digits = digitComponents.joined()

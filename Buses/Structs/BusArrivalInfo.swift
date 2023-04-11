@@ -32,7 +32,7 @@ struct BusArrivalInfo: Codable, Hashable {
     }
     
     func estimatedArrivalTime() -> Date? {
-        return date(fromISO8601: _estimatedArrivalTime ?? "")
+        return _estimatedArrivalTime?.toDateFromISO8601()
     }
     
     func latitude() -> Double? {
