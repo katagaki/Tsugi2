@@ -114,15 +114,15 @@ struct DirectoryView: View {
             .searchable(text: $searchTerm, placement: .navigationBarDrawer(displayMode: .always))
             .onChange(of: searchTerm) { _ in
                 let searchTermTrimmed = searchTerm.trimmingCharacters(in: .whitespaces)
-                isSearching = (searchTermTrimmed != "" && searchTermTrimmed.count > 2)
+                isSearching = (searchTermTrimmed != "" && searchTermTrimmed.count > 1)
                 if isSearching {
                     if searchTermTrimmed.contains(previousSearchTerm) {
                         searchResults = searchResults.filter({ stop in
-                            stop.description?.localizedCaseInsensitiveContains(searchTermTrimmed) ?? false || stop.roadName?.localizedCaseInsensitiveContains(searchTermTrimmed) ?? false || stop.code.localizedCaseInsensitiveContains(searchTermTrimmed)
+                            (stop.description ?? "").similarTo(searchTermTrimmed)
                         })
                     } else {
                         searchResults = busStopList.busStops.filter({ stop in
-                            stop.description?.localizedCaseInsensitiveContains(searchTermTrimmed) ?? false || stop.roadName?.localizedCaseInsensitiveContains(searchTermTrimmed) ?? false || stop.code.localizedCaseInsensitiveContains(searchTermTrimmed)
+                            (stop.description ?? "").similarTo(searchTermTrimmed)
                         })
                     }
                     previousSearchTerm = searchTermTrimmed

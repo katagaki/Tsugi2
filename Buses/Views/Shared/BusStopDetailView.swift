@@ -180,7 +180,7 @@ struct BusStopDetailView: View {
             let busStopsFetched = try await fetchBusArrivals(for: busStop.code)
             busArrivals = busStopsFetched.arrivals ?? []
             busArrivals.sort(by: { a, b in
-                intFrom(a.serviceNo) ?? 9999 < intFrom(b.serviceNo) ?? 9999
+                a.serviceNo.toInt() ?? 9999 < b.serviceNo.toInt() ?? 9999
             })
             isInitialDataLoading = false
         }
