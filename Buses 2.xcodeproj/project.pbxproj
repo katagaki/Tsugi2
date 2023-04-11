@@ -40,6 +40,7 @@
 		E43C8CCB27F7F45D0073F510 /* OceanSansStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = E43C8CC927F7F45D0073F510 /* OceanSansStd-Book.otf */; };
 		E4406AB727EF182500819CDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4406AB627EF182500819CDC /* Assets.xcassets */; };
 		E467E24929E59A0E005E188C /* PTReplace.plist in Resources */ = {isa = PBXBuildFile; fileRef = E467E24829E59A0E005E188C /* PTReplace.plist */; };
+		E467E24C29E5A838005E188C /* LocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E467E24B29E5A838005E188C /* LocationDelegate.swift */; };
 		E476BF1B280869A500B8524B /* APIFetchers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF1A280869A500B8524B /* APIFetchers.swift */; };
 		E476BF1E28086A2D00B8524B /* APIKeyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF1D28086A2D00B8524B /* APIKeyHandler.swift */; };
 		E476BF2028086AE500B8524B /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF1F28086AE500B8524B /* Logging.swift */; };
@@ -193,6 +194,7 @@
 		E4406AB627EF182500819CDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4406ABB27EF182500819CDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E467E24829E59A0E005E188C /* PTReplace.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PTReplace.plist; sourceTree = "<group>"; };
+		E467E24B29E5A838005E188C /* LocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDelegate.swift; sourceTree = "<group>"; };
 		E476BF1A280869A500B8524B /* APIFetchers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFetchers.swift; sourceTree = "<group>"; };
 		E476BF1D28086A2D00B8524B /* APIKeyHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeyHandler.swift; sourceTree = "<group>"; };
 		E476BF1F28086AE500B8524B /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 				E41C1B9B28570CA1003F1BFB /* CoordinateList.swift */,
 				D0011E22285D78D300742687 /* FavoriteList.swift */,
 				D0011E20285D770000742687 /* FavoritesManager.swift */,
+				E467E24B29E5A838005E188C /* LocationDelegate.swift */,
 				E42A04BB29D87FB800B76ED6 /* NetworkMonitor.swift */,
 				E4225ABB29B0529600F1CF82 /* RegionManager.swift */,
 			);
@@ -717,6 +720,7 @@
 				E4B7FFFC285620530019F71A /* DirectoryMRTMapView.swift in Sources */,
 				E4BD94AB2859C87300030C7C /* ArrivalInfoCardView.swift in Sources */,
 				E41518F129B5848F00E50BB7 /* MapStopView.swift in Sources */,
+				E467E24C29E5A838005E188C /* LocationDelegate.swift in Sources */,
 				E4B7FFE828544EBC0019F71A /* DirectoryView.swift in Sources */,
 				E41C1B9E285806A4003F1BFB /* BusNumberPlateView.swift in Sources */,
 				E4B700052856387E0019F71A /* App.swift in Sources */,
