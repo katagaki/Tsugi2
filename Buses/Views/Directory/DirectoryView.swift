@@ -100,6 +100,7 @@ struct DirectoryView: View {
                                 }
                             } label: {
                                 Image(systemName: "arrow.up.arrow.down")
+                                    .font(.system(size: 14.0))
                             }
                             .labelsHidden()
                             .textCase(nil)

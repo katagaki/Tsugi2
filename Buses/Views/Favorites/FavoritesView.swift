@@ -61,7 +61,7 @@ struct FavoritesView: View {
                                             isBusServiceReorderPending = true
                                         } label: {
                                             Image(systemName: "arrow.left.arrow.right.circle")
-                                                .font(.body)
+                                                .font(.system(size: 14.0))
                                         }
                                     }
                                     Button {
@@ -70,7 +70,7 @@ struct FavoritesView: View {
                                         }
                                     } label: {
                                         Image(systemName: "chevron.up")
-                                            .font(.body)
+                                            .font(.system(size: 14.0))
                                     }
                                     .disabled(location.viewIndex == 0)
                                     Button {
@@ -79,7 +79,7 @@ struct FavoritesView: View {
                                         }
                                     } label: {
                                         Image(systemName: "chevron.down")
-                                            .font(.body)
+                                            .font(.system(size: 14.0))
                                     }
                                     .disabled(location.viewIndex == favorites.favoriteLocations.count - 1)
                                     Button {
@@ -87,7 +87,7 @@ struct FavoritesView: View {
                                         isDeletionPending = true
                                     } label: {
                                         Image(systemName: "minus.circle")
-                                            .font(.body)
+                                            .font(.system(size: 14.0))
                                             .foregroundColor(.red)
                                     }
                                 }
@@ -184,6 +184,9 @@ struct FavoritesView: View {
                 Task {
                     if let favoriteLocationPendingDeletion = favoriteLocationPendingDeletion {
                         await favorites.deleteLocation(favoriteLocationPendingDeletion)
+                        if favorites.favoriteLocations.count == 0 {
+                            isEditing = false
+                        }
                     }
                 }
             }, label: {

@@ -14,6 +14,7 @@ struct NearbyView: View {
     @Environment(\.scenePhase) var scenePhase
     
     @EnvironmentObject var busStopList: BusStopList
+    @EnvironmentObject var favorites: FavoriteList
     @EnvironmentObject var regionManager: RegionManager
     
     @State var isLocationManagerDelegateAssigned: Bool = false
@@ -60,7 +61,24 @@ struct NearbyView: View {
                                                     showToast: self.showToast)
                                 .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
                             } header: {
-                                ListSectionHeader(text: (stop.description ?? "Shared.BusStop.Description.None"))
+                                HStack(alignment: .center, spacing: 0.0) {
+                                    ListSectionHeader(text: (stop.description ?? "Shared.BusStop.Description.None"))
+                                    Spacer()
+                                    if favorites.favoriteLocations.contains(where: { location in
+                                        location.busStopCode == stop.code && location.usesLiveBusStopData == true
+                                    }) == false {
+                                        Button {
+                                            Task {
+                                                await favorites.addFavoriteLocation(busStop: stop, usesLiveBusStopData: true)
+                                                await favorites.saveChanges()
+                                                await showToast(localized("Shared.BusStop.Toast.Favorited").replacingOccurrences(of: "%s", with: stop.description ?? localized("Shared.BusStop.Description.None")), .Checkmark, true)
+                                            }
+                                        } label: {
+                                            Image(systemName: "rectangle.stack.badge.plus")
+                                                .font(.system(size: 14.0))
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
