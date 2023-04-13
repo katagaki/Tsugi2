@@ -90,7 +90,7 @@ struct FavoritesView: View {
                 }
             }
             .onChange(of: isEditing, perform: { newValue in
-                if newValue == false {
+                if !newValue {
                     favorites.shouldUpdateViewsAsSoonAsPossible = true
                 }
             })

@@ -23,7 +23,7 @@ struct ArrivalInfoDetailView: View {
     var busStop: Binding<BusStop>?
     var favoriteLocation: Binding<FavoriteLocation>?
     
-    let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
+    @State var timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
     @State var showsAddToLocationButton: Bool
     
@@ -124,6 +124,7 @@ struct ArrivalInfoDetailView: View {
     }
     
     func reloadArrivalTimes() async {
+        timer.upstream.connect().cancel()
         do {
             switch mode {
             case .BusStop, .FavoriteLocationLiveData:
@@ -152,6 +153,7 @@ struct ArrivalInfoDetailView: View {
         } catch {
             log(error.localizedDescription)
         }
+        timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     }
     
     func setNotification(for arrivalInfo: BusArrivalInfo) {

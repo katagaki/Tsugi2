@@ -36,7 +36,7 @@ struct ToastView: View {
             Spacer()
         }
         .padding(EdgeInsets(top: 8.0, leading: 8.0, bottom: 8.0, trailing: 8.0))
-        .background(Color(uiColor: .systemGroupedBackground))
+        .background(Color(uiColor: .secondarySystemGroupedBackground))
         .mask {
             RoundedRectangle(cornerRadius: 8.0)
         }

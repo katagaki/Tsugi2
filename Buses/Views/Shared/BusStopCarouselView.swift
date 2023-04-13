@@ -15,7 +15,7 @@ struct BusStopCarouselView: View {
     var mode: DataDisplayMode
     
     @State var isInitialDataLoaded: Bool = false
-    @Binding var isInUnstableState: Bool
+    @State var isInUnstableState: Binding<Bool>?
     @State var busServices: [BusService] = []
     @State var busStop: Binding<BusStop>?
     @State var favoriteLocation: Binding<FavoriteLocation>?
@@ -70,7 +70,7 @@ struct BusStopCarouselView: View {
                     .padding(EdgeInsets(top: 0.0, leading: 16.0, bottom: 0.0, trailing: 16.0))
                 }
                 .onReceive(timer, perform: { _ in
-                    if !isInUnstableState {
+                    if isInUnstableState == nil || !(isInUnstableState?.wrappedValue ?? true) {
                         Task {
                             await reloadArrivalTimes()
                             log("Arrival time data updated.")
@@ -79,7 +79,8 @@ struct BusStopCarouselView: View {
                 })
                 .onChange(of: favorites.shouldUpdateViewsAsSoonAsPossible) { newValue in
                     if newValue {
-                        if !isInUnstableState {
+                        if (isInUnstableState == nil || !(isInUnstableState?.wrappedValue ?? true)) && mode != .BusStop && mode != .NotificationItem {
+                            log("View update signal received from favorites handler.")
                             Task {
                                 await reloadArrivalTimes()
                                 favorites.shouldUpdateViewsAsSoonAsPossible = false

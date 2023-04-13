@@ -40,7 +40,6 @@ struct NearbyView: View {
                     List($nearbyBusStops, id: \.hashValue) { $stop in
                         Section {
                             BusStopCarouselView(mode: .BusStop,
-                                                isInUnstableState: .constant(false),
                                                 busStop: $stop,
                                                 favoriteLocation: nil)
                             .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
