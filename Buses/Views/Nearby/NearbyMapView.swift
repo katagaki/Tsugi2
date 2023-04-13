@@ -22,7 +22,9 @@ struct NearbyMapView: View {
             userTrackingMode: $userTrackingMode,
             annotationItems: displayedCoordinates.coordinates) { coordinate in
             MapAnnotation(coordinate: coordinate.clCoordinate()) {
-                NavigationLink(destination: BusStopDetailView(busStop: coordinate.busStop)) {
+                NavigationLink {
+                    BusStopDetailView(busStop: coordinate.busStop)
+                } label: {
                     MapStopView(busStop: coordinate.busStop)
                 }
             }

@@ -90,10 +90,19 @@ struct BusStopCarouselView: View {
                     }
                 }
             } else {
-                Text("Shared.BusStop.BusServices.None")
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                    .padding([.leading, .trailing])
+                //Favorites.Hint.NoBusServices
+                switch mode {
+                case .FavoriteLocationCustomData:
+                    Text("Favorites.Hint.NoBusServices")
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                        .padding([.leading, .trailing])
+                default:
+                    Text("Shared.BusStop.BusServices.None")
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                        .padding([.leading, .trailing])
+                }
             }
         }
     }

@@ -100,7 +100,7 @@ struct FavoritesView: View {
             }
             .overlay {
                 if favorites.favoriteLocations.count == 0 {
-                    ListHintOverlay(image: "info.circle.fill", text: "Favorites.Hint")
+                    ListHintOverlay(image: "info.circle.fill", text: "Favorites.Hint.NoLocations")
                 }
             }
             .navigationTitle("ViewTitle.Favorites")

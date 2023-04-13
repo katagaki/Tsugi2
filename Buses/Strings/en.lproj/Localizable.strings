@@ -39,7 +39,8 @@
 "Nearby.Hint.NoLocation" = "Location Services was not enabled. Select the button below to tell Buses your location without enabling Location Services.";
 
 /* Favorites View */
-"Favorites.Hint" = "No locations saved.\nTo create a new location, tap the Add Location button on the top right of this tab.\nYou can also add a bus stop as a location.";
+"Favorites.Hint.NoLocations" = "No locations saved.\nTo create a new location, tap the Add Location button on the top right of this tab.\nYou can also add a bus stop as a location.";
+"Favorites.Hint.NoBusServices" = "To add a bus service to this location, find and open a bus service, then tap the Add to Location button on the top right.";
 "Favorites.Delete.Confirm.Title" = "Delete Location";
 "Favorites.Delete.Confirm.Message" = "Are you sure you want to delete %LOCATION%?";
 "Favorites.Delete.Confirm.GenericLocationText" = "this location";

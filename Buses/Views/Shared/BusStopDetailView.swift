@@ -16,7 +16,8 @@ struct BusStopDetailView: View {
     @Binding var busStop: BusStop
     @State var busArrivals: [BusService] = []
     @State var isInitialDataLoading: Bool = true
-    let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
+    
+    @State var timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
     var body: some View {
         GeometryReader { metrics in
@@ -135,12 +136,14 @@ struct BusStopDetailView: View {
     
     func reloadBusArrivals() {
         Task {
+            timer.upstream.connect().cancel()
             let busStopsFetched = try await fetchBusArrivals(for: busStop.code)
             busArrivals = busStopsFetched.arrivals ?? []
             busArrivals.sort(by: { a, b in
                 a.serviceNo.toInt() ?? 9999 < b.serviceNo.toInt() ?? 9999
             })
             isInitialDataLoading = false
+            timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
         }
     }
     

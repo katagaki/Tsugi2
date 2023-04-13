@@ -39,7 +39,8 @@
 "Nearby.Hint.NoLocation" = "位置情報の設定が無効化されています。一時的に位置情報を共有するには、下のボタンを選択してください。";
 
 /* Favorites View */
-"Favorites.Hint" = "追加した場所はありません。\n新しい場所を作成するには、右上の新規場所ボタンを選択してください。\nバス停を直接的に追加することもできます。";
+"Favorites.Hint.NoLocations" = "追加した場所はありません。\n新しい場所を作成するには、右上の新規場所ボタンを選択してください。\nバス停を直接的に追加することもできます。";
+"Favorites.Hint.NoBusServices" = "この場所にバスを追加するには、バス到着情報画面を開き、右上の場所に追加ボタンを選択してください。";
 "Favorites.Delete.Confirm.Title" = "場所の削除";
 "Favorites.Delete.Confirm.Message" = "%LOCATION%を削除してよろしいですか？";
 "Favorites.Delete.Confirm.GenericLocationText" = "この場所";
