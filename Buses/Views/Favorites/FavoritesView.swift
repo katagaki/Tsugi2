@@ -11,85 +11,77 @@ struct FavoritesView: View {
     
     @EnvironmentObject var favorites: FavoriteList
     
-    @State var listInset: Double = 0.0
-    @State var isDeletionPending: Bool = false
-    @State var favoriteLocationPendingDeletion: FavoriteLocation? = nil
-    
     @State var isEditing: Bool = false
-    @State var isEditPending: Bool = false
     @State var favoriteLocationPendingEdit: FavoriteLocation? = nil
-    @State var favoriteLocationPendingEditNewNickname: String = ""
+    
+    @State var isEditPending: Bool = false
     
     @State var isNewPending: Bool = false
     @State var favoriteLocationNewNickname: String = ""
     
-    @State var isBusServiceReorderPending: Bool = false
-    @State var favoriteLocationPendingServiceReorder: FavoriteLocation? = nil
+    @State var isNicknameEditPending: Bool = false
+    @State var favoriteLocationPendingEditNewNickname: String = ""
     
-    var showToast: (String, ToastType, Bool) async -> Void
+    @State var isDeletionPending: Bool = false
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(favorites.favoriteLocations, id: \.hash) { location in
-                    Section {
-                        BusStopCarouselView(mode: (location.usesLiveBusStopData ? .FavoriteLocationLiveData : .FavoriteLocationCustomData),
-                                            favoriteLocation: location,
-                                            showToast: self.showToast)
-                            .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
-                            .opacity((isEditing ? 0.5 : 1.0))
-                            .disabled(isEditing)
-                    } header: {
-                        HStack(alignment: .center, spacing: 6.0) {
-                            ListSectionHeader(text: (location.nickname ?? location.busStopCode ?? ""))
-                            if isEditing {
-                                Button {
-                                    favoriteLocationPendingEdit = location
-                                    favoriteLocationPendingEditNewNickname = location.nickname ?? location.busStopCode!
-                                    isEditPending = true
-                                } label: {
-                                    Image(systemName: "pencil")
-                                        .font(.body)
-                                }
+            List($favorites.favoriteLocations, id: \.hashValue) { $location in
+                Section {
+                    BusStopCarouselView(mode: (location.usesLiveBusStopData ? .FavoriteLocationLiveData : .FavoriteLocationCustomData),
+                                        busStop: nil,
+                                        favoriteLocation: $location)
+                        .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
+                        .opacity((isEditing ? 0.5 : 1.0))
+                        .disabled(isEditing)
+                } header: {
+                    HStack(alignment: .center, spacing: 6.0) {
+                        ListSectionHeader(text: (location.nickname ?? location.busStopCode ?? ""))
+                        if isEditing {
+                            Button {
+                                favoriteLocationPendingEdit = location
+                                favoriteLocationPendingEditNewNickname = location.nickname ?? location.busStopCode!
+                                isNicknameEditPending = true
+                            } label: {
+                                Image(systemName: "pencil")
+                                    .font(.body)
                             }
                             Spacer()
-                            if isEditing {
-                                HStack(alignment: .center, spacing: 16.0) {
-                                    if !location.usesLiveBusStopData {
-                                        Button {
-                                            favoriteLocationPendingServiceReorder = location
-                                            isBusServiceReorderPending = true
-                                        } label: {
-                                            Image(systemName: "arrow.left.arrow.right.circle")
-                                                .font(.system(size: 14.0))
-                                        }
-                                    }
+                            HStack(alignment: .center, spacing: 16.0) {
+                                if !location.usesLiveBusStopData && !((location.busServices ?? []).count == 0) {
                                     Button {
-                                        Task {
-                                            await favorites.moveUp(location)
-                                        }
+                                        favoriteLocationPendingEdit = location
+                                        isEditPending = true
                                     } label: {
-                                        Image(systemName: "chevron.up")
+                                        Image(systemName: "arrow.left.arrow.right")
                                             .font(.system(size: 14.0))
                                     }
-                                    .disabled(location.viewIndex == 0)
-                                    Button {
-                                        Task {
-                                            await favorites.moveDown(location)
-                                        }
-                                    } label: {
-                                        Image(systemName: "chevron.down")
-                                            .font(.system(size: 14.0))
+                                }
+                                Button {
+                                    Task {
+                                        await favorites.moveUp(location)
                                     }
-                                    .disabled(location.viewIndex == favorites.favoriteLocations.count - 1)
-                                    Button {
-                                        favoriteLocationPendingDeletion = location
-                                        isDeletionPending = true
-                                    } label: {
-                                        Image(systemName: "minus.circle")
-                                            .font(.system(size: 14.0))
-                                            .foregroundColor(.red)
+                                } label: {
+                                    Image(systemName: "chevron.up")
+                                        .font(.system(size: 14.0))
+                                }
+                                .disabled(location.viewIndex == 0)
+                                Button {
+                                    Task {
+                                        await favorites.moveDown(location)
                                     }
+                                } label: {
+                                    Image(systemName: "chevron.down")
+                                        .font(.system(size: 14.0))
+                                }
+                                .disabled(location.viewIndex == favorites.favoriteLocations.count - 1)
+                                Button {
+                                    favoriteLocationPendingEdit = location
+                                    isDeletionPending = true
+                                } label: {
+                                    Image(systemName: "minus.circle")
+                                        .font(.system(size: 14.0))
+                                        .foregroundColor(.red)
                                 }
                             }
                         }
@@ -131,8 +123,8 @@ struct FavoritesView: View {
                     }
                 }
             }
-            .sheet(isPresented: $isBusServiceReorderPending, content: {
-                FavoritesReorderView(locationToReorder: $favoriteLocationPendingServiceReorder)
+            .sheet(isPresented: $isEditPending, content: {
+                FavoriteLocationEditView(locationToEdit: $favoriteLocationPendingEdit)
                     .presentationDetents([.medium])
                     .presentationDragIndicator(.visible)
             })
@@ -147,7 +139,7 @@ struct FavoritesView: View {
             })
             Button(action: {
                 Task {
-                    await favorites.addNewFavoriteLocation(nickname: favoriteLocationNewNickname)
+                    await favorites.createNewFavoriteLocation(nickname: favoriteLocationNewNickname)
                     await favorites.saveChanges()
                     favoriteLocationNewNickname = ""
                 }
@@ -155,7 +147,7 @@ struct FavoritesView: View {
                 Text("Alert.Create")
             })
         })
-        .alert("Favorites.Edit.Title", isPresented: $isEditPending, actions: {
+        .alert("Favorites.Rename.Title", isPresented: $isNicknameEditPending, actions: {
             TextField("", text: $favoriteLocationPendingEditNewNickname)
                 .textInputAutocapitalization(.words)
             Button(role: .cancel, action: {
@@ -176,14 +168,14 @@ struct FavoritesView: View {
         })
         .alert("Favorites.Delete.Confirm.Title", isPresented: $isDeletionPending, actions: {
             Button(role: .cancel, action: {
-                favoriteLocationPendingDeletion = nil
+                favoriteLocationPendingEdit = nil
             }, label: {
                 Text("Alert.No")
             })
             Button(role: .destructive, action: {
                 Task {
-                    if let favoriteLocationPendingDeletion = favoriteLocationPendingDeletion {
-                        await favorites.deleteLocation(favoriteLocationPendingDeletion)
+                    if let favoriteLocationPendingEdit = favoriteLocationPendingEdit {
+                        await favorites.deleteLocation(favoriteLocationPendingEdit)
                         if favorites.favoriteLocations.count == 0 {
                             isEditing = false
                         }
@@ -193,18 +185,14 @@ struct FavoritesView: View {
                 Text("Alert.Yes")
             })
         }, message: {
-            Text(localized("Favorites.Delete.Confirm.Message").replacingOccurrences(of: "%LOCATION%", with: favoriteLocationPendingDeletion?.nickname ?? localized("Favorites.Delete.Confirm.GenericLocationText")))
+            Text(localized("Favorites.Delete.Confirm.Message").replacingOccurrences(of: "%LOCATION%", with: favoriteLocationPendingEdit?.nickname ?? localized("Favorites.Delete.Confirm.GenericLocationText")))
         })
     }
     
 }
 
 struct FavoritesView_Previews: PreviewProvider {
-    
     static var previews: some View {
-        FavoritesView(showToast: self.showToast)
+        FavoritesView()
     }
-    
-    static func showToast(message: String, type: ToastType = .None, hideAutomatically: Bool = true) async { }
-
 }

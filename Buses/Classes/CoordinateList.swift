@@ -16,7 +16,7 @@ class CoordinateList: ObservableObject {
         coordinates = []
     }
     
-    func addCoordinate(from busStop: BusStop) {
+    func addCoordinate(from busStop: Binding<BusStop>) {
         self.coordinates.append(Coordinate(busStop: busStop))
     }
     

@@ -11,13 +11,12 @@ import SwiftUI
 struct BusStopDetailView: View {
     
     @EnvironmentObject var favorites: FavoriteList
+    @EnvironmentObject var toaster: Toaster
     
-    var busStop: BusStop
+    @Binding var busStop: BusStop
     @State var busArrivals: [BusService] = []
     @State var isInitialDataLoading: Bool = true
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
-    
-    var showToast: (String, ToastType, Bool) async -> Void
     
     var body: some View {
         GeometryReader { metrics in
@@ -31,7 +30,7 @@ struct BusStopDetailView: View {
                     annotationItems: [busStop]) { busStop in
                     MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: busStop.latitude ?? 0.0,
                                                                      longitude: busStop.longitude ?? 0.0)) {
-                        MapStopView(busStop: busStop)
+                        MapStopView(busStop: $busStop)
                         }
                     }
                 .overlay {
@@ -43,84 +42,38 @@ struct BusStopDetailView: View {
                     }
                 }
                 .ignoresSafeArea(edges: [.top])
-                List {
-                    if isInitialDataLoading {
-                        HStack(alignment: .center, spacing: 16.0) {
-                            Spacer()
-                            ProgressView()
-                                .progressViewStyle(.circular)
-                            Spacer()
-                        }
-                        .listRowBackground(Color.clear)
-                    } else {
-                        if busArrivals.count > 0 {
-                            Section {
-                                ForEach(busArrivals, id: \.hashValue) { bus in
-                                    NavigationLink {
-                                        ArrivalInfoDetailView(mode: .BusStop,
-                                                              busService: bus,
-                                                              busStop: busStop,
-                                                              showsAddToLocationButton: true,
-                                                              showToast: self.showToast)
-                                    } label: {
-                                        HStack(alignment: .center, spacing: 8.0) {
-                                            BusNumberPlateView(serviceNo: bus.serviceNo)
-                                            Divider()
-                                            VStack(alignment: .leading, spacing: 2.0) {
-                                                HStack(alignment: .center, spacing: 4.0) {
-                                                    Text(bus.nextBus?.estimatedArrivalTime()?.arrivalFormat() ?? localized("Shared.BusArrival.NotInService"))
-                                                        .font(.body)
-                                                    switch bus.nextBus?.feature {
-                                                    case .WheelchairAccessible:
-                                                        Image(systemName: "figure.roll")
-                                                            .font(.caption)
-                                                            .foregroundColor(.secondary)
-                                                    default:
-                                                        Text("")
-                                                    }
-                                                    switch bus.nextBus?.type {
-                                                    case .DoubleDeck:
-                                                        Image(systemName: "bus.doubledecker")
-                                                            .font(.caption)
-                                                            .foregroundColor(.secondary)
-                                                    case .none:
-                                                        Text("")
-                                                    default:
-                                                        Image(systemName: "bus")
-                                                            .font(.caption)
-                                                            .foregroundColor(.secondary)
-                                                    }
-                                                }
-                                                if let arrivalTime = bus.nextBus2?.estimatedArrivalTime() {
-                                                    Text(localized("Shared.BusArrival.Subsequent") + arrivalTime.arrivalFormat())
-                                                        .font(.caption)
-                                                        .foregroundColor(.secondary)
-                                                }
-                                            }
-                                            Spacer()
-                                        }
-                                        .alignmentGuide(.listRowSeparatorLeading) { _ in
-                                            return 0
-                                        }
-                                    }
-                                }
-                            } header: {
-                                ListSectionHeader(text: "Shared.BusStop.BusServices")
+                if isInitialDataLoading {
+                    HStack(alignment: .center, spacing: 16.0) {
+                        Spacer()
+                        ProgressView()
+                            .progressViewStyle(.circular)
+                        Spacer()
+                    }
+                } else {
+                    if busArrivals.count > 0 {
+                        List(busArrivals, id: \.hashValue) { bus in
+                            NavigationLink {
+                                ArrivalInfoDetailView(mode: .BusStop,
+                                                      busService: bus,
+                                                      busStop: $busStop,
+                                                      showsAddToLocationButton: true)
+                            } label: {
+                                ListBusServiceRow(bus: .constant(bus))
                             }
                         }
-                    }
-                }
-                .frame(width: metrics.size.width, height: metrics.size.height * 0.6)
-                .scrollIndicators(.never)
-                .shadow(radius: 2.5)
-                .zIndex(1)
-                .listStyle(.insetGrouped)
-                .refreshable {
-                    reloadBusArrivals()
-                }
-                .overlay {
-                    if busArrivals.count == 0 && !isInitialDataLoading {
+                        .scrollIndicators(.never)
+                        .listStyle(.insetGrouped)
+                        .refreshable {
+                            reloadBusArrivals()
+                        }
+                        .frame(width: metrics.size.width, height: metrics.size.height * 0.6)
+                        .shadow(radius: 2.5)
+                        .zIndex(1)
+                    } else {
                         ListHintOverlay(image: "exclamationmark.circle.fill", text: "Shared.BusStop.BusServices.None")
+                            .frame(width: metrics.size.width, height: metrics.size.height * 0.6)
+                            .shadow(radius: 2.5)
+                            .zIndex(1)
                     }
                 }
             }
@@ -163,7 +116,9 @@ struct BusStopDetailView: View {
                             Task {
                                 await favorites.addFavoriteLocation(busStop: busStop, usesLiveBusStopData: true)
                                 await favorites.saveChanges()
-                                await showToast(localized("Shared.BusStop.Toast.Favorited").replacingOccurrences(of: "%s", with: busStop.description ?? localized("Shared.BusStop.Description.None")), .Checkmark, true)
+                                toaster.showToast(localized("Shared.BusStop.Toast.Favorited").replacingOccurrences(of: "%s", with: busStop.description ?? localized("Shared.BusStop.Description.None")),
+                                                        type: .Checkmark,
+                                                        hideAutomatically: true)
                             }
                         } label: {
                             Image(systemName: "rectangle.stack.badge.plus")
@@ -199,8 +154,7 @@ struct BusStopDetailView: View {
 struct BusStopDetailView_Previews: PreviewProvider {
     static var previews: some View {
         let sampleBusStop: BusStop = BusStop()
-        BusStopDetailView(busStop: sampleBusStop,
-                          showToast: { _, _, _ in })
+        BusStopDetailView(busStop: .constant(sampleBusStop))
     }
 }
 

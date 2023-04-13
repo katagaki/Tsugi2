@@ -43,8 +43,9 @@
 "Favorites.Delete.Confirm.Title" = "Delete Location";
 "Favorites.Delete.Confirm.Message" = "Are you sure you want to delete %LOCATION%?";
 "Favorites.Delete.Confirm.GenericLocationText" = "this location";
-"Favorites.Edit.Title" = "Edit Location Name";
+"Favorites.Rename.Title" = "Rename Location";
 "Favorites.New.Title" = "New Location";
+"Favorites.Edit.Title" = "Edit %s";
 
 /* Notifications View */
 "Notifications.ArrivalAlerts" = "Arrival Alerts";

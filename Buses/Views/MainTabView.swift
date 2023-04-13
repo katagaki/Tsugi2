@@ -11,10 +11,15 @@ import SwiftUI
 
 struct MainTabView: View {
     
+    @Environment(\.scenePhase) var scenePhase
+    
     @EnvironmentObject var networkMonitor: NetworkMonitor
     @EnvironmentObject var busStopList: BusStopList
     @EnvironmentObject var favorites: FavoriteList
+    @EnvironmentObject var regionManager: MapRegionManager
+    @EnvironmentObject var locationManager: LocationManager
     @EnvironmentObject var shouldReloadBusStopList: BoolState
+    @EnvironmentObject var toaster: Toaster
     
     @State var defaultTab: Int = 0
     
@@ -22,95 +27,93 @@ struct MainTabView: View {
     @State var updatedDate: String
     @State var updatedTime: String
     
-    @State var nearbyBusStops: [BusStop] = []
-    
-    @State var isToastShowing: Bool = false
-    @State var toastMessage: String = ""
-    @State var toastType: ToastType = .None
-    
-    
     var body: some View {
-        TabView(selection: $defaultTab) {
-            NearbyView(nearbyBusStops: $nearbyBusStops,
-                       showToast: self.showToast)
-                .tabItem {
-                    Label("TabTitle.Nearby", systemImage: "location.circle.fill")
-                }
-                .tag(0)
-            FavoritesView(showToast: self.showToast)
-                .tabItem {
-                    Label("TabTitle.Favorites", systemImage: "rectangle.stack.fill")
-                }
-                .tag(1)
-            NotificationsView(showToast: self.showToast)
-                .tabItem {
-                    Label("TabTitle.Notifications", systemImage: "bell.fill")
-                }
-                .tag(2)
-            DirectoryView(updatedDate: $updatedDate,
-                          updatedTime: $updatedTime,
-                          showToast: self.showToast)
-                .tabItem {
-                    Label("TabTitle.Directory", systemImage: "magnifyingglass")
-                }
-                .tag(3)
-            MoreView()
-                .tabItem {
-                    Label("TabTitle.More", systemImage: "ellipsis")
-                }
-                .tag(4)
-        }
-        .onAppear {
-            if isInitialLoad {
-                defaultTab = defaults.integer(forKey: "StartupTab")
-                reloadBusStopList()
-                isInitialLoad = false
+        GeometryReader { metrics in
+            TabView(selection: $defaultTab) {
+                NearbyView()
+                    .tabItem {
+                        Label("TabTitle.Nearby", systemImage: "location.circle.fill")
+                    }
+                    .tag(0)
+                FavoritesView()
+                    .tabItem {
+                        Label("TabTitle.Favorites", systemImage: "rectangle.stack.fill")
+                    }
+                    .tag(1)
+                NotificationsView()
+                    .tabItem {
+                        Label("TabTitle.Notifications", systemImage: "bell.fill")
+                    }
+                    .tag(2)
+                DirectoryView(updatedDate: $updatedDate,
+                              updatedTime: $updatedTime)
+                    .tabItem {
+                        Label("TabTitle.Directory", systemImage: "magnifyingglass")
+                    }
+                    .tag(3)
+                MoreView()
+                    .tabItem {
+                        Label("TabTitle.More", systemImage: "ellipsis")
+                    }
+                    .tag(4)
             }
-        }
-        .onChange(of: shouldReloadBusStopList.state, perform: { newValue in
-            if newValue {
-                reloadBusStopList(forceServer: true)
-            }
-        })
-        .onChange(of: networkMonitor.isConnected) { isConnected in
-            if isConnected {
-                log("Network connection reappeared!")
-                isToastShowing = false
-                log("Retrying fetch of bus stop data.")
-                reloadBusStopList()
-            } else {
-                log("Network connection disappeared!")
-                Task {
-                    await showToast(message: localized("Shared.Error.InternetConnection"), type: .PersistentError, hideAutomatically: false)
+            .onAppear {
+                if isInitialLoad {
+                    defaultTab = defaults.integer(forKey: "StartupTab")
+                    reloadBusStopList()
+                    isInitialLoad = false
                 }
             }
-        }
-        .overlay {
-            ZStack(alignment: .top) {
-                if isToastShowing {
-                    ToastView(message: toastMessage, toastType: toastType)
+            .onChange(of: shouldReloadBusStopList.state, perform: { newValue in
+                if newValue {
+                    reloadBusStopList(forceServer: true)
                 }
-                Color.clear
+            })
+            .onChange(of: networkMonitor.isConnected) { isConnected in
+                if isConnected {
+                    log("Network connection reappeared!")
+                    toaster.hideToast()
+                    log("Retrying fetch of bus stop data.")
+                    reloadBusStopList()
+                } else {
+                    log("Network connection disappeared!")
+                    toaster.showToast(localized("Shared.Error.InternetConnection"), type: .PersistentError, hideAutomatically: false)
+                }
             }
-            .padding(EdgeInsets(top: 52.0, leading: 8.0, bottom: 0.0, trailing: 8.0))
-            .animation(.default, value: isToastShowing)
-        }
-        .edgesIgnoringSafeArea(.bottom)
-    }
-    
-    func showToast(message: String, type: ToastType = .None, hideAutomatically: Bool = true) async {
-        toastMessage = message
-        toastType = type
-        isToastShowing = true
-        if hideAutomatically {
-            try! await Task.sleep(nanoseconds: UInt64(3 * Double(NSEC_PER_SEC)))
-            isToastShowing = false
+            .onChange(of: scenePhase, perform: { newPhase in
+                switch newPhase {
+                    case .inactive:
+                        log("Scene became inactive.")
+                    case .active:
+                        log("Scene became active.")
+                        if locationManager.shouldUpdateLocationAsSoonAsPossible {
+                            locationManager.updateLocation(usingOnlySignificantChanges: false)
+                            locationManager.shouldUpdateLocationAsSoonAsPossible = false
+                        }
+                    case .background:
+                        locationManager.shouldUpdateLocationAsSoonAsPossible = true
+                        log("Scene went into the background.")
+                    @unknown default:
+                        log("Scene change detected, but we don't know what the change was!")
+                }
+            })
+            .overlay {
+                    ZStack(alignment: .bottom) {
+                        if toaster.isToastShowing {
+                            ToastView(message: toaster.toastMessage, toastType: toaster.toastType)
+                        }
+                        Color.clear
+                    }
+                    .padding(EdgeInsets(top: 0.0, leading: 8.0, bottom: metrics.safeAreaInsets.bottom + 57.0, trailing: 8.0))
+                    .animation(.default, value: toaster.isToastShowing)
+            }
+            .edgesIgnoringSafeArea(.bottom)
         }
     }
     
     func reloadBusStopList(forceServer: Bool = false) {
         Task {
-            await showToast(message: localized("Directory.BusStopsLoading"), type: .Spinner, hideAutomatically: false)
+            toaster.showToast(localized("Directory.BusStopsLoading"), type: .Spinner, hideAutomatically: false)
             if defaults.object(forKey: "StoredBusStopList") == nil || forceServer {
                 await reloadBusStopListFromServer()
                 log("Reloaded bus stop data from server.")
@@ -119,7 +122,7 @@ struct MainTabView: View {
                 log("Reloaded bus stop data from memory.")
             }
             shouldReloadBusStopList.state = false
-            isToastShowing = false
+            toaster.hideToast()
         }
     }
     
@@ -140,7 +143,7 @@ struct MainTabView: View {
             setLastUpdatedTimeForBusStopData()
         } catch {
             log("WARNING×WARNING×WARNING\nNetwork does not look like it's working, bus stop data may be incomplete!")
-            await showToast(message: localized("Shared.Error.InternetConnection"), type: .PersistentError, hideAutomatically: false)
+            toaster.showToast(localized("Shared.Error.InternetConnection"), type: .PersistentError, hideAutomatically: false)
         }
     }
     

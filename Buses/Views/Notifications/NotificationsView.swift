@@ -11,8 +11,6 @@ struct NotificationsView: View {
     
     @State var notificationRequests: [UNNotificationRequest] = []
     
-    var showToast: (String, ToastType, Bool) async -> Void
-    
     var body: some View {
         NavigationStack {
             List {
@@ -25,9 +23,8 @@ struct NotificationsView: View {
                                 NavigationLink {
                                     ArrivalInfoDetailView(mode: .NotificationItem,
                                                           busService: BusService(serviceNo: busService, operator: .Unknown),
-                                                          busStop: BusStop(code: stopCode, description: stopDescription),
-                                                          showsAddToLocationButton: false,
-                                                          showToast: self.showToast)
+                                                          busStop: .constant(BusStop(code: stopCode, description: stopDescription)),
+                                                          showsAddToLocationButton: false)
                                 } label: {
                                     HStack(alignment: .center, spacing: 16.0) {
                                         Image("ListIcon.Bus")
@@ -89,11 +86,7 @@ struct NotificationsView: View {
 }
 
 struct NotificationsView_Previews: PreviewProvider {
-    
     static var previews: some View {
-        NotificationsView(showToast: self.showToast)
+        NotificationsView()
     }
-    
-    static func showToast(message: String, type: ToastType = .None, hideAutomatically: Bool = true) async { }
-
 }

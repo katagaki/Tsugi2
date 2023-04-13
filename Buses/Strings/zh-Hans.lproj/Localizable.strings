@@ -43,8 +43,9 @@
 "Favorites.Delete.Confirm.Title" = "删除地点";
 "Favorites.Delete.Confirm.Message" = "确定要删除%LOCATION%吗？";
 "Favorites.Delete.Confirm.GenericLocationText" = "这个地点";
-"Favorites.Edit.Title" = "编辑地点名称";
+"Favorites.Rename.Title" = "编辑地点名称";
 "Favorites.New.Title" = "新地点";
+"Favorites.Edit.Title" = "编辑%s";
 
 /* Notifications View */
 "Notifications.ArrivalAlerts" = "到达通知";

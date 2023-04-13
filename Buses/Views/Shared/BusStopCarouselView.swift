@@ -16,12 +16,10 @@ struct BusStopCarouselView: View {
     
     @State var isInitialDataLoaded: Bool = false
     @State var busServices: [BusService] = []
-    @State var busStop: BusStop?
-    @State var favoriteLocation: FavoriteLocation?
+    @State var busStop: Binding<BusStop>?
+    @State var favoriteLocation: Binding<FavoriteLocation>?
     
     let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
-    
-    var showToast: (String, ToastType, Bool) async -> Void
     
     var body: some View {
         if !isInitialDataLoaded {
@@ -49,8 +47,7 @@ struct BusStopCarouselView: View {
                                                       busService: bus,
                                                       busStop: busStop,
                                                       favoriteLocation: favoriteLocation,
-                                                      showsAddToLocationButton: mode == .BusStop,
-                                                      showToast: self.showToast)
+                                                      showsAddToLocationButton: mode == .BusStop)
                             } label: {
                                 VStack(alignment: .center, spacing: 2.0) {
                                     BusNumberPlateView(serviceNo: bus.serviceNo)
@@ -85,22 +82,24 @@ struct BusStopCarouselView: View {
             }
         }
     }
-    
+
     func reloadArrivalTimes() async {
         do {
             switch mode {
             case .BusStop:
                 if let busStop = busStop {
-                    busServices = (try await fetchBusArrivals(for: busStop.code).arrivals ?? []).sorted(by: { a, b in
+                    busServices = (try await fetchBusArrivals(for: busStop.wrappedValue.code).arrivals ?? []).sorted(by: { a, b in
                         a.serviceNo.toInt() ?? 9999 < b.serviceNo.toInt() ?? 9999
                     })
                 }
             case .FavoriteLocationCustomData:
                 if let favoriteLocation = favoriteLocation,
-                   let favoriteBusServices = favoriteLocation.busServices {
+                   let favoriteBusServices = (favoriteLocation.wrappedValue.busServices?.array as? [FavoriteBusService])?.sorted(by: { a, b in
+                       a.viewIndex < b.viewIndex
+                   }) {
                     busServices = favoriteBusServices.reduce(into: [BusService](), { partialResult, favoriteBusService in
-                        var busService: BusService = BusService(serviceNo: (favoriteBusService as! FavoriteBusService).serviceNo!, operator: .Unknown)
-                        busService.busStopCode = (favoriteBusService as! FavoriteBusService).busStopCode
+                        var busService: BusService = BusService(serviceNo: favoriteBusService.serviceNo ?? "", operator: .Unknown)
+                        busService.busStopCode = favoriteBusService.busStopCode
                         partialResult.append(busService)
                     })
                     var fetchedBusServices: [BusService] = []
@@ -117,14 +116,12 @@ struct BusStopCarouselView: View {
                 }
             case .FavoriteLocationLiveData:
                 if let favoriteLocation = favoriteLocation {
-                    busServices = (try await fetchBusArrivals(for: favoriteLocation.busStopCode ?? "").arrivals ?? []).sorted(by: { a, b in
+                    busServices = (try await fetchBusArrivals(for: favoriteLocation.wrappedValue.busStopCode ?? "").arrivals ?? []).sorted(by: { a, b in
                         a.serviceNo.toInt() ?? 9999 < b.serviceNo.toInt() ?? 9999
                     })
-                    if busStop == nil {
-                        busStop = busStopList.busStops.first(where: { fetchedBusStop in
-                            fetchedBusStop.code == favoriteLocation.busStopCode
-                        })
-                    }
+                    busStop = .constant(busStopList.busStops.first(where: { fetchedBusStop in
+                        fetchedBusStop.code == favoriteLocation.wrappedValue.busStopCode
+                    }) ?? BusStop())
                 }
             case .NotificationItem:
                 break // Mode not supported

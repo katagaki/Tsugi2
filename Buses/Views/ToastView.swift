@@ -36,12 +36,12 @@ struct ToastView: View {
             Spacer()
         }
         .padding(EdgeInsets(top: 8.0, leading: 8.0, bottom: 8.0, trailing: 8.0))
-        .background(.regularMaterial)
+        .background(Color(uiColor: UIColor.systemGroupedBackground))
         .mask {
             RoundedRectangle(cornerRadius: 8.0)
         }
         .shadow(radius: 2.5)
-        .transition(AnyTransition.move(edge: .top).combined(with: .opacity))
+        .transition(AnyTransition.opacity)
     }
     
 }

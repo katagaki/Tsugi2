@@ -11,7 +11,7 @@ import SwiftUI
 struct DirectoryView: View {
     
     @EnvironmentObject var busStopList: BusStopList
-    @EnvironmentObject var regionManager: RegionManager
+    @EnvironmentObject var regionManager: MapRegionManager
     @EnvironmentObject var shouldReloadBusStopList: BoolState
     
     @State var previousSearchTerm: String = ""
@@ -25,28 +25,16 @@ struct DirectoryView: View {
     @State var shouldSortAlphabeticalDescending: Bool = false
     @State var shouldSortDistanceClosest: Bool = false
     
-    var showToast: (String, ToastType, Bool) async -> Void
-    
     var body: some View {
         NavigationStack {
             List {
                 if isSearching {
                     Section {
-                        ForEach(searchResults, id: \.code) { stop in
+                        ForEach($searchResults, id: \.code) { $stop in
                             NavigationLink {
-                                BusStopDetailView(busStop: stop,
-                                                  showToast: self.showToast)
+                                BusStopDetailView(busStop: $stop)
                             } label: {
-                                HStack(alignment: .center, spacing: 16.0) {
-                                    Image("ListIcon.BusStop")
-                                    VStack(alignment: .leading, spacing: 2.0) {
-                                        Text(verbatim: stop.description ?? "Shared.BusStop.Description.None")
-                                            .font(.body)
-                                        Text(verbatim: stop.roadName ?? "")
-                                            .font(.caption)
-                                            .foregroundColor(.secondary)
-                                    }
-                                }
+                                ListBusStopRow(busStop: $stop)
                             }
                         }
                     } header: {
@@ -67,21 +55,11 @@ struct DirectoryView: View {
                         ListSectionHeader(text: "Directory.UsefulResources")
                     }
                     Section {
-                        ForEach(busStopList.busStops, id: \.code) { stop in
+                        ForEach($busStopList.busStops, id: \.code) { $stop in
                             NavigationLink {
-                                BusStopDetailView(busStop: stop,
-                                                  showToast: self.showToast)
+                                BusStopDetailView(busStop: $stop)
                             } label: {
-                                HStack(alignment: .center, spacing: 16.0) {
-                                    Image("ListIcon.BusStop")
-                                    VStack(alignment: .leading, spacing: 2.0) {
-                                        Text(verbatim: stop.description ?? "Shared.BusStop.Description.None")
-                                            .font(.body)
-                                        Text(verbatim: stop.roadName ?? "")
-                                            .font(.caption)
-                                            .foregroundColor(.secondary)
-                                    }
-                                }
+                                ListBusStopRow(busStop: $stop)
                             }
                         }
                     } header: {
@@ -209,8 +187,7 @@ struct DirectoryView_Previews: PreviewProvider {
     
     static var previews: some View {
         DirectoryView(updatedDate: $updatedTime,
-                      updatedTime: $updatedTime,
-                      showToast: { _, _, _ in })
+                      updatedTime: $updatedTime)
     }
 }
 

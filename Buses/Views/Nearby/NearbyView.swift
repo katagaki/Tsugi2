@@ -11,39 +11,23 @@ import SwiftUI
 
 struct NearbyView: View {
     
-    @Environment(\.scenePhase) var scenePhase
-    
     @EnvironmentObject var busStopList: BusStopList
     @EnvironmentObject var favorites: FavoriteList
-    @EnvironmentObject var regionManager: RegionManager
+    @EnvironmentObject var regionManager: MapRegionManager
+    @EnvironmentObject var locationManager: LocationManager
+    @EnvironmentObject var toaster: Toaster
     
-    @State var isLocationManagerDelegateAssigned: Bool = false
-    @State private var locationManager: CLLocationManager = CLLocationManager()
-    @StateObject private var locationManagerDelegate: LocationDelegate = LocationDelegate()
     @State var displayedCoordinates: CoordinateList = CoordinateList()
-    @State var userTrackingMode: MapUserTrackingMode = .none
-    @State var shouldUpdateLocationAsSoonAsPossible: Bool = false
     
+    @State var isInitialDataLoaded: Bool = false
     @State var isNearbyBusStopsDetermined: Bool = false
-    @Binding var nearbyBusStops: [BusStop]
-    
-    var showToast: (String, ToastType, Bool) async -> Void
+    @State var nearbyBusStops: [BusStop] = []
     
     var body: some View {
         NavigationStack {
             GeometryReader { metrics in
                 VStack(alignment: .trailing, spacing: 0) {
-                    Map(coordinateRegion: regionManager.region,
-                        interactionModes: .all,
-                        showsUserLocation: true,
-                        userTrackingMode: $userTrackingMode,
-                        annotationItems: displayedCoordinates.coordinates) { coordinate in
-                        MapAnnotation(coordinate: coordinate.clCoordinate()) {
-                            NavigationLink(destination: BusStopDetailView(busStop: coordinate.busStop, showToast: self.showToast)) {
-                                MapStopView(busStop: coordinate.busStop)
-                            }
-                        }
-                    }
+                    NearbyMapView(displayedCoordinates: $displayedCoordinates)
                         .overlay {
                             ZStack(alignment: .topLeading) {
                                 BlurGradientView()
@@ -53,30 +37,30 @@ struct NearbyView: View {
                             }
                         }
                         .ignoresSafeArea(edges: [.top])
-                    List {
-                        ForEach(nearbyBusStops, id: \.code) { stop in
-                            Section {
-                                BusStopCarouselView(mode: .BusStop,
-                                                    busStop: stop,
-                                                    showToast: self.showToast)
-                                .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
-                            } header: {
-                                HStack(alignment: .center, spacing: 0.0) {
-                                    ListSectionHeader(text: (stop.description ?? "Shared.BusStop.Description.None"))
-                                    Spacer()
-                                    if favorites.favoriteLocations.contains(where: { location in
-                                        location.busStopCode == stop.code && location.usesLiveBusStopData == true
-                                    }) == false {
-                                        Button {
-                                            Task {
-                                                await favorites.addFavoriteLocation(busStop: stop, usesLiveBusStopData: true)
-                                                await favorites.saveChanges()
-                                                await showToast(localized("Shared.BusStop.Toast.Favorited").replacingOccurrences(of: "%s", with: stop.description ?? localized("Shared.BusStop.Description.None")), .Checkmark, true)
-                                            }
-                                        } label: {
-                                            Image(systemName: "rectangle.stack.badge.plus")
-                                                .font(.system(size: 14.0))
+                    List($nearbyBusStops, id: \.hashValue) { $stop in
+                        Section {
+                            BusStopCarouselView(mode: .BusStop,
+                                                busStop: $stop,
+                                                favoriteLocation: nil)
+                            .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
+                        } header: {
+                            HStack(alignment: .center, spacing: 0.0) {
+                                ListSectionHeader(text: (stop.description ?? "Shared.BusStop.Description.None"))
+                                Spacer()
+                                if favorites.favoriteLocations.contains(where: { location in
+                                    location.busStopCode == stop.code && location.usesLiveBusStopData == true
+                                }) == false {
+                                    Button {
+                                        Task {
+                                            await favorites.addFavoriteLocation(busStop: stop, usesLiveBusStopData: true)
+                                            await favorites.saveChanges()
+                                            toaster.showToast(localized("Shared.BusStop.Toast.Favorited").replacingOccurrences(of: "%s", with: stop.description ?? localized("Shared.BusStop.Description.None")),
+                                                                    type: .Checkmark,
+                                                                    hideAutomatically: true)
                                         }
+                                    } label: {
+                                        Image(systemName: "rectangle.stack.badge.plus")
+                                            .font(.system(size: 14.0))
                                     }
                                 }
                             }
@@ -95,11 +79,11 @@ struct NearbyView: View {
                         if busStopList.busStops.count == 0 {
                             ProgressView()
                                 .progressViewStyle(.circular)
-                        } else if locationManager.authorizationStatus == .notDetermined || locationManager.authorizationStatus == .denied || locationManager.authorizationStatus == .restricted {
+                        } else if !locationManager.isInUsableState() {
                             VStack {
                                 ListHintOverlay(image: "exclamationmark.triangle.fill", text: "Nearby.Hint.NoLocation")
                                 LocationButton {
-                                    updateLocation(usingOnlySignificantChanges: false)
+                                    locationManager.updateLocation(usingOnlySignificantChanges: false)
                                 }
                                 .symbolVariant(.fill)
                                 .labelStyle(.titleAndIcon)
@@ -115,16 +99,19 @@ struct NearbyView: View {
                 }
             }
             .onAppear {
-                if locationManager.authorizationStatus == .notDetermined {
+                log("Nearby view appeared.")
+                if !locationManager.isInUsableState() {
                     locationManager.requestWhenInUseAuthorization()
+                } else {
+                    reloadNearbyBusStops()
                 }
             }
-            .onChange(of: locationManagerDelegate.authorizationStatus, perform: { newValue in
+            .onChange(of: locationManager.authorizationStatus, perform: { newValue in
                 switch newValue {
                 case .authorizedWhenInUse:
                     log("Location Services authorization changed to When In Use.")
-                    locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-                    updateLocation(usingOnlySignificantChanges: false)
+                    locationManager.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+                    locationManager.updateLocation(usingOnlySignificantChanges: false)
                 case .notDetermined:
                     log("Location Services authorization not determined yet.")
                     locationManager.requestWhenInUseAuthorization()
@@ -137,28 +124,8 @@ struct NearbyView: View {
             .onChange(of: busStopList.busStops, perform: { _ in
                 if busStopList.busStops.count > 0 {
                     log("Bus stop list changed.")
-                    if locationManager.delegate == nil {
-                        locationManagerDelegate.completion = self.reloadNearbyBusStops
-                        locationManager.delegate = locationManagerDelegate
-                    }
-                    updateLocation(usingOnlySignificantChanges: false)
-                }
-            })
-            .onChange(of: scenePhase, perform: { newPhase in
-                switch newPhase {
-                    case .inactive:
-                        log("Scene became inactive from Nearby view.")
-                    case .active:
-                        log("Scene became active from Nearby view.")
-                        if shouldUpdateLocationAsSoonAsPossible {
-                            updateLocation(usingOnlySignificantChanges: false)
-                            shouldUpdateLocationAsSoonAsPossible = false
-                        }
-                    case .background:
-                        shouldUpdateLocationAsSoonAsPossible = true
-                        log("Scene went into the background from Nearby view.")
-                    @unknown default:
-                        log("Scene change detected, but we don't know what the change was!")
+                    locationManager.completion = self.reloadNearbyBusStops
+                    locationManager.updateLocation(usingOnlySignificantChanges: false)
                 }
             })
             .navigationTitle("ViewTitle.Nearby")
@@ -178,7 +145,7 @@ struct NearbyView: View {
     
     func reloadNearbyBusStops() {
         Task {
-            let currentCoordinate = CLLocation(latitude: locationManagerDelegate.region.center.latitude, longitude: locationManagerDelegate.region.center.longitude)
+            let currentCoordinate = CLLocation(latitude: locationManager.region.center.latitude, longitude: locationManager.region.center.longitude)
             var busStopListSortedByDistance: [BusStop] = busStopList.busStops
             busStopListSortedByDistance = busStopListSortedByDistance.filter { busStop in
                 currentCoordinate.distanceTo(busStop: busStop) < 500.0
@@ -189,31 +156,20 @@ struct NearbyView: View {
             nearbyBusStops.removeAll()
             nearbyBusStops.append(contentsOf: busStopListSortedByDistance)
             log("Reloaded nearby bus stop data.")
-            updateRegion(newRegion: locationManagerDelegate.region)
+            regionManager.updateRegion(newRegion: locationManager.region)
             log("Updated Map region.")
             displayedCoordinates.removeAll()
             for busStop in nearbyBusStops {
-                displayedCoordinates.addCoordinate(from: busStop)
+                displayedCoordinates.addCoordinate(from: Binding<BusStop>(get: {
+                    busStop
+                }, set: { busStop in
+                    nearbyBusStops[nearbyBusStops.firstIndex(where: { nearbyBusStop in
+                        nearbyBusStop.id == busStop.id
+                    })!] = busStop
+                }))
             }
             log("Updated displayed coordinates to nearby bus stops.")
             isNearbyBusStopsDetermined = true
-        }
-    }
-    
-    func updateLocation(usingOnlySignificantChanges: Bool = true) {
-        if usingOnlySignificantChanges {
-            log("Start monitoring for significant location changes.")
-            locationManager.startMonitoringSignificantLocationChanges()
-        } else {
-            log("Start updating location.")
-            locationManager.startUpdatingLocation()
-        }
-    }
-    
-    func updateRegion(newRegion: MKCoordinateRegion) {
-        withAnimation {
-            regionManager.region.wrappedValue = newRegion
-            regionManager.updateViewFlag.toggle()
         }
     }
     
@@ -221,10 +177,6 @@ struct NearbyView: View {
 
 struct NearbyView_Previews: PreviewProvider {
     static var previews: some View {
-        NearbyView(nearbyBusStops: .constant([]),
-                   showToast: self.showToast)
+        NearbyView()
     }
-    
-    static func showToast(message: String, type: ToastType = .None, hideAutomatically: Bool = true) async { }
-    
 }

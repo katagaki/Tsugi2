@@ -108,13 +108,10 @@ struct ArrivalInfoCardView_Previews: PreviewProvider {
     static var previews: some View {
         ArrivalInfoDetailView(mode: .BusStop,
                               busService: sampleBusStop!.arrivals!.randomElement()!,
-                              busStop: sampleBusStop!,
-                              showsAddToLocationButton: true,
-                              showToast: self.showToast)
+                              busStop: .constant(sampleBusStop!),
+                              showsAddToLocationButton: true)
     }
     
-    static func showToast(message: String, type: ToastType = .None, hideAutomatically: Bool = true) async { }
-
     static private func loadPreviewData() -> BusStop? {
         if let sampleDataPath = Bundle.main.path(forResource: "BusArrivalv2-1", ofType: "json") {
             let sampleBusStop: BusStop? = decode(from: sampleDataPath)

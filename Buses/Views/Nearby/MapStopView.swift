@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MapStopView: View {
     
-    let busStop: BusStop
+    @Binding var busStop: BusStop
     
     var body: some View {
         VStack(alignment: .center, spacing: 4.0) {
@@ -22,11 +22,5 @@ struct MapStopView: View {
                 .font(.caption)
         }
         .contentShape(Rectangle())
-    }
-}
-
-struct MapStopView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapStopView(busStop: BusStop())
     }
 }

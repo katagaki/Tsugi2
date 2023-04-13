@@ -43,8 +43,9 @@
 "Favorites.Delete.Confirm.Title" = "場所の削除";
 "Favorites.Delete.Confirm.Message" = "%LOCATION%を削除してよろしいですか？";
 "Favorites.Delete.Confirm.GenericLocationText" = "この場所";
-"Favorites.Edit.Title" = "場所名を変更";
+"Favorites.Rename.Title" = "場所名を変更";
 "Favorites.New.Title" = "新規場所";
+"Favorites.Edit.Title" = "%sを編集";
 
 /* Notifications View */
 "Notifications.ArrivalAlerts" = "到着通知";
