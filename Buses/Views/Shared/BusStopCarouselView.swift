@@ -93,10 +93,17 @@ struct BusStopCarouselView: View {
                 //Favorites.Hint.NoBusServices
                 switch mode {
                 case .FavoriteLocationCustomData:
-                    Text("Favorites.Hint.NoBusServices")
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                        .padding([.leading, .trailing])
+                    if (favoriteLocation?.wrappedValue.busServices?.count ?? 0) == 0 {
+                        Text("Favorites.Hint.NoBusServices")
+                            .font(.body)
+                            .foregroundColor(.secondary)
+                            .padding([.leading, .trailing])
+                    } else {
+                        Text("Shared.BusStop.BusServices.None")
+                            .font(.body)
+                            .foregroundColor(.secondary)
+                            .padding([.leading, .trailing])
+                    }
                 default:
                     Text("Shared.BusStop.BusServices.None")
                         .font(.body)
