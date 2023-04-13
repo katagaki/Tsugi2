@@ -91,8 +91,8 @@ struct MainTabView: View {
                             locationManager.shouldUpdateLocationAsSoonAsPossible = false
                         }
                     case .background:
-                        locationManager.shouldUpdateLocationAsSoonAsPossible = true
                         log("Scene went into the background.")
+                        locationManager.shouldUpdateLocationAsSoonAsPossible = true
                     @unknown default:
                         log("Scene change detected, but we don't know what the change was!")
                 }

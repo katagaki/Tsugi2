@@ -70,10 +70,13 @@ struct BusStopDetailView: View {
                         .shadow(radius: 2.5)
                         .zIndex(1)
                     } else {
-                        ListHintOverlay(image: "exclamationmark.circle.fill", text: "Shared.BusStop.BusServices.None")
+                        Color(uiColor: .systemGroupedBackground)
                             .frame(width: metrics.size.width, height: metrics.size.height * 0.6)
                             .shadow(radius: 2.5)
                             .zIndex(1)
+                            .overlay {
+                                ListHintOverlay(image: "exclamationmark.circle.fill", text: "Shared.BusStop.BusServices.None")
+                            }
                     }
                 }
             }

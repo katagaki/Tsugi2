@@ -17,6 +17,8 @@ class FavoriteList: ObservableObject {
     @Published var favoriteLocations: [FavoriteLocation]
     @Published var favoriteBusServices: [FavoriteBusService]
     
+    @Published var shouldUpdateViewsAsSoonAsPossible = false
+    
     init() {
         do {
             favoriteLocations = try context.fetch(fetchRequestForLocations)
@@ -72,6 +74,7 @@ class FavoriteList: ObservableObject {
                 a.viewIndex < b.viewIndex
             }
             log("Favorites data reloaded.")
+            shouldUpdateViewsAsSoonAsPossible = true
         } catch {
             favoriteLocations = []
             favoriteBusServices = []

@@ -29,6 +29,7 @@ struct FavoritesView: View {
             List($favorites.favoriteLocations, id: \.hashValue) { $location in
                 Section {
                     BusStopCarouselView(mode: (location.usesLiveBusStopData ? .FavoriteLocationLiveData : .FavoriteLocationCustomData),
+                                        isInUnstableState: $isEditing,
                                         busStop: nil,
                                         favoriteLocation: $location)
                         .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
@@ -88,9 +89,14 @@ struct FavoritesView: View {
                     }
                 }
             }
+            .onChange(of: isEditing, perform: { newValue in
+                if newValue == false {
+                    favorites.shouldUpdateViewsAsSoonAsPossible = true
+                }
+            })
             .listStyle(.insetGrouped)
             .refreshable {
-                favorites.reloadData()
+                favorites.shouldUpdateViewsAsSoonAsPossible = true
             }
             .overlay {
                 if favorites.favoriteLocations.count == 0 {

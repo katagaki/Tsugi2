@@ -15,11 +15,12 @@ struct BusStopCarouselView: View {
     var mode: DataDisplayMode
     
     @State var isInitialDataLoaded: Bool = false
+    @Binding var isInUnstableState: Bool
     @State var busServices: [BusService] = []
     @State var busStop: Binding<BusStop>?
     @State var favoriteLocation: Binding<FavoriteLocation>?
     
-    let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
+    @State var timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     
     var body: some View {
         if !isInitialDataLoaded {
@@ -69,11 +70,25 @@ struct BusStopCarouselView: View {
                     .padding(EdgeInsets(top: 0.0, leading: 16.0, bottom: 0.0, trailing: 16.0))
                 }
                 .onReceive(timer, perform: { _ in
-                    Task {
-                        await reloadArrivalTimes()
-                        log("Arrival time data updated.")
+                    if !isInUnstableState {
+                        Task {
+                            await reloadArrivalTimes()
+                            log("Arrival time data updated.")
+                        }
                     }
                 })
+                .onChange(of: favorites.shouldUpdateViewsAsSoonAsPossible) { newValue in
+                    if newValue {
+                        if !isInUnstableState {
+                            Task {
+                                await reloadArrivalTimes()
+                                favorites.shouldUpdateViewsAsSoonAsPossible = false
+                            }
+                        } else {
+                            favorites.shouldUpdateViewsAsSoonAsPossible = false
+                        }
+                    }
+                }
             } else {
                 Text("Shared.BusStop.BusServices.None")
                     .font(.body)
@@ -84,10 +99,12 @@ struct BusStopCarouselView: View {
     }
 
     func reloadArrivalTimes() async {
+        timer.upstream.connect().cancel()
         do {
             switch mode {
             case .BusStop:
                 if let busStop = busStop {
+                    log("Reloading arrival times for a bus stop type location.")
                     busServices = (try await fetchBusArrivals(for: busStop.wrappedValue.code).arrivals ?? []).sorted(by: { a, b in
                         a.serviceNo.toInt() ?? 9999 < b.serviceNo.toInt() ?? 9999
                     })
@@ -97,6 +114,7 @@ struct BusStopCarouselView: View {
                    let favoriteBusServices = (favoriteLocation.wrappedValue.busServices?.array as? [FavoriteBusService])?.sorted(by: { a, b in
                        a.viewIndex < b.viewIndex
                    }) {
+                    log("Reloading arrival times for a custom data type location.")
                     busServices = favoriteBusServices.reduce(into: [BusService](), { partialResult, favoriteBusService in
                         var busService: BusService = BusService(serviceNo: favoriteBusService.serviceNo ?? "", operator: .Unknown)
                         busService.busStopCode = favoriteBusService.busStopCode
@@ -116,6 +134,7 @@ struct BusStopCarouselView: View {
                 }
             case .FavoriteLocationLiveData:
                 if let favoriteLocation = favoriteLocation {
+                    log("Reloading arrival times for a live data type location.")
                     busServices = (try await fetchBusArrivals(for: favoriteLocation.wrappedValue.busStopCode ?? "").arrivals ?? []).sorted(by: { a, b in
                         a.serviceNo.toInt() ?? 9999 < b.serviceNo.toInt() ?? 9999
                     })
@@ -129,6 +148,7 @@ struct BusStopCarouselView: View {
         } catch {
             log(error.localizedDescription)
         }
+        timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     }
     
 }

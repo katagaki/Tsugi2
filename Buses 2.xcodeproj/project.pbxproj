@@ -316,8 +316,8 @@
 				D0011E22285D78D300742687 /* FavoriteList.swift */,
 				D0011E20285D770000742687 /* FavoritesManager.swift */,
 				E467E24B29E5A838005E188C /* LocationManager.swift */,
-				E42A04BB29D87FB800B76ED6 /* NetworkMonitor.swift */,
 				E4225ABB29B0529600F1CF82 /* MapRegionManager.swift */,
+				E42A04BB29D87FB800B76ED6 /* NetworkMonitor.swift */,
 				E4C3FEC529E84734009BBC92 /* Toaster.swift */,
 			);
 			path = Classes;
