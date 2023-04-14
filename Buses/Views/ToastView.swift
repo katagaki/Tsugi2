@@ -22,7 +22,7 @@ struct ToastView: View {
                 Image(systemName: "checkmark.circle.fill")
                     .symbolRenderingMode(.multicolor)
             case .Exclamation:
-                Image(systemName: "exclamationmark.circle.fill")
+                Image(systemName: "exclamationmark.triangle.fill")
                     .symbolRenderingMode(.multicolor)
             case .PersistentError:
                 Image(systemName: "xmark.circle.fill")
@@ -38,9 +38,32 @@ struct ToastView: View {
         .padding(EdgeInsets(top: 16.0, leading: 16.0, bottom: 16.0, trailing: 16.0))
         .background(Color(uiColor: .secondarySystemGroupedBackground))
         .mask {
-            RoundedRectangle(cornerRadius: 8.0)
+            RoundedRectangle(cornerRadius: 10.0)
         }
         .shadow(radius: 2.5)
+        .overlay {
+            switch toastType {
+            case .Spinner:
+                RoundedRectangle(cornerRadius: 10.0)
+                    .strokeBorder(Color(uiColor: .tertiarySystemGroupedBackground), lineWidth: 1.0)
+            case .Checkmark:
+                RoundedRectangle(cornerRadius: 10.0)
+                    .strokeBorder(Color.blue, lineWidth: 1.0)
+                    .opacity(0.5)
+            case .Exclamation:
+                RoundedRectangle(cornerRadius: 10.0)
+                    .strokeBorder(Color.yellow, lineWidth: 1.0)
+                    .opacity(0.5)
+            case .PersistentError:
+                RoundedRectangle(cornerRadius: 10.0)
+                    .strokeBorder(Color.red, lineWidth: 1.0)
+                    .opacity(0.5)
+            case .None:
+                RoundedRectangle(cornerRadius: 10.0)
+                    .strokeBorder(.primary, lineWidth: 1.0)
+                    .opacity(0.5)
+            }
+        }
         .transition(AnyTransition.opacity)
     }
     
