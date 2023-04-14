@@ -102,6 +102,11 @@ struct MainTabView: View {
                     ZStack(alignment: .bottom) {
                         if toaster.isToastShowing {
                             ToastView(message: toaster.toastMessage, toastType: toaster.toastType)
+                                .onTapGesture {
+                                    if toaster.toastType != .PersistentError && toaster.toastType != .Spinner {
+                                        toaster.hideToast()
+                                    }
+                                }
                         }
                         Color.clear
                     }

@@ -38,7 +38,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func isInUsableState() -> Bool {
-        return !(locationManager.authorizationStatus == .notDetermined || locationManager.authorizationStatus == .denied || locationManager.authorizationStatus == .restricted)
+        return locationManager.authorizationStatus != .notDetermined && locationManager.authorizationStatus != .denied && locationManager.authorizationStatus != .restricted
     }
     
     func requestWhenInUseAuthorization() {
