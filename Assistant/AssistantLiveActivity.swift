@@ -26,7 +26,8 @@ struct AssistantLiveActivity: Widget {
         ActivityConfiguration(for: AssistantAttributes.self) { context in
             HStack(alignment: .center) {
                 HStack(alignment: .center, spacing: 16.0) {
-                    BusNumberPlateView(serviceNo: context.state.busService.serviceNo)
+                    BusNumberPlateView(carouselDisplayMode: .constant(.Full),
+                                       serviceNo: context.state.busService.serviceNo)
                         .background(Color("PlateColor"))
                         .clipShape(RoundedRectangle(cornerRadius: 8.0))
                         .frame(minWidth: 88.0, maxWidth: 88.0, minHeight: 40.0, maxHeight: 40.0, alignment: .center)
@@ -68,7 +69,8 @@ struct AssistantLiveActivity: Widget {
         } dynamicIsland: { context in
             DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
-                    BusNumberPlateView(serviceNo: context.state.busService.serviceNo)
+                    BusNumberPlateView(carouselDisplayMode: .constant(.Full),
+                                       serviceNo: context.state.busService.serviceNo)
                         .background(Color("PlateColor"))
                         .clipShape(RoundedRectangle(cornerRadius: 16.0))
                         .frame(minWidth: 88.0, maxWidth: 88.0, minHeight: 40.0, maxHeight: 40.0, alignment: .leading)

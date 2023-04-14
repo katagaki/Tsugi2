@@ -19,6 +19,7 @@ struct MainTabView: View {
     @EnvironmentObject var regionManager: MapRegionManager
     @EnvironmentObject var locationManager: LocationManager
     @EnvironmentObject var shouldReloadBusStopList: BoolState
+    @EnvironmentObject var settings: SettingsManager
     @EnvironmentObject var toaster: Toaster
     
     @State var defaultTab: Int = 0
@@ -59,7 +60,7 @@ struct MainTabView: View {
             }
             .onAppear {
                 if isInitialLoad {
-                    defaultTab = defaults.integer(forKey: "StartupTab")
+                    defaultTab = settings.startupTab
                     reloadBusStopList()
                     isInitialLoad = false
                 }
@@ -114,7 +115,7 @@ struct MainTabView: View {
     func reloadBusStopList(forceServer: Bool = false) {
         Task {
             toaster.showToast(localized("Directory.BusStopsLoading"), type: .Spinner, hideAutomatically: false)
-            if defaults.object(forKey: "StoredBusStopList") == nil || forceServer {
+            if settings.storedBusStopList() == nil || forceServer {
                 await reloadBusStopListFromServer()
                 log("Reloaded bus stop data from server.")
             } else {
@@ -132,14 +133,14 @@ struct MainTabView: View {
             busStopList.busStops = busStopsFetched.sorted(by: { a, b in
                 a.description?.lowercased() ?? "" < b.description?.lowercased() ?? ""
             })
-            if defaults.bool(forKey: "UseProperText") {
+            if settings.useProperText {
                 busStopList.busStops.forEach { busStop in
                     busStop.description = properName(for: busStop.description ?? localized("Shared.BusStop.Description.None"))
                     busStop.roadName = properName(for: busStop.roadName ?? localized("Shared.BusStop.Description.None"))
                 }
             }
-            defaults.set(encode(busStopList), forKey: "StoredBusStopList")
-            defaults.set(Date.now, forKey: "StoredBusStopListUpdatedDate")
+            settings.setStoredBusStopList(busStopList)
+            settings.setStoredBsuStopListUpdatedDate(Date.now)
             setLastUpdatedTimeForBusStopData()
         } catch {
             log("WARNING×WARNING×WARNING\nNetwork does not look like it's working, bus stop data may be incomplete!")
@@ -148,8 +149,8 @@ struct MainTabView: View {
     }
     
     func reloadBusStopListFromStoredMemory() {
-        if let storedBusStopListJSON = defaults.string(forKey: "StoredBusStopList"),
-           let storedUpdatedDate = defaults.object(forKey: "StoredBusStopListUpdatedDate") as? Date,
+        if let storedBusStopListJSON = settings.storedBusStopList(),
+           let storedUpdatedDate = settings.storedBusStopListUpdatedDate(),
            let storedBusStopList: BusStopList = decode(fromData: storedBusStopListJSON.data(using: .utf8) ?? Data()) {
             busStopList.metadata = storedBusStopList.metadata
             busStopList.busStops = storedBusStopList.busStops

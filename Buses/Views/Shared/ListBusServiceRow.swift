@@ -13,7 +13,8 @@ struct ListBusServiceRow: View {
     
     var body: some View {
         HStack(alignment: .center, spacing: 8.0) {
-            BusNumberPlateView(serviceNo: bus.serviceNo)
+            BusNumberPlateView(carouselDisplayMode: .constant(.Full),
+                               serviceNo: bus.serviceNo)
             Divider()
             VStack(alignment: .leading, spacing: 2.0) {
                 HStack(alignment: .center, spacing: 4.0) {

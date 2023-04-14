@@ -73,6 +73,9 @@
 "More.General.AppIcon.Blue" = "Blue";
 "More.General.AppIcon.Laze" = "Laze";
 "More.Customization" = "Customization";
+"More.Customization.CarouselSize.Full" = "Full";
+"More.Customization.CarouselSize.Small" = "Small";
+"More.Customization.CarouselSize.Minimal" = "Minimal";
 "More.Customization.ProperText" = "Expand Bus Stop Names";
 "More.Customization.ProperText.Subtitle" = "Remove and expand abbreviations in bus stop names to make bus stops easier to find.";
 "More.Notifications" = "Notifications";
@@ -109,8 +112,10 @@
 "Shared.BusStop.BusServices" = "Bus Services";
 "Shared.BusStop.BusServices.None" = "This bus stop has no bus services at this time.";
 "Shared.BusStop.Toast.Favorited" = "%s has been added to your locations.";
-"Shared.BusArrival.Arriving" = "Arriving";
-"Shared.BusArrival.JustLeft" = "Just Left";
+"Shared.BusArrival.Arriving.Full" = "Arriving";
+"Shared.BusArrival.Arriving.Abbreviated" = "Arr";
+"Shared.BusArrival.JustLeft.Full" = "Just Left";
+"Shared.BusArrival.JustLeft.Abbreviated" = "Left";
 "Shared.BusArrival.NotInService" = "No Service";
 "Shared.BusArrival.NotInService.Subtitle" = "The bus service is currently unavailable.";
 "Shared.BusArrival.Subsequent" = "Next Bus: ";

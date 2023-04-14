@@ -73,6 +73,9 @@
 "More.General.AppIcon.Blue" = "ブルー";
 "More.General.AppIcon.Laze" = "ナマケモノ";
 "More.Customization" = "カスタマイズ";
+"More.Customization.CarouselSize.Full" = "基本";
+"More.Customization.CarouselSize.Small" = "小";
+"More.Customization.CarouselSize.Minimal" = "ミニマル";
 "More.Customization.ProperText" = "バス停名の略語を復元";
 "More.Customization.ProperText.Subtitle" = "バス停名にある略語を元の言葉にし、分かりやすくします。";
 "More.Notifications" = "通知";
@@ -109,8 +112,10 @@
 "Shared.BusStop.BusServices" = "バス";
 "Shared.BusStop.BusServices.None" = "このバス停に止まるバスはすべてサービス時間外です。";
 "Shared.BusStop.Toast.Favorited" = "%sは、場所として保存されました。";
-"Shared.BusArrival.Arriving" = "まもなく到着";
-"Shared.BusArrival.JustLeft" = "発車済み";
+"Shared.BusArrival.Arriving.Full" = "まもなく到着";
+"Shared.BusArrival.Arriving.Abbreviated" = "まもなく";
+"Shared.BusArrival.JustLeft.Full" = "発車済み";
+"Shared.BusArrival.JustLeft.Abbreviated" = "発車";
 "Shared.BusArrival.NotInService" = "サービス時間外";
 "Shared.BusArrival.NotInService.Subtitle" = "このバスは、現在サービスが提供していません。";
 "Shared.BusArrival.Subsequent" = "次：";

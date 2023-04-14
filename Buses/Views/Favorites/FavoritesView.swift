@@ -28,7 +28,7 @@ struct FavoritesView: View {
         NavigationStack {
             List($favorites.favoriteLocations, id: \.hashValue) { $location in
                 Section {
-                    BusStopCarouselView(mode: (location.usesLiveBusStopData ? .FavoriteLocationLiveData : .FavoriteLocationCustomData),
+                    BusServicesCarousel(dataDisplayMode: (location.usesLiveBusStopData ? .FavoriteLocationLiveData : .FavoriteLocationCustomData),
                                         isInUnstableState: $isEditing,
                                         busStop: nil,
                                         favoriteLocation: $location)

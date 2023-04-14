@@ -1,5 +1,5 @@
 //
-//  BusStopCarouselView.swift
+//  BusServicesCarousel.swift
 //  Buses
 //
 //  Created by 堅書 on 24/2/23.
@@ -7,12 +7,13 @@
 
 import SwiftUI
 
-struct BusStopCarouselView: View {
+struct BusServicesCarousel: View {
     
     @EnvironmentObject var busStopList: BusStopList
     @EnvironmentObject var favorites: FavoriteList
+    @EnvironmentObject var settings: SettingsManager
     
-    var mode: DataDisplayMode
+    @State var dataDisplayMode: DataDisplayMode
     
     @State var isInitialDataLoaded: Bool = false
     @State var isInUnstableState: Binding<Bool>?
@@ -31,29 +32,29 @@ struct BusStopCarouselView: View {
                 Spacer()
             }
             .onAppear {
-                if !isInitialDataLoaded {
-                    Task {
-                        await reloadArrivalTimes()
-                        isInitialDataLoaded = true
-                    }
+                Task {
+                    await reloadArrivalTimes()
+                    isInitialDataLoaded = true
                 }
             }
-        } else {
-            if busServices.count > 0 {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack(spacing: 8.0) {
-                        ForEach(busServices, id: \.hashValue) { bus in
-                            NavigationLink {
-                                ArrivalInfoDetailView(mode: mode,
-                                                      busService: bus,
-                                                      busStop: busStop,
-                                                      favoriteLocation: favoriteLocation,
-                                                      showsAddToLocationButton: mode == .BusStop)
-                            } label: {
-                                VStack(alignment: .center, spacing: 2.0) {
-                                    BusNumberPlateView(serviceNo: bus.serviceNo)
-                                        .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: -8.0, trailing: 0.0))
-                                    Text(bus.nextBus?.estimatedArrivalTime()?.arrivalFormat() ?? localized("Shared.BusArrival.NotInService"))
+        } else if busServices.count > 0 {
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack(spacing: 8.0) {
+                    ForEach(busServices, id: \.hashValue) { bus in
+                        NavigationLink {
+                            ArrivalInfoDetailView(mode: dataDisplayMode,
+                                                  busService: bus,
+                                                  busStop: busStop,
+                                                  favoriteLocation: favoriteLocation,
+                                                  showsAddToLocationButton: dataDisplayMode == .BusStop)
+                        } label: {
+                            VStack(alignment: .center, spacing: 2.0) {
+                                BusNumberPlateView(carouselDisplayMode: $settings.carouselDisplayMode,
+                                                   serviceNo: bus.serviceNo)
+                                    .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: -8.0, trailing: 0.0))
+                                switch settings.carouselDisplayMode {
+                                case .Full:
+                                    Text(bus.nextBus?.estimatedArrivalTime()?.arrivalFormat(style: .short) ?? localized("Shared.BusArrival.NotInService"))
                                         .font(.body)
                                         .foregroundColor(.primary)
                                         .lineLimit(1)
@@ -61,63 +62,76 @@ struct BusStopCarouselView: View {
                                         .font(.body)
                                         .foregroundColor(.secondary)
                                         .lineLimit(1)
-                                        .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: 8.0, trailing: 0.0))
+                                case .Small:
+                                    Text(bus.nextBus?.estimatedArrivalTime()?.arrivalFormat(style: .abbreviated) ?? localized("Shared.BusArrival.NotInService"))
+                                        .font(.subheadline)
+                                        .foregroundColor(.primary)
+                                        .lineLimit(1)
+                                    Text(bus.nextBus2?.estimatedArrivalTime()?.arrivalFormat(style: .abbreviated) ?? " ")
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                        .lineLimit(1)
+                                case .Minimal:
+                                    Text(bus.nextBus?.estimatedArrivalTime()?.arrivalFormat(style: .abbreviated) ?? localized("Shared.BusArrival.NotInService"))
+                                        .font(.caption)
+                                        .foregroundColor(.primary)
+                                        .lineLimit(1)
                                 }
-                                .frame(minWidth: 88.0, maxWidth: 88.0, minHeight: 0, maxHeight: .infinity, alignment: .center)
                             }
+                            .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: 8.0, trailing: 0.0))
                         }
                     }
-                    .padding(EdgeInsets(top: 0.0, leading: 16.0, bottom: 0.0, trailing: 16.0))
                 }
-                .onReceive(timer, perform: { _ in
-                    if isInUnstableState == nil || !(isInUnstableState?.wrappedValue ?? true) {
+                .padding(EdgeInsets(top: 0.0, leading: 16.0, bottom: 0.0, trailing: 16.0))
+            }
+            .onReceive(timer, perform: { _ in
+                if isInUnstableState == nil || !(isInUnstableState?.wrappedValue ?? true) {
+                    Task {
+                        await reloadArrivalTimes()
+                        log("Arrival time data updated.")
+                    }
+                }
+            })
+            .onChange(of: favorites.shouldUpdateViewsAsSoonAsPossible) { newValue in
+                if newValue {
+                    if (isInUnstableState == nil || !(isInUnstableState?.wrappedValue ?? true)) && dataDisplayMode != .BusStop && dataDisplayMode != .NotificationItem {
+                        log("View update signal received from favorites handler.")
                         Task {
                             await reloadArrivalTimes()
-                            log("Arrival time data updated.")
-                        }
-                    }
-                })
-                .onChange(of: favorites.shouldUpdateViewsAsSoonAsPossible) { newValue in
-                    if newValue {
-                        if (isInUnstableState == nil || !(isInUnstableState?.wrappedValue ?? true)) && mode != .BusStop && mode != .NotificationItem {
-                            log("View update signal received from favorites handler.")
-                            Task {
-                                await reloadArrivalTimes()
-                                favorites.shouldUpdateViewsAsSoonAsPossible = false
-                            }
-                        } else {
                             favorites.shouldUpdateViewsAsSoonAsPossible = false
                         }
+                    } else {
+                        favorites.shouldUpdateViewsAsSoonAsPossible = false
                     }
                 }
-            } else {
-                HStack(alignment: .center) {
-                    switch mode {
-                    case .FavoriteLocationCustomData:
-                        if (favoriteLocation?.wrappedValue.busServices?.count ?? 0) == 0 {
-                            Text("Favorites.Hint.NoBusServices")
-                                .font(.body)
-                                .foregroundColor(.secondary)
-                        } else {
-                            Text("Shared.BusStop.BusServices.None")
-                                .font(.body)
-                                .foregroundColor(.secondary)
-                        }
-                    default:
+            }
+        } else {
+            HStack(alignment: .center) {
+                switch dataDisplayMode {
+                case .FavoriteLocationCustomData:
+                    if (favoriteLocation?.wrappedValue.busServices?.count ?? 0) == 0 {
+                        Text("Favorites.Hint.NoBusServices")
+                            .font(.body)
+                            .foregroundColor(.secondary)
+                    } else {
                         Text("Shared.BusStop.BusServices.None")
                             .font(.body)
                             .foregroundColor(.secondary)
                     }
+                default:
+                    Text("Shared.BusStop.BusServices.None")
+                        .font(.body)
+                        .foregroundColor(.secondary)
                 }
-                .padding([.leading, .trailing])
             }
+            .padding([.leading, .trailing])
         }
     }
 
     func reloadArrivalTimes() async {
         timer.upstream.connect().cancel()
         do {
-            switch mode {
+            switch dataDisplayMode {
             case .BusStop:
                 if let busStop = busStop {
                     log("Reloading arrival times for a bus stop type location.")

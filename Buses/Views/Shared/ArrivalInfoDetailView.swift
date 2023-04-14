@@ -170,6 +170,8 @@ struct ArrivalInfoDetailView: View {
                                             type: .Exclamation,
                                             hideAutomatically: true)
                 } else {
+                    // TODO: Fix setting of notification when mode is FavoriteLocationCustomData
+                    // TODO: Remove .constant() setting for bus stop
                     if let busStop = self.busStop {
                         let content = UNMutableNotificationContent()
                         let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.weekday, .hour, .minute, .second],

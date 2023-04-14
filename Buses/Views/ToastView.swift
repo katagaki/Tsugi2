@@ -45,11 +45,3 @@ struct ToastView: View {
     }
     
 }
-
-enum ToastType {
-    case Spinner
-    case Checkmark
-    case Exclamation
-    case PersistentError
-    case None
-}

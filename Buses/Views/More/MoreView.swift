@@ -11,17 +11,15 @@ struct MoreView: View {
     
     @EnvironmentObject var busStopList: BusStopList
     @EnvironmentObject var shouldReloadBusStopList: BoolState
-    
-    @State var currentlySelectedStartupTab: Int = 0
-    @State var useProperText: Bool = true
-    
+    @EnvironmentObject var settings: SettingsManager
+        
     @State var showLogsView: Bool = false
     
     var body: some View {
         NavigationStack {
             List {
                 Section {
-                    Picker(selection: $currentlySelectedStartupTab) {
+                    Picker(selection: $settings.startupTab) {
                         Text("TabTitle.Nearby")
                             .tag(0)
                         Text("TabTitle.Favorites")
@@ -42,7 +40,35 @@ struct MoreView: View {
                     ListSectionHeader(text: "More.General")
                 }
                 Section {
-                    Toggle(isOn: $useProperText) {
+                    HStack(alignment: .center, spacing: 32.0) {
+                        Spacer()
+                        Button {
+                            settings.setCarouselDisplayMode(.Full)
+                        } label: {
+                            ImageWithCheck(image: "Carousel.Full",
+                                           label: localized("More.Customization.CarouselSize.Full"),
+                                           checked: $settings.carouselDisplayModeIsFull)
+                        }
+                        .buttonStyle(.borderless)
+                        Button {
+                            settings.setCarouselDisplayMode(.Small)
+                        } label: {
+                            ImageWithCheck(image: "Carousel.Small",
+                                           label: localized("More.Customization.CarouselSize.Small"),
+                                           checked: $settings.carouselDisplayModeIsSmall)
+                        }
+                        .buttonStyle(.borderless)
+                        Button {
+                            settings.setCarouselDisplayMode(.Minimal)
+                        } label: {
+                            ImageWithCheck(image: "Carousel.Minimal",
+                                           label: localized("More.Customization.CarouselSize.Minimal"),
+                                           checked: $settings.carouselDisplayModeIsMinimal)
+                        }
+                        .buttonStyle(.borderless)
+                        Spacer()
+                    }
+                    Toggle(isOn: $settings.useProperText) {
                         ListRow(image: "ListIcon.ProperText", title: "More.Customization.ProperText", subtitle: "More.Customization.ProperText.Subtitle")
                     }
                     .disabled(shouldReloadBusStopList.state)
@@ -85,17 +111,13 @@ struct MoreView: View {
                 }
             }
             .listStyle(.insetGrouped)
-            .onChange(of: currentlySelectedStartupTab, perform: { newValue in
-                defaults.set(newValue, forKey: "StartupTab")
+            .onChange(of: settings.startupTab, perform: { newValue in
+                settings.setStartupTab(newValue)
             })
-            .onChange(of: useProperText, perform: { newValue in
-                defaults.set(newValue, forKey: "UseProperText")
+            .onChange(of: settings.useProperText, perform: { newValue in
+                settings.setProperText(newValue)
                 shouldReloadBusStopList.state = true
             })
-            .onAppear {
-                currentlySelectedStartupTab = defaults.integer(forKey: "StartupTab")
-                useProperText = defaults.bool(forKey: "UseProperText")
-            }
             .navigationTitle("ViewTitle.More")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

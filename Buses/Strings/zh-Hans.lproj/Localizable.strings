@@ -73,6 +73,9 @@
 "More.General.AppIcon.Blue" = "蓝色";
 "More.General.AppIcon.Laze" = "懒色";
 "More.Customization" = "个性化";
+"More.Customization.CarouselSize.Full" = "大";
+"More.Customization.CarouselSize.Small" = "中";
+"More.Customization.CarouselSize.Minimal" = "小";
 "More.Customization.ProperText" = "恢复巴士站名称缩写";
 "More.Customization.ProperText.Subtitle" = "公交车站名称中的缩写改为原词，使其更容易理解。";
 "More.Notifications" = "通知";
@@ -109,8 +112,10 @@
 "Shared.BusStop.BusServices" = "巴士服务";
 "Shared.BusStop.BusServices.None" = "此巴士站目前没有能提供的巴士服务。";
 "Shared.BusStop.Toast.Favorited" = "%s已保存为地点。";
-"Shared.BusArrival.Arriving" = "即将抵达";
-"Shared.BusArrival.JustLeft" = "已经离开";
+"Shared.BusArrival.Arriving.Full" = "即将抵达";
+"Shared.BusArrival.Arriving.Abbreviated" = "即将";
+"Shared.BusArrival.JustLeft.Full" = "已经离开";
+"Shared.BusArrival.JustLeft.Abbreviated" = "已离开";
 "Shared.BusArrival.NotInService" = "停止服务";
 "Shared.BusArrival.NotInService.Subtitle" = "此巴士此刻不提供服务。";
 "Shared.BusArrival.Subsequent" = "下一班车：";
