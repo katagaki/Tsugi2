@@ -110,7 +110,7 @@ struct MainTabView: View {
                         }
                         Color.clear
                     }
-                    .padding(EdgeInsets(top: 0.0, leading: 8.0, bottom: metrics.safeAreaInsets.bottom + 57.0, trailing: 8.0))
+                    .padding(EdgeInsets(top: 0.0, leading: 16.0, bottom: metrics.safeAreaInsets.bottom + 65.0, trailing: 16.0))
                     .animation(.default, value: toaster.isToastShowing)
             }
             .edgesIgnoringSafeArea(.bottom)

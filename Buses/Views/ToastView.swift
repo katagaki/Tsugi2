@@ -35,7 +35,7 @@ struct ToastView: View {
                 .multilineTextAlignment(.leading)
             Spacer()
         }
-        .padding(EdgeInsets(top: 8.0, leading: 8.0, bottom: 8.0, trailing: 8.0))
+        .padding(EdgeInsets(top: 16.0, leading: 16.0, bottom: 16.0, trailing: 16.0))
         .background(Color(uiColor: .secondarySystemGroupedBackground))
         .mask {
             RoundedRectangle(cornerRadius: 8.0)
