@@ -91,26 +91,25 @@ struct BusStopCarouselView: View {
                     }
                 }
             } else {
-                //Favorites.Hint.NoBusServices
-                switch mode {
-                case .FavoriteLocationCustomData:
-                    if (favoriteLocation?.wrappedValue.busServices?.count ?? 0) == 0 {
-                        Text("Favorites.Hint.NoBusServices")
-                            .font(.body)
-                            .foregroundColor(.secondary)
-                            .padding([.leading, .trailing])
-                    } else {
+                HStack(alignment: .center) {
+                    switch mode {
+                    case .FavoriteLocationCustomData:
+                        if (favoriteLocation?.wrappedValue.busServices?.count ?? 0) == 0 {
+                            Text("Favorites.Hint.NoBusServices")
+                                .font(.body)
+                                .foregroundColor(.secondary)
+                        } else {
+                            Text("Shared.BusStop.BusServices.None")
+                                .font(.body)
+                                .foregroundColor(.secondary)
+                        }
+                    default:
                         Text("Shared.BusStop.BusServices.None")
                             .font(.body)
                             .foregroundColor(.secondary)
-                            .padding([.leading, .trailing])
                     }
-                default:
-                    Text("Shared.BusStop.BusServices.None")
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                        .padding([.leading, .trailing])
                 }
+                .padding([.leading, .trailing])
             }
         }
     }
