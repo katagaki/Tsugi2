@@ -78,6 +78,7 @@ struct BusServicesCarousel: View {
                                         .lineLimit(1)
                                 }
                             }
+                            .frame(minWidth: settings.carouselDisplayMode.width(), maxWidth: settings.carouselDisplayMode.width(), minHeight: 0, maxHeight: .infinity, alignment: .center)
                             .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: 8.0, trailing: 0.0))
                         }
                     }

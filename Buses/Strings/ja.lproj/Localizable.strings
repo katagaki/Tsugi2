@@ -112,11 +112,11 @@
 "Shared.BusStop.BusServices" = "バス";
 "Shared.BusStop.BusServices.None" = "このバス停に止まるバスはすべてサービス時間外です。";
 "Shared.BusStop.Toast.Favorited" = "%sは、場所として保存されました。";
-"Shared.BusArrival.Arriving.Full" = "まもなく到着";
+"Shared.BusArrival.Arriving.Full" = "すぐに到着";
 "Shared.BusArrival.Arriving.Abbreviated" = "まもなく";
 "Shared.BusArrival.JustLeft.Full" = "発車済み";
 "Shared.BusArrival.JustLeft.Abbreviated" = "発車";
-"Shared.BusArrival.NotInService" = "サービス時間外";
+"Shared.BusArrival.NotInService" = "終了";
 "Shared.BusArrival.NotInService.Subtitle" = "このバスは、現在サービスが提供していません。";
 "Shared.BusArrival.Subsequent" = "次：";
 "Shared.BusArrival.Crowded" = "混雑中";
