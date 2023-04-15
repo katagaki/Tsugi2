@@ -15,13 +15,14 @@ struct BusServiceView: View {
     
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var favorites: FavoritesManager
+    @EnvironmentObject var settings: SettingsManager
     @EnvironmentObject var toaster: Toaster
     
     @State var liveActivityID: String = ""
     
     @State var isInitialDataLoading: Bool = true
     @State var busService: BusService
-    @State var mapPlacemarksForRouteDisplay: [MKPlacemark] = []
+    @State var busStopsForMapDisplay: [BusStop] = []
     var busStop: Binding<BusStop>?
     var favoriteLocation: Binding<FavoriteLocation>?
     
@@ -32,21 +33,24 @@ struct BusServiceView: View {
     var body: some View {
         GeometryReader { metrics in
             VStack(alignment: .trailing, spacing: 0) {
-                MapWithRoute(useLegacyOverlay: true,
-                             placemarks: $mapPlacemarksForRouteDisplay)
-                .ignoresSafeArea(edges: [.top])
-                .overlay {
-                    ZStack(alignment: .topLeading) {
-                        BlurGradientView()
-                            .ignoresSafeArea()
-                            .frame(height: metrics.safeAreaInsets.top + 44.0)
-                        Color.clear
+                if settings.showRoute {
+                    MapWithRoute(useLegacyOverlay: true,
+                                 currentBusStopCode: busStop?.wrappedValue.code ?? "",
+                                 busStops: $busStopsForMapDisplay)
+                    .ignoresSafeArea(edges: [.top])
+                    .overlay {
+                        ZStack(alignment: .topLeading) {
+                            BlurGradientView()
+                                .ignoresSafeArea()
+                                .frame(height: metrics.safeAreaInsets.top + 44.0)
+                            Color.clear
+                        }
                     }
-                }
-                .overlay {
-                    if !dataManager.isBusRouteListLoaded {
-                        ProgressView()
-                            .progressViewStyle(.circular)
+                    .overlay {
+                        if !dataManager.isBusRouteListLoaded {
+                            ProgressView()
+                                .progressViewStyle(.circular)
+                        }
                     }
                 }
                 List {
@@ -69,7 +73,7 @@ struct BusServiceView: View {
                     }
                 }
                 .listStyle(.insetGrouped)
-                .frame(width: metrics.size.width, height: metrics.size.height * 0.6)
+                .frame(width: metrics.size.width, height: (settings.showRoute ? metrics.size.height * 0.6 : metrics.size.height))
                 .shadow(radius: 2.5)
                 .zIndex(1)
             }
@@ -79,7 +83,7 @@ struct BusServiceView: View {
             startLiveActivity()
             do {
                 try await dataManager.reloadBusRoutesFromServer()
-                if dataManager.isBusRouteListLoaded {
+                if dataManager.isBusRouteListLoaded && settings.showRoute {
                     reloadBusRoute()
                 }
             } catch {
@@ -100,7 +104,7 @@ struct BusServiceView: View {
             }
         }
         .onChange(of: dataManager.isBusRouteListLoaded, perform: { newValue in
-            if newValue {
+            if newValue && settings.showRoute {
                 reloadBusRoute()
             }
         })
@@ -192,13 +196,10 @@ struct BusServiceView: View {
     }
     
     func reloadBusRoute() {
-        let busRoutePoints = dataManager.busRoute(for: busService.serviceNo)
+        let busRoutePoints = dataManager.busRoute(for: busService.serviceNo, direction: busService.direction ?? .Backward)
         for busRoutePoint in busRoutePoints {
-            if let busStop = dataManager.busStop(code: busRoutePoint.stopCode),
-               let latitude = busStop.latitude,
-               let longitude = busStop.longitude {
-                mapPlacemarksForRouteDisplay.append(MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: latitude,
-                                                                                                   longitude: longitude)))
+            if let busStop = dataManager.busStop(code: busRoutePoint.stopCode) {
+                busStopsForMapDisplay.append(busStop)
             }
         }
     }

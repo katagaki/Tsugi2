@@ -13,14 +13,12 @@ struct MapWithRoute: UIViewRepresentable {
     typealias UIViewType = MKMapView
     
     @State var useLegacyOverlay: Bool
-    @Binding var placemarks: [MKPlacemark]
+    @State var currentBusStopCode: String
+    @Binding var busStops: [BusStop]
     
     func makeUIView(context: Context) -> MKMapView {
         
         let mapView = MKMapView()
-        let region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 1.352083, longitude: 103.819836),
-        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
         
         mapView.delegate = context.coordinator
         drawRoute(mapView)
@@ -40,55 +38,88 @@ struct MapWithRoute: UIViewRepresentable {
     }
     
     func drawRoute(_ mapView: MKMapView) {
-        if placemarks.count != 0 {
+        if busStops.count != 0 {
             if useLegacyOverlay {
                 var coordinates: [CLLocationCoordinate2D] = []
-                for placemark in placemarks {
-                    coordinates.append(placemark.coordinate)
+                for busStop in busStops {
+                    if let latitude = busStop.latitude,
+                       let longitude = busStop.longitude {
+                        let placemark = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: latitude,
+                                                                                       longitude: longitude))
+                        coordinates.append(placemark.coordinate)
+                    }
                 }
                 let polyline = MKGeodesicPolyline(coordinates: coordinates, count: coordinates.count)
-                mapView.addOverlay(polyline)
+                mapView.addOverlay(polyline, level: .aboveRoads)
                 mapView.setVisibleMapRect(polyline.boundingMapRect,
                                           edgePadding: UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0),
                                           animated: false)
             } else {
-                let maximumPlacemarksSkipped: Int = placemarks.count / 20
+                let skipCount: Int = busStops.count / 25
                 var currentIndex: Int = 0
                 repeat {
+                    let startIndex = currentIndex
+                    let endIndex = (currentIndex + skipCount <= busStops.count - 1 ? currentIndex + skipCount : busStops.count - 1)
                     let directionsRequest = MKDirections.Request()
-                    directionsRequest.source =  MKMapItem(placemark: placemarks[currentIndex])
-                    directionsRequest.destination = MKMapItem(placemark: placemarks[(currentIndex + maximumPlacemarksSkipped <= placemarks.count - 1 ? currentIndex + maximumPlacemarksSkipped : placemarks.count - 1)])
-                    // TODO: Change to Transit whenever Apple provides the API for it
-                    directionsRequest.transportType = .automobile
-                    let directions = MKDirections(request: directionsRequest)
-                    directions.calculate { response, error in
-                        if let response = response,
-                           let route = response.routes.first {
-                            mapView.addOverlay(route.polyline)
+                    if let sourceLatitude = busStops[startIndex].latitude,
+                       let sourceLongitude = busStops[startIndex].longitude,
+                       let destinationLatitude = busStops[endIndex].latitude,
+                       let destinationLongitude = busStops[endIndex].latitude {
+                        directionsRequest.source =  MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: sourceLatitude, longitude: sourceLongitude)))
+                        directionsRequest.destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: destinationLatitude, longitude: destinationLongitude)))
+                        // TODO: Change to Transit whenever Apple provides the API for it
+                        directionsRequest.transportType = .automobile
+                        let directions = MKDirections(request: directionsRequest)
+                        directions.calculate { response, error in
+                            if let response = response,
+                               let route = response.routes.first {
+                                mapView.addOverlay(route.polyline)
+                            }
                         }
                     }
-                    currentIndex += maximumPlacemarksSkipped
-                } while currentIndex <= placemarks.count - 1
+                    currentIndex += skipCount
+                } while currentIndex <= busStops.count - 1
             }
         }
     }
     
     func reloadAnnotations(_ mapView: MKMapView) {
         mapView.removeAnnotations(mapView.annotations)
-        for placemark in placemarks {
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = placemark.coordinate
-            mapView.addAnnotation(annotation)
+        for busStop in busStops {
+            if let latitude = busStop.latitude,
+               let longitude = busStop.longitude,
+               let description = busStop.description {
+                let annotation = MapWithRoutePointAnnotation()
+                annotation.isCurrentBusStop = currentBusStopCode == busStop.code
+                annotation.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                annotation.title = description
+                mapView.addAnnotation(annotation)
+            }
         }
+    }
+    
+    class MapWithRoutePointAnnotation: MKPointAnnotation {
+        var isCurrentBusStop: Bool = false
     }
 
     class MapViewCoordinator: NSObject, MKMapViewDelegate {
+        
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
             let renderer = MKPolylineRenderer(overlay: overlay)
             renderer.strokeColor = UIColor(named: "AccentColor")
             renderer.lineWidth = 3
             return renderer
         }
+        
+        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+            let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
+            annotationView.canShowCallout = false
+            annotationView.image = UIImage(named: "ListIcon.BusStop")
+            annotationView.annotation = annotation
+            annotationView.bounds.size = CGSize(width: 16.0, height: 16.0)
+            return annotationView
+        }
+        
     }
 
 }

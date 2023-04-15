@@ -129,6 +129,8 @@
 		E4F02DE429EA648D00EADA1E /* BusRoutePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F02DDE29EA5D1F00EADA1E /* BusRoutePoint.swift */; };
 		E4F02DE929EA75BA00EADA1E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F02DE829EA75BA00EADA1E /* DataManager.swift */; };
 		E4F02DEB29EA77CA00EADA1E /* StrokeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F02DEA29EA77CA00EADA1E /* StrokeText.swift */; };
+		E4F02DED29EAA8F800EADA1E /* BusRouteDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F02DEC29EAA8F800EADA1E /* BusRouteDirection.swift */; };
+		E4F02DEE29EAA92B00EADA1E /* BusRouteDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F02DEC29EAA8F800EADA1E /* BusRouteDirection.swift */; };
 		E4FFCAC22801604300DCA0EC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4FFCAC12801604300DCA0EC /* MapKit.framework */; };
 		E4FFCAC52801627700DCA0EC /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC42801627700DCA0EC /* BusStop.swift */; };
 		E4FFCAC72801627D00DCA0EC /* BusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC62801627D00DCA0EC /* BusService.swift */; };
@@ -278,6 +280,7 @@
 		E4F02DE029EA5DEA00EADA1E /* BusOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusOperator.swift; sourceTree = "<group>"; };
 		E4F02DE829EA75BA00EADA1E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E4F02DEA29EA77CA00EADA1E /* StrokeText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeText.swift; sourceTree = "<group>"; };
+		E4F02DEC29EAA8F800EADA1E /* BusRouteDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusRouteDirection.swift; sourceTree = "<group>"; };
 		E4FFCAC12801604300DCA0EC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E4FFCAC42801627700DCA0EC /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
 		E4FFCAC62801627D00DCA0EC /* BusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusService.swift; sourceTree = "<group>"; };
@@ -552,6 +555,7 @@
 		E4F02DCE29E97DCF00EADA1E /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				E4F02DEC29EAA8F800EADA1E /* BusRouteDirection.swift */,
 				E4F02DCF29E97DE600EADA1E /* CarouselDisplayMode.swift */,
 				E4377ACF29E3F60D0036003E /* DataDisplayMode.swift */,
 				E4F02DD129E97E0400EADA1E /* ToastType.swift */,
@@ -821,6 +825,7 @@
 				E482ACC329AC7CBC008DAD30 /* Notifications.swift in Sources */,
 				E4F02DE129EA5DEA00EADA1E /* BusOperator.swift in Sources */,
 				E4F02DD529E9978200EADA1E /* ImageWithCheck.swift in Sources */,
+				E4F02DED29EAA8F800EADA1E /* BusRouteDirection.swift in Sources */,
 				E4FFCADB2801B23300DCA0EC /* Date.swift in Sources */,
 				E4BCFDCA29E302B700E4D2AD /* ListHintOverlay.swift in Sources */,
 				E482ACC029AC6DEE008DAD30 /* ProgressBarView.swift in Sources */,
@@ -856,6 +861,7 @@
 				E482ACC129AC6DEE008DAD30 /* ProgressBarView.swift in Sources */,
 				E4F02DE329EA648A00EADA1E /* BusRouteList.swift in Sources */,
 				E4BCFDBB29E2E5F100E4D2AD /* Bundle.swift in Sources */,
+				E4F02DEE29EAA92B00EADA1E /* BusRouteDirection.swift in Sources */,
 				E482ACB429AC588C008DAD30 /* BusStop.swift in Sources */,
 				E482ACAB29AC555C008DAD30 /* BusArrivalInfo.swift in Sources */,
 				E482AC9829AC53B2008DAD30 /* AssistantLiveActivity.swift in Sources */,

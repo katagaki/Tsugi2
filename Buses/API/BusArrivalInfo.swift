@@ -42,9 +42,13 @@ struct BusArrivalInfo: Codable, Hashable {
     func longitude() -> Double? {
         return Double(_longitude ?? "0.0")
     }
-    
-    func visitNumber() -> Int? {
-        return Int(_visitNumber ?? "0.0")
+        
+    func visitNumber() -> BusRouteDirection {
+        if (_visitNumber?.toInt() ?? 0) % 2 == 0 {
+            return .Backward
+        } else {
+            return .Forward
+        }
     }
     
 }

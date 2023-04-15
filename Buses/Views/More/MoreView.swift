@@ -70,6 +70,9 @@ struct MoreView: View {
                     } label: {
                         ListRow(image: "ListIcon.AppIcon", title: "More.Customization.AppIcon")
                     }
+                    Toggle(isOn: $settings.showRoute) {
+                        ListRow(image: "ListIcon.Route", title: "More.Customization.ShowRoute", subtitle: "More.Customization.ShowRoute.Subtitle")
+                    }
                     Toggle(isOn: $settings.useProperText) {
                         ListRow(image: "ListIcon.ProperText", title: "More.Customization.ProperText", subtitle: "More.Customization.ProperText.Subtitle")
                     }

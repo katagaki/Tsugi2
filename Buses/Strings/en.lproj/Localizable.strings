@@ -79,6 +79,8 @@
 "More.Customization.AppIcon.Laze" = "Laze";
 "More.Customization.ProperText" = "Expand Bus Stop Names";
 "More.Customization.ProperText.Subtitle" = "Replace abbreviations in bus stop names to make bus stops easier to find.";
+"More.Customization.ShowRoute" = "Show Route (Beta)";
+"More.Customization.ShowRoute.Subtitle" = "Shows the route taken by bus services above the arrival times.";
 "More.Notifications" = "Notifications";
 "More.Support" = "Support";
 "More.Support.GitHub" = "Contribute with Code";

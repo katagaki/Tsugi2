@@ -47,8 +47,3 @@ class BusRoutePoint: Codable, Hashable, ObservableObject, Identifiable {
     }
     
 }
-
-enum BusRouteDirection: Int, Codable {
-    case Forward = 1
-    case Backward = 2
-}

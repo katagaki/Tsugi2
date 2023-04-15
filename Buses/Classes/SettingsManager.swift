@@ -17,6 +17,7 @@ class SettingsManager: ObservableObject {
     @Published var carouselDisplayModeIsFull: Bool = true
     @Published var carouselDisplayModeIsSmall: Bool = false
     @Published var carouselDisplayModeIsMinimal: Bool = false
+    @Published var showRoute: Bool = false
     
     init() {
         // Detect if version changed
@@ -38,6 +39,9 @@ class SettingsManager: ObservableObject {
         if defaults.value(forKey: "CarouselDisplayMode") == nil {
             defaults.setValue("Full", forKey: "CarouselDisplayMode")
         }
+        if defaults.value(forKey: "ShowRoute") == nil {
+            defaults.setValue(false, forKey: "ShowRoute")
+        }
         
         // Load configuration into global variables
         startupTab = defaults.integer(forKey: "StartupTab")
@@ -46,6 +50,7 @@ class SettingsManager: ObservableObject {
         carouselDisplayModeIsFull = carouselDisplayMode == .Full
         carouselDisplayModeIsSmall = carouselDisplayMode == .Small
         carouselDisplayModeIsMinimal = carouselDisplayMode == .Minimal
+        showRoute = defaults.bool(forKey: "ShowRoute")
     }
     
     func set(_ value: Any?, forKey key: String) {
@@ -68,6 +73,11 @@ class SettingsManager: ObservableObject {
         carouselDisplayModeIsFull = newValue == .Full
         carouselDisplayModeIsSmall = newValue == .Small
         carouselDisplayModeIsMinimal = newValue == .Minimal
+    }
+    
+    func setShowRoute(_ newValue: Bool) {
+        defaults.set(newValue, forKey: "ShowRoute")
+        showRoute = newValue
     }
     
 }

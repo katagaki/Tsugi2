@@ -42,9 +42,16 @@ class DataManager: ObservableObject {
         }
     }
     
-    func busRoute(for serviceNo: String) -> [BusRoutePoint] {
-        var filteredBusRoutePoints = busRouteList.busRoutePoints.filter { point in
-            point.serviceNo == serviceNo
+    func busRoute(for serviceNo: String, direction: BusRouteDirection) -> [BusRoutePoint] {
+        
+        var filteredBusRoutePoints: [BusRoutePoint]
+        filteredBusRoutePoints = busRouteList.busRoutePoints.filter { point in
+            point.serviceNo == serviceNo && point.direction == direction
+        }
+        if filteredBusRoutePoints.count == 0 {
+            filteredBusRoutePoints = busRouteList.busRoutePoints.filter { point in
+                point.serviceNo == serviceNo
+            }
         }
         filteredBusRoutePoints.sort { a, b in
             a.stopSequence < b.stopSequence

@@ -79,6 +79,8 @@
 "More.Customization.AppIcon.Laze" = "懒色";
 "More.Customization.ProperText" = "恢复巴士站名称缩写";
 "More.Customization.ProperText.Subtitle" = "公交车站名称中的缩写改为原词，使其更容易理解。";
+"More.Customization.ShowRoute" = "显示路线（测试版）";
+"More.Customization.ShowRoute.Subtitle" = "巴士路线显示在巴士到达时间上方。";
 "More.Notifications" = "通知";
 "More.Support" = "支持";
 "More.Support.GitHub" = "协助开发";

@@ -19,7 +19,7 @@ struct BusService: Codable, Hashable {
     var nextBus3: BusArrivalInfo?
     
     // BusServices API
-    var direction: Int?
+    var direction: BusRouteDirection?
     var category: BusCategory?
     var originCode: String?
     var destinationCode: String?
