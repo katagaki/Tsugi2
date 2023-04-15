@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FavoriteLocationEditView: View {
     
-    @EnvironmentObject var favorites: FavoriteList
+    @EnvironmentObject var favorites: FavoritesManager
     
     @Binding var locationToEdit: FavoriteLocation?
     

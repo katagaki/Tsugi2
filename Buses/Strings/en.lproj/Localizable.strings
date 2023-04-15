@@ -20,7 +20,7 @@
 "ViewTitle.Directory" = "Search Bus Stops";
 "ViewTitle.MRTMap" = "MRT System Map";
 "ViewTitle.More" = "More";
-"ViewTitle.More.General.AppIcon" = "App Icon";
+"ViewTitle.More.Customization.AppIcon" = "App Icon";
 "ViewTitle.More.Notifications" = "Notifications";
 "ViewTitle.More.Donate" = "Donate";
 
@@ -59,6 +59,7 @@
 "Directory.BusStops.Sort.AlphabeticalDescending" = "Alphabetical (Descending)";
 "Directory.BusStops.Sort.DistanceClosest" = "Distance (Closest First)";
 "Directory.BusStopsLoading" = "Getting bus stop information...";
+"Directory.BusRoutesLoading" = "Getting bus route information...";
 "Directory.MRTMap" = "MRT System Map";
 "Directory.SearchResults" = "Search Results";
 "Directory.LastUpdated" = "Last Updated";
@@ -66,18 +67,18 @@
 /* More View */
 "More.General" = "General";
 "More.General.StartupTab" = "Startup Tab";
-"More.General.AppIcon" = "App Icon";
-"More.General.AppIcon.Green" = "Green (Default)";
-"More.General.AppIcon.Red" = "Red";
-"More.General.AppIcon.Purple" = "Purple";
-"More.General.AppIcon.Blue" = "Blue";
-"More.General.AppIcon.Laze" = "Laze";
 "More.Customization" = "Customization";
 "More.Customization.CarouselSize.Full" = "Full";
 "More.Customization.CarouselSize.Small" = "Small";
 "More.Customization.CarouselSize.Minimal" = "Minimal";
+"More.Customization.AppIcon" = "App Icon";
+"More.Customization.AppIcon.Green" = "Green (Default)";
+"More.Customization.AppIcon.Red" = "Red";
+"More.Customization.AppIcon.Purple" = "Purple";
+"More.Customization.AppIcon.Blue" = "Blue";
+"More.Customization.AppIcon.Laze" = "Laze";
 "More.Customization.ProperText" = "Expand Bus Stop Names";
-"More.Customization.ProperText.Subtitle" = "Remove and expand abbreviations in bus stop names to make bus stops easier to find.";
+"More.Customization.ProperText.Subtitle" = "Replace abbreviations in bus stop names to make bus stops easier to find.";
 "More.Notifications" = "Notifications";
 "More.Support" = "Support";
 "More.Support.GitHub" = "Contribute with Code";

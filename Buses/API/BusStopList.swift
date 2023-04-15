@@ -17,7 +17,9 @@ class BusStopList: Codable, Hashable, ObservableObject, Identifiable {
     init() {
         metadata = "created.from.init"
         busStops = []
-        combinedBusStopCodes = busStops.reduce("") { $0 + $1.code }
+        combinedBusStopCodes = busStops.reduce("", { partialResult, busStop in
+            partialResult + busStop.code
+        })
     }
     
     enum CodingKeys: String, CodingKey {

@@ -20,7 +20,7 @@
 "ViewTitle.Directory" = "搜索巴士站";
 "ViewTitle.MRTMap" = "MRT路线图";
 "ViewTitle.More" = "更多";
-"ViewTitle.More.General.AppIcon" = "图标";
+"ViewTitle.More.Customization.AppIcon" = "图标";
 "ViewTitle.More.Notifications" = "通知";
 "ViewTitle.More.Donate" = "捐赠";
 
@@ -59,6 +59,7 @@
 "Directory.BusStops.Sort.AlphabeticalDescending" = "按字母顺序（降序）";
 "Directory.BusStops.Sort.DistanceClosest" = "距离（最近的优先）";
 "Directory.BusStopsLoading" = "正在获取巴士站的信息…";
+"Directory.BusRoutesLoading" = "正在获取公交路线数据…";
 "Directory.MRTMap" = "MRT路线图";
 "Directory.SearchResults" = "搜索结果";
 "Directory.LastUpdated" = "最后更新";
@@ -66,16 +67,16 @@
 /* More View */
 "More.General" = "通用";
 "More.General.StartupTab" = "默认标签页";
-"More.General.AppIcon" = "图标";
-"More.General.AppIcon.Green" = "绿色（默认）";
-"More.General.AppIcon.Red" = "红色";
-"More.General.AppIcon.Purple" = "紫色";
-"More.General.AppIcon.Blue" = "蓝色";
-"More.General.AppIcon.Laze" = "懒色";
 "More.Customization" = "个性化";
 "More.Customization.CarouselSize.Full" = "大";
 "More.Customization.CarouselSize.Small" = "中";
 "More.Customization.CarouselSize.Minimal" = "小";
+"More.Customization.AppIcon" = "图标";
+"More.Customization.AppIcon.Green" = "绿色（默认）";
+"More.Customization.AppIcon.Red" = "红色";
+"More.Customization.AppIcon.Purple" = "紫色";
+"More.Customization.AppIcon.Blue" = "蓝色";
+"More.Customization.AppIcon.Laze" = "懒色";
 "More.Customization.ProperText" = "恢复巴士站名称缩写";
 "More.Customization.ProperText.Subtitle" = "公交车站名称中的缩写改为原词，使其更容易理解。";
 "More.Notifications" = "通知";

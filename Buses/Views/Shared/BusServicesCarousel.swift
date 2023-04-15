@@ -9,8 +9,8 @@ import SwiftUI
 
 struct BusServicesCarousel: View {
     
-    @EnvironmentObject var busStopList: BusStopList
-    @EnvironmentObject var favorites: FavoriteList
+    @EnvironmentObject var dataManager: DataManager
+    @EnvironmentObject var favorites: FavoritesManager
     @EnvironmentObject var settings: SettingsManager
     
     @State var dataDisplayMode: DataDisplayMode
@@ -31,18 +31,16 @@ struct BusServicesCarousel: View {
                     .progressViewStyle(.circular)
                 Spacer()
             }
-            .onAppear {
-                Task {
-                    await reloadArrivalTimes()
-                    isInitialDataLoaded = true
-                }
+            .task {
+                await reloadArrivalTimes()
+                isInitialDataLoaded = true
             }
         } else if busServices.count > 0 {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 8.0) {
                     ForEach(busServices, id: \.hashValue) { bus in
                         NavigationLink {
-                            ArrivalInfoDetailView(mode: dataDisplayMode,
+                            BusServiceView(mode: dataDisplayMode,
                                                   busService: bus,
                                                   busStop: busStop,
                                                   favoriteLocation: favoriteLocation,
@@ -55,25 +53,25 @@ struct BusServicesCarousel: View {
                                 switch settings.carouselDisplayMode {
                                 case .Full:
                                     Text(bus.nextBus?.estimatedArrivalTime()?.arrivalFormat(style: .short) ?? localized("Shared.BusArrival.NotInService"))
-                                        .font(.body)
+                                        .font(.system(size: 16.0))
                                         .foregroundColor(.primary)
                                         .lineLimit(1)
                                     Text(bus.nextBus2?.estimatedArrivalTime()?.arrivalFormat() ?? " ")
-                                        .font(.body)
+                                        .font(.system(size: 16.0))
                                         .foregroundColor(.secondary)
                                         .lineLimit(1)
                                 case .Small:
                                     Text(bus.nextBus?.estimatedArrivalTime()?.arrivalFormat(style: .abbreviated) ?? localized("Shared.BusArrival.NotInService"))
-                                        .font(.subheadline)
+                                        .font(.system(size: 14.0))
                                         .foregroundColor(.primary)
                                         .lineLimit(1)
                                     Text(bus.nextBus2?.estimatedArrivalTime()?.arrivalFormat(style: .abbreviated) ?? " ")
-                                        .font(.subheadline)
+                                        .font(.system(size: 14.0))
                                         .foregroundColor(.secondary)
                                         .lineLimit(1)
                                 case .Minimal:
                                     Text(bus.nextBus?.estimatedArrivalTime()?.arrivalFormat(style: .abbreviated) ?? localized("Shared.BusArrival.NotInService"))
-                                        .font(.caption)
+                                        .font(.system(size: 12.0))
                                         .foregroundColor(.primary)
                                         .lineLimit(1)
                                 }
@@ -169,9 +167,7 @@ struct BusServicesCarousel: View {
                     busServices = (try await fetchBusArrivals(for: favoriteLocation.wrappedValue.busStopCode ?? "").arrivals ?? []).sorted(by: { a, b in
                         a.serviceNo.toInt() ?? 9999 < b.serviceNo.toInt() ?? 9999
                     })
-                    busStop = .constant(busStopList.busStops.first(where: { fetchedBusStop in
-                        fetchedBusStop.code == favoriteLocation.wrappedValue.busStopCode
-                    }) ?? BusStop())
+                    busStop = .constant(dataManager.busStop(code: favoriteLocation.wrappedValue.busStopCode ?? "") ?? BusStop())
                 }
             case .NotificationItem:
                 break // Mode not supported

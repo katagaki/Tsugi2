@@ -23,7 +23,7 @@ struct NearbyMapView: View {
             annotationItems: displayedCoordinates.coordinates) { coordinate in
             MapAnnotation(coordinate: coordinate.clCoordinate()) {
                 NavigationLink {
-                    BusStopDetailView(busStop: coordinate.busStop)
+                    BusStopView(busStop: coordinate.busStop)
                 } label: {
                     MapStopView(busStop: coordinate.busStop)
                 }

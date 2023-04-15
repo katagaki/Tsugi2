@@ -18,7 +18,7 @@ class SettingsManager: ObservableObject {
     @Published var carouselDisplayModeIsSmall: Bool = false
     @Published var carouselDisplayModeIsMinimal: Bool = false
     
-    func initializeDefaultConfiguration() {
+    init() {
         // Detect if version changed
         if defaults.value(forKey: "CurrentVersion") != nil,
            let previouslyDetectedVersion = defaults.string(forKey: "CurrentVersion"),
@@ -68,22 +68,6 @@ class SettingsManager: ObservableObject {
         carouselDisplayModeIsFull = newValue == .Full
         carouselDisplayModeIsSmall = newValue == .Small
         carouselDisplayModeIsMinimal = newValue == .Minimal
-    }
-    
-    func setStoredBusStopList(_ newValue: BusStopList) {
-        defaults.set(encode(newValue), forKey: "StoredBusStopList")
-    }
-    
-    func setStoredBsuStopListUpdatedDate(_ newValue: Date) {
-        defaults.set(newValue, forKey: "StoredBusStopListUpdatedDate")
-    }
-    
-    func storedBusStopList() -> String? {
-        return defaults.string(forKey: "StoredBusStopList")
-    }
-    
-    func storedBusStopListUpdatedDate() -> Date? {
-        return defaults.object(forKey: "StoredBusStopListUpdatedDate") as? Date
     }
     
 }

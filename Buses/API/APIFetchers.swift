@@ -93,3 +93,55 @@ func fetchBusArrivals(for stopCode: String) async throws -> BusStop {
     return busArrivals
 }
 
+func fetchAllBusRoutes() async throws -> BusRouteList {
+    return try await withThrowingTaskGroup(of: BusRouteList.self, body: { group in
+        let finalBusRouteList = BusRouteList()
+        // TODO: Bus route count may increase in the future, setting fetch at 30,000 for now
+        for i in 0...60 {
+            group.addTask {
+                let busRouteList = try await fetchBusRoutes(from: i * 500)
+                return busRouteList
+            }
+        }
+        let finalBusRoutePoints: [BusRoutePoint] = try await group.reduce(into: [BusRoutePoint](), { partialResult, busRouteList in
+            partialResult.append(contentsOf: busRouteList.busRoutePoints)
+        })
+        finalBusRouteList.metadata = "processed.by.tsugi"
+        finalBusRouteList.busRoutePoints = finalBusRoutePoints
+        return finalBusRouteList
+    })
+}
+
+func fetchBusRoutes(from firstIndex: Int = 0) async throws -> BusRouteList {
+    let busRouteList: BusRouteList = try await withCheckedThrowingContinuation({ continuation in
+        var request = URLRequest(url: URL(string: "\(apiEndpoint)/BusRoutes?$skip=\(firstIndex)")!)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        if let apiKey = apiKeys["LTA"] {
+            request.addValue(apiKey, forHTTPHeaderField: "AccountKey")
+        } else {
+            log("API key is missing! Request may fail ungracefully.", level: .error)
+        }
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            if let error = error {
+                log(error.localizedDescription, level: .error)
+                log(String(data: data ?? Data(), encoding: .utf8) ?? "No data found.")
+                continuation.resume(throwing: error)
+            } else {
+                if let data = data {
+                    if let busRouteList: BusRouteList = decode(fromData: data) {
+                        log("Fetched bus route data from the API for skip index \(firstIndex).")
+                        continuation.resume(returning: busRouteList)
+                    } else {
+                        log("Could not decode the data successfully.", level: .error)
+                        continuation.resume(throwing: NSError(domain: "", code: 1))
+                    }
+                } else {
+                    log("No data was returned.", level: .error)
+                    continuation.resume(throwing: NSError(domain: "", code: 1))
+                }
+            }
+        }.resume()
+    })
+    return busRouteList
+}

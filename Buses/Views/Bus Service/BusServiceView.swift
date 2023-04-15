@@ -1,25 +1,27 @@
 //
-//  ArrivalInfoDetailView.swift
+//  BusServiceView.swift
 //  Buses
 //
 //  Created by 堅書 on 2022/06/15.
 //
 
 import ActivityKit
+import MapKit
 import SwiftUI
 
-struct ArrivalInfoDetailView: View {
+struct BusServiceView: View {
     
     var mode: DataDisplayMode
     
-    @EnvironmentObject var busStopList: BusStopList
-    @EnvironmentObject var favorites: FavoriteList
+    @EnvironmentObject var dataManager: DataManager
+    @EnvironmentObject var favorites: FavoritesManager
     @EnvironmentObject var toaster: Toaster
     
     @State var liveActivityID: String = ""
     
     @State var isInitialDataLoading: Bool = true
     @State var busService: BusService
+    @State var mapPlacemarksForRouteDisplay: [MKPlacemark] = []
     var busStop: Binding<BusStop>?
     var favoriteLocation: Binding<FavoriteLocation>?
     
@@ -28,30 +30,54 @@ struct ArrivalInfoDetailView: View {
     @State var showsAddToLocationButton: Bool
     
     var body: some View {
-        List {
-            Section {
-                if let nextBus = busService.nextBus {
-                    ArrivalInfoCardView(busService: busService,
-                                        arrivalInfo: nextBus,
-                                        setNotification: self.setNotification)
+        GeometryReader { metrics in
+            VStack(alignment: .trailing, spacing: 0) {
+                MapWithRoute(useLegacyOverlay: true,
+                             placemarks: $mapPlacemarksForRouteDisplay)
+                .overlay {
+                    ZStack(alignment: .topLeading) {
+                        BlurGradientView()
+                            .ignoresSafeArea()
+                            .frame(height: metrics.safeAreaInsets.top + 44.0)
+                        Color.clear
+                    }
                 }
-                if let nextBus = busService.nextBus2, nextBus.estimatedArrivalTime() != nil {
-                    ArrivalInfoCardView(busService: busService,
-                                        arrivalInfo: nextBus,
-                                        setNotification: self.setNotification)
+                .ignoresSafeArea(edges: [.top])
+                List {
+                    Section {
+                        if let nextBus = busService.nextBus {
+                            ListArrivalInfoRow(busService: busService,
+                                               arrivalInfo: nextBus,
+                                               setNotification: self.setNotification)
+                        }
+                        if let nextBus = busService.nextBus2, nextBus.estimatedArrivalTime() != nil {
+                            ListArrivalInfoRow(busService: busService,
+                                               arrivalInfo: nextBus,
+                                               setNotification: self.setNotification)
+                        }
+                        if let nextBus = busService.nextBus3, nextBus.estimatedArrivalTime() != nil {
+                            ListArrivalInfoRow(busService: busService,
+                                               arrivalInfo: nextBus,
+                                               setNotification: self.setNotification)
+                        }
+                    }
                 }
-                if let nextBus = busService.nextBus3, nextBus.estimatedArrivalTime() != nil {
-                    ArrivalInfoCardView(busService: busService,
-                                        arrivalInfo: nextBus,
-                                        setNotification: self.setNotification)
-                }
+                .listStyle(.insetGrouped)
+                .frame(width: metrics.size.width, height: metrics.size.height * 0.6)
+                .shadow(radius: 2.5)
+                .zIndex(1)
             }
         }
-        .listStyle(.insetGrouped)
-        .onAppear {
-            Task {
-                await reloadArrivalTimes()
-                startLiveActivity()
+        .task {
+            await reloadArrivalTimes()
+            startLiveActivity()
+            do {
+                try await dataManager.reloadBusRoutesFromServer()
+                if dataManager.isBusRouteListLoaded {
+                    reloadBusRoute()
+                }
+            } catch {
+                log(error.localizedDescription)
             }
         }
         .onDisappear {
@@ -67,6 +93,11 @@ struct ArrivalInfoDetailView: View {
                 await reloadArrivalTimes()
             }
         }
+        .onChange(of: dataManager.isBusRouteListLoaded, perform: { newValue in
+            if newValue {
+                reloadBusRoute()
+            }
+        })
         .onReceive(timer, perform: { _ in
             Task {
                 await reloadArrivalTimes()
@@ -107,7 +138,7 @@ struct ArrivalInfoDetailView: View {
                                             await favorites.saveChanges()
                                             toaster.showToast(localized("Shared.BusArrival.Toast.Favorited").replacingOccurrences(of: "%1", with: busService.serviceNo).replacingOccurrences(of: "%2", with: location.nickname ?? localized("Shared.BusStop.Description.None")),
                                                                     type: .Checkmark,
-                                                                    hideAutomatically: true)
+                                                                    hidesAutomatically: true)
                                         }
                                     }
                                     .disabled(favorites.find(busService.serviceNo, in: location))
@@ -130,9 +161,7 @@ struct ArrivalInfoDetailView: View {
             case .BusStop, .FavoriteLocationLiveData:
                 if let busStop = busStop {
                     let fetchedBusStop = try await fetchBusArrivals(for: busStop.wrappedValue.code)
-                    self.busStop?.wrappedValue.description = busStopList.busStops.first(where: { busStopInBusStopList in
-                        busStopInBusStopList.code == busStop.wrappedValue.code
-                    })?.description ?? nil
+                    self.busStop?.wrappedValue.description = dataManager.busStop(code: busStop.wrappedValue.code)?.description ?? nil
                     busService = fetchedBusStop.arrivals?.first(where: { busService in
                         busService.serviceNo == self.busService.serviceNo
                     }) ?? BusService(serviceNo: busService.serviceNo, operator: busService.operator)
@@ -156,6 +185,18 @@ struct ArrivalInfoDetailView: View {
         timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     }
     
+    func reloadBusRoute() {
+        let busRoutePoints = dataManager.busRoute(for: busService.serviceNo)
+        for busRoutePoint in busRoutePoints {
+            if let busStop = dataManager.busStop(code: busRoutePoint.stopCode),
+               let latitude = busStop.latitude,
+               let longitude = busStop.longitude {
+                mapPlacemarksForRouteDisplay.append(MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: latitude,
+                                                                                                   longitude: longitude)))
+            }
+        }
+    }
+    
     func setNotification(for arrivalInfo: BusArrivalInfo) {
         if let date = arrivalInfo.estimatedArrivalTime() {
             center.requestAuthorization(options: [.alert, .sound]) { granted, error in
@@ -163,15 +204,13 @@ struct ArrivalInfoDetailView: View {
                     log("Error occurred while reqesting for notification permissions: \(error.localizedDescription)")
                     toaster.showToast(localized("Notification.Error"),
                                             type: .Exclamation,
-                                            hideAutomatically: true)
+                                            hidesAutomatically: true)
                 } else if granted == false {
                     log("Permissions for notifications was not granted, not setting notifications.")
                     toaster.showToast(localized("Notification.NoPermissions"),
                                             type: .Exclamation,
-                                            hideAutomatically: true)
+                                            hidesAutomatically: true)
                 } else {
-                    // TODO: Fix setting of notification when mode is FavoriteLocationCustomData
-                    // TODO: Remove .constant() setting for bus stop
                     let content = UNMutableNotificationContent()
                     let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.weekday, .hour, .minute, .second],
                                                                                                               from: date - (2 * 60)), repeats: false)
@@ -207,12 +246,12 @@ struct ArrivalInfoDetailView: View {
                             log("Error occurred while setting notifications: \(error.localizedDescription)")
                             toaster.showToast(localized("Notification.Error"),
                                                     type: .Exclamation,
-                                                    hideAutomatically: true)
+                                                    hidesAutomatically: true)
                         } else {
                             log("Notification set with content: \(content.body), and will appear at \((date - (2 * 60)).formatted(date: .complete, time: .complete)).")
                             toaster.showToast(localized("Notification.Set"),
                                                     type: .Checkmark,
-                                                    hideAutomatically: true)
+                                                    hidesAutomatically: true)
                         }
                     }
                 }
@@ -246,7 +285,7 @@ struct ArrivalInfoDetailView_Previews: PreviewProvider {
     static var sampleBusStop: BusStop? = loadPreviewData()
     
     static var previews: some View {
-        ArrivalInfoDetailView(mode: .BusStop,
+        BusServiceView(mode: .BusStop,
                               busService: sampleBusStop!.arrivals!.randomElement()!,
                               busStop: .constant(sampleBusStop!),
                               showsAddToLocationButton: true)

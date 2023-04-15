@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FavoritesView: View {
     
-    @EnvironmentObject var favorites: FavoriteList
+    @EnvironmentObject var favorites: FavoritesManager
     
     @State var isEditing: Bool = false
     @State var favoriteLocationPendingEdit: FavoriteLocation? = nil

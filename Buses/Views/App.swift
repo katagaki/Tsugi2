@@ -12,28 +12,25 @@ import SwiftUI
 struct TsugiApp: App {
     
     @StateObject var networkMonitor = NetworkMonitor()
-    @StateObject var busStopList = BusStopList()
-    @StateObject var favorites = FavoriteList()
+    @StateObject var dataManager = DataManager()
+    @StateObject var favorites = FavoritesManager()
     @StateObject var regionManager = MapRegionManager()
     @StateObject var locationManager = LocationManager()
-    @StateObject var shouldReloadBusStopList = BoolState()
     @StateObject var settings = SettingsManager()
     @StateObject var toaster = Toaster()
     
     var body: some Scene {
         WindowGroup {
-            MainTabView(updatedDate: "", updatedTime: "")
+            MainTabView()
                 .onAppear {
-                    settings.initializeDefaultConfiguration()
                     loadAPIKeys()
                     initializeProperTextFramework()
                 }
                 .environmentObject(networkMonitor)
-                .environmentObject(busStopList)
+                .environmentObject(dataManager)
                 .environmentObject(favorites)
                 .environmentObject(regionManager)
                 .environmentObject(locationManager)
-                .environmentObject(shouldReloadBusStopList)
                 .environmentObject(settings)
                 .environmentObject(toaster)
         }

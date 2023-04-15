@@ -11,8 +11,8 @@ import SwiftUI
 
 struct NearbyView: View {
     
-    @EnvironmentObject var busStopList: BusStopList
-    @EnvironmentObject var favorites: FavoriteList
+    @EnvironmentObject var dataManager: DataManager
+    @EnvironmentObject var favorites: FavoritesManager
     @EnvironmentObject var regionManager: MapRegionManager
     @EnvironmentObject var locationManager: LocationManager
     @EnvironmentObject var toaster: Toaster
@@ -56,7 +56,7 @@ struct NearbyView: View {
                                             await favorites.saveChanges()
                                             toaster.showToast(localized("Shared.BusStop.Toast.Favorited").replacingOccurrences(of: "%s", with: stop.description ?? localized("Shared.BusStop.Description.None")),
                                                                     type: .Checkmark,
-                                                                    hideAutomatically: true)
+                                                                    hidesAutomatically: true)
                                         }
                                     } label: {
                                         Image(systemName: "rectangle.stack.badge.plus")
@@ -76,7 +76,7 @@ struct NearbyView: View {
                         reloadNearbyBusStops()
                     }
                     .overlay {
-                        if busStopList.busStops.count == 0 {
+                        if dataManager.busStops.count == 0 {
                             ProgressView()
                                 .progressViewStyle(.circular)
                         } else if !locationManager.isInUsableState() {
@@ -121,8 +121,8 @@ struct NearbyView: View {
                     displayedCoordinates.removeAll()
                 }
             })
-            .onChange(of: busStopList.busStops, perform: { _ in
-                if busStopList.busStops.count > 0 {
+            .onChange(of: dataManager.busStops, perform: { _ in
+                if dataManager.busStops.count > 0 {
                     log("Bus stop list changed.")
                     locationManager.completion = self.reloadNearbyBusStops
                     locationManager.updateLocation(usingOnlySignificantChanges: false)
@@ -146,7 +146,7 @@ struct NearbyView: View {
     func reloadNearbyBusStops() {
         Task {
             let currentCoordinate = CLLocation(latitude: locationManager.region.center.latitude, longitude: locationManager.region.center.longitude)
-            var busStopListSortedByDistance: [BusStop] = busStopList.busStops
+            var busStopListSortedByDistance: [BusStop] = dataManager.busStops
             busStopListSortedByDistance = busStopListSortedByDistance.filter { busStop in
                 currentCoordinate.distanceTo(busStop: busStop) < 500.0
             }

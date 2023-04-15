@@ -16,12 +16,12 @@ class Toaster: ObservableObject {
     
     func showToast(_ message: String,
                    type: ToastType = .None,
-                   hideAutomatically: Bool = true) {
+                   hidesAutomatically: Bool = true) {
         DispatchQueue.main.async { [self] in
             toastMessage = message
             toastType = type
             isToastShowing = true
-            if hideAutomatically {
+            if hidesAutomatically {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { [self] in
                     isToastShowing = false
                 }

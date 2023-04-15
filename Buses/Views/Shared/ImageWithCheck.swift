@@ -23,12 +23,15 @@ struct ImageWithCheck: View {
                 .font(.body)
                 .padding(.bottom, 8.0)
                 .foregroundColor(.primary)
+                .lineLimit(1)
             if checked {
                 Image(systemName: "checkmark.circle.fill")
                     .foregroundColor(.accentColor)
+                    .font(.system(size: 16.0))
             } else {
                 Image(systemName: "circle")
                     .foregroundColor(.secondary)
+                    .font(.system(size: 16.0))
             }
         }
     }

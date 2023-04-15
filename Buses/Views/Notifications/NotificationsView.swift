@@ -21,7 +21,7 @@ struct NotificationsView: View {
                                let stopCode = request.content.userInfo["stopCode"] as? String,
                                let stopDescription = request.content.userInfo["stopDescription"] as? String {
                                 NavigationLink {
-                                    ArrivalInfoDetailView(mode: .NotificationItem,
+                                    BusServiceView(mode: .NotificationItem,
                                                           busService: BusService(serviceNo: busService, operator: .Unknown),
                                                           busStop: .constant(BusStop(code: stopCode, description: stopDescription)),
                                                           showsAddToLocationButton: false)

@@ -20,7 +20,7 @@
 "ViewTitle.Directory" = "バス停を検索";
 "ViewTitle.MRTMap" = "MRT路線図";
 "ViewTitle.More" = "その他";
-"ViewTitle.More.General.AppIcon" = "アイコン";
+"ViewTitle.More.Customization.AppIcon" = "アイコン";
 "ViewTitle.More.Notifications" = "通知";
 "ViewTitle.More.Donate" = "寄付";
 
@@ -59,6 +59,7 @@
 "Directory.BusStops.Sort.AlphabeticalDescending" = "アルファベット順（降順）";
 "Directory.BusStops.Sort.DistanceClosest" = "距離（近い順）";
 "Directory.BusStopsLoading" = "バス停のデータを読み込み中…";
+"Directory.BusRoutesLoading" = "バスのルートデータを読み込み中…";
 "Directory.MRTMap" = "MRT路線図";
 "Directory.SearchResults" = "検索結果";
 "Directory.LastUpdated" = "最後更新";
@@ -66,16 +67,16 @@
 /* More View */
 "More.General" = "一般";
 "More.General.StartupTab" = "デフォルトタブ";
-"More.General.AppIcon" = "アイコン";
-"More.General.AppIcon.Green" = "グリーン（デフォルト）";
-"More.General.AppIcon.Red" = "レッド";
-"More.General.AppIcon.Purple" = "パープル";
-"More.General.AppIcon.Blue" = "ブルー";
-"More.General.AppIcon.Laze" = "ナマケモノ";
 "More.Customization" = "カスタマイズ";
 "More.Customization.CarouselSize.Full" = "基本";
 "More.Customization.CarouselSize.Small" = "小";
 "More.Customization.CarouselSize.Minimal" = "ミニマル";
+"More.Customization.AppIcon" = "アイコン";
+"More.Customization.AppIcon.Green" = "グリーン（デフォルト）";
+"More.Customization.AppIcon.Red" = "レッド";
+"More.Customization.AppIcon.Purple" = "パープル";
+"More.Customization.AppIcon.Blue" = "ブルー";
+"More.Customization.AppIcon.Laze" = "ナマケモノ";
 "More.Customization.ProperText" = "バス停名の略語を復元";
 "More.Customization.ProperText.Subtitle" = "バス停名にある略語を元の言葉にし、分かりやすくします。";
 "More.Notifications" = "通知";

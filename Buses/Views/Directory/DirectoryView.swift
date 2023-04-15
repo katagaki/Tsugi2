@@ -10,9 +10,8 @@ import SwiftUI
 
 struct DirectoryView: View {
     
-    @EnvironmentObject var busStopList: BusStopList
+    @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var regionManager: MapRegionManager
-    @EnvironmentObject var shouldReloadBusStopList: BoolState
     
     @State var previousSearchTerm: String = ""
     @State var searchTerm: String = ""
@@ -32,7 +31,7 @@ struct DirectoryView: View {
                     Section {
                         ForEach($searchResults, id: \.code) { $stop in
                             NavigationLink {
-                                BusStopDetailView(busStop: $stop)
+                                BusStopView(busStop: $stop)
                             } label: {
                                 ListBusStopRow(busStop: $stop)
                             }
@@ -55,9 +54,9 @@ struct DirectoryView: View {
                         ListSectionHeader(text: "Directory.UsefulResources")
                     }
                     Section {
-                        ForEach($busStopList.busStops, id: \.code) { $stop in
+                        ForEach($dataManager.busStops, id: \.code) { $stop in
                             NavigationLink {
-                                BusStopDetailView(busStop: $stop)
+                                BusStopView(busStop: $stop)
                             } label: {
                                 ListBusStopRow(busStop: $stop)
                             }
@@ -88,7 +87,7 @@ struct DirectoryView: View {
             }
             .listStyle(.insetGrouped)
             .refreshable {
-                shouldReloadBusStopList.state = true
+                dataManager.shouldReloadBusStopList = true
             }
             .searchable(text: $searchTerm, placement: .navigationBarDrawer(displayMode: .always))
             .onChange(of: searchTerm) { _ in
@@ -100,7 +99,7 @@ struct DirectoryView: View {
                             (stop.description ?? "").similarTo(searchTermTrimmed)
                         })
                     } else {
-                        searchResults = busStopList.busStops.filter({ stop in
+                        searchResults = dataManager.busStops.filter({ stop in
                             (stop.description ?? "").similarTo(searchTermTrimmed)
                         })
                     }
@@ -111,7 +110,7 @@ struct DirectoryView: View {
                 if newValue {
                     shouldSortAlphabeticalDescending = false
                     shouldSortDistanceClosest = false
-                    busStopList.busStops.sort { a, b in
+                    dataManager.busStops.sort { a, b in
                         a.description ?? "" < b.description ?? ""
                     }
                 } else {
@@ -126,7 +125,7 @@ struct DirectoryView: View {
                 if newValue {
                     shouldSortAlphabeticalAscending = false
                     shouldSortDistanceClosest = false
-                    busStopList.busStops.sort { a, b in
+                    dataManager.busStops.sort { a, b in
                         a.description ?? "" > b.description ?? ""
                     }
                 } else {
@@ -143,7 +142,7 @@ struct DirectoryView: View {
                     shouldSortAlphabeticalDescending = false
                     let currentCoordinate = CLLocation(latitude: regionManager.region.wrappedValue.center.latitude,
                                                        longitude: regionManager.region.wrappedValue.center.longitude)
-                    busStopList.busStops.sort { a, b in
+                    dataManager.busStops.sort { a, b in
                         return currentCoordinate.distanceTo(busStop: a) < currentCoordinate.distanceTo(busStop: b)
                     }
                 } else {

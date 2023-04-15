@@ -1,5 +1,5 @@
 //
-//  ArrivalInfoCardView.swift
+//  ListArrivalInfoRow.swift
 //  Buses
 //
 //  Created by 堅書 on 2022/06/15.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ArrivalInfoCardView: View {
+struct ListArrivalInfoRow: View {
     
     var busService: BusService
     var arrivalInfo: BusArrivalInfo
@@ -106,7 +106,7 @@ struct ArrivalInfoCardView_Previews: PreviewProvider {
     static var sampleBusStop: BusStop? = loadPreviewData()
     
     static var previews: some View {
-        ArrivalInfoDetailView(mode: .BusStop,
+        BusServiceView(mode: .BusStop,
                               busService: sampleBusStop!.arrivals!.randomElement()!,
                               busStop: .constant(sampleBusStop!),
                               showsAddToLocationButton: true)

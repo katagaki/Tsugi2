@@ -118,14 +118,6 @@ struct BusService: Codable, Hashable {
     
 }
 
-enum BusOperator: String, Codable {
-    case SBSTransit = "SBST"
-    case SMRT = "SMRT"
-    case TowerTransit = "TTS"
-    case GoAheadSingapore = "GAS"
-    case Unknown = "U"
-}
-
 enum BusCategory: String, Codable {
     case Express = "EXPRESS"
     case Feeder = "FEEDER"

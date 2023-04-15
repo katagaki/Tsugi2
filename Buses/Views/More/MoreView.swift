@@ -9,9 +9,9 @@ import SwiftUI
 
 struct MoreView: View {
     
-    @EnvironmentObject var busStopList: BusStopList
-    @EnvironmentObject var shouldReloadBusStopList: BoolState
+    @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var settings: SettingsManager
+    @EnvironmentObject var toaster: Toaster
         
     @State var showLogsView: Bool = false
     
@@ -31,17 +31,12 @@ struct MoreView: View {
                     } label: {
                         ListRow(image: "ListIcon.Startup", title: "More.General.StartupTab")
                     }
-                    NavigationLink {
-                        MoreAppIconView()
-                    } label: {
-                        ListRow(image: "ListIcon.AppIcon", title: "More.General.AppIcon")
-                    }
+
                 } header: {
                     ListSectionHeader(text: "More.General")
                 }
                 Section {
-                    HStack(alignment: .center, spacing: 32.0) {
-                        Spacer()
+                    HStack(alignment: .center, spacing: 0.0) {
                         Button {
                             settings.setCarouselDisplayMode(.Full)
                         } label: {
@@ -50,6 +45,7 @@ struct MoreView: View {
                                            checked: $settings.carouselDisplayModeIsFull)
                         }
                         .buttonStyle(.borderless)
+                        .frame(maxWidth: .infinity)
                         Button {
                             settings.setCarouselDisplayMode(.Small)
                         } label: {
@@ -58,6 +54,7 @@ struct MoreView: View {
                                            checked: $settings.carouselDisplayModeIsSmall)
                         }
                         .buttonStyle(.borderless)
+                        .frame(maxWidth: .infinity)
                         Button {
                             settings.setCarouselDisplayMode(.Minimal)
                         } label: {
@@ -66,12 +63,17 @@ struct MoreView: View {
                                            checked: $settings.carouselDisplayModeIsMinimal)
                         }
                         .buttonStyle(.borderless)
-                        Spacer()
+                        .frame(maxWidth: .infinity)
+                    }
+                    NavigationLink {
+                        MoreAppIconView()
+                    } label: {
+                        ListRow(image: "ListIcon.AppIcon", title: "More.Customization.AppIcon")
                     }
                     Toggle(isOn: $settings.useProperText) {
                         ListRow(image: "ListIcon.ProperText", title: "More.Customization.ProperText", subtitle: "More.Customization.ProperText.Subtitle")
                     }
-                    .disabled(shouldReloadBusStopList.state)
+                    .disabled(dataManager.shouldReloadBusStopList)
                 } header: {
                     ListSectionHeader(text: "More.Customization")
                 }
@@ -116,7 +118,7 @@ struct MoreView: View {
             })
             .onChange(of: settings.useProperText, perform: { newValue in
                 settings.setProperText(newValue)
-                shouldReloadBusStopList.state = true
+                dataManager.shouldReloadBusStopList = true
             })
             .navigationTitle("ViewTitle.More")
             .navigationBarTitleDisplayMode(.inline)
@@ -135,7 +137,7 @@ struct MoreView: View {
             .sheet(isPresented: $showLogsView) {
                 NavigationStack {
                     TextEditor(text: .constant(appLogs))
-                        .font(.system(size: 12.0))
+                        .font(.system(size: 10.0))
                         .monospaced()
                         .navigationTitle("More.UnderTheHood")
                         .navigationBarTitleDisplayMode(.inline)

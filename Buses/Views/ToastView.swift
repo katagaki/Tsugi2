@@ -28,14 +28,15 @@ struct ToastView: View {
                 Image(systemName: "xmark.circle.fill")
                     .symbolRenderingMode(.multicolor)
             case .None:
-                Color.clear
+                Image(systemName: "ellipsis.bubble.fill")
+                    .symbolRenderingMode(.monochrome)
             }
             Text(message)
                 .font(.body)
                 .multilineTextAlignment(.leading)
             Spacer()
         }
-        .padding(EdgeInsets(top: 16.0, leading: 16.0, bottom: 16.0, trailing: 16.0))
+        .padding(12.0)
         .background(Color(uiColor: .secondarySystemGroupedBackground))
         .mask {
             RoundedRectangle(cornerRadius: 10.0)

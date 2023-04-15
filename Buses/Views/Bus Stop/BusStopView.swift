@@ -1,5 +1,5 @@
 //
-//  BusStopDetailView.swift
+//  BusStopView.swift
 //  Buses
 //
 //  Created by 堅書 on 2022/06/12.
@@ -8,9 +8,9 @@
 import MapKit
 import SwiftUI
 
-struct BusStopDetailView: View {
+struct BusStopView: View {
     
-    @EnvironmentObject var favorites: FavoriteList
+    @EnvironmentObject var favorites: FavoritesManager
     @EnvironmentObject var toaster: Toaster
     
     @Binding var busStop: BusStop
@@ -54,7 +54,7 @@ struct BusStopDetailView: View {
                     if busArrivals.count > 0 {
                         List(busArrivals, id: \.hashValue) { bus in
                             NavigationLink {
-                                ArrivalInfoDetailView(mode: .BusStop,
+                                BusServiceView(mode: .BusStop,
                                                       busService: bus,
                                                       busStop: $busStop,
                                                       showsAddToLocationButton: true)
@@ -122,7 +122,7 @@ struct BusStopDetailView: View {
                                 await favorites.saveChanges()
                                 toaster.showToast(localized("Shared.BusStop.Toast.Favorited").replacingOccurrences(of: "%s", with: busStop.description ?? localized("Shared.BusStop.Description.None")),
                                                         type: .Checkmark,
-                                                        hideAutomatically: true)
+                                                        hidesAutomatically: true)
                             }
                         } label: {
                             Image(systemName: "rectangle.stack.badge.plus")
@@ -157,10 +157,10 @@ struct BusStopDetailView: View {
     
 }
 
-struct BusStopDetailView_Previews: PreviewProvider {
+struct BusStopView_Previews: PreviewProvider {
     static var previews: some View {
         let sampleBusStop: BusStop = BusStop()
-        BusStopDetailView(busStop: .constant(sampleBusStop))
+        BusStopView(busStop: .constant(sampleBusStop))
     }
 }
 

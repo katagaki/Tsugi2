@@ -14,19 +14,16 @@ struct MainTabView: View {
     @Environment(\.scenePhase) var scenePhase
     
     @EnvironmentObject var networkMonitor: NetworkMonitor
-    @EnvironmentObject var busStopList: BusStopList
-    @EnvironmentObject var favorites: FavoriteList
+    @EnvironmentObject var dataManager: DataManager
+    @EnvironmentObject var favorites: FavoritesManager
     @EnvironmentObject var regionManager: MapRegionManager
     @EnvironmentObject var locationManager: LocationManager
-    @EnvironmentObject var shouldReloadBusStopList: BoolState
     @EnvironmentObject var settings: SettingsManager
     @EnvironmentObject var toaster: Toaster
     
     @State var defaultTab: Int = 0
     
     @State var isInitialLoad: Bool = true
-    @State var updatedDate: String
-    @State var updatedTime: String
     
     var body: some View {
         GeometryReader { metrics in
@@ -46,8 +43,8 @@ struct MainTabView: View {
                         Label("TabTitle.Notifications", systemImage: "bell.fill")
                     }
                     .tag(2)
-                DirectoryView(updatedDate: $updatedDate,
-                              updatedTime: $updatedTime)
+                DirectoryView(updatedDate: $dataManager.updatedDate,
+                              updatedTime: $dataManager.updatedTime)
                     .tabItem {
                         Label("TabTitle.Directory", systemImage: "magnifyingglass")
                     }
@@ -58,27 +55,32 @@ struct MainTabView: View {
                     }
                     .tag(4)
             }
-            .onAppear {
+            .task {
                 if isInitialLoad {
                     defaultTab = settings.startupTab
-                    reloadBusStopList()
+                    await reloadBusStopList()
                     isInitialLoad = false
                 }
             }
-            .onChange(of: shouldReloadBusStopList.state, perform: { newValue in
+            .onChange(of: dataManager.shouldReloadBusStopList, perform: { newValue in
                 if newValue {
-                    reloadBusStopList(forceServer: true)
+                    Task {
+                        await reloadBusStopList(forceServer: true)
+                    }
                 }
             })
             .onChange(of: networkMonitor.isConnected) { isConnected in
                 if isConnected {
                     log("Network connection reappeared!")
                     toaster.hideToast()
-                    log("Retrying fetch of bus stop data.")
-                    reloadBusStopList()
+                    Task {
+                        log("Retrying fetch of bus stop data.")
+                        await reloadBusStopList()
+                        toaster.hideToast()
+                    }
                 } else {
                     log("Network connection disappeared!")
-                    toaster.showToast(localized("Shared.Error.InternetConnection"), type: .PersistentError, hideAutomatically: false)
+                    toaster.showToast(localized("Shared.Error.InternetConnection"), type: .PersistentError, hidesAutomatically: false)
                 }
             }
             .onChange(of: scenePhase, perform: { newPhase in
@@ -117,88 +119,41 @@ struct MainTabView: View {
         }
     }
     
-    func reloadBusStopList(forceServer: Bool = false) {
-        Task {
-            toaster.showToast(localized("Directory.BusStopsLoading"), type: .Spinner, hideAutomatically: false)
-            if settings.storedBusStopList() == nil || forceServer {
-                await reloadBusStopListFromServer()
+    func reloadBusStopList(forceServer: Bool = false) async {
+        toaster.showToast(localized("Directory.BusStopsLoading"), type: .Spinner, hidesAutomatically: false)
+        do {
+            if dataManager.storedBusStopList() == nil || forceServer {
+                try await dataManager.reloadBusStopListFromServer()
                 log("Reloaded bus stop data from server.")
             } else {
-                reloadBusStopListFromStoredMemory()
-                log("Reloaded bus stop data from memory.")
-            }
-            shouldReloadBusStopList.state = false
-            toaster.hideToast()
-        }
-    }
-    
-    func reloadBusStopListFromServer() async {
-        do {
-            let busStopsFetched = try await fetchAllBusStops()
-            busStopList.busStops = busStopsFetched.sorted(by: { a, b in
-                a.description?.lowercased() ?? "" < b.description?.lowercased() ?? ""
-            })
-            if settings.useProperText {
-                busStopList.busStops.forEach { busStop in
-                    busStop.description = properName(for: busStop.description ?? localized("Shared.BusStop.Description.None"))
-                    busStop.roadName = properName(for: busStop.roadName ?? localized("Shared.BusStop.Description.None"))
+                if let storedBusStopList = dataManager.storedBusStopList(),
+                   let storedBusStopListUpdatedDate = dataManager.storedBusStopListUpdatedDate() {
+                    try await dataManager.reloadBusStopListFromStoredMemory(storedBusStopList, updatedAt: storedBusStopListUpdatedDate)
+                    log("Reloaded bus stop data from memory.")
                 }
             }
-            settings.setStoredBusStopList(busStopList)
-            settings.setStoredBsuStopListUpdatedDate(Date.now)
-            setLastUpdatedTimeForBusStopData()
+            toaster.hideToast()
         } catch {
+            log(error.localizedDescription)
             log("WARNING×WARNING×WARNING\nNetwork does not look like it's working, bus stop data may be incomplete!")
-            toaster.showToast(localized("Shared.Error.InternetConnection"), type: .PersistentError, hideAutomatically: false)
+            toaster.showToast(localized("Shared.Error.InternetConnection"), type: .PersistentError, hidesAutomatically: false)
         }
     }
     
-    func reloadBusStopListFromStoredMemory() {
-        if let storedBusStopListJSON = settings.storedBusStopList(),
-           let storedUpdatedDate = settings.storedBusStopListUpdatedDate(),
-           let storedBusStopList: BusStopList = decode(fromData: storedBusStopListJSON.data(using: .utf8) ?? Data()) {
-            busStopList.metadata = storedBusStopList.metadata
-            busStopList.busStops = storedBusStopList.busStops
-            setLastUpdatedTimeForBusStopData(storedUpdatedDate)
-            log("Fetched bus stop data from memory with \(busStopList.busStops.count) bus stop(s).")
-            return
+    func reloadBusRouteList() async {
+        do {
+            try await dataManager.reloadBusRoutesFromServer()
+            log("Reloaded bus route data from server.")
+        } catch {
+            log(error.localizedDescription)
+            toaster.showToast(localized("Shared.Error.InternetConnection"), type: .PersistentError, hidesAutomatically: false)
         }
-        log("Could not decode stored data successfully, re-fetching bus stop data from server...", level: .error)
-        reloadBusStopListFromStoredMemory()
-    }
-    
-    func setLastUpdatedTimeForBusStopData(_ date: Date = Date.now) {
-        let dateFormatter = DateFormatter()
-        let timeFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        timeFormatter.timeStyle = .medium
-        updatedDate = dateFormatter.string(from: date)
-        updatedTime = timeFormatter.string(from: date)
     }
     
 }
 
-struct MainView_Previews: PreviewProvider {
+struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabView(updatedDate: "", updatedTime: "")
-    }
-}
-
-struct StrokeText: View {
-    let text: String
-    let width: CGFloat
-    let color: Color
-
-    var body: some View {
-        ZStack{
-            ZStack{
-                Text(text).offset(x:  width, y:  width)
-                Text(text).offset(x: -width, y: -width)
-                Text(text).offset(x: -width, y:  width)
-                Text(text).offset(x:  width, y: -width)
-            }
-            .foregroundColor(color)
-            Text(text)
-        }
+        MainTabView()
     }
 }
