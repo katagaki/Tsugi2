@@ -34,6 +34,7 @@ struct BusServiceView: View {
             VStack(alignment: .trailing, spacing: 0) {
                 MapWithRoute(useLegacyOverlay: true,
                              placemarks: $mapPlacemarksForRouteDisplay)
+                .ignoresSafeArea(edges: [.top])
                 .overlay {
                     ZStack(alignment: .topLeading) {
                         BlurGradientView()
@@ -42,7 +43,12 @@ struct BusServiceView: View {
                         Color.clear
                     }
                 }
-                .ignoresSafeArea(edges: [.top])
+                .overlay {
+                    if !dataManager.isBusRouteListLoaded {
+                        ProgressView()
+                            .progressViewStyle(.circular)
+                    }
+                }
                 List {
                     Section {
                         if let nextBus = busService.nextBus {

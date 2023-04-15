@@ -19,11 +19,10 @@ struct MapWithRoute: UIViewRepresentable {
         
         let mapView = MKMapView()
         let region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 1.359167, longitude: 103.989441),
+        center: CLLocationCoordinate2D(latitude: 1.352083, longitude: 103.819836),
         span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
         
         mapView.delegate = context.coordinator
-        mapView.setRegion(region, animated: true)
         drawRoute(mapView)
         reloadAnnotations(mapView)
 
@@ -51,7 +50,7 @@ struct MapWithRoute: UIViewRepresentable {
                 mapView.addOverlay(polyline)
                 mapView.setVisibleMapRect(polyline.boundingMapRect,
                                           edgePadding: UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0),
-                                          animated: true)
+                                          animated: false)
             } else {
                 let maximumPlacemarksSkipped: Int = placemarks.count / 20
                 var currentIndex: Int = 0
