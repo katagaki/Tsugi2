@@ -82,9 +82,9 @@ struct BusServiceView: View {
             await reloadArrivalTimes()
             startLiveActivity()
             do {
-                try await dataManager.reloadBusRoutesFromServer()
-                if dataManager.isBusRouteListLoaded && settings.showRoute {
-                    reloadBusRoute()
+                if settings.showRoute {
+                    try await dataManager.reloadBusRoutesFromServer()
+                    reloadBusRoutes()
                 }
             } catch {
                 log(error.localizedDescription)
@@ -105,7 +105,7 @@ struct BusServiceView: View {
         }
         .onChange(of: dataManager.isBusRouteListLoaded, perform: { newValue in
             if newValue && settings.showRoute {
-                reloadBusRoute()
+                reloadBusRoutes()
             }
         })
         .onReceive(timer, perform: { _ in
@@ -195,7 +195,7 @@ struct BusServiceView: View {
         timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     }
     
-    func reloadBusRoute() {
+    func reloadBusRoutes() {
         let busRoutePoints = dataManager.busRoute(for: busService.serviceNo, direction: busService.direction ?? .Backward)
         for busRoutePoint in busRoutePoints {
             if let busStop = dataManager.busStop(code: busRoutePoint.stopCode) {
