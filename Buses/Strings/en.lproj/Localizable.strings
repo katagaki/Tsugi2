@@ -42,11 +42,11 @@
 "Favorites.Hint.NoLocations" = "No locations saved.\nTo create a new location, tap the Add Location button on the top right of this tab.\nYou can also add a bus stop as a location.";
 "Favorites.Hint.NoBusServices" = "To add a bus service to this location, find and open a bus service, then tap the Add to Location button on the top right.";
 "Favorites.Delete.Confirm.Title" = "Delete Location";
-"Favorites.Delete.Confirm.Message" = "Are you sure you want to delete %LOCATION%?";
+"Favorites.Delete.Confirm.Message" = "Are you sure you want to delete %1?";
 "Favorites.Delete.Confirm.GenericLocationText" = "this location";
 "Favorites.Rename.Title" = "Rename Location";
 "Favorites.New.Title" = "New Location";
-"Favorites.Edit.Title" = "Edit %s";
+"Favorites.Edit.Title" = "Edit %1";
 
 /* Notifications View */
 "Notifications.ArrivalAlerts" = "Arrival Alerts";
@@ -99,7 +99,7 @@
 "Notification.Error" = "An error occurred while setting up your notification.";
 "Notification.NoPermissions" = "Buses has not been granted permissions to send notifications. Please check whether Buses is allowed to send notifications in the Settings app.";
 "Notification.Arriving.Title" = "Bus Arriving at %1";
-"Notification.Arriving.Description" = "Bus %s1 is scheduled to arrive at %s2.\nHead to the bus stop early to avoid missing the bus.";
+"Notification.Arriving.Description" = "Bus %1 is scheduled to arrive at %2.\nHead to the bus stop early to avoid missing the bus.";
 
 /* Live Activity */
 "LiveActivity.EstimatedArrival" = "Estimated Arrival";

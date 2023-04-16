@@ -58,10 +58,9 @@ struct FavoriteLocationEditView: View {
                     .padding([.top, .bottom], 4.0)
                 }
                 .listStyle(.insetGrouped)
-                .navigationTitle(localized("Favorites.Edit.Title")
-                    .replacingOccurrences(of: "%s",
-                                          with: locationToEdit.nickname ??
-                                          localized("Shared.BusStop.Description.None")))
+                .navigationTitle(localized("Favorites.Edit.Title",
+                                           replacing: locationToEdit.nickname ??
+                                           localized("Shared.BusStop.Description.None")))
                 .navigationBarTitleDisplayMode(.inline)
             }
         }

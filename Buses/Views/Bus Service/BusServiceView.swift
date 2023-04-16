@@ -139,7 +139,6 @@ struct BusServiceView: View {
                                                 location,
                                                 busStop: busStop.wrappedValue,
                                                 busService: busService)
-                                            await favorites.saveChanges()
                                             toaster.showToast(
                                                 localized("Shared.BusArrival.Toast.Favorited",
                                                           replacing: busService.serviceNo, location.nickname ??
@@ -232,21 +231,33 @@ struct BusServiceView: View {
         var userInfo: [AnyHashable: Any] = [:]
         var identifier = ""
         switch mode {
-        case .busStop, .favoriteLocationLiveData, .notificationItem:
+        case .busStop, .notificationItem:
             if let busStop = busStop {
-                title = localized("Notification.Arriving.Title")
-                    .replacingOccurrences(of: "%1", with: busStop.wrappedValue.name())
+                title = localized("Notification.Arriving.Title",
+                                  replacing: busStop.wrappedValue.name())
                 userInfo = ["busService": busService.serviceNo,
                             "stopCode": busStop.wrappedValue.code,
                             "stopDescription": busStop.wrappedValue.name()]
                 identifier = "\(busStop.wrappedValue.code).\(busService.serviceNo)." +
                              "\(date.formatted(date: .numeric, time: .shortened))"
             }
+        case .favoriteLocationLiveData:
+            if let favoriteLocation = favoriteLocation?.wrappedValue {
+                title = localized("Notification.Arriving.Title",
+                                  replacing: favoriteLocation.nickname ??
+                                  localized("Shared.BusStop.Description.None"))
+                userInfo = ["busService": busService.serviceNo,
+                            "stopCode": favoriteLocation.busStopCode ?? "",
+                            "stopDescription": favoriteLocation.nickname ??
+                            localized("Shared.BusStop.Description.None")]
+                identifier = "\(favoriteLocation.busStopCode ?? "").\(busService.serviceNo)." +
+                             "\(date.formatted(date: .numeric, time: .shortened))"
+            }
         case .favoriteLocationCustomData:
             if let favoriteLocation = favoriteLocation?.wrappedValue {
-                title = localized("Notification.Arriving.Title")
-                    .replacingOccurrences(of: "%1", with: favoriteLocation.nickname ??
-                                          localized("Shared.BusStop.Description.None"))
+                title = localized("Notification.Arriving.Title",
+                                  replacing: favoriteLocation.nickname ??
+                                  localized("Shared.BusStop.Description.None"))
                 userInfo = ["busService": busService.serviceNo,
                             "stopCode": busService.busStopCode ?? "",
                             "stopDescription": favoriteLocation.nickname ??
@@ -257,9 +268,9 @@ struct BusServiceView: View {
         }
         content.title = title
         content.userInfo = userInfo
-        content.body = localized("Notification.Arriving.Description")
-            .replacingOccurrences(of: "%s1", with: busService.serviceNo)
-            .replacingOccurrences(of: "%s2", with: date.formatted(date: .omitted, time: .shortened))
+        content.body = localized("Notification.Arriving.Description",
+                                 replacing: busService.serviceNo,
+                                 date.formatted(date: .omitted, time: .shortened))
         content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "Ding.caf"))
         content.interruptionLevel = .timeSensitive
         center.add(UNNotificationRequest(identifier: identifier,

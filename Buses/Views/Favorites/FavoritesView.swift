@@ -147,7 +147,6 @@ struct FavoritesView: View {
             Button(action: {
                 Task {
                     await favorites.createNewFavoriteLocation(nickname: favoriteLocationNewNickname)
-                    await favorites.saveChanges()
                     favoriteLocationNewNickname = ""
                 }
             }, label: {
@@ -192,10 +191,9 @@ struct FavoritesView: View {
                 Text("Alert.Yes")
             })
         }, message: {
-            Text(localized("Favorites.Delete.Confirm.Message")
-                .replacingOccurrences(of: "%LOCATION%",
-                                      with: favoriteLocationPendingEdit?.nickname ??
-                                      localized("Favorites.Delete.Confirm.GenericLocationText")))
+            Text(localized("Favorites.Delete.Confirm.Message",
+                           replacing: favoriteLocationPendingEdit?.nickname ??
+                           localized("Favorites.Delete.Confirm.GenericLocationText")))
         })
     }
 

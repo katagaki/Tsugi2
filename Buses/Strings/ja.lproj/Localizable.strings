@@ -42,11 +42,11 @@
 "Favorites.Hint.NoLocations" = "追加した場所はありません。\n新しい場所を作成するには、右上の新規場所ボタンを選択してください。\nバス停を直接的に追加することもできます。";
 "Favorites.Hint.NoBusServices" = "この場所にバスを追加するには、バス到着情報画面を開き、右上の場所に追加ボタンを選択してください。";
 "Favorites.Delete.Confirm.Title" = "場所の削除";
-"Favorites.Delete.Confirm.Message" = "%LOCATION%を削除してよろしいですか？";
+"Favorites.Delete.Confirm.Message" = "%1を削除してよろしいですか？";
 "Favorites.Delete.Confirm.GenericLocationText" = "この場所";
 "Favorites.Rename.Title" = "場所名を変更";
 "Favorites.New.Title" = "新規場所";
-"Favorites.Edit.Title" = "%sを編集";
+"Favorites.Edit.Title" = "%1を編集";
 
 /* Notifications View */
 "Notifications.ArrivalAlerts" = "到着通知";
@@ -99,7 +99,7 @@
 "Notification.Error" = "通知を設定する際にエラーが発生しました。";
 "Notification.NoPermissions" = "通知を設定するには、通知の権限が必要です。設定アプリで「バス」アプリの通知権限をご確認ください。";
 "Notification.Arriving.Title" = "バスが%1に到着します";
-"Notification.Arriving.Description" = "%s1号バスは%s2に到着する予定です。\nお早めにバス停に行って、遅れないようにしましょう。";
+"Notification.Arriving.Description" = "%1号バスは%2に到着する予定です。\nお早めにバス停に行って、遅れないようにしましょう。";
 
 /* Live Activity */
 "LiveActivity.EstimatedArrival" = "到着予定";

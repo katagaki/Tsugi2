@@ -54,7 +54,6 @@ struct NearbyView: View {
                                         Task {
                                             await favorites.addFavoriteLocation(busStop: stop,
                                                                                 usesLiveBusStopData: true)
-                                            await favorites.saveChanges()
                                             toaster.showToast(localized("Shared.BusStop.Toast.Favorited",
                                                                         replacing: stop.name()),
                                                               type: .checkmark,

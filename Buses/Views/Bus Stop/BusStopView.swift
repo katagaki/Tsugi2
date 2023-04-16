@@ -116,7 +116,6 @@ struct BusStopView: View {
                         Button {
                             Task {
                                 await favorites.addFavoriteLocation(busStop: busStop, usesLiveBusStopData: true)
-                                await favorites.saveChanges()
                                 toaster.showToast(localized("Shared.BusStop.Toast.Favorited",
                                                             replacing: busStop.name()),
                                                   type: .checkmark,

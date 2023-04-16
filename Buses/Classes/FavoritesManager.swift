@@ -68,6 +68,7 @@ class FavoritesManager: ObservableObject {
 
             log("Favorites data loaded.")
         } catch {
+            log(error.localizedDescription)
             favoriteLocations = []
             favoriteBusServices = []
         }
@@ -86,6 +87,7 @@ class FavoritesManager: ObservableObject {
             log("Favorites data reloaded.")
             updateViewFlag.toggle()
         } catch {
+            log(error.localizedDescription)
             favoriteLocations = []
             favoriteBusServices = []
         }
@@ -101,38 +103,41 @@ class FavoritesManager: ObservableObject {
         favoriteLocation.addToBusServices(favoriteBusService)
         // TODO: Add and set view index
         log("Favorite bus service added to favorite location.")
+        await saveChanges()
     }
 
     func addFavoriteLocation(busStop: BusStop,
                              nickname: String = "",
                              usesLiveBusStopData: Bool = false,
                              containing busServices: [BusService] = []) async {
+        await moveAllDown()
         let favoriteLocationEntity = FavoriteLocation.entity()
         let favoriteLocation = FavoriteLocation(entity: favoriteLocationEntity, insertInto: context)
         favoriteLocation.busStopCode = busStop.code
         favoriteLocation.nickname = (nickname == "" ? busStop.description : nickname)
         favoriteLocation.usesLiveBusStopData = usesLiveBusStopData
-        await moveAllDown()
         favoriteLocation.viewIndex = 0
-        for busService in busServices {
-            let favoriteBusServiceEntity = FavoriteBusService.entity()
-            let favoriteBusService = FavoriteBusService(entity: favoriteBusServiceEntity, insertInto: context)
-            favoriteBusService.busStopCode = busService.busStopCode
-            favoriteBusService.serviceNo = busService.serviceNo
-            favoriteLocation.addToBusServices(favoriteBusService)
-        }
+//        for busService in busServices {
+//            let favoriteBusServiceEntity = FavoriteBusService.entity()
+//            let favoriteBusService = FavoriteBusService(entity: favoriteBusServiceEntity, insertInto: context)
+//            favoriteBusService.busStopCode = busService.busStopCode
+//            favoriteBusService.serviceNo = busService.serviceNo
+//            favoriteLocation.addToBusServices(favoriteBusService)
+//        }
         log("Favorite location added using bus stop.")
+        await saveChanges()
     }
 
     func createNewFavoriteLocation(nickname: String) async {
+        await moveAllDown()
         let favoriteLocationEntity = FavoriteLocation.entity()
         let favoriteLocation = FavoriteLocation(entity: favoriteLocationEntity, insertInto: context)
         favoriteLocation.busStopCode = ""
         favoriteLocation.nickname = nickname
         favoriteLocation.usesLiveBusStopData = false
-        await moveAllDown()
         favoriteLocation.viewIndex = 0
         log("New favorite location created.")
+        await saveChanges()
     }
 
     func moveUp(_ favoriteLocation: FavoriteLocation) async {
@@ -201,18 +206,16 @@ class FavoritesManager: ObservableObject {
     }
 
     func deleteLocation(_ favoriteLocation: FavoriteLocation) async {
-        if let locationIndex = favoriteLocations.firstIndex(of: favoriteLocation) {
-            if locationIndex < favoriteLocations.count - 1 {
-                for index in (locationIndex + 1)..<favoriteLocations.count {
-                    favoriteLocations.first(where: { favoriteLocation in
-                        favoriteLocation.viewIndex == index
-                    })!.viewIndex -= 1
-                }
+        if favoriteLocation.viewIndex < favoriteLocations.count - 1 {
+            for index in (Int(favoriteLocation.viewIndex) + 1)..<favoriteLocations.count {
+                favoriteLocations.first(where: { favoriteLocation in
+                    favoriteLocation.viewIndex == index
+                })!.viewIndex -= 1
             }
-            context.delete(favoriteLocation)
-            log("Favorite location deleted.")
-            await saveChanges()
         }
+        context.delete(favoriteLocation)
+        log("Favorite location deleted.")
+        await saveChanges()
     }
 
     func deleteBusService(_ favoriteLocation: FavoriteLocation, busService: FavoriteBusService) async {

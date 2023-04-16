@@ -13,51 +13,43 @@ struct NotificationsView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                if notificationRequests.count > 0 {
-                    Section {
-                        ForEach(notificationRequests, id: \.identifier) { request in
-                            if let busService = request.content.userInfo["busService"] as? String,
-                               let stopCode = request.content.userInfo["stopCode"] as? String,
-                               let stopDescription = request.content.userInfo["stopDescription"] as? String {
-                                NavigationLink {
-                                    BusServiceView(mode: .notificationItem,
-                                                          busService: BusService(serviceNo: busService,
-                                                                                 operator: .unknown),
-                                                          busStop: .constant(BusStop(code: stopCode,
-                                                                                     description: stopDescription)),
-                                                          showsAddToLocationButton: false)
-                                } label: {
-                                    HStack(alignment: .center, spacing: 16.0) {
-                                        Image("ListIcon.Bus")
-                                        VStack(alignment: .leading) {
-                                            Text(request.content.title)
-                                                .font(.body)
-                                                .fontWeight(.bold)
-                                            Text(request.content.body)
-                                                .font(.body)
-                                        }
-                                    }
-                                }
-                                .swipeActions {
-                                    Button("Swipe.Cancel") {
-                                        center.removePendingNotificationRequests(withIdentifiers: [request.identifier])
-                                        reloadNotificationRequests()
-                                    }
-                                    .tint(.red)
-                                }
+            List(notificationRequests, id: \.identifier) { request in
+                if let busService = request.content.userInfo["busService"] as? String,
+                   let stopCode = request.content.userInfo["stopCode"] as? String,
+                   let stopDescription = request.content.userInfo["stopDescription"] as? String {
+                    NavigationLink {
+                        BusServiceView(mode: .notificationItem,
+                                       busService: BusService(serviceNo: busService,
+                                                              operator: .unknown),
+                                       busStop: .constant(BusStop(code: stopCode,
+                                                                  description: stopDescription)),
+                                       showsAddToLocationButton: false)
+                    } label: {
+                        HStack(alignment: .center, spacing: 16.0) {
+                            Image("ListIcon.Bus")
+                            VStack(alignment: .leading) {
+                                Text(request.content.title)
+                                    .font(.body)
+                                    .fontWeight(.bold)
+                                Text(request.content.body)
+                                    .font(.body)
                             }
                         }
-                    } header: {
-                        ListSectionHeader(text: "Notifications.ArrivalAlerts")
+                    }
+                    .swipeActions {
+                        Button("Swipe.Cancel") {
+                            center.removePendingNotificationRequests(withIdentifiers: [request.identifier])
+                            reloadNotificationRequests()
+                        }
+                        .tint(.red)
                     }
                 }
             }
             .listStyle(.insetGrouped)
-            .onAppear {
+            .refreshable {
                 reloadNotificationRequests()
             }
-            .refreshable {
+            .onAppear {
                 reloadNotificationRequests()
             }
             .overlay {
