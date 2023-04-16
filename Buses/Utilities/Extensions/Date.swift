@@ -8,15 +8,17 @@
 import Foundation
 
 extension Date {
-    
+
     func arrivalFormat(style: DateComponentsFormatter.UnitsStyle = .short) -> String {
         let interval: TimeInterval = self.timeIntervalSinceReferenceDate - Date().timeIntervalSinceReferenceDate
         let seconds = NSInteger(interval) % 60
         let minutes = (NSInteger(interval) / 60) % 60
         if minutes == 0 {
-            return (style == .short ? localized("Shared.BusArrival.Arriving.Full") : localized("Shared.BusArrival.Arriving.Abbreviated"))
+            return (style == .short ?
+                    localized("Shared.BusArrival.Arriving.Full") : localized("Shared.BusArrival.Arriving.Abbreviated"))
         } else if minutes <= 0 && seconds <= 0 {
-            return (style == .short ? localized("Shared.BusArrival.JustLeft.Full") : localized("Shared.BusArrival.JustLeft.Abbreviated"))
+            return (style == .short ?
+                    localized("Shared.BusArrival.JustLeft.Full") : localized("Shared.BusArrival.JustLeft.Abbreviated"))
         } else {
             let formatter: DateComponentsFormatter = DateComponentsFormatter()
             formatter.unitsStyle = style
@@ -24,5 +26,5 @@ extension Date {
             return formatter.string(from: interval) ?? localized("Shared.BusArrival.NotInService")
         }
     }
-    
+
 }

@@ -8,12 +8,12 @@
 import Foundation
 
 class BusStopList: Codable, Hashable, ObservableObject, Identifiable {
-    
+
     // BusStops API
     var metadata: String
     var busStops: [BusStop]
     var combinedBusStopCodes: String?
-    
+
     init() {
         metadata = "created.from.init"
         busStops = []
@@ -21,18 +21,18 @@ class BusStopList: Codable, Hashable, ObservableObject, Identifiable {
             partialResult + busStop.code
         })
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case metadata = "odata.metadata"
         case busStops = "value"
     }
-    
+
     static func == (lhs: BusStopList, rhs: BusStopList) -> Bool {
         return lhs.hashValue == rhs.hashValue
     }
-    
+
     func hash(into hasher: inout Hasher) {
         hasher.combine(combinedBusStopCodes!)
     }
-    
+
 }

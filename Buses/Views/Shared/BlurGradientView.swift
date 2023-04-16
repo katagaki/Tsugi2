@@ -10,7 +10,7 @@ import SwiftUI
 // Thanks to aheze's answer for the blur upgrade, and Classroom of the Elite is great too
 // https://stackoverflow.com/questions/68138347/
 struct BlurGradientView: View {
-    
+
     let gradient = LinearGradient(
             gradient: Gradient(stops: [
                 .init(color: .black, location: 0.3),
@@ -19,7 +19,7 @@ struct BlurGradientView: View {
             startPoint: .top,
             endPoint: .bottom
         )
-    
+
     var body: some View {
         Rectangle()
             .foregroundColor(.clear)

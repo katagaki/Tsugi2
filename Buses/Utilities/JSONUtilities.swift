@@ -43,7 +43,7 @@ func decode<T: Decodable>(fromData data: Data) -> T? {
     } catch let DecodingError.valueNotFound(value, context) {
         log("Error while decoding an object: \(context.debugDescription)\n" +
             "Value: \(value)\nCoding Path: \(context.codingPath.description)", level: .error)
-    } catch let DecodingError.typeMismatch(type, context)  {
+    } catch let DecodingError.typeMismatch(type, context) {
         log("Error while decoding an object: \(context.debugDescription)\n" +
             "Type: \(type)\nCoding Path: \(context.codingPath.description)", level: .error)
     } catch {

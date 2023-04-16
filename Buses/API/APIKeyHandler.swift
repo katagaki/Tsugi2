@@ -7,7 +7,7 @@
 
 import Foundation
 
-var apiKeys:[String:String] = [:]
+var apiKeys: [String: String] = [:]
 
 func loadAPIKeys() {
     if let storedAPIKeys = Bundle.main.plist(named: "APIKeys") {

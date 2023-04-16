@@ -9,13 +9,13 @@ import Foundation
 import SwiftUI
 
 class Toaster: ObservableObject {
-    
+
     @Published var isToastShowing: Bool = false
     @Published var toastMessage: String = ""
-    @Published var toastType: ToastType = .None
-    
+    @Published var toastType: ToastType = .none
+
     func showToast(_ message: String,
-                   type: ToastType = .None,
+                   type: ToastType = .none,
                    hidesAutomatically: Bool = true) {
         DispatchQueue.main.async { [self] in
             toastMessage = message
@@ -28,13 +28,13 @@ class Toaster: ObservableObject {
             }
         }
     }
-    
+
     func hideToast() {
         DispatchQueue.main.async { [self] in
             toastMessage = ""
-            toastType = .None
+            toastType = .none
             isToastShowing = false
         }
     }
-    
+
 }

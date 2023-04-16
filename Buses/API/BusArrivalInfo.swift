@@ -8,66 +8,66 @@
 import Foundation
 
 struct BusArrivalInfo: Codable, Hashable {
-    
+
     var firstBusStopCode: String?
     var lastBusStopCode: String?
-    private var _estimatedArrivalTime: String?
-    private var _latitude: String?
-    private var _longitude: String?
-    private var _visitNumber: String?
+    var estimatedArrivalTime: String?
+    var latitude: String?
+    var longitude: String?
+    var visitNumber: String?
     var load: BusLoad?
     var feature: BusFeature?
     var type: BusType?
-    
+
     enum CodingKeys: String, CodingKey {
         case firstBusStopCode = "OriginCode"
         case lastBusStopCode = "DestinationCode"
-        case _estimatedArrivalTime = "EstimatedArrival"
-        case _latitude = "Latitude"
-        case _longitude = "Longitude"
-        case _visitNumber = "VisitNumber"
+        case estimatedArrivalTime = "EstimatedArrival"
+        case latitude = "Latitude"
+        case longitude = "Longitude"
+        case visitNumber = "VisitNumber"
         case load = "Load"
         case feature = "Feature"
         case type = "Type"
     }
-    
-    func estimatedArrivalTime() -> Date? {
-        return _estimatedArrivalTime?.toDateFromISO8601()
+
+    func estimatedArrivalTimeAsDate() -> Date? {
+        return estimatedArrivalTime?.toDateFromISO8601()
     }
-    
-    func latitude() -> Double? {
-        return Double(_latitude ?? "0.0")
+
+    func latitudeAsDouble() -> Double? {
+        return Double(latitude ?? "0.0")
     }
-    
-    func longitude() -> Double? {
-        return Double(_longitude ?? "0.0")
+
+    func longitudeAsDouble() -> Double? {
+        return Double(longitude ?? "0.0")
     }
-        
-    func visitNumber() -> BusRouteDirection {
-        if (_visitNumber?.toInt() ?? 0) % 2 == 0 {
-            return .Backward
+
+    func visitNumberAsEnum() -> BusRouteDirection {
+        if (visitNumber?.toInt() ?? 0) % 2 == 0 {
+            return .backward
         } else {
-            return .Forward
+            return .forward
         }
     }
-    
+
 }
 
 enum BusLoad: String, Codable {
-    case SeatsAvailable = "SEA"
-    case StandingAvailable = "SDA"
-    case LimitedStanding = "LSD"
-    case NotApplicable = ""
+    case seatsAvailable = "SEA"
+    case standingAvailable = "SDA"
+    case limitedStanding = "LSD"
+    case notApplicable = ""
 }
 
 enum BusFeature: String, Codable {
-    case WheelchairAccessible = "WAB"
-    case None = ""
+    case wheelchairAccessible = "WAB"
+    case none = ""
 }
 
 enum BusType: String, Codable {
-    case SingleDeck = "SD"
-    case DoubleDeck = "DD"
-    case Bendy = "BD"
-    case NotApplicable = ""
+    case singleDeck = "SD"
+    case doubleDeck = "DD"
+    case bendy = "BD"
+    case notApplicable = ""
 }

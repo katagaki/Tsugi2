@@ -97,13 +97,14 @@ func fetchAllBusRoutes() async throws -> BusRouteList {
     return try await withThrowingTaskGroup(of: BusRouteList.self, body: { group in
         let finalBusRouteList = BusRouteList()
         // TODO: Bus route count may increase in the future, setting fetch at 30,000 for now
-        for i in 0...60 {
+        for index in 0...60 {
             group.addTask {
-                let busRouteList = try await fetchBusRoutes(from: i * 500)
+                let busRouteList = try await fetchBusRoutes(from: index * 500)
                 return busRouteList
             }
         }
-        let finalBusRoutePoints: [BusRoutePoint] = try await group.reduce(into: [BusRoutePoint](), { partialResult, busRouteList in
+        let finalBusRoutePoints: [BusRoutePoint] = try await group.reduce(
+            into: [BusRoutePoint](), { partialResult, busRouteList in
             partialResult.append(contentsOf: busRouteList.busRoutePoints)
         })
         finalBusRouteList.metadata = "processed.by.tsugi"

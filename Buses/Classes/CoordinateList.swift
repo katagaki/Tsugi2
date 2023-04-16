@@ -9,21 +9,21 @@ import CoreLocation
 import SwiftUI
 
 class CoordinateList: ObservableObject {
-    
+
     @Published var coordinates: [Coordinate]
-    
+
     init() {
         coordinates = []
     }
-    
+
     func addCoordinate(from busStop: Binding<BusStop>) {
         self.coordinates.append(Coordinate(busStop: busStop))
     }
-    
+
     func addCoordinate(from newCoordinate: Coordinate) {
         self.coordinates.append(newCoordinate)
     }
-    
+
     func removeAll() {
         self.coordinates.removeAll()
     }

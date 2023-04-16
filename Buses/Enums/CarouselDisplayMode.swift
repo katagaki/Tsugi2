@@ -8,41 +8,41 @@
 import Foundation
 
 enum CarouselDisplayMode: String {
-    
+
     func fontSize() -> Double {
         switch self {
-        case .Full:
+        case .full:
             return 24.0
-        case .Small:
+        case .small:
             return 20.0
-        case .Minimal:
+        case .minimal:
             return 16.0
         }
     }
-    
+
     func cornerRadius() -> Double {
         switch self {
-        case .Full:
+        case .full:
             return 10.0
-        case .Small:
+        case .small:
             return 8.0
-        case .Minimal:
+        case .minimal:
             return 6.0
         }
     }
-    
+
     func width() -> Double {
         switch self {
-        case .Full:
+        case .full:
             return 80.0
-        case .Small:
+        case .small:
             return 72.0
-        case .Minimal:
+        case .minimal:
             return 56.0
         }
     }
-    
-    case Full = "Full"
-    case Small = "Small"
-    case Minimal = "Minimal"
+
+    case full = "Full"
+    case small = "Small"
+    case minimal = "Minimal"
 }

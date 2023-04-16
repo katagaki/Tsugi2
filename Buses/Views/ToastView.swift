@@ -8,26 +8,26 @@
 import SwiftUI
 
 struct ToastView: View {
-    
+
     var message: String
-    var toastType: ToastType = .Spinner
-    
+    var toastType: ToastType = .spinner
+
     var body: some View {
         HStack(alignment: .center, spacing: 8.0) {
             switch toastType {
-            case .Spinner:
+            case .spinner:
                 ProgressView()
                     .progressViewStyle(.circular)
-            case .Checkmark:
+            case .checkmark:
                 Image(systemName: "checkmark.circle.fill")
                     .symbolRenderingMode(.multicolor)
-            case .Exclamation:
+            case .exclamation:
                 Image(systemName: "exclamationmark.triangle.fill")
                     .symbolRenderingMode(.multicolor)
-            case .PersistentError:
+            case .persistentError:
                 Image(systemName: "xmark.circle.fill")
                     .symbolRenderingMode(.multicolor)
-            case .None:
+            case .none:
                 Image(systemName: "ellipsis.bubble.fill")
                     .symbolRenderingMode(.monochrome)
             }
@@ -44,22 +44,22 @@ struct ToastView: View {
         .shadow(radius: 2.5)
         .overlay {
             switch toastType {
-            case .Spinner:
+            case .spinner:
                 RoundedRectangle(cornerRadius: 10.0)
                     .strokeBorder(Color(uiColor: .tertiarySystemGroupedBackground), lineWidth: 1.0)
-            case .Checkmark:
+            case .checkmark:
                 RoundedRectangle(cornerRadius: 10.0)
                     .strokeBorder(Color.blue, lineWidth: 1.0)
                     .opacity(0.5)
-            case .Exclamation:
+            case .exclamation:
                 RoundedRectangle(cornerRadius: 10.0)
                     .strokeBorder(Color.yellow, lineWidth: 1.0)
                     .opacity(0.5)
-            case .PersistentError:
+            case .persistentError:
                 RoundedRectangle(cornerRadius: 10.0)
                     .strokeBorder(Color.red, lineWidth: 1.0)
                     .opacity(0.5)
-            case .None:
+            case .none:
                 RoundedRectangle(cornerRadius: 10.0)
                     .strokeBorder(.primary, lineWidth: 1.0)
                     .opacity(0.5)
@@ -67,5 +67,5 @@ struct ToastView: View {
         }
         .transition(AnyTransition.opacity)
     }
-    
+
 }

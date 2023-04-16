@@ -91,7 +91,7 @@
 "More.Help.Twitter.Subtitle" = "@katagaki_";
 "More.Help.Email" = "メールを送信";
 "More.Help.Email.Subtitle" = "ktgk.public@icloud.com";
-"More.Attribution" = "データソース情報";
+"More.Attribution" = "このアプリのデータは、LTA DataMallによって提供されます。LTA DataMallは、シンガポールの道路と公共交通サービスに関するデータを提供するサービスです。\nLTA DataMallのAPI制限により、HTTPSは利用されません。";
 "More.UnderTheHood" = "アプリログ";
 
 /* Notifications */
@@ -114,7 +114,7 @@
 "Shared.BusStop.Road.None" = "なし";
 "Shared.BusStop.BusServices" = "バス";
 "Shared.BusStop.BusServices.None" = "このバス停に止まるバスはすべてサービス時間外です。";
-"Shared.BusStop.Toast.Favorited" = "%sは、場所として保存されました。";
+"Shared.BusStop.Toast.Favorited" = "%1は、場所として保存されました。";
 "Shared.BusArrival.Arriving.Full" = "すぐに到着";
 "Shared.BusArrival.Arriving.Abbreviated" = "まもなく";
 "Shared.BusArrival.JustLeft.Full" = "発車済み";

@@ -9,12 +9,12 @@ import MapKit
 import SwiftUI
 
 struct NearbyMapView: View {
-    
+
     @EnvironmentObject var regionManager: MapRegionManager
-    
+
     @State var userTrackingMode: MapUserTrackingMode = .none
     @Binding var displayedCoordinates: CoordinateList
-    
+
     var body: some View {
         Map(coordinateRegion: regionManager.region,
             interactionModes: .all,
@@ -30,5 +30,5 @@ struct NearbyMapView: View {
             }
         }
     }
-    
+
 }

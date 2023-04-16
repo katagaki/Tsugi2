@@ -10,9 +10,9 @@ import MapKit
 import SwiftUI
 
 struct MainTabView: View {
-    
+
     @Environment(\.scenePhase) var scenePhase
-    
+
     @EnvironmentObject var networkMonitor: NetworkMonitor
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var favorites: FavoritesManager
@@ -20,11 +20,11 @@ struct MainTabView: View {
     @EnvironmentObject var locationManager: LocationManager
     @EnvironmentObject var settings: SettingsManager
     @EnvironmentObject var toaster: Toaster
-    
+
     @State var defaultTab: Int = 0
-    
+
     @State var isInitialLoad: Bool = true
-    
+
     var body: some View {
         GeometryReader { metrics in
             TabView(selection: $defaultTab) {
@@ -80,24 +80,26 @@ struct MainTabView: View {
                     }
                 } else {
                     log("Network connection disappeared!")
-                    toaster.showToast(localized("Shared.Error.InternetConnection"), type: .PersistentError, hidesAutomatically: false)
+                    toaster.showToast(localized("Shared.Error.InternetConnection"),
+                                      type: .persistentError,
+                                      hidesAutomatically: false)
                 }
             }
             .onChange(of: scenePhase, perform: { newPhase in
                 switch newPhase {
-                    case .inactive:
-                        log("Scene became inactive.")
-                    case .active:
-                        log("Scene became active.")
-                        if locationManager.shouldUpdateLocationAsSoonAsPossible {
-                            locationManager.updateLocation(usingOnlySignificantChanges: false)
-                            locationManager.shouldUpdateLocationAsSoonAsPossible = false
-                        }
-                    case .background:
-                        log("Scene went into the background.")
-                        locationManager.shouldUpdateLocationAsSoonAsPossible = true
-                    @unknown default:
-                        log("Scene change detected, but we don't know what the change was!")
+                case .inactive:
+                    log("Scene became inactive.")
+                case .active:
+                    log("Scene became active.")
+                    if locationManager.shouldUpdateLocationAsSoonAsPossible {
+                        locationManager.updateLocation(usingOnlySignificantChanges: false)
+                        locationManager.shouldUpdateLocationAsSoonAsPossible = false
+                    }
+                case .background:
+                    log("Scene went into the background.")
+                    locationManager.shouldUpdateLocationAsSoonAsPossible = true
+                @unknown default:
+                    log("Scene change detected, but we don't know what the change was!")
                 }
             })
             .overlay {
@@ -105,22 +107,25 @@ struct MainTabView: View {
                         if toaster.isToastShowing {
                             ToastView(message: toaster.toastMessage, toastType: toaster.toastType)
                                 .onTapGesture {
-                                    if toaster.toastType != .PersistentError && toaster.toastType != .Spinner {
+                                    if toaster.toastType != .persistentError && toaster.toastType != .spinner {
                                         toaster.hideToast()
                                     }
                                 }
                         }
                         Color.clear
                     }
-                    .padding(EdgeInsets(top: 0.0, leading: 16.0, bottom: metrics.safeAreaInsets.bottom + 65.0, trailing: 16.0))
+                    .padding(EdgeInsets(top: 0.0,
+                                        leading: 16.0,
+                                        bottom: metrics.safeAreaInsets.bottom + 65.0,
+                                        trailing: 16.0))
                     .animation(.default, value: toaster.isToastShowing)
             }
             .edgesIgnoringSafeArea(.bottom)
         }
     }
-    
+
     func reloadBusStopList(forceServer: Bool = false) async {
-        toaster.showToast(localized("Directory.BusStopsLoading"), type: .Spinner, hidesAutomatically: false)
+        toaster.showToast(localized("Directory.BusStopsLoading"), type: .spinner, hidesAutomatically: false)
         do {
             if dataManager.storedBusStopList() == nil || forceServer {
                 try await dataManager.reloadBusStopListFromServer()
@@ -128,7 +133,8 @@ struct MainTabView: View {
             } else {
                 if let storedBusStopList = dataManager.storedBusStopList(),
                    let storedBusStopListUpdatedDate = dataManager.storedBusStopListUpdatedDate() {
-                    try await dataManager.reloadBusStopListFromStoredMemory(storedBusStopList, updatedAt: storedBusStopListUpdatedDate)
+                    try await dataManager.reloadBusStopListFromStoredMemory(storedBusStopList,
+                                                                            updatedAt: storedBusStopListUpdatedDate)
                     log("Reloaded bus stop data from memory.")
                 }
             }
@@ -136,20 +142,24 @@ struct MainTabView: View {
         } catch {
             log(error.localizedDescription)
             log("WARNING×WARNING×WARNING\nNetwork does not look like it's working, bus stop data may be incomplete!")
-            toaster.showToast(localized("Shared.Error.InternetConnection"), type: .PersistentError, hidesAutomatically: false)
+            toaster.showToast(localized("Shared.Error.InternetConnection"),
+                              type: .persistentError,
+                              hidesAutomatically: false)
         }
     }
-    
+
     func reloadBusRouteList() async {
         do {
             try await dataManager.reloadBusRoutesFromServer()
             log("Reloaded bus route data from server.")
         } catch {
             log(error.localizedDescription)
-            toaster.showToast(localized("Shared.Error.InternetConnection"), type: .PersistentError, hidesAutomatically: false)
+            toaster.showToast(localized("Shared.Error.InternetConnection"),
+                              type: .persistentError,
+                              hidesAutomatically: false)
         }
     }
-    
+
 }
 
 struct MainTabView_Previews: PreviewProvider {

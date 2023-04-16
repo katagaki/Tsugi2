@@ -9,38 +9,44 @@ import CoreData
 import SwiftUI
 
 class FavoritesManager: ObservableObject {
-    
+
     private let context = FavoritesCoreDataManager.shared.mainContext
     private let fetchRequestForLocations: NSFetchRequest<FavoriteLocation> = FavoriteLocation.fetchRequest()
     private let fetchRequestForBusServices: NSFetchRequest<FavoriteBusService> = FavoriteBusService.fetchRequest()
-    
+
     @Published var favoriteLocations: [FavoriteLocation]
     @Published var favoriteBusServices: [FavoriteBusService]
-    
-    @Published var shouldUpdateViewsAsSoonAsPossible = false
-    
+
+    @Published var updateViewFlag = false
+
     init() {
         do {
             favoriteLocations = try context.fetch(fetchRequestForLocations)
             favoriteBusServices = try context.fetch(fetchRequestForBusServices)
-            favoriteLocations.sort { a, b in
-                a.viewIndex < b.viewIndex
+            favoriteLocations.sort { lhs, rhs in
+                lhs.viewIndex < rhs.viewIndex
             }
-            favoriteBusServices.sort { a, b in
-                a.viewIndex < b.viewIndex
+            favoriteBusServices.sort { lhs, rhs in
+                lhs.viewIndex < rhs.viewIndex
             }
-            
+
+            var consistencyCheckRequired: Bool = false
+
             if favoriteLocations.first(where: { favoriteLocation in
                 favoriteLocation.viewIndex == 0
             }) != favoriteLocations.last(where: { favoriteLocation in
                 favoriteLocation.viewIndex == 0
-            }) {
-                for i in 0..<favoriteLocations.count {
-                    favoriteLocations[i].viewIndex = Int16(i)
+            }) ||
+                !favoriteLocations.compactMap({ favoriteLocation in
+                    return favoriteLocation.viewIndex
+                }).isDistinct() {
+                for index in 0..<favoriteLocations.count {
+                    favoriteLocations[index].viewIndex = Int16(index)
                 }
+                consistencyCheckRequired = true
                 log("View indexes reset for favorite locations after consistency check was performed.")
             }
-            
+
             for favoriteLocation in favoriteLocations {
                 if let favoriteLocationBusServices = favoriteLocation.busServices?.array as? [FavoriteBusService],
                    favoriteLocationBusServices.first(where: { favoriteBusService in
@@ -48,40 +54,46 @@ class FavoritesManager: ObservableObject {
                     }) != favoriteLocationBusServices.last(where: { favoriteBusService in
                         favoriteBusService.viewIndex == 0
                     }) {
-                    for i in 0..<favoriteLocationBusServices.count {
-                        favoriteLocationBusServices[i].viewIndex = Int16(i)
+                    for index in 0..<favoriteLocationBusServices.count {
+                        favoriteLocationBusServices[index].viewIndex = Int16(index)
                     }
-                    log("View indexes reset for a favorite location's bus services after consistency check was performed.")
+                    consistencyCheckRequired = true
+                    log("View indexes reset for a favorite location's bus services during consistency check.")
                 }
             }
-            
+
+            if consistencyCheckRequired {
+                try context.save()
+            }
+
             log("Favorites data loaded.")
-        }
-        catch {
-            favoriteLocations = []
-            favoriteBusServices = []
-        }
-    }
-    
-    func reloadData() {
-        do {
-            favoriteLocations = try context.fetch(fetchRequestForLocations)
-            favoriteBusServices = try context.fetch(fetchRequestForBusServices)
-            favoriteLocations.sort { a, b in
-                a.viewIndex < b.viewIndex
-            }
-            favoriteBusServices.sort { a, b in
-                a.viewIndex < b.viewIndex
-            }
-            log("Favorites data reloaded.")
-            shouldUpdateViewsAsSoonAsPossible = true
         } catch {
             favoriteLocations = []
             favoriteBusServices = []
         }
     }
-    
-    func addBusServiceToFavoriteLocation(_ favoriteLocation: FavoriteLocation, busStop: BusStop, busService: BusService) async {
+
+    func reloadData() {
+        do {
+            favoriteLocations = try context.fetch(fetchRequestForLocations)
+            favoriteBusServices = try context.fetch(fetchRequestForBusServices)
+            favoriteLocations.sort { lhs, rhs in
+                lhs.viewIndex < rhs.viewIndex
+            }
+            favoriteBusServices.sort { lhs, rhs in
+                lhs.viewIndex < rhs.viewIndex
+            }
+            log("Favorites data reloaded.")
+            updateViewFlag.toggle()
+        } catch {
+            favoriteLocations = []
+            favoriteBusServices = []
+        }
+    }
+
+    func addBusServiceToFavoriteLocation(_ favoriteLocation: FavoriteLocation,
+                                         busStop: BusStop,
+                                         busService: BusService) async {
         let favoriteBusServiceEntity = FavoriteBusService.entity()
         let favoriteBusService = FavoriteBusService(entity: favoriteBusServiceEntity, insertInto: context)
         favoriteBusService.busStopCode = busStop.code
@@ -90,8 +102,11 @@ class FavoritesManager: ObservableObject {
         // TODO: Add and set view index
         log("Favorite bus service added to favorite location.")
     }
-    
-    func addFavoriteLocation(busStop: BusStop, nickname: String = "", usesLiveBusStopData: Bool = false, containing busServices: [BusService] = []) async {
+
+    func addFavoriteLocation(busStop: BusStop,
+                             nickname: String = "",
+                             usesLiveBusStopData: Bool = false,
+                             containing busServices: [BusService] = []) async {
         let favoriteLocationEntity = FavoriteLocation.entity()
         let favoriteLocation = FavoriteLocation(entity: favoriteLocationEntity, insertInto: context)
         favoriteLocation.busStopCode = busStop.code
@@ -108,7 +123,7 @@ class FavoritesManager: ObservableObject {
         }
         log("Favorite location added using bus stop.")
     }
-    
+
     func createNewFavoriteLocation(nickname: String) async {
         let favoriteLocationEntity = FavoriteLocation.entity()
         let favoriteLocation = FavoriteLocation(entity: favoriteLocationEntity, insertInto: context)
@@ -119,7 +134,7 @@ class FavoritesManager: ObservableObject {
         favoriteLocation.viewIndex = 0
         log("New favorite location created.")
     }
-    
+
     func moveUp(_ favoriteLocation: FavoriteLocation) async {
         let originalIndex: Int16 = favoriteLocation.viewIndex
         if originalIndex > 0 {
@@ -130,7 +145,7 @@ class FavoritesManager: ObservableObject {
         log("Favorite location moved up.")
         await saveChanges()
     }
-    
+
     func moveDown(_ favoriteLocation: FavoriteLocation) async {
         let originalIndex: Int16 = favoriteLocation.viewIndex
         if originalIndex < favoriteLocations.count - 1 {
@@ -141,14 +156,14 @@ class FavoritesManager: ObservableObject {
         log("Favorite location moved down.")
         await saveChanges()
     }
-    
+
     func moveAllDown() async {
         for favoriteLocation in favoriteLocations {
             favoriteLocation.viewIndex += 1
         }
         log("All favorite locations moved down.")
     }
-    
+
     func moveBusServiceUp(_ favoriteLocation: FavoriteLocation, busService: FavoriteBusService) async {
         let originalViewIndex: Int16 = busService.viewIndex
         let newViewIndex: Int16 = busService.viewIndex - 1
@@ -163,7 +178,7 @@ class FavoritesManager: ObservableObject {
         log("Bus service moved up.")
         await saveChanges()
     }
-    
+
     func moveBusServiceDown(_ favoriteLocation: FavoriteLocation, busService: FavoriteBusService) async {
         let originalViewIndex: Int16 = busService.viewIndex
         let newViewIndex: Int16 = busService.viewIndex + 1
@@ -178,26 +193,35 @@ class FavoritesManager: ObservableObject {
         log("Bus service moved down.")
         await saveChanges()
     }
-    
+
     func rename(_ favoriteLocation: FavoriteLocation, to newNickname: String) async {
         favoriteLocation.nickname = newNickname
         log("Favorite location renamed.")
         await saveChanges()
     }
-    
+
     func deleteLocation(_ favoriteLocation: FavoriteLocation) async {
-        context.delete(favoriteLocation)
-        log("Favorite location deleted.")
-        await saveChanges()
+        if let locationIndex = favoriteLocations.firstIndex(of: favoriteLocation) {
+            if locationIndex < favoriteLocations.count - 1 {
+                for index in (locationIndex + 1)..<favoriteLocations.count {
+                    favoriteLocations.first(where: { favoriteLocation in
+                        favoriteLocation.viewIndex == index
+                    })!.viewIndex -= 1
+                }
+            }
+            context.delete(favoriteLocation)
+            log("Favorite location deleted.")
+            await saveChanges()
+        }
     }
-    
+
     func deleteBusService(_ favoriteLocation: FavoriteLocation, busService: FavoriteBusService) async {
         favoriteLocation.removeFromBusServices(busService)
         log("Favorite bus service deleted.")
         await saveChanges()
     }
-    
-    func deleteAllData(_ entity:String) {
+
+    func deleteAllData(_ entity: String) {
         do {
             let busServices = try context.fetch(fetchRequestForBusServices)
             let locations = try context.fetch(fetchRequestForLocations)
@@ -213,41 +237,37 @@ class FavoritesManager: ObservableObject {
         }
         reloadData()
     }
-    
+
     func find(_ serviceNo: String, in favoriteLocation: FavoriteLocation) -> Bool {
-        for favoriteBusService in favoriteBusServices {
-            if favoriteBusService.serviceNo == serviceNo {
-                if let parentLocations = favoriteBusService.parentLocations {
-                    if parentLocations.contains(favoriteLocation) {
-                        return true
-                    }
+        for favoriteBusService in favoriteBusServices where favoriteBusService.serviceNo == serviceNo {
+            if let parentLocations = favoriteBusService.parentLocations {
+                if parentLocations.contains(favoriteLocation) {
+                    return true
                 }
             }
         }
         return false
     }
-    
-    func saveChanges(andReload willReload: Bool = true) async {
+
+    func saveChanges() async {
         do {
             try await context.perform { [self] in
                 if context.hasChanges {
                     try context.save()
                     log("Favorites saved.")
-                    if willReload {
-                        reloadData()
-                    }
+                    reloadData()
                 }
             }
         } catch {
             log(error.localizedDescription)
         }
     }
-    
+
     class FavoritesCoreDataManager {
-        
+
         static let shared = FavoritesCoreDataManager()
         private init() { }
-        
+
         private lazy var persistentContainer: NSPersistentContainer = {
             let container = NSPersistentContainer(name: "Favorites")
             container.loadPersistentStores { _, error in
@@ -257,15 +277,15 @@ class FavoritesManager: ObservableObject {
             }
             return container
         }()
-        
+
         var mainContext: NSManagedObjectContext {
             return persistentContainer.viewContext
         }
-        
+
         func backgroundContext() -> NSManagedObjectContext {
             return persistentContainer.newBackgroundContext()
         }
-        
+
     }
-    
+
 }

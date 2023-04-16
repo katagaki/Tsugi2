@@ -13,47 +13,44 @@ struct AssistantAttributes: ActivityAttributes {
     public struct ContentState: Codable, Hashable {
         var busService: BusService
     }
-    
+
     var serviceNo: String
     var currentDate: Date
 }
 
 struct AssistantLiveActivity: Widget {
-    
+
     @Environment(\.colorScheme) var colorScheme
-    
+
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: AssistantAttributes.self) { context in
             HStack(alignment: .center) {
                 HStack(alignment: .center, spacing: 16.0) {
-                    BusNumberPlateView(carouselDisplayMode: .constant(.Full),
+                    BusNumberPlateView(carouselDisplayMode: .constant(.full),
                                        serviceNo: context.state.busService.serviceNo)
                         .background(Color("PlateColor"))
                         .clipShape(RoundedRectangle(cornerRadius: 8.0))
                         .frame(minWidth: 88.0, maxWidth: 88.0, minHeight: 40.0, maxHeight: 40.0, alignment: .center)
                     VStack(alignment: .leading) {
-                        if let date = context.state.busService.nextBus?.estimatedArrivalTime() {
+                        if let date = context.state.busService.nextBus?.estimatedArrivalTimeAsDate() {
                             Text("LiveActivity.EstimatedArrival")
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                             Text(date, style: .time)
                                 .font(.body)
-//                            Text(localized("LiveActivity.ArrivingAt").replacingOccurrences(of: "%1", with: date.formatted(date: .omitted, time: .standard)))
-//                                .font(.caption)
-//                                .foregroundColor(.secondary)
                         }
                     }
                 }
                 Spacer()
                 switch context.state.busService.nextBus?.feature {
-                case .WheelchairAccessible:
+                case .wheelchairAccessible:
                     Image(systemName: "figure.roll")
                         .font(.body)
                 default:
                     Text("")
                 }
                 switch context.state.busService.nextBus?.type {
-                case .DoubleDeck:
+                case .doubleDeck:
                     Image(systemName: "bus.doubledecker")
                         .font(.body)
                 case .none:
@@ -69,7 +66,7 @@ struct AssistantLiveActivity: Widget {
         } dynamicIsland: { context in
             DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
-                    BusNumberPlateView(carouselDisplayMode: .constant(.Full),
+                    BusNumberPlateView(carouselDisplayMode: .constant(.full),
                                        serviceNo: context.state.busService.serviceNo)
                         .background(Color("PlateColor"))
                         .clipShape(RoundedRectangle(cornerRadius: 16.0))
@@ -79,12 +76,12 @@ struct AssistantLiveActivity: Widget {
                 DynamicIslandExpandedRegion(.trailing) {
                     VStack(alignment: .trailing, spacing: 8.0) {
                         HStack(alignment: .center, spacing: 4.0) {
-                            if context.state.busService.nextBus?.feature == .WheelchairAccessible {
+                            if context.state.busService.nextBus?.feature == .wheelchairAccessible {
                                 Image(systemName: "figure.roll")
                                     .font(.body)
                                     .foregroundColor(.primary)
                             }
-                            if context.state.busService.nextBus?.type == .DoubleDeck {
+                            if context.state.busService.nextBus?.type == .doubleDeck {
                                 Image(systemName: "bus.doubledecker")
                                     .font(.body)
                                     .foregroundColor(.primary)
@@ -102,9 +99,12 @@ struct AssistantLiveActivity: Widget {
                     Text("LiveActivity.EstimatedArrival")
                         .font(.caption)
                         .foregroundColor(.secondary)
-                    Text(context.state.busService.nextBus?.estimatedArrivalTime() ?? Date(), style: .time)
+                    Text(context.state.busService.nextBus?.estimatedArrivalTimeAsDate() ?? Date(), style: .time)
                         .font(.largeTitle)
-//                    ProgressView(timerInterval: Date()...(context.state.busService.nextBus?.estimatedArrivalTime() ?? Date()))
+                    // TODO: Implement ProgressView
+//                    ProgressView(timerInterval:
+//                                    Date()...(context.state.busService.nextBus?.estimatedArrivalTimeAsDate() ??
+//                                              Date()))
 //                        .tint(Color("AccentColor"))
 //                        .font(.body)
 //                        .foregroundColor(.white)
@@ -118,11 +118,11 @@ struct AssistantLiveActivity: Widget {
                     .background(Color("PlateColor"))
                     .clipShape(RoundedRectangle(cornerRadius: 16.0))
             } compactTrailing: {
-                if let date = context.state.busService.nextBus?.estimatedArrivalTime() {
+                if let date = context.state.busService.nextBus?.estimatedArrivalTimeAsDate() {
                     ProgressView(timerInterval: Date()...date, countsDown: true, label: {
                         // No label implemented
                     }, currentValueLabel: {
-                        if context.state.busService.nextBus?.type == .DoubleDeck {
+                        if context.state.busService.nextBus?.type == .doubleDeck {
                             Image(systemName: "bus.doubledecker")
                                 .font(.system(size: 10.0))
                                 .foregroundColor(Color("AccentColor"))
@@ -139,7 +139,7 @@ struct AssistantLiveActivity: Widget {
                     Text("?")
                 }
             } minimal: {
-                if let date = context.state.busService.nextBus?.estimatedArrivalTime() {
+                if let date = context.state.busService.nextBus?.estimatedArrivalTimeAsDate() {
                     ProgressView(timerInterval: Date()...date, countsDown: true, label: {
                         // No label implemented
                     }, currentValueLabel: {
@@ -176,12 +176,12 @@ struct AssistantLiveActivity_Previews: PreviewProvider {
             .previewContext(contentState, viewKind: .content)
             .previewDisplayName("Notification")
     }
-    
+
     static func getSampleBusService() -> BusService {
         if let busService: BusService = decode(from: Bundle.main.path(forResource: "BusArrivalv2-1", ofType: "json")!) {
             return busService
         } else {
-            return BusService(serviceNo: "", operator: .SBSTransit)
+            return BusService(serviceNo: "", operator: .sbsTransit)
         }
     }
 }

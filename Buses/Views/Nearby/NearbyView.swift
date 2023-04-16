@@ -10,19 +10,19 @@ import MapKit
 import SwiftUI
 
 struct NearbyView: View {
-    
+
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var favorites: FavoritesManager
     @EnvironmentObject var regionManager: MapRegionManager
     @EnvironmentObject var locationManager: LocationManager
     @EnvironmentObject var toaster: Toaster
-    
+
     @State var displayedCoordinates: CoordinateList = CoordinateList()
-    
+
     @State var isInitialDataLoaded: Bool = false
     @State var isNearbyBusStopsDetermined: Bool = false
     @State var nearbyBusStops: [BusStop] = []
-    
+
     var body: some View {
         NavigationStack {
             GeometryReader { metrics in
@@ -39,24 +39,26 @@ struct NearbyView: View {
                         .ignoresSafeArea(edges: [.top])
                     List($nearbyBusStops, id: \.hashValue) { $stop in
                         Section {
-                            BusServicesCarousel(dataDisplayMode: .BusStop,
+                            BusServicesCarousel(dataDisplayMode: .busStop,
                                                 busStop: $stop,
                                                 favoriteLocation: nil)
                             .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
                         } header: {
                             HStack(alignment: .center, spacing: 0.0) {
-                                ListSectionHeader(text: (stop.description ?? "Shared.BusStop.Description.None"))
+                                ListSectionHeader(text: (stop.name()))
                                 Spacer()
                                 if favorites.favoriteLocations.contains(where: { location in
                                     location.busStopCode == stop.code && location.usesLiveBusStopData == true
                                 }) == false {
                                     Button {
                                         Task {
-                                            await favorites.addFavoriteLocation(busStop: stop, usesLiveBusStopData: true)
+                                            await favorites.addFavoriteLocation(busStop: stop,
+                                                                                usesLiveBusStopData: true)
                                             await favorites.saveChanges()
-                                            toaster.showToast(localized("Shared.BusStop.Toast.Favorited").replacingOccurrences(of: "%s", with: stop.description ?? localized("Shared.BusStop.Description.None")),
-                                                                    type: .Checkmark,
-                                                                    hidesAutomatically: true)
+                                            toaster.showToast(localized("Shared.BusStop.Toast.Favorited",
+                                                                        replacing: stop.name()),
+                                                              type: .checkmark,
+                                                              hidesAutomatically: true)
                                         }
                                     } label: {
                                         Image(systemName: "rectangle.stack.badge.plus")
@@ -142,16 +144,17 @@ struct NearbyView: View {
             }
         }
     }
-    
+
     func reloadNearbyBusStops() {
         Task {
-            let currentCoordinate = CLLocation(latitude: locationManager.region.center.latitude, longitude: locationManager.region.center.longitude)
+            let currentCoordinate = CLLocation(latitude: locationManager.region.center.latitude,
+                                               longitude: locationManager.region.center.longitude)
             var busStopListSortedByDistance: [BusStop] = dataManager.busStops
             busStopListSortedByDistance = busStopListSortedByDistance.filter { busStop in
                 currentCoordinate.distanceTo(busStop: busStop) < 500.0
             }
-            busStopListSortedByDistance.sort { a, b in
-                return currentCoordinate.distanceTo(busStop: a) < currentCoordinate.distanceTo(busStop: b)
+            busStopListSortedByDistance.sort { lhs, rhs in
+                return currentCoordinate.distanceTo(busStop: lhs) < currentCoordinate.distanceTo(busStop: rhs)
             }
             nearbyBusStops.removeAll()
             nearbyBusStops.append(contentsOf: busStopListSortedByDistance)
@@ -172,7 +175,7 @@ struct NearbyView: View {
             isNearbyBusStopsDetermined = true
         }
     }
-    
+
 }
 
 struct NearbyView_Previews: PreviewProvider {

@@ -8,20 +8,21 @@
 import SwiftUI
 
 struct ListBusServiceRow: View {
-    
+
     @Binding var bus: BusService
-    
+
     var body: some View {
         HStack(alignment: .center, spacing: 8.0) {
-            BusNumberPlateView(carouselDisplayMode: .constant(.Full),
+            BusNumberPlateView(carouselDisplayMode: .constant(.full),
                                serviceNo: bus.serviceNo)
             Divider()
             VStack(alignment: .leading, spacing: 2.0) {
                 HStack(alignment: .center, spacing: 4.0) {
-                    Text(bus.nextBus?.estimatedArrivalTime()?.arrivalFormat() ?? localized("Shared.BusArrival.NotInService"))
+                    Text(bus.nextBus?.estimatedArrivalTimeAsDate()?.arrivalFormat() ??
+                         localized("Shared.BusArrival.NotInService"))
                         .font(.body)
                     switch bus.nextBus?.feature {
-                    case .WheelchairAccessible:
+                    case .wheelchairAccessible:
                         Image(systemName: "figure.roll")
                             .font(.caption)
                             .foregroundColor(.secondary)
@@ -29,7 +30,7 @@ struct ListBusServiceRow: View {
                         Text("")
                     }
                     switch bus.nextBus?.type {
-                    case .DoubleDeck:
+                    case .doubleDeck:
                         Image(systemName: "bus.doubledecker")
                             .font(.caption)
                             .foregroundColor(.secondary)
@@ -41,7 +42,7 @@ struct ListBusServiceRow: View {
                             .foregroundColor(.secondary)
                     }
                 }
-                if let arrivalTime = bus.nextBus2?.estimatedArrivalTime() {
+                if let arrivalTime = bus.nextBus2?.estimatedArrivalTimeAsDate() {
                     Text(localized("Shared.BusArrival.Subsequent") + arrivalTime.arrivalFormat())
                         .font(.caption)
                         .foregroundColor(.secondary)
@@ -53,5 +54,5 @@ struct ListBusServiceRow: View {
             return 0
         }
     }
-    
+
 }

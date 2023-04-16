@@ -8,9 +8,9 @@
 import Foundation
 
 enum BusOperator: String, Codable {
-    case SBSTransit = "SBST"
-    case SMRT = "SMRT"
-    case TowerTransit = "TTS"
-    case GoAheadSingapore = "GAS"
-    case Unknown = "U"
+    case sbsTransit = "SBST"
+    case smrt = "SMRT"
+    case towerTransit = "TTS"
+    case goAheadSingapore = "GAS"
+    case unknown = "U"
 }

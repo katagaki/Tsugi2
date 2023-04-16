@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct ListArrivalInfoRow: View {
-    
+
     var busService: BusService
     var arrivalInfo: BusArrivalInfo
     @State var arrivalTime: String = ""
-    
+
     var setNotification: (BusArrivalInfo) -> Void
-    
+
     var body: some View {
         HStack(alignment: .center, spacing: 8.0) {
             VStack(alignment: .leading, spacing: 2.0) {
-                Text(arrivalInfo.estimatedArrivalTime()?.arrivalFormat() ?? localized("Shared.BusArrival.NotInService"))
+                Text(arrivalInfo.estimatedArrivalTimeAsDate()?.arrivalFormat() ??
+                     localized("Shared.BusArrival.NotInService"))
                     .font(.system(size: 20.0, weight: .medium))
                 if arrivalTime != "" {
                     Text(arrivalTime)
@@ -32,14 +33,14 @@ struct ListArrivalInfoRow: View {
             }
             Spacer()
             switch arrivalInfo.load {
-            case .StandingAvailable:
+            case .standingAvailable:
                 Text("Shared.BusArrival.Crowded")
                     .font(.system(size: 10.5, weight: .bold))
                     .foregroundColor(.white)
                     .padding(EdgeInsets(top: 3.0, leading: 6.0, bottom: 3.0, trailing: 6.0))
                     .background(Color.orange)
                     .clipShape(RoundedRectangle(cornerRadius: 6.0))
-            case .LimitedStanding:
+            case .limitedStanding:
                 Text("Shared.BusArrival.Crowded")
                     .font(.system(size: 10.5, weight: .bold))
                     .foregroundColor(.white)
@@ -52,7 +53,7 @@ struct ListArrivalInfoRow: View {
             if arrivalTime != "" {
                 HStack(alignment: .center, spacing: 4.0) {
                     switch arrivalInfo.feature {
-                    case .WheelchairAccessible:
+                    case .wheelchairAccessible:
                         Image(systemName: "figure.roll")
                             .font(.body)
                             .foregroundColor(.secondary)
@@ -60,7 +61,7 @@ struct ListArrivalInfoRow: View {
                         Text("")
                     }
                     switch arrivalInfo.type {
-                    case .DoubleDeck:
+                    case .doubleDeck:
                         Image(systemName: "bus.doubledecker")
                             .font(.body)
                             .foregroundColor(.secondary)
@@ -72,7 +73,7 @@ struct ListArrivalInfoRow: View {
                             .foregroundColor(.secondary)
                     }
                 }
-                if let date = arrivalInfo.estimatedArrivalTime() {
+                if let date = arrivalInfo.estimatedArrivalTimeAsDate() {
                     Divider()
                     Button {
                         setNotification(arrivalInfo)
@@ -89,7 +90,7 @@ struct ListArrivalInfoRow: View {
             }
         }
         .onAppear {
-            if let estimatedArrivalTime = arrivalInfo.estimatedArrivalTime() {
+            if let estimatedArrivalTime = arrivalInfo.estimatedArrivalTimeAsDate() {
                 let dateFormatter = DateFormatter()
                 dateFormatter.timeStyle = .short
                 arrivalTime = dateFormatter.string(from: estimatedArrivalTime)
@@ -98,20 +99,20 @@ struct ListArrivalInfoRow: View {
             }
         }
     }
-    
+
 }
 
 struct ArrivalInfoCardView_Previews: PreviewProvider {
-    
+
     static var sampleBusStop: BusStop? = loadPreviewData()
-    
+
     static var previews: some View {
-        BusServiceView(mode: .BusStop,
+        BusServiceView(mode: .busStop,
                               busService: sampleBusStop!.arrivals!.randomElement()!,
                               busStop: .constant(sampleBusStop!),
                               showsAddToLocationButton: true)
     }
-    
+
     static private func loadPreviewData() -> BusStop? {
         if let sampleDataPath = Bundle.main.path(forResource: "BusArrivalv2-1", ofType: "json") {
             let sampleBusStop: BusStop? = decode(from: sampleDataPath)
@@ -120,5 +121,5 @@ struct ArrivalInfoCardView_Previews: PreviewProvider {
             return nil
         }
     }
-    
+
 }

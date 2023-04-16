@@ -8,8 +8,8 @@
 import Foundation
 
 enum DataDisplayMode {
-    case BusStop
-    case FavoriteLocationCustomData
-    case FavoriteLocationLiveData
-    case NotificationItem
+    case busStop
+    case favoriteLocationCustomData
+    case favoriteLocationLiveData
+    case notificationItem
 }

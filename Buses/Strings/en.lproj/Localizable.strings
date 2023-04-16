@@ -91,7 +91,7 @@
 "More.Help.Twitter.Subtitle" = "@katagaki_";
 "More.Help.Email" = "Email Me";
 "More.Help.Email.Subtitle" = "ktgk.public@icloud.com";
-"More.Attribution" = "Data Attribution";
+"More.Attribution" = "Data in this app is provided by LTA's DataMall service. LTA's DataMall service provides live data about Singapore's roads and public transit services.\nDue to limitations in the LTA DataMall API, HTTPS is not used by the API.";
 "More.UnderTheHood" = "App Logs";
 
 /* Notifications */
@@ -114,7 +114,7 @@
 "Shared.BusStop.Road.None" = "N/A";
 "Shared.BusStop.BusServices" = "Bus Services";
 "Shared.BusStop.BusServices.None" = "This bus stop has no bus services at this time.";
-"Shared.BusStop.Toast.Favorited" = "%s has been added to your locations.";
+"Shared.BusStop.Toast.Favorited" = "%1 has been added to your locations.";
 "Shared.BusArrival.Arriving.Full" = "Arriving";
 "Shared.BusArrival.Arriving.Abbreviated" = "Arr";
 "Shared.BusArrival.JustLeft.Full" = "Just Left";

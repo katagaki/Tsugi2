@@ -8,28 +8,29 @@
 import SwiftUI
 
 struct FavoritesView: View {
-    
+
     @EnvironmentObject var favorites: FavoritesManager
-    
+
     @State var isEditing: Bool = false
-    @State var favoriteLocationPendingEdit: FavoriteLocation? = nil
-    
+    @State var favoriteLocationPendingEdit: FavoriteLocation?
+
     @State var isEditPending: Bool = false
-    
+
     @State var isNewPending: Bool = false
     @State var favoriteLocationNewNickname: String = ""
-    
+
     @State var isNicknameEditPending: Bool = false
     @State var favoriteLocationPendingEditNewNickname: String = ""
-    
+
     @State var isDeletionPending: Bool = false
-    
+
     var body: some View {
         NavigationStack {
             List($favorites.favoriteLocations, id: \.hashValue) { $location in
                 Section {
-                    BusServicesCarousel(dataDisplayMode: (location.usesLiveBusStopData ? .FavoriteLocationLiveData : .FavoriteLocationCustomData),
-                                        isInUnstableState: $isEditing,
+                    BusServicesCarousel(dataDisplayMode:
+                                            (location.usesLiveBusStopData ?
+                                                .favoriteLocationLiveData : .favoriteLocationCustomData),
                                         busStop: nil,
                                         favoriteLocation: $location)
                         .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
@@ -91,12 +92,12 @@ struct FavoritesView: View {
             }
             .onChange(of: isEditing, perform: { newValue in
                 if !newValue {
-                    favorites.shouldUpdateViewsAsSoonAsPossible = true
+                    favorites.updateViewFlag.toggle()
                 }
             })
             .listStyle(.insetGrouped)
             .refreshable {
-                favorites.shouldUpdateViewsAsSoonAsPossible = true
+                favorites.updateViewFlag.toggle()
             }
             .overlay {
                 if favorites.favoriteLocations.count == 0 {
@@ -191,10 +192,13 @@ struct FavoritesView: View {
                 Text("Alert.Yes")
             })
         }, message: {
-            Text(localized("Favorites.Delete.Confirm.Message").replacingOccurrences(of: "%LOCATION%", with: favoriteLocationPendingEdit?.nickname ?? localized("Favorites.Delete.Confirm.GenericLocationText")))
+            Text(localized("Favorites.Delete.Confirm.Message")
+                .replacingOccurrences(of: "%LOCATION%",
+                                      with: favoriteLocationPendingEdit?.nickname ??
+                                      localized("Favorites.Delete.Confirm.GenericLocationText")))
         })
     }
-    
+
 }
 
 struct FavoritesView_Previews: PreviewProvider {

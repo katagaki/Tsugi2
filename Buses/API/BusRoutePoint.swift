@@ -8,7 +8,7 @@
 import Foundation
 
 class BusRoutePoint: Codable, Hashable, ObservableObject, Identifiable {
-    
+
     var serviceNo: String
     var `operator`: BusOperator
     var direction: BusRouteDirection
@@ -21,7 +21,7 @@ class BusRoutePoint: Codable, Hashable, ObservableObject, Identifiable {
     var saturdayLastBusTime: String
     var sundayFirstBusTime: String
     var sundayLastBusTime: String
-    
+
     enum CodingKeys: String, CodingKey {
         case serviceNo = "ServiceNo"
         case `operator` = "Operator"
@@ -36,14 +36,14 @@ class BusRoutePoint: Codable, Hashable, ObservableObject, Identifiable {
         case sundayFirstBusTime = "SUN_FirstBus"
         case sundayLastBusTime = "SUN_LastBus"
     }
-    
+
     static func == (lhs: BusRoutePoint, rhs: BusRoutePoint) -> Bool {
         return lhs.serviceNo == rhs.serviceNo &&
         lhs.stopSequence == rhs.stopSequence
     }
-    
+
     func hash(into hasher: inout Hasher) {
         hasher.combine("\(serviceNo).\(stopSequence)")
     }
-    
+
 }

@@ -8,13 +8,22 @@
 import SwiftUI
 
 struct MoreAppIconView: View {
-    
-    var icons: [AppIcon] = [AppIcon(previewImageName: "AppIcon.Green", name: "More.Customization.AppIcon.Green"),
-                            AppIcon(previewImageName: "AppIcon.Red", name: "More.Customization.AppIcon.Red", iconName: "Red"),
-                            AppIcon(previewImageName: "AppIcon.Purple", name: "More.Customization.AppIcon.Purple", iconName: "Purple"),
-                            AppIcon(previewImageName: "AppIcon.Blue", name: "More.Customization.AppIcon.Blue", iconName: "Blue"),
-                            AppIcon(previewImageName: "AppIcon.Laze", name: "More.Customization.AppIcon.Laze", iconName: "Laze")]
-    
+
+    var icons: [AppIcon] = [AppIcon(previewImageName: "AppIcon.Green",
+                                    name: "More.Customization.AppIcon.Green"),
+                            AppIcon(previewImageName: "AppIcon.Red",
+                                    name: "More.Customization.AppIcon.Red",
+                                    iconName: "Red"),
+                            AppIcon(previewImageName: "AppIcon.Purple",
+                                    name: "More.Customization.AppIcon.Purple",
+                                    iconName: "Purple"),
+                            AppIcon(previewImageName: "AppIcon.Blue",
+                                    name: "More.Customization.AppIcon.Blue",
+                                    iconName: "Blue"),
+                            AppIcon(previewImageName: "AppIcon.Laze",
+                                    name: "More.Customization.AppIcon.Laze",
+                                    iconName: "Laze")]
+
     var body: some View {
         List {
             ForEach(icons, id: \.name) { icon in

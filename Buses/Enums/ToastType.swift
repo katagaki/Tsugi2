@@ -8,9 +8,9 @@
 import Foundation
 
 enum ToastType {
-    case Spinner
-    case Checkmark
-    case Exclamation
-    case PersistentError
-    case None
+    case spinner
+    case checkmark
+    case exclamation
+    case persistentError
+    case none
 }

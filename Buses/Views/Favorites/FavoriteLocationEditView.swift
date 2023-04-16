@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct FavoriteLocationEditView: View {
-    
+
     @EnvironmentObject var favorites: FavoritesManager
-    
+
     @Binding var locationToEdit: FavoriteLocation?
-    
+
     var body: some View {
         NavigationStack {
             if let locationToEdit = locationToEdit,
-               let favoriteBusServices = (locationToEdit.busServices?.array as? [FavoriteBusService])?.sorted(by: { a, b in
-                   a.viewIndex < b.viewIndex
+               let favoriteBusServices = (locationToEdit.busServices?.array as? [FavoriteBusService])?
+                .sorted(by: { lhs, rhs in
+                   lhs.viewIndex < rhs.viewIndex
                }) {
                 List(favoriteBusServices, id: \.hashValue) { busService in
                     HStack(alignment: .center, spacing: 16.0) {
@@ -57,7 +58,10 @@ struct FavoriteLocationEditView: View {
                     .padding([.top, .bottom], 4.0)
                 }
                 .listStyle(.insetGrouped)
-                .navigationTitle(localized("Favorites.Edit.Title").replacingOccurrences(of: "%s", with: locationToEdit.nickname ?? localized("Shared.BusStop.Description.None")))
+                .navigationTitle(localized("Favorites.Edit.Title")
+                    .replacingOccurrences(of: "%s",
+                                          with: locationToEdit.nickname ??
+                                          localized("Shared.BusStop.Description.None")))
                 .navigationBarTitleDisplayMode(.inline)
             }
         }

@@ -91,7 +91,7 @@
 "More.Help.Twitter.Subtitle" = "@katagaki_";
 "More.Help.Email" = "发邮件";
 "More.Help.Email.Subtitle" = "ktgk.public@icloud.com";
-"More.Attribution" = "数据源信息";
+"More.Attribution" = "此应用程序中的数据由LTA DataMall服务提供。LTA DataMall 服务提供有关新加坡道路和公共交通服务的实时数据。\n由于LTA DataMall的API限制，API不使用HTTPS。";
 "More.UnderTheHood" = "应用日志";
 
 /* Notifications */
@@ -114,7 +114,7 @@
 "Shared.BusStop.Road.None" = "无路名";
 "Shared.BusStop.BusServices" = "巴士服务";
 "Shared.BusStop.BusServices.None" = "此巴士站目前没有能提供的巴士服务。";
-"Shared.BusStop.Toast.Favorited" = "%s已保存为地点。";
+"Shared.BusStop.Toast.Favorited" = "%1已保存为地点。";
 "Shared.BusArrival.Arriving.Full" = "即将抵达";
 "Shared.BusArrival.Arriving.Abbreviated" = "即将";
 "Shared.BusArrival.JustLeft.Full" = "已经离开";

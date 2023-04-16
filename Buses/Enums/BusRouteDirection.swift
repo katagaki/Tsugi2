@@ -8,6 +8,6 @@
 import Foundation
 
 enum BusRouteDirection: Int, Codable {
-    case Forward = 1
-    case Backward = 2
+    case forward = 1
+    case backward = 2
 }

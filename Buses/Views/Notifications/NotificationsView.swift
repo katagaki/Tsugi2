@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct NotificationsView: View {
-    
+
     @State var notificationRequests: [UNNotificationRequest] = []
-    
+
     var body: some View {
         NavigationStack {
             List {
@@ -21,9 +21,11 @@ struct NotificationsView: View {
                                let stopCode = request.content.userInfo["stopCode"] as? String,
                                let stopDescription = request.content.userInfo["stopDescription"] as? String {
                                 NavigationLink {
-                                    BusServiceView(mode: .NotificationItem,
-                                                          busService: BusService(serviceNo: busService, operator: .Unknown),
-                                                          busStop: .constant(BusStop(code: stopCode, description: stopDescription)),
+                                    BusServiceView(mode: .notificationItem,
+                                                          busService: BusService(serviceNo: busService,
+                                                                                 operator: .unknown),
+                                                          busStop: .constant(BusStop(code: stopCode,
+                                                                                     description: stopDescription)),
                                                           showsAddToLocationButton: false)
                                 } label: {
                                     HStack(alignment: .center, spacing: 16.0) {
@@ -74,10 +76,9 @@ struct NotificationsView: View {
                     Spacer()
                 }
             }
-            
         }
     }
-    
+
     func reloadNotificationRequests() {
         center.getPendingNotificationRequests { requests in
             notificationRequests = requests

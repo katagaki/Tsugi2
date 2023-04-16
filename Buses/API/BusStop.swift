@@ -8,20 +8,20 @@
 import Foundation
 
 class BusStop: Codable, Hashable, ObservableObject, Identifiable {
-    
+
     // Shared variables
     var code: String
-    
+
     // BusArrivalv2 API
     var metadata: String?
     var arrivals: [BusService]?
-    
+
     // BusStops API
     var roadName: String?
     var description: String?
     var latitude: Double?
     var longitude: Double?
-    
+
     init() {
         code = "46779"
         roadName = "Lorem Ipsum Dolor Street"
@@ -29,12 +29,12 @@ class BusStop: Codable, Hashable, ObservableObject, Identifiable {
         latitude = 1.28459
         longitude = 103.83275
     }
-    
+
     init(code: String, description: String?) {
         self.code = code
         self.description = description
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case code = "BusStopCode"
         case metadata = "odata.metadata"
@@ -44,13 +44,17 @@ class BusStop: Codable, Hashable, ObservableObject, Identifiable {
         case latitude = "Latitude"
         case longitude = "Longitude"
     }
-    
+
     static func == (lhs: BusStop, rhs: BusStop) -> Bool {
         return lhs.code == rhs.code
     }
-    
+
     func hash(into hasher: inout Hasher) {
         hasher.combine(code)
     }
-    
+
+    func name() -> String {
+        return description ?? localized("Shared.BusStop.Description.None")
+    }
+
 }

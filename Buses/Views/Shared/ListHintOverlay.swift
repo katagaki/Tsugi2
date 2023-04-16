@@ -10,7 +10,7 @@ import SwiftUI
 struct ListHintOverlay: View {
     var image: String
     var text: String
-    
+
     var body: some View {
         VStack(alignment: .center, spacing: 4.0) {
             Image(systemName: image)

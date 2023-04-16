@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct BusNumberPlateView: View {
-    
+
     @Binding var carouselDisplayMode: CarouselDisplayMode
-    
+
     @State var serviceNo: String
-    
+
     var body: some View {
         HStack(alignment: .center) {
             Text(serviceNo)
@@ -26,7 +26,11 @@ struct BusNumberPlateView: View {
             Color("PlateColor")
                 .clipShape(RoundedRectangle(cornerRadius: carouselDisplayMode.cornerRadius()))
         }
-        .frame(minWidth: carouselDisplayMode.width(), maxWidth: carouselDisplayMode.width(), minHeight: 0, maxHeight: .infinity, alignment: .center)
+        .frame(minWidth: carouselDisplayMode.width(),
+               maxWidth: carouselDisplayMode.width(),
+               minHeight: 0,
+               maxHeight: .infinity,
+               alignment: .center)
     }
-    
+
 }

@@ -10,7 +10,7 @@ import SwiftUI
 
 @main
 struct TsugiApp: App {
-    
+
     @StateObject var networkMonitor = NetworkMonitor()
     @StateObject var dataManager = DataManager()
     @StateObject var favorites = FavoritesManager()
@@ -18,7 +18,7 @@ struct TsugiApp: App {
     @StateObject var locationManager = LocationManager()
     @StateObject var settings = SettingsManager()
     @StateObject var toaster = Toaster()
-    
+
     var body: some Scene {
         WindowGroup {
             MainTabView()

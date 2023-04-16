@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ListSectionHeader: View {
     var text: String
-    
+
     var body: some View {
         Text(localized(text))
             .font(.body)

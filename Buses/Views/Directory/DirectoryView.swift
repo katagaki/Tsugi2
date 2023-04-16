@@ -9,21 +9,21 @@ import CoreLocation
 import SwiftUI
 
 struct DirectoryView: View {
-    
+
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var regionManager: MapRegionManager
-    
+
     @State var previousSearchTerm: String = ""
     @State var searchTerm: String = ""
     @State var searchResults: [BusStop] = []
     @State var isSearching: Bool = false
     @Binding var updatedDate: String
     @Binding var updatedTime: String
-    
+
     @State var shouldSortAlphabeticalAscending: Bool = true
     @State var shouldSortAlphabeticalDescending: Bool = false
     @State var shouldSortDistanceClosest: Bool = false
-    
+
     var body: some View {
         NavigationStack {
             List {
@@ -96,11 +96,11 @@ struct DirectoryView: View {
                 if isSearching {
                     if searchTermTrimmed.contains(previousSearchTerm) {
                         searchResults = searchResults.filter({ stop in
-                            (stop.description ?? "").similarTo(searchTermTrimmed)
+                            (stop.name()).similarTo(searchTermTrimmed)
                         })
                     } else {
                         searchResults = dataManager.busStops.filter({ stop in
-                            (stop.description ?? "").similarTo(searchTermTrimmed)
+                            (stop.name()).similarTo(searchTermTrimmed)
                         })
                     }
                     previousSearchTerm = searchTermTrimmed
@@ -110,8 +110,8 @@ struct DirectoryView: View {
                 if newValue {
                     shouldSortAlphabeticalDescending = false
                     shouldSortDistanceClosest = false
-                    dataManager.busStops.sort { a, b in
-                        a.description ?? "" < b.description ?? ""
+                    dataManager.busStops.sort { lhs, rhs in
+                        lhs.name() < rhs.name()
                     }
                 } else {
                     if !shouldSortAlphabeticalAscending &&
@@ -125,8 +125,8 @@ struct DirectoryView: View {
                 if newValue {
                     shouldSortAlphabeticalAscending = false
                     shouldSortDistanceClosest = false
-                    dataManager.busStops.sort { a, b in
-                        a.description ?? "" > b.description ?? ""
+                    dataManager.busStops.sort { lhs, rhs in
+                        lhs.name() > rhs.name()
                     }
                 } else {
                     if !shouldSortAlphabeticalAscending &&
@@ -142,8 +142,8 @@ struct DirectoryView: View {
                     shouldSortAlphabeticalDescending = false
                     let currentCoordinate = CLLocation(latitude: regionManager.region.wrappedValue.center.latitude,
                                                        longitude: regionManager.region.wrappedValue.center.longitude)
-                    dataManager.busStops.sort { a, b in
-                        return currentCoordinate.distanceTo(busStop: a) < currentCoordinate.distanceTo(busStop: b)
+                    dataManager.busStops.sort { lhs, rhs in
+                        return currentCoordinate.distanceTo(busStop: lhs) < currentCoordinate.distanceTo(busStop: rhs)
                     }
                 } else {
                     if !shouldSortAlphabeticalAscending &&
@@ -176,17 +176,16 @@ struct DirectoryView: View {
             }
         }
     }
-    
+
 }
 
 struct DirectoryView_Previews: PreviewProvider {
-    
+
     @State static var updatedDate: String = ""
     @State static var updatedTime: String = ""
-    
+
     static var previews: some View {
         DirectoryView(updatedDate: $updatedTime,
                       updatedTime: $updatedTime)
     }
 }
-

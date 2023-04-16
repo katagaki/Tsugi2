@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct MoreView: View {
-    
+
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var settings: SettingsManager
     @EnvironmentObject var toaster: Toaster
-        
+
     @State var showLogsView: Bool = false
-    
+
     var body: some View {
         NavigationStack {
             List {
@@ -38,7 +38,7 @@ struct MoreView: View {
                 Section {
                     HStack(alignment: .center, spacing: 0.0) {
                         Button {
-                            settings.setCarouselDisplayMode(.Full)
+                            settings.setCarouselDisplayMode(.full)
                         } label: {
                             ImageWithCheck(image: "Carousel.Full",
                                            label: localized("More.Customization.CarouselSize.Full"),
@@ -47,7 +47,7 @@ struct MoreView: View {
                         .buttonStyle(.borderless)
                         .frame(maxWidth: .infinity)
                         Button {
-                            settings.setCarouselDisplayMode(.Small)
+                            settings.setCarouselDisplayMode(.small)
                         } label: {
                             ImageWithCheck(image: "Carousel.Small",
                                            label: localized("More.Customization.CarouselSize.Small"),
@@ -56,7 +56,7 @@ struct MoreView: View {
                         .buttonStyle(.borderless)
                         .frame(maxWidth: .infinity)
                         Button {
-                            settings.setCarouselDisplayMode(.Minimal)
+                            settings.setCarouselDisplayMode(.minimal)
                         } label: {
                             ImageWithCheck(image: "Carousel.Minimal",
                                            label: localized("More.Customization.CarouselSize.Minimal"),
@@ -68,13 +68,18 @@ struct MoreView: View {
                     NavigationLink {
                         MoreAppIconView()
                     } label: {
-                        ListRow(image: "ListIcon.AppIcon", title: "More.Customization.AppIcon")
+                        ListRow(image: "ListIcon.AppIcon",
+                                title: "More.Customization.AppIcon")
                     }
                     Toggle(isOn: $settings.showRoute) {
-                        ListRow(image: "ListIcon.Route", title: "More.Customization.ShowRoute", subtitle: "More.Customization.ShowRoute.Subtitle")
+                        ListRow(image: "ListIcon.Route",
+                                title: "More.Customization.ShowRoute",
+                                subtitle: "More.Customization.ShowRoute.Subtitle")
                     }
                     Toggle(isOn: $settings.useProperText) {
-                        ListRow(image: "ListIcon.ProperText", title: "More.Customization.ProperText", subtitle: "More.Customization.ProperText.Subtitle")
+                        ListRow(image: "ListIcon.ProperText",
+                                title: "More.Customization.ProperText",
+                                subtitle: "More.Customization.ProperText.Subtitle")
                     }
                     .disabled(dataManager.shouldReloadBusStopList)
                 } header: {
@@ -82,7 +87,10 @@ struct MoreView: View {
                 }
                 // TODO: Include some notification sounds, settings, etc
                 Section {
-                    ListRow(image: "ListIcon.GitHub", title: "More.Support.GitHub", subtitle: "More.Support.GitHub.Subtitle", includeSpacer: true)
+                    ListRow(image: "ListIcon.GitHub",
+                            title: "More.Support.GitHub",
+                            subtitle: "More.Support.GitHub.Subtitle",
+                            includeSpacer: true)
                     .contentShape(Rectangle())
                     .onTapGesture {
                         UIApplication.shared.open(URL(string: "https://github.com/katagaki/Tsugi2")!)
@@ -92,12 +100,18 @@ struct MoreView: View {
                     ListSectionHeader(text: "More.Support")
                 }
                 Section {
-                    ListRow(image: "ListIcon.Twitter", title: "More.Help.Twitter", subtitle: "More.Help.Twitter.Subtitle", includeSpacer: true)
+                    ListRow(image: "ListIcon.Twitter",
+                            title: "More.Help.Twitter",
+                            subtitle: "More.Help.Twitter.Subtitle",
+                            includeSpacer: true)
                     .contentShape(Rectangle())
                     .onTapGesture {
                         UIApplication.shared.open(URL(string: "https://twitter.com/katagaki_")!)
                     }
-                    ListRow(image: "ListIcon.Email", title: "More.Help.Email", subtitle: "More.Help.Email.Subtitle", includeSpacer: true)
+                    ListRow(image: "ListIcon.Email",
+                            title: "More.Help.Email",
+                            subtitle: "More.Help.Email.Subtitle",
+                            includeSpacer: true)
                     .contentShape(Rectangle())
                     .onTapGesture {
                         UIApplication.shared.open(URL(string: "mailto:ktgk.public@icloud.com")!)
@@ -108,7 +122,7 @@ struct MoreView: View {
                 Section {
                 } header: {
                     VStack(alignment: .leading, spacing: 4.0) {
-                        Text("Data in this app is provided by LTA's DataMall service. LTA's DataMall service provides live data about Singapore's roads and public transit services.\nDue to limitations in the LTA DataMall API, HTTPS is not used by the API.")
+                        Text("More.Attribution")
                         Link("Learn More", destination: URL(string: "https://datamall.lta.gov.sg/")!)
                     }
                     .font(.caption)
@@ -122,6 +136,9 @@ struct MoreView: View {
             .onChange(of: settings.useProperText, perform: { newValue in
                 settings.setProperText(newValue)
                 dataManager.shouldReloadBusStopList = true
+            })
+            .onChange(of: settings.showRoute, perform: { newValue in
+                settings.setShowRoute(newValue)
             })
             .navigationTitle("ViewTitle.More")
             .navigationBarTitleDisplayMode(.inline)
