@@ -21,12 +21,11 @@ struct ListBusServiceRow: View {
                     Text(bus.nextBus?.estimatedArrivalTimeAsDate()?.arrivalFormat() ??
                          localized("Shared.BusArrival.NotInService"))
                         .font(.body)
-                    switch bus.nextBus?.feature {
-                    case .wheelchairAccessible:
+                    if bus.nextBus?.feature == .wheelchairAccessible {
                         Image(systemName: "figure.roll")
                             .font(.caption)
                             .foregroundColor(.secondary)
-                    default:
+                    } else {
                         Text("")
                     }
                     switch bus.nextBus?.type {

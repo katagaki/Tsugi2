@@ -110,9 +110,9 @@ struct BusStopView: View {
             }
             ToolbarItem(placement: .primaryAction) {
                 HStack(alignment: .center, spacing: 8.0) {
-                    if favorites.favoriteLocations.contains(where: { location in
-                        location.busStopCode == busStop.code && location.usesLiveBusStopData == true
-                    }) == false {
+                    if !favorites.favoriteLocations.contains(where: { location in
+                        location.busStopCode == busStop.code && location.usesLiveBusStopData
+                    }) {
                         Button {
                             Task {
                                 await favorites.addFavoriteLocation(busStop: busStop, usesLiveBusStopData: true)

@@ -34,7 +34,7 @@ struct FavoritesView: View {
                                         busStop: nil,
                                         favoriteLocation: $location)
                         .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
-                        .opacity((isEditing ? 0.5 : 1.0))
+                        .opacity(isEditing ? 0.5 : 1.0)
                         .disabled(isEditing)
                 } header: {
                     HStack(alignment: .center, spacing: 6.0) {
@@ -51,7 +51,7 @@ struct FavoritesView: View {
                             }
                             Spacer()
                             HStack(alignment: .center, spacing: 16.0) {
-                                if !location.usesLiveBusStopData && !((location.busServices ?? []).count == 0) {
+                                if !location.usesLiveBusStopData && (location.busServices ?? []).count != 0 {
                                     Button {
                                         favoriteLocationPendingEdit = location
                                         isEditPending = true

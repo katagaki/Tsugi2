@@ -91,8 +91,7 @@ struct BusServicesCarousel: View {
                 }
             } else {
                 HStack(alignment: .center) {
-                    switch dataDisplayMode {
-                    case .favoriteLocationCustomData:
+                    if dataDisplayMode == .favoriteLocationCustomData {
                         if (favoriteLocation?.wrappedValue.busServices?.count ?? 0) == 0 {
                             Text("Favorites.Hint.NoBusServices")
                                 .font(.body)
@@ -102,7 +101,7 @@ struct BusServicesCarousel: View {
                                 .font(.body)
                                 .foregroundColor(.secondary)
                         }
-                    default:
+                    } else {
                         Text("Shared.BusStop.BusServices.None")
                             .font(.body)
                             .foregroundColor(.secondary)

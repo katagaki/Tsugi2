@@ -48,9 +48,9 @@ struct NearbyView: View {
                                 ListSectionHeader(text: (stop.name()))
                                     .font(Font.custom("LTA-Identity", size: 16.0))
                                 Spacer()
-                                if favorites.favoriteLocations.contains(where: { location in
-                                    location.busStopCode == stop.code && location.usesLiveBusStopData == true
-                                }) == false {
+                                if !favorites.favoriteLocations.contains(where: { location in
+                                    location.busStopCode == stop.code && location.usesLiveBusStopData
+                                }) {
                                     Button {
                                         Task {
                                             await favorites.addFavoriteLocation(busStop: stop,
