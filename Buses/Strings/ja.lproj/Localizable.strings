@@ -82,16 +82,17 @@
 "More.Customization.ShowRoute" = "ルートを表示（ベータ版）";
 "More.Customization.ShowRoute.Subtitle" = "バスの到着時間の上に、バスのルートが表示されます。";
 "More.Notifications" = "通知";
-"More.Support" = "支援";
-"More.Support.GitHub" = "開発を手伝う";
-"More.Support.GitHub.Subtitle" = "katagaki/Tsugi2";
-"More.Support.Donate" = "寄付";
-"More.Help" = "お問い合わせ";
+"More.Help" = "サポート";
 "More.Help.Twitter" = "ツイート";
 "More.Help.Twitter.Subtitle" = "@katagaki_";
 "More.Help.Email" = "メールを送信";
 "More.Help.Email.Subtitle" = "ktgk.public@icloud.com";
-"More.Attribution" = "このアプリのデータは、LTA DataMallによって提供されます。LTA DataMallは、シンガポールの道路と公共交通サービスに関するデータを提供するサービスです。\nLTA DataMallのAPI制限により、HTTPSは利用されません。";
+"More.Help.GitHub" = "ソースコードを閲覧";
+"More.Help.GitHub.Subtitle" = "katagaki/Tsugi2";
+"More.Attribution" = "著者権表記";
+"More.Attribution.LTA" = "LTA DataMall";
+"More.Attribution.BusRouter" = "BusRouter SG";
+"More.Attribution.Polyline" = "Polyline";
 "More.UnderTheHood" = "アプリログ";
 
 /* Notifications */

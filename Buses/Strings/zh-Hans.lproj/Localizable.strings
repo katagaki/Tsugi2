@@ -82,16 +82,17 @@
 "More.Customization.ShowRoute" = "显示路线（测试版）";
 "More.Customization.ShowRoute.Subtitle" = "巴士路线显示在巴士到达时间上方。";
 "More.Notifications" = "通知";
-"More.Support" = "支持";
-"More.Support.GitHub" = "协助开发";
-"More.Support.GitHub.Subtitle" = "katagaki/Tsugi2";
-"More.Support.Donate" = "捐赠";
 "More.Help" = "帮助";
 "More.Help.Twitter" = "发推文";
 "More.Help.Twitter.Subtitle" = "@katagaki_";
 "More.Help.Email" = "发邮件";
 "More.Help.Email.Subtitle" = "ktgk.public@icloud.com";
-"More.Attribution" = "此应用程序中的数据由LTA DataMall服务提供。LTA DataMall 服务提供有关新加坡道路和公共交通服务的实时数据。\n由于LTA DataMall的API限制，API不使用HTTPS。";
+"More.Help.GitHub" = "查看源代码";
+"More.Help.GitHub.Subtitle" = "katagaki/Tsugi2";
+"More.Attribution" = "作者版权";
+"More.Attribution.LTA" = "LTA DataMall";
+"More.Attribution.BusRouter" = "BusRouter SG";
+"More.Attribution.Polyline" = "Polyline";
 "More.UnderTheHood" = "应用日志";
 
 /* Notifications */

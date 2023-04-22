@@ -157,31 +157,3 @@ struct AssistantLiveActivity: Widget {
         }
     }
 }
-
-struct AssistantLiveActivity_Previews: PreviewProvider {
-    static let attributes = AssistantAttributes(serviceNo: "999A", currentDate: Date())
-    static let contentState = AssistantAttributes.ContentState(busService: getSampleBusService())
-
-    static var previews: some View {
-        attributes
-            .previewContext(contentState, viewKind: .dynamicIsland(.compact))
-            .previewDisplayName("Island Compact")
-        attributes
-            .previewContext(contentState, viewKind: .dynamicIsland(.expanded))
-            .previewDisplayName("Island Expanded")
-        attributes
-            .previewContext(contentState, viewKind: .dynamicIsland(.minimal))
-            .previewDisplayName("Minimal")
-        attributes
-            .previewContext(contentState, viewKind: .content)
-            .previewDisplayName("Notification")
-    }
-
-    static func getSampleBusService() -> BusService {
-        if let busService: BusService = decode(from: Bundle.main.path(forResource: "BusArrivalv2-1", ofType: "json")!) {
-            return busService
-        } else {
-            return BusService(serviceNo: "", operator: .sbsTransit)
-        }
-    }
-}

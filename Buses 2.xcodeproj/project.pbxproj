@@ -29,8 +29,6 @@
 		E42C82472856C8FE00D64DF9 /* Red@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E42C82432856C8FE00D64DF9 /* Red@2x~ipad.png */; };
 		E42C82492856C9C600D64DF9 /* MoreAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42C82482856C9C600D64DF9 /* MoreAppIconView.swift */; };
 		E42C824E2856D4FA00D64DF9 /* MoreDonateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42C824D2856D4FA00D64DF9 /* MoreDonateView.swift */; };
-		E4319EB0280413BA00D21531 /* BusArrivalv2-2.json in Resources */ = {isa = PBXBuildFile; fileRef = E4319EAF280413BA00D21531 /* BusArrivalv2-2.json */; };
-		E4319EB2280413D200D21531 /* BusArrivalv2-3.json in Resources */ = {isa = PBXBuildFile; fileRef = E4319EB1280413D200D21531 /* BusArrivalv2-3.json */; };
 		E4319EB4280413FA00D21531 /* JSONUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4319EB3280413FA00D21531 /* JSONUtilities.swift */; };
 		E4319EB6280432C300D21531 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4319EB5280432C300D21531 /* APIKeys.plist */; };
 		E4319EBC280437BA00D21531 /* BusStopList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4319EBB280437BA00D21531 /* BusStopList.swift */; };
@@ -54,9 +52,6 @@
 		E482ACAB29AC555C008DAD30 /* BusArrivalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC82801631800DCA0EC /* BusArrivalInfo.swift */; };
 		E482ACAC29AC5561008DAD30 /* BusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC62801627D00DCA0EC /* BusService.swift */; };
 		E482ACAD29AC5689008DAD30 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF1A280869A500B8524B /* API.swift */; };
-		E482ACAE29AC57B1008DAD30 /* BusArrivalv2-3.json in Resources */ = {isa = PBXBuildFile; fileRef = E4319EB1280413D200D21531 /* BusArrivalv2-3.json */; };
-		E482ACAF29AC57B1008DAD30 /* BusArrivalv2-2.json in Resources */ = {isa = PBXBuildFile; fileRef = E4319EAF280413BA00D21531 /* BusArrivalv2-2.json */; };
-		E482ACB029AC57B1008DAD30 /* BusArrivalv2-1.json in Resources */ = {isa = PBXBuildFile; fileRef = E4FFCACD28018B3500DCA0EC /* BusArrivalv2-1.json */; };
 		E482ACB229AC581A008DAD30 /* JSONUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4319EB3280413FA00D21531 /* JSONUtilities.swift */; };
 		E482ACB329AC5821008DAD30 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF1F28086AE500B8524B /* Logging.swift */; };
 		E482ACB429AC588C008DAD30 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC42801627700DCA0EC /* BusStop.swift */; };
@@ -74,6 +69,8 @@
 		E4958A0A29F3E30800C5BE28 /* BusServiceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4958A0929F3E30800C5BE28 /* BusServiceList.swift */; };
 		E4958A0B29F3E3BA00C5BE28 /* BusServiceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4958A0929F3E30800C5BE28 /* BusServiceList.swift */; };
 		E4958A1029F3F2B500C5BE28 /* Polyline in Frameworks */ = {isa = PBXBuildFile; productRef = E4958A0F29F3F2B500C5BE28 /* Polyline */; };
+		E4958A1229F3F43E00C5BE28 /* BusRoutePolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4958A1129F3F43E00C5BE28 /* BusRoutePolyline.swift */; };
+		E4958A1329F3F4ED00C5BE28 /* BusRoutePolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4958A1129F3F43E00C5BE28 /* BusRoutePolyline.swift */; };
 		E49DFA5129B6DEB800654FBD /* BlurGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49DFA5029B6DEB800654FBD /* BlurGradientView.swift */; };
 		E4A1B31F29F0171C00C6ABAC /* LTA-Identity.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4A1B31E29F016F100C6ABAC /* LTA-Identity.ttf */; };
 		E4A1B32029F0171C00C6ABAC /* LTA-Identity.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4A1B31E29F016F100C6ABAC /* LTA-Identity.ttf */; };
@@ -136,7 +133,6 @@
 		E4FFCAC52801627700DCA0EC /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC42801627700DCA0EC /* BusStop.swift */; };
 		E4FFCAC72801627D00DCA0EC /* BusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC62801627D00DCA0EC /* BusService.swift */; };
 		E4FFCAC92801631800DCA0EC /* BusArrivalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC82801631800DCA0EC /* BusArrivalInfo.swift */; };
-		E4FFCACE28018B3500DCA0EC /* BusArrivalv2-1.json in Resources */ = {isa = PBXBuildFile; fileRef = E4FFCACD28018B3500DCA0EC /* BusArrivalv2-1.json */; };
 		E4FFCADB2801B23300DCA0EC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCADA2801B23300DCA0EC /* Date.swift */; };
 /* End PBXBuildFile section */
 
@@ -198,8 +194,6 @@
 		E42C82432856C8FE00D64DF9 /* Red@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red@2x~ipad.png"; sourceTree = "<group>"; };
 		E42C82482856C9C600D64DF9 /* MoreAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreAppIconView.swift; sourceTree = "<group>"; };
 		E42C824D2856D4FA00D64DF9 /* MoreDonateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreDonateView.swift; sourceTree = "<group>"; };
-		E4319EAF280413BA00D21531 /* BusArrivalv2-2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "BusArrivalv2-2.json"; sourceTree = "<group>"; };
-		E4319EB1280413D200D21531 /* BusArrivalv2-3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "BusArrivalv2-3.json"; sourceTree = "<group>"; };
 		E4319EB3280413FA00D21531 /* JSONUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONUtilities.swift; sourceTree = "<group>"; };
 		E4319EB5280432C300D21531 /* APIKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
 		E4319EB7280433B000D21531 /* APIKeys-Sample.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "APIKeys-Sample.plist"; sourceTree = "<group>"; };
@@ -229,6 +223,7 @@
 		E482ACBF29AC6DEE008DAD30 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		E482ACC229AC7CBC008DAD30 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		E4958A0929F3E30800C5BE28 /* BusServiceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusServiceList.swift; sourceTree = "<group>"; };
+		E4958A1129F3F43E00C5BE28 /* BusRoutePolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusRoutePolyline.swift; sourceTree = "<group>"; };
 		E49DFA5029B6DEB800654FBD /* BlurGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurGradientView.swift; sourceTree = "<group>"; };
 		E4A1B31E29F016F100C6ABAC /* LTA-Identity.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LTA-Identity.ttf"; sourceTree = "<group>"; };
 		E4AAD7FB2882C0D800CC63E8 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
@@ -287,7 +282,6 @@
 		E4FFCAC42801627700DCA0EC /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
 		E4FFCAC62801627D00DCA0EC /* BusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusService.swift; sourceTree = "<group>"; };
 		E4FFCAC82801631800DCA0EC /* BusArrivalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusArrivalInfo.swift; sourceTree = "<group>"; };
-		E4FFCACD28018B3500DCA0EC /* BusArrivalv2-1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "BusArrivalv2-1.json"; sourceTree = "<group>"; };
 		E4FFCADA2801B23300DCA0EC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -313,12 +307,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D0011E1C285D75CB00742687 /* Data */ = {
+		D0011E1C285D75CB00742687 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
 				D0011E1D285D75FE00742687 /* Favorites.xcdatamodeld */,
 			);
-			path = Data;
+			path = "Core Data";
 			sourceTree = "<group>";
 		};
 		E41518EE29B1C30300E50BB7 /* ci_scripts */ = {
@@ -421,8 +415,7 @@
 				E4F02DCE29E97DCF00EADA1E /* Enums */,
 				E476BF192808699300B8524B /* API */,
 				E4FFCAD92801B22700DCA0EC /* Utilities */,
-				D0011E1C285D75CB00742687 /* Data */,
-				E4FFCACC28018B1A00DCA0EC /* Sample Data */,
+				D0011E1C285D75CB00742687 /* Core Data */,
 				E4319EB5280432C300D21531 /* APIKeys.plist */,
 				E4319EB7280433B000D21531 /* APIKeys-Sample.plist */,
 				E4D65F1A2865C58700FE78F4 /* README.md */,
@@ -447,14 +440,15 @@
 			children = (
 				E476BF1A280869A500B8524B /* API.swift */,
 				E4FFCAC82801631800DCA0EC /* BusArrivalInfo.swift */,
-				E4958A0929F3E30800C5BE28 /* BusServiceList.swift */,
-				E4FFCAC62801627D00DCA0EC /* BusService.swift */,
-				E4319EBB280437BA00D21531 /* BusStopList.swift */,
-				E4FFCAC42801627700DCA0EC /* BusStop.swift */,
+				E4F02DE029EA5DEA00EADA1E /* BusOperator.swift */,
 				E4F02DEC29EAA8F800EADA1E /* BusRouteDirection.swift */,
 				E4F02DDC29EA5CFF00EADA1E /* BusRouteList.swift */,
 				E4F02DDE29EA5D1F00EADA1E /* BusRoutePoint.swift */,
-				E4F02DE029EA5DEA00EADA1E /* BusOperator.swift */,
+				E4958A1129F3F43E00C5BE28 /* BusRoutePolyline.swift */,
+				E4FFCAC62801627D00DCA0EC /* BusService.swift */,
+				E4958A0929F3E30800C5BE28 /* BusServiceList.swift */,
+				E4FFCAC42801627700DCA0EC /* BusStop.swift */,
+				E4319EBB280437BA00D21531 /* BusStopList.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -624,16 +618,6 @@
 			path = Structs;
 			sourceTree = "<group>";
 		};
-		E4FFCACC28018B1A00DCA0EC /* Sample Data */ = {
-			isa = PBXGroup;
-			children = (
-				E4FFCACD28018B3500DCA0EC /* BusArrivalv2-1.json */,
-				E4319EAF280413BA00D21531 /* BusArrivalv2-2.json */,
-				E4319EB1280413D200D21531 /* BusArrivalv2-3.json */,
-			);
-			path = "Sample Data";
-			sourceTree = "<group>";
-		};
 		E4FFCAD92801B22700DCA0EC /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -750,20 +734,17 @@
 				E4A1B31F29F0171C00C6ABAC /* LTA-Identity.ttf in Resources */,
 				E42C82472856C8FE00D64DF9 /* Red@2x~ipad.png in Resources */,
 				E4319EB6280432C300D21531 /* APIKeys.plist in Resources */,
-				E4FFCACE28018B3500DCA0EC /* BusArrivalv2-1.json in Resources */,
 				E42C823D2856C8C900D64DF9 /* Purple@3x.png in Resources */,
 				E4B70008285642280019F71A /* Localizable.strings in Resources */,
 				E42C82452856C8FE00D64DF9 /* Red@3x.png in Resources */,
 				E42C823F2856C8C900D64DF9 /* Purple@2x~ipad.png in Resources */,
 				E467E24929E59A0E005E188C /* PTReplace.plist in Resources */,
 				E42C82442856C8FE00D64DF9 /* Red@2x.png in Resources */,
-				E4319EB0280413BA00D21531 /* BusArrivalv2-2.json in Resources */,
 				E4BCFDC829E300FF00E4D2AD /* Ding.caf in Resources */,
 				E4D65F142865BACA00FE78F4 /* Laze@3x~ipad.png in Resources */,
 				E4D65F0B2865B97700FE78F4 /* Blue@3x.png in Resources */,
 				E4D65F152865BACA00FE78F4 /* Laze@2x~ipad.png in Resources */,
 				E4406AB727EF182500819CDC /* Assets.xcassets in Resources */,
-				E4319EB2280413D200D21531 /* BusArrivalv2-3.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -771,10 +752,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E482ACB029AC57B1008DAD30 /* BusArrivalv2-1.json in Resources */,
-				E482ACAE29AC57B1008DAD30 /* BusArrivalv2-3.json in Resources */,
 				E482AC9D29AC53B3008DAD30 /* Assets.xcassets in Resources */,
-				E482ACAF29AC57B1008DAD30 /* BusArrivalv2-2.json in Resources */,
 				E4A1B32029F0171C00C6ABAC /* LTA-Identity.ttf in Resources */,
 				E482ACBD29AC620B008DAD30 /* Assets.xcassets in Resources */,
 				E482ACBE29AC629F008DAD30 /* Localizable.strings in Resources */,
@@ -873,6 +851,7 @@
 				E4AAD7FC2882C0D800CC63E8 /* ToastView.swift in Sources */,
 				E4F02DD229E97E0400EADA1E /* ToastType.swift in Sources */,
 				E4C3FEC629E84734009BBC92 /* Toaster.swift in Sources */,
+				E4958A1229F3F43E00C5BE28 /* BusRoutePolyline.swift in Sources */,
 				D0011E1F285D75FE00742687 /* Favorites.xcdatamodeld in Sources */,
 				E4BCFDC429E2F91400E4D2AD /* SettingsManager.swift in Sources */,
 				E4BCFDBA29E2E52800E4D2AD /* Bundle.swift in Sources */,
@@ -902,6 +881,7 @@
 				E4F02DE229EA647A00EADA1E /* BusOperator.swift in Sources */,
 				E4BCFDBC29E2E7D600E4D2AD /* ProperText.swift in Sources */,
 				E482ACB729AC58EC008DAD30 /* String.swift in Sources */,
+				E4958A1329F3F4ED00C5BE28 /* BusRoutePolyline.swift in Sources */,
 				E482ACB229AC581A008DAD30 /* JSONUtilities.swift in Sources */,
 				E4F02DE429EA648D00EADA1E /* BusRoutePoint.swift in Sources */,
 				E4F02DD329E97F2400EADA1E /* CarouselDisplayMode.swift in Sources */,

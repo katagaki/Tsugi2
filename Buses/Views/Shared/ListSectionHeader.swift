@@ -12,7 +12,6 @@ struct ListSectionHeader: View {
 
     var body: some View {
         Text(localized(text))
-            .font(.body)
             .fontWeight(.bold)
             .foregroundColor(.primary)
             .textCase(nil)

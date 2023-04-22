@@ -23,6 +23,7 @@ struct BusServiceView: View {
     @State var isInitialDataLoading: Bool = true
     @State var busService: BusService
     @State var busStopsForMapDisplay: [BusStop] = []
+    @State var encodedPolyline: String = ""
     var busStop: Binding<BusStop>?
     var favoriteLocation: Binding<FavoriteLocation>?
 
@@ -34,15 +35,16 @@ struct BusServiceView: View {
         GeometryReader { metrics in
             VStack(alignment: .trailing, spacing: 0) {
                 if settings.showRoute {
-                    MapWithRoute(useLegacyOverlay: true,
+                    MapWithRoute(useLegacyOverlay: false,
                                  currentBusStopCode: busStop?.wrappedValue.code ?? "",
-                                 busStops: $busStopsForMapDisplay)
+                                 busStops: $busStopsForMapDisplay,
+                                 encodedPolyline: $encodedPolyline)
                     .ignoresSafeArea(edges: [.top])
                     .overlay {
                         ZStack(alignment: .topLeading) {
                             BlurGradientView()
                                 .ignoresSafeArea()
-                                .frame(height: metrics.safeAreaInsets.top + 44.0)
+                                .frame(height: (metrics.safeAreaInsets.top - metrics.safeAreaInsets.bottom) * 1.25)
                             Color.clear
                         }
                     }
@@ -85,6 +87,7 @@ struct BusServiceView: View {
             do {
                 if settings.showRoute {
                     try await dataManager.reloadBusRoutesFromServer()
+                    try await dataManager.reloadBusRoutePolylinesFromServer()
                     reloadBusRoutes()
                 }
             } catch {
@@ -200,6 +203,9 @@ struct BusServiceView: View {
                 busStopsForMapDisplay.append(busStop)
             }
         }
+        encodedPolyline = dataManager
+            .busRoutePolyline(for: busService.serviceNo,
+                              direction: busService.direction ?? .init(rawValue: 1)!)
     }
 
     func setNotification(for arrivalInfo: BusArrivalInfo) {
@@ -222,60 +228,55 @@ struct BusServiceView: View {
         }
     }
 
+    // swiftlint:disable function_body_length
     func setNotification(on date: Date) {
         let content = UNMutableNotificationContent()
         let trigger = UNCalendarNotificationTrigger(
             dateMatching: Calendar.current.dateComponents([.weekday, .hour, .minute, .second],
                                                           from: date - (2 * 60)), repeats: false)
-        var title = ""
-        var userInfo: [AnyHashable: Any] = [:]
         var identifier = ""
         switch mode {
         case .busStop, .notificationItem:
             if let busStop = busStop {
-                title = localized("Notification.Arriving.Title",
-                                  replacing: busStop.wrappedValue.name())
-                userInfo = ["busService": busService.serviceNo,
-                            "stopCode": busStop.wrappedValue.code,
-                            "stopDescription": busStop.wrappedValue.name()]
+                content.title = localized("Notification.Arriving.Title",
+                                          replacing: busStop.wrappedValue.name())
+                content.userInfo = ["busService": busService.serviceNo,
+                                    "stopCode": busStop.wrappedValue.code,
+                                    "stopDescription": busStop.wrappedValue.name()]
                 identifier = "\(busStop.wrappedValue.code).\(busService.serviceNo)." +
                              "\(date.formatted(date: .numeric, time: .shortened))"
             }
         case .favoriteLocationLiveData:
             if let favoriteLocation = favoriteLocation?.wrappedValue {
-                title = localized("Notification.Arriving.Title",
-                                  replacing: favoriteLocation.nickname ??
-                                  localized("Shared.BusStop.Description.None"))
-                userInfo = ["busService": busService.serviceNo,
-                            "stopCode": favoriteLocation.busStopCode ?? "",
-                            "stopDescription": favoriteLocation.nickname ??
-                            localized("Shared.BusStop.Description.None")]
+                content.title = localized("Notification.Arriving.Title",
+                                          replacing: favoriteLocation.nickname ??
+                                          localized("Shared.BusStop.Description.None"))
+                content.userInfo = ["busService": busService.serviceNo,
+                                    "stopCode": favoriteLocation.busStopCode ?? "",
+                                    "stopDescription": favoriteLocation.nickname ??
+                                    localized("Shared.BusStop.Description.None")]
                 identifier = "\(favoriteLocation.busStopCode ?? "").\(busService.serviceNo)." +
                              "\(date.formatted(date: .numeric, time: .shortened))"
             }
         case .favoriteLocationCustomData:
             if let favoriteLocation = favoriteLocation?.wrappedValue {
-                title = localized("Notification.Arriving.Title",
-                                  replacing: favoriteLocation.nickname ??
-                                  localized("Shared.BusStop.Description.None"))
-                userInfo = ["busService": busService.serviceNo,
-                            "stopCode": busService.busStopCode ?? "",
-                            "stopDescription": favoriteLocation.nickname ??
-                            localized("Shared.BusStop.Description.None")]
+                content.title = localized("Notification.Arriving.Title",
+                                          replacing: favoriteLocation.nickname ??
+                                          localized("Shared.BusStop.Description.None"))
+                content.userInfo = ["busService": busService.serviceNo,
+                                    "stopCode": busService.busStopCode ?? "",
+                                    "stopDescription": favoriteLocation.nickname ??
+                                    localized("Shared.BusStop.Description.None")]
                 identifier = "\(busService.busStopCode ?? "").\(busService.serviceNo)." +
                              "\(date.formatted(date: .numeric, time: .shortened))"
             }
         }
-        content.title = title
-        content.userInfo = userInfo
         content.body = localized("Notification.Arriving.Description",
                                  replacing: busService.serviceNo,
                                  date.formatted(date: .omitted, time: .shortened))
         content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "Ding.caf"))
         content.interruptionLevel = .timeSensitive
-        center.add(UNNotificationRequest(identifier: identifier,
-                                         content: content,
-                                         trigger: trigger)) { (error) in
+        center.add(UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)) { (error) in
             if let error = error {
                 log("Error occurred while setting notifications: \(error.localizedDescription)")
                 toaster.showToast(localized("Notification.Error"), type: .exclamation, hidesAutomatically: true)
@@ -286,6 +287,7 @@ struct BusServiceView: View {
             }
         }
     }
+    // swiftlint:enable function_body_length
 
     func startLiveActivity() {
         let initialContentState = AssistantAttributes.ContentState(busService: busService)
@@ -303,28 +305,6 @@ struct BusServiceView: View {
             } catch {
                 log(error.localizedDescription)
             }
-        }
-    }
-
-}
-
-struct BusServiceView_Previews: PreviewProvider {
-
-    static var sampleBusStop: BusStop? = loadPreviewData()
-
-    static var previews: some View {
-        BusServiceView(mode: .busStop,
-                              busService: sampleBusStop!.arrivals!.randomElement()!,
-                              busStop: .constant(sampleBusStop!),
-                              showsAddToLocationButton: true)
-    }
-
-    static private func loadPreviewData() -> BusStop? {
-        if let sampleDataPath = Bundle.main.path(forResource: "BusArrivalv2-1", ofType: "json") {
-            let sampleBusStop: BusStop? = decode(from: sampleDataPath)
-            return sampleBusStop!
-        } else {
-            return nil
         }
     }
 

@@ -40,7 +40,7 @@ struct BusStopView: View {
                     ZStack(alignment: .topLeading) {
                         BlurGradientView()
                             .ignoresSafeArea()
-                            .frame(height: metrics.safeAreaInsets.top + 44.0)
+                            .frame(height: metrics.safeAreaInsets.top * 1.25)
                         Color.clear
                     }
                 }

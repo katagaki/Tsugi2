@@ -13,7 +13,7 @@ struct BlurGradientView: View {
 
     let gradient = LinearGradient(
             gradient: Gradient(stops: [
-                .init(color: .black, location: 0.3),
+                .init(color: .black, location: 0.8),
                 .init(color: .clear, location: 1.0)
             ]),
             startPoint: .top,

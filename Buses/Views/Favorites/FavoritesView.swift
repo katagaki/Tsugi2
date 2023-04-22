@@ -39,6 +39,7 @@ struct FavoritesView: View {
                 } header: {
                     HStack(alignment: .center, spacing: 6.0) {
                         ListSectionHeader(text: (location.nickname ?? location.busStopCode ?? ""))
+                            .font(Font.custom("LTA-Identity", size: 16.0))
                         if isEditing {
                             Button {
                                 favoriteLocationPendingEdit = location

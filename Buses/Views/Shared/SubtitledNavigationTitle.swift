@@ -15,10 +15,8 @@ struct SubtitledNavigationTitle: View {
         VStack {
             Text(title)
                 .font(Font.custom("LTA-Identity", size: 16.0))
-//                .font(.system(size: 16.0, weight: .bold))
             Text(subtitle)
                 .font(Font.custom("LTA-Identity", size: 12.0))
-//                .font(.system(size: 12.0, weight: .regular))
                 .foregroundColor(.secondary)
         }
         .padding([.leading, .trailing], 8.0)

@@ -18,7 +18,7 @@ Buses 2 will be built on the iOS 16 API, and will support iOS 16.2 and above.
 
 ### What works
 - Viewing bus stops and bus arrival times
-- Viewing of bus service routes (rudimentary support)
+- Viewing of bus service routes (with thanks to BusRouter SG for the polyline data)
 - Searching bus stops
 - Quickly getting information about nearby bus stops
 - Adding, reordering, and deleting Locations (previously known as Favorites)
@@ -29,6 +29,7 @@ Buses 2 will be built on the iOS 16 API, and will support iOS 16.2 and above.
 - Localization for English, Japanese, and Chinese
 
 ### What's planned
+- Deeplinking when tapping notification
 - Service alerts for trains
 - MRT service map (native)
 - Siri shortcuts

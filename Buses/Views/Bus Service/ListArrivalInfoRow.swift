@@ -101,25 +101,3 @@ struct ListArrivalInfoRow: View {
     }
 
 }
-
-struct ArrivalInfoCardView_Previews: PreviewProvider {
-
-    static var sampleBusStop: BusStop? = loadPreviewData()
-
-    static var previews: some View {
-        BusServiceView(mode: .busStop,
-                              busService: sampleBusStop!.arrivals!.randomElement()!,
-                              busStop: .constant(sampleBusStop!),
-                              showsAddToLocationButton: true)
-    }
-
-    static private func loadPreviewData() -> BusStop? {
-        if let sampleDataPath = Bundle.main.path(forResource: "BusArrivalv2-1", ofType: "json") {
-            let sampleBusStop: BusStop? = decode(from: sampleDataPath)
-            return sampleBusStop!
-        } else {
-            return nil
-        }
-    }
-
-}

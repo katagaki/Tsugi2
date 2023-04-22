@@ -18,6 +18,9 @@ class DataManager: ObservableObject {
     @Published var busRouteList: BusRouteList = BusRouteList()
     @Published var isBusRouteListLoaded: Bool = false
 
+    @Published var busRoutePolylines: [BusRoutePolyline] = []
+    @Published var isBusRoutePolylinesLoaded: Bool = false
+
     @Published var updatedDate: String = ""
     @Published var updatedTime: String = ""
 
@@ -54,6 +57,15 @@ class DataManager: ObservableObject {
             lhs.stopSequence < rhs.stopSequence
         }
         return filteredBusRoutePoints
+    }
+
+    func busRoutePolyline(for serviceNo: String, direction: BusRouteDirection) -> String {
+        if let busRoutePolyline = busRoutePolylines.filter({ busRoutePolyline in
+            busRoutePolyline.serviceNo == serviceNo
+        }).first {
+            return busRoutePolyline.encodedPolylines[direction.rawValue - 1]
+        }
+        return ""
     }
 
     func reloadBusStopListFromServer() async throws {
@@ -109,6 +121,13 @@ class DataManager: ObservableObject {
             busRouteList.busRoutePoints = busRouteListFetched.busRoutePoints
             busRouteList.metadata = busRouteListFetched.metadata
             isBusRouteListLoaded = true
+        }
+    }
+
+    func reloadBusRoutePolylinesFromServer() async throws {
+        if !isBusRoutePolylinesLoaded {
+            busRoutePolylines = try await getAllBusRoutePolylines()
+            isBusRoutePolylinesLoaded = true
         }
     }
 

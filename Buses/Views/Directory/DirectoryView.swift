@@ -38,6 +38,7 @@ struct DirectoryView: View {
                         }
                     } header: {
                         ListSectionHeader(text: "Directory.SearchResults")
+                            .font(.body)
                     }
                 } else {
                     Section {
@@ -52,6 +53,7 @@ struct DirectoryView: View {
                         }
                     } header: {
                         ListSectionHeader(text: "Directory.UsefulResources")
+                            .font(.body)
                     }
                     Section {
                         ForEach($dataManager.busStops, id: \.code) { $stop in
@@ -64,6 +66,7 @@ struct DirectoryView: View {
                     } header: {
                         HStack {
                             ListSectionHeader(text: "Directory.BusStops")
+                                .font(.body)
                             Spacer()
                             Menu {
                                 Toggle(isOn: $shouldSortAlphabeticalAscending) {

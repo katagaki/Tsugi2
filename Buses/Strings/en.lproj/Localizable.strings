@@ -82,16 +82,17 @@
 "More.Customization.ShowRoute" = "Show Route (Beta)";
 "More.Customization.ShowRoute.Subtitle" = "Shows the route taken by bus services above the arrival times.";
 "More.Notifications" = "Notifications";
-"More.Support" = "Support";
-"More.Support.GitHub" = "Contribute with Code";
-"More.Support.GitHub.Subtitle" = "katagaki/Tsugi2";
-"More.Support.Donate" = "Donate";
-"More.Help" = "Help";
+"More.Help" = "Help & Support";
 "More.Help.Twitter" = "Tweet Me";
 "More.Help.Twitter.Subtitle" = "@katagaki_";
 "More.Help.Email" = "Email Me";
 "More.Help.Email.Subtitle" = "ktgk.public@icloud.com";
-"More.Attribution" = "Data in this app is provided by LTA's DataMall service. LTA's DataMall service provides live data about Singapore's roads and public transit services.\nDue to limitations in the LTA DataMall API, HTTPS is not used by the API.";
+"More.Help.GitHub" = "Read Source Code";
+"More.Help.GitHub.Subtitle" = "katagaki/Tsugi2";
+"More.Attribution" = "Attribution";
+"More.Attribution.LTA" = "LTA DataMall";
+"More.Attribution.BusRouter" = "BusRouter SG";
+"More.Attribution.Polyline" = "Polyline";
 "More.UnderTheHood" = "App Logs";
 
 /* Notifications */

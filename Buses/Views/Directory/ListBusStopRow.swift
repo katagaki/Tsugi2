@@ -15,9 +15,9 @@ struct ListBusStopRow: View {
         HStack(alignment: .center, spacing: 16.0) {
             Image("ListIcon.BusStop")
             VStack(alignment: .leading, spacing: 2.0) {
-                Text(verbatim: busStop.name())
+                Text(busStop.name())
                     .font(.body)
-                Text(verbatim: busStop.roadName ?? "")
+                Text(busStop.roadName ?? "")
                     .font(.caption)
                     .foregroundColor(.secondary)
             }

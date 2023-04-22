@@ -6,6 +6,7 @@
 //
 
 import MapKit
+import Polyline
 import SwiftUI
 
 struct MapWithRoute: UIViewRepresentable {
@@ -15,6 +16,7 @@ struct MapWithRoute: UIViewRepresentable {
     @State var useLegacyOverlay: Bool
     @State var currentBusStopCode: String
     @Binding var busStops: [BusStop]
+    @Binding var encodedPolyline: String
 
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
@@ -48,38 +50,51 @@ struct MapWithRoute: UIViewRepresentable {
                 let polyline = MKGeodesicPolyline(coordinates: coordinates, count: coordinates.count)
                 mapView.addOverlay(polyline, level: .aboveRoads)
                 mapView.setVisibleMapRect(polyline.boundingMapRect,
-                                          edgePadding: UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0),
+                                          edgePadding: UIEdgeInsets(top: 32.0,
+                                                                    left: 32.0,
+                                                                    bottom: 32.0,
+                                                                    right: 32.0),
                                           animated: false)
             } else {
-                let skipCount: Int = busStops.count / 25
-                var currentIndex: Int = 0
-                repeat {
-                    let startIndex = currentIndex
-                    let endIndex = (currentIndex + skipCount <= busStops.count - 1 ?
-                                    currentIndex + skipCount : busStops.count - 1)
-                    let directionsRequest = MKDirections.Request()
-                    if let sourceLatitude = busStops[startIndex].latitude,
-                       let sourceLongitude = busStops[startIndex].longitude,
-                       let destinationLatitude = busStops[endIndex].latitude,
-                       let destinationLongitude = busStops[endIndex].latitude {
-                        directionsRequest.source =  MKMapItem(
-                            placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: sourceLatitude,
-                                                                                      longitude: sourceLongitude)))
-                        directionsRequest.destination = MKMapItem(
-                            placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: destinationLatitude,
-                                                                                      longitude: destinationLongitude)))
-                        // TODO: Change to Transit whenever Apple provides the API for it
-                        directionsRequest.transportType = .automobile
-                        let directions = MKDirections(request: directionsRequest)
-                        directions.calculate { response, _ in
-                            if let response = response,
-                               let route = response.routes.first {
-                                mapView.addOverlay(route.polyline)
-                            }
-                        }
-                    }
-                    currentIndex += skipCount
-                } while currentIndex <= busStops.count - 1
+                if let decodedCoordinates: [CLLocationCoordinate2D] = decodePolyline(encodedPolyline) {
+                    let polyline = MKPolyline(coordinates: decodedCoordinates, count: decodedCoordinates.count)
+                    mapView.addOverlay(polyline, level: .aboveRoads)
+                    mapView.setVisibleMapRect(polyline.boundingMapRect,
+                                              edgePadding: UIEdgeInsets(top: 32.0,
+                                                                        left: 32.0,
+                                                                        bottom: 32.0,
+                                                                        right: 32.0),
+                                              animated: false)
+                }
+//                let skipCount: Int = busStops.count / 25
+//                var currentIndex: Int = 0
+//                repeat {
+//                    let startIndex = currentIndex
+//                    let endIndex = (currentIndex + skipCount <= busStops.count - 1 ?
+//                                    currentIndex + skipCount : busStops.count - 1)
+//                    let directionsRequest = MKDirections.Request()
+//                    if let sourceLatitude = busStops[startIndex].latitude,
+//                       let sourceLongitude = busStops[startIndex].longitude,
+//                       let destinationLatitude = busStops[endIndex].latitude,
+//                       let destinationLongitude = busStops[endIndex].latitude {
+//                        directionsRequest.source =  MKMapItem(
+//                            placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: sourceLatitude,
+//                                                                                      longitude: sourceLongitude)))
+//                        directionsRequest.destination = MKMapItem(
+//                            placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: destinationLatitude,
+//                                                                                      longitude: destinationLongitude)))
+//                        // TODO: Change to Transit whenever Apple provides the API for it
+//                        directionsRequest.transportType = .automobile
+//                        let directions = MKDirections(request: directionsRequest)
+//                        directions.calculate { response, _ in
+//                            if let response = response,
+//                               let route = response.routes.first {
+//                                mapView.addOverlay(route.polyline)
+//                            }
+//                        }
+//                    }
+//                    currentIndex += skipCount
+//                } while currentIndex <= busStops.count - 1
             }
         }
     }

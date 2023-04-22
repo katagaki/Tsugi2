@@ -34,6 +34,7 @@ struct MoreView: View {
 
                 } header: {
                     ListSectionHeader(text: "More.General")
+                        .font(.body)
                 }
                 Section {
                     HStack(alignment: .center, spacing: 0.0) {
@@ -84,49 +85,109 @@ struct MoreView: View {
                     .disabled(dataManager.shouldReloadBusStopList)
                 } header: {
                     ListSectionHeader(text: "More.Customization")
+                        .font(.body)
                 }
                 // TODO: Include some notification sounds, settings, etc
                 Section {
-                    ListRow(image: "ListIcon.GitHub",
-                            title: "More.Support.GitHub",
-                            subtitle: "More.Support.GitHub.Subtitle",
-                            includeSpacer: true)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        UIApplication.shared.open(URL(string: "https://github.com/katagaki/Tsugi2")!)
+                    Link(destination: URL(string: "https://twitter.com/katagaki_")!) {
+                        HStack {
+                            ListRow(image: "ListIcon.Twitter",
+                                    title: "More.Help.Twitter",
+                                    subtitle: "More.Help.Twitter.Subtitle",
+                                    includeSpacer: true)
+                            Image(systemName: "safari")
+                                .opacity(0.5)
+                        }
+                        .foregroundColor(.primary)
                     }
-                    // TODO: Add donation options
-                } header: {
-                    ListSectionHeader(text: "More.Support")
-                }
-                Section {
-                    ListRow(image: "ListIcon.Twitter",
-                            title: "More.Help.Twitter",
-                            subtitle: "More.Help.Twitter.Subtitle",
-                            includeSpacer: true)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        UIApplication.shared.open(URL(string: "https://twitter.com/katagaki_")!)
+                    Link(destination: URL(string: "mailto:ktgk.public@icloud.com")!) {
+                        HStack {
+                            ListRow(image: "ListIcon.Email",
+                                    title: "More.Help.Email",
+                                    subtitle: "More.Help.Email.Subtitle",
+                                    includeSpacer: true)
+                            Image(systemName: "arrow.up.forward.app")
+                                .opacity(0.5)
+                        }
+                        .foregroundColor(.primary)
                     }
-                    ListRow(image: "ListIcon.Email",
-                            title: "More.Help.Email",
-                            subtitle: "More.Help.Email.Subtitle",
-                            includeSpacer: true)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        UIApplication.shared.open(URL(string: "mailto:ktgk.public@icloud.com")!)
+                    Link(destination: URL(string: "https://github.com/katagaki/Tsugi2")!) {
+                        HStack {
+                            ListRow(image: "ListIcon.GitHub",
+                                    title: "More.Help.GitHub",
+                                    subtitle: "More.Help.GitHub.Subtitle",
+                                    includeSpacer: true)
+                            Image(systemName: "safari")
+                                .opacity(0.5)
+                        }
+                        .foregroundColor(.primary)
                     }
                 } header: {
                     ListSectionHeader(text: "More.Help")
+                        .font(.body)
                 }
                 Section {
-                } header: {
-                    VStack(alignment: .leading, spacing: 4.0) {
-                        Text("More.Attribution")
-                        Link("Learn More", destination: URL(string: "https://datamall.lta.gov.sg/")!)
+                    Link(destination: URL(string: "https://datamall.lta.gov.sg")!) {
+                        HStack {
+                            ListRow(image: "ListIcon.Attribution.LTA",
+                                    title: "More.Attribution.LTA",
+                                    includeSpacer: true)
+                            Image(systemName: "safari")
+                                .opacity(0.5)
+                        }
                     }
-                    .font(.caption)
-                    .textCase(.none)
+                    .foregroundColor(.primary)
+                    Link(destination: URL(string: "https://github.com/cheeaun/sgbusdata")!) {
+                        HStack {
+                            ListRow(image: "ListIcon.Attribution.BusRouter",
+                                    title: "More.Attribution.BusRouter",
+                                    includeSpacer: true)
+                            Image(systemName: "safari")
+                                .opacity(0.5)
+                        }
+                    }
+                    .foregroundColor(.primary)
+                    NavigationLink {
+                        TextEditor(text: .constant(
+"""
+The MIT License (MIT)
+
+Copyright (c) 2015 Raphaël Mor
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"""
+                        ))
+                        .navigationTitle("More.Attribution.Polyline")
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                Link(destination: URL(string: "https://github.com/raphaelmor/Polyline")!) {
+                                    Image(systemName: "safari")
+                                }
+                            }
+                        }
+                    } label: {
+                        ListRow(image: "ListIcon.Attribution.Polyline",
+                                title: "More.Attribution.Polyline")
+                    }
+                } header: {
+                    ListSectionHeader(text: "More.Attribution")
+                        .font(.body)
                 }
             }
             .listStyle(.insetGrouped)

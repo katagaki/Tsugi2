@@ -157,6 +157,42 @@ func getBusRoutes(from firstIndex: Int = 0) async throws -> BusRouteList {
     return busRouteList
 }
 
+func getAllBusRoutePolylines() async throws -> [BusRoutePolyline] {
+    let busRoutePolylines: [BusRoutePolyline] = try await withCheckedThrowingContinuation({ continuation in
+        var request = URLRequest(url: URL(string: "https://data.busrouter.sg/v1/routes.json")!)
+        request.httpMethod = "GET"
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            if let error = error {
+                log(error.localizedDescription, level: .error)
+                log(String(data: data ?? Data(), encoding: .utf8) ?? "No data found.")
+                continuation.resume(throwing: error)
+            } else {
+                if let data = data {
+                    if let busRoutePolylinesRawData: [String: [String]] = decode(fromData: data) {
+                        log("Fetched bus route polylines.")
+                        var busRoutePolylines: [BusRoutePolyline] = []
+                        for (key, value) in busRoutePolylinesRawData {
+                            var busRoutePolyline = BusRoutePolyline(serviceNo: "", encodedPolylines: [])
+                            busRoutePolyline.serviceNo = key
+                            busRoutePolyline.encodedPolylines = value
+                            busRoutePolylines.append(busRoutePolyline)
+                        }
+                        log("Successfully decoded polyline data to compatible format.")
+                        continuation.resume(returning: busRoutePolylines)
+                    } else {
+                        log("Could not decode the data successfully.", level: .error)
+                        continuation.resume(throwing: NSError(domain: "", code: 1))
+                    }
+                } else {
+                    log("No data was returned.", level: .error)
+                    continuation.resume(throwing: NSError(domain: "", code: 1))
+                }
+            }
+        }.resume()
+    })
+    return busRoutePolylines
+}
+
 func getAllBusServices() async throws -> [BusService] {
     var allBusServices: [BusService] = []
     var currentBusServiceList: BusServiceList?

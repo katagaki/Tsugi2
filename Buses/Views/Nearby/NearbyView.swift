@@ -32,7 +32,7 @@ struct NearbyView: View {
                             ZStack(alignment: .topLeading) {
                                 BlurGradientView()
                                     .ignoresSafeArea()
-                                    .frame(height: metrics.safeAreaInsets.top + 44.0)
+                                    .frame(height: metrics.safeAreaInsets.top * 1.25)
                                 Color.clear
                             }
                         }
@@ -46,6 +46,7 @@ struct NearbyView: View {
                         } header: {
                             HStack(alignment: .center, spacing: 0.0) {
                                 ListSectionHeader(text: (stop.name()))
+                                    .font(Font.custom("LTA-Identity", size: 16.0))
                                 Spacer()
                                 if favorites.favoriteLocations.contains(where: { location in
                                     location.busStopCode == stop.code && location.usesLiveBusStopData == true
