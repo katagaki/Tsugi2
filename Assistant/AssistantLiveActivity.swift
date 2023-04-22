@@ -113,8 +113,8 @@ struct AssistantLiveActivity: Widget {
                 }
             } compactLeading: {
                 Text(context.attributes.serviceNo)
-                    .font(Font.custom("OceanSansStd-Bold", size: 16.0))
-                    .padding(EdgeInsets(top: 6.0, leading: 16.0, bottom: 2.0, trailing: 16.0))
+                    .font(Font.custom("LTA-Identity", size: 16.0))
+                    .padding(EdgeInsets(top: 2.0, leading: 16.0, bottom: 3.0, trailing: 16.0))
                     .background(Color("PlateColor"))
                     .clipShape(RoundedRectangle(cornerRadius: 16.0))
             } compactTrailing: {

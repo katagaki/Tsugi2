@@ -16,9 +16,9 @@ struct BusNumberPlateView: View {
     var body: some View {
         HStack(alignment: .center) {
             Text(serviceNo)
-                .font(Font.custom("OceanSansStd-Bold", fixedSize: carouselDisplayMode.fontSize()))
+                .font(Font.custom("LTA-Identity", fixedSize: carouselDisplayMode.fontSize()))
                 .foregroundColor(.white)
-                .padding(EdgeInsets(top: 6.0, leading: 8.0, bottom: 2.0, trailing: 8.0))
+                .padding(EdgeInsets(top: 0.0, leading: 8.0, bottom: 1.0, trailing: 8.0))
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .lineLimit(1)
         }
