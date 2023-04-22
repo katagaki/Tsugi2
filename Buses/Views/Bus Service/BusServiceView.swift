@@ -9,6 +9,7 @@ import ActivityKit
 import MapKit
 import SwiftUI
 
+// swiftlint:disable type_body_length
 struct BusServiceView: View {
 
     var mode: DataDisplayMode
@@ -309,3 +310,4 @@ struct BusServiceView: View {
     }
 
 }
+// swiftlint:enable type_body_length

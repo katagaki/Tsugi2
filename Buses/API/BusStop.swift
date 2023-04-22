@@ -22,12 +22,11 @@ class BusStop: Codable, Hashable, ObservableObject, Identifiable {
     var latitude: Double?
     var longitude: Double?
 
+    // Geocoding with MapKit
+    var originalDescription: String?
+
     init() {
-        code = "46779"
-        roadName = "Lorem Ipsum Dolor Street"
-        description = "Opp Sample Bus Stop Secondary"
-        latitude = 1.28459
-        longitude = 103.83275
+        code = "00000"
     }
 
     init(code: String, description: String?) {
@@ -43,6 +42,7 @@ class BusStop: Codable, Hashable, ObservableObject, Identifiable {
         case description = "Description"
         case latitude = "Latitude"
         case longitude = "Longitude"
+        case originalDescription = "OriginalDescription"
     }
 
     static func == (lhs: BusStop, rhs: BusStop) -> Bool {

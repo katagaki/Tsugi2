@@ -75,6 +75,7 @@ class DataManager: ObservableObject {
                 var busStops: [BusStop] = []
                 for busStop in busStopList.busStops {
                     group.addTask {
+                        busStop.originalDescription = busStop.description
                         busStop.description = properName(for: busStop.name())
                         busStop.roadName = properName(for: busStop.roadName ??
                                                       localized("Shared.BusStop.Description.None"))

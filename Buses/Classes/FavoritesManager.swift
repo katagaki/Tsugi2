@@ -261,7 +261,7 @@ class FavoritesManager: ObservableObject {
     class FavoritesCoreDataManager {
 
         static let shared = FavoritesCoreDataManager()
-        
+
         private init() {
             // No init required
         }

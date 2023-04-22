@@ -126,6 +126,21 @@ struct BusStopView: View {
                                 .font(.body)
                         }
                     }
+                    if let originalDescription = busStop.originalDescription {
+                        let urlEncodedDescription = originalDescription
+                            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                        Link(destination:
+                                URL(string: "maps://?q=\(urlEncodedDescription)%20Stop")!) {
+                            Image(systemName: "map")
+                        }
+                    } else if let description = busStop.description {
+                        let urlEncodedDescription = description
+                            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                        Link(destination:
+                                URL(string: "maps://?q=\(urlEncodedDescription)%20Stop")!) {
+                            Image(systemName: "map")
+                        }
+                    }
                 }
             }
         }
