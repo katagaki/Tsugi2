@@ -52,12 +52,11 @@ struct ListArrivalInfoRow: View {
             }
             if arrivalTime != "" {
                 HStack(alignment: .center, spacing: 4.0) {
-                    switch arrivalInfo.feature {
-                    case .wheelchairAccessible:
+                    if arrivalInfo.feature == .wheelchairAccessible {
                         Image(systemName: "figure.roll")
                             .font(.body)
                             .foregroundColor(.secondary)
-                    default:
+                    } else {
                         Text("")
                     }
                     switch arrivalInfo.type {

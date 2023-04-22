@@ -117,13 +117,6 @@ class FavoritesManager: ObservableObject {
         favoriteLocation.nickname = (nickname == "" ? busStop.description : nickname)
         favoriteLocation.usesLiveBusStopData = usesLiveBusStopData
         favoriteLocation.viewIndex = 0
-//        for busService in busServices {
-//            let favoriteBusServiceEntity = FavoriteBusService.entity()
-//            let favoriteBusService = FavoriteBusService(entity: favoriteBusServiceEntity, insertInto: context)
-//            favoriteBusService.busStopCode = busService.busStopCode
-//            favoriteBusService.serviceNo = busService.serviceNo
-//            favoriteLocation.addToBusServices(favoriteBusService)
-//        }
         log("Favorite location added using bus stop.")
         await saveChanges()
     }
@@ -243,10 +236,9 @@ class FavoritesManager: ObservableObject {
 
     func find(_ serviceNo: String, in favoriteLocation: FavoriteLocation) -> Bool {
         for favoriteBusService in favoriteBusServices where favoriteBusService.serviceNo == serviceNo {
-            if let parentLocations = favoriteBusService.parentLocations {
-                if parentLocations.contains(favoriteLocation) {
-                    return true
-                }
+            if let parentLocations = favoriteBusService.parentLocations,
+               parentLocations.contains(favoriteLocation) {
+                return true
             }
         }
         return false
@@ -269,7 +261,10 @@ class FavoritesManager: ObservableObject {
     class FavoritesCoreDataManager {
 
         static let shared = FavoritesCoreDataManager()
-        private init() { }
+        
+        private init() {
+            // No init required
+        }
 
         private lazy var persistentContainer: NSPersistentContainer = {
             let container = NSPersistentContainer(name: "Favorites")

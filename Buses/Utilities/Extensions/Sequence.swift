@@ -10,7 +10,7 @@ import Foundation
 extension Sequence where Element: Hashable {
     func isDistinct() -> Bool {
         var set = Set<Element>()
-        for element in self where set.insert(element).inserted == false {
+        for element in self where !set.insert(element).inserted {
             return false
         }
         return true

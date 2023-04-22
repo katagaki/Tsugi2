@@ -25,7 +25,7 @@ class BusRoutePoint: Codable, Hashable, ObservableObject, Identifiable {
     enum CodingKeys: String, CodingKey {
         case serviceNo = "ServiceNo"
         case `operator` = "Operator"
-        case `direction` = "Direction"
+        case direction = "Direction"
         case stopSequence = "StopSequence"
         case stopCode = "BusStopCode"
         case distance = "Distance"

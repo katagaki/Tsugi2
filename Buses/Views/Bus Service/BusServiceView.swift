@@ -216,7 +216,7 @@ struct BusServiceView: View {
                     toaster.showToast(localized("Notification.Error"),
                                             type: .exclamation,
                                             hidesAutomatically: true)
-                } else if granted == false {
+                } else if !granted {
                     log("Permissions for notifications was not granted, not setting notifications.")
                     toaster.showToast(localized("Notification.NoPermissions"),
                                             type: .exclamation,

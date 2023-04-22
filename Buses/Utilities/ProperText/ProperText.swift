@@ -40,7 +40,6 @@ func properName(for originalString: String) -> String {
             for ptSpecialTokenIndex in 0..<ptSpecialTokens.count {
                 if let term = ptTerms[ptSpecialTokens[ptSpecialTokenIndex]] {
                     ptSpecialTokens[ptSpecialTokenIndex] = term
-                    continue
                 }
             }
             ptStringTokens[ptStringTokenIndex] = ptSpecialTokens.joined(separator: "/")

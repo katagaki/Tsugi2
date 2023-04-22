@@ -112,7 +112,7 @@ struct NearbyView: View {
                 switch newValue {
                 case .authorizedWhenInUse:
                     log("Location Services authorization changed to When In Use.")
-                    locationManager.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+                    locationManager.shared.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
                     locationManager.updateLocation(usingOnlySignificantChanges: false)
                 case .notDetermined:
                     log("Location Services authorization not determined yet.")

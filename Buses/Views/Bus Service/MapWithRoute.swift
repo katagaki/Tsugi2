@@ -66,35 +66,6 @@ struct MapWithRoute: UIViewRepresentable {
                                                                         right: 32.0),
                                               animated: false)
                 }
-//                let skipCount: Int = busStops.count / 25
-//                var currentIndex: Int = 0
-//                repeat {
-//                    let startIndex = currentIndex
-//                    let endIndex = (currentIndex + skipCount <= busStops.count - 1 ?
-//                                    currentIndex + skipCount : busStops.count - 1)
-//                    let directionsRequest = MKDirections.Request()
-//                    if let sourceLatitude = busStops[startIndex].latitude,
-//                       let sourceLongitude = busStops[startIndex].longitude,
-//                       let destinationLatitude = busStops[endIndex].latitude,
-//                       let destinationLongitude = busStops[endIndex].latitude {
-//                        directionsRequest.source =  MKMapItem(
-//                            placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: sourceLatitude,
-//                                                                                      longitude: sourceLongitude)))
-//                        directionsRequest.destination = MKMapItem(
-//                            placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: destinationLatitude,
-//                                                                                      longitude: destinationLongitude)))
-//                        // TODO: Change to Transit whenever Apple provides the API for it
-//                        directionsRequest.transportType = .automobile
-//                        let directions = MKDirections(request: directionsRequest)
-//                        directions.calculate { response, _ in
-//                            if let response = response,
-//                               let route = response.routes.first {
-//                                mapView.addOverlay(route.polyline)
-//                            }
-//                        }
-//                    }
-//                    currentIndex += skipCount
-//                } while currentIndex <= busStops.count - 1
             }
         }
     }

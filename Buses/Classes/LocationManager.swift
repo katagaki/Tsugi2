@@ -13,38 +13,40 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     @Published var shouldUpdateLocationAsSoonAsPossible: Bool = false
 
-    var locationManager: CLLocationManager = CLLocationManager()
+    var shared: CLLocationManager = CLLocationManager()
 
     var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 1.354454, longitude: 103.946362),
                                     latitudinalMeters: 250.0,
                                     longitudinalMeters: 250.0)
-    var completion: () -> Void = {}
+    var completion: () -> Void = {
+        // Empty completion handler
+    }
 
     @Published var authorizationStatus: CLAuthorizationStatus?
 
     override init() {
         super.init()
-        locationManager.delegate = self
+        shared.delegate = self
     }
 
     func updateLocation(usingOnlySignificantChanges: Bool = true) {
         if usingOnlySignificantChanges {
             log("Start monitoring for significant location changes.")
-            locationManager.startMonitoringSignificantLocationChanges()
+            shared.startMonitoringSignificantLocationChanges()
         } else {
             log("Start updating location.")
-            locationManager.startUpdatingLocation()
+            shared.startUpdatingLocation()
         }
     }
 
     func isInUsableState() -> Bool {
-        return locationManager.authorizationStatus != .notDetermined &&
-        locationManager.authorizationStatus != .denied &&
-        locationManager.authorizationStatus != .restricted
+        return shared.authorizationStatus != .notDetermined &&
+        shared.authorizationStatus != .denied &&
+        shared.authorizationStatus != .restricted
     }
 
     func requestWhenInUseAuthorization() {
-        locationManager.requestWhenInUseAuthorization()
+        shared.requestWhenInUseAuthorization()
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
