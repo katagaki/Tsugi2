@@ -120,10 +120,11 @@ struct BusService: Codable, Hashable {
 
 enum BusCategory: String, Codable {
     case express = "EXPRESS"
-    case feeder = "FEEDER"
-    case industrial = "INDUSTRIAL"
+    case cityLink = "CITY_LINK"
     case townLink = "TOWNLINK"
     case trunk = "TRUNK"
+    case feeder = "FEEDER"
+    case industrial = "INDUSTRIAL"
     case twoTierFlatFee = "2 TIER FLAT FEE"
     case flatFee110 = "FLAT FEE $1.10"
     case flatFee190 = "FLAT FEE $1.90"

@@ -1,5 +1,5 @@
 //
-//  APIFetchers.swift
+//  API.swift
 //  Buses
 //
 //  Created by 堅書 on 2022/04/14.
@@ -8,13 +8,23 @@
 import Foundation
 
 let apiEndpoint = "http://datamall2.mytransport.sg/ltaodataservice"
+var apiKeys: [String: String] = [:]
 
-func fetchAllBusStops() async throws -> [BusStop] {
+func loadAPIKeys() {
+    if let storedAPIKeys = Bundle.main.plist(named: "APIKeys") {
+        apiKeys = storedAPIKeys
+        log("Loaded \(apiKeys.count) API key(s).")
+    } else {
+        log("Could not load API keys.", level: .error)
+    }
+}
+
+func getAllBusStops() async throws -> [BusStop] {
     var allBusStops: [BusStop] = []
     var currentBusStopList: BusStopList?
     var currentSkipIndex: Int = 0
     repeat {
-        currentBusStopList = try await fetchBusStops(from: currentSkipIndex)
+        currentBusStopList = try await getBusStops(from: currentSkipIndex)
         if let busStopList = currentBusStopList {
             allBusStops.append(contentsOf: busStopList.busStops)
             currentSkipIndex += 500
@@ -25,7 +35,7 @@ func fetchAllBusStops() async throws -> [BusStop] {
     return allBusStops
 }
 
-func fetchBusStops(from firstIndex: Int = 0) async throws -> BusStopList {
+func getBusStops(from firstIndex: Int = 0) async throws -> BusStopList {
     let busStopList: BusStopList = try await withCheckedThrowingContinuation({ continuation in
         var request = URLRequest(url: URL(string: "\(apiEndpoint)/BusStops?$skip=\(firstIndex)")!)
         request.httpMethod = "GET"
@@ -59,7 +69,7 @@ func fetchBusStops(from firstIndex: Int = 0) async throws -> BusStopList {
     return busStopList
 }
 
-func fetchBusArrivals(for stopCode: String) async throws -> BusStop {
+func getBusArrivals(for stopCode: String) async throws -> BusStop {
     let busArrivals: BusStop = try await withCheckedThrowingContinuation({ continuation in
         var request = URLRequest(url: URL(string: "\(apiEndpoint)/BusArrivalv2?BusStopCode=\(stopCode)")!)
         request.httpMethod = "GET"
@@ -93,13 +103,13 @@ func fetchBusArrivals(for stopCode: String) async throws -> BusStop {
     return busArrivals
 }
 
-func fetchAllBusRoutes() async throws -> BusRouteList {
+func getAllBusRoutes() async throws -> BusRouteList {
     return try await withThrowingTaskGroup(of: BusRouteList.self, body: { group in
         let finalBusRouteList = BusRouteList()
         // TODO: Bus route count may increase in the future, setting fetch at 30,000 for now
         for index in 0...60 {
             group.addTask {
-                let busRouteList = try await fetchBusRoutes(from: index * 500)
+                let busRouteList = try await getBusRoutes(from: index * 500)
                 return busRouteList
             }
         }
@@ -113,7 +123,7 @@ func fetchAllBusRoutes() async throws -> BusRouteList {
     })
 }
 
-func fetchBusRoutes(from firstIndex: Int = 0) async throws -> BusRouteList {
+func getBusRoutes(from firstIndex: Int = 0) async throws -> BusRouteList {
     let busRouteList: BusRouteList = try await withCheckedThrowingContinuation({ continuation in
         var request = URLRequest(url: URL(string: "\(apiEndpoint)/BusRoutes?$skip=\(firstIndex)")!)
         request.httpMethod = "GET"
@@ -145,4 +155,54 @@ func fetchBusRoutes(from firstIndex: Int = 0) async throws -> BusRouteList {
         }.resume()
     })
     return busRouteList
+}
+
+func getAllBusServices() async throws -> [BusService] {
+    var allBusServices: [BusService] = []
+    var currentBusServiceList: BusServiceList?
+    var currentSkipIndex: Int = 0
+    repeat {
+        currentBusServiceList = try await getBusServices(from: currentSkipIndex)
+        if let busServiceList = currentBusServiceList {
+            allBusServices.append(contentsOf: busServiceList.busServices)
+            currentSkipIndex += 500
+        } else {
+            currentBusServiceList = BusServiceList()
+        }
+    } while currentBusServiceList?.busServices.count != 0
+    return allBusServices
+}
+
+func getBusServices(from firstIndex: Int = 0) async throws -> BusServiceList {
+    let busServiceList: BusServiceList = try await withCheckedThrowingContinuation({ continuation in
+        var request = URLRequest(url: URL(string: "\(apiEndpoint)/BusServices?$skip=\(firstIndex)")!)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        if let apiKey = apiKeys["LTA"] {
+            request.addValue(apiKey, forHTTPHeaderField: "AccountKey")
+        } else {
+            log("API key is missing! Request may fail ungracefully.", level: .error)
+        }
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            if let error = error {
+                log(error.localizedDescription, level: .error)
+                log(String(data: data ?? Data(), encoding: .utf8) ?? "No data found.")
+                continuation.resume(throwing: error)
+            } else {
+                if let data = data {
+                    if let busServiceList: BusServiceList = decode(fromData: data) {
+                        log("Fetched bus service data from the API for skip index \(firstIndex).")
+                        continuation.resume(returning: busServiceList)
+                    } else {
+                        log("Could not decode the data successfully.", level: .error)
+                        continuation.resume(throwing: NSError(domain: "", code: 1))
+                    }
+                } else {
+                    log("No data was returned.", level: .error)
+                    continuation.resume(throwing: NSError(domain: "", code: 1))
+                }
+            }
+        }.resume()
+    })
+    return busServiceList
 }

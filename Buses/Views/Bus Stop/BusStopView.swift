@@ -134,7 +134,7 @@ struct BusStopView: View {
     func reloadBusArrivals() {
         Task {
             timer.upstream.connect().cancel()
-            let busStopsFetched = try await fetchBusArrivals(for: busStop.code)
+            let busStopsFetched = try await getBusArrivals(for: busStop.code)
             busArrivals = busStopsFetched.arrivals ?? []
             busArrivals.sort(by: { lhs, rhs in
                 lhs.serviceNo.toInt() ?? 9999 < rhs.serviceNo.toInt() ?? 9999

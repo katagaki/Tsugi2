@@ -166,7 +166,7 @@ struct BusServiceView: View {
             switch mode {
             case .busStop, .favoriteLocationLiveData:
                 if let busStop = busStop {
-                    let fetchedBusStop = try await fetchBusArrivals(for: busStop.wrappedValue.code)
+                    let fetchedBusStop = try await getBusArrivals(for: busStop.wrappedValue.code)
                     self.busStop?.wrappedValue.description = dataManager.busStop(
                         code: busStop.wrappedValue.code)?.name()
                     busService = fetchedBusStop.arrivals?.first(where: { busService in
@@ -174,11 +174,11 @@ struct BusServiceView: View {
                     }) ?? BusService(serviceNo: busService.serviceNo, operator: busService.operator)
                 }
             case .favoriteLocationCustomData:
-                self.busStop?.wrappedValue = try await fetchBusArrivals(for: busService.busStopCode ?? "")
+                self.busStop?.wrappedValue = try await getBusArrivals(for: busService.busStopCode ?? "")
                 self.busStop?.wrappedValue.description = favoriteLocation?.wrappedValue.nickname ?? ""
             case .notificationItem:
                 if let busStop = busStop {
-                    let fetchedBusStop = try await fetchBusArrivals(for: busStop.wrappedValue.code)
+                    let fetchedBusStop = try await getBusArrivals(for: busStop.wrappedValue.code)
                     busService = fetchedBusStop.arrivals?.first(where: { busService in
                         busService.serviceNo == self.busService.serviceNo
                     }) ?? BusService(serviceNo: busService.serviceNo, operator: busService.operator)

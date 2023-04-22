@@ -57,7 +57,7 @@ class DataManager: ObservableObject {
     }
 
     func reloadBusStopListFromServer() async throws {
-        busStopList.busStops = try await fetchAllBusStops()
+        busStopList.busStops = try await getAllBusStops()
         if defaults.bool(forKey: "UseProperText") {
             busStopList.busStops = await withTaskGroup(of: BusStop.self, returning: [BusStop].self, body: { group in
                 var busStops: [BusStop] = []
@@ -105,7 +105,7 @@ class DataManager: ObservableObject {
 
     func reloadBusRoutesFromServer() async throws {
         if !isBusRouteListLoaded {
-            let busRouteListFetched = try await fetchAllBusRoutes()
+            let busRouteListFetched = try await getAllBusRoutes()
             busRouteList.busRoutePoints = busRouteListFetched.busRoutePoints
             busRouteList.metadata = busRouteListFetched.metadata
             isBusRouteListLoaded = true

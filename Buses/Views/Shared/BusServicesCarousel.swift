@@ -174,7 +174,7 @@ struct BusServicesCarousel: View {
                 })
             var fetchedBusServices: [BusService] = []
             for busService in busServices {
-                if var fetchedBusService = try await fetchBusArrivals(
+                if var fetchedBusService = try await getBusArrivals(
                     for: busService.busStopCode ?? "").arrivals?
                     .first(where: { fetchedBusService in
                         fetchedBusService.serviceNo == busService.serviceNo
@@ -185,7 +185,7 @@ struct BusServicesCarousel: View {
             }
             busServices = fetchedBusServices
        } else {
-           let fetchedBusStop = try await fetchBusArrivals(
+           let fetchedBusStop = try await getBusArrivals(
             for: favoriteLocation.busStopCode ?? "")
            busServices = fetchedBusStop.arrivals?.sorted(by: { lhs, rhs in
                lhs.serviceNo.toInt() ?? 9999 < rhs.serviceNo.toInt() ?? 9999
@@ -194,7 +194,7 @@ struct BusServicesCarousel: View {
     }
 
     func reloadArrivalTimes(for busStop: BusStop) async throws {
-        busServices = (try await fetchBusArrivals(for: busStop.code).arrivals ?? [])
+        busServices = (try await getBusArrivals(for: busStop.code).arrivals ?? [])
             .sorted(by: { lhs, rhs in
             lhs.serviceNo.toInt() ?? 9999 < rhs.serviceNo.toInt() ?? 9999
         })
