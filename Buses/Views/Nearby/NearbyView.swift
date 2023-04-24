@@ -141,6 +141,15 @@ struct NearbyView: View {
                 ToolbarItem(placement: .principal) {
                     Spacer()
                 }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        locationManager.completion = self.updateLocationManually
+                        locationManager.updateLocation(usingOnlySignificantChanges: false)
+                    } label: {
+                        Image(systemName: "location")
+                    }
+
+                }
             }
         }
     }
@@ -174,6 +183,12 @@ struct NearbyView: View {
             log("Updated displayed coordinates to nearby bus stops.")
             isNearbyBusStopsDetermined = true
         }
+    }
+
+    func updateLocationManually() {
+        regionManager.updateViewFlag = false
+        regionManager.updateRegion(newRegion: locationManager.region)
+        locationManager.completion = self.reloadNearbyBusStops
     }
 
 }
