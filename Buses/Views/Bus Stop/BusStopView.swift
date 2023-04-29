@@ -65,12 +65,11 @@ struct BusStopView: View {
                             }
                         }
                         .scrollIndicators(.never)
-                        .listStyle(.insetGrouped)
+                        .listStyle(.plain)
                         .refreshable {
                             reloadBusArrivals()
                         }
                         .frame(width: metrics.size.width, height: metrics.size.height * 0.6)
-                        .shadow(radius: 2.5)
                         .zIndex(1)
                     } else {
                         Color(uiColor: .systemGroupedBackground)

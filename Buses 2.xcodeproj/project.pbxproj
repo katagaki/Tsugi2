@@ -75,6 +75,8 @@
 		E4A1B31F29F0171C00C6ABAC /* LTA-Identity.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4A1B31E29F016F100C6ABAC /* LTA-Identity.ttf */; };
 		E4A1B32029F0171C00C6ABAC /* LTA-Identity.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4A1B31E29F016F100C6ABAC /* LTA-Identity.ttf */; };
 		E4AAD7FC2882C0D800CC63E8 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AAD7FB2882C0D800CC63E8 /* ToastView.swift */; };
+		E4AEF04629FCC3D7005C370E /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEF04529FCC3D7005C370E /* DateFormatter.swift */; };
+		E4AEF04729FCC446005C370E /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEF04529FCC3D7005C370E /* DateFormatter.swift */; };
 		E4B70003285637450019F71A /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B70002285637450019F71A /* MainTabView.swift */; };
 		E4B700052856387E0019F71A /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B700042856387E0019F71A /* App.swift */; };
 		E4B70008285642280019F71A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E4B7000A285642280019F71A /* Localizable.strings */; };
@@ -228,6 +230,7 @@
 		E4A1B31E29F016F100C6ABAC /* LTA-Identity.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LTA-Identity.ttf"; sourceTree = "<group>"; };
 		E4AAD7FB2882C0D800CC63E8 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		E4ADDDF42859978900C8DE21 /* Buses.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Buses.entitlements; sourceTree = "<group>"; };
+		E4AEF04529FCC3D7005C370E /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		E4B70002285637450019F71A /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		E4B700042856387E0019F71A /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		E4B70009285642280019F71A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -458,6 +461,7 @@
 			children = (
 				E476BF1F28086AE500B8524B /* Logging.swift */,
 				E482ACC229AC7CBC008DAD30 /* Notifications.swift */,
+				E4AEF04529FCC3D7005C370E /* DateFormatter.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -819,6 +823,7 @@
 				E4377ACE29E325C90036003E /* AppIcon.swift in Sources */,
 				E4377AD229E4099C0036003E /* FavoriteLocationEditView.swift in Sources */,
 				E4F02DD029E97DE600EADA1E /* CarouselDisplayMode.swift in Sources */,
+				E4AEF04629FCC3D7005C370E /* DateFormatter.swift in Sources */,
 				E4C3FEC429E844DA009BBC92 /* NearbyMapView.swift in Sources */,
 				E4C3FEC929E84ACF009BBC92 /* ListBusStopRow.swift in Sources */,
 				E482AC8829A90CAB008DAD30 /* BusServicesCarousel.swift in Sources */,
@@ -864,6 +869,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4AEF04729FCC446005C370E /* DateFormatter.swift in Sources */,
 				E482ACC429AC7CBC008DAD30 /* Notifications.swift in Sources */,
 				E482ACAC29AC5561008DAD30 /* BusService.swift in Sources */,
 				E482ACB329AC5821008DAD30 /* Logging.swift in Sources */,

@@ -75,10 +75,9 @@ struct BusServiceView: View {
                         }
                     }
                 }
-                .listStyle(.insetGrouped)
+                .listStyle(.plain)
                 .frame(width: metrics.size.width, height: (settings.showRoute ?
                                                            metrics.size.height * 0.6 : metrics.size.height))
-                .shadow(radius: 2.5)
                 .zIndex(1)
             }
         }

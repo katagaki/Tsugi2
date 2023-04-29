@@ -20,10 +20,15 @@ extension Date {
             return (style == .short ?
                     localized("Shared.BusArrival.JustLeft.Full") : localized("Shared.BusArrival.JustLeft.Abbreviated"))
         } else {
-            let formatter: DateComponentsFormatter = DateComponentsFormatter()
-            formatter.unitsStyle = style
             formatter.allowedUnits = [.minute]
-            return formatter.string(from: interval) ?? localized("Shared.BusArrival.NotInService")
+            formatter.unitsStyle = style
+            var formattedString: String?
+            autoreleasepool {
+                // TODO: Fix memory leak caused by DateFormatter
+                // https://github.com/apple/swift/issues/56085
+                formattedString = formatter.string(from: interval)
+            }
+            return formattedString ?? localized("Shared.BusArrival.NotInService")
         }
     }
 
