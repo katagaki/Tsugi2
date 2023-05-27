@@ -1,4 +1,7 @@
 # Buses 2
+
+![Banner image depicting the Buses app in 3 languages, and the Locations and bus routes feature.](github/banner.png?raw=true "Buses 2")
+
 A carefully designed client for Singapore's transit system
 
 Similar to MyTransport, but a lot faster and 100 times smaller to download.

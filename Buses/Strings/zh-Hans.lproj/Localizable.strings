@@ -117,7 +117,7 @@
 "Shared.BusStop.BusServices.None" = "此巴士站目前没有能提供的巴士服务。";
 "Shared.BusStop.Toast.Favorited" = "%1已保存为地点。";
 "Shared.BusArrival.Arriving.Full" = "即将抵达";
-"Shared.BusArrival.Arriving.Abbreviated" = "即将";
+"Shared.BusArrival.Arriving.Abbreviated" = "即将抵达";
 "Shared.BusArrival.JustLeft.Full" = "已经离开";
 "Shared.BusArrival.JustLeft.Abbreviated" = "已离开";
 "Shared.BusArrival.NotInService" = "停止服务";
