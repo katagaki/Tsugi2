@@ -106,6 +106,7 @@
 		E4C3FEC629E84734009BBC92 /* Toaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3FEC529E84734009BBC92 /* Toaster.swift */; };
 		E4C3FEC929E84ACF009BBC92 /* ListBusStopRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3FEC829E84ACF009BBC92 /* ListBusStopRow.swift */; };
 		E4C3FECB29E84AE2009BBC92 /* ListBusServiceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3FECA29E84AE2009BBC92 /* ListBusServiceRow.swift */; };
+		E4C602592A2ADFF20076C7B9 /* VariableBlurView in Frameworks */ = {isa = PBXBuildFile; productRef = E4C602582A2ADFF20076C7B9 /* VariableBlurView */; };
 		E4D65F0B2865B97700FE78F4 /* Blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D65F072865B97700FE78F4 /* Blue@3x.png */; };
 		E4D65F0C2865B97700FE78F4 /* Blue@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D65F082865B97700FE78F4 /* Blue@2x~ipad.png */; };
 		E4D65F0D2865B97800FE78F4 /* Blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D65F092865B97700FE78F4 /* Blue@2x.png */; };
@@ -293,6 +294,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4C602592A2ADFF20076C7B9 /* VariableBlurView in Frameworks */,
 				E4958A1029F3F2B500C5BE28 /* Polyline in Frameworks */,
 				E4FFCAC22801604300DCA0EC /* MapKit.framework in Frameworks */,
 			);
@@ -655,6 +657,7 @@
 			name = Buses;
 			packageProductDependencies = (
 				E4958A0F29F3F2B500C5BE28 /* Polyline */,
+				E4C602582A2ADFF20076C7B9 /* VariableBlurView */,
 			);
 			productName = Buses;
 			productReference = E4406AA827EF182300819CDC /* Buses.app */;
@@ -708,6 +711,7 @@
 			mainGroup = E4406A6927EF13E300819CDC;
 			packageReferences = (
 				E4958A0E29F3F2B500C5BE28 /* XCRemoteSwiftPackageReference "Polyline" */,
+				E4C602572A2ADFF20076C7B9 /* XCRemoteSwiftPackageReference "VariableBlurView" */,
 			);
 			productRefGroup = E4406A7327EF13E300819CDC /* Products */;
 			projectDirPath = "";
@@ -1219,6 +1223,14 @@
 				kind = branch;
 			};
 		};
+		E4C602572A2ADFF20076C7B9 /* XCRemoteSwiftPackageReference "VariableBlurView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aheze/VariableBlurView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1226,6 +1238,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E4958A0E29F3F2B500C5BE28 /* XCRemoteSwiftPackageReference "Polyline" */;
 			productName = Polyline;
+		};
+		E4C602582A2ADFF20076C7B9 /* VariableBlurView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4C602572A2ADFF20076C7B9 /* XCRemoteSwiftPackageReference "VariableBlurView" */;
+			productName = VariableBlurView;
 		};
 /* End XCSwiftPackageProductDependency section */
 

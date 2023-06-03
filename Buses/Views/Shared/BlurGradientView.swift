@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import VariableBlurView
 
 // Thanks to aheze's answer for the blur upgrade, and Classroom of the Elite is great too
 // https://stackoverflow.com/questions/68138347/
@@ -21,9 +22,7 @@ struct BlurGradientView: View {
         )
 
     var body: some View {
-        Rectangle()
-            .foregroundColor(.clear)
-            .background(.ultraThinMaterial)
+        VariableBlurView()
             .mask(gradient)
             .allowsHitTesting(false)
     }
