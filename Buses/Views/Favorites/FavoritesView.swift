@@ -28,14 +28,16 @@ struct FavoritesView: View {
         NavigationStack {
             List($favorites.favoriteLocations, id: \.hashValue) { $location in
                 Section {
-                    BusServicesCarousel(dataDisplayMode:
-                                            (location.usesLiveBusStopData ?
-                                                .favoriteLocationLiveData : .favoriteLocationCustomData),
-                                        busStop: nil,
-                                        favoriteLocation: $location)
+                    if !location.isFault && !location.isDeleted {
+                        BusServicesCarousel(dataDisplayMode:
+                                                (location.usesLiveBusStopData ?
+                                                    .favoriteLocationLiveData : .favoriteLocationCustomData),
+                                            busStop: nil,
+                                            favoriteLocation: $location)
                         .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
                         .opacity(isEditing ? 0.5 : 1.0)
                         .disabled(isEditing)
+                    }
                 } header: {
                     HStack(alignment: .center, spacing: 6.0) {
                         ListSectionHeader(text: (location.nickname ?? location.busStopCode ?? ""))

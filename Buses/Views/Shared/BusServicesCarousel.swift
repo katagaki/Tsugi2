@@ -140,15 +140,15 @@ struct BusServicesCarousel: View {
                     try await reloadArrivalTimes(for: busStop.wrappedValue)
                 }
             case .favoriteLocationCustomData, .favoriteLocationLiveData:
-                if let favoriteLocation = favoriteLocation {
-                    let favoriteBusServices = (
-                        favoriteLocation.wrappedValue.busServices?.array as? [FavoriteBusService])?
-                        .sorted(by: { lhs, rhs in
+                if let favoriteLocation = favoriteLocation,
+                   let favoriteBusServices = favoriteLocation.wrappedValue.busServices?.array as? [FavoriteBusService] {
+                    let favoriteBusServicesSorted = (
+                        favoriteBusServices.sorted(by: { lhs, rhs in
                            lhs.viewIndex < rhs.viewIndex
-                       }) ?? []
+                       }))
                     log("Reloading arrival times for a favorite location.")
                     try await reloadArrivalTimes(for: favoriteLocation.wrappedValue,
-                                                 favoriteBusServices: favoriteBusServices,
+                                                 favoriteBusServices: favoriteBusServicesSorted,
                                                  isDataCustom: !favoriteLocation.usesLiveBusStopData.wrappedValue)
                 }
             case .notificationItem:
