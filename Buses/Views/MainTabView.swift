@@ -25,6 +25,10 @@ struct MainTabView: View {
 
     @State var isInitialLoad: Bool = true
 
+    // Thanks to StarRayder for this pop to root solution
+    // https://stackoverflow.com/questions/60109986/pop-to-root-view-using-tab-bar-in-swiftui
+    @State var goHome = UUID()
+
     var body: some View {
         GeometryReader { metrics in
             TabView(selection: $defaultTab) {
@@ -55,6 +59,10 @@ struct MainTabView: View {
                     }
                     .tag(4)
             }
+            .id(goHome)
+            .onTapGesture(count: 2, perform: {
+                goHome = UUID()
+            })
             .task {
                 if isInitialLoad {
                     defaultTab = settings.startupTab
