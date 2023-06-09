@@ -191,14 +191,3 @@ struct DirectoryView: View {
     }
 
 }
-
-struct DirectoryView_Previews: PreviewProvider {
-
-    @State static var updatedDate: String = ""
-    @State static var updatedTime: String = ""
-
-    static var previews: some View {
-        DirectoryView(updatedDate: $updatedTime,
-                      updatedTime: $updatedTime)
-    }
-}

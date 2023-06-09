@@ -18,9 +18,3 @@ struct MoreDonateView: View {
         .navigationTitle("ViewTitle.More.Donate")
     }
 }
-
-struct MoreDonateView_Previews: PreviewProvider {
-    static var previews: some View {
-        MoreDonateView()
-    }
-}

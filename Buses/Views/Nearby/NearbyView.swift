@@ -157,9 +157,3 @@ struct NearbyView: View {
     }
 
 }
-
-struct NearbyView_Previews: PreviewProvider {
-    static var previews: some View {
-        NearbyView()
-    }
-}

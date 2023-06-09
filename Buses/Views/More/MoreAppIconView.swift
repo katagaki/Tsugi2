@@ -35,9 +35,3 @@ struct MoreAppIconView: View {
         .navigationTitle("ViewTitle.More.Customization.AppIcon")
     }
 }
-
-struct MoreAppIconView_Previews: PreviewProvider {
-    static var previews: some View {
-        MoreAppIconView()
-    }
-}
