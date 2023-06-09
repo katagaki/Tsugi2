@@ -1,8 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
+    "?" : {
+
+    },
+    "%@" : {
+
+    },
     "Alert.Cancel" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -25,7 +33,6 @@
       }
     },
     "Alert.Create" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -48,7 +55,6 @@
       }
     },
     "Alert.No" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -71,7 +77,6 @@
       }
     },
     "Alert.Save" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -95,7 +100,6 @@
     },
     "Alert.Yes" : {
       "comment" : "Alert Button Titles",
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -118,7 +122,7 @@
       }
     },
     "Directory.BusRoutesLoading" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -141,7 +145,7 @@
       }
     },
     "Directory.BusStops" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -164,7 +168,6 @@
       }
     },
     "Directory.BusStops.Sort.AlphabeticalAscending" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -187,7 +190,6 @@
       }
     },
     "Directory.BusStops.Sort.AlphabeticalDescending" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -210,7 +212,6 @@
       }
     },
     "Directory.BusStops.Sort.DistanceClosest" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -233,7 +234,7 @@
       }
     },
     "Directory.BusStopsLoading" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -256,7 +257,6 @@
       }
     },
     "Directory.LastUpdated" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -279,7 +279,6 @@
       }
     },
     "Directory.MRTMap" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -302,7 +301,7 @@
       }
     },
     "Directory.SearchResults" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -326,7 +325,7 @@
     },
     "Directory.UsefulResources" : {
       "comment" : "Directory View",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -349,7 +348,7 @@
       }
     },
     "Favorites.Delete.Confirm.GenericLocationText" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -372,7 +371,7 @@
       }
     },
     "Favorites.Delete.Confirm.Message" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -395,7 +394,6 @@
       }
     },
     "Favorites.Delete.Confirm.Title" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -418,7 +416,7 @@
       }
     },
     "Favorites.Edit.Title" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -441,7 +439,6 @@
       }
     },
     "Favorites.Hint.NoBusServices" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -465,7 +462,7 @@
     },
     "Favorites.Hint.NoLocations" : {
       "comment" : "Favorites View",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -488,7 +485,6 @@
       }
     },
     "Favorites.New.Title" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -511,7 +507,6 @@
       }
     },
     "Favorites.Rename.Title" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -534,7 +529,7 @@
       }
     },
     "LiveActivity.ArrivingAt" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -558,7 +553,6 @@
     },
     "LiveActivity.EstimatedArrival" : {
       "comment" : "Live Activity",
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -581,7 +575,7 @@
       }
     },
     "More.Attribution" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -604,7 +598,7 @@
       }
     },
     "More.Attribution.BusRouter" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -627,7 +621,7 @@
       }
     },
     "More.Attribution.LTA" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -650,7 +644,6 @@
       }
     },
     "More.Attribution.Polyline" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -673,7 +666,7 @@
       }
     },
     "More.Customization" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -696,7 +689,7 @@
       }
     },
     "More.Customization.AppIcon" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -719,7 +712,7 @@
       }
     },
     "More.Customization.AppIcon.Blue" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -742,7 +735,7 @@
       }
     },
     "More.Customization.AppIcon.Green" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -765,7 +758,7 @@
       }
     },
     "More.Customization.AppIcon.Laze" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -788,7 +781,7 @@
       }
     },
     "More.Customization.AppIcon.Purple" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -811,7 +804,7 @@
       }
     },
     "More.Customization.AppIcon.Red" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -834,7 +827,7 @@
       }
     },
     "More.Customization.CarouselSize.Full" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -857,7 +850,7 @@
       }
     },
     "More.Customization.CarouselSize.Minimal" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -880,7 +873,7 @@
       }
     },
     "More.Customization.CarouselSize.Small" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -903,7 +896,7 @@
       }
     },
     "More.Customization.ProperText" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -926,7 +919,7 @@
       }
     },
     "More.Customization.ProperText.Subtitle" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -949,7 +942,7 @@
       }
     },
     "More.Customization.ShowRoute" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -972,7 +965,7 @@
       }
     },
     "More.Customization.ShowRoute.Subtitle" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -996,7 +989,7 @@
     },
     "More.General" : {
       "comment" : "More View",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1019,7 +1012,7 @@
       }
     },
     "More.General.StartupTab" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1042,7 +1035,7 @@
       }
     },
     "More.Help" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1065,7 +1058,7 @@
       }
     },
     "More.Help.Email" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1088,7 +1081,7 @@
       }
     },
     "More.Help.Email.Subtitle" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1111,7 +1104,7 @@
       }
     },
     "More.Help.GitHub" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1134,7 +1127,7 @@
       }
     },
     "More.Help.GitHub.Subtitle" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1157,7 +1150,7 @@
       }
     },
     "More.Help.Twitter" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1180,7 +1173,7 @@
       }
     },
     "More.Help.Twitter.Subtitle" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1203,7 +1196,7 @@
       }
     },
     "More.Notifications" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1226,7 +1219,6 @@
       }
     },
     "More.UnderTheHood" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1250,7 +1242,7 @@
     },
     "Nearby.Hint.NoBusStops" : {
       "comment" : "Nearby View",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1273,7 +1265,7 @@
       }
     },
     "Nearby.Hint.NoLocation" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1296,7 +1288,7 @@
       }
     },
     "Notification.Arriving.Description" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1319,7 +1311,7 @@
       }
     },
     "Notification.Arriving.Title" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1342,7 +1334,7 @@
       }
     },
     "Notification.Error" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1365,7 +1357,7 @@
       }
     },
     "Notification.NoPermissions" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1389,7 +1381,7 @@
     },
     "Notification.Set" : {
       "comment" : "Notifications",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1413,7 +1405,7 @@
     },
     "Notifications.ArrivalAlerts" : {
       "comment" : "Notifications View",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1436,7 +1428,7 @@
       }
     },
     "Notifications.ArrivalAlerts.Hint" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1459,7 +1451,7 @@
       }
     },
     "Shared.BusArrival.Arriving.Abbreviated" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1482,7 +1474,7 @@
       }
     },
     "Shared.BusArrival.Arriving.Full" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1505,7 +1497,6 @@
       }
     },
     "Shared.BusArrival.Crowded" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1528,7 +1519,7 @@
       }
     },
     "Shared.BusArrival.JustLeft.Abbreviated" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1551,7 +1542,7 @@
       }
     },
     "Shared.BusArrival.JustLeft.Full" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1573,8 +1564,31 @@
         }
       }
     },
+    "Shared.BusArrival.LoadingRoute" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading route..."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ルートを読み込み中…"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在获得公交路线..."
+          }
+        }
+      }
+    },
     "Shared.BusArrival.NotInService" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1597,7 +1611,6 @@
       }
     },
     "Shared.BusArrival.NotInService.Subtitle" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1620,7 +1633,7 @@
       }
     },
     "Shared.BusArrival.Subsequent" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1643,7 +1656,7 @@
       }
     },
     "Shared.BusArrival.Toast.Favorited" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1666,7 +1679,7 @@
       }
     },
     "Shared.BusStop.BusServices" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1689,7 +1702,6 @@
       }
     },
     "Shared.BusStop.BusServices.None" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1712,7 +1724,7 @@
       }
     },
     "Shared.BusStop.Code" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1735,7 +1747,6 @@
       }
     },
     "Shared.BusStop.Code.Copy" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1758,7 +1769,7 @@
       }
     },
     "Shared.BusStop.Code.None" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1781,7 +1792,6 @@
       }
     },
     "Shared.BusStop.Description.Copy" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1805,7 +1815,7 @@
     },
     "Shared.BusStop.Description.None" : {
       "comment" : "Shared",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1828,7 +1838,7 @@
       }
     },
     "Shared.BusStop.Road.None" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1851,7 +1861,7 @@
       }
     },
     "Shared.BusStop.Toast.Favorited" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1874,7 +1884,7 @@
       }
     },
     "Shared.Error.InternetConnection" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1898,7 +1908,6 @@
     },
     "Swipe.Cancel" : {
       "comment" : "Swipe Action Titles",
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1921,7 +1930,6 @@
       }
     },
     "TabTitle.Directory" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1944,7 +1952,6 @@
       }
     },
     "TabTitle.Favorites" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1967,7 +1974,6 @@
       }
     },
     "TabTitle.More" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1991,7 +1997,6 @@
     },
     "TabTitle.Nearby" : {
       "comment" : "Tab Bar Item Titles",
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2014,7 +2019,6 @@
       }
     },
     "TabTitle.Notifications" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2037,7 +2041,6 @@
       }
     },
     "ViewTitle.Directory" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2060,7 +2063,6 @@
       }
     },
     "ViewTitle.Favorites" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2083,7 +2085,6 @@
       }
     },
     "ViewTitle.More" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2106,7 +2107,6 @@
       }
     },
     "ViewTitle.More.Customization.AppIcon" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2129,7 +2129,6 @@
       }
     },
     "ViewTitle.More.Donate" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2152,7 +2151,7 @@
       }
     },
     "ViewTitle.More.Notifications" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2175,7 +2174,6 @@
       }
     },
     "ViewTitle.MRTMap" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2199,7 +2197,6 @@
     },
     "ViewTitle.Nearby" : {
       "comment" : "Navigation Item Titles",
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2222,7 +2219,6 @@
       }
     },
     "ViewTitle.Notifications" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "en" : {
           "stringUnit" : {

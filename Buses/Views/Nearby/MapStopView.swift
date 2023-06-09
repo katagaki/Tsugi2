@@ -13,7 +13,7 @@ struct MapStopView: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 4.0) {
-            Image("ListIcon.Bus")
+            Image(.listIconBus)
                 .resizable()
                 .frame(minWidth: 20.0, maxWidth: 20.0, minHeight: 20.0, maxHeight: 20.0)
                 .shadow(radius: 6.0)

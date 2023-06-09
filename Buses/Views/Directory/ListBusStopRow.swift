@@ -13,7 +13,7 @@ struct ListBusStopRow: View {
 
     var body: some View {
         HStack(alignment: .center, spacing: 16.0) {
-            Image("ListIcon.BusStop")
+            Image(.listIconBusStop)
             VStack(alignment: .leading, spacing: 2.0) {
                 Text(busStop.name())
                     .font(.body)

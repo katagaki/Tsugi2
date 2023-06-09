@@ -1,26 +1,23 @@
 //
-//  BusServicesCarousel.swift
+//  FavoriteLocationCarousel.swift
 //  Buses
 //
-//  Created by 堅書 on 24/2/23.
+//  Created by 堅書 on 2023/06/03.
 //
 
 import SwiftUI
 
-struct BusServicesCarousel: View {
+struct FavoriteLocationCarousel: View {
 
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var favorites: FavoritesManager
     @EnvironmentObject var settings: SettingsManager
 
-    @State var dataDisplayMode: DataDisplayMode
-
     @State var isInitialDataLoaded: Bool = false
     @State var busServices: [BusService] = []
-    @State var busStop: Binding<BusStop>?
-    @State var favoriteLocation: Binding<FavoriteLocation>?
+    @Binding var location: FavoriteLocation
 
-    let timer = Timer.publish(every: 10.0, tolerance: 5.0, on: .main, in: .common).autoconnect()
+    @State var timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
 
     var body: some View {
         HStack {
@@ -42,48 +39,28 @@ struct BusServicesCarousel: View {
                                                favoriteLocation: favoriteLocation,
                                                showsAddToLocationButton: dataDisplayMode == .busStop)
                             } label: {
-                                VStack(alignment: .center, spacing: 2.0) {
-                                    BusNumberPlateView(carouselDisplayMode: $settings.carouselDisplayMode,
-                                                       serviceNo: bus.serviceNo)
-                                    .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: -8.0, trailing: 0.0))
-                                    switch settings.carouselDisplayMode {
-                                    case .full:
-                                        Text(bus.nextBus?.estimatedArrivalTimeAsDate()?.arrivalFormat(style: .short) ??
-                                             localized("Shared.BusArrival.NotInService"))
-                                        .font(.system(size: 16.0))
-                                        .foregroundColor(.primary)
-                                        .lineLimit(1)
-                                        Text(bus.nextBus2?.estimatedArrivalTimeAsDate()?.arrivalFormat() ?? " ")
-                                            .font(.system(size: 16.0))
-                                            .foregroundColor(.secondary)
-                                            .lineLimit(1)
-                                    case .small:
-                                        Text(bus.nextBus?.estimatedArrivalTimeAsDate()?
-                                            .arrivalFormat(style: .abbreviated) ??
-                                             localized("Shared.BusArrival.NotInService"))
-                                        .font(.system(size: 14.0))
-                                        .foregroundColor(.primary)
-                                        .lineLimit(1)
-                                        Text(bus.nextBus2?.estimatedArrivalTimeAsDate()?
-                                            .arrivalFormat(style: .abbreviated) ?? " ")
-                                        .font(.system(size: 14.0))
-                                        .foregroundColor(.secondary)
-                                        .lineLimit(1)
-                                    case .minimal:
-                                        Text(bus.nextBus?.estimatedArrivalTimeAsDate()?
-                                            .arrivalFormat(style: .abbreviated) ??
-                                             localized("Shared.BusArrival.NotInService"))
-                                        .font(.system(size: 12.0))
-                                        .foregroundColor(.primary)
-                                        .lineLimit(1)
-                                    }
+                                switch settings.carouselDisplayMode {
+                                case .full:
+                                    BusServicesCarouselItem(serviceNo: bus.serviceNo,
+                                                            arrivalTime1: bus.nextBus?.estimatedArrivalTimeAsDate()?
+                                                                .arrivalFormat(style: .short) ??
+                                                                localized("Shared.BusArrival.NotInService"),
+                                                            arrivalTime2: bus.nextBus2?.estimatedArrivalTimeAsDate()?
+                                                                .arrivalFormat() ?? " ")
+                                case .small:
+                                    BusServicesCarouselItem(serviceNo: bus.serviceNo,
+                                                            arrivalTime1: bus.nextBus?.estimatedArrivalTimeAsDate()?
+                                                                .arrivalFormat(style: .abbreviated) ??
+                                                                localized("Shared.BusArrival.NotInService"),
+                                                            arrivalTime2: bus.nextBus2?.estimatedArrivalTimeAsDate()?
+                                                                .arrivalFormat(style: .abbreviated) ?? " ")
+                                case .minimal:
+                                    BusServicesCarouselItem(serviceNo: bus.serviceNo,
+                                                            arrivalTime1: bus.nextBus?.estimatedArrivalTimeAsDate()?
+                                                                .arrivalFormat(style: .abbreviated) ??
+                                                                localized("Shared.BusArrival.NotInService"),
+                                                            arrivalTime2: "")
                                 }
-                                .frame(minWidth: settings.carouselDisplayMode.width(),
-                                       maxWidth: settings.carouselDisplayMode.width(),
-                                       minHeight: 0,
-                                       maxHeight: .infinity,
-                                       alignment: .center)
-                                .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: 8.0, trailing: 0.0))
                             }
                         }
                     }
@@ -120,17 +97,18 @@ struct BusServicesCarousel: View {
                 log("Arrival time data updated.")
             }
         })
-        .onChange(of: favorites.updateViewFlag, { _, _ in
+        .onChange(of: favorites.updateViewFlag) { _ in
             if dataDisplayMode != .busStop && dataDisplayMode != .notificationItem {
                 log("View update signal received from favorites handler.")
                 Task {
                     await reloadArrivalTimes()
                 }
             }
-        })
+        }
     }
 
     func reloadArrivalTimes() async {
+        timer.upstream.connect().cancel()
         do {
             switch dataDisplayMode {
             case .busStop:
@@ -156,6 +134,7 @@ struct BusServicesCarousel: View {
         } catch {
             log(error.localizedDescription)
         }
+        timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     }
 
     func reloadArrivalTimes(for favoriteLocation: FavoriteLocation,

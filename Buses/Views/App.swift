@@ -14,14 +14,15 @@ struct TsugiApp: App {
     @StateObject var networkMonitor = NetworkMonitor()
     @StateObject var dataManager = DataManager()
     @StateObject var favorites = FavoritesManager()
-    @StateObject var regionManager = MapRegionManager()
+    @StateObject var regionManager = RegionManager()
+    @StateObject var coordinateManager = CoordinateManager()
     @StateObject var locationManager = LocationManager()
     @StateObject var settings = SettingsManager()
     @StateObject var toaster = Toaster()
 
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            KatsuView()
                 .onAppear {
                     loadAPIKeys()
                     initializeProperTextFramework()
@@ -30,6 +31,7 @@ struct TsugiApp: App {
                 .environmentObject(dataManager)
                 .environmentObject(favorites)
                 .environmentObject(regionManager)
+                .environmentObject(coordinateManager)
                 .environmentObject(locationManager)
                 .environmentObject(settings)
                 .environmentObject(toaster)

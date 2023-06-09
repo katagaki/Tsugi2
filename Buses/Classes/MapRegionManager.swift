@@ -1,5 +1,5 @@
 //
-//  MapRegionManager.swift
+//  RegionManager.swift
 //  Buses
 //
 //  Created by 堅書 on 2/3/23.
@@ -11,9 +11,7 @@ import SwiftUI
 
 // Huge thanks to null's answer for this solution to prevent lag
 // https://stackoverflow.com/questions/67864517/
-class MapRegionManager: ObservableObject {
-
-    @Published var updateViewFlag = false
+class RegionManager: ObservableObject {
 
     var storedRegion: MKCoordinateRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
@@ -29,7 +27,6 @@ class MapRegionManager: ObservableObject {
     func updateRegion(newRegion: MKCoordinateRegion) {
         withAnimation {
             region.wrappedValue = newRegion
-            updateViewFlag.toggle()
         }
     }
 

@@ -26,7 +26,7 @@ struct NotificationsView: View {
                                        showsAddToLocationButton: false)
                     } label: {
                         HStack(alignment: .center, spacing: 16.0) {
-                            Image("ListIcon.Bus")
+                            Image(.listIconBus)
                             VStack(alignment: .leading) {
                                 Text(request.content.title)
                                     .font(.body)

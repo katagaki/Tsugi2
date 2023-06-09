@@ -11,7 +11,8 @@ import SwiftUI
 struct DirectoryView: View {
 
     @EnvironmentObject var dataManager: DataManager
-    @EnvironmentObject var regionManager: MapRegionManager
+    @EnvironmentObject var regionManager: RegionManager
+    @EnvironmentObject var coordinateManager: CoordinateManager
 
     @State var previousSearchTerm: String = ""
     @State var searchTerm: String = ""
@@ -46,7 +47,7 @@ struct DirectoryView: View {
                             DirectoryMRTMapView()
                         } label: {
                             HStack(alignment: .center, spacing: 16.0) {
-                                Image("ListIcon.TrainMap")
+                                Image(.listIconTrainMap)
                                 Text("Directory.MRTMap")
                                     .font(.body)
                             }
@@ -93,7 +94,10 @@ struct DirectoryView: View {
                 dataManager.shouldReloadBusStopList = true
             }
             .searchable(text: $searchTerm, placement: .navigationBarDrawer(displayMode: .always))
-            .onChange(of: searchTerm) { _ in
+            .onAppear {
+                updateMapDisplay()
+            }
+            .onChange(of: searchTerm, { _, _ in
                 let searchTermTrimmed = searchTerm.trimmingCharacters(in: .whitespaces)
                 isSearching = (searchTermTrimmed != "" && searchTermTrimmed.count > 1)
                 if isSearching {
@@ -108,8 +112,8 @@ struct DirectoryView: View {
                     }
                     previousSearchTerm = searchTermTrimmed
                 }
-            }
-            .onChange(of: shouldSortAlphabeticalAscending, perform: { newValue in
+            })
+            .onChange(of: shouldSortAlphabeticalAscending, { _, newValue in
                 if newValue {
                     shouldSortAlphabeticalDescending = false
                     shouldSortDistanceClosest = false
@@ -124,7 +128,7 @@ struct DirectoryView: View {
                     }
                 }
             })
-            .onChange(of: shouldSortAlphabeticalDescending, perform: { newValue in
+            .onChange(of: shouldSortAlphabeticalDescending, { _, newValue in
                 if newValue {
                     shouldSortAlphabeticalAscending = false
                     shouldSortDistanceClosest = false
@@ -139,7 +143,7 @@ struct DirectoryView: View {
                     }
                 }
             })
-            .onChange(of: shouldSortDistanceClosest, perform: { newValue in
+            .onChange(of: shouldSortDistanceClosest, { _, newValue in
                 if newValue {
                     shouldSortAlphabeticalAscending = false
                     shouldSortAlphabeticalDescending = false
@@ -178,6 +182,12 @@ struct DirectoryView: View {
                 }
             }
         }
+    }
+
+    func updateMapDisplay() {
+        coordinateManager.removeAll()
+        coordinateManager.updateCameraFlag.toggle()
+        log("Directory view updated displayed coordinates.")
     }
 
 }

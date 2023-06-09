@@ -9,7 +9,9 @@ import SwiftUI
 
 struct FavoritesView: View {
 
+    @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var favorites: FavoritesManager
+    @EnvironmentObject var coordinateManager: CoordinateManager
 
     @State var isEditing: Bool = false
     @State var favoriteLocationPendingEdit: FavoriteLocation?
@@ -93,7 +95,12 @@ struct FavoritesView: View {
                     }
                 }
             }
-            .onChange(of: isEditing, perform: { newValue in
+            .onAppear {
+                Task {
+                    await updateMapDisplay()
+                }
+            }
+            .onChange(of: isEditing, { _, newValue in
                 if !newValue {
                     favorites.updateViewFlag.toggle()
                 }
@@ -198,6 +205,22 @@ struct FavoritesView: View {
                            replacing: favoriteLocationPendingEdit?.nickname ??
                            localized("Favorites.Delete.Confirm.GenericLocationText")))
         })
+    }
+
+    func updateMapDisplay() async {
+        coordinateManager.removeAll()
+        var busStops: [BusStop] = []
+        for location in favorites.favoriteLocations where location.usesLiveBusStopData {
+            if let busStopCode = location.busStopCode,
+               let busStop = dataManager.busStops.first(where: { storedBusStop in
+                   storedBusStop.code == busStopCode
+               }) {
+                busStops.append(busStop)
+            }
+        }
+        coordinateManager.replaceWithCoordinates(from: busStops)
+        coordinateManager.updateCameraFlag.toggle()
+        log("Favorites view updated displayed coordinates.")
     }
 
 }

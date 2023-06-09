@@ -191,14 +191,14 @@ SOFTWARE.
                 }
             }
             .listStyle(.insetGrouped)
-            .onChange(of: settings.startupTab, perform: { newValue in
+            .onChange(of: settings.startupTab, { _, newValue in
                 settings.setStartupTab(newValue)
             })
-            .onChange(of: settings.useProperText, perform: { newValue in
+            .onChange(of: settings.useProperText, { _, newValue in
                 settings.setProperText(newValue)
                 dataManager.shouldReloadBusStopList = true
             })
-            .onChange(of: settings.showRoute, perform: { newValue in
+            .onChange(of: settings.showRoute, { _, newValue in
                 settings.setShowRoute(newValue)
             })
             .navigationTitle("ViewTitle.More")

@@ -15,7 +15,7 @@
 		E41A78AA29EB9F1D00FAFA52 /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41A78A929EB9F1D00FAFA52 /* Sequence.swift */; };
 		E41C1B98285706AB003F1BFB /* RoundedCornersShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B97285706AB003F1BFB /* RoundedCornersShape.swift */; };
 		E41C1B9A285706BE003F1BFB /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B99285706BE003F1BFB /* Coordinate.swift */; };
-		E41C1B9C28570CA1003F1BFB /* CoordinateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B9B28570CA1003F1BFB /* CoordinateList.swift */; };
+		E41C1B9C28570CA1003F1BFB /* CoordinateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B9B28570CA1003F1BFB /* CoordinateManager.swift */; };
 		E41C1B9E285806A4003F1BFB /* BusNumberPlateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B9D285806A4003F1BFB /* BusNumberPlateView.swift */; };
 		E4225ABC29B0529600F1CF82 /* MapRegionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4225ABB29B0529600F1CF82 /* MapRegionManager.swift */; };
 		E42A04BC29D87FB800B76ED6 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42A04BB29D87FB800B76ED6 /* NetworkMonitor.swift */; };
@@ -32,6 +32,10 @@
 		E4319EB4280413FA00D21531 /* JSONUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4319EB3280413FA00D21531 /* JSONUtilities.swift */; };
 		E4319EB6280432C300D21531 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4319EB5280432C300D21531 /* APIKeys.plist */; };
 		E4319EBC280437BA00D21531 /* BusStopList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4319EBB280437BA00D21531 /* BusStopList.swift */; };
+		E434ABE62A3345D100E30BBA /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E434ABE52A3345D100E30BBA /* InfoPlist.xcstrings */; };
+		E434ABE82A3345D100E30BBA /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E434ABE72A3345D100E30BBA /* Localizable.xcstrings */; };
+		E434ABE92A3345D100E30BBA /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E434ABE72A3345D100E30BBA /* Localizable.xcstrings */; };
+		E434ABEB2A3348C000E30BBA /* KatsuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E434ABEA2A3348C000E30BBA /* KatsuView.swift */; };
 		E4377ACC29E3254F0036003E /* ListAppIconRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4377ACB29E3254F0036003E /* ListAppIconRow.swift */; };
 		E4377ACE29E325C90036003E /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4377ACD29E325C90036003E /* AppIcon.swift */; };
 		E4377AD029E3F60D0036003E /* DataDisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4377ACF29E3F60D0036003E /* DataDisplayMode.swift */; };
@@ -61,7 +65,6 @@
 		E482ACB829AC5D32008DAD30 /* AssistantLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482AC9729AC53B2008DAD30 /* AssistantLiveActivity.swift */; };
 		E482ACBC29AC6208008DAD30 /* BusNumberPlateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B9D285806A4003F1BFB /* BusNumberPlateView.swift */; };
 		E482ACBD29AC620B008DAD30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4406AB627EF182500819CDC /* Assets.xcassets */; };
-		E482ACBE29AC629F008DAD30 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E4B7000A285642280019F71A /* Localizable.strings */; };
 		E482ACC029AC6DEE008DAD30 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482ACBF29AC6DEE008DAD30 /* ProgressBarView.swift */; };
 		E482ACC129AC6DEE008DAD30 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482ACBF29AC6DEE008DAD30 /* ProgressBarView.swift */; };
 		E482ACC329AC7CBC008DAD30 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482ACC229AC7CBC008DAD30 /* Notifications.swift */; };
@@ -79,8 +82,6 @@
 		E4AEF04729FCC446005C370E /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEF04529FCC3D7005C370E /* DateFormatter.swift */; };
 		E4B70003285637450019F71A /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B70002285637450019F71A /* MainTabView.swift */; };
 		E4B700052856387E0019F71A /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B700042856387E0019F71A /* App.swift */; };
-		E4B70008285642280019F71A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E4B7000A285642280019F71A /* Localizable.strings */; };
-		E4B7000F285649070019F71A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E4B70011285649070019F71A /* InfoPlist.strings */; };
 		E4B7FFE828544EBC0019F71A /* DirectoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7FFE728544EBC0019F71A /* DirectoryView.swift */; };
 		E4B7FFF0285467060019F71A /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7FFEB285460DE0019F71A /* MoreView.swift */; };
 		E4B7FFF32854693B0019F71A /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7FFF22854693B0019F71A /* FavoritesView.swift */; };
@@ -102,7 +103,6 @@
 		E4BCFDCA29E302B700E4D2AD /* ListHintOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BCFDC929E302B700E4D2AD /* ListHintOverlay.swift */; };
 		E4BD94A92859C3E900030C7C /* BusServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BD94A82859C3E900030C7C /* BusServiceView.swift */; };
 		E4BD94AB2859C87300030C7C /* ListArrivalInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BD94AA2859C87300030C7C /* ListArrivalInfoRow.swift */; };
-		E4C3FEC429E844DA009BBC92 /* NearbyMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3FEC329E844DA009BBC92 /* NearbyMapView.swift */; };
 		E4C3FEC629E84734009BBC92 /* Toaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3FEC529E84734009BBC92 /* Toaster.swift */; };
 		E4C3FEC929E84ACF009BBC92 /* ListBusStopRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3FEC829E84ACF009BBC92 /* ListBusStopRow.swift */; };
 		E4C3FECB29E84AE2009BBC92 /* ListBusServiceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3FECA29E84AE2009BBC92 /* ListBusServiceRow.swift */; };
@@ -121,7 +121,6 @@
 		E4F02DD229E97E0400EADA1E /* ToastType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F02DD129E97E0400EADA1E /* ToastType.swift */; };
 		E4F02DD329E97F2400EADA1E /* CarouselDisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F02DCF29E97DE600EADA1E /* CarouselDisplayMode.swift */; };
 		E4F02DD529E9978200EADA1E /* ImageWithCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F02DD429E9978200EADA1E /* ImageWithCheck.swift */; };
-		E4F02DD929EA559300EADA1E /* MapWithRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F02DD829EA559300EADA1E /* MapWithRoute.swift */; };
 		E4F02DDD29EA5CFF00EADA1E /* BusRouteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F02DDC29EA5CFF00EADA1E /* BusRouteList.swift */; };
 		E4F02DDF29EA5D1F00EADA1E /* BusRoutePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F02DDE29EA5D1F00EADA1E /* BusRoutePoint.swift */; };
 		E4F02DE129EA5DEA00EADA1E /* BusOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F02DE029EA5DEA00EADA1E /* BusOperator.swift */; };
@@ -183,7 +182,7 @@
 		E41A78A929EB9F1D00FAFA52 /* Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
 		E41C1B97285706AB003F1BFB /* RoundedCornersShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornersShape.swift; sourceTree = "<group>"; };
 		E41C1B99285706BE003F1BFB /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
-		E41C1B9B28570CA1003F1BFB /* CoordinateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateList.swift; sourceTree = "<group>"; };
+		E41C1B9B28570CA1003F1BFB /* CoordinateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateManager.swift; sourceTree = "<group>"; };
 		E41C1B9D285806A4003F1BFB /* BusNumberPlateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusNumberPlateView.swift; sourceTree = "<group>"; };
 		E4225ABB29B0529600F1CF82 /* MapRegionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRegionManager.swift; sourceTree = "<group>"; };
 		E42A04BB29D87FB800B76ED6 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -201,6 +200,9 @@
 		E4319EB5280432C300D21531 /* APIKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
 		E4319EB7280433B000D21531 /* APIKeys-Sample.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "APIKeys-Sample.plist"; sourceTree = "<group>"; };
 		E4319EBB280437BA00D21531 /* BusStopList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopList.swift; sourceTree = "<group>"; };
+		E434ABE52A3345D100E30BBA /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		E434ABE72A3345D100E30BBA /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		E434ABEA2A3348C000E30BBA /* KatsuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KatsuView.swift; sourceTree = "<group>"; };
 		E4377ACB29E3254F0036003E /* ListAppIconRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAppIconRow.swift; sourceTree = "<group>"; };
 		E4377ACD29E325C90036003E /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
 		E4377ACF29E3F60D0036003E /* DataDisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDisplayMode.swift; sourceTree = "<group>"; };
@@ -234,12 +236,6 @@
 		E4AEF04529FCC3D7005C370E /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		E4B70002285637450019F71A /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		E4B700042856387E0019F71A /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
-		E4B70009285642280019F71A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		E4B7000B285642640019F71A /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		E4B7000C285642700019F71A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		E4B70010285649070019F71A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E4B70013285649090019F71A /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E4B70014285649280019F71A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		E4B7FFE728544EBC0019F71A /* DirectoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryView.swift; sourceTree = "<group>"; };
 		E4B7FFEB285460DE0019F71A /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
 		E4B7FFF22854693B0019F71A /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
@@ -257,7 +253,6 @@
 		E4BCFDC929E302B700E4D2AD /* ListHintOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHintOverlay.swift; sourceTree = "<group>"; };
 		E4BD94A82859C3E900030C7C /* BusServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusServiceView.swift; sourceTree = "<group>"; };
 		E4BD94AA2859C87300030C7C /* ListArrivalInfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListArrivalInfoRow.swift; sourceTree = "<group>"; };
-		E4C3FEC329E844DA009BBC92 /* NearbyMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyMapView.swift; sourceTree = "<group>"; };
 		E4C3FEC529E84734009BBC92 /* Toaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toaster.swift; sourceTree = "<group>"; };
 		E4C3FEC829E84ACF009BBC92 /* ListBusStopRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBusStopRow.swift; sourceTree = "<group>"; };
 		E4C3FECA29E84AE2009BBC92 /* ListBusServiceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBusServiceRow.swift; sourceTree = "<group>"; };
@@ -275,7 +270,6 @@
 		E4F02DCF29E97DE600EADA1E /* CarouselDisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselDisplayMode.swift; sourceTree = "<group>"; };
 		E4F02DD129E97E0400EADA1E /* ToastType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastType.swift; sourceTree = "<group>"; };
 		E4F02DD429E9978200EADA1E /* ImageWithCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWithCheck.swift; sourceTree = "<group>"; };
-		E4F02DD829EA559300EADA1E /* MapWithRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWithRoute.swift; sourceTree = "<group>"; };
 		E4F02DDC29EA5CFF00EADA1E /* BusRouteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusRouteList.swift; sourceTree = "<group>"; };
 		E4F02DDE29EA5D1F00EADA1E /* BusRoutePoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusRoutePoint.swift; sourceTree = "<group>"; };
 		E4F02DE029EA5DEA00EADA1E /* BusOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusOperator.swift; sourceTree = "<group>"; };
@@ -332,7 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				E41C1B99285706BE003F1BFB /* Coordinate.swift */,
-				E41C1B9B28570CA1003F1BFB /* CoordinateList.swift */,
+				E41C1B9B28570CA1003F1BFB /* CoordinateManager.swift */,
 				E4F02DE829EA75BA00EADA1E /* DataManager.swift */,
 				D0011E22285D78D300742687 /* FavoritesManager.swift */,
 				E467E24B29E5A838005E188C /* LocationManager.swift */,
@@ -347,8 +341,8 @@
 		E42C824A2856D1BC00D64DF9 /* Strings */ = {
 			isa = PBXGroup;
 			children = (
-				E4B70011285649070019F71A /* InfoPlist.strings */,
-				E4B7000A285642280019F71A /* Localizable.strings */,
+				E434ABE52A3345D100E30BBA /* InfoPlist.xcstrings */,
+				E434ABE72A3345D100E30BBA /* Localizable.xcstrings */,
 			);
 			path = Strings;
 			sourceTree = "<group>";
@@ -533,7 +527,6 @@
 			isa = PBXGroup;
 			children = (
 				E4B7FFFE285635470019F71A /* NearbyView.swift */,
-				E4C3FEC329E844DA009BBC92 /* NearbyMapView.swift */,
 				E41518F029B5848F00E50BB7 /* MapStopView.swift */,
 			);
 			path = Nearby;
@@ -582,7 +575,6 @@
 			children = (
 				E4BD94A82859C3E900030C7C /* BusServiceView.swift */,
 				E4BD94AA2859C87300030C7C /* ListArrivalInfoRow.swift */,
-				E4F02DD829EA559300EADA1E /* MapWithRoute.swift */,
 			);
 			path = "Bus Service";
 			sourceTree = "<group>";
@@ -591,6 +583,7 @@
 			isa = PBXGroup;
 			children = (
 				E4B700042856387E0019F71A /* App.swift */,
+				E434ABEA2A3348C000E30BBA /* KatsuView.swift */,
 				E4B70002285637450019F71A /* MainTabView.swift */,
 				E4AAD7FB2882C0D800CC63E8 /* ToastView.swift */,
 				E4B7FFFD2856353D0019F71A /* Nearby */,
@@ -728,9 +721,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E434ABE62A3345D100E30BBA /* InfoPlist.xcstrings in Resources */,
 				E42C823E2856C8C900D64DF9 /* Purple@3x~ipad.png in Resources */,
 				E42C823C2856C8C900D64DF9 /* Purple@2x.png in Resources */,
-				E4B7000F285649070019F71A /* InfoPlist.strings in Resources */,
 				E4BCFDB529E2E42200E4D2AD /* PTCapitalization.plist in Resources */,
 				E4D65F162865BACA00FE78F4 /* Laze@3x.png in Resources */,
 				E4BCFDB629E2E42200E4D2AD /* PTTerms.plist in Resources */,
@@ -743,7 +736,6 @@
 				E42C82472856C8FE00D64DF9 /* Red@2x~ipad.png in Resources */,
 				E4319EB6280432C300D21531 /* APIKeys.plist in Resources */,
 				E42C823D2856C8C900D64DF9 /* Purple@3x.png in Resources */,
-				E4B70008285642280019F71A /* Localizable.strings in Resources */,
 				E42C82452856C8FE00D64DF9 /* Red@3x.png in Resources */,
 				E42C823F2856C8C900D64DF9 /* Purple@2x~ipad.png in Resources */,
 				E467E24929E59A0E005E188C /* PTReplace.plist in Resources */,
@@ -753,6 +745,7 @@
 				E4D65F0B2865B97700FE78F4 /* Blue@3x.png in Resources */,
 				E4D65F152865BACA00FE78F4 /* Laze@2x~ipad.png in Resources */,
 				E4406AB727EF182500819CDC /* Assets.xcassets in Resources */,
+				E434ABE82A3345D100E30BBA /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -763,8 +756,8 @@
 				E482AC9D29AC53B3008DAD30 /* Assets.xcassets in Resources */,
 				E4A1B32029F0171C00C6ABAC /* LTA-Identity.ttf in Resources */,
 				E482ACBD29AC620B008DAD30 /* Assets.xcassets in Resources */,
-				E482ACBE29AC629F008DAD30 /* Localizable.strings in Resources */,
 				E4BCFDBE29E2E7D800E4D2AD /* PTTerms.plist in Resources */,
+				E434ABE92A3345D100E30BBA /* Localizable.xcstrings in Resources */,
 				E4BCFDBD29E2E7D800E4D2AD /* PTCapitalization.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -797,12 +790,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E41C1B9C28570CA1003F1BFB /* CoordinateList.swift in Sources */,
+				E41C1B9C28570CA1003F1BFB /* CoordinateManager.swift in Sources */,
 				E4B7FFFC285620530019F71A /* DirectoryMRTMapView.swift in Sources */,
 				E4BD94AB2859C87300030C7C /* ListArrivalInfoRow.swift in Sources */,
 				E41518F129B5848F00E50BB7 /* MapStopView.swift in Sources */,
 				E467E24C29E5A838005E188C /* LocationManager.swift in Sources */,
-				E4F02DD929EA559300EADA1E /* MapWithRoute.swift in Sources */,
 				E41A78AA29EB9F1D00FAFA52 /* Sequence.swift in Sources */,
 				E4B7FFE828544EBC0019F71A /* DirectoryView.swift in Sources */,
 				E41C1B9E285806A4003F1BFB /* BusNumberPlateView.swift in Sources */,
@@ -828,7 +820,6 @@
 				E4377AD229E4099C0036003E /* FavoriteLocationEditView.swift in Sources */,
 				E4F02DD029E97DE600EADA1E /* CarouselDisplayMode.swift in Sources */,
 				E4AEF04629FCC3D7005C370E /* DateFormatter.swift in Sources */,
-				E4C3FEC429E844DA009BBC92 /* NearbyMapView.swift in Sources */,
 				E4C3FEC929E84ACF009BBC92 /* ListBusStopRow.swift in Sources */,
 				E482AC8829A90CAB008DAD30 /* BusServicesCarousel.swift in Sources */,
 				E4B7FFFA28561DBF0019F71A /* BusStopView.swift in Sources */,
@@ -848,6 +839,7 @@
 				E4BCFDCA29E302B700E4D2AD /* ListHintOverlay.swift in Sources */,
 				E482ACC029AC6DEE008DAD30 /* ProgressBarView.swift in Sources */,
 				E49DFA5129B6DEB800654FBD /* BlurGradientView.swift in Sources */,
+				E434ABEB2A3348C000E30BBA /* KatsuView.swift in Sources */,
 				E41A78A429EB782E00FAFA52 /* SubtitledNavigationTitle.swift in Sources */,
 				E4B70003285637450019F71A /* MainTabView.swift in Sources */,
 				E4319EBC280437BA00D21531 /* BusStopList.swift in Sources */,
@@ -910,29 +902,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		E4B7000A285642280019F71A /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E4B70009285642280019F71A /* en */,
-				E4B7000B285642640019F71A /* ja */,
-				E4B7000C285642700019F71A /* zh-Hans */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		E4B70011285649070019F71A /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E4B70010285649070019F71A /* en */,
-				E4B70013285649090019F71A /* ja */,
-				E4B70014285649280019F71A /* zh-Hans */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		E4406A9927EF13E600819CDC /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -985,7 +954,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1040,7 +1010,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1069,7 +1040,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1106,7 +1077,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1137,7 +1108,7 @@
 				INFOPLIST_FILE = Assistant/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Assistant;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1166,7 +1137,7 @@
 				INFOPLIST_FILE = Assistant/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Assistant;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

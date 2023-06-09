@@ -3,7 +3,7 @@
   "strings" : {
     "CFBundleDisplayName" : {
       "comment" : "Info.strings\n  Buses 2\n\n  Created by 堅書 on 2022/06/13.",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -25,8 +25,20 @@
         }
       }
     },
+    "CFBundleName" : {
+      "comment" : "Bundle name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Buses"
+          }
+        }
+      }
+    },
     "NSLocationWhenInUseUsageDescription" : {
-      "extractionState" : "migrated",
+      "comment" : "Privacy - Location When In Use Usage Description",
       "localizations" : {
         "en" : {
           "stringUnit" : {

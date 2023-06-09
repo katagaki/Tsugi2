@@ -16,6 +16,7 @@ struct BusServiceView: View {
 
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var favorites: FavoritesManager
+    @EnvironmentObject var coordinateManager: CoordinateManager
     @EnvironmentObject var settings: SettingsManager
     @EnvironmentObject var toaster: Toaster
 
@@ -28,59 +29,40 @@ struct BusServiceView: View {
     var busStop: Binding<BusStop>?
     var favoriteLocation: Binding<FavoriteLocation>?
 
-    @State var timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 10.0, tolerance: 5.0, on: .main, in: .common).autoconnect()
 
     @State var showsAddToLocationButton: Bool
 
     var body: some View {
-        GeometryReader { metrics in
-            VStack(alignment: .trailing, spacing: 0) {
-                if settings.showRoute {
-                    MapWithRoute(useLegacyOverlay: false,
-                                 currentBusStopCode: busStop?.wrappedValue.code ?? "",
-                                 busStops: $busStopsForMapDisplay,
-                                 encodedPolyline: $encodedPolyline)
-                    .ignoresSafeArea(edges: [.top])
-                    .overlay {
-                        ZStack(alignment: .topLeading) {
-                            BlurGradientView()
-                                .ignoresSafeArea()
-                                .frame(height: (metrics.safeAreaInsets.top - metrics.safeAreaInsets.bottom) * 1.25)
-                            Color.clear
-                        }
-                    }
-                    .overlay {
-                        if !dataManager.isBusRouteListLoaded {
-                            ProgressView()
-                                .progressViewStyle(.circular)
-                        }
+        List {
+            Section {
+                if let nextBus = busService.nextBus {
+                    ListArrivalInfoRow(busService: busService,
+                                       arrivalInfo: nextBus,
+                                       setNotification: self.setNotification)
+                }
+                if let nextBus = busService.nextBus2, nextBus.estimatedArrivalTimeAsDate() != nil {
+                    ListArrivalInfoRow(busService: busService,
+                                       arrivalInfo: nextBus,
+                                       setNotification: self.setNotification)
+                }
+                if let nextBus = busService.nextBus3, nextBus.estimatedArrivalTimeAsDate() != nil {
+                    ListArrivalInfoRow(busService: busService,
+                                       arrivalInfo: nextBus,
+                                       setNotification: self.setNotification)
+                }
+            }
+            if !dataManager.isBusRouteListLoaded && settings.showRoute {
+                Section {
+                    HStack(alignment: .center, spacing: 8.0) {
+                        ProgressView()
+                            .progressViewStyle(.circular)
+                        Text("Shared.BusArrival.LoadingRoute")
                     }
                 }
-                List {
-                    Section {
-                        if let nextBus = busService.nextBus {
-                            ListArrivalInfoRow(busService: busService,
-                                               arrivalInfo: nextBus,
-                                               setNotification: self.setNotification)
-                        }
-                        if let nextBus = busService.nextBus2, nextBus.estimatedArrivalTimeAsDate() != nil {
-                            ListArrivalInfoRow(busService: busService,
-                                               arrivalInfo: nextBus,
-                                               setNotification: self.setNotification)
-                        }
-                        if let nextBus = busService.nextBus3, nextBus.estimatedArrivalTimeAsDate() != nil {
-                            ListArrivalInfoRow(busService: busService,
-                                               arrivalInfo: nextBus,
-                                               setNotification: self.setNotification)
-                        }
-                    }
-                }
-                .listStyle(.plain)
-                .frame(width: metrics.size.width, height: (settings.showRoute ?
-                                                           metrics.size.height * 0.6 : metrics.size.height))
-                .zIndex(1)
             }
         }
+        .listStyle(.insetGrouped)
         .task {
             await reloadArrivalTimes()
             startLiveActivity()
@@ -90,6 +72,7 @@ struct BusServiceView: View {
                     try await dataManager.reloadBusRoutePolylinesFromServer()
                     reloadBusRoutes()
                 }
+                updateMapDisplay()
             } catch {
                 log(error.localizedDescription)
             }
@@ -107,7 +90,7 @@ struct BusServiceView: View {
                 await reloadArrivalTimes()
             }
         }
-        .onChange(of: dataManager.isBusRouteListLoaded, perform: { newValue in
+        .onChange(of: dataManager.isBusRouteListLoaded, { _, newValue in
             if newValue && settings.showRoute {
                 reloadBusRoutes()
             }
@@ -164,7 +147,6 @@ struct BusServiceView: View {
     }
 
     func reloadArrivalTimes() async {
-        timer.upstream.connect().cancel()
         do {
             switch mode {
             case .busStop, .favoriteLocationLiveData:
@@ -192,7 +174,6 @@ struct BusServiceView: View {
         } catch {
             log(error.localizedDescription)
         }
-        timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
     }
 
     func reloadBusRoutes() {
@@ -206,6 +187,16 @@ struct BusServiceView: View {
         encodedPolyline = dataManager
             .busRoutePolyline(for: busService.serviceNo,
                               direction: busService.direction ?? .init(rawValue: 1)!)
+    }
+
+    func updateMapDisplay() {
+        coordinateManager.removeAll()
+        if settings.showRoute {
+            coordinateManager.replaceWithCoordinates(from: busStopsForMapDisplay)
+            coordinateManager.polyline = (encodedPolyline == "" ? nil : encodedPolyline)
+            coordinateManager.updateCameraFlag.toggle()
+        }
+        log("Bus service view updated displayed coordinates.")
     }
 
     func setNotification(for arrivalInfo: BusArrivalInfo) {

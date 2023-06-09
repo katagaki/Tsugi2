@@ -37,7 +37,7 @@ struct ToastView: View {
             Spacer()
         }
         .padding(12.0)
-        .background(Color(uiColor: .secondarySystemGroupedBackground))
+        .background(.regularMaterial)
         .mask {
             RoundedRectangle(cornerRadius: 10.0)
         }
@@ -65,7 +65,7 @@ struct ToastView: View {
                     .opacity(0.5)
             }
         }
-        .transition(AnyTransition.opacity)
+        .transition(AnyTransition.opacity.combined(with: .move(edge: .top)))
     }
 
 }

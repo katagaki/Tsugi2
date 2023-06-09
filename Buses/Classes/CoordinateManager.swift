@@ -10,13 +10,11 @@ import SwiftUI
 
 class CoordinateManager: ObservableObject {
 
-    @Published var coordinates: [Coordinate]
+    @Published var coordinates: [Coordinate] = []
+    @Published var polyline: String?
+    @Published var updateCameraFlag: Bool = false
 
-    init() {
-        coordinates = []
-    }
-
-    func addCoordinate(from busStop: Binding<BusStop>) {
+    func addCoordinate(from busStop: BusStop) {
         self.coordinates.append(Coordinate(busStop: busStop))
     }
 
@@ -24,7 +22,17 @@ class CoordinateManager: ObservableObject {
         self.coordinates.append(newCoordinate)
     }
 
+    func replaceWithCoordinates(from busStops: [BusStop]) {
+        var newCoordinates: [Coordinate] = []
+        for busStop in busStops {
+            newCoordinates.append(Coordinate(busStop: busStop))
+        }
+        self.coordinates = newCoordinates
+    }
+
     func removeAll() {
         self.coordinates.removeAll()
+        self.polyline = nil
     }
+
 }

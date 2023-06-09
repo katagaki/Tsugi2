@@ -13,9 +13,3 @@ struct DirectoryMRTMapView: View {
             .navigationTitle("ViewTitle.MRTMap")
     }
 }
-
-struct DirectoryMRTMapView_Previews: PreviewProvider {
-    static var previews: some View {
-        DirectoryMRTMapView()
-    }
-}
