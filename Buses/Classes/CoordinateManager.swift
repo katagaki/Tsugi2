@@ -1,5 +1,5 @@
 //
-//  CoordinateList.swift
+//  CoordinateManager.swift
 //  Buses
 //
 //  Created by 堅書 on 2022/06/13.
@@ -8,7 +8,7 @@
 import CoreLocation
 import SwiftUI
 
-class CoordinateList: ObservableObject {
+class CoordinateManager: ObservableObject {
 
     @Published var coordinates: [Coordinate]
 
