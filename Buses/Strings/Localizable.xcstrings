@@ -1973,28 +1973,6 @@
         }
       }
     },
-    "TabTitle.More" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "More"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "その他"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "更多"
-          }
-        }
-      }
-    },
     "TabTitle.Nearby" : {
       "comment" : "Tab Bar Item Titles",
       "localizations" : {

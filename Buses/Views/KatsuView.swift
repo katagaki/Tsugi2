@@ -17,6 +17,7 @@ struct KatsuView: View {
     @Namespace var mapScope
 
     @State var position: MapCameraPosition = .automatic
+    @State var isMoreSheetPresented: Bool = false
 
     var body: some View {
         GeometryReader { metrics in
@@ -46,7 +47,19 @@ struct KatsuView: View {
                     BlurGradientView()
                         .frame(height: metrics.safeAreaInsets.top + 12.0)
                         .ignoresSafeArea(edges: .top)
-                    VStack(alignment: .trailing) {
+                    VStack(alignment: .trailing, spacing: 8.0) {
+                        Button {
+                            isMoreSheetPresented = true
+                        } label: {
+                            Image(systemName: "ellipsis")
+                                .frame(width: 44.0, height: 44.0)
+                                .contentShape(Rectangle())
+                        }
+                        .background(.thickMaterial)
+                        .mask {
+                            RoundedRectangle(cornerRadius: 10.0)
+                        }
+                        .shadow(radius: 2.5)
                         MapUserLocationButton(scope: mapScope)
                             .mapControlVisibility(.visible)
                             .buttonBorderShape(.roundedRectangle)
@@ -90,6 +103,10 @@ struct KatsuView: View {
             .onChange(of: coordinateManager.updateCameraFlag) { _, _ in
                 position = .automatic
             }
+            .sheet(isPresented: $isMoreSheetPresented, content: {
+                MoreView()
+                    .presentationDragIndicator(.visible)
+            })
         }
     }
 }

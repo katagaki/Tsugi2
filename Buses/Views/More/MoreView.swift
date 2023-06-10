@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MoreView: View {
 
+    @Environment(\.dismiss) var dismiss
+
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var settings: SettingsManager
     @EnvironmentObject var toaster: Toaster
@@ -213,6 +215,16 @@ SOFTWARE.
                 }
                 ToolbarItem(placement: .principal) {
                     Spacer()
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 20.0))
+                            .symbolRenderingMode(.hierarchical)
+                    }
+                    .buttonStyle(.plain)
                 }
             }
             .sheet(isPresented: $showLogsView) {

@@ -47,11 +47,6 @@ struct MainTabView: View {
                     Label("TabTitle.Directory", systemImage: "magnifyingglass")
                 }
                 .tag(3)
-            MoreView()
-                .tabItem {
-                    Label("TabTitle.More", systemImage: "ellipsis")
-                }
-                .tag(4)
         }
         .task {
             if isInitialLoad {
