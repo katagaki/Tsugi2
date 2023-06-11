@@ -12,6 +12,8 @@ import VariableBlurView
 // https://stackoverflow.com/questions/68138347/
 struct BlurGradientView: View {
 
+    @Environment(\.colorScheme) var colorScheme
+
     let gradient = LinearGradient(
             gradient: Gradient(stops: [
                 .init(color: .black, location: 0.8),
@@ -22,8 +24,14 @@ struct BlurGradientView: View {
         )
 
     var body: some View {
-        VariableBlurView()
-            .mask(gradient)
-            .allowsHitTesting(false)
+        if colorScheme == .dark {
+            VariableBlurView()
+                .mask(gradient)
+                .allowsHitTesting(false)
+        } else {
+            VariableBlurView()
+                .mask(gradient)
+                .allowsHitTesting(false)
+        }
     }
 }
