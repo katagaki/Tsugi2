@@ -5,6 +5,8 @@
 //  Created by 堅書 on 27/2/23.
 //
 
+#if canImport(ActivityKit) && canImport(WidgetKit)
+
 import ActivityKit
 import WidgetKit
 import SwiftUI
@@ -157,3 +159,5 @@ struct AssistantLiveActivity: Widget {
         }
     }
 }
+
+#endif

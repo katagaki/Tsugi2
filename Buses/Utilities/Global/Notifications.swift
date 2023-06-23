@@ -5,7 +5,6 @@
 //  Created by 堅書 on 27/2/23.
 //
 
-import ActivityKit
 import Foundation
 import UserNotifications
 

@@ -5,7 +5,9 @@
 //  Created by 堅書 on 2022/06/15.
 //
 
+#if canImport(ActivityKit)
 import ActivityKit
+#endif
 import MapKit
 import SwiftUI
 
@@ -78,12 +80,14 @@ struct BusServiceView: View {
             }
         }
         .onDisappear {
+#if canImport(ActivityKit) && canImport(WidgetKit)
             Task {
                 if let liveActivity = Activity<AssistantAttributes>.activities.first(where: {$0.id == liveActivityID}) {
                     await liveActivity.end(nil, dismissalPolicy: .immediate)
                     log("Live Activity \(liveActivityID) ended.")
                 }
             }
+#endif
         }
         .refreshable {
             Task {
@@ -281,6 +285,7 @@ struct BusServiceView: View {
     // swiftlint:enable function_body_length
 
     func startLiveActivity() {
+#if canImport(ActivityKit) && canImport(WidgetKit)
         let initialContentState = AssistantAttributes.ContentState(busService: busService)
         let activityAttributes = AssistantAttributes(serviceNo: busService.serviceNo, currentDate: Date())
         let activityContent = ActivityContent(state: initialContentState,
@@ -297,6 +302,7 @@ struct BusServiceView: View {
                 log(error.localizedDescription)
             }
         }
+#endif
     }
 
 }

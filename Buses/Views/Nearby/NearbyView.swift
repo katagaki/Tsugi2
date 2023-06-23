@@ -5,7 +5,9 @@
 //  Created by 堅書 on 2022/06/12.
 //
 
+#if canImport(CoreLocationUI)
 import CoreLocationUI
+#endif
 import MapKit
 import SwiftUI
 
@@ -68,6 +70,7 @@ struct NearbyView: View {
                     } else if !locationManager.isInUsableState() {
                         VStack {
                             ListHintOverlay(image: "exclamationmark.triangle.fill", text: "Nearby.Hint.NoLocation")
+#if !os(xrOS)
                             LocationButton {
                                 locationManager.updateLocation(usingOnlySignificantChanges: false)
                             }
@@ -75,6 +78,7 @@ struct NearbyView: View {
                             .labelStyle(.titleAndIcon)
                             .foregroundColor(.white)
                             .cornerRadius(100.0)
+#endif
                         }
                     } else {
                         if isNearbyBusStopsDetermined && nearbyBusStops.count == 0 {

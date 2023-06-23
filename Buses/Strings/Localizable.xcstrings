@@ -1268,21 +1268,57 @@
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Location Services was not enabled. Select the button below to tell Buses your location without enabling Location Services."
+          "variations" : {
+            "device" : {
+              "iphone" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Location Services are not enabled. Select the button below to tell Buses your location without enabling Location Services."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Location Services are not enabled."
+                }
+              }
+            }
           }
         },
         "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "位置情報の設定が無効化されています。一時的に位置情報を共有するには、下のボタンを選択してください。"
+          "variations" : {
+            "device" : {
+              "iphone" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "位置情報の設定が無効化されています。一時的に位置情報を共有するには、下のボタンを選択してください。"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "位置情報の設定が無効化されています。一時的に位置情報を共有するには、下のボタンを選択してください。"
+                }
+              }
+            }
           }
         },
         "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "位置信息设置已禁用。暂时共享位置信息时，请点击下面的按钮。"
+          "variations" : {
+            "device" : {
+              "iphone" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "位置信息设置已禁用。暂时共享位置信息时，请点击下面的按钮。"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "位置信息设置已禁用。暂时共享位置信息时，请点击下面的按钮。"
+                }
+              }
+            }
           }
         }
       }

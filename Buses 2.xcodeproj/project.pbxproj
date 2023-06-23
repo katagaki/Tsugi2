@@ -52,7 +52,7 @@
 		E482AC9629AC53B2008DAD30 /* AssistantBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482AC9529AC53B2008DAD30 /* AssistantBundle.swift */; };
 		E482AC9829AC53B2008DAD30 /* AssistantLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482AC9729AC53B2008DAD30 /* AssistantLiveActivity.swift */; };
 		E482AC9D29AC53B3008DAD30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E482AC9C29AC53B3008DAD30 /* Assets.xcassets */; };
-		E482ACA329AC53B3008DAD30 /* AssistantExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E482AC8F29AC53B2008DAD30 /* AssistantExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E482ACA329AC53B3008DAD30 /* AssistantExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E482AC8F29AC53B2008DAD30 /* AssistantExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E482ACAB29AC555C008DAD30 /* BusArrivalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC82801631800DCA0EC /* BusArrivalInfo.swift */; };
 		E482ACAC29AC5561008DAD30 /* BusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCAC62801627D00DCA0EC /* BusService.swift */; };
 		E482ACAD29AC5689008DAD30 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476BF1A280869A500B8524B /* API.swift */; };
@@ -62,7 +62,6 @@
 		E482ACB529AC5896008DAD30 /* BusStopList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4319EBB280437BA00D21531 /* BusStopList.swift */; };
 		E482ACB629AC58E5008DAD30 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FFCADA2801B23300DCA0EC /* Date.swift */; };
 		E482ACB729AC58EC008DAD30 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E367882804422B0022A5CD /* String.swift */; };
-		E482ACB829AC5D32008DAD30 /* AssistantLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482AC9729AC53B2008DAD30 /* AssistantLiveActivity.swift */; };
 		E482ACBC29AC6208008DAD30 /* BusNumberPlateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C1B9D285806A4003F1BFB /* BusNumberPlateView.swift */; };
 		E482ACBD29AC620B008DAD30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4406AB627EF182500819CDC /* Assets.xcassets */; };
 		E482ACC029AC6DEE008DAD30 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482ACBF29AC6DEE008DAD30 /* ProgressBarView.swift */; };
@@ -74,6 +73,7 @@
 		E4958A1029F3F2B500C5BE28 /* Polyline in Frameworks */ = {isa = PBXBuildFile; productRef = E4958A0F29F3F2B500C5BE28 /* Polyline */; };
 		E4958A1229F3F43E00C5BE28 /* BusRoutePolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4958A1129F3F43E00C5BE28 /* BusRoutePolyline.swift */; };
 		E4958A1329F3F4ED00C5BE28 /* BusRoutePolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4958A1129F3F43E00C5BE28 /* BusRoutePolyline.swift */; };
+		E49922C22A45510B00E2827E /* AssistantLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482AC9729AC53B2008DAD30 /* AssistantLiveActivity.swift */; };
 		E49DFA5129B6DEB800654FBD /* BlurGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49DFA5029B6DEB800654FBD /* BlurGradientView.swift */; };
 		E4A1B31F29F0171C00C6ABAC /* LTA-Identity.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4A1B31E29F016F100C6ABAC /* LTA-Identity.ttf */; };
 		E4A1B32029F0171C00C6ABAC /* LTA-Identity.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4A1B31E29F016F100C6ABAC /* LTA-Identity.ttf */; };
@@ -160,16 +160,6 @@
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E4A68D6A27F7EF9600D3A6B2 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -229,6 +219,7 @@
 		E482ACC229AC7CBC008DAD30 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		E4958A0929F3E30800C5BE28 /* BusServiceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusServiceList.swift; sourceTree = "<group>"; };
 		E4958A1129F3F43E00C5BE28 /* BusRoutePolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusRoutePolyline.swift; sourceTree = "<group>"; };
+		E49922BE2A454F9C00E2827E /* CoreLocationUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocationUI.framework; path = System/Library/Frameworks/CoreLocationUI.framework; sourceTree = SDKROOT; };
 		E49DFA5029B6DEB800654FBD /* BlurGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurGradientView.swift; sourceTree = "<group>"; };
 		E4A1B31E29F016F100C6ABAC /* LTA-Identity.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LTA-Identity.ttf"; sourceTree = "<group>"; };
 		E4AAD7FB2882C0D800CC63E8 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
@@ -601,6 +592,7 @@
 		E4FFCAC02801604300DCA0EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E49922BE2A454F9C00E2827E /* CoreLocationUI.framework */,
 				E4FFCAC12801604300DCA0EC /* MapKit.framework */,
 				E482AC9029AC53B2008DAD30 /* WidgetKit.framework */,
 				E482AC9229AC53B2008DAD30 /* SwiftUI.framework */,
@@ -638,7 +630,6 @@
 				E4406AA427EF182300819CDC /* Sources */,
 				E4406AA527EF182300819CDC /* Frameworks */,
 				E4406AA627EF182300819CDC /* Resources */,
-				E4A68D6A27F7EF9600D3A6B2 /* Embed Frameworks */,
 				E482ACA729AC53B3008DAD30 /* Embed Foundation Extensions */,
 				E41A78A229EB69E900FAFA52 /* ShellScript */,
 			);
@@ -807,7 +798,6 @@
 				E4B7FFF0285467060019F71A /* MoreView.swift in Sources */,
 				E42C82492856C9C600D64DF9 /* MoreAppIconView.swift in Sources */,
 				E41C1B98285706AB003F1BFB /* RoundedCornersShape.swift in Sources */,
-				E482ACB829AC5D32008DAD30 /* AssistantLiveActivity.swift in Sources */,
 				E4F02DE929EA75BA00EADA1E /* DataManager.swift in Sources */,
 				E4377AD029E3F60D0036003E /* DataDisplayMode.swift in Sources */,
 				E4BCFDB829E2E44B00E4D2AD /* ProperText.swift in Sources */,
@@ -848,6 +838,7 @@
 				E4225ABC29B0529600F1CF82 /* MapRegionManager.swift in Sources */,
 				E42C824E2856D4FA00D64DF9 /* MoreDonateView.swift in Sources */,
 				E4F02DEB29EA77CA00EADA1E /* StrokeText.swift in Sources */,
+				E49922C22A45510B00E2827E /* AssistantLiveActivity.swift in Sources */,
 				E42A04BC29D87FB800B76ED6 /* NetworkMonitor.swift in Sources */,
 				E4AAD7FC2882C0D800CC63E8 /* ToastView.swift in Sources */,
 				E4F02DD229E97E0400EADA1E /* ToastType.swift in Sources */,
@@ -897,6 +888,7 @@
 /* Begin PBXTargetDependency section */
 		E482ACA229AC53B3008DAD30 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = E482AC8E29AC53B2008DAD30 /* AssistantExtension */;
 			targetProxy = E482ACA129AC53B3008DAD30 /* PBXContainerItemProxy */;
 		};
@@ -962,6 +954,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Debug;
 		};
@@ -1018,6 +1011,7 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
+				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Release;
 		};
@@ -1049,9 +1043,10 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsubuzaki.Tsugi2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1086,9 +1081,10 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsubuzaki.Tsugi2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1118,9 +1114,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsubuzaki.Tsugi2.Assistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1147,9 +1147,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsubuzaki.Tsugi2.Assistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
