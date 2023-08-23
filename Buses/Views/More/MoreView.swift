@@ -91,7 +91,7 @@ struct MoreView: View {
                 }
                 // TODO: Include some notification sounds, settings, etc
                 Section {
-                    Link(destination: URL(string: "https://twitter.com/katagaki_")!) {
+                    Link(destination: URL(string: "https://x.com/katagaki_")!) {
                         HStack {
                             ListRow(image: "ListIcon.Twitter",
                                     title: "More.Help.Twitter",

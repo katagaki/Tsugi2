@@ -1155,19 +1155,19 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tweet Me"
+            "value" : "Post on X"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "ツイート"
+            "state" : "needs_review",
+            "value" : "Xでポスト"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "发推文"
+            "value" : "X上发布"
           }
         }
       }
