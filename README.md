@@ -6,6 +6,8 @@ A carefully designed client for Singapore's transit system
 
 Similar to MyTransport, but a lot faster and 100 times smaller to download.
 
+**Download: [TestFlight](https://testflight.apple.com/join/17FoKgfE)**
+
 ## Why I built this
 The project started as Tsugi ([Buses on the App Store](https://apps.apple.com/us/app/buses-for-singapore-transit/id1423653146)), an app that aimed to complement the public transit experience in Singapore. 
 At the time the project was first developed, there were no good public transit companion apps on the App Store for Singapore's transit system (the official MyTransport app is still a really poor experience, despite their *inspired* UI refresh).
