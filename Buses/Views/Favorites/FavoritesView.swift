@@ -116,6 +116,8 @@ struct FavoritesView: View {
                                    locationName: locationName,
                                    busStopCode: busStopCode,
                                    showsAddToLocationButton: false)
+                case .busStop(let busStop):
+                    BusStopView(busStop: busStop)
                 default:
                     Color.clear
                 }

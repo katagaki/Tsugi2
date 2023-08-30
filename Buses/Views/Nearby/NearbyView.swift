@@ -68,6 +68,8 @@ struct NearbyView: View {
                                        locationName: locationName,
                                        busStopCode: busStopCode,
                                        showsAddToLocationButton: true)
+                    case .busStop(let busStop):
+                        BusStopView(busStop: busStop)
                     default:
                         Color.clear
                     }

@@ -27,4 +27,17 @@ class NavigationManager: ObservableObject {
         }
     }
 
+    func push(_ viewPath: ViewPath, for tab: TabType) {
+        switch tab {
+        case .nearby:
+            nearbyTabPath.append(viewPath)
+        case .favorites:
+            favoritesTabPath.append(viewPath)
+        case .notifications:
+            notificationsTabPath.append(viewPath)
+        case .directory:
+            directoryTabPath.append(viewPath)
+        }
+    }
+
 }

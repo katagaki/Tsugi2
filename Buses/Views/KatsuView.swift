@@ -11,6 +11,8 @@ import SwiftUI
 
 struct KatsuView: View {
 
+    @EnvironmentObject var tabManager: TabManager
+    @EnvironmentObject var navigationManager: NavigationManager
     @EnvironmentObject var coordinateManager: CoordinateManager
     @EnvironmentObject var toaster: Toaster
 
@@ -24,10 +26,14 @@ struct KatsuView: View {
             Map(position: $position, scope: mapScope) {
                 ForEach(coordinateManager.coordinates, id: \.id) { coordinate in
                     Annotation(coordinate: coordinate.clCoordinate()) {
-                        Image(.listIconBus)
-                            .resizable()
-                            .frame(minWidth: 20.0, maxWidth: 20.0, minHeight: 20.0, maxHeight: 20.0)
-                            .shadow(radius: 6.0)
+                        Button {
+                            navigationManager.push(ViewPath.busStop(coordinate.busStop), for: tabManager.selectedTab)
+                        } label: {
+                            Image(.listIconBus)
+                                .resizable()
+                                .frame(minWidth: 20.0, maxWidth: 20.0, minHeight: 20.0, maxHeight: 20.0)
+                                .shadow(radius: 6.0)
+                        }
                     } label: {
                         Text(coordinate.busStop.description ?? "")
                     }
