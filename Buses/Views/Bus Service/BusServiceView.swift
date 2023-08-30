@@ -11,10 +11,7 @@ import ActivityKit
 import MapKit
 import SwiftUI
 
-// swiftlint:disable type_body_length
 struct BusServiceView: View {
-
-    var mode: DataDisplayMode
 
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var favorites: FavoritesManager
@@ -28,8 +25,8 @@ struct BusServiceView: View {
     @State var busService: BusService
     @State var busStopsForMapDisplay: [BusStop] = []
     @State var encodedPolyline: String = ""
-    var busStop: Binding<BusStop>?
-    var favoriteLocation: Binding<FavoriteLocation>?
+    @State var locationName: String
+    @State var busStopCode: String
 
     let timer = Timer.publish(every: 10.0, tolerance: 5.0, on: .main, in: .common).autoconnect()
 
@@ -108,33 +105,18 @@ struct BusServiceView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .principal) {
-                switch mode {
-                case .busStop, .notificationItem:
-                    SubtitledNavigationTitle(title: busService.serviceNo,
-                                             subtitle: busStop?.wrappedValue.name() ?? "")
-                case .favoriteLocationLiveData, .favoriteLocationCustomData:
-                    SubtitledNavigationTitle(title: busService.serviceNo,
-                                             subtitle: favoriteLocation?.wrappedValue.nickname ?? "")
-                }
+                SubtitledNavigationTitle(title: busService.serviceNo,
+                                         subtitle: locationName)
             }
             ToolbarItem(placement: .primaryAction) {
                 HStack(alignment: .center, spacing: 0.0) {
                     if showsAddToLocationButton {
                         Menu {
                             ForEach(favorites.favoriteLocations, id: \.hash) { location in
-                                if !location.usesLiveBusStopData, let busStop = busStop {
+                                if !location.usesLiveBusStopData {
                                     Button(location.nickname ?? localized("Shared.BusStop.Description.None")) {
                                         Task {
-                                            await favorites.addBusServiceToFavoriteLocation(
-                                                location,
-                                                busStop: busStop.wrappedValue,
-                                                busService: busService)
-                                            toaster.showToast(
-                                                localized("Shared.BusArrival.Toast.Favorited",
-                                                          replacing: busService.serviceNo, location.nickname ??
-                                                          localized("Shared.BusStop.Description.None")),
-                                                type: .checkmark,
-                                                hidesAutomatically: true)
+                                            await addToFavorites(location)
                                         }
                                     }
                                     .disabled(favorites.find(busService.serviceNo, in: location))
@@ -152,26 +134,12 @@ struct BusServiceView: View {
 
     func reloadArrivalTimes() async {
         do {
-            switch mode {
-            case .busStop, .favoriteLocationLiveData:
-                if let busStop = busStop {
-                    let fetchedBusStop = try await getBusArrivals(for: busStop.wrappedValue.code)
-                    self.busStop?.wrappedValue.description = dataManager.busStop(
-                        code: busStop.wrappedValue.code)?.name()
-                    busService = fetchedBusStop.arrivals?.first(where: { busService in
-                        busService.serviceNo == self.busService.serviceNo
-                    }) ?? BusService(serviceNo: busService.serviceNo, operator: busService.operator)
-                }
-            case .favoriteLocationCustomData:
-                self.busStop?.wrappedValue = try await getBusArrivals(for: busService.busStopCode ?? "")
-                self.busStop?.wrappedValue.description = favoriteLocation?.wrappedValue.nickname ?? ""
-            case .notificationItem:
-                if let busStop = busStop {
-                    let fetchedBusStop = try await getBusArrivals(for: busStop.wrappedValue.code)
-                    busService = fetchedBusStop.arrivals?.first(where: { busService in
-                        busService.serviceNo == self.busService.serviceNo
-                    }) ?? BusService(serviceNo: busService.serviceNo, operator: busService.operator)
-                }
+            let fetchedBusStop = try await getBusArrivals(for: busStopCode)
+            let serviceNo = busService.serviceNo
+            if let busService = fetchedBusStop.arrivals?.first(where: { busService in
+                busService.serviceNo == serviceNo
+            }) {
+                self.busService = busService
             }
             log("Arrival time data updated.")
             isInitialDataLoading = false
@@ -203,6 +171,19 @@ struct BusServiceView: View {
         log("Bus service view updated displayed coordinates.")
     }
 
+    func addToFavorites(_ location: FavoriteLocation) async {
+        await favorites.addBusServiceToFavoriteLocation(
+            location,
+            stopCode: busStopCode,
+            busService: busService)
+        toaster.showToast(
+            localized("Shared.BusArrival.Toast.Favorited",
+                      replacing: busService.serviceNo, location.nickname ??
+                      localized("Shared.BusStop.Description.None")),
+            type: .checkmark,
+            hidesAutomatically: true)
+    }
+
     func setNotification(for arrivalInfo: BusArrivalInfo) {
         if let date = arrivalInfo.estimatedArrivalTimeAsDate() {
             center.requestAuthorization(options: [.alert, .sound]) { granted, error in
@@ -223,49 +204,19 @@ struct BusServiceView: View {
         }
     }
 
-    // swiftlint:disable function_body_length
     func setNotification(on date: Date) {
         let content = UNMutableNotificationContent()
         let trigger = UNCalendarNotificationTrigger(
             dateMatching: Calendar.current.dateComponents([.weekday, .hour, .minute, .second],
                                                           from: date - (2 * 60)), repeats: false)
         var identifier = ""
-        switch mode {
-        case .busStop, .notificationItem:
-            if let busStop = busStop {
-                content.title = localized("Notification.Arriving.Title",
-                                          replacing: busStop.wrappedValue.name())
-                content.userInfo = ["busService": busService.serviceNo,
-                                    "stopCode": busStop.wrappedValue.code,
-                                    "stopDescription": busStop.wrappedValue.name()]
-                identifier = "\(busStop.wrappedValue.code).\(busService.serviceNo)." +
-                             "\(date.formatted(date: .numeric, time: .shortened))"
-            }
-        case .favoriteLocationLiveData:
-            if let favoriteLocation = favoriteLocation?.wrappedValue {
-                content.title = localized("Notification.Arriving.Title",
-                                          replacing: favoriteLocation.nickname ??
-                                          localized("Shared.BusStop.Description.None"))
-                content.userInfo = ["busService": busService.serviceNo,
-                                    "stopCode": favoriteLocation.busStopCode ?? "",
-                                    "stopDescription": favoriteLocation.nickname ??
-                                    localized("Shared.BusStop.Description.None")]
-                identifier = "\(favoriteLocation.busStopCode ?? "").\(busService.serviceNo)." +
-                             "\(date.formatted(date: .numeric, time: .shortened))"
-            }
-        case .favoriteLocationCustomData:
-            if let favoriteLocation = favoriteLocation?.wrappedValue {
-                content.title = localized("Notification.Arriving.Title",
-                                          replacing: favoriteLocation.nickname ??
-                                          localized("Shared.BusStop.Description.None"))
-                content.userInfo = ["busService": busService.serviceNo,
-                                    "stopCode": busService.busStopCode ?? "",
-                                    "stopDescription": favoriteLocation.nickname ??
-                                    localized("Shared.BusStop.Description.None")]
-                identifier = "\(busService.busStopCode ?? "").\(busService.serviceNo)." +
-                             "\(date.formatted(date: .numeric, time: .shortened))"
-            }
-        }
+        content.title = localized("Notification.Arriving.Title",
+                                  replacing: locationName)
+        content.userInfo = ["busService": busService.serviceNo,
+                            "stopCode": busStopCode,
+                            "stopDescription": locationName]
+        identifier = "\(busStopCode).\(busService.serviceNo)." +
+                     "\(date.formatted(date: .numeric, time: .shortened))"
         content.body = localized("Notification.Arriving.Description",
                                  replacing: busService.serviceNo,
                                  date.formatted(date: .omitted, time: .shortened))
@@ -282,7 +233,6 @@ struct BusServiceView: View {
             }
         }
     }
-    // swiftlint:enable function_body_length
 
     func startLiveActivity() {
 #if canImport(ActivityKit) && canImport(WidgetKit)
@@ -306,4 +256,3 @@ struct BusServiceView: View {
     }
 
 }
-// swiftlint:enable type_body_length

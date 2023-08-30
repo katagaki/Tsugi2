@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FavoritesView: View {
 
+    @EnvironmentObject var navigationManager: NavigationManager
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var favorites: FavoritesManager
     @EnvironmentObject var coordinateManager: CoordinateManager
@@ -27,14 +28,16 @@ struct FavoritesView: View {
     @State var isDeletionPending: Bool = false
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navigationManager.favoritesTabPath) {
             List($favorites.favoriteLocations, id: \.hashValue) { $location in
                 Section {
                     if !location.isFault && !location.isDeleted {
                         BusServicesCarousel(dataDisplayMode:
                                                 (location.usesLiveBusStopData ?
                                                     .favoriteLocationLiveData : .favoriteLocationCustomData),
-                                            busStop: nil,
+                                            locationName: location.nickname ?? "",
+                                            busStopCode: (location.usesLiveBusStopData ?
+                                                          location.busStopCode : nil),
                                             favoriteLocation: $location)
                         .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
                         .opacity(isEditing ? 0.5 : 1.0)
@@ -106,6 +109,17 @@ struct FavoritesView: View {
                 }
             })
             .listStyle(.insetGrouped)
+            .navigationDestination(for: ViewPath.self, destination: { viewPath in
+                switch viewPath {
+                case .busService(let bus, let locationName, let busStopCode):
+                    BusServiceView(busService: bus,
+                                   locationName: locationName,
+                                   busStopCode: busStopCode,
+                                   showsAddToLocationButton: false)
+                default:
+                    Color.clear
+                }
+            })
             .refreshable {
                 favorites.updateViewFlag.toggle()
             }

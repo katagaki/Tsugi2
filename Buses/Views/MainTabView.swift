@@ -13,6 +13,8 @@ struct MainTabView: View {
 
     @Environment(\.scenePhase) var scenePhase
 
+    @EnvironmentObject var tabManager: TabManager
+    @EnvironmentObject var navigationManager: NavigationManager
     @EnvironmentObject var networkMonitor: NetworkMonitor
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var favorites: FavoritesManager
@@ -20,41 +22,45 @@ struct MainTabView: View {
     @EnvironmentObject var settings: SettingsManager
     @EnvironmentObject var toaster: Toaster
 
-    @State var defaultTab: Int = 0
-
     @State var isInitialLoad: Bool = true
 
     var body: some View {
-        TabView(selection: $defaultTab) {
+        TabView(selection: $tabManager.selectedTab) {
             NearbyView()
                 .tabItem {
                     Label("TabTitle.Nearby", systemImage: "location.circle.fill")
                 }
-                .tag(0)
+                .tag(TabType.nearby)
             FavoritesView()
                 .tabItem {
                     Label("TabTitle.Favorites", systemImage: "rectangle.stack.fill")
                 }
-                .tag(1)
+                .tag(TabType.favorites)
             NotificationsView()
                 .tabItem {
                     Label("TabTitle.Notifications", systemImage: "bell.fill")
                 }
-                .tag(2)
+                .tag(TabType.notifications)
             DirectoryView(updatedDate: $dataManager.updatedDate,
                           updatedTime: $dataManager.updatedTime)
                 .tabItem {
                     Label("TabTitle.Directory", systemImage: "magnifyingglass")
                 }
-                .tag(3)
+                .tag(TabType.directory)
         }
         .task {
             if isInitialLoad {
-                defaultTab = settings.startupTab
+                tabManager.selectedTab = TabType(rawValue: settings.startupTab) ?? .nearby
                 await reloadBusStopList()
                 isInitialLoad = false
             }
         }
+        .onReceive(tabManager.$selectedTab, perform: { newValue in
+            if newValue == tabManager.previouslySelectedTab {
+                navigationManager.popToRoot(for: newValue)
+            }
+            tabManager.previouslySelectedTab = newValue
+        })
         .onChange(of: dataManager.shouldReloadBusStopList, { _, newValue in
             if newValue {
                 Task {

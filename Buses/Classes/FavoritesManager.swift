@@ -8,6 +8,7 @@
 import CoreData
 import SwiftUI
 
+// swiftlint:disable type_body_length
 class FavoritesManager: ObservableObject {
 
     private let context = FavoritesCoreDataManager.shared.mainContext
@@ -99,6 +100,19 @@ class FavoritesManager: ObservableObject {
         let favoriteBusServiceEntity = FavoriteBusService.entity()
         let favoriteBusService = FavoriteBusService(entity: favoriteBusServiceEntity, insertInto: context)
         favoriteBusService.busStopCode = busStop.code
+        favoriteBusService.serviceNo = busService.serviceNo
+        favoriteLocation.addToBusServices(favoriteBusService)
+        // TODO: Add and set view index
+        log("Favorite bus service added to favorite location.")
+        await saveChanges()
+    }
+
+    func addBusServiceToFavoriteLocation(_ favoriteLocation: FavoriteLocation,
+                                         stopCode: String,
+                                         busService: BusService) async {
+        let favoriteBusServiceEntity = FavoriteBusService.entity()
+        let favoriteBusService = FavoriteBusService(entity: favoriteBusServiceEntity, insertInto: context)
+        favoriteBusService.busStopCode = stopCode
         favoriteBusService.serviceNo = busService.serviceNo
         favoriteLocation.addToBusServices(favoriteBusService)
         // TODO: Add and set view index
@@ -287,3 +301,4 @@ class FavoritesManager: ObservableObject {
     }
 
 }
+// swiftlint:enable type_body_length

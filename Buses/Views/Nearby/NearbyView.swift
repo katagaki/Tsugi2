@@ -13,6 +13,7 @@ import SwiftUI
 
 struct NearbyView: View {
 
+    @EnvironmentObject var navigationManager: NavigationManager
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var favorites: FavoritesManager
     @EnvironmentObject var regionManager: RegionManager
@@ -25,12 +26,13 @@ struct NearbyView: View {
     @State var nearbyBusStops: [BusStop] = []
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navigationManager.nearbyTabPath) {
             VStack(alignment: .trailing, spacing: 0) {
                 List($nearbyBusStops, id: \.hashValue) { $stop in
                     Section {
                         BusServicesCarousel(dataDisplayMode: .busStop,
-                                            busStop: $stop,
+                                            locationName: stop.name(),
+                                            busStopCode: stop.code,
                                             favoriteLocation: nil)
                         .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
                     } header: {
@@ -59,6 +61,17 @@ struct NearbyView: View {
                     }
                 }
                 .listStyle(.insetGrouped)
+                .navigationDestination(for: ViewPath.self, destination: { viewPath in
+                    switch viewPath {
+                    case .busService(let bus, let locationName, let busStopCode):
+                        BusServiceView(busService: bus,
+                                       locationName: locationName,
+                                       busStopCode: busStopCode,
+                                       showsAddToLocationButton: true)
+                    default:
+                        Color.clear
+                    }
+                })
                 .refreshable {
                     log("Reloading nearby bus stops per the request of the user.")
                     reloadNearbyBusStops()

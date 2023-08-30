@@ -17,7 +17,8 @@ struct BusServicesCarousel: View {
 
     @State var isInitialDataLoaded: Bool = false
     @State var busServices: [BusService] = []
-    @State var busStop: Binding<BusStop>?
+    @State var locationName: String
+    @State var busStopCode: String?
     @State var favoriteLocation: Binding<FavoriteLocation>?
 
     let timer = Timer.publish(every: 10.0, tolerance: 5.0, on: .main, in: .common).autoconnect()
@@ -35,13 +36,9 @@ struct BusServicesCarousel: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack(spacing: 8.0) {
                         ForEach(busServices, id: \.hashValue) { bus in
-                            NavigationLink {
-                                BusServiceView(mode: dataDisplayMode,
-                                               busService: bus,
-                                               busStop: busStop,
-                                               favoriteLocation: favoriteLocation,
-                                               showsAddToLocationButton: dataDisplayMode == .busStop)
-                            } label: {
+                            NavigationLink(value: ViewPath.busService(bus,
+                                                                      atLocation: locationName,
+                                                                      forBusStopCode: busStopCode ?? "")) {
                                 VStack(alignment: .center, spacing: 2.0) {
                                     BusNumberPlateView(carouselDisplayMode: $settings.carouselDisplayMode,
                                                        serviceNo: bus.serviceNo)
@@ -133,22 +130,22 @@ struct BusServicesCarousel: View {
     func reloadArrivalTimes() async {
         do {
             switch dataDisplayMode {
-            case .busStop:
-                if let busStop = busStop {
-                    log("Reloading arrival times for a bus stop type location.")
-                    try await reloadArrivalTimes(for: busStop.wrappedValue)
-                }
-            case .favoriteLocationCustomData, .favoriteLocationLiveData:
+            case .busStop, .favoriteLocationLiveData:
+                log("Reloading arrival times for a bus stop type location or favorite location using live data.")
+                busServices = (try await getBusArrivals(for: busStopCode ?? "").arrivals ?? [])
+                    .sorted(by: { lhs, rhs in
+                    lhs.serviceNo.toInt() ?? 9999 < rhs.serviceNo.toInt() ?? 9999
+                })
+            case .favoriteLocationCustomData:
                 if let favoriteLocation = favoriteLocation,
                    let favoriteBusServices = favoriteLocation.wrappedValue.busServices?.array as? [FavoriteBusService] {
                     let favoriteBusServicesSorted = (
                         favoriteBusServices.sorted(by: { lhs, rhs in
                            lhs.viewIndex < rhs.viewIndex
                        }))
-                    log("Reloading arrival times for a favorite location.")
+                    log("Reloading arrival times for a favorite location using custom data.")
                     try await reloadArrivalTimes(for: favoriteLocation.wrappedValue,
-                                                 favoriteBusServices: favoriteBusServicesSorted,
-                                                 isDataCustom: !favoriteLocation.usesLiveBusStopData.wrappedValue)
+                                                 favoriteBusServices: favoriteBusServicesSorted)
                 }
             case .notificationItem:
                 break // Mode not supported
@@ -159,42 +156,26 @@ struct BusServicesCarousel: View {
     }
 
     func reloadArrivalTimes(for favoriteLocation: FavoriteLocation,
-                            favoriteBusServices: [FavoriteBusService],
-                            isDataCustom: Bool) async throws {
-        if isDataCustom {
-            busServices = favoriteBusServices.reduce(
-                into: [BusService](), { partialResult, favoriteBusService in
-                    var busService: BusService = BusService(serviceNo: favoriteBusService.serviceNo ?? "",
-                                                            operator: .unknown)
-                    busService.busStopCode = favoriteBusService.busStopCode
-                    partialResult.append(busService)
-                })
-            var fetchedBusServices: [BusService] = []
-            for busService in busServices {
-                if var fetchedBusService = try await getBusArrivals(
-                    for: busService.busStopCode ?? "").arrivals?
-                    .first(where: { fetchedBusService in
-                        fetchedBusService.serviceNo == busService.serviceNo
-                    }) {
-                    fetchedBusService.busStopCode = busService.busStopCode
-                    fetchedBusServices.append(fetchedBusService)
-                }
+                            favoriteBusServices: [FavoriteBusService]) async throws {
+        busServices = favoriteBusServices.reduce(
+            into: [BusService](), { partialResult, favoriteBusService in
+                var busService: BusService = BusService(serviceNo: favoriteBusService.serviceNo ?? "",
+                                                        operator: .unknown)
+                busService.busStopCode = favoriteBusService.busStopCode
+                partialResult.append(busService)
+            })
+        var fetchedBusServices: [BusService] = []
+        for busService in busServices {
+            if var fetchedBusService = try await getBusArrivals(
+                for: busService.busStopCode ?? "").arrivals?
+                .first(where: { fetchedBusService in
+                    fetchedBusService.serviceNo == busService.serviceNo
+                }) {
+                fetchedBusService.busStopCode = busService.busStopCode
+                fetchedBusServices.append(fetchedBusService)
             }
-            busServices = fetchedBusServices
-       } else {
-           let fetchedBusStop = try await getBusArrivals(
-            for: favoriteLocation.busStopCode ?? "")
-           busServices = fetchedBusStop.arrivals?.sorted(by: { lhs, rhs in
-               lhs.serviceNo.toInt() ?? 9999 < rhs.serviceNo.toInt() ?? 9999
-           }) ?? []
-       }
-    }
-
-    func reloadArrivalTimes(for busStop: BusStop) async throws {
-        busServices = (try await getBusArrivals(for: busStop.code).arrivals ?? [])
-            .sorted(by: { lhs, rhs in
-            lhs.serviceNo.toInt() ?? 9999 < rhs.serviceNo.toInt() ?? 9999
-        })
+        }
+        busServices = fetchedBusServices
     }
 
 }

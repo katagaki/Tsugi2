@@ -9,22 +9,19 @@ import SwiftUI
 
 struct NotificationsView: View {
 
+    @EnvironmentObject var navigationManager: NavigationManager
+
     @State var notificationRequests: [UNNotificationRequest] = []
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navigationManager.notificationsTabPath) {
             List(notificationRequests, id: \.identifier) { request in
                 if let busService = request.content.userInfo["busService"] as? String,
                    let stopCode = request.content.userInfo["stopCode"] as? String,
                    let stopDescription = request.content.userInfo["stopDescription"] as? String {
-                    NavigationLink {
-                        BusServiceView(mode: .notificationItem,
-                                       busService: BusService(serviceNo: busService,
-                                                              operator: .unknown),
-                                       busStop: .constant(BusStop(code: stopCode,
-                                                                  description: stopDescription)),
-                                       showsAddToLocationButton: false)
-                    } label: {
+                    NavigationLink(value: ViewPath.busServiceNamed(busService,
+                                                                   atLocation: stopDescription,
+                                                                   forBusStopCode: stopCode)) {
                         HStack(alignment: .center, spacing: 16.0) {
                             Image(.listIconBus)
                             VStack(alignment: .leading) {
@@ -46,6 +43,18 @@ struct NotificationsView: View {
                 }
             }
             .listStyle(.insetGrouped)
+            .navigationDestination(for: ViewPath.self, destination: { viewPath in
+                switch viewPath {
+                case .busServiceNamed(let serviceNumber, let locationName, let busStopCode):
+                    BusServiceView(busService: BusService(serviceNo: serviceNumber,
+                                                          operator: .unknown),
+                                   locationName: locationName,
+                                   busStopCode: busStopCode,
+                                   showsAddToLocationButton: false)
+                default:
+                    Color.clear
+                }
+            })
             .refreshable {
                 reloadNotificationRequests()
             }

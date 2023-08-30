@@ -14,7 +14,7 @@ struct BusStopView: View {
     @EnvironmentObject var coordinateManager: CoordinateManager
     @EnvironmentObject var toaster: Toaster
 
-    @Binding var busStop: BusStop
+    @State var busStop: BusStop
     @State var busArrivals: [BusService] = []
     @State var isInitialDataLoading: Bool = true
 
@@ -22,12 +22,9 @@ struct BusStopView: View {
 
     var body: some View {
         List(busArrivals, id: \.serviceNo) { bus in
-            NavigationLink {
-                BusServiceView(mode: .busStop,
-                                      busService: bus,
-                                      busStop: $busStop,
-                                      showsAddToLocationButton: true)
-            } label: {
+            NavigationLink(value: ViewPath.busService(bus,
+                                                      atLocation: busStop.name(),
+                                                      forBusStopCode: busStop.code)) {
                 ListBusServiceRow(bus: .constant(bus))
             }
         }

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct DirectoryView: View {
 
+    @EnvironmentObject var navigationManager: NavigationManager
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var regionManager: RegionManager
     @EnvironmentObject var coordinateManager: CoordinateManager
@@ -26,14 +27,12 @@ struct DirectoryView: View {
     @State var shouldSortDistanceClosest: Bool = false
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navigationManager.directoryTabPath) {
             List {
                 if isSearching {
                     Section {
                         ForEach($searchResults, id: \.code) { $stop in
-                            NavigationLink {
-                                BusStopView(busStop: $stop)
-                            } label: {
+                            NavigationLink(value: ViewPath.busStop(stop)) {
                                 ListBusStopRow(busStop: $stop)
                             }
                         }
@@ -43,9 +42,7 @@ struct DirectoryView: View {
                     }
                 } else {
                     Section {
-                        NavigationLink {
-                            DirectoryMRTMapView()
-                        } label: {
+                        NavigationLink(value: ViewPath.mrtMap) {
                             HStack(alignment: .center, spacing: 16.0) {
                                 Image(.listIconTrainMap)
                                 Text("Directory.MRTMap")
@@ -58,9 +55,7 @@ struct DirectoryView: View {
                     }
                     Section {
                         ForEach($dataManager.busStops, id: \.code) { $stop in
-                            NavigationLink {
-                                BusStopView(busStop: $stop)
-                            } label: {
+                            NavigationLink(value: ViewPath.busStop(stop)) {
                                 ListBusStopRow(busStop: $stop)
                             }
                         }
@@ -90,6 +85,21 @@ struct DirectoryView: View {
                 }
             }
             .listStyle(.insetGrouped)
+            .navigationDestination(for: ViewPath.self, destination: { viewPath in
+                switch viewPath {
+                case .busService(let bus, let locationName, let busStopCode):
+                    BusServiceView(busService: bus,
+                                   locationName: locationName,
+                                   busStopCode: busStopCode,
+                                   showsAddToLocationButton: true)
+                case .busStop(let busStop):
+                    BusStopView(busStop: busStop)
+                case .mrtMap:
+                    DirectoryMRTMapView()
+                default:
+                    Color.clear
+                }
+            })
             .refreshable {
                 dataManager.shouldReloadBusStopList = true
             }

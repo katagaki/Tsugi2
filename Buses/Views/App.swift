@@ -11,6 +11,8 @@ import SwiftUI
 @main
 struct TsugiApp: App {
 
+    @StateObject var tabManager = TabManager()
+    @StateObject var navigationManager = NavigationManager()
     @StateObject var networkMonitor = NetworkMonitor()
     @StateObject var dataManager = DataManager()
     @StateObject var favorites = FavoritesManager()
@@ -27,6 +29,8 @@ struct TsugiApp: App {
                     loadAPIKeys()
                     initializeProperTextFramework()
                 }
+                .environmentObject(tabManager)
+                .environmentObject(navigationManager)
                 .environmentObject(networkMonitor)
                 .environmentObject(dataManager)
                 .environmentObject(favorites)
