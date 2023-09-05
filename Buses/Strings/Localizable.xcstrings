@@ -597,74 +597,6 @@
         }
       }
     },
-    "More.Attribution.BusRouter" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BusRouter SG"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BusRouter SG"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BusRouter SG"
-          }
-        }
-      }
-    },
-    "More.Attribution.LTA" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "LTA DataMall"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "LTA DataMall"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "LTA DataMall"
-          }
-        }
-      }
-    },
-    "More.Attribution.Polyline" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Polyline"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Polyline"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Polyline"
-          }
-        }
-      }
-    },
     "More.Customization" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1160,7 +1092,7 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Xでポスト"
           }
         },
@@ -1290,13 +1222,13 @@
             "device" : {
               "iphone" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
+                  "state" : "translated",
                   "value" : "位置情報の設定が無効化されています。一時的に位置情報を共有するには、下のボタンを選択してください。"
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
+                  "state" : "translated",
                   "value" : "位置情報の設定が無効化されています。一時的に位置情報を共有するには、下のボタンを選択してください。"
                 }
               }
@@ -1308,13 +1240,13 @@
             "device" : {
               "iphone" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
+                  "state" : "translated",
                   "value" : "位置信息设置已禁用。暂时共享位置信息时，请点击下面的按钮。"
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
+                  "state" : "translated",
                   "value" : "位置信息设置已禁用。暂时共享位置信息时，请点击下面的按钮。"
                 }
               }
@@ -2120,6 +2052,29 @@
         }
       }
     },
+    "ViewTitle.More.Attribution" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attribution"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "著者権表記"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "作者版权"
+          }
+        }
+      }
+    },
     "ViewTitle.More.Customization.AppIcon" : {
       "localizations" : {
         "en" : {
@@ -2143,6 +2098,7 @@
       }
     },
     "ViewTitle.More.Donate" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

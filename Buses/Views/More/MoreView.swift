@@ -129,67 +129,12 @@ struct MoreView: View {
                         .font(.body)
                 }
                 Section {
-                    Link(destination: URL(string: "https://datamall.lta.gov.sg")!) {
-                        HStack {
-                            ListRow(image: "ListIcon.Attribution.LTA",
-                                    title: "More.Attribution.LTA",
-                                    includeSpacer: true)
-                            Image(systemName: "safari")
-                                .opacity(0.5)
-                        }
-                    }
-                    .foregroundColor(.primary)
-                    Link(destination: URL(string: "https://github.com/cheeaun/sgbusdata")!) {
-                        HStack {
-                            ListRow(image: "ListIcon.Attribution.BusRouter",
-                                    title: "More.Attribution.BusRouter",
-                                    includeSpacer: true)
-                            Image(systemName: "safari")
-                                .opacity(0.5)
-                        }
-                    }
-                    .foregroundColor(.primary)
                     NavigationLink {
-                        TextEditor(text: .constant(
-"""
-The MIT License (MIT)
-
-Copyright (c) 2015 Raphaël Mor
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-"""
-                        ))
-                        .navigationTitle("More.Attribution.Polyline")
-                        .toolbar {
-                            ToolbarItem(placement: .navigationBarTrailing) {
-                                Link(destination: URL(string: "https://github.com/raphaelmor/Polyline")!) {
-                                    Image(systemName: "safari")
-                                }
-                            }
-                        }
+                        LicensesView()
                     } label: {
-                        ListRow(image: "ListIcon.Attribution.Polyline",
-                                title: "More.Attribution.Polyline")
+                        ListRow(image: "ListIcon.Attributions",
+                                title: "More.Attribution")
                     }
-                } header: {
-                    ListSectionHeader(text: "More.Attribution")
-                        .font(.body)
                 }
             }
             .listStyle(.insetGrouped)
@@ -204,18 +149,7 @@ SOFTWARE.
                 settings.setShowRoute(newValue)
             })
             .navigationTitle("ViewTitle.More")
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Text("ViewTitle.More")
-                        .font(.system(size: 24.0, weight: .bold))
-                        .onTapGesture(count: 5) {
-                            showLogsView = true
-                        }
-                }
-                ToolbarItem(placement: .principal) {
-                    Spacer()
-                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         dismiss()
