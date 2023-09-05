@@ -41,9 +41,16 @@ struct WebView: UIViewRepresentable {
     document.querySelectorAll('.headerNavigation').forEach(x => { x.remove() })
     document.querySelectorAll('.sg-gov-header').forEach(x => { x.remove() })
     document.querySelectorAll('.sec-navbar').forEach(x => { x.remove() })
-    document.getElementById('appPrompter').remove()
+    if (document.getElementById('appPrompter') != null) {
+        document.getElementById('appPrompter').remove()
+    }
     document.querySelectorAll('.needsclick').forEach(x => { x.remove() })
     document.querySelectorAll('footer').forEach(x => { x.remove() })
+
+    // Customize CSS
+    document.querySelectorAll('.divCalculate').forEach(x => {
+        x.style.position = 'unset'
+    })
     """
 
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

@@ -16,4 +16,5 @@ enum ViewPath: Hashable {
                     forBusStopCode: String)
     case busStop(BusStop)
     case mrtMap
+    case fareCalculator
 }

@@ -88,7 +88,6 @@
 		E4B7FFF0285467060019F71A /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7FFEB285460DE0019F71A /* MoreView.swift */; };
 		E4B7FFF32854693B0019F71A /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7FFF22854693B0019F71A /* FavoritesView.swift */; };
 		E4B7FFFA28561DBF0019F71A /* BusStopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7FFF928561DBF0019F71A /* BusStopView.swift */; };
-		E4B7FFFC285620530019F71A /* DirectoryMRTMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7FFFB285620530019F71A /* DirectoryMRTMapView.swift */; };
 		E4B7FFFF285635470019F71A /* NearbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7FFFE285635470019F71A /* NearbyView.swift */; };
 		E4BCFDB529E2E42200E4D2AD /* PTCapitalization.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4BCFDB329E2E42200E4D2AD /* PTCapitalization.plist */; };
 		E4BCFDB629E2E42200E4D2AD /* PTTerms.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4BCFDB429E2E42200E4D2AD /* PTTerms.plist */; };
@@ -237,7 +236,6 @@
 		E4B7FFEB285460DE0019F71A /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
 		E4B7FFF22854693B0019F71A /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		E4B7FFF928561DBF0019F71A /* BusStopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopView.swift; sourceTree = "<group>"; };
-		E4B7FFFB285620530019F71A /* DirectoryMRTMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryMRTMapView.swift; sourceTree = "<group>"; };
 		E4B7FFFE285635470019F71A /* NearbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyView.swift; sourceTree = "<group>"; };
 		E4BCFDB329E2E42200E4D2AD /* PTCapitalization.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = PTCapitalization.plist; sourceTree = "<group>"; };
 		E4BCFDB429E2E42200E4D2AD /* PTTerms.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = PTTerms.plist; sourceTree = "<group>"; };
@@ -467,7 +465,6 @@
 			isa = PBXGroup;
 			children = (
 				E4B7FFE728544EBC0019F71A /* DirectoryView.swift */,
-				E4B7FFFB285620530019F71A /* DirectoryMRTMapView.swift */,
 				E4C3FEC829E84ACF009BBC92 /* ListBusStopRow.swift */,
 			);
 			path = Directory;
@@ -794,7 +791,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E41C1B9C28570CA1003F1BFB /* CoordinateManager.swift in Sources */,
-				E4B7FFFC285620530019F71A /* DirectoryMRTMapView.swift in Sources */,
 				E4BD94AB2859C87300030C7C /* ListArrivalInfoRow.swift in Sources */,
 				E41518F129B5848F00E50BB7 /* MapStopView.swift in Sources */,
 				E467E24C29E5A838005E188C /* LocationManager.swift in Sources */,

@@ -256,6 +256,29 @@
         }
       }
     },
+    "Directory.FareCalculator" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fare Calculator"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "運賃計算機"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "票价计算器"
+          }
+        }
+      }
+    },
     "Directory.LastUpdated" : {
       "localizations" : {
         "en" : {
@@ -2008,6 +2031,29 @@
         }
       }
     },
+    "ViewTitle.FareCalculator" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fare Calculator"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "運賃計算機"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "票价计算器"
+          }
+        }
+      }
+    },
     "ViewTitle.Favorites" : {
       "localizations" : {
         "en" : {
@@ -2093,29 +2139,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "图标"
-          }
-        }
-      }
-    },
-    "ViewTitle.More.Donate" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Donate"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "寄付"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "捐赠"
           }
         }
       }

@@ -49,6 +49,15 @@ struct DirectoryView: View {
                                     .font(.body)
                             }
                         }
+                        NavigationLink(value: ViewPath.fareCalculator) {
+                            HStack(alignment: .center, spacing: 16.0) {
+                                Image(.listIconFareCalculator)
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                                Text("Directory.FareCalculator")
+                                    .font(.body)
+                            }
+                        }
                     } header: {
                         ListSectionHeader(text: "Directory.UsefulResources")
                             .font(.body)
@@ -95,7 +104,11 @@ struct DirectoryView: View {
                 case .busStop(let busStop):
                     BusStopView(busStop: busStop)
                 case .mrtMap:
-                    DirectoryMRTMapView()
+                    WebView(url: URL(string: "https://www.lta.gov.sg/content/ltagov/en/map/train.html")!)
+                        .navigationTitle("ViewTitle.MRTMap")
+                case .fareCalculator:
+                    WebView(url: URL(string: "https://www.lta.gov.sg/content/ltagov/en/map/fare-calculator.html")!)
+                        .navigationTitle("ViewTitle.FareCalculator")
                 default:
                     Color.clear
                 }
