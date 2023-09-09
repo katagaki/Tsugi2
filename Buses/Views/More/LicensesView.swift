@@ -13,11 +13,11 @@ struct LicensesView: View {
     @State var licenses: [License] = [
     License(libraryName: "LTA DataMall", text:
     """
-    This app contains data from LTA DataMall. For more information, visit https://datamall.lta.gov.sg.
+    This app uses data from LTA DataMall. For more information, visit https://datamall.lta.gov.sg.
     """),
     License(libraryName: "BusRouter SG", text:
     """
-    This app contains data graciously provided by BusRouter SG. For more information, visit https://github.com/cheeaun/sgbusdata.
+    This app uses data graciously provided by BusRouter SG. For more information, visit https://github.com/cheeaun/sgbusdata.
     """),
     License(libraryName: "Polyline", text:
 """
