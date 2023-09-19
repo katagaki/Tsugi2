@@ -405,7 +405,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1を削除してよろしいですか？"
+            "value" : "%1を削除してもよろしいですか？"
           }
         },
         "zh-Hans" : {
