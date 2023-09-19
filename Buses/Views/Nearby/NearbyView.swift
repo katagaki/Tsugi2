@@ -61,6 +61,7 @@ struct NearbyView: View {
                     }
                 }
                 .listStyle(.insetGrouped)
+                .listSectionSpacing(0)
                 .navigationDestination(for: ViewPath.self, destination: { viewPath in
                     switch viewPath {
                     case .busService(let bus, let locationName, let busStopCode):

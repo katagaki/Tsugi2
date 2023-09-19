@@ -43,6 +43,7 @@ struct NotificationsView: View {
                 }
             }
             .listStyle(.insetGrouped)
+            .listSectionSpacing(0)
             .navigationDestination(for: ViewPath.self, destination: { viewPath in
                 switch viewPath {
                 case .busServiceNamed(let serviceNumber, let locationName, let busStopCode):
