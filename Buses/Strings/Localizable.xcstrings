@@ -925,19 +925,19 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Shows the route taken by bus services above the arrival times."
+            "value" : "Shows the route taken by bus services in the map."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "バスの到着時間の上に、バスのルートが表示されます。"
+            "value" : "マップにバスのルートが表示されます。"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "巴士路线显示在巴士到达时间上方。"
+            "value" : "在地图上显示巴士服务的路线。"
           }
         }
       }
