@@ -20,7 +20,7 @@ struct AssistantAttributes: ActivityAttributes {
     var currentDate: Date
 }
 
-struct AssistantLiveActivity: Widget {
+struct ArrivalLiveActivity: Widget {
 
     @Environment(\.colorScheme) var colorScheme
 
@@ -64,7 +64,6 @@ struct AssistantLiveActivity: Widget {
             }
             .padding(16.0)
             .activitySystemActionForegroundColor(Color.black)
-
         } dynamicIsland: { context in
             DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {

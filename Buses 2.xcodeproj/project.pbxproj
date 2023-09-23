@@ -212,8 +212,6 @@
 		E482AC9229AC53B2008DAD30 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		E482AC9529AC53B2008DAD30 /* AssistantBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantBundle.swift; sourceTree = "<group>"; };
 		E482AC9729AC53B2008DAD30 /* AssistantLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantLiveActivity.swift; sourceTree = "<group>"; };
-		E482AC9929AC53B2008DAD30 /* Assistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assistant.swift; sourceTree = "<group>"; };
-		E482AC9B29AC53B2008DAD30 /* Assistant.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Assistant.intentdefinition; sourceTree = "<group>"; };
 		E482AC9C29AC53B3008DAD30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E482AC9E29AC53B3008DAD30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E482ACBF29AC6DEE008DAD30 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
@@ -475,8 +473,6 @@
 			children = (
 				E482AC9529AC53B2008DAD30 /* AssistantBundle.swift */,
 				E482AC9729AC53B2008DAD30 /* AssistantLiveActivity.swift */,
-				E482AC9929AC53B2008DAD30 /* Assistant.swift */,
-				E482AC9B29AC53B2008DAD30 /* Assistant.intentdefinition */,
 				E482AC9C29AC53B3008DAD30 /* Assets.xcassets */,
 				E482AC9E29AC53B3008DAD30 /* Info.plist */,
 			);
