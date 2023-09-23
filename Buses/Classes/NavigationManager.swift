@@ -13,6 +13,7 @@ class NavigationManager: ObservableObject {
     @Published var favoritesTabPath: [ViewPath] = []
     @Published var notificationsTabPath: [ViewPath] = []
     @Published var directoryTabPath: [ViewPath] = []
+    @Published var moreTabPath: [ViewPath] = []
 
     func popToRoot(for tab: TabType) {
         switch tab {
@@ -24,6 +25,8 @@ class NavigationManager: ObservableObject {
             notificationsTabPath.removeAll()
         case .directory:
             directoryTabPath.removeAll()
+        case .more:
+            moreTabPath.removeAll()
         }
     }
 
@@ -37,6 +40,8 @@ class NavigationManager: ObservableObject {
             notificationsTabPath.append(viewPath)
         case .directory:
             directoryTabPath.append(viewPath)
+        case .more:
+            moreTabPath.append(viewPath)
         }
     }
 

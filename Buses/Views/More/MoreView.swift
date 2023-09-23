@@ -9,8 +9,7 @@ import SwiftUI
 
 struct MoreView: View {
 
-    @Environment(\.dismiss) var dismiss
-
+    @EnvironmentObject var navigationManager: NavigationManager
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var settings: SettingsManager
     @EnvironmentObject var toaster: Toaster
@@ -18,7 +17,7 @@ struct MoreView: View {
     @State var showLogsView: Bool = false
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navigationManager.moreTabPath) {
             List {
                 Section {
                     Picker(selection: $settings.startupTab) {
@@ -68,9 +67,7 @@ struct MoreView: View {
                         .buttonStyle(.borderless)
                         .frame(maxWidth: .infinity)
                     }
-                    NavigationLink {
-                        MoreAppIconView()
-                    } label: {
+                    NavigationLink(value: ViewPath.moreAppIcon) {
                         ListRow(image: "ListIcon.AppIcon",
                                 title: "More.Customization.AppIcon")
                     }
@@ -129,15 +126,23 @@ struct MoreView: View {
                         .font(.body)
                 }
                 Section {
-                    NavigationLink {
-                        LicensesView()
-                    } label: {
+                    NavigationLink(value: ViewPath.moreAttributions) {
                         ListRow(image: "ListIcon.Attributions",
                                 title: "More.Attribution")
                     }
                 }
             }
             .listStyle(.insetGrouped)
+            .navigationDestination(for: ViewPath.self, destination: { viewPath in
+                switch viewPath {
+                case .moreAppIcon:
+                    MoreAppIconView()
+                case .moreAttributions:
+                    LicensesView()
+                default:
+                    Color.clear
+                }
+            })
             .onChange(of: settings.startupTab, { _, newValue in
                 settings.setStartupTab(newValue)
             })
@@ -149,16 +154,14 @@ struct MoreView: View {
                 settings.setShowRoute(newValue)
             })
             .navigationTitle("ViewTitle.More")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 20.0))
-                            .symbolRenderingMode(.hierarchical)
-                    }
-                    .buttonStyle(.plain)
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Text("ViewTitle.More")
+                        .font(.system(size: 24.0, weight: .bold))
+                }
+                ToolbarItem(placement: .principal) {
+                    Spacer()
                 }
             }
             .sheet(isPresented: $showLogsView) {

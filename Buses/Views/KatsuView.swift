@@ -53,28 +53,14 @@ struct KatsuView: View {
                     BlurGradientView()
                         .frame(height: metrics.safeAreaInsets.top + 12.0)
                         .ignoresSafeArea(edges: .top)
-                    VStack(alignment: .trailing, spacing: 8.0) {
-                        Button {
-                            isMoreSheetPresented = true
-                        } label: {
-                            Image(systemName: "ellipsis")
-                                .frame(width: 44.0, height: 44.0)
-                                .contentShape(Rectangle())
-                        }
-                        .background(.thickMaterial)
+                    MapUserLocationButton(scope: mapScope)
+                        .mapControlVisibility(.visible)
+                        .buttonBorderShape(.roundedRectangle)
                         .mask {
                             RoundedRectangle(cornerRadius: 10.0)
                         }
                         .shadow(radius: 2.5)
-                        MapUserLocationButton(scope: mapScope)
-                            .mapControlVisibility(.visible)
-                            .buttonBorderShape(.roundedRectangle)
-                            .mask {
-                                RoundedRectangle(cornerRadius: 10.0)
-                            }
-                            .shadow(radius: 2.5)
-                    }
-                    .padding()
+                        .padding()
                     Color.clear
                 }
             }

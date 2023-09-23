@@ -12,4 +12,5 @@ enum TabType: Int {
     case favorites = 1
     case notifications = 2
     case directory = 3
+    case more = 4
 }

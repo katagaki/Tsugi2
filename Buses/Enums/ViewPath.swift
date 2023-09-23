@@ -17,4 +17,6 @@ enum ViewPath: Hashable {
     case busStop(BusStop)
     case mrtMap
     case fareCalculator
+    case moreAppIcon
+    case moreAttributions
 }

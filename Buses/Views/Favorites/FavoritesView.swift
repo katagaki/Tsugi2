@@ -142,7 +142,7 @@ struct FavoritesView: View {
                     Spacer()
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    HStack(alignment: .center, spacing: 8.0) {
+                    HStack(alignment: .center, spacing: 16.0) {
                         Toggle(isOn: $isEditing) {
                             Image(systemName: "pencil")
                                 .font(.body)
