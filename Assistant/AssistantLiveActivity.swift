@@ -63,7 +63,8 @@ struct ArrivalLiveActivity: Widget {
                 }
             }
             .padding(16.0)
-            .activitySystemActionForegroundColor(Color.black)
+            .activityBackgroundTint(.black.opacity(0.3))
+            .activitySystemActionForegroundColor(.white)
         } dynamicIsland: { context in
             DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
