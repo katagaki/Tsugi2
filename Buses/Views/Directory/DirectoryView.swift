@@ -6,6 +6,7 @@
 //
 
 import CoreLocation
+import Komponents
 import SwiftUI
 
 struct DirectoryView: View {

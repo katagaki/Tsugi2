@@ -8,6 +8,7 @@
 #if canImport(CoreLocationUI)
 import CoreLocationUI
 #endif
+import Komponents
 import MapKit
 import SwiftUI
 
@@ -86,7 +87,7 @@ struct NearbyView: View {
                     } else if !locationManager.isInUsableState() {
                         VStack {
                             ListHintOverlay(image: "exclamationmark.triangle.fill", text: "Nearby.Hint.NoLocation")
-#if !os(xrOS)
+#if !os(visionOS)
                             LocationButton {
                                 locationManager.updateLocation(usingOnlySignificantChanges: false)
                             }

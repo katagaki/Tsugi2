@@ -31,7 +31,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     func updateLocation(usingOnlySignificantChanges: Bool = true) {
         if usingOnlySignificantChanges {
-#if !os(xrOS)
+#if !os(visionOS)
             log("Start monitoring for significant location changes.")
             shared.startMonitoringSignificantLocationChanges()
 #endif

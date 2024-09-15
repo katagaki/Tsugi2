@@ -5,6 +5,7 @@
 //  Created by 堅書 on 2022/06/11.
 //
 
+import Komponents
 import SwiftUI
 
 struct MoreView: View {
@@ -18,7 +19,8 @@ struct MoreView: View {
 
     var body: some View {
         NavigationStack(path: $navigationManager.moreTabPath) {
-            List {
+            
+            MoreList(repoName: "katagaki/Tsugi2", viewPath: ViewPath.moreAttributions) {
                 Section {
                     Picker(selection: $settings.startupTab) {
                         Text("TabTitle.Nearby")
@@ -87,50 +89,6 @@ struct MoreView: View {
                         .font(.body)
                 }
                 // TODO: Include some notification sounds, settings, etc
-                Section {
-                    Link(destination: URL(string: "https://x.com/katagaki_")!) {
-                        HStack {
-                            ListRow(image: "ListIcon.Twitter",
-                                    title: "More.Help.Twitter",
-                                    subtitle: "More.Help.Twitter.Subtitle",
-                                    includeSpacer: true)
-                            Image(systemName: "safari")
-                                .opacity(0.5)
-                        }
-                        .foregroundColor(.primary)
-                    }
-                    Link(destination: URL(string: "mailto:ktgk.public@icloud.com")!) {
-                        HStack {
-                            ListRow(image: "ListIcon.Email",
-                                    title: "More.Help.Email",
-                                    subtitle: "More.Help.Email.Subtitle",
-                                    includeSpacer: true)
-                            Image(systemName: "arrow.up.forward.app")
-                                .opacity(0.5)
-                        }
-                        .foregroundColor(.primary)
-                    }
-                    Link(destination: URL(string: "https://github.com/katagaki/Tsugi2")!) {
-                        HStack {
-                            ListRow(image: "ListIcon.GitHub",
-                                    title: "More.Help.GitHub",
-                                    subtitle: "More.Help.GitHub.Subtitle",
-                                    includeSpacer: true)
-                            Image(systemName: "safari")
-                                .opacity(0.5)
-                        }
-                        .foregroundColor(.primary)
-                    }
-                } header: {
-                    ListSectionHeader(text: "More.Help")
-                        .font(.body)
-                }
-                Section {
-                    NavigationLink(value: ViewPath.moreAttributions) {
-                        ListRow(image: "ListIcon.Attributions",
-                                title: "More.Attribution")
-                    }
-                }
             }
             .listStyle(.insetGrouped)
             .navigationDestination(for: ViewPath.self, destination: { viewPath in
@@ -138,7 +96,64 @@ struct MoreView: View {
                 case .moreAppIcon:
                     MoreAppIconView()
                 case .moreAttributions:
-                    LicensesView()
+                    LicensesView(licenses: [
+                        License(libraryName: "LTA DataMall", text:
+"""
+This app uses data from LTA DataMall. For more information, visit https://datamall.lta.gov.sg.
+"""),
+                        License(libraryName: "BusRouter SG", text:
+"""
+This app uses data graciously provided by BusRouter SG. For more information, visit https://github.com/cheeaun/sgbusdata.
+"""),
+                        License(libraryName: "Polyline", text:
+"""
+The MIT License (MIT)
+
+Copyright (c) 2015 Raphaël Mor
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"""),
+                        License(libraryName: "VariableBlurView", text:
+"""
+MIT License
+
+Copyright (c) 2023 A. Zheng
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+""")
+                    ])
                 default:
                     Color.clear
                 }
