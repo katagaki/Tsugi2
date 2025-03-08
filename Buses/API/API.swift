@@ -7,7 +7,7 @@
 
 import Foundation
 
-let apiEndpoint = "http://datamall2.mytransport.sg/ltaodataservice"
+let apiEndpoint = "https://datamall2.mytransport.sg/ltaodataservice"
 var apiKeys: [String: String] = [:]
 
 func loadAPIKeys() {
@@ -71,7 +71,7 @@ func getBusStops(from firstIndex: Int = 0) async throws -> BusStopList {
 
 func getBusArrivals(for stopCode: String) async throws -> BusStop {
     let busArrivals: BusStop = try await withCheckedThrowingContinuation({ continuation in
-        var request = URLRequest(url: URL(string: "\(apiEndpoint)/BusArrivalv2?BusStopCode=\(stopCode)")!)
+        var request = URLRequest(url: URL(string: "\(apiEndpoint)/v3/BusArrival?BusStopCode=\(stopCode)")!)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         if let apiKey = apiKeys["LTA"] {
@@ -109,6 +109,11 @@ func getAllBusRoutes() async throws -> BusRouteList {
         // TODO: Bus route count may increase in the future, setting fetch at 30,000 for now
         for index in 0...60 {
             group.addTask {
+                // Add rolling delay to get around API rate limit
+                let sleepTime = UInt64(index / 10) * UInt64(1100000000)
+                if sleepTime > 0 {
+                    try await Task.sleep(nanoseconds: sleepTime)
+                }
                 let busRouteList = try await getBusRoutes(from: index * 500)
                 return busRouteList
             }

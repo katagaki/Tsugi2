@@ -902,19 +902,19 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Show Route (Beta)"
+            "value" : "Show Route"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ルートを表示（ベータ版）"
+            "value" : "ルートを表示"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "显示路线（测试版）"
+            "value" : "显示路线"
           }
         }
       }
