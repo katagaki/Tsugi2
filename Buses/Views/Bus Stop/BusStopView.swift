@@ -28,6 +28,7 @@ struct BusStopView: View {
                 ListBusServiceRow(bus: .constant(bus))
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
         .listStyle(.insetGrouped)
         .refreshable {
             reloadBusArrivals()
@@ -71,38 +72,38 @@ struct BusStopView: View {
                     }
                 }
             }
-            ToolbarItem(placement: .primaryAction) {
-                HStack(alignment: .center, spacing: 8.0) {
-                    if !favorites.favoriteLocations.contains(where: { location in
-                        location.busStopCode == busStop.code && location.usesLiveBusStopData
-                    }) {
-                        Button {
-                            Task {
-                                await favorites.addFavoriteLocation(busStop: busStop, usesLiveBusStopData: true)
-                                toaster.showToast(localized("Shared.BusStop.Toast.Favorited",
-                                                            replacing: busStop.name()),
-                                                  type: .checkmark,
-                                                  hidesAutomatically: true)
-                            }
-                        } label: {
-                            Image(systemName: "rectangle.stack.badge.plus")
-                                .font(.body)
+            ToolbarItem(placement: .topBarTrailing) {
+                if !favorites.favoriteLocations.contains(where: { location in
+                    location.busStopCode == busStop.code && location.usesLiveBusStopData
+                }) {
+                    Button {
+                        Task {
+                            await favorites.addFavoriteLocation(busStop: busStop, usesLiveBusStopData: true)
+                            toaster.showToast(localized("Shared.BusStop.Toast.Favorited",
+                                                        replacing: busStop.name()),
+                                              type: .checkmark,
+                                              hidesAutomatically: true)
                         }
+                    } label: {
+                        Image(systemName: "rectangle.stack.badge.plus")
+                            .font(.body)
                     }
-                    if let originalDescription = busStop.originalDescription {
-                        let urlEncodedDescription = originalDescription
-                            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-                        Link(destination:
-                                URL(string: "maps://?q=\(urlEncodedDescription)%20Stop")!) {
-                            Image(systemName: "map")
-                        }
-                    } else if let description = busStop.description {
-                        let urlEncodedDescription = description
-                            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-                        Link(destination:
-                                URL(string: "maps://?q=\(urlEncodedDescription)%20Stop")!) {
-                            Image(systemName: "map")
-                        }
+                }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                if let originalDescription = busStop.originalDescription {
+                    let urlEncodedDescription = originalDescription
+                        .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                    Link(destination:
+                            URL(string: "maps://?q=\(urlEncodedDescription)%20Stop")!) {
+                        Image(systemName: "map")
+                    }
+                } else if let description = busStop.description {
+                    let urlEncodedDescription = description
+                        .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                    Link(destination:
+                            URL(string: "maps://?q=\(urlEncodedDescription)%20Stop")!) {
+                        Image(systemName: "map")
                     }
                 }
             }

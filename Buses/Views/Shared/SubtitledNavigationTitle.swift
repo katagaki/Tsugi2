@@ -12,7 +12,7 @@ struct SubtitledNavigationTitle: View {
     var subtitle: String
 
     var body: some View {
-        VStack {
+        VStack(alignment: .center) {
             Text(title)
                 .font(Font.custom("LTA-Identity", size: 16.0))
             Text(subtitle)
