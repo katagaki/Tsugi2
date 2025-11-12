@@ -71,15 +71,6 @@ struct NotificationsView: View {
             }
             .navigationTitle("ViewTitle.Notifications")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Text("ViewTitle.Notifications")
-                        .font(.system(size: 24.0, weight: .bold))
-                }
-                ToolbarItem(placement: .principal) {
-                    Spacer()
-                }
-            }
         }
     }
 

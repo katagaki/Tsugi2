@@ -135,13 +135,6 @@ struct FavoritesView: View {
             .navigationTitle("ViewTitle.Favorites")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Text("ViewTitle.Favorites")
-                        .font(.system(size: 24.0, weight: .bold))
-                }
-                ToolbarItem(placement: .principal) {
-                    Spacer()
-                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     HStack(alignment: .center, spacing: 16.0) {
                         Toggle(isOn: $isEditing) {

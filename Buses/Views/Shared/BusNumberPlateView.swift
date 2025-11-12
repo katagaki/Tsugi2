@@ -18,7 +18,8 @@ struct BusNumberPlateView: View {
             Text(serviceNo)
                 .font(Font.custom("LTA-Identity", fixedSize: carouselDisplayMode.fontSize()))
                 .foregroundColor(.white)
-                .padding(EdgeInsets(top: 0.0, leading: 8.0, bottom: 1.0, trailing: 8.0))
+                .padding(.horizontal, 8.0)
+                .padding(.bottom, 1.0)
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .lineLimit(1)
         }

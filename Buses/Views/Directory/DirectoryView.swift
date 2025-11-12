@@ -188,21 +188,29 @@ struct DirectoryView: View {
             .navigationTitle("ViewTitle.Directory")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Text("ViewTitle.Directory")
-                        .font(.system(size: 24.0, weight: .bold))
-                }
-                ToolbarItem(placement: .principal) {
-                    Spacer()
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    VStack(alignment: .trailing) {
-                        Text("Directory.LastUpdated")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                        Text("\(updatedDate)")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
+                // TODO: Refactor
+                if #available(iOS 26.0, *) {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        VStack(alignment: .trailing) {
+                            Text("Directory.LastUpdated")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                            Text("\(updatedDate)")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    .sharedBackgroundVisibility(.hidden)
+                } else {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        VStack(alignment: .trailing) {
+                            Text("Directory.LastUpdated")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                            Text("\(updatedDate)")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
                     }
                 }
             }

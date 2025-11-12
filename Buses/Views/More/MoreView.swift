@@ -19,7 +19,6 @@ struct MoreView: View {
 
     var body: some View {
         NavigationStack(path: $navigationManager.moreTabPath) {
-            
             MoreList(repoName: "katagaki/Tsugi2", viewPath: ViewPath.moreAttributions) {
                 Section {
                     Picker(selection: $settings.startupTab) {
@@ -170,15 +169,6 @@ SOFTWARE.
             })
             .navigationTitle("ViewTitle.More")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Text("ViewTitle.More")
-                        .font(.system(size: 24.0, weight: .bold))
-                }
-                ToolbarItem(placement: .principal) {
-                    Spacer()
-                }
-            }
             .sheet(isPresented: $showLogsView) {
                 NavigationStack {
                     TextEditor(text: .constant(appLogs))

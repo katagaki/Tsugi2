@@ -23,6 +23,14 @@ struct BusServicesCarousel: View {
 
     let timer = Timer.publish(every: 10.0, tolerance: 5.0, on: .main, in: .common).autoconnect()
 
+    var fontHackOffset: CGFloat {
+        if #available(iOS 26.0, *) {
+            return 2.0
+        } else {
+            return -6.0
+        }
+    }
+
     var body: some View {
         HStack {
             if !isInitialDataLoaded {
@@ -40,47 +48,50 @@ struct BusServicesCarousel: View {
                                                                       atLocation: locationName,
                                                                       forBusStopCode: busStopCode ?? "")) {
                                 VStack(alignment: .center, spacing: 2.0) {
-                                    BusNumberPlateView(carouselDisplayMode: $settings.carouselDisplayMode,
-                                                       serviceNo: bus.serviceNo)
-                                    .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: -8.0, trailing: 0.0))
-                                    switch settings.carouselDisplayMode {
-                                    case .full:
-                                        Text(bus.nextBus?.estimatedArrivalTimeAsDate()?.arrivalFormat(style: .short) ??
-                                             localized("Shared.BusArrival.NotInService"))
-                                        .font(.system(size: 16.0))
-                                        .foregroundColor(.primary)
-                                        .lineLimit(1)
-                                        Text(bus.nextBus2?.estimatedArrivalTimeAsDate()?.arrivalFormat() ?? " ")
+                                    BusNumberPlateView(
+                                        carouselDisplayMode: $settings.carouselDisplayMode,
+                                        serviceNo: bus.serviceNo
+                                    )
+                                    Group {
+                                        switch settings.carouselDisplayMode {
+                                        case .full:
+                                            Text(bus.nextBus?.estimatedArrivalTimeAsDate()?.arrivalFormat(style: .short) ??
+                                                 localized("Shared.BusArrival.NotInService"))
                                             .font(.system(size: 16.0))
+                                            .foregroundColor(.primary)
+                                            .lineLimit(1)
+                                            Text(bus.nextBus2?.estimatedArrivalTimeAsDate()?.arrivalFormat() ?? " ")
+                                                .font(.system(size: 16.0))
+                                                .foregroundColor(.secondary)
+                                                .lineLimit(1)
+                                        case .small:
+                                            Text(bus.nextBus?.estimatedArrivalTimeAsDate()?
+                                                .arrivalFormat(style: .abbreviated) ??
+                                                 localized("Shared.BusArrival.NotInService"))
+                                            .font(.system(size: 14.0))
+                                            .foregroundColor(.primary)
+                                            .lineLimit(1)
+                                            Text(bus.nextBus2?.estimatedArrivalTimeAsDate()?
+                                                .arrivalFormat(style: .abbreviated) ?? " ")
+                                            .font(.system(size: 14.0))
                                             .foregroundColor(.secondary)
                                             .lineLimit(1)
-                                    case .small:
-                                        Text(bus.nextBus?.estimatedArrivalTimeAsDate()?
-                                            .arrivalFormat(style: .abbreviated) ??
-                                             localized("Shared.BusArrival.NotInService"))
-                                        .font(.system(size: 14.0))
-                                        .foregroundColor(.primary)
-                                        .lineLimit(1)
-                                        Text(bus.nextBus2?.estimatedArrivalTimeAsDate()?
-                                            .arrivalFormat(style: .abbreviated) ?? " ")
-                                        .font(.system(size: 14.0))
-                                        .foregroundColor(.secondary)
-                                        .lineLimit(1)
-                                    case .minimal:
-                                        Text(bus.nextBus?.estimatedArrivalTimeAsDate()?
-                                            .arrivalFormat(style: .abbreviated) ??
-                                             localized("Shared.BusArrival.NotInService"))
-                                        .font(.system(size: 12.0))
-                                        .foregroundColor(.primary)
-                                        .lineLimit(1)
+                                        case .minimal:
+                                            Text(bus.nextBus?.estimatedArrivalTimeAsDate()?
+                                                .arrivalFormat(style: .abbreviated) ??
+                                                 localized("Shared.BusArrival.NotInService"))
+                                            .font(.system(size: 12.0))
+                                            .foregroundColor(.primary)
+                                            .lineLimit(1)
+                                        }
                                     }
+                                    .offset(y: fontHackOffset)
                                 }
                                 .frame(minWidth: settings.carouselDisplayMode.width(),
                                        maxWidth: settings.carouselDisplayMode.width(),
                                        minHeight: 0,
                                        maxHeight: .infinity,
                                        alignment: .center)
-                                .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: 8.0, trailing: 0.0))
                             }
                         }
                     }
