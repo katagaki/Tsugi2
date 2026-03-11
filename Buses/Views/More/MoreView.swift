@@ -49,7 +49,6 @@ struct MoreView: View {
                         .buttonStyle(.borderless)
                         .frame(maxWidth: .infinity)
                     }
-                    NavigationLink("More.Customization.AppIcon", value: ViewPath.moreAppIcon)
                     Toggle("More.Customization.ShowRoute", isOn: $settings.showRoute)
                     Toggle("More.Customization.ProperText", isOn: $settings.useProperText)
                         .disabled(dataManager.shouldReloadBusStopList)
@@ -72,8 +71,6 @@ struct MoreView: View {
             .listStyle(.insetGrouped)
             .navigationDestination(for: ViewPath.self, destination: { viewPath in
                 switch viewPath {
-                case .moreAppIcon:
-                    MoreAppIconView()
                 case .moreLicenses:
                     MoreLicensesView()
                 default:
