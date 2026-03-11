@@ -84,6 +84,7 @@ struct KatsuView: View {
                 MainTabView()
                     .presentationDetents([.medium, .large])
                     .presentationBackgroundInteraction(.enabled)
+                    .presentationBackground(.background)
                     .interactiveDismissDisabled()
             }
             .mapScope(mapScope)
@@ -97,6 +98,7 @@ struct KatsuView: View {
             .sheet(isPresented: $isMoreSheetPresented, content: {
                 MoreView()
                     .presentationDragIndicator(.visible)
+                    .presentationBackground(.background)
             })
         }
     }
