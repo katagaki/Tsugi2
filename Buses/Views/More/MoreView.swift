@@ -94,6 +94,7 @@ struct MoreView: View {
                         .navigationTitle("More.UnderTheHood")
                         .navigationBarTitleDisplayMode(.inline)
                 }
+                .presentationBackground(.background)
             }
         }
     }

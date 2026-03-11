@@ -155,6 +155,7 @@ struct FavoritesView: View {
                 FavoriteLocationEditView(locationToEdit: $favoriteLocationPendingEdit)
                     .presentationDetents([.medium])
                     .presentationDragIndicator(.visible)
+                    .presentationBackground(.background)
             })
         }
         .alert("Favorites.New.Title", isPresented: $isNewPending, actions: {
