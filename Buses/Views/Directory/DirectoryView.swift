@@ -188,31 +188,17 @@ struct DirectoryView: View {
             .navigationTitle("ViewTitle.Directory")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                // TODO: Refactor
-                if #available(iOS 26.0, *) {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        VStack(alignment: .trailing) {
-                            Text("Directory.LastUpdated")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                            Text("\(updatedDate)")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        }
-                    }
-                    .sharedBackgroundVisibility(.hidden)
-                } else {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        VStack(alignment: .trailing) {
-                            Text("Directory.LastUpdated")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                            Text("\(updatedDate)")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    VStack(alignment: .trailing) {
+                        Text("Directory.LastUpdated")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        Text("\(updatedDate)")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
                     }
                 }
+                .sharedBackgroundVisibility(.hidden)
             }
         }
     }

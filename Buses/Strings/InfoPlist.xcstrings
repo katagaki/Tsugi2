@@ -1,65 +1,125 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "CFBundleDisplayName" : {
-      "comment" : "Info.strings\n  Buses 2\n\n  Created by 堅書 on 2022/06/13.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buses"
+  "sourceLanguage": "en",
+  "strings": {
+    "CFBundleDisplayName": {
+      "comment": "Info.strings\n  Buses 2\n\n  Created by 堅書 on 2022/06/13.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buses"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "バス"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "バス"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "巴士精灵"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "巴士精灵"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "버스"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bas"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "பேருந்து"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "รถเมล์"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xe buýt"
           }
         }
       }
     },
-    "CFBundleName" : {
-      "comment" : "Bundle name",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Buses"
+    "CFBundleName": {
+      "comment": "Bundle name",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Buses"
           }
         }
       }
     },
-    "NSLocationWhenInUseUsageDescription" : {
-      "comment" : "Privacy - Location When In Use Usage Description",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buses uses your location to look for bus stops nearby."
+    "NSLocationWhenInUseUsageDescription": {
+      "comment": "Privacy - Location When In Use Usage Description",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buses uses your location to look for bus stops nearby."
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "近くにあるバス停を見つけるために位置情報を利用します。"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "近くにあるバス停を見つけるために位置情報を利用します。"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "使用位置信息查找附近的公交车站。"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用位置信息查找附近的公交车站。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "버스는 근처 버스 정류장을 찾기 위해 위치를 사용합니다."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bas menggunakan lokasi anda untuk mencari perhentian bas berdekatan."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "அருகிலுள்ள பேருந்து நிறுத்தங்களைக் கண்டறிய பேருந்து உங்கள் இருப்பிடத்தைப் பயன்படுத்துகிறது."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "รถเมล์ใช้ตำแหน่งของคุณเพื่อค้นหาป้ายรถเมล์ใกล้เคียง"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xe buýt sử dụng vị trí của bạn để tìm các trạm xe buýt gần đây."
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

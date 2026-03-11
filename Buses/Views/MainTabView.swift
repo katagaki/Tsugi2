@@ -19,43 +19,31 @@ struct MainTabView: View {
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var favorites: FavoritesManager
     @EnvironmentObject var locationManager: LocationManager
-    @EnvironmentObject var settings: SettingsManager
     @EnvironmentObject var toaster: Toaster
 
     @State var isInitialLoad: Bool = true
 
     var body: some View {
         TabView(selection: $tabManager.selectedTab) {
-            NearbyView()
-                .tabItem {
-                    Label("TabTitle.Nearby", systemImage: "location.circle.fill")
-                }
-                .tag(TabType.nearby)
-            FavoritesView()
-                .tabItem {
-                    Label("TabTitle.Favorites", systemImage: "rectangle.stack.fill")
-                }
-                .tag(TabType.favorites)
-            NotificationsView()
-                .tabItem {
-                    Label("TabTitle.Notifications", systemImage: "bell.fill")
-                }
-                .tag(TabType.notifications)
-            DirectoryView(updatedDate: $dataManager.updatedDate,
-                          updatedTime: $dataManager.updatedTime)
-                .tabItem {
-                    Label("TabTitle.Directory", systemImage: "magnifyingglass")
-                }
-                .tag(TabType.directory)
-            MoreView()
-                .tabItem {
-                    Label("TabTitle.More", systemImage: "ellipsis")
-                }
-                .tag(TabType.more)
+            Tab("TabTitle.Nearby", systemImage: "location.circle.fill", value: TabType.nearby) {
+                NearbyView()
+            }
+            Tab("TabTitle.Favorites", systemImage: "rectangle.stack.fill", value: TabType.favorites) {
+                FavoritesView()
+            }
+            Tab("TabTitle.Notifications", systemImage: "bell.fill", value: TabType.notifications) {
+                NotificationsView()
+            }
+            Tab(value: TabType.directory, role: .search) {
+                DirectoryView(updatedDate: $dataManager.updatedDate,
+                              updatedTime: $dataManager.updatedTime)
+            }
+            Tab("TabTitle.More", systemImage: "ellipsis", value: TabType.more) {
+                MoreView()
+            }
         }
         .task {
             if isInitialLoad {
-                tabManager.selectedTab = TabType(rawValue: settings.startupTab) ?? .nearby
                 await reloadBusStopList()
                 isInitialLoad = false
             }

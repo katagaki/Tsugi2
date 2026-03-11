@@ -55,10 +55,8 @@ struct KatsuView: View {
                         .ignoresSafeArea(edges: .top)
                     MapUserLocationButton(scope: mapScope)
                         .mapControlVisibility(.visible)
-                        .buttonBorderShape(.roundedRectangle)
-                        .mask {
-                            RoundedRectangle(cornerRadius: 10.0)
-                        }
+                        .buttonBorderShape(.circle)
+                        .glassEffect(.regular.interactive())
                         .shadow(radius: 2.5)
                         .padding()
                     Color.clear
@@ -82,10 +80,11 @@ struct KatsuView: View {
                                     trailing: 76.0))
                 .animation(.snappy, value: toaster.isToastShowing)
             }
-            .safeAreaInset(edge: .bottom) {
+            .sheet(isPresented: .constant(true)) {
                 MainTabView()
-                    .frame(height: metrics.size.height * 0.6)
-                    .shadow(radius: 10.0)
+                    .presentationDetents([.medium, .large])
+                    .presentationBackgroundInteraction(.enabled)
+                    .interactiveDismissDisabled()
             }
             .mapScope(mapScope)
             .mapControls {

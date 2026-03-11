@@ -11,7 +11,6 @@ class SettingsManager: ObservableObject {
 
     let defaults = UserDefaults.standard
 
-    @Published var startupTab: Int = 0
     @Published var useProperText: Bool = true
     @Published var carouselDisplayMode: CarouselDisplayMode = .full
     @Published var carouselDisplayModeIsFull: Bool = true
@@ -32,9 +31,6 @@ class SettingsManager: ObservableObject {
         defaults.setValue("\(versionNumber).\(buildNumber)", forKey: "CurrentVersion")
 
         // Set default settings
-        if defaults.value(forKey: "StartupTab") == nil {
-            defaults.set(0, forKey: "StartupTab")
-        }
         if defaults.value(forKey: "UseProperText") == nil {
             defaults.setValue(true, forKey: "UseProperText")
         }
@@ -46,7 +42,6 @@ class SettingsManager: ObservableObject {
         }
 
         // Load configuration into global variables
-        startupTab = defaults.integer(forKey: "StartupTab")
         useProperText = defaults.bool(forKey: "UseProperText")
         carouselDisplayMode = CarouselDisplayMode(
             rawValue: defaults.string(forKey: "CarouselDisplayMode") ?? "Full") ?? .full
@@ -58,11 +53,6 @@ class SettingsManager: ObservableObject {
 
     func set(_ value: Any?, forKey key: String) {
         defaults.set(value, forKey: key)
-    }
-
-    func setStartupTab(_ newValue: Int) {
-        defaults.set(newValue, forKey: "StartupTab")
-        startupTab = newValue
     }
 
     func setProperText(_ newValue: Bool) {

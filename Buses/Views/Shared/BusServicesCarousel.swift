@@ -24,11 +24,7 @@ struct BusServicesCarousel: View {
     let timer = Timer.publish(every: 10.0, tolerance: 5.0, on: .main, in: .common).autoconnect()
 
     var fontHackOffset: CGFloat {
-        if #available(iOS 26.0, *) {
-            return 2.0
-        } else {
-            return -6.0
-        }
+        return 2.0
     }
 
     var body: some View {
