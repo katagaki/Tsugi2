@@ -145,8 +145,7 @@ struct MainTabView: View {
             favorites.updateViewFlag.toggle()
             reloadNearbyBusStops()
         }
-        .searchable(text: $searchTerm,
-                     placement: .bottomBar)
+        .searchable(text: $searchTerm)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 HStack(spacing: 12.0) {
@@ -162,7 +161,7 @@ struct MainTabView: View {
                     }
                 }
             }
-            DefaultToolbarItem(placement: .bottomBar)
+            DefaultToolbarItem(kind: .search, placement: .bottomBar)
             ToolbarItemGroup(placement: .bottomBar) {
                 Button {
                     navigationManager.push(ViewPath.mrtMap)
