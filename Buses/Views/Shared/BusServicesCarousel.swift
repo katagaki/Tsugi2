@@ -92,6 +92,7 @@ struct BusServicesCarousel: View {
                         }
                     }
                 }
+                .contentMargins(.horizontal, 16.0, for: .scrollContent)
             } else {
                 HStack(alignment: .center) {
                     if dataDisplayMode == .favoriteLocationCustomData {

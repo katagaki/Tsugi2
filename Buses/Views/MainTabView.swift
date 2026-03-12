@@ -311,7 +311,6 @@ struct MainTabView: View {
                     : nil,
                 favoriteLocation: location
             )
-            .padding(.horizontal)
             .opacity(isEditing ? 0.5 : 1.0)
             .disabled(isEditing)
         }
@@ -452,7 +451,6 @@ struct MainTabView: View {
                 busStopCode: stop.wrappedValue.code,
                 favoriteLocation: nil
             )
-            .padding(.horizontal)
         }
         .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
     }
