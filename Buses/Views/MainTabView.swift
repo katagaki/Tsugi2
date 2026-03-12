@@ -147,18 +147,19 @@ struct MainTabView: View {
         }
         .searchable(text: $searchTerm)
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                HStack(spacing: 12.0) {
-                    Button {
-                        isNotificationsSheetPresented = true
-                    } label: {
-                        Image(systemName: "bell.fill")
-                    }
-                    Button {
-                        isMoreSheetPresented = true
-                    } label: {
-                        Image(systemName: "ellipsis")
-                    }
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button {
+                    isNotificationsSheetPresented = true
+                } label: {
+                    Image(systemName: "bell.fill")
+                }
+            }
+            ToolbarSpacer(.fixed, placement: .navigationBarTrailing)
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button {
+                    isMoreSheetPresented = true
+                } label: {
+                    Image(systemName: "ellipsis")
                 }
             }
             DefaultToolbarItem(kind: .search, placement: .bottomBar)
@@ -169,6 +170,9 @@ struct MainTabView: View {
                 } label: {
                     Image(systemName: "tram.fill")
                 }
+            }
+            ToolbarSpacer(.fixed, placement: .bottomBar)
+            ToolbarItemGroup(placement: .bottomBar) {
                 Button {
                     navigationManager.push(ViewPath.fareCalculator)
                 } label: {
@@ -179,10 +183,12 @@ struct MainTabView: View {
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $isNotificationsSheetPresented) {
             NotificationsView()
+                .presentationDetents([.medium, .large])
                 .presentationDragIndicator(.visible)
         }
         .sheet(isPresented: $isMoreSheetPresented) {
             MoreView()
+                .presentationDetents([.medium, .large])
                 .presentationDragIndicator(.visible)
         }
         .sheet(isPresented: $isEditPending) {
@@ -208,10 +214,10 @@ struct MainTabView: View {
         case .busStop(let busStop):
             BusStopView(busStop: busStop)
         case .mrtMap:
-            WebView(url: URL(string: "https://www.lta.gov.sg/content/ltagov/en/map/train.html")!)
+            LoadingWebView(url: URL(string: "https://www.lta.gov.sg/content/ltagov/en/map/train.html")!)
                 .navigationTitle("ViewTitle.MRTMap")
         case .fareCalculator:
-            WebView(url: URL(string: "https://www.lta.gov.sg/content/ltagov/en/map/fare-calculator.html")!)
+            LoadingWebView(url: URL(string: "https://www.lta.gov.sg/content/ltagov/en/map/fare-calculator.html")!)
                 .navigationTitle("ViewTitle.FareCalculator")
         case .moreLicenses:
             MoreLicensesView()

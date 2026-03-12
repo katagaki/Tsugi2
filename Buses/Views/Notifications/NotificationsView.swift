@@ -62,13 +62,9 @@ struct NotificationsView: View {
             .navigationTitle("ViewTitle.Notifications")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
+                ToolbarItem(placement: .topTrailingBar) {
+                    Button(role: .close) {
                         dismiss()
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .symbolRenderingMode(.hierarchical)
-                            .foregroundStyle(.secondary)
                     }
                 }
             }
