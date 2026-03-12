@@ -9,7 +9,6 @@
 import CoreLocationUI
 #endif
 import CoreLocation
-import Komponents
 import MapKit
 import SwiftUI
 
@@ -50,14 +49,10 @@ struct MainTabView: View {
     @State var favoriteLocationPendingEditNewNickname: String = ""
     @State var isDeletionPending: Bool = false
 
-    var isSearching: Bool {
-        searchTerm.trimmingCharacters(in: .whitespaces).count > 1
-    }
-
     var body: some View {
         NavigationStack(path: $navigationManager.mainPath) {
             List {
-                if isSearching {
+                if searchTerm.trimmingCharacters(in: .whitespaces).count > 1 {
                     Section {
                         ForEach(searchResults, id: \.code) { stop in
                             NavigationLink(value: ViewPath.busStop(stop)) {
@@ -65,8 +60,7 @@ struct MainTabView: View {
                             }
                         }
                     } header: {
-                        ListSectionHeader(text: "Directory.SearchResults")
-                            .font(.body)
+                        Text("Directory.SearchResults")
                     }
                 } else {
                     // MARK: - Locations Section
@@ -155,8 +149,7 @@ struct MainTabView: View {
                         }
                     } header: {
                         HStack(alignment: .center, spacing: 16.0) {
-                            ListSectionHeader(text: "TabTitle.Favorites")
-                                .font(.body)
+                            Text("TabTitle.Favorites")
                             Spacer()
                             if !favorites.favoriteLocations.isEmpty {
                                 Toggle(isOn: $isEditing) {
@@ -253,8 +246,7 @@ struct MainTabView: View {
                             }
                         }
                     } header: {
-                        ListSectionHeader(text: "TabTitle.Nearby")
-                            .font(.body)
+                        Text("TabTitle.Nearby")
                     }
                 }
             }
@@ -290,37 +282,33 @@ struct MainTabView: View {
                 favorites.updateViewFlag.toggle()
                 reloadNearbyBusStops()
             }
+            .searchable(text: $searchTerm,
+                         placement: .toolbar)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    HStack(alignment: .center, spacing: 16.0) {
-                        Button {
-                            isNotificationsSheetPresented = true
-                        } label: {
-                            Image(systemName: "bell.fill")
-                        }
-                        Button {
-                            isMoreSheetPresented = true
-                        } label: {
-                            Image(systemName: "ellipsis")
-                        }
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button {
+                        isNotificationsSheetPresented = true
+                    } label: {
+                        Image(systemName: "bell.fill")
+                    }
+                    ToolbarSpacer(.fixed)
+                    Button {
+                        isMoreSheetPresented = true
+                    } label: {
+                        Image(systemName: "ellipsis")
                     }
                 }
                 ToolbarItemGroup(placement: .bottomBar) {
-                    TextField("TabTitle.Directory", text: $searchTerm)
-                        .textFieldStyle(.roundedBorder)
                     Spacer()
-                        .frame(width: 16.0)
                     Button {
                         navigationManager.push(ViewPath.mrtMap)
                     } label: {
-                        Image(.listIconTrainMap)
+                        Image(systemName: "tram.fill")
                     }
                     Button {
                         navigationManager.push(ViewPath.fareCalculator)
                     } label: {
-                        Image(.listIconFareCalculator)
-                            .resizable()
-                            .frame(width: 20, height: 20)
+                        Image(systemName: "dollarsign.circle")
                     }
                 }
             }
@@ -420,7 +408,7 @@ struct MainTabView: View {
         }
         .onChange(of: searchTerm) { _, _ in
             let searchTermTrimmed = searchTerm.trimmingCharacters(in: .whitespaces)
-            if isSearching {
+            if searchTerm.trimmingCharacters(in: .whitespaces).count > 1 {
                 if searchTermTrimmed.contains(previousSearchTerm) {
                     searchResults = searchResults.filter { stop in
                         stop.name().similarTo(searchTermTrimmed)
