@@ -36,21 +36,44 @@ extension UnifiedView {
         }
         .searchable(text: $searchTerm)
         .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Button {
-                    isNotificationsSheetPresented = true
-                } label: {
-                    Image(systemName: "bell.fill")
-                }
-            }
-            ToolbarSpacer(.fixed, placement: .navigationBarTrailing)
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
+            ToolbarItemGroup(placement: .topBarLeading) {
                 Button {
                     isMoreSheetPresented = true
                 } label: {
                     Image(systemName: "ellipsis")
                 }
             }
+            ToolbarSpacer(.fixed, placement: .topBarLeading)
+            ToolbarItemGroup(placement: .topBarLeading) {
+                Button {
+                    isNotificationsSheetPresented = true
+                } label: {
+                    Image(systemName: "bell.fill")
+                }
+            }
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                if !favorites.favoriteLocations.isEmpty {
+                    Button {
+                        withAnimation {
+                            isEditing.toggle()
+                        }
+                    } label: {
+                        Image(systemName: isEditing ? "checkmark" : "pencil")
+                    }
+                }
+            }
+            ToolbarSpacer(.fixed, placement: .topBarTrailing)
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                Button {
+                    isNewPending = true
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
+        }
+        .toolbar {
             DefaultToolbarItem(kind: .search, placement: .bottomBar)
             ToolbarSpacer(.fixed, placement: .bottomBar)
             ToolbarItemGroup(placement: .bottomBar) {
@@ -155,26 +178,7 @@ extension UnifiedView {
                 .onDelete(perform: deleteLocations)
             }
         } header: {
-            HStack(alignment: .center, spacing: 16.0) {
-                Text("TabTitle.Favorites")
-                Spacer()
-                if !favorites.favoriteLocations.isEmpty {
-                    Button {
-                        withAnimation {
-                            isEditing.toggle()
-                        }
-                    } label: {
-                        Image(systemName: isEditing ? "checkmark" : "pencil")
-                            .font(.title3)
-                    }
-                }
-                Button {
-                    isNewPending = true
-                } label: {
-                    Image(systemName: "plus")
-                        .font(.title3)
-                }
-            }
+            Text("TabTitle.Favorites")
         }
     }
 
