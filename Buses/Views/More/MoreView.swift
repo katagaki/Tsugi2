@@ -9,7 +9,8 @@ import SwiftUI
 
 struct MoreView: View {
 
-    @EnvironmentObject var navigationManager: NavigationManager
+    @Environment(\.dismiss) var dismiss
+
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var settings: SettingsManager
     @EnvironmentObject var toaster: Toaster
@@ -17,7 +18,7 @@ struct MoreView: View {
     @State var showLogsView: Bool = false
 
     var body: some View {
-        NavigationStack(path: $navigationManager.moreTabPath) {
+        NavigationStack {
             List {
                 Section {
                     HStack(alignment: .center, spacing: 0.0) {
@@ -69,23 +70,34 @@ struct MoreView: View {
                 }
             }
             .listStyle(.insetGrouped)
-            .navigationDestination(for: ViewPath.self, destination: { viewPath in
+            .navigationDestination(for: ViewPath.self) { viewPath in
                 switch viewPath {
                 case .moreLicenses:
                     MoreLicensesView()
                 default:
                     Color.clear
                 }
-            })
-            .onChange(of: settings.useProperText, { _, newValue in
+            }
+            .onChange(of: settings.useProperText) { _, newValue in
                 settings.setProperText(newValue)
                 dataManager.shouldReloadBusStopList = true
-            })
-            .onChange(of: settings.showRoute, { _, newValue in
+            }
+            .onChange(of: settings.showRoute) { _, newValue in
                 settings.setShowRoute(newValue)
-            })
+            }
             .navigationTitle("ViewTitle.More")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .symbolRenderingMode(.hierarchical)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            }
             .sheet(isPresented: $showLogsView) {
                 NavigationStack {
                     TextEditor(text: .constant(appLogs))
@@ -94,7 +106,6 @@ struct MoreView: View {
                         .navigationTitle("More.UnderTheHood")
                         .navigationBarTitleDisplayMode(.inline)
                 }
-                .presentationBackground(.background)
             }
         }
     }

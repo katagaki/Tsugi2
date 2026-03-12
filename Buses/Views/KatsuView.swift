@@ -11,7 +11,6 @@ import SwiftUI
 
 struct KatsuView: View {
 
-    @EnvironmentObject var tabManager: TabManager
     @EnvironmentObject var navigationManager: NavigationManager
     @EnvironmentObject var coordinateManager: CoordinateManager
     @EnvironmentObject var toaster: Toaster
@@ -19,7 +18,6 @@ struct KatsuView: View {
     @Namespace var mapScope
 
     @State var position: MapCameraPosition = .automatic
-    @State var isMoreSheetPresented: Bool = false
 
     var body: some View {
         GeometryReader { metrics in
@@ -27,7 +25,7 @@ struct KatsuView: View {
                 ForEach(coordinateManager.coordinates, id: \.id) { coordinate in
                     Annotation(coordinate: coordinate.clCoordinate()) {
                         Button {
-                            navigationManager.push(ViewPath.busStop(coordinate.busStop), for: tabManager.selectedTab)
+                            navigationManager.push(ViewPath.busStop(coordinate.busStop))
                         } label: {
                             Image(.listIconBus)
                                 .resizable()
@@ -84,7 +82,6 @@ struct KatsuView: View {
                 MainTabView()
                     .presentationDetents([.medium, .large])
                     .presentationBackgroundInteraction(.enabled)
-                    .presentationBackground(.background)
                     .interactiveDismissDisabled()
             }
             .mapScope(mapScope)
@@ -95,11 +92,6 @@ struct KatsuView: View {
             .onChange(of: coordinateManager.updateCameraFlag) { _, _ in
                 position = .automatic
             }
-            .sheet(isPresented: $isMoreSheetPresented, content: {
-                MoreView()
-                    .presentationDragIndicator(.visible)
-                    .presentationBackground(.background)
-            })
         }
     }
 }
