@@ -10,6 +10,7 @@ import WebKit
 
 struct WebView: UIViewRepresentable {
     var url: URL
+    @Binding var isLoading: Bool
 
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
@@ -20,7 +21,7 @@ struct WebView: UIViewRepresentable {
     }
 
     func makeCoordinator() -> WebViewCoordinator {
-        WebViewCoordinator()
+        WebViewCoordinator(parent: self)
     }
 
     func updateUIView(_ uiView: WKWebView, context: Context) {
@@ -28,6 +29,12 @@ struct WebView: UIViewRepresentable {
     }
 
     class WebViewCoordinator: NSObject, WKNavigationDelegate {
+        var parent: WebView
+
+        init(parent: WebView) {
+            self.parent = parent
+        }
+
         let cleanupJS = """
     // Disable selection
     var css = '*{-webkit-touch-callout:none;-webkit-user-select:none}'
@@ -56,6 +63,24 @@ struct WebView: UIViewRepresentable {
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             webView.evaluateJavaScript(self.cleanupJS)
             webView.layer.opacity = 1.0
+            DispatchQueue.main.async {
+                self.parent.isLoading = false
+            }
         }
+    }
+}
+
+struct LoadingWebView: View {
+    var url: URL
+    @State private var isLoading: Bool = true
+
+    var body: some View {
+        WebView(url: url, isLoading: $isLoading)
+            .overlay {
+                if isLoading {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                }
+            }
     }
 }
