@@ -91,7 +91,6 @@ struct BusServicesCarousel: View {
                             }
                         }
                     }
-                    .padding(EdgeInsets(top: 0.0, leading: 16.0, bottom: 0.0, trailing: 16.0))
                 }
             } else {
                 HStack(alignment: .center) {
@@ -111,7 +110,6 @@ struct BusServicesCarousel: View {
                             .foregroundColor(.secondary)
                     }
                 }
-                .padding([.leading, .trailing])
             }
         }
         .task {
