@@ -53,201 +53,10 @@ struct MainTabView: View {
         NavigationStack(path: $navigationManager.mainPath) {
             List {
                 if searchTerm.trimmingCharacters(in: .whitespaces).count > 1 {
-                    Section {
-                        ForEach(searchResults, id: \.code) { stop in
-                            NavigationLink(value: ViewPath.busStop(stop)) {
-                                ListBusStopRow(busStop: .constant(stop))
-                            }
-                        }
-                    } header: {
-                        Text("Directory.SearchResults")
-                    }
+                    searchResultsSection
                 } else {
-                    // MARK: - Locations Section
-                    Section {
-                        if favorites.favoriteLocations.isEmpty {
-                            ContentUnavailableView {
-                                Label("Favorites.Hint.NoLocations.Title",
-                                      systemImage: "info.circle.fill")
-                            } description: {
-                                Text("Favorites.Hint.NoLocations")
-                            }
-                            .listRowInsets(EdgeInsets())
-                            .listRowBackground(Color.clear)
-                        } else {
-                            ForEach($favorites.favoriteLocations, id: \.hashValue) { $location in
-                                if !location.isFault && !location.isDeleted {
-                                    VStack(alignment: .leading, spacing: 8.0) {
-                                        HStack(alignment: .center, spacing: 6.0) {
-                                            Text(location.nickname ?? location.busStopCode ?? "")
-                                                .font(Font.custom("LTA-Identity", size: 16.0))
-                                            if isEditing {
-                                                Button {
-                                                    favoriteLocationPendingEdit = location
-                                                    favoriteLocationPendingEditNewNickname = location.nickname ?? location.busStopCode!
-                                                    isNicknameEditPending = true
-                                                } label: {
-                                                    Image(systemName: "pencil")
-                                                        .font(.body)
-                                                }
-                                                Spacer()
-                                                HStack(alignment: .center, spacing: 16.0) {
-                                                    if !location.usesLiveBusStopData && (location.busServices ?? []).count != 0 {
-                                                        Button {
-                                                            favoriteLocationPendingEdit = location
-                                                            isEditPending = true
-                                                        } label: {
-                                                            Image(systemName: "arrow.left.arrow.right")
-                                                                .font(.system(size: 14.0))
-                                                        }
-                                                    }
-                                                    Button {
-                                                        Task {
-                                                            await favorites.moveUp(location)
-                                                        }
-                                                    } label: {
-                                                        Image(systemName: "chevron.up")
-                                                            .font(.system(size: 14.0))
-                                                    }
-                                                    .disabled(location.viewIndex == 0)
-                                                    Button {
-                                                        Task {
-                                                            await favorites.moveDown(location)
-                                                        }
-                                                    } label: {
-                                                        Image(systemName: "chevron.down")
-                                                            .font(.system(size: 14.0))
-                                                    }
-                                                    .disabled(location.viewIndex == favorites.favoriteLocations.count - 1)
-                                                    Button {
-                                                        favoriteLocationPendingEdit = location
-                                                        isDeletionPending = true
-                                                    } label: {
-                                                        Image(systemName: "minus.circle")
-                                                            .font(.system(size: 14.0))
-                                                            .foregroundColor(.red)
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        BusServicesCarousel(
-                                            dataDisplayMode: location.usesLiveBusStopData
-                                                ? .favoriteLocationLiveData
-                                                : .favoriteLocationCustomData,
-                                            locationName: location.nickname ?? "",
-                                            busStopCode: location.usesLiveBusStopData
-                                                ? location.busStopCode
-                                                : nil,
-                                            favoriteLocation: $location
-                                        )
-                                        .opacity(isEditing ? 0.5 : 1.0)
-                                        .disabled(isEditing)
-                                    }
-                                    .listRowInsets(EdgeInsets(top: 16.0, leading: 16.0, bottom: 16.0, trailing: 0.0))
-                                }
-                            }
-                        }
-                    } header: {
-                        HStack(alignment: .center, spacing: 16.0) {
-                            Text("TabTitle.Favorites")
-                            Spacer()
-                            if !favorites.favoriteLocations.isEmpty {
-                                Toggle(isOn: $isEditing) {
-                                    Image(systemName: "pencil")
-                                        .font(.body)
-                                }
-                                .toggleStyle(.button)
-                                .labelsHidden()
-                            }
-                            Button {
-                                isNewPending = true
-                            } label: {
-                                Image(systemName: "plus")
-                                    .font(.body)
-                            }
-                        }
-                    }
-
-                    // MARK: - Nearby Section
-                    Section {
-                        if dataManager.busStops.count == 0 {
-                            HStack {
-                                Spacer()
-                                ProgressView()
-                                    .progressViewStyle(.circular)
-                                Spacer()
-                            }
-                            .listRowBackground(Color.clear)
-                        } else if !locationManager.isInUsableState() {
-                            ContentUnavailableView {
-                                Label("Nearby.Hint.NoLocation.Title",
-                                      systemImage: "exclamationmark.triangle.fill")
-                            } description: {
-                                Text("Nearby.Hint.NoLocation")
-                            } actions: {
-#if !os(visionOS)
-                                LocationButton {
-                                    locationManager.updateLocation(usingOnlySignificantChanges: false)
-                                }
-                                .symbolVariant(.fill)
-                                .labelStyle(.titleAndIcon)
-                                .foregroundColor(.white)
-                                .cornerRadius(100.0)
-#endif
-                            }
-                            .listRowInsets(EdgeInsets())
-                            .listRowBackground(Color.clear)
-                        } else if isNearbyBusStopsDetermined && nearbyBusStops.isEmpty {
-                            ContentUnavailableView {
-                                Label("Nearby.Hint.NoBusStops.Title",
-                                      systemImage: "exclamationmark.triangle.fill")
-                            } description: {
-                                Text("Nearby.Hint.NoBusStops")
-                            }
-                            .listRowInsets(EdgeInsets())
-                            .listRowBackground(Color.clear)
-                        } else {
-                            ForEach($nearbyBusStops, id: \.hashValue) { $stop in
-                                VStack(alignment: .leading, spacing: 8.0) {
-                                    HStack(alignment: .center, spacing: 0.0) {
-                                        Text(stop.name())
-                                            .font(Font.custom("LTA-Identity", size: 16.0))
-                                        Spacer()
-                                        if !favorites.favoriteLocations.contains(where: { location in
-                                            location.busStopCode == stop.code && location.usesLiveBusStopData
-                                        }) {
-                                            Button {
-                                                Task {
-                                                    await favorites.addFavoriteLocation(
-                                                        busStop: stop,
-                                                        usesLiveBusStopData: true
-                                                    )
-                                                    toaster.showToast(
-                                                        localized("Shared.BusStop.Toast.Favorited",
-                                                                  replacing: stop.name()),
-                                                        type: .checkmark,
-                                                        hidesAutomatically: true
-                                                    )
-                                                }
-                                            } label: {
-                                                Image(systemName: "rectangle.stack.badge.plus")
-                                                    .font(.system(size: 14.0))
-                                            }
-                                        }
-                                    }
-                                    BusServicesCarousel(
-                                        dataDisplayMode: .busStop,
-                                        locationName: stop.name(),
-                                        busStopCode: stop.code,
-                                        favoriteLocation: nil
-                                    )
-                                }
-                                .listRowInsets(EdgeInsets(top: 16.0, leading: 16.0, bottom: 16.0, trailing: 0.0))
-                            }
-                        }
-                    } header: {
-                        Text("TabTitle.Nearby")
-                    }
+                    locationsSection
+                    nearbySection
                 }
             }
             .listStyle(.insetGrouped)
@@ -483,6 +292,220 @@ struct MainTabView: View {
                 log("Scene change detected, but we don't know what the change was!")
             }
         }
+    }
+
+    // MARK: - Sections
+
+    @ViewBuilder var searchResultsSection: some View {
+        Section {
+            ForEach(searchResults, id: \.code) { stop in
+                NavigationLink(value: ViewPath.busStop(stop)) {
+                    ListBusStopRow(busStop: .constant(stop))
+                }
+            }
+        } header: {
+            Text("Directory.SearchResults")
+        }
+    }
+
+    @ViewBuilder var locationsSection: some View {
+        Section {
+            if favorites.favoriteLocations.isEmpty {
+                ContentUnavailableView {
+                    Label("Favorites.Hint.NoLocations.Title",
+                          systemImage: "info.circle.fill")
+                } description: {
+                    Text("Favorites.Hint.NoLocations")
+                }
+                .listRowInsets(EdgeInsets())
+                .listRowBackground(Color.clear)
+            } else {
+                ForEach($favorites.favoriteLocations, id: \.hashValue) { $location in
+                    if !location.isFault && !location.isDeleted {
+                        locationRow(location: $location)
+                    }
+                }
+            }
+        } header: {
+            HStack(alignment: .center, spacing: 16.0) {
+                Text("TabTitle.Favorites")
+                Spacer()
+                if !favorites.favoriteLocations.isEmpty {
+                    Toggle(isOn: $isEditing) {
+                        Image(systemName: "pencil")
+                            .font(.body)
+                    }
+                    .toggleStyle(.button)
+                    .labelsHidden()
+                }
+                Button {
+                    isNewPending = true
+                } label: {
+                    Image(systemName: "plus")
+                        .font(.body)
+                }
+            }
+        }
+    }
+
+    @ViewBuilder func locationRow(location: Binding<FavoriteLocation>) -> some View {
+        VStack(alignment: .leading, spacing: 8.0) {
+            HStack(alignment: .center, spacing: 6.0) {
+                Text(location.wrappedValue.nickname ?? location.wrappedValue.busStopCode ?? "")
+                    .font(Font.custom("LTA-Identity", size: 16.0))
+                if isEditing {
+                    Button {
+                        favoriteLocationPendingEdit = location.wrappedValue
+                        favoriteLocationPendingEditNewNickname = location.wrappedValue.nickname ?? location.wrappedValue.busStopCode!
+                        isNicknameEditPending = true
+                    } label: {
+                        Image(systemName: "pencil")
+                            .font(.body)
+                    }
+                    Spacer()
+                    locationEditingControls(location: location)
+                }
+            }
+            BusServicesCarousel(
+                dataDisplayMode: location.wrappedValue.usesLiveBusStopData
+                    ? .favoriteLocationLiveData
+                    : .favoriteLocationCustomData,
+                locationName: location.wrappedValue.nickname ?? "",
+                busStopCode: location.wrappedValue.usesLiveBusStopData
+                    ? location.wrappedValue.busStopCode
+                    : nil,
+                favoriteLocation: location
+            )
+            .opacity(isEditing ? 0.5 : 1.0)
+            .disabled(isEditing)
+        }
+        .listRowInsets(EdgeInsets(top: 16.0, leading: 16.0, bottom: 16.0, trailing: 0.0))
+    }
+
+    @ViewBuilder func locationEditingControls(location: Binding<FavoriteLocation>) -> some View {
+        HStack(alignment: .center, spacing: 16.0) {
+            if !location.wrappedValue.usesLiveBusStopData && (location.wrappedValue.busServices ?? []).count != 0 {
+                Button {
+                    favoriteLocationPendingEdit = location.wrappedValue
+                    isEditPending = true
+                } label: {
+                    Image(systemName: "arrow.left.arrow.right")
+                        .font(.system(size: 14.0))
+                }
+            }
+            Button {
+                Task {
+                    await favorites.moveUp(location.wrappedValue)
+                }
+            } label: {
+                Image(systemName: "chevron.up")
+                    .font(.system(size: 14.0))
+            }
+            .disabled(location.wrappedValue.viewIndex == 0)
+            Button {
+                Task {
+                    await favorites.moveDown(location.wrappedValue)
+                }
+            } label: {
+                Image(systemName: "chevron.down")
+                    .font(.system(size: 14.0))
+            }
+            .disabled(location.wrappedValue.viewIndex == favorites.favoriteLocations.count - 1)
+            Button {
+                favoriteLocationPendingEdit = location.wrappedValue
+                isDeletionPending = true
+            } label: {
+                Image(systemName: "minus.circle")
+                    .font(.system(size: 14.0))
+                    .foregroundColor(.red)
+            }
+        }
+    }
+
+    @ViewBuilder var nearbySection: some View {
+        Section {
+            if dataManager.busStops.count == 0 {
+                HStack {
+                    Spacer()
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                    Spacer()
+                }
+                .listRowBackground(Color.clear)
+            } else if !locationManager.isInUsableState() {
+                ContentUnavailableView {
+                    Label("Nearby.Hint.NoLocation.Title",
+                          systemImage: "exclamationmark.triangle.fill")
+                } description: {
+                    Text("Nearby.Hint.NoLocation")
+                } actions: {
+#if !os(visionOS)
+                    LocationButton {
+                        locationManager.updateLocation(usingOnlySignificantChanges: false)
+                    }
+                    .symbolVariant(.fill)
+                    .labelStyle(.titleAndIcon)
+                    .foregroundColor(.white)
+                    .cornerRadius(100.0)
+#endif
+                }
+                .listRowInsets(EdgeInsets())
+                .listRowBackground(Color.clear)
+            } else if isNearbyBusStopsDetermined && nearbyBusStops.isEmpty {
+                ContentUnavailableView {
+                    Label("Nearby.Hint.NoBusStops.Title",
+                          systemImage: "exclamationmark.triangle.fill")
+                } description: {
+                    Text("Nearby.Hint.NoBusStops")
+                }
+                .listRowInsets(EdgeInsets())
+                .listRowBackground(Color.clear)
+            } else {
+                ForEach($nearbyBusStops, id: \.hashValue) { $stop in
+                    nearbyStopRow(stop: $stop)
+                }
+            }
+        } header: {
+            Text("TabTitle.Nearby")
+        }
+    }
+
+    @ViewBuilder func nearbyStopRow(stop: Binding<BusStop>) -> some View {
+        VStack(alignment: .leading, spacing: 8.0) {
+            HStack(alignment: .center, spacing: 0.0) {
+                Text(stop.wrappedValue.name())
+                    .font(Font.custom("LTA-Identity", size: 16.0))
+                Spacer()
+                if !favorites.favoriteLocations.contains(where: { location in
+                    location.busStopCode == stop.wrappedValue.code && location.usesLiveBusStopData
+                }) {
+                    Button {
+                        Task {
+                            await favorites.addFavoriteLocation(
+                                busStop: stop.wrappedValue,
+                                usesLiveBusStopData: true
+                            )
+                            toaster.showToast(
+                                localized("Shared.BusStop.Toast.Favorited",
+                                          replacing: stop.wrappedValue.name()),
+                                type: .checkmark,
+                                hidesAutomatically: true
+                            )
+                        }
+                    } label: {
+                        Image(systemName: "rectangle.stack.badge.plus")
+                            .font(.system(size: 14.0))
+                    }
+                }
+            }
+            BusServicesCarousel(
+                dataDisplayMode: .busStop,
+                locationName: stop.wrappedValue.name(),
+                busStopCode: stop.wrappedValue.code,
+                favoriteLocation: nil
+            )
+        }
+        .listRowInsets(EdgeInsets(top: 16.0, leading: 16.0, bottom: 16.0, trailing: 0.0))
     }
 
     // MARK: - Data Loading
