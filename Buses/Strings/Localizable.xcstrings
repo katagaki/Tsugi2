@@ -4887,7 +4887,8 @@
             "value": "No Locations"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Nearby.Hint.NoLocation.Title": {
       "localizations": {
@@ -4897,7 +4898,8 @@
             "value": "Location Unavailable"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Nearby.Hint.NoBusStops.Title": {
       "localizations": {
@@ -4907,7 +4909,8 @@
             "value": "No Bus Stops Nearby"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     }
   },
   "version": "1.0"

@@ -162,6 +162,7 @@ struct MainTabView: View {
                 }
             }
             DefaultToolbarItem(kind: .search, placement: .bottomBar)
+            ToolbarSpacer(.fixed, placement: .bottomBar)
             ToolbarItemGroup(placement: .bottomBar) {
                 Button {
                     navigationManager.push(ViewPath.mrtMap)
