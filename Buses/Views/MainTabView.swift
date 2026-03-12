@@ -299,6 +299,7 @@ struct MainTabView: View {
                     locationEditingControls(location: location)
                 }
             }
+            .padding(.horizontal)
             BusServicesCarousel(
                 dataDisplayMode: location.wrappedValue.usesLiveBusStopData
                     ? .favoriteLocationLiveData
@@ -309,10 +310,11 @@ struct MainTabView: View {
                     : nil,
                 favoriteLocation: location
             )
+            .padding(.horizontal)
             .opacity(isEditing ? 0.5 : 1.0)
             .disabled(isEditing)
         }
-        .listRowInsets(EdgeInsets(top: 16.0, leading: 16.0, bottom: 16.0, trailing: 0.0))
+        .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
     }
 
     @ViewBuilder func locationEditingControls(location: Binding<FavoriteLocation>) -> some View {
@@ -437,14 +439,16 @@ struct MainTabView: View {
                     }
                 }
             }
+            .padding(.horizontal)
             BusServicesCarousel(
                 dataDisplayMode: .busStop,
                 locationName: stop.wrappedValue.name(),
                 busStopCode: stop.wrappedValue.code,
                 favoriteLocation: nil
             )
+            .padding(.horizontal)
         }
-        .listRowInsets(EdgeInsets(top: 16.0, leading: 16.0, bottom: 16.0, trailing: 0.0))
+        .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
     }
 
     // MARK: - Data Loading
