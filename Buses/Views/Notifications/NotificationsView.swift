@@ -62,7 +62,7 @@ struct NotificationsView: View {
             .navigationTitle("ViewTitle.Notifications")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topTrailingBar) {
+                ToolbarItem(placement: .topBarTrailing) {
                     Button(role: .close) {
                         dismiss()
                     }

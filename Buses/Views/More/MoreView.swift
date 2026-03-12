@@ -88,7 +88,7 @@ struct MoreView: View {
             .navigationTitle("ViewTitle.More")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topTrailingBar) {
+                ToolbarItem(placement: .topBarTrailing) {
                     Button(role: .close) {
                         dismiss()
                     }
