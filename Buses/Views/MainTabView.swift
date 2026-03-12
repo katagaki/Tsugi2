@@ -266,7 +266,7 @@ struct MainTabView: View {
                 if !favorites.favoriteLocations.isEmpty {
                     Toggle(isOn: $isEditing) {
                         Image(systemName: "pencil")
-                            .font(.body)
+                            .font(.title3)
                     }
                     .toggleStyle(.button)
                     .labelsHidden()
@@ -275,7 +275,7 @@ struct MainTabView: View {
                     isNewPending = true
                 } label: {
                     Image(systemName: "plus")
-                        .font(.body)
+                        .font(.title3)
                 }
             }
         }
@@ -295,6 +295,7 @@ struct MainTabView: View {
                         Image(systemName: "pencil")
                             .font(.body)
                     }
+                    .buttonStyle(.borderless)
                     Spacer()
                     locationEditingControls(location: location)
                 }
@@ -327,6 +328,7 @@ struct MainTabView: View {
                     Image(systemName: "arrow.left.arrow.right")
                         .font(.system(size: 14.0))
                 }
+                .buttonStyle(.borderless)
             }
             Button {
                 Task {
@@ -336,6 +338,7 @@ struct MainTabView: View {
                 Image(systemName: "chevron.up")
                     .font(.system(size: 14.0))
             }
+            .buttonStyle(.borderless)
             .disabled(location.wrappedValue.viewIndex == 0)
             Button {
                 Task {
@@ -345,6 +348,7 @@ struct MainTabView: View {
                 Image(systemName: "chevron.down")
                     .font(.system(size: 14.0))
             }
+            .buttonStyle(.borderless)
             .disabled(location.wrappedValue.viewIndex == favorites.favoriteLocations.count - 1)
             Button {
                 favoriteLocationPendingEdit = location.wrappedValue
@@ -354,6 +358,7 @@ struct MainTabView: View {
                     .font(.system(size: 14.0))
                     .foregroundColor(.red)
             }
+            .buttonStyle(.borderless)
         }
     }
 
@@ -437,6 +442,7 @@ struct MainTabView: View {
                         Image(systemName: "rectangle.stack.badge.plus")
                             .font(.system(size: 14.0))
                     }
+                    .buttonStyle(.borderless)
                 }
             }
             .padding(.horizontal)
