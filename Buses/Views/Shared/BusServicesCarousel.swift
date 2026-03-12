@@ -111,6 +111,7 @@ struct BusServicesCarousel: View {
                             .foregroundColor(.secondary)
                     }
                 }
+                .padding(.horizontal, 16.0)
             }
         }
         .task {

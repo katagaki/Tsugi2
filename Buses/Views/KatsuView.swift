@@ -79,7 +79,7 @@ struct KatsuView: View {
                 .animation(.snappy, value: toaster.isToastShowing)
             }
             .sheet(isPresented: .constant(true)) {
-                MainTabView()
+                UnifiedView()
                     .presentationDetents([.medium, .large])
                     .presentationBackgroundInteraction(.enabled)
                     .interactiveDismissDisabled()
