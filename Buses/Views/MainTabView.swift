@@ -146,7 +146,7 @@ struct MainTabView: View {
             reloadNearbyBusStops()
         }
         .searchable(text: $searchTerm,
-                     placement: .toolbar)
+                     placement: .bottomBar)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 HStack(spacing: 12.0) {
@@ -162,8 +162,8 @@ struct MainTabView: View {
                     }
                 }
             }
+            DefaultToolbarItem(placement: .bottomBar)
             ToolbarItemGroup(placement: .bottomBar) {
-                Spacer()
                 Button {
                     navigationManager.push(ViewPath.mrtMap)
                 } label: {
@@ -236,10 +236,13 @@ struct MainTabView: View {
         Section {
             if favorites.favoriteLocations.isEmpty {
                 ContentUnavailableView {
-                    Label("Favorites.Hint.NoLocations.Title",
-                          systemImage: "info.circle.fill")
+                    Label {
+                        Text(localized("Favorites.Hint.NoLocations.Title"))
+                    } icon: {
+                        Image(systemName: "info.circle.fill")
+                    }
                 } description: {
-                    Text("Favorites.Hint.NoLocations")
+                    Text(localized("Favorites.Hint.NoLocations"))
                 }
                 .listRowInsets(EdgeInsets())
                 .listRowBackground(Color.clear)
@@ -358,10 +361,13 @@ struct MainTabView: View {
                 .listRowBackground(Color.clear)
             } else if !locationManager.isInUsableState() {
                 ContentUnavailableView {
-                    Label("Nearby.Hint.NoLocation.Title",
-                          systemImage: "exclamationmark.triangle.fill")
+                    Label {
+                        Text(localized("Nearby.Hint.NoLocation.Title"))
+                    } icon: {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                    }
                 } description: {
-                    Text("Nearby.Hint.NoLocation")
+                    Text(localized("Nearby.Hint.NoLocation"))
                 } actions: {
 #if !os(visionOS)
                     LocationButton {
@@ -377,10 +383,13 @@ struct MainTabView: View {
                 .listRowBackground(Color.clear)
             } else if isNearbyBusStopsDetermined && nearbyBusStops.isEmpty {
                 ContentUnavailableView {
-                    Label("Nearby.Hint.NoBusStops.Title",
-                          systemImage: "exclamationmark.triangle.fill")
+                    Label {
+                        Text(localized("Nearby.Hint.NoBusStops.Title"))
+                    } icon: {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                    }
                 } description: {
-                    Text("Nearby.Hint.NoBusStops")
+                    Text(localized("Nearby.Hint.NoBusStops"))
                 }
                 .listRowInsets(EdgeInsets())
                 .listRowBackground(Color.clear)

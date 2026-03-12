@@ -49,10 +49,13 @@ struct NotificationsView: View {
             .overlay {
                 if notificationRequests.count == 0 {
                     ContentUnavailableView {
-                        Label("Notifications.ArrivalAlerts",
-                              systemImage: "info.circle.fill")
+                        Label {
+                            Text(localized("Notifications.ArrivalAlerts"))
+                        } icon: {
+                            Image(systemName: "info.circle.fill")
+                        }
                     } description: {
-                        Text("Notifications.ArrivalAlerts.Hint")
+                        Text(localized("Notifications.ArrivalAlerts.Hint"))
                     }
                 }
             }
