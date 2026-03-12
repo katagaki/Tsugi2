@@ -18,6 +18,7 @@ struct KatsuView: View {
     @Namespace var mapScope
 
     @State var position: MapCameraPosition = .automatic
+    @State var selectedDetent: PresentationDetent = .height(450)
 
     var body: some View {
         GeometryReader { metrics in
@@ -80,10 +81,11 @@ struct KatsuView: View {
             }
             .sheet(isPresented: .constant(true)) {
                 UnifiedView()
-                    .presentationDetents([.medium, .large])
+                    .presentationDetents([.height(200), .height(450), .large], selection: $selectedDetent)
                     .presentationBackgroundInteraction(.enabled)
                     .interactiveDismissDisabled()
             }
+            .safeAreaPadding(.bottom, safeAreaPadding())
             .mapScope(mapScope)
             .mapControls {
                 MapCompass()
@@ -92,6 +94,14 @@ struct KatsuView: View {
             .onChange(of: coordinateManager.updateCameraFlag) { _, _ in
                 position = .automatic
             }
+        }
+    }
+
+    func safeAreaPadding() -> CGFloat {
+        switch selectedDetent {
+        case .height(450): return 450.0
+        case .height(200): return 200.0
+        default: return 0.0
         }
     }
 }

@@ -176,34 +176,21 @@ class FavoritesManager: ObservableObject {
         log("All favorite locations moved down.")
     }
 
-    func moveBusServiceUp(_ favoriteLocation: FavoriteLocation, busService: FavoriteBusService) async {
-        let originalViewIndex: Int16 = busService.viewIndex
-        let newViewIndex: Int16 = busService.viewIndex - 1
-        if newViewIndex >= 0,
-           let favoriteLocationBusServices = favoriteLocation.busServices?.array as? [FavoriteBusService],
-           let favoriteBusServiceToSwapWith = favoriteLocationBusServices.first(where: { favoriteBusService in
-               favoriteBusService.viewIndex == newViewIndex
-            }) {
-            favoriteBusServiceToSwapWith.viewIndex = originalViewIndex
-            busService.viewIndex = newViewIndex
+    func reorderLocations(_ orderedLocations: [FavoriteLocation]) async {
+        for (index, location) in orderedLocations.enumerated() {
+            location.viewIndex = Int16(index)
         }
-        log("Bus service moved up.")
-        await saveChanges()
+        log("Favorite locations reordered.")
+        await saveChanges(reloading: false)
     }
 
-    func moveBusServiceDown(_ favoriteLocation: FavoriteLocation, busService: FavoriteBusService) async {
-        let originalViewIndex: Int16 = busService.viewIndex
-        let newViewIndex: Int16 = busService.viewIndex + 1
-        if newViewIndex < favoriteLocation.busServices?.count ?? 0,
-           let favoriteLocationBusServices = favoriteLocation.busServices?.array as? [FavoriteBusService],
-           let favoriteBusServiceToSwapWith = favoriteLocationBusServices.first(where: { favoriteBusService in
-               favoriteBusService.viewIndex == newViewIndex
-            }) {
-            favoriteBusServiceToSwapWith.viewIndex = originalViewIndex
-            busService.viewIndex = newViewIndex
+    func reorderBusServices(_ favoriteLocation: FavoriteLocation,
+                            orderedServices: [FavoriteBusService]) async {
+        for (index, service) in orderedServices.enumerated() {
+            service.viewIndex = Int16(index)
         }
-        log("Bus service moved down.")
-        await saveChanges()
+        log("Bus services reordered.")
+        await saveChanges(reloading: false)
     }
 
     func rename(_ favoriteLocation: FavoriteLocation, to newNickname: String) async {
@@ -213,16 +200,14 @@ class FavoritesManager: ObservableObject {
     }
 
     func deleteLocation(_ favoriteLocation: FavoriteLocation) async {
-        if favoriteLocation.viewIndex < favoriteLocations.count - 1 {
-            for index in (Int(favoriteLocation.viewIndex) + 1)..<favoriteLocations.count {
-                favoriteLocations.first(where: { favoriteLocation in
-                    favoriteLocation.viewIndex == index
-                })!.viewIndex -= 1
-            }
+        let deletedIndex = favoriteLocation.viewIndex
+        for location in favoriteLocations where location.viewIndex > deletedIndex {
+            location.viewIndex -= 1
         }
+        favoriteLocations.removeAll { $0.objectID == favoriteLocation.objectID }
         context.delete(favoriteLocation)
         log("Favorite location deleted.")
-        await saveChanges()
+        await saveChanges(reloading: false)
     }
 
     func deleteBusService(_ favoriteLocation: FavoriteLocation, busService: FavoriteBusService) async {
@@ -258,13 +243,15 @@ class FavoritesManager: ObservableObject {
         return false
     }
 
-    func saveChanges() async {
+    func saveChanges(reloading: Bool = true) async {
         do {
             try await context.perform { [self] in
                 if context.hasChanges {
                     try context.save()
                     log("Favorites saved.")
-                    reloadData()
+                    if reloading {
+                        reloadData()
+                    }
                 }
             }
         } catch {

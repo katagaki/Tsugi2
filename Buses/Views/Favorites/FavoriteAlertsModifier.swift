@@ -11,11 +11,9 @@ struct FavoriteAlertsModifier: ViewModifier {
 
     @Binding var isNewPending: Bool
     @Binding var favoriteLocationNewNickname: String
-    @Binding var isNicknameEditPending: Bool
-    @Binding var favoriteLocationPendingEdit: FavoriteLocation?
-    @Binding var favoriteLocationPendingEditNewNickname: String
-    @Binding var isDeletionPending: Bool
-    @Binding var isEditing: Bool
+    @Binding var isRenamePending: Bool
+    @Binding var renameText: String
+    @Binding var locationPendingRename: FavoriteLocation?
 
     var favorites: FavoritesManager
 
@@ -38,48 +36,24 @@ struct FavoriteAlertsModifier: ViewModifier {
                     Text("Alert.Create")
                 }
             }
-            .alert("Favorites.Rename.Title", isPresented: $isNicknameEditPending) {
-                TextField("", text: $favoriteLocationPendingEditNewNickname)
+            .alert("Favorites.Rename.Title", isPresented: $isRenamePending) {
+                TextField("", text: $renameText)
                     .textInputAutocapitalization(.words)
                 Button(role: .cancel) {
-                    favoriteLocationPendingEdit = nil
-                    favoriteLocationPendingEditNewNickname = ""
+                    locationPendingRename = nil
+                    renameText = ""
                 } label: {
                     Text("Alert.Cancel")
                 }
                 Button {
-                    Task {
-                        if let favoriteLocationPendingEdit = favoriteLocationPendingEdit {
-                            await favorites.rename(favoriteLocationPendingEdit,
-                                                   to: favoriteLocationPendingEditNewNickname)
+                    if let location = locationPendingRename {
+                        Task {
+                            await favorites.rename(location, to: renameText)
                         }
                     }
                 } label: {
                     Text("Alert.Save")
                 }
-            }
-            .alert("Favorites.Delete.Confirm.Title", isPresented: $isDeletionPending) {
-                Button(role: .cancel) {
-                    favoriteLocationPendingEdit = nil
-                } label: {
-                    Text("Alert.No")
-                }
-                Button(role: .destructive) {
-                    Task {
-                        if let favoriteLocationPendingEdit = favoriteLocationPendingEdit {
-                            await favorites.deleteLocation(favoriteLocationPendingEdit)
-                            if favorites.favoriteLocations.count == 0 {
-                                isEditing = false
-                            }
-                        }
-                    }
-                } label: {
-                    Text("Alert.Yes")
-                }
-            } message: {
-                Text(localized("Favorites.Delete.Confirm.Message",
-                               replacing: favoriteLocationPendingEdit?.nickname ??
-                               localized("Favorites.Delete.Confirm.GenericLocationText")))
             }
     }
 

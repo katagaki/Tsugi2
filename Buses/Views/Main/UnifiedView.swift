@@ -41,13 +41,13 @@ struct UnifiedView: View {
 
     // Favorites editing
     @State var isEditing: Bool = false
-    @State var favoriteLocationPendingEdit: FavoriteLocation?
-    @State var isEditPending: Bool = false
     @State var isNewPending: Bool = false
     @State var favoriteLocationNewNickname: String = ""
-    @State var isNicknameEditPending: Bool = false
-    @State var favoriteLocationPendingEditNewNickname: String = ""
-    @State var isDeletionPending: Bool = false
+    @State var locationPendingRename: FavoriteLocation?
+    @State var renameText: String = ""
+    @State var isRenamePending: Bool = false
+    @State var locationPendingBusServiceEdit: FavoriteLocation?
+    @State var isBusServiceEditPending: Bool = false
 
     var body: some View {
         NavigationStack(path: $navigationManager.mainPath) {
@@ -56,11 +56,9 @@ struct UnifiedView: View {
         .modifier(FavoriteAlertsModifier(
             isNewPending: $isNewPending,
             favoriteLocationNewNickname: $favoriteLocationNewNickname,
-            isNicknameEditPending: $isNicknameEditPending,
-            favoriteLocationPendingEdit: $favoriteLocationPendingEdit,
-            favoriteLocationPendingEditNewNickname: $favoriteLocationPendingEditNewNickname,
-            isDeletionPending: $isDeletionPending,
-            isEditing: $isEditing,
+            isRenamePending: $isRenamePending,
+            renameText: $renameText,
+            locationPendingRename: $locationPendingRename,
             favorites: favorites
         ))
         .task {
@@ -75,11 +73,6 @@ struct UnifiedView: View {
                 locationManager.requestWhenInUseAuthorization()
             } else {
                 reloadNearbyBusStops()
-            }
-        }
-        .onChange(of: isEditing) { _, newValue in
-            if !newValue {
-                favorites.updateViewFlag.toggle()
             }
         }
         .onChange(of: searchTerm) { _, _ in

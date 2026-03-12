@@ -25,12 +25,13 @@ extension UnifiedView {
         }
         .listStyle(.insetGrouped)
         .listSectionSpacing(.compact)
+        .environment(\.editMode, isEditing ? .constant(.active) : .constant(.inactive))
         .navigationDestination(for: ViewPath.self) { viewPath in
             navigationDestinationView(for: viewPath)
         }
         .refreshable {
             log("Reloading data per the request of the user.")
-            favorites.updateViewFlag.toggle()
+            favorites.reloadData()
             reloadNearbyBusStops()
         }
         .searchable(text: $searchTerm)
@@ -79,8 +80,10 @@ extension UnifiedView {
                 .presentationDetents([.medium, .large])
                 .presentationDragIndicator(.visible)
         }
-        .sheet(isPresented: $isEditPending) {
-            FavoriteLocationEditView(locationToEdit: $favoriteLocationPendingEdit)
+        .sheet(isPresented: $isBusServiceEditPending, onDismiss: {
+            favorites.reloadData()
+        }) {
+            FavoriteLocationEditView(locationToEdit: $locationPendingBusServiceEdit)
                 .presentationDetents([.medium])
                 .presentationDragIndicator(.visible)
         }
@@ -143,23 +146,27 @@ extension UnifiedView {
                 .listRowInsets(EdgeInsets())
                 .listRowBackground(Color.clear)
             } else {
-                ForEach($favorites.favoriteLocations, id: \.hashValue) { $location in
+                ForEach($favorites.favoriteLocations, id: \.objectID) { $location in
                     if !location.isFault && !location.isDeleted {
                         locationRow(location: $location)
                     }
                 }
+                .onMove(perform: moveLocations)
+                .onDelete(perform: deleteLocations)
             }
         } header: {
             HStack(alignment: .center, spacing: 16.0) {
                 Text("TabTitle.Favorites")
                 Spacer()
                 if !favorites.favoriteLocations.isEmpty {
-                    Toggle(isOn: $isEditing) {
-                        Image(systemName: "pencil")
+                    Button {
+                        withAnimation {
+                            isEditing.toggle()
+                        }
+                    } label: {
+                        Image(systemName: isEditing ? "checkmark" : "pencil")
                             .font(.title3)
                     }
-                    .toggleStyle(.button)
-                    .labelsHidden()
                 }
                 Button {
                     isNewPending = true
@@ -173,21 +180,31 @@ extension UnifiedView {
 
     @ViewBuilder func locationRow(location: Binding<FavoriteLocation>) -> some View {
         VStack(alignment: .leading, spacing: 8.0) {
-            HStack(alignment: .center, spacing: 6.0) {
+            HStack {
                 Text(location.wrappedValue.nickname ?? location.wrappedValue.busStopCode ?? "")
                     .font(Font.custom("LTA-Identity", size: 20.0))
                 if isEditing {
                     Button {
-                        favoriteLocationPendingEdit = location.wrappedValue
-                        favoriteLocationPendingEditNewNickname = location.wrappedValue.nickname ?? location.wrappedValue.busStopCode!
-                        isNicknameEditPending = true
+                        locationPendingRename = location.wrappedValue
+                        renameText = location.wrappedValue.nickname ?? location.wrappedValue.busStopCode ?? ""
+                        isRenamePending = true
                     } label: {
                         Image(systemName: "pencil")
-                            .font(.body)
+                            .font(.title3)
                     }
                     .buttonStyle(.borderless)
                     Spacer()
-                    locationEditingControls(location: location)
+                    if !location.wrappedValue.usesLiveBusStopData &&
+                        (location.wrappedValue.busServices ?? []).count != 0 {
+                        Button {
+                            locationPendingBusServiceEdit = location.wrappedValue
+                            isBusServiceEditPending = true
+                        } label: {
+                            Image(systemName: "arrow.left.arrow.right")
+                                .font(.title3)
+                        }
+                        .buttonStyle(.borderless)
+                    }
                 }
             }
             .padding(.horizontal)
@@ -201,54 +218,8 @@ extension UnifiedView {
                     : nil,
                 favoriteLocation: location
             )
-            .opacity(isEditing ? 0.5 : 1.0)
-            .disabled(isEditing)
         }
         .listRowInsets(EdgeInsets(top: 16.0, leading: 0.0, bottom: 16.0, trailing: 0.0))
-    }
-
-    @ViewBuilder func locationEditingControls(location: Binding<FavoriteLocation>) -> some View {
-        HStack(alignment: .center, spacing: 16.0) {
-            if !location.wrappedValue.usesLiveBusStopData && (location.wrappedValue.busServices ?? []).count != 0 {
-                Button {
-                    favoriteLocationPendingEdit = location.wrappedValue
-                    isEditPending = true
-                } label: {
-                    Image(systemName: "arrow.left.arrow.right")
-                        .font(.system(size: 14.0))
-                }
-                .buttonStyle(.borderless)
-            }
-            Button {
-                Task {
-                    await favorites.moveUp(location.wrappedValue)
-                }
-            } label: {
-                Image(systemName: "chevron.up")
-                    .font(.system(size: 14.0))
-            }
-            .buttonStyle(.borderless)
-            .disabled(location.wrappedValue.viewIndex == 0)
-            Button {
-                Task {
-                    await favorites.moveDown(location.wrappedValue)
-                }
-            } label: {
-                Image(systemName: "chevron.down")
-                    .font(.system(size: 14.0))
-            }
-            .buttonStyle(.borderless)
-            .disabled(location.wrappedValue.viewIndex == favorites.favoriteLocations.count - 1)
-            Button {
-                favoriteLocationPendingEdit = location.wrappedValue
-                isDeletionPending = true
-            } label: {
-                Image(systemName: "minus.circle")
-                    .font(.system(size: 14.0))
-                    .foregroundColor(.red)
-            }
-            .buttonStyle(.borderless)
-        }
     }
 
     // MARK: - Nearby

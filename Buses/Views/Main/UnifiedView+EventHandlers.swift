@@ -45,6 +45,24 @@ extension UnifiedView {
         }
     }
 
+    // MARK: - Favorites Editing
+
+    func moveLocations(from source: IndexSet, to destination: Int) {
+        favorites.favoriteLocations.move(fromOffsets: source, toOffset: destination)
+        Task {
+            await favorites.reorderLocations(favorites.favoriteLocations)
+        }
+    }
+
+    func deleteLocations(at offsets: IndexSet) {
+        let locationsToDelete = offsets.map { favorites.favoriteLocations[$0] }
+        for location in locationsToDelete {
+            Task {
+                await favorites.deleteLocation(location)
+            }
+        }
+    }
+
     func handleScenePhaseChange(_ newPhase: ScenePhase) {
         switch newPhase {
         case .inactive:

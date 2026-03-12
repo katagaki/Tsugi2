@@ -9,60 +9,72 @@ import SwiftUI
 
 struct FavoriteLocationEditView: View {
 
+    @Environment(\.dismiss) var dismiss
+
     @EnvironmentObject var favorites: FavoritesManager
 
     @Binding var locationToEdit: FavoriteLocation?
 
+    @State var editableBusServices: [FavoriteBusService] = []
+
     var body: some View {
         NavigationStack {
-            if let locationToEdit = locationToEdit,
-               let favoriteBusServices = (locationToEdit.busServices?.array as? [FavoriteBusService])?
-                .sorted(by: { lhs, rhs in
-                   lhs.viewIndex < rhs.viewIndex
-               }) {
-                List(favoriteBusServices, id: \.hashValue) { busService in
-                    HStack(alignment: .center, spacing: 16.0) {
-                        Text(busService.serviceNo ?? "")
-                        Spacer()
-                        Button {
-                            Task {
-                                await favorites.moveBusServiceUp(locationToEdit, busService: busService)
-                            }
-                        } label: {
-                            Image(systemName: "chevron.up")
-                                .font(.system(size: 18.0))
-                        }
-                        .buttonStyle(.borderless)
-                        .disabled(busService.viewIndex == 0)
-                        Button {
-                            Task {
-                                await favorites.moveBusServiceDown(locationToEdit, busService: busService)
-                            }
-                        } label: {
-                            Image(systemName: "chevron.down")
-                                .font(.system(size: 18.0))
-                        }
-                        .buttonStyle(.borderless)
-                        .disabled(busService.viewIndex == (locationToEdit.busServices?.count ?? 0) - 1)
-                        Button {
-                            Task {
-                                await favorites.deleteBusService(locationToEdit, busService: busService)
-                            }
-                        } label: {
-                            Image(systemName: "minus.circle")
-                                .font(.system(size: 18.0))
-                                .foregroundColor(.red)
-                        }
-                        .buttonStyle(.borderless)
-                    }
-                    .padding([.top, .bottom], 4.0)
+            List {
+                ForEach(editableBusServices, id: \.objectID) { busService in
+                    Text(busService.serviceNo ?? "")
+                        .font(Font.custom("LTA-Identity", size: 18.0))
                 }
-                .listStyle(.insetGrouped)
-                .navigationTitle(localized("Favorites.Edit.Title",
-                                           replacing: locationToEdit.nickname ??
-                                           localized("Shared.BusStop.Description.None")))
-                .navigationBarTitleDisplayMode(.inline)
+                .onMove(perform: moveBusServices)
+                .onDelete(perform: deleteBusServices)
+            }
+            .listStyle(.insetGrouped)
+            .environment(\.editMode, .constant(.active))
+            .navigationTitle(localized("Favorites.Edit.Title",
+                                       replacing: locationToEdit?.nickname ??
+                                       localized("Shared.BusStop.Description.None")))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(role: .close) {
+                        dismiss()
+                    }
+                }
+            }
+            .onAppear {
+                loadBusServices()
             }
         }
     }
+
+    func loadBusServices() {
+        if let locationToEdit = locationToEdit,
+           let services = locationToEdit.busServices?.array as? [FavoriteBusService] {
+            editableBusServices = services.sorted { $0.viewIndex < $1.viewIndex }
+        }
+    }
+
+    func moveBusServices(from source: IndexSet, to destination: Int) {
+        editableBusServices.move(fromOffsets: source, toOffset: destination)
+        if let locationToEdit = locationToEdit {
+            Task {
+                await favorites.reorderBusServices(
+                    locationToEdit,
+                    orderedServices: editableBusServices
+                )
+            }
+        }
+    }
+
+    func deleteBusServices(at offsets: IndexSet) {
+        let servicesToDelete = offsets.map { editableBusServices[$0] }
+        editableBusServices.remove(atOffsets: offsets)
+        if let locationToEdit = locationToEdit {
+            for service in servicesToDelete {
+                Task {
+                    await favorites.deleteBusService(locationToEdit, busService: service)
+                }
+            }
+        }
+    }
+
 }

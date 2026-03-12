@@ -115,6 +115,7 @@
       }
     },
     "Alert.No" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -220,6 +221,7 @@
     },
     "Alert.Yes" : {
       "comment" : "Alert Button Titles",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -378,7 +380,7 @@
       }
     },
     "Directory.BusStops.Sort.AlphabeticalAscending" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -431,7 +433,7 @@
       }
     },
     "Directory.BusStops.Sort.AlphabeticalDescending" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -484,7 +486,7 @@
       }
     },
     "Directory.BusStops.Sort.DistanceClosest" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -638,112 +640,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "票价计算器"
-          }
-        }
-      }
-    },
-    "Directory.LastUpdated" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Last Updated"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最後更新"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "마지막 업데이트"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Terakhir Dikemas Kini"
-          }
-        },
-        "ta" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "கடைசியாகப் புதுப்பிக்கப்பட்டது"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "อัปเดตล่าสุด"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cập Nhật Lần Cuối"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最后更新"
-          }
-        }
-      }
-    },
-    "Directory.MRTMap" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "MRT System Map"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "MRT路線図"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "MRT 노선도"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Peta Sistem MRT"
-          }
-        },
-        "ta" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "MRT அமைப்பு வரைபடம்"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "แผนที่ระบบ MRT"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bản Đồ Hệ Thống MRT"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "MRT路线图"
           }
         }
       }
@@ -962,6 +858,7 @@
       }
     },
     "Favorites.Delete.Confirm.Title" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1330,7 +1227,7 @@
       }
     },
     "katagaki/Tsugi2" : {
-
+      "shouldTranslate" : false
     },
     "LiveActivity.ArrivingAt" : {
       "extractionState" : "manual",
@@ -2745,6 +2642,96 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "位置情報の設定が無効化されています。一時的に位置情報を共有するには、下のボタンを選択してください。"
+                }
+              }
+            }
+          }
+        },
+        "ko" : {
+          "variations" : {
+            "device" : {
+              "iphone" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "위치 서비스가 활성화되어 있지 않습니다. 위치 서비스를 활성화하지 않고 Buses에 위치를 알리려면 아래 버튼을 선택하세요."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "위치 서비스가 활성화되어 있지 않습니다."
+                }
+              }
+            }
+          }
+        },
+        "ms" : {
+          "variations" : {
+            "device" : {
+              "iphone" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Perkhidmatan Lokasi tidak diaktifkan. Pilih butang di bawah untuk memberitahu Buses lokasi anda tanpa mengaktifkan Perkhidmatan Lokasi."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Perkhidmatan Lokasi tidak diaktifkan."
+                }
+              }
+            }
+          }
+        },
+        "ta" : {
+          "variations" : {
+            "device" : {
+              "iphone" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "இருப்பிடச் சேவைகள் இயக்கப்படவில்லை. இருப்பிடச் சேவைகளை இயக்காமல் Buses-க்கு உங்கள் இருப்பிடத்தைத் தெரிவிக்க கீழே உள்ள பொத்தானைத் தேர்ந்தெடுக்கவும்."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "இருப்பிடச் சேவைகள் இயக்கப்படவில்லை."
+                }
+              }
+            }
+          }
+        },
+        "th" : {
+          "variations" : {
+            "device" : {
+              "iphone" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "บริการตำแหน่งที่ตั้งไม่ได้เปิดใช้งาน เลือกปุ่มด้านล่างเพื่อบอกตำแหน่งที่ตั้งของคุณให้ Buses โดยไม่ต้องเปิดใช้งานบริการตำแหน่งที่ตั้ง"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "บริการตำแหน่งที่ตั้งไม่ได้เปิดใช้งาน"
+                }
+              }
+            }
+          }
+        },
+        "vi" : {
+          "variations" : {
+            "device" : {
+              "iphone" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Dịch vụ Vị trí chưa được bật. Chọn nút bên dưới để cho Buses biết vị trí của bạn mà không cần bật Dịch vụ Vị trí."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Dịch vụ Vị trí chưa được bật."
                 }
               }
             }
@@ -4410,59 +4397,6 @@
         }
       }
     },
-    "TabTitle.More" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "More"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "その他"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "더보기"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lagi"
-          }
-        },
-        "ta" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "மேலும்"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "เพิ่มเติม"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Thêm"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "更多"
-          }
-        }
-      }
-    },
     "TabTitle.Nearby" : {
       "comment" : "Tab Bar Item Titles",
       "localizations" : {
@@ -4516,112 +4450,6 @@
         }
       }
     },
-    "TabTitle.Notifications" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Notifications"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "通知"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "알림"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pemberitahuan"
-          }
-        },
-        "ta" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "அறிவிப்புகள்"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "การแจ้งเตือน"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Thông Báo"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "通知"
-          }
-        }
-      }
-    },
-    "ViewTitle.Directory" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search Bus Stops"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "バス停を検索"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "버스 정류장 검색"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cari Perhentian Bas"
-          }
-        },
-        "ta" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "பேருந்து நிறுத்தங்களைத் தேடு"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ค้นหาป้ายรถเมล์"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tìm Trạm Xe Buýt"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "搜索巴士站"
-          }
-        }
-      }
-    },
     "ViewTitle.FareCalculator" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4671,59 +4499,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "票价计算器"
-          }
-        }
-      }
-    },
-    "ViewTitle.Favorites" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Saved Locations"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "追加した場所"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "저장된 장소"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lokasi Tersimpan"
-          }
-        },
-        "ta" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "சேமிக்கப்பட்ட இடங்கள்"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ตำแหน่งที่บันทึกไว้"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Địa Điểm Đã Lưu"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "地点收藏夹"
           }
         }
       }
@@ -4934,60 +4709,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "MRT路线图"
-          }
-        }
-      }
-    },
-    "ViewTitle.Nearby" : {
-      "comment" : "Navigation Item Titles",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nearby Bus Stops"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "近くのバス停"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "근처 버스 정류장"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Perhentian Bas Berdekatan"
-          }
-        },
-        "ta" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "அருகிலுள்ள பேருந்து நிறுத்தங்கள்"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ป้ายรถเมล์ใกล้เคียง"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trạm Xe Buýt Gần Đây"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "附近的巴士站"
           }
         }
       }

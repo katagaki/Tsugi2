@@ -76,6 +76,7 @@ struct LoadingWebView: View {
 
     var body: some View {
         WebView(url: url, isLoading: $isLoading)
+            .ignoresSafeArea(edges: .bottom)
             .overlay {
                 if isLoading {
                     ProgressView()

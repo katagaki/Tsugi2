@@ -13,13 +13,13 @@ struct BusServicesCarousel: View {
     @EnvironmentObject var favorites: FavoritesManager
     @EnvironmentObject var settings: SettingsManager
 
-    @State var dataDisplayMode: DataDisplayMode
+    var dataDisplayMode: DataDisplayMode
 
     @State var isInitialDataLoaded: Bool = false
     @State var busServices: [BusService] = []
-    @State var locationName: String
-    @State var busStopCode: String?
-    @State var favoriteLocation: Binding<FavoriteLocation>?
+    var locationName: String
+    var busStopCode: String?
+    var favoriteLocation: Binding<FavoriteLocation>?
 
     let timer = Timer.publish(every: 10.0, tolerance: 5.0, on: .main, in: .common).autoconnect()
 
