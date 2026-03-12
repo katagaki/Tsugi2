@@ -51,151 +51,18 @@ struct MainTabView: View {
 
     var body: some View {
         NavigationStack(path: $navigationManager.mainPath) {
-            List {
-                if searchTerm.trimmingCharacters(in: .whitespaces).count > 1 {
-                    searchResultsSection
-                } else {
-                    locationsSection
-                    nearbySection
-                }
-            }
-            .listStyle(.insetGrouped)
-            .listSectionSpacing(0)
-            .navigationDestination(for: ViewPath.self) { viewPath in
-                switch viewPath {
-                case .busService(let bus, let locationName, let busStopCode):
-                    BusServiceView(busService: bus,
-                                   locationName: locationName,
-                                   busStopCode: busStopCode,
-                                   showsAddToLocationButton: true)
-                case .busServiceNamed(let serviceNumber, let locationName, let busStopCode):
-                    BusServiceView(busService: BusService(serviceNo: serviceNumber,
-                                                          operator: .unknown),
-                                   locationName: locationName,
-                                   busStopCode: busStopCode,
-                                   showsAddToLocationButton: false)
-                case .busStop(let busStop):
-                    BusStopView(busStop: busStop)
-                case .mrtMap:
-                    WebView(url: URL(string: "https://www.lta.gov.sg/content/ltagov/en/map/train.html")!)
-                        .navigationTitle("ViewTitle.MRTMap")
-                case .fareCalculator:
-                    WebView(url: URL(string: "https://www.lta.gov.sg/content/ltagov/en/map/fare-calculator.html")!)
-                        .navigationTitle("ViewTitle.FareCalculator")
-                case .moreLicenses:
-                    MoreLicensesView()
-                }
-            }
-            .refreshable {
-                log("Reloading data per the request of the user.")
-                favorites.updateViewFlag.toggle()
-                reloadNearbyBusStops()
-            }
-            .searchable(text: $searchTerm,
-                         placement: .toolbar)
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button {
-                        isNotificationsSheetPresented = true
-                    } label: {
-                        Image(systemName: "bell.fill")
-                    }
-                    ToolbarSpacer(.fixed)
-                    Button {
-                        isMoreSheetPresented = true
-                    } label: {
-                        Image(systemName: "ellipsis")
-                    }
-                }
-                ToolbarItemGroup(placement: .bottomBar) {
-                    Spacer()
-                    Button {
-                        navigationManager.push(ViewPath.mrtMap)
-                    } label: {
-                        Image(systemName: "tram.fill")
-                    }
-                    Button {
-                        navigationManager.push(ViewPath.fareCalculator)
-                    } label: {
-                        Image(systemName: "dollarsign.circle")
-                    }
-                }
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            .sheet(isPresented: $isNotificationsSheetPresented) {
-                NotificationsView()
-                    .presentationDragIndicator(.visible)
-            }
-            .sheet(isPresented: $isMoreSheetPresented) {
-                MoreView()
-                    .presentationDragIndicator(.visible)
-            }
-            .sheet(isPresented: $isEditPending) {
-                FavoriteLocationEditView(locationToEdit: $favoriteLocationPendingEdit)
-                    .presentationDetents([.medium])
-                    .presentationDragIndicator(.visible)
-            }
+            listContent
         }
-        .alert("Favorites.New.Title", isPresented: $isNewPending) {
-            TextField("", text: $favoriteLocationNewNickname)
-                .textInputAutocapitalization(.words)
-            Button(role: .cancel) {
-                favoriteLocationNewNickname = ""
-            } label: {
-                Text("Alert.Cancel")
-            }
-            Button {
-                Task {
-                    await favorites.createNewFavoriteLocation(nickname: favoriteLocationNewNickname)
-                    favoriteLocationNewNickname = ""
-                }
-            } label: {
-                Text("Alert.Create")
-            }
-        }
-        .alert("Favorites.Rename.Title", isPresented: $isNicknameEditPending) {
-            TextField("", text: $favoriteLocationPendingEditNewNickname)
-                .textInputAutocapitalization(.words)
-            Button(role: .cancel) {
-                favoriteLocationPendingEdit = nil
-                favoriteLocationPendingEditNewNickname = ""
-            } label: {
-                Text("Alert.Cancel")
-            }
-            Button {
-                Task {
-                    if let favoriteLocationPendingEdit = favoriteLocationPendingEdit {
-                        await favorites.rename(favoriteLocationPendingEdit,
-                                               to: favoriteLocationPendingEditNewNickname)
-                    }
-                }
-            } label: {
-                Text("Alert.Save")
-            }
-        }
-        .alert("Favorites.Delete.Confirm.Title", isPresented: $isDeletionPending) {
-            Button(role: .cancel) {
-                favoriteLocationPendingEdit = nil
-            } label: {
-                Text("Alert.No")
-            }
-            Button(role: .destructive) {
-                Task {
-                    if let favoriteLocationPendingEdit = favoriteLocationPendingEdit {
-                        await favorites.deleteLocation(favoriteLocationPendingEdit)
-                        if favorites.favoriteLocations.count == 0 {
-                            isEditing = false
-                        }
-                    }
-                }
-            } label: {
-                Text("Alert.Yes")
-            }
-        } message: {
-            Text(localized("Favorites.Delete.Confirm.Message",
-                           replacing: favoriteLocationPendingEdit?.nickname ??
-                           localized("Favorites.Delete.Confirm.GenericLocationText")))
-        }
+        .modifier(FavoriteAlertsModifier(
+            isNewPending: $isNewPending,
+            favoriteLocationNewNickname: $favoriteLocationNewNickname,
+            isNicknameEditPending: $isNicknameEditPending,
+            favoriteLocationPendingEdit: $favoriteLocationPendingEdit,
+            favoriteLocationPendingEditNewNickname: $favoriteLocationPendingEditNewNickname,
+            isDeletionPending: $isDeletionPending,
+            isEditing: $isEditing,
+            favorites: favorites
+        ))
         .task {
             if isInitialLoad {
                 await reloadBusStopList()
@@ -217,7 +84,7 @@ struct MainTabView: View {
         }
         .onChange(of: searchTerm) { _, _ in
             let searchTermTrimmed = searchTerm.trimmingCharacters(in: .whitespaces)
-            if searchTerm.trimmingCharacters(in: .whitespaces).count > 1 {
+            if searchTermTrimmed.count > 1 {
                 if searchTermTrimmed.contains(previousSearchTerm) {
                     searchResults = searchResults.filter { stop in
                         stop.name().similarTo(searchTermTrimmed)
@@ -231,19 +98,7 @@ struct MainTabView: View {
             }
         }
         .onChange(of: locationManager.authorizationStatus) { _, newValue in
-            switch newValue {
-            case .authorizedWhenInUse:
-                log("Location Services authorization changed to When In Use.")
-                locationManager.shared.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-                locationManager.updateLocation(usingOnlySignificantChanges: false)
-            case .notDetermined:
-                log("Location Services authorization not determined yet.")
-                locationManager.requestWhenInUseAuthorization()
-            default:
-                log("Location Services authorization possibly changed to Don't Allow.")
-                nearbyBusStops.removeAll()
-                coordinateManager.removeAll()
-            }
+            handleLocationAuthorizationChange(newValue)
         }
         .onChange(of: dataManager.busStops) { _, _ in
             if dataManager.busStops.count > 0 {
@@ -260,37 +115,103 @@ struct MainTabView: View {
             }
         }
         .onChange(of: networkMonitor.isConnected) { _, isConnected in
-            if isConnected {
-                log("Network connection reappeared!")
-                toaster.hideToast()
-                Task {
-                    log("Retrying fetch of bus stop data.")
-                    await reloadBusStopList()
-                    toaster.hideToast()
-                }
-            } else {
-                log("Network connection disappeared!")
-                toaster.showToast(localized("Shared.Error.InternetConnection"),
-                                  type: .persistentError,
-                                  hidesAutomatically: false)
-            }
+            handleNetworkChange(isConnected)
         }
         .onChange(of: scenePhase) { _, newPhase in
-            switch newPhase {
-            case .inactive:
-                log("Scene became inactive.")
-            case .active:
-                log("Scene became active.")
-                if locationManager.shouldUpdateLocationAsSoonAsPossible {
-                    locationManager.updateLocation(usingOnlySignificantChanges: false)
-                    locationManager.shouldUpdateLocationAsSoonAsPossible = false
-                }
-            case .background:
-                log("Scene went into the background.")
-                locationManager.shouldUpdateLocationAsSoonAsPossible = true
-            @unknown default:
-                log("Scene change detected, but we don't know what the change was!")
+            handleScenePhaseChange(newPhase)
+        }
+    }
+
+    // MARK: - List Content
+
+    @ViewBuilder var listContent: some View {
+        List {
+            if searchTerm.trimmingCharacters(in: .whitespaces).count > 1 {
+                searchResultsSection
+            } else {
+                locationsSection
+                nearbySection
             }
+        }
+        .listStyle(.insetGrouped)
+        .listSectionSpacing(0)
+        .navigationDestination(for: ViewPath.self) { viewPath in
+            navigationDestinationView(for: viewPath)
+        }
+        .refreshable {
+            log("Reloading data per the request of the user.")
+            favorites.updateViewFlag.toggle()
+            reloadNearbyBusStops()
+        }
+        .searchable(text: $searchTerm,
+                     placement: .toolbar)
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button {
+                    isNotificationsSheetPresented = true
+                } label: {
+                    Image(systemName: "bell.fill")
+                }
+                ToolbarSpacer(.fixed)
+                Button {
+                    isMoreSheetPresented = true
+                } label: {
+                    Image(systemName: "ellipsis")
+                }
+            }
+            ToolbarItemGroup(placement: .bottomBar) {
+                Spacer()
+                Button {
+                    navigationManager.push(ViewPath.mrtMap)
+                } label: {
+                    Image(systemName: "tram.fill")
+                }
+                Button {
+                    navigationManager.push(ViewPath.fareCalculator)
+                } label: {
+                    Image(systemName: "dollarsign.circle")
+                }
+            }
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $isNotificationsSheetPresented) {
+            NotificationsView()
+                .presentationDragIndicator(.visible)
+        }
+        .sheet(isPresented: $isMoreSheetPresented) {
+            MoreView()
+                .presentationDragIndicator(.visible)
+        }
+        .sheet(isPresented: $isEditPending) {
+            FavoriteLocationEditView(locationToEdit: $favoriteLocationPendingEdit)
+                .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
+        }
+    }
+
+    @ViewBuilder func navigationDestinationView(for viewPath: ViewPath) -> some View {
+        switch viewPath {
+        case .busService(let bus, let locationName, let busStopCode):
+            BusServiceView(busService: bus,
+                           locationName: locationName,
+                           busStopCode: busStopCode,
+                           showsAddToLocationButton: true)
+        case .busServiceNamed(let serviceNumber, let locationName, let busStopCode):
+            BusServiceView(busService: BusService(serviceNo: serviceNumber,
+                                                  operator: .unknown),
+                           locationName: locationName,
+                           busStopCode: busStopCode,
+                           showsAddToLocationButton: false)
+        case .busStop(let busStop):
+            BusStopView(busStop: busStop)
+        case .mrtMap:
+            WebView(url: URL(string: "https://www.lta.gov.sg/content/ltagov/en/map/train.html")!)
+                .navigationTitle("ViewTitle.MRTMap")
+        case .fareCalculator:
+            WebView(url: URL(string: "https://www.lta.gov.sg/content/ltagov/en/map/fare-calculator.html")!)
+                .navigationTitle("ViewTitle.FareCalculator")
+        case .moreLicenses:
+            MoreLicensesView()
         }
     }
 
@@ -562,6 +483,139 @@ struct MainTabView: View {
             log("Updated displayed coordinates.")
             isNearbyBusStopsDetermined = true
         }
+    }
+
+    // MARK: - Event Handlers
+
+    func handleLocationAuthorizationChange(_ newValue: CLAuthorizationStatus) {
+        switch newValue {
+        case .authorizedWhenInUse:
+            log("Location Services authorization changed to When In Use.")
+            locationManager.shared.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.updateLocation(usingOnlySignificantChanges: false)
+        case .notDetermined:
+            log("Location Services authorization not determined yet.")
+            locationManager.requestWhenInUseAuthorization()
+        default:
+            log("Location Services authorization possibly changed to Don't Allow.")
+            nearbyBusStops.removeAll()
+            coordinateManager.removeAll()
+        }
+    }
+
+    func handleNetworkChange(_ isConnected: Bool) {
+        if isConnected {
+            log("Network connection reappeared!")
+            toaster.hideToast()
+            Task {
+                log("Retrying fetch of bus stop data.")
+                await reloadBusStopList()
+                toaster.hideToast()
+            }
+        } else {
+            log("Network connection disappeared!")
+            toaster.showToast(localized("Shared.Error.InternetConnection"),
+                              type: .persistentError,
+                              hidesAutomatically: false)
+        }
+    }
+
+    func handleScenePhaseChange(_ newPhase: ScenePhase) {
+        switch newPhase {
+        case .inactive:
+            log("Scene became inactive.")
+        case .active:
+            log("Scene became active.")
+            if locationManager.shouldUpdateLocationAsSoonAsPossible {
+                locationManager.updateLocation(usingOnlySignificantChanges: false)
+                locationManager.shouldUpdateLocationAsSoonAsPossible = false
+            }
+        case .background:
+            log("Scene went into the background.")
+            locationManager.shouldUpdateLocationAsSoonAsPossible = true
+        @unknown default:
+            log("Scene change detected, but we don't know what the change was!")
+        }
+    }
+
+}
+
+// MARK: - Favorite Alerts Modifier
+
+struct FavoriteAlertsModifier: ViewModifier {
+
+    @Binding var isNewPending: Bool
+    @Binding var favoriteLocationNewNickname: String
+    @Binding var isNicknameEditPending: Bool
+    @Binding var favoriteLocationPendingEdit: FavoriteLocation?
+    @Binding var favoriteLocationPendingEditNewNickname: String
+    @Binding var isDeletionPending: Bool
+    @Binding var isEditing: Bool
+
+    var favorites: FavoritesManager
+
+    func body(content: Content) -> some View {
+        content
+            .alert("Favorites.New.Title", isPresented: $isNewPending) {
+                TextField("", text: $favoriteLocationNewNickname)
+                    .textInputAutocapitalization(.words)
+                Button(role: .cancel) {
+                    favoriteLocationNewNickname = ""
+                } label: {
+                    Text("Alert.Cancel")
+                }
+                Button {
+                    Task {
+                        await favorites.createNewFavoriteLocation(nickname: favoriteLocationNewNickname)
+                        favoriteLocationNewNickname = ""
+                    }
+                } label: {
+                    Text("Alert.Create")
+                }
+            }
+            .alert("Favorites.Rename.Title", isPresented: $isNicknameEditPending) {
+                TextField("", text: $favoriteLocationPendingEditNewNickname)
+                    .textInputAutocapitalization(.words)
+                Button(role: .cancel) {
+                    favoriteLocationPendingEdit = nil
+                    favoriteLocationPendingEditNewNickname = ""
+                } label: {
+                    Text("Alert.Cancel")
+                }
+                Button {
+                    Task {
+                        if let favoriteLocationPendingEdit = favoriteLocationPendingEdit {
+                            await favorites.rename(favoriteLocationPendingEdit,
+                                                   to: favoriteLocationPendingEditNewNickname)
+                        }
+                    }
+                } label: {
+                    Text("Alert.Save")
+                }
+            }
+            .alert("Favorites.Delete.Confirm.Title", isPresented: $isDeletionPending) {
+                Button(role: .cancel) {
+                    favoriteLocationPendingEdit = nil
+                } label: {
+                    Text("Alert.No")
+                }
+                Button(role: .destructive) {
+                    Task {
+                        if let favoriteLocationPendingEdit = favoriteLocationPendingEdit {
+                            await favorites.deleteLocation(favoriteLocationPendingEdit)
+                            if favorites.favoriteLocations.count == 0 {
+                                isEditing = false
+                            }
+                        }
+                    }
+                } label: {
+                    Text("Alert.Yes")
+                }
+            } message: {
+                Text(localized("Favorites.Delete.Confirm.Message",
+                               replacing: favoriteLocationPendingEdit?.nickname ??
+                               localized("Favorites.Delete.Confirm.GenericLocationText")))
+            }
     }
 
 }
