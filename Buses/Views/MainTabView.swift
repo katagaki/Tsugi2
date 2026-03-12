@@ -98,7 +98,9 @@ struct MainTabView: View {
             }
         }
         .onChange(of: locationManager.authorizationStatus) { _, newValue in
-            handleLocationAuthorizationChange(newValue)
+            if let newValue {
+                handleLocationAuthorizationChange(newValue)
+            }
         }
         .onChange(of: dataManager.busStops) { _, _ in
             if dataManager.busStops.count > 0 {
@@ -146,17 +148,18 @@ struct MainTabView: View {
         .searchable(text: $searchTerm,
                      placement: .toolbar)
         .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Button {
-                    isNotificationsSheetPresented = true
-                } label: {
-                    Image(systemName: "bell.fill")
-                }
-                ToolbarSpacer(.fixed)
-                Button {
-                    isMoreSheetPresented = true
-                } label: {
-                    Image(systemName: "ellipsis")
+            ToolbarItem(placement: .navigationBarTrailing) {
+                HStack(spacing: 12.0) {
+                    Button {
+                        isNotificationsSheetPresented = true
+                    } label: {
+                        Image(systemName: "bell.fill")
+                    }
+                    Button {
+                        isMoreSheetPresented = true
+                    } label: {
+                        Image(systemName: "ellipsis")
+                    }
                 }
             }
             ToolbarItemGroup(placement: .bottomBar) {
