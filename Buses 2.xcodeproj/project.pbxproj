@@ -50,13 +50,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		E493F5CF2F62269A002C936C /* Exceptions for "Assistant" folder in "Buses" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				AssistantLiveActivity.swift,
-			);
-			target = E4406AA727EF182300819CDC /* Buses */;
-		};
 		E493F5D02F62269A002C936C /* Exceptions for "Assistant" folder in "AssistantExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -97,7 +90,6 @@
 		E493F5C92F62269A002C936C /* Assistant */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				E493F5CF2F62269A002C936C /* Exceptions for "Assistant" folder in "Buses" target */,
 				E493F5D02F62269A002C936C /* Exceptions for "Assistant" folder in "AssistantExtension" target */,
 			);
 			path = Assistant;

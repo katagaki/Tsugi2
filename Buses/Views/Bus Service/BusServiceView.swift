@@ -5,9 +5,6 @@
 //  Created by 堅書 on 2022/06/15.
 //
 
-#if canImport(ActivityKit)
-import ActivityKit
-#endif
 import MapKit
 import SwiftUI
 
@@ -19,7 +16,7 @@ struct BusServiceView: View {
     @Environment(SettingsManager.self) var settings
     @Environment(Toaster.self) var toaster
 
-    @State var liveActivityID: String = ""
+    @State var isLiveActivityActive: Bool = false
 
     @State var isInitialDataLoading: Bool = true
     @State var busService: BusService
@@ -64,7 +61,8 @@ struct BusServiceView: View {
         .listStyle(.insetGrouped)
         .task {
             await reloadArrivalTimes()
-            startLiveActivity()
+            isLiveActivityActive = ArrivalActivityController.activity(serviceNo: busService.serviceNo,
+                                                                      busStopCode: busStopCode) != nil
             do {
                 if settings.showRoute {
                     try await dataManager.reloadBusRoutes()
@@ -75,16 +73,6 @@ struct BusServiceView: View {
             } catch {
                 log(error.localizedDescription)
             }
-        }
-        .onDisappear {
-#if canImport(ActivityKit) && canImport(WidgetKit)
-            Task {
-                if let liveActivity = Activity<AssistantAttributes>.activities.first(where: {$0.id == liveActivityID}) {
-                    await liveActivity.end(nil, dismissalPolicy: .immediate)
-                    log("Live Activity \(liveActivityID) ended.")
-                }
-            }
-#endif
         }
         .refreshable {
             Task {
@@ -109,23 +97,34 @@ struct BusServiceView: View {
                                          subtitle: locationName)
             }
             ToolbarItem(placement: .primaryAction) {
-                HStack(alignment: .center, spacing: 0.0) {
-                    if showsAddToLocationButton {
-                        Menu {
-                            ForEach(favorites.favoriteLocations, id: \.persistentModelID) { location in
-                                if !location.usesLiveBusStopData {
-                                    Button(location.nickname ?? localized("Shared.BusStop.Description.None")) {
-                                        Task {
-                                            await addToFavorites(location)
-                                        }
+                Button {
+                    Task {
+                        await toggleLiveActivity()
+                    }
+                } label: {
+                    if isLiveActivityActive {
+                        Label("LiveActivity.Stop", systemImage: "pin.slash")
+                    } else {
+                        Label("LiveActivity.Start", systemImage: "pin")
+                    }
+                }
+                .disabled(busService.nextBus?.estimatedArrivalTimeAsDate() == nil && !isLiveActivityActive)
+            }
+            if showsAddToLocationButton {
+                ToolbarItem(placement: .primaryAction) {
+                    Menu {
+                        ForEach(favorites.favoriteLocations, id: \.persistentModelID) { location in
+                            if !location.usesLiveBusStopData {
+                                Button(location.nickname ?? localized("Shared.BusStop.Description.None")) {
+                                    Task {
+                                        await addToFavorites(location)
                                     }
-                                    .disabled(favorites.find(busService.serviceNo, in: location))
                                 }
+                                .disabled(favorites.find(busService.serviceNo, in: location))
                             }
-                        } label: {
-                            Image(systemName: "rectangle.stack.badge.plus")
-                                .font(.body)
                         }
+                    } label: {
+                        Image(systemName: "rectangle.stack.badge.plus")
                     }
                 }
             }
@@ -234,25 +233,29 @@ struct BusServiceView: View {
         }
     }
 
-    func startLiveActivity() {
-#if canImport(ActivityKit) && canImport(WidgetKit)
-        let initialContentState = AssistantAttributes.ContentState(busService: busService)
-        let activityAttributes = AssistantAttributes(serviceNo: busService.serviceNo, currentDate: Date())
-        let activityContent = ActivityContent(state: initialContentState,
-                                              staleDate: Calendar.current.date(byAdding: .second,
-                                                                               value: 15,
-                                                                               to: Date()))
-        if ActivityAuthorizationInfo().areActivitiesEnabled {
-            do {
-                var liveActivity: Activity<AssistantAttributes>?
-                liveActivity = try Activity.request(attributes: activityAttributes, content: activityContent)
-                liveActivityID = liveActivity?.id ?? ""
-                log("Live Activity requested with id \(liveActivityID).")
-            } catch {
-                log(error.localizedDescription)
-            }
+    func toggleLiveActivity() async {
+        if let activity = ArrivalActivityController.activity(serviceNo: busService.serviceNo,
+                                                             busStopCode: busStopCode) {
+            await ArrivalActivityController.end(activity)
+            isLiveActivityActive = false
+            return
         }
-#endif
+        guard ArrivalActivityController.areActivitiesEnabled else {
+            toaster.showToast(localized("LiveActivity.Disabled"), type: .exclamation, hidesAutomatically: true)
+            return
+        }
+        do {
+            try await ArrivalActivityController.start(serviceNo: busService.serviceNo,
+                                                      busStopCode: busStopCode,
+                                                      busStopName: locationName,
+                                                      busService: busService)
+            isLiveActivityActive = true
+            ArrivalActivityController.scheduleBackgroundRefresh()
+            toaster.showToast(localized("LiveActivity.Started"), type: .checkmark, hidesAutomatically: true)
+        } catch {
+            log("Could not start Live Activity: \(error.localizedDescription)", level: .error)
+            toaster.showToast(localized("LiveActivity.Error"), type: .exclamation, hidesAutomatically: true)
+        }
     }
 
 }

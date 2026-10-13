@@ -22,6 +22,8 @@ struct TsugiApp: App {
     @State var settings = SettingsManager()
     @State var toaster = Toaster()
 
+    @Environment(\.scenePhase) var scenePhase
+
     init() {
         // Launch arguments only reach the app, so pass the mock data flag on to the extension
         UserDefaults.shared.set(UserDefaults.standard.bool(forKey: "UseMockData"), forKey: "UseMockData")
@@ -43,6 +45,16 @@ struct TsugiApp: App {
                 .environment(locationManager)
                 .environment(settings)
                 .environment(toaster)
+                .task(id: scenePhase) {
+                    if scenePhase == .active {
+                        await ArrivalActivityController.refreshWhileActive()
+                    } else if scenePhase == .background {
+                        ArrivalActivityController.scheduleBackgroundRefresh()
+                    }
+                }
+        }
+        .backgroundTask(.appRefresh(ArrivalActivityController.refreshTaskIdentifier)) {
+            await ArrivalActivityController.handleBackgroundRefresh()
         }
     }
 }

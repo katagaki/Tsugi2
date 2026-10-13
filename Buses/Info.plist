@@ -6,6 +6,10 @@
 	<array>
 		<string>com.tsubuzaki.Tsugi2-assistant.refresh</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>UIAppFonts</key>
