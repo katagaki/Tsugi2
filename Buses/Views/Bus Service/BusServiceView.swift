@@ -14,7 +14,7 @@ import SwiftUI
 struct BusServiceView: View {
 
     @Environment(DataManager.self) var dataManager
-    @EnvironmentObject var favorites: FavoritesManager
+    @Environment(FavoritesManager.self) var favorites
     @Environment(CoordinateManager.self) var coordinateManager
     @Environment(SettingsManager.self) var settings
     @Environment(Toaster.self) var toaster
@@ -112,7 +112,7 @@ struct BusServiceView: View {
                 HStack(alignment: .center, spacing: 0.0) {
                     if showsAddToLocationButton {
                         Menu {
-                            ForEach(favorites.favoriteLocations, id: \.hash) { location in
+                            ForEach(favorites.favoriteLocations, id: \.persistentModelID) { location in
                                 if !location.usesLiveBusStopData {
                                     Button(location.nickname ?? localized("Shared.BusStop.Description.None")) {
                                         Task {

@@ -11,7 +11,7 @@ struct FavoriteLocationEditView: View {
 
     @Environment(\.dismiss) var dismiss
 
-    @EnvironmentObject var favorites: FavoritesManager
+    @Environment(FavoritesManager.self) var favorites
 
     @Binding var locationToEdit: FavoriteLocation?
 
@@ -20,7 +20,7 @@ struct FavoriteLocationEditView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(editableBusServices, id: \.objectID) { busService in
+                ForEach(editableBusServices, id: \.persistentModelID) { busService in
                     Text(busService.serviceNo ?? "")
                         .font(Font.custom("LTA-Identity", size: 18.0))
                 }
@@ -47,9 +47,8 @@ struct FavoriteLocationEditView: View {
     }
 
     func loadBusServices() {
-        if let locationToEdit = locationToEdit,
-           let services = locationToEdit.busServices?.array as? [FavoriteBusService] {
-            editableBusServices = services.sorted { $0.viewIndex < $1.viewIndex }
+        if let locationToEdit = locationToEdit {
+            editableBusServices = locationToEdit.sortedBusServices
         }
     }
 

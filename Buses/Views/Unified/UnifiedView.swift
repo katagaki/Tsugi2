@@ -19,7 +19,7 @@ struct UnifiedView: View {
     @Environment(NavigationManager.self) var navigationManager
     @Environment(NetworkMonitor.self) var networkMonitor
     @Environment(DataManager.self) var dataManager
-    @EnvironmentObject var favorites: FavoritesManager
+    @Environment(FavoritesManager.self) var favorites
     @Environment(LocationManager.self) var locationManager
     @Environment(RegionManager.self) var regionManager
     @Environment(CoordinateManager.self) var coordinateManager

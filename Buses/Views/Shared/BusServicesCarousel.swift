@@ -10,7 +10,7 @@ import SwiftUI
 struct BusServicesCarousel: View {
 
     @Environment(DataManager.self) var dataManager
-    @EnvironmentObject var favorites: FavoritesManager
+    @Environment(FavoritesManager.self) var favorites
     @Environment(SettingsManager.self) var settings
 
     var dataDisplayMode: DataDisplayMode
@@ -97,7 +97,7 @@ struct BusServicesCarousel: View {
             } else {
                 HStack(alignment: .center) {
                     if dataDisplayMode == .favoriteLocationCustomData {
-                        if (favoriteLocation?.wrappedValue.busServices?.count ?? 0) == 0 {
+                        if (favoriteLocation?.wrappedValue.busServices.count ?? 0) == 0 {
                             Text("Favorites.Hint.NoBusServices")
                                 .font(.body)
                                 .foregroundColor(.secondary)
@@ -145,12 +145,8 @@ struct BusServicesCarousel: View {
                     lhs.serviceNo.toInt() ?? 9999 < rhs.serviceNo.toInt() ?? 9999
                 })
             case .favoriteLocationCustomData:
-                if let favoriteLocation = favoriteLocation,
-                   let favoriteBusServices = favoriteLocation.wrappedValue.busServices?.array as? [FavoriteBusService] {
-                    let favoriteBusServicesSorted = (
-                        favoriteBusServices.sorted(by: { lhs, rhs in
-                           lhs.viewIndex < rhs.viewIndex
-                       }))
+                if let favoriteLocation = favoriteLocation {
+                    let favoriteBusServicesSorted = favoriteLocation.wrappedValue.sortedBusServices
                     log("Reloading arrival times for a favorite location using custom data.")
                     try await reloadArrivalTimes(for: favoriteLocation.wrappedValue,
                                                  favoriteBusServices: favoriteBusServicesSorted)

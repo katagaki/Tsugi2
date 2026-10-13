@@ -10,7 +10,7 @@ import SwiftUI
 
 struct BusStopView: View {
 
-    @EnvironmentObject var favorites: FavoritesManager
+    @Environment(FavoritesManager.self) var favorites
     @Environment(CoordinateManager.self) var coordinateManager
     @Environment(Toaster.self) var toaster
 

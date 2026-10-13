@@ -155,6 +155,7 @@ extension UnifiedView {
     // MARK: - Locations
 
     @ViewBuilder var locationsSection: some View {
+        @Bindable var favorites = favorites
         Section {
             if favorites.favoriteLocations.isEmpty {
                 ContentUnavailableView {
@@ -169,8 +170,8 @@ extension UnifiedView {
                 .listRowInsets(EdgeInsets())
                 .listRowBackground(Color.clear)
             } else {
-                ForEach($favorites.favoriteLocations, id: \.objectID) { $location in
-                    if !location.isFault && !location.isDeleted {
+                ForEach($favorites.favoriteLocations, id: \.persistentModelID) { $location in
+                    if !location.isDeleted {
                         locationRow(location: $location)
                     }
                 }
@@ -199,7 +200,7 @@ extension UnifiedView {
                     .buttonStyle(.borderless)
                     Spacer()
                     if !location.wrappedValue.usesLiveBusStopData &&
-                        (location.wrappedValue.busServices ?? []).count != 0 {
+                        !location.wrappedValue.busServices.isEmpty {
                         Button {
                             locationPendingBusServiceEdit = location.wrappedValue
                             isBusServiceEditPending = true
