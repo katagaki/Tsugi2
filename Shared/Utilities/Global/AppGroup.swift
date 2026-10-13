@@ -15,8 +15,9 @@ enum AppGroup {
         if let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: identifier) {
             return url
         }
-        log("App Group container is unavailable, falling back to Application Support.", level: .error)
-        return URL.applicationSupportDirectory
+        // The app's own container has the same layout as the App Group container
+        log("App Group container is unavailable, falling back to the app container.", level: .error)
+        return URL.homeDirectory
     }
 
     static var cachesURL: URL {
