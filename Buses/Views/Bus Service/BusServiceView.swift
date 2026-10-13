@@ -134,7 +134,7 @@ struct BusServiceView: View {
 
     func reloadArrivalTimes() async {
         do {
-            let fetchedBusStop = try await getBusArrivals(for: busStopCode)
+            let fetchedBusStop = try await transit.busArrivals(for: busStopCode)
             let serviceNo = busService.serviceNo
             if let busService = fetchedBusStop.arrivals?.first(where: { busService in
                 busService.serviceNo == serviceNo

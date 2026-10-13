@@ -22,6 +22,22 @@ class BusRoutePoint: Codable, Hashable, ObservableObject, Identifiable {
     var sundayFirstBusTime: String
     var sundayLastBusTime: String
 
+    init(serviceNo: String, operator: BusOperator, direction: BusRouteDirection,
+         stopSequence: Int, stopCode: String) {
+        self.serviceNo = serviceNo
+        self.operator = `operator`
+        self.direction = direction
+        self.stopSequence = stopSequence
+        self.stopCode = stopCode
+        self.distance = 0.0
+        self.weekdayFirstBusTime = ""
+        self.weekdayLastBusTime = ""
+        self.saturdayFirstBusTime = ""
+        self.saturdayLastBusTime = ""
+        self.sundayFirstBusTime = ""
+        self.sundayLastBusTime = ""
+    }
+
     enum CodingKeys: String, CodingKey {
         case serviceNo = "ServiceNo"
         case `operator` = "Operator"

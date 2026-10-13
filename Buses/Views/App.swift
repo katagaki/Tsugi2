@@ -22,11 +22,15 @@ struct TsugiApp: App {
     @StateObject var settings = SettingsManager()
     @StateObject var toaster = Toaster()
 
+    init() {
+        // Launch arguments only reach the app, so pass the mock data flag on to the extension
+        UserDefaults.shared.set(UserDefaults.standard.bool(forKey: "UseMockData"), forKey: "UseMockData")
+    }
+
     var body: some Scene {
         WindowGroup {
             KatsuView()
                 .onAppear {
-                    loadAPIKeys()
                     initializeProperTextFramework()
                 }
                 .environmentObject(tabManager)

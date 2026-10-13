@@ -112,7 +112,7 @@ struct BusStopView: View {
 
     func reloadBusArrivals() {
         Task {
-            let busStopsFetched = try await getBusArrivals(for: busStop.code)
+            let busStopsFetched = try await transit.busArrivals(for: busStop.code)
             busArrivals = busStopsFetched.arrivals ?? []
             busArrivals.sort(by: { lhs, rhs in
                 lhs.serviceNo.toInt() ?? 9999 < rhs.serviceNo.toInt() ?? 9999

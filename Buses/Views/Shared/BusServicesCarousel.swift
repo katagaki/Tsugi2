@@ -139,7 +139,7 @@ struct BusServicesCarousel: View {
             switch dataDisplayMode {
             case .busStop, .favoriteLocationLiveData:
                 log("Reloading arrival times for a bus stop type location or favorite location using live data.")
-                busServices = (try await getBusArrivals(for: busStopCode ?? "").arrivals ?? [])
+                busServices = (try await transit.busArrivals(for: busStopCode ?? "").arrivals ?? [])
                     .sorted(by: { lhs, rhs in
                     lhs.serviceNo.toInt() ?? 9999 < rhs.serviceNo.toInt() ?? 9999
                 })
@@ -173,7 +173,7 @@ struct BusServicesCarousel: View {
             })
         var fetchedBusServices: [BusService] = []
         for busService in busServices {
-            if var fetchedBusService = try await getBusArrivals(
+            if var fetchedBusService = try await transit.busArrivals(
                 for: busService.busStopCode ?? "").arrivals?
                 .first(where: { fetchedBusService in
                     fetchedBusService.serviceNo == busService.serviceNo
