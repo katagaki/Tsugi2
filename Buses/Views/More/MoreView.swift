@@ -11,13 +11,14 @@ struct MoreView: View {
 
     @Environment(\.dismiss) var dismiss
 
-    @EnvironmentObject var dataManager: DataManager
-    @EnvironmentObject var settings: SettingsManager
-    @EnvironmentObject var toaster: Toaster
+    @Environment(DataManager.self) var dataManager
+    @Environment(SettingsManager.self) var settings
+    @Environment(Toaster.self) var toaster
 
     @State var showLogsView: Bool = false
 
     var body: some View {
+        @Bindable var settings = settings
         NavigationStack {
             List {
                 Section {

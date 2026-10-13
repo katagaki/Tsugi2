@@ -8,21 +8,22 @@
 import Foundation
 import SwiftUI
 
-class DataManager: ObservableObject {
+@Observable
+class DataManager {
 
-    let defaults = UserDefaults.standard
+    @ObservationIgnored let defaults = UserDefaults.standard
 
-    @Published var busStopList: BusStopList = BusStopList()
-    @Published var shouldReloadBusStopList: Bool = false
+    var busStopList: BusStopList = BusStopList()
+    var shouldReloadBusStopList: Bool = false
 
-    @Published var busRouteList: BusRouteList = BusRouteList()
-    @Published var isBusRouteListLoaded: Bool = false
+    var busRouteList: BusRouteList = BusRouteList()
+    var isBusRouteListLoaded: Bool = false
 
-    @Published var busRoutePolylines: [BusRoutePolyline] = []
-    @Published var isBusRoutePolylinesLoaded: Bool = false
+    var busRoutePolylines: [BusRoutePolyline] = []
+    var isBusRoutePolylinesLoaded: Bool = false
 
-    @Published var updatedDate: String = ""
-    @Published var updatedTime: String = ""
+    var updatedDate: String = ""
+    var updatedTime: String = ""
 
     var busStops: [BusStop] {
         get {

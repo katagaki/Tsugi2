@@ -8,11 +8,12 @@
 import CoreLocation
 import SwiftUI
 
-class CoordinateManager: ObservableObject {
+@Observable
+class CoordinateManager {
 
-    @Published var coordinates: [Coordinate] = []
-    @Published var polyline: String?
-    @Published var updateCameraFlag: Bool = false
+    var coordinates: [Coordinate] = []
+    var polyline: String?
+    var updateCameraFlag: Bool = false
 
     func addCoordinate(from busStop: BusStop) {
         self.coordinates.append(Coordinate(busStop: busStop))

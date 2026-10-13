@@ -11,9 +11,9 @@ import SwiftUI
 
 struct KatsuView: View {
 
-    @EnvironmentObject var navigationManager: NavigationManager
-    @EnvironmentObject var coordinateManager: CoordinateManager
-    @EnvironmentObject var toaster: Toaster
+    @Environment(NavigationManager.self) var navigationManager
+    @Environment(CoordinateManager.self) var coordinateManager
+    @Environment(Toaster.self) var toaster
 
     @Namespace var mapScope
 

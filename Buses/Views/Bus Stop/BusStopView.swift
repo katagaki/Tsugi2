@@ -11,8 +11,8 @@ import SwiftUI
 struct BusStopView: View {
 
     @EnvironmentObject var favorites: FavoritesManager
-    @EnvironmentObject var coordinateManager: CoordinateManager
-    @EnvironmentObject var toaster: Toaster
+    @Environment(CoordinateManager.self) var coordinateManager
+    @Environment(Toaster.self) var toaster
 
     @State var busStop: BusStop
     @State var busArrivals: [BusService] = []

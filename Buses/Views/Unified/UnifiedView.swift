@@ -16,15 +16,15 @@ struct UnifiedView: View {
 
     @Environment(\.scenePhase) var scenePhase
 
-    @EnvironmentObject var navigationManager: NavigationManager
-    @EnvironmentObject var networkMonitor: NetworkMonitor
-    @EnvironmentObject var dataManager: DataManager
+    @Environment(NavigationManager.self) var navigationManager
+    @Environment(NetworkMonitor.self) var networkMonitor
+    @Environment(DataManager.self) var dataManager
     @EnvironmentObject var favorites: FavoritesManager
-    @EnvironmentObject var locationManager: LocationManager
-    @EnvironmentObject var regionManager: RegionManager
-    @EnvironmentObject var coordinateManager: CoordinateManager
-    @EnvironmentObject var settings: SettingsManager
-    @EnvironmentObject var toaster: Toaster
+    @Environment(LocationManager.self) var locationManager
+    @Environment(RegionManager.self) var regionManager
+    @Environment(CoordinateManager.self) var coordinateManager
+    @Environment(SettingsManager.self) var settings
+    @Environment(Toaster.self) var toaster
 
     @State var isInitialLoad: Bool = true
     @State var isNotificationsSheetPresented: Bool = false
@@ -50,6 +50,7 @@ struct UnifiedView: View {
     @State var isBusServiceEditPending: Bool = false
 
     var body: some View {
+        @Bindable var navigationManager = navigationManager
         NavigationStack(path: $navigationManager.mainPath) {
             listContent
         }

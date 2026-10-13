@@ -6,14 +6,16 @@
 //
 
 import Foundation
+import Observation
 
-class TabManager: ObservableObject {
-    @Published var selectedTab: TabType {
+@Observable
+class TabManager {
+    var selectedTab: TabType {
         didSet {
             UserDefaults.standard.set(selectedTab.rawValue, forKey: "SelectedTab")
         }
     }
-    @Published var previouslySelectedTab: TabType = .nearby
+    var previouslySelectedTab: TabType = .nearby
 
     init() {
         let saved = UserDefaults.standard.integer(forKey: "SelectedTab")

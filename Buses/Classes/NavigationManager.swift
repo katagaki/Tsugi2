@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import Observation
 
-class NavigationManager: ObservableObject {
+@Observable
+class NavigationManager {
 
-    @Published var mainPath: [ViewPath] = []
+    var mainPath: [ViewPath] = []
 
     func popToRoot() {
         mainPath.removeAll()

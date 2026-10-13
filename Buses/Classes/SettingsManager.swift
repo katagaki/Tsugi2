@@ -6,17 +6,19 @@
 //
 
 import Foundation
+import Observation
 
-class SettingsManager: ObservableObject {
+@Observable
+class SettingsManager {
 
-    let defaults = UserDefaults.standard
+    @ObservationIgnored let defaults = UserDefaults.standard
 
-    @Published var useProperText: Bool = true
-    @Published var carouselDisplayMode: CarouselDisplayMode = .full
-    @Published var carouselDisplayModeIsFull: Bool = true
-    @Published var carouselDisplayModeIsSmall: Bool = false
-    @Published var carouselDisplayModeIsMinimal: Bool = false
-    @Published var showRoute: Bool = false
+    var useProperText: Bool = true
+    var carouselDisplayMode: CarouselDisplayMode = .full
+    var carouselDisplayModeIsFull: Bool = true
+    var carouselDisplayModeIsSmall: Bool = false
+    var carouselDisplayModeIsMinimal: Bool = false
+    var showRoute: Bool = false
 
     init() {
         // Detect if version changed

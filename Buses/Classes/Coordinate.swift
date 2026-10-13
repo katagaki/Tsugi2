@@ -8,14 +8,14 @@
 import CoreLocation
 import SwiftUI
 
-class Coordinate: ObservableObject, Identifiable {
+class Coordinate: Identifiable {
 
     var id: String {
         return busStop.code
     }
-    @Published var busStop: BusStop = BusStop(code: "", description: "")
-    @Published var latitude: Double = 0.0
-    @Published var longitude: Double = 0.0
+    var busStop: BusStop = BusStop(code: "", description: "")
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
 
     init(busStop: BusStop) {
         self.busStop = busStop

@@ -11,16 +11,16 @@ import SwiftUI
 @main
 struct TsugiApp: App {
 
-    @StateObject var tabManager = TabManager()
-    @StateObject var navigationManager = NavigationManager()
-    @StateObject var networkMonitor = NetworkMonitor()
-    @StateObject var dataManager = DataManager()
+    @State var tabManager = TabManager()
+    @State var navigationManager = NavigationManager()
+    @State var networkMonitor = NetworkMonitor()
+    @State var dataManager = DataManager()
     @StateObject var favorites = FavoritesManager()
-    @StateObject var regionManager = RegionManager()
-    @StateObject var coordinateManager = CoordinateManager()
-    @StateObject var locationManager = LocationManager()
-    @StateObject var settings = SettingsManager()
-    @StateObject var toaster = Toaster()
+    @State var regionManager = RegionManager()
+    @State var coordinateManager = CoordinateManager()
+    @State var locationManager = LocationManager()
+    @State var settings = SettingsManager()
+    @State var toaster = Toaster()
 
     init() {
         // Launch arguments only reach the app, so pass the mock data flag on to the extension
@@ -33,16 +33,16 @@ struct TsugiApp: App {
                 .onAppear {
                     initializeProperTextFramework()
                 }
-                .environmentObject(tabManager)
-                .environmentObject(navigationManager)
-                .environmentObject(networkMonitor)
-                .environmentObject(dataManager)
+                .environment(tabManager)
+                .environment(navigationManager)
+                .environment(networkMonitor)
+                .environment(dataManager)
                 .environmentObject(favorites)
-                .environmentObject(regionManager)
-                .environmentObject(coordinateManager)
-                .environmentObject(locationManager)
-                .environmentObject(settings)
-                .environmentObject(toaster)
+                .environment(regionManager)
+                .environment(coordinateManager)
+                .environment(locationManager)
+                .environment(settings)
+                .environment(toaster)
         }
     }
 }

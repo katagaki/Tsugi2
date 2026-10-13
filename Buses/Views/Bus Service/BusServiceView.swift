@@ -13,11 +13,11 @@ import SwiftUI
 
 struct BusServiceView: View {
 
-    @EnvironmentObject var dataManager: DataManager
+    @Environment(DataManager.self) var dataManager
     @EnvironmentObject var favorites: FavoritesManager
-    @EnvironmentObject var coordinateManager: CoordinateManager
-    @EnvironmentObject var settings: SettingsManager
-    @EnvironmentObject var toaster: Toaster
+    @Environment(CoordinateManager.self) var coordinateManager
+    @Environment(SettingsManager.self) var settings
+    @Environment(Toaster.self) var toaster
 
     @State var liveActivityID: String = ""
 

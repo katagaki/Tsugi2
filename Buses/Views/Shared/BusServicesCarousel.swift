@@ -9,9 +9,9 @@ import SwiftUI
 
 struct BusServicesCarousel: View {
 
-    @EnvironmentObject var dataManager: DataManager
+    @Environment(DataManager.self) var dataManager
     @EnvironmentObject var favorites: FavoritesManager
-    @EnvironmentObject var settings: SettingsManager
+    @Environment(SettingsManager.self) var settings
 
     var dataDisplayMode: DataDisplayMode
 
@@ -28,6 +28,7 @@ struct BusServicesCarousel: View {
     }
 
     var body: some View {
+        @Bindable var settings = settings
         HStack {
             if !isInitialDataLoaded {
                 HStack {
