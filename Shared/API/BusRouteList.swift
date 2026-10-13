@@ -11,14 +11,10 @@ class BusRouteList: Codable, Hashable, ObservableObject, Identifiable {
 
     var metadata: String
     var busRoutePoints: [BusRoutePoint]
-    var combinedBusRoutes: String?
 
     init() {
         metadata = "created.from.init"
         busRoutePoints = []
-        combinedBusRoutes = busRoutePoints.reduce("", { partialResult, busRoutePoint in
-            partialResult + "\(busRoutePoint.serviceNo).\(busRoutePoint.stopCode)"
-        })
     }
 
     enum CodingKeys: String, CodingKey {
@@ -27,11 +23,12 @@ class BusRouteList: Codable, Hashable, ObservableObject, Identifiable {
     }
 
     static func == (lhs: BusRouteList, rhs: BusRouteList) -> Bool {
-        return lhs.hashValue == rhs.hashValue
+        // Lists are reference types that are mutated in place, so compare by identity
+        return lhs === rhs
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine(combinedBusRoutes!)
+        hasher.combine(ObjectIdentifier(self))
     }
 
 }
