@@ -67,8 +67,8 @@ struct BusServiceView: View {
             startLiveActivity()
             do {
                 if settings.showRoute {
-                    try await dataManager.reloadBusRoutesFromServer()
-                    try await dataManager.reloadBusRoutePolylinesFromServer()
+                    try await dataManager.reloadBusRoutes()
+                    try await dataManager.reloadBusRoutePolylines()
                     reloadBusRoutes()
                 }
                 updateMapDisplay()

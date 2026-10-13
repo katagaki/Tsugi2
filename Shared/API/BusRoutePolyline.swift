@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BusRoutePolyline {
+struct BusRoutePolyline: Codable {
     var serviceNo: String
     var encodedPolylines: [String]
 }

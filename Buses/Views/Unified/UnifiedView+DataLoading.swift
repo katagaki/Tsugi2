@@ -18,19 +18,7 @@ extension UnifiedView {
                           type: .spinner,
                           hidesAutomatically: false)
         do {
-            if dataManager.storedBusStopList() == nil || forceServer {
-                try await dataManager.reloadBusStopListFromServer()
-                log("Reloaded bus stop data from server.")
-            } else {
-                if let storedBusStopList = dataManager.storedBusStopList(),
-                   let storedBusStopListUpdatedDate = dataManager.storedBusStopListUpdatedDate() {
-                    try await dataManager.reloadBusStopListFromStoredMemory(
-                        storedBusStopList,
-                        updatedAt: storedBusStopListUpdatedDate
-                    )
-                    log("Reloaded bus stop data from memory.")
-                }
-            }
+            try await dataManager.reloadBusStopList(forceServer: forceServer)
             toaster.hideToast()
         } catch {
             log(error.localizedDescription)

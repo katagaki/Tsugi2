@@ -28,9 +28,13 @@ class SettingsManager {
             log("App was either updated or downgraded! " +
                 "Previously detected version was \(previouslyDetectedVersion), " +
                 "current version is \(versionNumber).\(buildNumber).")
-            defaults.set(nil, forKey: "StoredBusStopList")
+            TransitCache.clear()
         }
         defaults.setValue("\(versionNumber).\(buildNumber)", forKey: "CurrentVersion")
+
+        // Bus stops used to be stored in UserDefaults before moving to TransitCache
+        defaults.removeObject(forKey: "StoredBusStopList")
+        defaults.removeObject(forKey: "StoredBusStopListUpdatedDate")
 
         // Set default settings
         if defaults.value(forKey: "UseProperText") == nil {
