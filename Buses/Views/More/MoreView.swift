@@ -12,7 +12,6 @@ struct MoreView: View {
     @Environment(\.dismiss) var dismiss
 
     @AppStorage(SettingsKey.carouselDisplayMode) var carouselDisplayMode: CarouselDisplayMode = .full
-    @AppStorage(SettingsKey.showRoute) var showRoute: Bool = false
     @Environment(Toaster.self) var toaster
 
     @State var showLogsView: Bool = false
@@ -50,7 +49,6 @@ struct MoreView: View {
                         .buttonStyle(.borderless)
                         .frame(maxWidth: .infinity)
                     }
-                    Toggle("More.Customization.ShowRoute", isOn: $showRoute)
                 } header: {
                     Text("More.Customization")
                 }

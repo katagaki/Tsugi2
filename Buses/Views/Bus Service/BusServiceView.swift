@@ -15,7 +15,6 @@ struct BusServiceView: View {
     @Environment(DataManager.self) var dataManager
     @Environment(FavoritesManager.self) var favorites
     @Environment(CoordinateManager.self) var coordinateManager
-    @AppStorage(SettingsKey.showRoute) var showRoute: Bool = false
     @Environment(Toaster.self) var toaster
 
     @State var isLiveActivityActive: Bool = false
@@ -50,7 +49,7 @@ struct BusServiceView: View {
                                        setNotification: self.setNotification)
                 }
             }
-            if !dataManager.isBusRouteListLoaded && showRoute {
+            if !dataManager.isBusRouteListLoaded {
                 Section {
                     HStack(alignment: .center, spacing: 8.0) {
                         ProgressView()
@@ -66,15 +65,13 @@ struct BusServiceView: View {
             isLiveActivityActive = ArrivalActivityController.activity(serviceNo: busService.serviceNo,
                                                                       busStopCode: busStopCode) != nil
             do {
-                if showRoute {
-                    try await dataManager.reloadBusRoutes()
-                    try await dataManager.reloadBusRoutePolylines()
-                    reloadBusRoutes()
-                }
-                updateMapDisplay()
+                try await dataManager.reloadBusRoutes()
+                try await dataManager.reloadBusRoutePolylines()
+                reloadBusRoutes()
             } catch {
                 log(error.localizedDescription)
             }
+            updateMapDisplay()
         }
         .onDisappear {
             coordinateManager.liveBuses.removeAll()
@@ -85,7 +82,7 @@ struct BusServiceView: View {
             }
         }
         .onChange(of: dataManager.isBusRouteListLoaded, { _, newValue in
-            if newValue && showRoute {
+            if newValue {
                 reloadBusRoutes()
             }
         })
@@ -269,12 +266,12 @@ extension BusServiceView {
     func updateMapDisplay() {
         coordinateManager.removeAll()
         coordinateManager.liveBuses = LiveBus.buses(of: busService)
-        if showRoute {
+        if !busStopsForMapDisplay.isEmpty {
             coordinateManager.replaceWithCoordinates(from: busStopsForMapDisplay)
             coordinateManager.routeCoordinates = routeCoordinates()
             coordinateManager.highlightedBusStopCode = busStopCode
         } else if let busStop = dataManager.busStop(code: busStopCode) {
-            // Frames the bus stop together with the buses heading to it
+            // Without a route, frames the bus stop together with the buses heading to it
             coordinateManager.addCoordinate(from: busStop)
         }
         coordinateManager.updateCameraFlag.toggle()
