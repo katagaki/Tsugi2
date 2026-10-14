@@ -1,0 +1,48 @@
+DEFINE SCHEMA
+
+    RECORD TYPE CD_FavoriteBusService (
+        "___createTime" TIMESTAMP SORTABLE,
+        "___createdBy"  REFERENCE,
+        "___etag"       STRING,
+        "___modTime"    TIMESTAMP SORTABLE,
+        "___modifiedBy" REFERENCE,
+        "___recordID"   REFERENCE QUERYABLE,
+        CD_busStopCode  STRING,
+        CD_entityName   STRING,
+        CD_location     STRING,
+        CD_serviceNo    STRING,
+        CD_viewIndex    INT64,
+        GRANT WRITE TO "_creator",
+        GRANT CREATE TO "_icloud",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE CD_FavoriteLocation (
+        "___createTime"        TIMESTAMP SORTABLE,
+        "___createdBy"         REFERENCE,
+        "___etag"              STRING,
+        "___modTime"           TIMESTAMP SORTABLE,
+        "___modifiedBy"        REFERENCE,
+        "___recordID"          REFERENCE QUERYABLE,
+        CD_busStopCode         STRING,
+        CD_entityName          STRING,
+        CD_identifier          STRING,
+        CD_nickname            STRING,
+        CD_usesLiveBusStopData INT64,
+        CD_viewIndex           INT64,
+        GRANT WRITE TO "_creator",
+        GRANT CREATE TO "_icloud",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE Users (
+        "___createTime" TIMESTAMP,
+        "___createdBy"  REFERENCE,
+        "___etag"       STRING,
+        "___modTime"    TIMESTAMP,
+        "___modifiedBy" REFERENCE,
+        "___recordID"   REFERENCE,
+        roles           LIST<INT64>,
+        GRANT WRITE TO "_creator",
+        GRANT READ TO "_world"
+    );
