@@ -15,7 +15,6 @@ struct ArrivalLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: ArrivalAttributes.self) { context in
             LockScreenArrivalView(context: context)
-                .padding(16.0)
                 .activityBackgroundTint(.black.opacity(0.3))
                 .activitySystemActionForegroundColor(.white)
         } dynamicIsland: { context in
@@ -27,6 +26,7 @@ struct ArrivalLiveActivity: Widget {
                 }
                 DynamicIslandExpandedRegion(.trailing) {
                     BusAttributesView(state: context.state)
+                        .foregroundStyle(.secondary)
                         .frame(maxHeight: 40.0)
                         .padding(.trailing, 4.0)
                 }
@@ -81,25 +81,30 @@ private struct LockScreenArrivalView: View {
     var context: ActivityViewContext<ArrivalAttributes>
 
     var body: some View {
-        HStack(alignment: .center, spacing: 16.0) {
-            VStack(alignment: .leading, spacing: 6.0) {
-                HStack(alignment: .center, spacing: 8.0) {
-                    ServicePlate(serviceNo: context.attributes.serviceNo, fontSize: 18.0)
-                        .frame(height: 30.0)
-                    Text(context.attributes.busStopName)
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .lineLimit(1)
-                }
-                ArrivalCountdown(nextArrival: context.state.nextArrival)
-                    .font(.system(size: 36.0, weight: .semibold))
-                FollowingArrivalView(state: context.state, isStale: context.isStale)
-            }
-            Spacer(minLength: 0.0)
-            VStack(alignment: .trailing, spacing: 12.0) {
+        VStack(alignment: .leading, spacing: 0.0) {
+            HStack(alignment: .center, spacing: 8.0) {
+                ServicePlate(serviceNo: context.attributes.serviceNo, fontSize: 18.0)
+                    .frame(height: 30.0)
+                Text(context.attributes.busStopName)
+                    .font(.subheadline.weight(.semibold))
+                    .lineLimit(1)
+                Spacer(minLength: 0.0)
                 BusAttributesView(state: context.state)
+            }
+            .foregroundStyle(.white)
+            .padding(.horizontal, 16.0)
+            .padding(.vertical, 10.0)
+            .background(Color("AccentColor").opacity(0.45))
+            HStack(alignment: .center, spacing: 16.0) {
+                VStack(alignment: .leading, spacing: 4.0) {
+                    ArrivalCountdown(nextArrival: context.state.nextArrival)
+                        .font(.system(size: 36.0, weight: .semibold))
+                    FollowingArrivalView(state: context.state, isStale: context.isStale)
+                }
+                Spacer(minLength: 0.0)
                 ActivityButtons(activityID: context.activityID)
             }
+            .padding(16.0)
         }
     }
 
@@ -164,7 +169,6 @@ private struct BusAttributesView: View {
             }
         }
         .font(.body)
-        .foregroundStyle(.secondary)
     }
 
 }
