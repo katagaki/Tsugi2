@@ -25,6 +25,8 @@ struct UnifiedView: View {
     @Environment(CoordinateManager.self) var coordinateManager
     @Environment(Toaster.self) var toaster
 
+    @Binding var selectedDetent: PresentationDetent
+
     @State var isInitialLoad: Bool = true
     @State var isNotificationsSheetPresented: Bool = false
     @State var isMoreSheetPresented: Bool = false
@@ -33,6 +35,7 @@ struct UnifiedView: View {
     @State var searchTerm: String = ""
     @State var previousSearchTerm: String = ""
     @State var searchResults: [BusStop] = []
+    @FocusState var isSearchFocused: Bool
 
     // Nearby
     @State var isNearbyBusStopsDetermined: Bool = false
@@ -50,8 +53,23 @@ struct UnifiedView: View {
 
     var body: some View {
         @Bindable var navigationManager = navigationManager
-        NavigationStack(path: $navigationManager.mainPath) {
-            listContent
+        ZStack {
+            // Kept loaded while collapsed so that it is as the user left it when the sheet is raised again
+            NavigationStack(path: $navigationManager.mainPath) {
+                listContent
+            }
+            .opacity(selectedDetent == .collapsed ? 0.0 : 1.0)
+            .allowsHitTesting(selectedDetent != .collapsed)
+            if selectedDetent == .collapsed {
+                CollapsedSearchBar(action: openSearch)
+                    .transition(.opacity)
+            }
+        }
+        .animation(.smooth, value: selectedDetent == .collapsed)
+        .onChange(of: selectedDetent) { _, newDetent in
+            if newDetent == .collapsed {
+                isSearchFocused = false
+            }
         }
         // Alerts bring up the keyboard over the sheet, which should not squeeze the list behind them
         .ignoresSafeArea(.keyboard, edges: isNewPending || isRenamePending ? .bottom : [])

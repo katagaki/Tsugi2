@@ -45,6 +45,18 @@ extension UnifiedView {
         }
     }
 
+    // MARK: - Search
+
+    func openSearch() {
+        navigationManager.popToRoot()
+        selectedDetent = .large
+        Task {
+            // The search field only exists once the sheet has expanded
+            try? await Task.sleep(for: .milliseconds(350))
+            isSearchFocused = true
+        }
+    }
+
     // MARK: - Favorites Editing
 
     func moveLocations(from source: IndexSet, to destination: Int) {

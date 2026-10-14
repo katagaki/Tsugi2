@@ -17,7 +17,7 @@ struct KatsuView: View {
     @Namespace var mapScope
 
     @State var position: MapCameraPosition = .automatic
-    @State var selectedDetent: PresentationDetent = .height(450)
+    @State var selectedDetent: PresentationDetent = .half
     @State var mapSpan: CLLocationDegrees = .greatestFiniteMagnitude
 
     var body: some View {
@@ -104,8 +104,10 @@ struct KatsuView: View {
                 .animation(.snappy, value: toaster.isToastShowing)
             }
             .sheet(isPresented: .constant(true)) {
-                UnifiedView()
-                    .presentationDetents([.height(200), .height(450), .large], selection: $selectedDetent)
+                UnifiedView(selectedDetent: $selectedDetent)
+                    .presentationDetents([.collapsed, .half, .large], selection: $selectedDetent)
+                    // The search bar fills the collapsed sheet, so the handle would sit on top of it
+                    .presentationDragIndicator(selectedDetent == .collapsed ? .hidden : .automatic)
                     .presentationBackgroundInteraction(.enabled)
                     .interactiveDismissDisabled()
             }
@@ -157,8 +159,8 @@ struct KatsuView: View {
         case .busService(let serviceNo, let busStopCode, let locationName):
             navigationManager.open(.busServiceNamed(serviceNo, atLocation: locationName,
                                                     forBusStopCode: busStopCode))
-            if selectedDetent == .height(200) {
-                selectedDetent = .height(450)
+            if selectedDetent == .collapsed {
+                selectedDetent = .half
             }
         }
         log("Opened deep link \(url.absoluteString).")
@@ -186,8 +188,8 @@ struct KatsuView: View {
 
     func safeAreaPadding() -> CGFloat {
         switch selectedDetent {
-        case .height(450): return 450.0
-        case .height(200): return 200.0
+        case .half: return 450.0
+        case .collapsed: return PresentationDetent.collapsedHeight
         default: return 0.0
         }
     }

@@ -35,6 +35,7 @@ extension UnifiedView {
             reloadNearbyBusStops()
         }
         .searchable(text: $searchTerm)
+        .searchFocused($isSearchFocused)
         .toolbar {
             ToolbarItemGroup(placement: .topBarLeading) {
                 Button {
