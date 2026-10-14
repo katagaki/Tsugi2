@@ -109,15 +109,33 @@ struct KatsuView: View {
                     .presentationBackgroundInteraction(.enabled)
                     .interactiveDismissDisabled()
             }
+            .overlay(alignment: .bottomTrailing) {
+                // Sits just above the sheet so it is within reach, and moves with it
+                if selectedDetent != .large {
+                    Button {
+                        withAnimation {
+                            position = .userLocation(fallback: .automatic)
+                        }
+                    } label: {
+                        Image(systemName: "location.fill")
+                            .font(.system(size: 18.0, weight: .medium))
+                            .foregroundStyle(.accent)
+                            .frame(width: 48.0, height: 48.0)
+                    }
+                    .glassEffect(.regular.interactive(), in: .circle)
+                    .padding(.trailing, 16.0)
+                    // The sheet's height is already part of the safe area, so this is the gap above it
+                    .padding(.bottom, 12.0)
+                    .transition(.opacity)
+                }
+            }
+            .animation(.smooth, value: selectedDetent)
             .safeAreaPadding(.bottom, safeAreaPadding())
             // The keyboard belongs to the sheet or an alert, so the map stays where it is
             .ignoresSafeArea(.keyboard)
             .mapScope(mapScope)
             .mapStyle(.standard(pointsOfInterest: .including([.publicTransport])))
             .mapControls {
-                // System map controls use Liquid Glass and are laid out together without overlapping
-                MapUserLocationButton()
-                    .mapControlVisibility(.visible)
                 MapCompass()
                 MapScaleView()
             }
