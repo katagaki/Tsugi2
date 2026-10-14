@@ -59,6 +59,12 @@
             "state" : "translated",
             "value" : "取消"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
+          }
         }
       }
     },
@@ -111,6 +117,12 @@
             "state" : "translated",
             "value" : "创建"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "建立"
+          }
         }
       }
     },
@@ -160,6 +172,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "取消"
@@ -216,6 +234,12 @@
             "state" : "translated",
             "value" : "保存"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存"
+          }
         }
       }
     },
@@ -270,6 +294,12 @@
             "state" : "translated",
             "value" : "确定"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "確定"
+          }
         }
       }
     },
@@ -323,6 +353,12 @@
             "state" : "translated",
             "value" : "正在获取公交路线数据…"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在取得巴士路線資料…"
+          }
         }
       }
     },
@@ -372,6 +408,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴士站"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "巴士站"
@@ -429,6 +471,12 @@
             "state" : "translated",
             "value" : "按字母顺序（升序）"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按字母排序（遞增）"
+          }
         }
       }
     },
@@ -481,6 +529,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "按字母顺序（降序）"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按字母排序（遞減）"
           }
         }
       }
@@ -535,6 +589,12 @@
             "state" : "translated",
             "value" : "距离（最近的优先）"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "距離（最近優先）"
+          }
         }
       }
     },
@@ -587,6 +647,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "正在获取巴士站的信息…"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在取得巴士站資料…"
           }
         }
       }
@@ -641,6 +707,12 @@
             "state" : "translated",
             "value" : "票价计算器"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "車費計算機"
+          }
         }
       }
     },
@@ -693,6 +765,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "搜索结果"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜尋結果"
           }
         }
       }
@@ -748,6 +826,12 @@
             "state" : "translated",
             "value" : "有用信息"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "實用資訊"
+          }
         }
       }
     },
@@ -800,6 +884,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "这个地点"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "這個地點"
           }
         }
       }
@@ -854,6 +944,12 @@
             "state" : "translated",
             "value" : "确定要删除%1吗？"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "確定要刪除%1嗎？"
+          }
         }
       }
     },
@@ -906,6 +1002,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "删除地点"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除地點"
           }
         }
       }
@@ -960,6 +1062,12 @@
             "state" : "translated",
             "value" : "编辑%1"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯%1"
+          }
         }
       }
     },
@@ -1011,6 +1119,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "要将公交车添加到这个地点，请打开巴士到站详情页并选择右上角的“添加到地点”按钮。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如要將巴士路線加入這個地點，請先找到並打開該巴士路線，然後點一下右上角的「加入地點」按鈕。"
           }
         }
       }
@@ -1066,6 +1180,12 @@
             "state" : "translated",
             "value" : "点击＋添加地点，或在巴士站页面中添加。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "點一下＋加入地點，或在巴士站頁面中加入。"
+          }
         }
       }
     },
@@ -1119,6 +1239,12 @@
             "state" : "translated",
             "value" : "没有地点"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有地點"
+          }
         }
       }
     },
@@ -1171,6 +1297,12 @@
             "state" : "translated",
             "value" : "新地点"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增地點"
+          }
         }
       }
     },
@@ -1222,6 +1354,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "编辑地点名称"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新命名地點"
           }
         }
       }
@@ -1279,6 +1417,12 @@
             "state" : "translated",
             "value" : "%1到达"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1到達"
+          }
         }
       }
     },
@@ -1331,6 +1475,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此应用的实时活动已在设置中关闭。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已在「設定」中關閉此 App 的即時動態。"
           }
         }
       }
@@ -1385,6 +1535,12 @@
             "state" : "translated",
             "value" : "无法开始实时活动。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法開始即時動態。"
+          }
         }
       }
     },
@@ -1437,6 +1593,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "预计到达时间"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "預計到達時間"
           }
         }
       }
@@ -1491,6 +1653,12 @@
             "state" : "translated",
             "value" : "实时活动"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "即時動態"
+          }
         }
       }
     },
@@ -1540,6 +1708,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "有座位"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "有座位"
@@ -1597,6 +1771,12 @@
             "state" : "translated",
             "value" : "仅站位"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "僅限站立"
+          }
         }
       }
     },
@@ -1649,6 +1829,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "刷新"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新整理"
           }
         }
       }
@@ -1703,6 +1889,12 @@
             "state" : "translated",
             "value" : "在锁定屏幕上追踪"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在鎖定畫面上追蹤"
+          }
         }
       }
     },
@@ -1755,6 +1947,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "现在可以在锁定屏幕上追踪此巴士。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現在可以在鎖定畫面上追蹤這班巴士。"
           }
         }
       }
@@ -1809,6 +2007,12 @@
             "state" : "translated",
             "value" : "停止追踪"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "停止追蹤"
+          }
         }
       }
     },
@@ -1858,6 +2062,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在更新…"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "正在更新…"
@@ -1915,6 +2125,12 @@
             "state" : "translated",
             "value" : "作者版权"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版權聲明"
+          }
         }
       }
     },
@@ -1967,6 +2183,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "作者版权"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版權聲明"
           }
         }
       }
@@ -2021,6 +2243,12 @@
             "state" : "translated",
             "value" : "个性化"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "個人化"
+          }
         }
       }
     },
@@ -2070,6 +2298,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "大"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "大"
@@ -2127,6 +2361,12 @@
             "state" : "translated",
             "value" : "小"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "小"
+          }
         }
       }
     },
@@ -2176,6 +2416,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "中"
@@ -2234,6 +2480,12 @@
             "state" : "translated",
             "value" : "通用"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一般"
+          }
         }
       }
     },
@@ -2286,6 +2538,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "默认标签页"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "預設標籤頁"
           }
         }
       }
@@ -2340,6 +2598,12 @@
             "state" : "translated",
             "value" : "源代码"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "原始碼"
+          }
         }
       }
     },
@@ -2392,6 +2656,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "帮助"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "說明與支援"
           }
         }
       }
@@ -2446,6 +2716,12 @@
             "state" : "translated",
             "value" : "发邮件"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "傳送電郵"
+          }
         }
       }
     },
@@ -2495,6 +2771,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ktgk.public@icloud.com"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "ktgk.public@icloud.com"
@@ -2552,6 +2834,12 @@
             "state" : "translated",
             "value" : "查看源代码"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看原始碼"
+          }
         }
       }
     },
@@ -2601,6 +2889,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "katagaki/Tsugi2"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "katagaki/Tsugi2"
@@ -2658,6 +2952,12 @@
             "state" : "translated",
             "value" : "X上发布"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 X 上發文"
+          }
         }
       }
     },
@@ -2707,6 +3007,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "@katagaki_"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "@katagaki_"
@@ -2764,6 +3070,12 @@
             "state" : "translated",
             "value" : "通知"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知"
+          }
         }
       }
     },
@@ -2815,6 +3127,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "应用日志"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App 日誌"
           }
         }
       }
@@ -2870,6 +3188,12 @@
             "state" : "translated",
             "value" : "附近没有公交车站。\n请移动到公交车站附近或确认位置信息的设定。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "附近沒有巴士站。\n請移動到巴士站附近，或檢查「定位服務」設定。"
+          }
         }
       }
     },
@@ -2922,6 +3246,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "附近没有公交车站"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "附近沒有巴士站"
           }
         }
       }
@@ -3072,6 +3402,24 @@
               }
             }
           }
+        },
+        "zh-Hant" : {
+          "variations" : {
+            "device" : {
+              "iphone" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "「定位服務」未啟用。如要在不啟用「定位服務」的情況下告訴巴士精靈你的位置，請選擇下方的按鈕。"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "「定位服務」未啟用。"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -3124,6 +3472,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "位置不可用"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法取得位置"
           }
         }
       }
@@ -3178,6 +3532,12 @@
             "state" : "translated",
             "value" : "%1巴士将在%2到达。\n尽快前往公共汽车停下来，以免迟到。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1號巴士預計於%2到達。\n請提早前往巴士站，以免錯過巴士。"
+          }
         }
       }
     },
@@ -3230,6 +3590,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "巴士要到达%1"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴士即將於%1到達"
           }
         }
       }
@@ -3284,6 +3650,12 @@
             "state" : "translated",
             "value" : "设置通知时出错。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定通知時發生錯誤。"
+          }
         }
       }
     },
@@ -3336,6 +3708,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "设置通知需要通知权限。 请在设置APP中检查“巴士精灵”APP的通知权限。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴士精靈尚未獲准傳送通知。請在「設定」App 中檢查巴士精靈的通知權限。"
           }
         }
       }
@@ -3391,6 +3769,12 @@
             "state" : "translated",
             "value" : "您将在该巴士预定到达时间前2分钟收到通知。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你將在這班巴士預計到達前 2 分鐘收到通知。"
+          }
         }
       }
     },
@@ -3445,6 +3829,12 @@
             "state" : "translated",
             "value" : "到达通知"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "到站提醒"
+          }
         }
       }
     },
@@ -3497,6 +3887,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "没有设置到达通知。\n要设置新到达通知，请打开总线服务的到达信息页面，然后单击要设置到达警报的总线的铃铛图标。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尚未設定到站提醒。\n如要設定新的到站提醒，請打開巴士路線的到站資訊頁面，然後點一下想設定提醒的巴士旁的鈴鐺圖示。"
           }
         }
       }
@@ -3551,6 +3947,12 @@
             "state" : "translated",
             "value" : "即将抵达"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "即將到站"
+          }
         }
       }
     },
@@ -3604,6 +4006,12 @@
             "state" : "translated",
             "value" : "即将抵达"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "即將到站"
+          }
         }
       }
     },
@@ -3655,6 +4063,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拥挤"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "擁擠"
           }
         }
       }
@@ -3709,6 +4123,12 @@
             "state" : "translated",
             "value" : "已离开"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已離開"
+          }
         }
       }
     },
@@ -3761,6 +4181,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已经离开"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剛剛離開"
           }
         }
       }
@@ -3815,6 +4241,12 @@
             "state" : "translated",
             "value" : "正在获得公交路线..."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在載入路線…"
+          }
         }
       }
     },
@@ -3868,6 +4300,12 @@
             "state" : "translated",
             "value" : "停止服务"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "暫停服務"
+          }
         }
       }
     },
@@ -3919,6 +4357,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此巴士此刻不提供服务。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此巴士路線目前暫停服務。"
           }
         }
       }
@@ -3973,6 +4417,12 @@
             "state" : "translated",
             "value" : "下一班车："
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下一班："
+          }
         }
       }
     },
@@ -4025,6 +4475,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1已添加到%2。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已將%1加入%2。"
           }
         }
       }
@@ -4079,6 +4535,12 @@
             "state" : "translated",
             "value" : "巴士服务"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴士路線"
+          }
         }
       }
     },
@@ -4130,6 +4592,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此巴士站目前没有能提供的巴士服务。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此巴士站目前沒有巴士路線服務。"
           }
         }
       }
@@ -4184,6 +4652,12 @@
             "state" : "translated",
             "value" : "巴士站代码"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴士站編號"
+          }
         }
       }
     },
@@ -4235,6 +4709,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "复制巴士站代码"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "複製巴士站編號"
           }
         }
       }
@@ -4289,6 +4769,12 @@
             "state" : "translated",
             "value" : "无法获得"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不適用"
+          }
         }
       }
     },
@@ -4340,6 +4826,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "复制巴士站名"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "複製巴士站名稱"
           }
         }
       }
@@ -4395,6 +4887,12 @@
             "state" : "translated",
             "value" : "无名巴士站"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未命名巴士站"
+          }
         }
       }
     },
@@ -4447,6 +4945,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "无路名"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不適用"
           }
         }
       }
@@ -4501,6 +5005,12 @@
             "state" : "translated",
             "value" : "%1已保存为地点。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已將%1加入你的地點。"
+          }
         }
       }
     },
@@ -4554,6 +5064,12 @@
             "state" : "translated",
             "value" : "连接时出现问题。请确认网络后再试一次。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "網絡連線似乎已中斷。請檢查網絡連線後再試一次。"
+          }
         }
       }
     },
@@ -4603,6 +5119,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "取消"
@@ -4660,6 +5182,12 @@
             "state" : "translated",
             "value" : "搜索"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜尋"
+          }
         }
       }
     },
@@ -4712,6 +5240,12 @@
             "state" : "translated",
             "value" : "收藏夹"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "地點"
+          }
         }
       }
     },
@@ -4761,6 +5295,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "附近"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "附近"
@@ -4818,6 +5358,12 @@
             "state" : "translated",
             "value" : "票价计算器"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "車費計算機"
+          }
         }
       }
     },
@@ -4866,6 +5412,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更多"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "更多"
@@ -4923,6 +5475,12 @@
             "state" : "translated",
             "value" : "作者版权"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版權聲明"
+          }
         }
       }
     },
@@ -4972,6 +5530,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "通知"
@@ -5028,6 +5592,12 @@
             "state" : "translated",
             "value" : "MRT路线图"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MRT 路線圖"
+          }
         }
       }
     },
@@ -5079,6 +5649,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已设置的通知"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已排定的通知"
           }
         }
       }
@@ -5133,6 +5709,12 @@
             "state" : "translated",
             "value" : "切换页面"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "切換頁面"
+          }
         }
       }
     },
@@ -5185,6 +5767,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "查看您的某个地点即将到站的巴士。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看你其中一個地點即將到站的巴士。"
           }
         }
       }
@@ -5239,6 +5827,12 @@
             "state" : "translated",
             "value" : "地点"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "地點"
+          }
         }
       }
     },
@@ -5291,6 +5885,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在应用中添加地点即可在此查看到站时间。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在巴士精靈中加入地點，即可在此查看到站時間。"
           }
         }
       }
@@ -5345,6 +5945,12 @@
             "state" : "translated",
             "value" : "页面"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "頁面"
+          }
         }
       }
     },
@@ -5397,6 +6003,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "选择地点"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇地點"
           }
         }
       }
@@ -5451,6 +6063,12 @@
             "state" : "translated",
             "value" : "到站时间"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "到站時間"
+          }
         }
       }
     },
@@ -5500,6 +6118,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴士站"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "巴士站"
@@ -5557,6 +6181,12 @@
             "state" : "translated",
             "value" : "巴士服务"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴士路線"
+          }
         }
       }
     },
@@ -5609,6 +6239,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "获取巴士到站时间"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取得巴士到站時間"
           }
         }
       }
@@ -5663,6 +6299,12 @@
             "state" : "translated",
             "value" : "查看下一班巴士何时到达巴士站。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看下一班巴士何時到達巴士站。"
+          }
         }
       }
     },
@@ -5715,6 +6357,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "获取地点的巴士到站时间"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取得地點的巴士到站時間"
           }
         }
       }
@@ -5769,6 +6417,12 @@
             "state" : "translated",
             "value" : "查看下一班巴士何时到达您保存的地点。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看下一班巴士何時到達你儲存的地點。"
+          }
         }
       }
     },
@@ -5821,6 +6475,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "查找附近的巴士站"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尋找附近的巴士站"
           }
         }
       }
@@ -5875,6 +6535,12 @@
             "state" : "translated",
             "value" : "查找离您最近的巴士站。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尋找離你最近的巴士站。"
+          }
         }
       }
     },
@@ -5927,6 +6593,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "打开巴士站"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打開巴士站"
           }
         }
       }
@@ -5981,6 +6653,12 @@
             "state" : "translated",
             "value" : "在应用中显示巴士站及其到站时间。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 App 中顯示巴士站及其到站時間。"
+          }
         }
       }
     },
@@ -6030,6 +6708,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1：%2。"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1：%2。"
@@ -6087,6 +6771,12 @@
             "state" : "translated",
             "value" : "%1路巴士%2分钟后到达"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1號巴士%2分鐘後到達"
+          }
         }
       }
     },
@@ -6139,6 +6829,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1路巴士即将抵达"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1號巴士即將到站"
           }
         }
       }
@@ -6193,6 +6889,12 @@
             "state" : "translated",
             "value" : "目前没有巴士到达%1。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "目前沒有巴士到達%1。"
+          }
         }
       }
     },
@@ -6246,6 +6948,12 @@
             "state" : "translated",
             "value" : "目前%1路巴士不会到达%2。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1號巴士目前不會到達%2。"
+          }
         }
       }
     },
@@ -6295,6 +7003,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最近的巴士站是%1。"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "最近的巴士站是%1。"
@@ -6352,6 +7066,12 @@
             "state" : "translated",
             "value" : "%1（%2）"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1（%2）"
+          }
         }
       }
     },
@@ -6404,6 +7124,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "您附近500米内没有巴士站。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你附近 500 米內沒有巴士站。"
           }
         }
       }
@@ -6458,6 +7184,12 @@
             "state" : "translated",
             "value" : "无法加载巴士站。请检查网络连接后重试。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法載入巴士站。請檢查網絡連線後再試一次。"
+          }
         }
       }
     },
@@ -6510,6 +7242,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "无法加载巴士到站时间。请检查网络连接后重试。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法載入巴士到站時間。請檢查網絡連線後再試一次。"
           }
         }
       }
@@ -6564,6 +7302,12 @@
             "state" : "translated",
             "value" : "无法获取您的位置。请打开Buses并允许其使用您的位置。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法取得你的位置。請打開巴士精靈並允許它使用你的位置。"
+          }
         }
       }
     },
@@ -6616,6 +7360,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "地点到站时间"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "地點到站時間"
           }
         }
       }
@@ -6670,6 +7420,12 @@
             "state" : "translated",
             "value" : "巴士站到站时间"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴士站到站時間"
+          }
         }
       }
     },
@@ -6719,6 +7475,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "附近的巴士站"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "附近的巴士站"
@@ -6776,6 +7538,12 @@
             "state" : "translated",
             "value" : "获取${busStop}的巴士到站时间"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取得${busStop}的巴士到站時間"
+          }
         }
       }
     },
@@ -6829,6 +7597,12 @@
             "state" : "translated",
             "value" : "获取${location}的巴士到站时间"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取得${location}的巴士到站時間"
+          }
         }
       }
     },
@@ -6881,6 +7655,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "搜索"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜尋"
           }
         }
       }

@@ -52,6 +52,12 @@
             "state": "translated",
             "value": "Xe buýt"
           }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "巴士精靈"
+          }
         }
       }
     },
@@ -116,6 +122,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Xe buýt sử dụng vị trí của bạn để tìm các trạm xe buýt gần đây."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "巴士精靈會使用你的位置來尋找附近的巴士站。"
           }
         }
       }

@@ -51,6 +51,12 @@
             "state" : "translated",
             "value" : "在${applicationName}中查看${location}"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在${applicationName}中查看${location}"
+          }
         }
       }
     },
@@ -100,6 +106,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在${applicationName}中查看巴士站"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "在${applicationName}中查看巴士站"
@@ -157,6 +169,12 @@
             "state" : "translated",
             "value" : "在${applicationName}中查找附近的巴士站"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在${applicationName}中尋找附近的巴士站"
+          }
         }
       }
     },
@@ -210,6 +228,12 @@
             "state" : "translated",
             "value" : "在${applicationName}中获取巴士到站时间"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在${applicationName}中取得巴士到站時間"
+          }
         }
       }
     },
@@ -259,6 +283,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在${applicationName}中查看我附近有哪些巴士站"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "在${applicationName}中查看我附近有哪些巴士站"
@@ -316,6 +346,12 @@
             "state" : "translated",
             "value" : "在${applicationName}中查看${location}的下一班巴士"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在${applicationName}中查看${location}的下一班巴士"
+          }
         }
       }
     },
@@ -365,6 +401,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "用${applicationName}查看下一班巴士"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "用${applicationName}查看下一班巴士"
