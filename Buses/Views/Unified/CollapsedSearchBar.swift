@@ -12,7 +12,7 @@ extension PresentationDetent {
     static let collapsed = PresentationDetent.height(collapsedHeight)
     static let half = PresentationDetent.height(450.0)
 
-    static let collapsedHeight: CGFloat = 96.0
+    static let collapsedHeight: CGFloat = 76.0
 }
 
 /// A search field shown in the collapsed sheet, which opens search when tapped.
