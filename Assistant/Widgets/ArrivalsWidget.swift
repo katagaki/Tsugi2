@@ -21,6 +21,7 @@ struct ArrivalsWidget: Widget {
         }
         .configurationDisplayName("Widget.Title")
         .description("Widget.Description")
+        .contentMarginsDisabled()
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge,
                             .accessoryRectangular, .accessoryCircular, .accessoryInline])
     }
@@ -30,12 +31,20 @@ struct ArrivalsWidget: Widget {
 // MARK: - Timeline
 
 struct ServiceArrival: Identifiable, Hashable {
+
+    struct Arrival: Hashable {
+        let date: Date
+        let load: BusLoad?
+        let feature: BusFeature?
+        let type: BusType?
+    }
+
     var id: String { "\(busStopCode).\(serviceNo)" }
     let serviceNo: String
     let busStopCode: String
-    let nextArrival: Date?
-    let followingArrival: Date?
-    let load: BusLoad?
+    /// The next few buses, soonest first.
+    let arrivals: [Arrival]
+
 }
 
 struct ArrivalsEntry: TimelineEntry {
@@ -48,17 +57,26 @@ struct ArrivalsEntry: TimelineEntry {
 
     let date: Date
     let status: Status
+    var locationID: UUID?
     var locationName: String = ""
     var services: [ServiceArrival] = []
+    /// The page the user moved to with the page button. Views wrap it to the pages they have.
+    var page: Int = 0
 
     static let placeholder = ArrivalsEntry(date: .now, status: .loaded, locationName: "City Hall", services: [
-        ServiceArrival(serviceNo: "7", busStopCode: "", nextArrival: .now.addingTimeInterval(120),
-                       followingArrival: .now.addingTimeInterval(660), load: .seatsAvailable),
-        ServiceArrival(serviceNo: "14", busStopCode: "", nextArrival: .now.addingTimeInterval(300),
-                       followingArrival: .now.addingTimeInterval(1020), load: .standingAvailable),
-        ServiceArrival(serviceNo: "36", busStopCode: "", nextArrival: .now.addingTimeInterval(480),
-                       followingArrival: .now.addingTimeInterval(960), load: .seatsAvailable)
+        sample("7", in: 2, load: .seatsAvailable, type: .doubleDeck),
+        sample("14", in: 5, load: .standingAvailable, type: .doubleDeck),
+        sample("36", in: 8, load: .seatsAvailable, type: .doubleDeck),
+        sample("61", in: 11, load: .limitedStanding, type: .singleDeck)
     ])
+
+    private static func sample(_ serviceNo: String, in minutes: Double,
+                               load: BusLoad, type: BusType) -> ServiceArrival {
+        ServiceArrival(serviceNo: serviceNo, busStopCode: "", arrivals: [
+            ServiceArrival.Arrival(date: .now.addingTimeInterval(minutes * 60), load: load,
+                                   feature: .wheelchairAccessible, type: type)
+        ])
+    }
 
 }
 
@@ -85,7 +103,8 @@ struct ArrivalsProvider: AppIntentTimelineProvider {
         }
         let entries = (0..<Self.timelineLength).map { minute in
             ArrivalsEntry(date: entry.date.addingTimeInterval(TimeInterval(minute * 60)), status: entry.status,
-                          locationName: entry.locationName, services: entry.services)
+                          locationID: entry.locationID, locationName: entry.locationName,
+                          services: entry.services, page: entry.page)
         }
         return Timeline(entries: entries, policy: .atEnd)
     }
@@ -96,7 +115,8 @@ struct ArrivalsProvider: AppIntentTimelineProvider {
         }
         do {
             let services = try await ArrivalsLoader.arrivals(for: location)
-            return ArrivalsEntry(date: .now, status: .loaded, locationName: location.name, services: services)
+            return ArrivalsEntry(date: .now, status: .loaded, locationID: location.id, locationName: location.name,
+                                 services: services, page: WidgetPages.page(for: location.id))
         } catch {
             log("Widget could not load arrivals: \(error.localizedDescription)", level: .error)
             return ArrivalsEntry(date: .now, status: .failed, locationName: location.name)
@@ -109,6 +129,7 @@ struct ArrivalsProvider: AppIntentTimelineProvider {
 enum ArrivalsLoader {
 
     struct Location {
+        let id: UUID
         let name: String
         let busStopCode: String
         let usesLiveBusStopData: Bool
@@ -123,6 +144,7 @@ enum ArrivalsLoader {
             return nil
         }
         return Location(
+            id: location.identifier,
             name: location.nickname ?? location.busStopCode ?? "",
             busStopCode: location.busStopCode ?? "",
             usesLiveBusStopData: location.usesLiveBusStopData,
@@ -148,16 +170,35 @@ enum ArrivalsLoader {
             if let busService = busStops[busStopCode]?.arrivals?.first(where: { $0.serviceNo == serviceNo }) {
                 return serviceArrival(busService, at: busStopCode)
             }
-            return ServiceArrival(serviceNo: serviceNo, busStopCode: busStopCode,
-                                  nextArrival: nil, followingArrival: nil, load: nil)
+            return ServiceArrival(serviceNo: serviceNo, busStopCode: busStopCode, arrivals: [])
         }
     }
 
     private static func serviceArrival(_ busService: BusService, at busStopCode: String) -> ServiceArrival {
-        ServiceArrival(serviceNo: busService.serviceNo, busStopCode: busStopCode,
-                       nextArrival: busService.nextBus?.estimatedArrivalTimeAsDate(),
-                       followingArrival: busService.nextBus2?.estimatedArrivalTimeAsDate(),
-                       load: busService.nextBus?.load)
+        let arrivals = [busService.nextBus, busService.nextBus2, busService.nextBus3].compactMap { arrivalInfo in
+            arrivalInfo?.estimatedArrivalTimeAsDate().map { date in
+                ServiceArrival.Arrival(date: date, load: arrivalInfo?.load,
+                                       feature: arrivalInfo?.feature, type: arrivalInfo?.type)
+            }
+        }
+        return ServiceArrival(serviceNo: busService.serviceNo, busStopCode: busStopCode, arrivals: arrivals)
+    }
+
+}
+
+/// Remembers which page of services each location's widgets are showing.
+enum WidgetPages {
+
+    static func page(for locationID: UUID) -> Int {
+        UserDefaults.shared.integer(forKey: key(for: locationID))
+    }
+
+    static func advance(for locationID: UUID) {
+        UserDefaults.shared.set(page(for: locationID) + 1, forKey: key(for: locationID))
+    }
+
+    private static func key(for locationID: UUID) -> String {
+        "WidgetPage.\(locationID.uuidString)"
     }
 
 }

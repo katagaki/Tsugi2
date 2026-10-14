@@ -30,9 +30,8 @@ struct ArrivalsWidgetView: View {
 
     var maximumRows: Int {
         switch family {
-        case .systemSmall: return 3
-        case .systemLarge: return 9
-        default: return 4
+        case .systemLarge: return 7
+        default: return 2
         }
     }
 
@@ -40,16 +39,13 @@ struct ArrivalsWidgetView: View {
 
 extension ServiceArrival {
 
-    /// Arrivals that have already passed by the entry's date are replaced by the following bus.
-    func upcoming(at date: Date) -> (next: Date?, following: Date?) {
-        if let nextArrival, nextArrival < date.addingTimeInterval(-60) {
-            return (followingArrival, nil)
-        }
-        return (nextArrival, followingArrival)
+    /// Buses that have already passed by the entry's date are replaced by the one after.
+    func upcoming(at date: Date) -> Arrival? {
+        arrivals.first { $0.date >= date.addingTimeInterval(-60) }
     }
 
     func label(at date: Date, style: DateComponentsFormatter.UnitsStyle = .short) -> String {
-        upcoming(at: date).next?.arrivalFormat(style: style, relativeTo: date) ??
+        upcoming(at: date)?.date.arrivalFormat(style: style, relativeTo: date) ??
             localized("Shared.BusArrival.NotInService")
     }
 
@@ -65,83 +61,178 @@ private struct SystemArrivalsView: View {
     var maximumRows: Int
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8.0) {
-            HStack(alignment: .center) {
-                Text(entry.locationName)
-                    .font(Font.custom("LTA-Identity", size: family == .systemSmall ? 15.0 : 17.0))
-                    .lineLimit(1)
-                Spacer(minLength: 4.0)
-                Button(intent: RefreshArrivalsIntent()) {
-                    Image(systemName: "arrow.clockwise")
-                        .font(.caption.weight(.semibold))
+        VStack(alignment: .leading, spacing: 0.0) {
+            TitleBar(title: entry.locationName, isCompact: family == .systemSmall,
+                     locationID: entry.locationID, page: page, pageCount: pageCount)
+            Group {
+                switch entry.status {
+                case .loaded where entry.services.isEmpty:
+                    StatusMessage(text: "Shared.BusStop.BusServices.None")
+                case .loaded:
+                    ArrivalsGrid(services: Array(entry.services.dropFirst(page * pageSize).prefix(pageSize)),
+                                 date: entry.date, isCompact: family == .systemSmall)
+                case .noLocations:
+                    StatusMessage(text: "Widget.NoLocations")
+                case .failed:
+                    StatusMessage(text: "Shared.Error.InternetConnection")
+                }
+            }
+            .padding(.horizontal, 12.0)
+            .padding(.vertical, 10.0)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        }
+    }
+
+    var pageSize: Int {
+        maximumRows * 2
+    }
+
+    var pageCount: Int {
+        max(1, (entry.services.count + pageSize - 1) / pageSize)
+    }
+
+    var page: Int {
+        entry.page % pageCount
+    }
+
+}
+
+private struct TitleBar: View {
+
+    var title: String
+    var isCompact: Bool
+    var locationID: UUID?
+    var page: Int
+    var pageCount: Int
+
+    var body: some View {
+        HStack(alignment: .center, spacing: 10.0) {
+            Text(title)
+                .font(Font.custom("LTA-Identity", size: isCompact ? 15.0 : 17.0))
+                .foregroundStyle(.white)
+                .lineLimit(1)
+            Spacer(minLength: 0.0)
+            if let locationID, pageCount > 1 {
+                Button(intent: NextPageIntent(locationID: locationID)) {
+                    HStack(spacing: 4.0) {
+                        Text(verbatim: "\(page + 1)/\(pageCount)")
+                            .font(.footnote.weight(.semibold).monospacedDigit())
+                        Image(systemName: "chevron.right")
+                            .font(.footnote.weight(.bold))
+                    }
+                    .padding(.horizontal, 10.0)
+                    .frame(height: 30.0)
+                    .background(.white.opacity(0.22), in: .capsule)
                 }
                 .buttonStyle(.plain)
-                .foregroundStyle(Color("AccentColor"))
             }
-            switch entry.status {
-            case .loaded where entry.services.isEmpty:
-                StatusMessage(text: "Shared.BusStop.BusServices.None")
-            case .loaded:
-                VStack(spacing: family == .systemSmall ? 6.0 : 8.0) {
-                    ForEach(entry.services.prefix(maximumRows)) { service in
-                        ArrivalRow(service: service, date: entry.date, showsFollowing: family != .systemSmall)
-                    }
-                }
-                Spacer(minLength: 0.0)
-            case .noLocations:
-                StatusMessage(text: "Widget.NoLocations")
-            case .failed:
-                StatusMessage(text: "Shared.Error.InternetConnection")
+            Button(intent: RefreshArrivalsIntent()) {
+                Image(systemName: "arrow.clockwise")
+                    .font(.footnote.weight(.bold))
+                    .frame(width: 30.0, height: 30.0)
+                    .background(.white.opacity(0.22), in: .circle)
             }
+            .buttonStyle(.plain)
+        }
+        .foregroundStyle(.white)
+        .padding(.leading, 14.0)
+        .padding(.trailing, 10.0)
+        .padding(.vertical, 7.0)
+        .background {
+            // Runs from the accent color into a warmer orange, like the app icon
+            LinearGradient(colors: [Color("AccentColor"), Color("AccentColor").mix(with: .orange, by: 0.45)],
+                           startPoint: .leading, endPoint: .trailing)
         }
     }
 
 }
 
-private struct ArrivalRow: View {
+private struct ArrivalsGrid: View {
+
+    var services: [ServiceArrival]
+    var date: Date
+    var isCompact: Bool
+
+    var body: some View {
+        Grid(alignment: .leading, horizontalSpacing: 10.0, verticalSpacing: isCompact ? 8.0 : 10.0) {
+            ForEach(Array(stride(from: 0, to: services.count, by: 2)), id: \.self) { index in
+                GridRow {
+                    cell(services[index])
+                    if index + 1 < services.count {
+                        cell(services[index + 1])
+                    } else {
+                        Color.clear
+                            .gridCellUnsizedAxes([.horizontal, .vertical])
+                    }
+                }
+            }
+        }
+    }
+
+    @ViewBuilder func cell(_ service: ServiceArrival) -> some View {
+        if isCompact {
+            CompactArrivalCell(service: service, date: date)
+        } else {
+            ArrivalCell(service: service, date: date)
+        }
+    }
+
+}
+
+/// The number plate with the next bus beside it, and the bus's attributes underneath.
+private struct ArrivalCell: View {
 
     var service: ServiceArrival
     var date: Date
-    var showsFollowing: Bool
 
     var body: some View {
+        let arrival = service.upcoming(at: date)
         HStack(alignment: .center, spacing: 8.0) {
-            ServicePlate(serviceNo: service.serviceNo, fontSize: 15.0)
-                .frame(width: 56.0, height: 24.0)
-            if showsFollowing {
-                LoadIndicator(load: service.load)
+            ServiceNumberPlate(serviceNo: service.serviceNo)
+            VStack(alignment: .leading, spacing: 2.0) {
+                Text(service.label(at: date))
+                    .font(.subheadline.weight(.semibold))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+                HStack(alignment: .center, spacing: 4.0) {
+                    BusAttributeIcons(feature: arrival?.feature, type: arrival?.type, font: .caption2)
+                    BusCrowdingLabel(load: arrival?.load)
+                        .scaleEffect(0.85, anchor: .leading)
+                }
             }
             Spacer(minLength: 0.0)
-            Text(service.label(at: date))
-                .font(.subheadline.weight(.semibold))
-                .lineLimit(1)
-            if showsFollowing {
-                Text(service.upcoming(at: date).following?.arrivalFormat(relativeTo: date) ?? "")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .lineLimit(1)
-                    .frame(width: 52.0, alignment: .trailing)
-            }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
 }
 
-private struct LoadIndicator: View {
+/// Fits small widgets: the number plate with the next bus underneath.
+private struct CompactArrivalCell: View {
 
-    var load: BusLoad?
+    var service: ServiceArrival
+    var date: Date
 
     var body: some View {
-        switch load {
-        case .seatsAvailable:
-            Circle().fill(.green).frame(width: 6.0, height: 6.0)
-        case .standingAvailable:
-            Circle().fill(.orange).frame(width: 6.0, height: 6.0)
-        case .limitedStanding:
-            Circle().fill(.red).frame(width: 6.0, height: 6.0)
-        default:
-            EmptyView()
+        VStack(alignment: .leading, spacing: 3.0) {
+            ServiceNumberPlate(serviceNo: service.serviceNo)
+            Text(service.label(at: date, style: .abbreviated))
+                .font(.caption.weight(.semibold))
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+}
+
+private struct ServiceNumberPlate: View {
+
+    var serviceNo: String
+
+    var body: some View {
+        BusNumberPlateView(carouselDisplayMode: .constant(.minimal), serviceNo: serviceNo)
+            .frame(height: 24.0)
     }
 
 }
