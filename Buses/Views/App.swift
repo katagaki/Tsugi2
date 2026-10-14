@@ -8,12 +8,13 @@
 import AppIntents
 import BackgroundTasks
 import SwiftUI
+import UserNotifications
 
 @main
 struct TsugiApp: App {
 
     @State var tabManager = TabManager()
-    @State var navigationManager = NavigationManager()
+    @State var navigationManager: NavigationManager
     @State var networkMonitor = NetworkMonitor()
     @State var dataManager = DataManager()
     @State var favorites = FavoritesManager()
@@ -23,12 +24,19 @@ struct TsugiApp: App {
     @State var settings = SettingsManager()
     @State var toaster = Toaster()
 
+    @State var notificationHandler: NotificationHandler
+
     @Environment(\.scenePhase) var scenePhase
 
     init() {
+        let navigationManager = NavigationManager()
+        _navigationManager = State(initialValue: navigationManager)
         // Lets intents that open the app navigate to what they show
-        let navigationManager = navigationManager
         AppDependencyManager.shared.add { navigationManager }
+        // Must be set before launch finishes to receive the notification that launched the app
+        let notificationHandler = NotificationHandler(navigationManager: navigationManager)
+        _notificationHandler = State(initialValue: notificationHandler)
+        UNUserNotificationCenter.current().delegate = notificationHandler
     }
 
     var body: some Scene {
