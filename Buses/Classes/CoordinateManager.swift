@@ -13,6 +13,7 @@ class CoordinateManager {
 
     var coordinates: [Coordinate] = []
     var polyline: String?
+    var liveBuses: [LiveBus] = []
     var updateCameraFlag: Bool = false
 
     func addCoordinate(from busStop: BusStop) {
@@ -34,6 +35,7 @@ class CoordinateManager {
     func removeAll() {
         self.coordinates.removeAll()
         self.polyline = nil
+        self.liveBuses.removeAll()
     }
 
 }

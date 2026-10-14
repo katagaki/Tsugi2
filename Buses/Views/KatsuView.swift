@@ -45,6 +45,18 @@ struct KatsuView: View {
                             lineWidth: 5.0)
                     .mapOverlayLevel(level: .aboveRoads)
                 }
+                ForEach(coordinateManager.liveBuses) { bus in
+                    Annotation(bus.serviceNo, coordinate: bus.coordinate) {
+                        Image(systemName: bus.symbolName)
+                            .font(.caption)
+                            .foregroundStyle(.white)
+                            .padding(6.0)
+                            .background(bus.color, in: .circle)
+                            .overlay(Circle().stroke(.white, lineWidth: 2.0))
+                            .shadow(radius: 3.0)
+                    }
+                    .annotationTitles(.hidden)
+                }
                 UserAnnotation()
             }
             .overlay {

@@ -74,6 +74,9 @@ struct BusServiceView: View {
                 log(error.localizedDescription)
             }
         }
+        .onDisappear {
+            coordinateManager.liveBuses.removeAll()
+        }
         .refreshable {
             Task {
                 await reloadArrivalTimes()
@@ -139,6 +142,9 @@ struct BusServiceView: View {
                 busService.serviceNo == serviceNo
             }) {
                 self.busService = busService
+                withAnimation {
+                    coordinateManager.liveBuses = LiveBus.buses(of: busService)
+                }
             }
             log("Arrival time data updated.")
             isInitialDataLoading = false
@@ -162,11 +168,15 @@ struct BusServiceView: View {
 
     func updateMapDisplay() {
         coordinateManager.removeAll()
+        coordinateManager.liveBuses = LiveBus.buses(of: busService)
         if settings.showRoute {
             coordinateManager.replaceWithCoordinates(from: busStopsForMapDisplay)
             coordinateManager.polyline = (encodedPolyline == "" ? nil : encodedPolyline)
-            coordinateManager.updateCameraFlag.toggle()
+        } else if let busStop = dataManager.busStop(code: busStopCode) {
+            // Frames the bus stop together with the buses heading to it
+            coordinateManager.addCoordinate(from: busStop)
         }
+        coordinateManager.updateCameraFlag.toggle()
         log("Bus service view updated displayed coordinates.")
     }
 
