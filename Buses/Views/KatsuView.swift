@@ -24,8 +24,8 @@ struct KatsuView: View {
         GeometryReader { metrics in
             Map(position: $position, scope: mapScope) {
                 ForEach(coordinateManager.coordinates, id: \.id) { coordinate in
-                    if isRouteStop(coordinate) {
-                        // Routes pass dozens of stops, so they only appear as the map is zoomed in
+                    if isRouteStop(coordinate) && mapSpan >= 0.012 {
+                        // Routes pass dozens of stops, so zoomed out they are dots, and hidden further out
                         if mapSpan < 0.04 {
                             Annotation(coordinate: coordinate.clCoordinate(), anchor: .center) {
                                 Button {
@@ -36,7 +36,7 @@ struct KatsuView: View {
                             } label: {
                                 Text(coordinate.busStop.description ?? "")
                             }
-                            .annotationTitles(mapSpan < 0.012 ? .automatic : .hidden)
+                            .annotationTitles(.hidden)
                         }
                     } else {
                         Annotation(coordinate: coordinate.clCoordinate()) {
