@@ -1022,49 +1022,49 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No locations saved.\nTo create a new location, tap the + button in the Locations section header.\nYou can also add a bus stop as a location."
+            "value" : "Tap + to add a location, or add a bus stop from its page."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "追加した場所はありません。\n新しい場所を作成するには、右上の新規場所ボタンを選択してください。\nバス停を直接的に追加することもできます。"
+            "value" : "＋をタップして場所を追加するか、バス停の画面から追加できます。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "저장된 장소가 없습니다.\n새 장소를 만들려면 이 탭의 오른쪽 상단에 있는 장소 추가 버튼을 탭하세요.\n버스 정류장을 장소로 추가할 수도 있습니다."
+            "value" : "+를 탭하여 장소를 추가하거나 버스 정류장 화면에서 추가하세요."
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tiada lokasi disimpan.\nUntuk mencipta lokasi baharu, ketik butang Tambah Lokasi di bahagian atas kanan tab ini.\nAnda juga boleh menambah perhentian bas sebagai lokasi."
+            "value" : "Ketik + untuk menambah lokasi, atau tambah perhentian bas dari halamannya."
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "இடங்கள் எதுவும் சேமிக்கப்படவில்லை.\nபுதிய இடத்தை உருவாக்க, இந்த தாவலின் மேல் வலதுபுறத்தில் உள்ள இடத்தைச் சேர் பொத்தானைத் தட்டவும்.\nபேருந்து நிறுத்தத்தையும் ஒரு இடமாகச் சேர்க்கலாம்."
+            "value" : "இடத்தைச் சேர்க்க + ஐத் தட்டவும், அல்லது பேருந்து நிறுத்தப் பக்கத்திலிருந்து சேர்க்கவும்."
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ไม่มีตำแหน่งที่บันทึกไว้\nหากต้องการสร้างตำแหน่งใหม่ ให้แตะปุ่มเพิ่มตำแหน่งที่มุมบนขวาของแท็บนี้\nคุณยังสามารถเพิ่มป้ายรถเมล์เป็นตำแหน่งได้"
+            "value" : "แตะ + เพื่อเพิ่มตำแหน่ง หรือเพิ่มป้ายรถเมล์จากหน้าของป้าย"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chưa có địa điểm nào được lưu.\nĐể tạo địa điểm mới, nhấn nút Thêm Địa Điểm ở góc trên bên phải của tab này.\nBạn cũng có thể thêm trạm xe buýt làm địa điểm."
+            "value" : "Nhấn + để thêm địa điểm, hoặc thêm trạm xe buýt từ trang của trạm."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "没有地点添加到您的收藏夹。\n点击此选项卡右上角的“添加地点“按钮以创建新地点。\n巴士站也可以添加作为地点。"
+            "value" : "点击＋添加地点，或在巴士站页面中添加。"
           }
         }
       }

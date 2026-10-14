@@ -157,16 +157,17 @@ extension UnifiedView {
     @ViewBuilder var locationsSection: some View {
         Section {
             if favorites.favoriteLocations.isEmpty {
-                ContentUnavailableView {
-                    Label {
-                        Text(localized("Favorites.Hint.NoLocations.Title"))
-                    } icon: {
-                        Image(systemName: "info.circle.fill")
-                    }
-                } description: {
+                // Kept compact so the Nearby section still shows below it
+                VStack(spacing: 4.0) {
+                    Text(localized("Favorites.Hint.NoLocations.Title"))
+                        .font(.headline)
                     Text(localized("Favorites.Hint.NoLocations"))
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
                 }
-                .listRowInsets(EdgeInsets())
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 8.0)
                 .listRowBackground(Color.clear)
             } else {
                 // Locations are passed directly, as bindings into the array point past its end once a row is deleted
