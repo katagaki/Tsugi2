@@ -55,7 +55,7 @@ struct BusStopQuery: EntityStringQuery {
     func entities(matching string: String) async throws -> [BusStopEntity] {
         let searchTerm = string.trimmingCharacters(in: .whitespaces)
         return try await BusStopDirectory.all()
-            .filter { $0.code == searchTerm || $0.name().localizedStandardContains(searchTerm) }
+            .filter { $0.code == searchTerm || $0.matches(searchTerm) }
             .prefix(25)
             .map(BusStopEntity.init)
     }

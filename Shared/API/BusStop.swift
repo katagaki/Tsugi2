@@ -57,4 +57,9 @@ class BusStop: Codable, Hashable, ObservableObject, Identifiable {
         return description ?? localized("Shared.BusStop.Description.None")
     }
 
+    /// Matches both the full name and LTA's abbreviated one, so "Stn" and "Station" both find a stop.
+    func matches(_ searchTerm: String) -> Bool {
+        [description, originalDescription].compactMap { $0 }.joined(separator: " ").similarTo(searchTerm)
+    }
+
 }

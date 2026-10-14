@@ -9,7 +9,6 @@ import Foundation
 
 /// UserDefaults keys for settings, read in views with `@AppStorage`.
 enum SettingsKey {
-    static let useProperText = "UseProperText"
     static let carouselDisplayMode = "CarouselDisplayMode"
     static let showRoute = "ShowRoute"
 }
@@ -19,7 +18,6 @@ enum Settings {
     /// Registered so that code reading UserDefaults directly sees the same defaults as `@AppStorage`.
     static func registerDefaults() {
         UserDefaults.standard.register(defaults: [
-            SettingsKey.useProperText: true,
             SettingsKey.carouselDisplayMode: CarouselDisplayMode.full.rawValue,
             SettingsKey.showRoute: false
         ])
@@ -39,6 +37,8 @@ enum Settings {
         // Bus stops used to be stored in UserDefaults before moving to TransitCache
         defaults.removeObject(forKey: "StoredBusStopList")
         defaults.removeObject(forKey: "StoredBusStopListUpdatedDate")
+        // Full bus stop names used to be optional
+        defaults.removeObject(forKey: "UseProperText")
     }
 
 }

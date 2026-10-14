@@ -11,10 +11,8 @@ struct MoreView: View {
 
     @Environment(\.dismiss) var dismiss
 
-    @Environment(DataManager.self) var dataManager
     @AppStorage(SettingsKey.carouselDisplayMode) var carouselDisplayMode: CarouselDisplayMode = .full
     @AppStorage(SettingsKey.showRoute) var showRoute: Bool = false
-    @AppStorage(SettingsKey.useProperText) var useProperText: Bool = true
     @Environment(Toaster.self) var toaster
 
     @State var showLogsView: Bool = false
@@ -53,8 +51,6 @@ struct MoreView: View {
                         .frame(maxWidth: .infinity)
                     }
                     Toggle("More.Customization.ShowRoute", isOn: $showRoute)
-                    Toggle("More.Customization.ProperText", isOn: $useProperText)
-                        .disabled(dataManager.shouldReloadBusStopList)
                 } header: {
                     Text("More.Customization")
                 }
@@ -79,9 +75,6 @@ struct MoreView: View {
                 default:
                     Color.clear
                 }
-            }
-            .onChange(of: useProperText) { _, _ in
-                dataManager.shouldReloadBusStopList = true
             }
             .navigationTitle("ViewTitle.More")
             .navigationBarTitleDisplayMode(.inline)

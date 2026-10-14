@@ -82,13 +82,9 @@ struct UnifiedView: View {
             let searchTermTrimmed = searchTerm.trimmingCharacters(in: .whitespaces)
             if searchTermTrimmed.count > 1 {
                 if searchTermTrimmed.contains(previousSearchTerm) {
-                    searchResults = searchResults.filter { stop in
-                        stop.name().similarTo(searchTermTrimmed)
-                    }
+                    searchResults = searchResults.filter { $0.matches(searchTermTrimmed) }
                 } else {
-                    searchResults = dataManager.busStops.filter { stop in
-                        stop.name().similarTo(searchTermTrimmed)
-                    }
+                    searchResults = dataManager.busStops.filter { $0.matches(searchTermTrimmed) }
                 }
                 previousSearchTerm = searchTermTrimmed
             }

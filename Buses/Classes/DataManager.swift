@@ -73,7 +73,8 @@ class DataManager {
     /// A stale cache is still used when the server cannot be reached.
     func reloadBusStopList(forceServer: Bool = false) async throws {
         let cached = TransitCache.load([BusStop].self, from: .busStops)
-        if !forceServer, let cached, !cached.isStale {
+        // Bus stops cached without full names came from when restoring them was a setting
+        if !forceServer, let cached, !cached.isStale, cached.value.first?.originalDescription != nil {
             busStopList.busStops = cached.value
             setLastUpdatedTime(cached.updatedAt)
             log("Loaded \(cached.value.count) bus stop(s) from cache.")
@@ -92,25 +93,24 @@ class DataManager {
 
     private func reloadBusStopListFromServer() async throws {
         var busStops = try await transit.busStops()
-        if defaults.bool(forKey: SettingsKey.useProperText) {
-            busStops = await withTaskGroup(of: BusStop.self, returning: [BusStop].self, body: { group in
-                for busStop in busStops {
-                    group.addTask {
-                        busStop.originalDescription = busStop.description
-                        busStop.description = properName(for: busStop.name())
-                        busStop.roadName = properName(for: busStop.roadName ??
-                                                      localized("Shared.BusStop.Description.None"))
-                        return busStop
-                    }
+        // LTA abbreviates names, so full names are restored for display and the original kept for searching
+        busStops = await withTaskGroup(of: BusStop.self, returning: [BusStop].self, body: { group in
+            for busStop in busStops {
+                group.addTask {
+                    busStop.originalDescription = busStop.description
+                    busStop.description = properName(for: busStop.name())
+                    busStop.roadName = properName(for: busStop.roadName ??
+                                                  localized("Shared.BusStop.Description.None"))
+                    return busStop
                 }
-                var busStops: [BusStop] = []
-                for await result in group {
-                    busStops.append(result)
-                }
-                return busStops
-            })
-            log("ProperText was applied.")
-        }
+            }
+            var busStops: [BusStop] = []
+            for await result in group {
+                busStops.append(result)
+            }
+            return busStops
+        })
+        log("ProperText was applied.")
         busStops.sort(by: { lhs, rhs in
             lhs.description?.lowercased() ?? "" < rhs.description?.lowercased() ?? ""
         })
