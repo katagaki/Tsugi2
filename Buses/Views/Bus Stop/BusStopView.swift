@@ -17,15 +17,27 @@ struct BusStopView: View {
     @State var busStop: BusStop
     @State var busArrivals: [BusService] = []
     @State var isInitialDataLoading: Bool = true
+    @State var lookAroundScene: MKLookAroundScene?
 
     let timer = Timer.publish(every: 10.0, tolerance: 5.0, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        List(busArrivals, id: \.serviceNo) { bus in
-            NavigationLink(value: ViewPath.busService(bus,
-                                                      atLocation: busStop.name(),
-                                                      forBusStopCode: busStop.code)) {
-                ListBusServiceRow(bus: .constant(bus))
+        List {
+            if let lookAroundScene {
+                Section {
+                    LookAroundPreview(initialScene: lookAroundScene)
+                        .frame(height: 160.0)
+                        .listRowInsets(EdgeInsets())
+                }
+            }
+            Section {
+                ForEach(busArrivals, id: \.serviceNo) { bus in
+                    NavigationLink(value: ViewPath.busService(bus,
+                                                              atLocation: busStop.name(),
+                                                              forBusStopCode: busStop.code)) {
+                        ListBusServiceRow(bus: .constant(bus))
+                    }
+                }
             }
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -38,6 +50,9 @@ struct BusStopView: View {
                 reloadBusArrivals()
             }
             updateMapDisplay()
+        }
+        .task {
+            await loadLookAroundScene()
         }
         .onReceive(timer, perform: { _ in
             reloadBusArrivals()
@@ -118,6 +133,18 @@ struct BusStopView: View {
                 lhs.serviceNo.toInt() ?? 9999 < rhs.serviceNo.toInt() ?? 9999
             })
             isInitialDataLoading = false
+        }
+    }
+
+    /// Street-level imagery helps find the right side of the road. Not every bus stop has coverage.
+    func loadLookAroundScene() async {
+        guard let latitude = busStop.latitude, let longitude = busStop.longitude else { return }
+        let request = MKLookAroundSceneRequest(coordinate: CLLocationCoordinate2D(latitude: latitude,
+                                                                                  longitude: longitude))
+        do {
+            lookAroundScene = try await request.scene
+        } catch {
+            log("Look Around is unavailable for bus stop \(busStop.code): \(error.localizedDescription)")
         }
     }
 
