@@ -237,7 +237,8 @@ private struct ActivityButtons: View {
         }
         .buttonStyle(.bordered)
         .buttonBorderShape(.circle)
-        .tint(Color("AccentColor"))
+        .tint(.white)
+        .foregroundStyle(.white)
         .font(.body.weight(.bold))
     }
 
