@@ -8,14 +8,14 @@
 import SwiftUI
 
 extension PresentationDetent {
-    /// The sheet shrunk down to a search bar, leaving the map almost entirely visible.
+    /// The sheet shrunk down to just a search bar, leaving the map almost entirely visible.
     static let collapsed = PresentationDetent.height(collapsedHeight)
     static let half = PresentationDetent.height(450.0)
 
-    static let collapsedHeight: CGFloat = 64.0
+    static let collapsedHeight: CGFloat = 96.0
 }
 
-/// Stands in for the sheet's contents when it is collapsed, and opens search when tapped.
+/// A search field shown in the collapsed sheet, which opens search when tapped.
 struct CollapsedSearchBar: View {
 
     var action: () -> Void
@@ -29,12 +29,16 @@ struct CollapsedSearchBar: View {
                 Spacer()
             }
             .foregroundStyle(.secondary)
-            .padding(.horizontal, 24.0)
-            // The collapsed sheet is itself the search bar, so the whole sheet can be tapped
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .contentShape(.rect)
+            .padding(.horizontal, 16.0)
+            .frame(maxWidth: .infinity, minHeight: 48.0)
+            .background(.fill.tertiary, in: .capsule)
+            .contentShape(.capsule)
         }
         .buttonStyle(.plain)
+        .padding(.horizontal, 16.0)
+        // Leaves room for the drag indicator above
+        .padding(.top, 8.0)
+        .frame(maxHeight: .infinity)
     }
 
 }

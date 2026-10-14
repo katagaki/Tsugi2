@@ -106,8 +106,6 @@ struct KatsuView: View {
             .sheet(isPresented: .constant(true)) {
                 UnifiedView(selectedDetent: $selectedDetent)
                     .presentationDetents([.collapsed, .half, .large], selection: $selectedDetent)
-                    // The search bar fills the collapsed sheet, so the handle would sit on top of it
-                    .presentationDragIndicator(selectedDetent == .collapsed ? .hidden : .automatic)
                     .presentationBackgroundInteraction(.enabled)
                     .interactiveDismissDisabled()
             }
