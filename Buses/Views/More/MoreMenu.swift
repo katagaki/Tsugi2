@@ -31,7 +31,7 @@ struct MoreMenu: View {
                 }
             }
         } label: {
-            Image(systemName: "ellipsis")
+            Image(systemName: "gearshape")
         }
         .menuOrder(.fixed)
     }
