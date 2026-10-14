@@ -32,46 +32,9 @@ struct ListArrivalInfoRow: View {
                 }
             }
             Spacer()
-            switch arrivalInfo.load {
-            case .standingAvailable:
-                Text("Shared.BusArrival.Crowded")
-                    .font(.system(size: 10.5, weight: .bold))
-                    .foregroundColor(.white)
-                    .padding(EdgeInsets(top: 3.0, leading: 6.0, bottom: 3.0, trailing: 6.0))
-                    .background(Color.orange)
-                    .clipShape(RoundedRectangle(cornerRadius: 6.0))
-            case .limitedStanding:
-                Text("Shared.BusArrival.Crowded")
-                    .font(.system(size: 10.5, weight: .bold))
-                    .foregroundColor(.white)
-                    .padding(EdgeInsets(top: 3.0, leading: 6.0, bottom: 3.0, trailing: 6.0))
-                    .background(Color.red)
-                    .clipShape(RoundedRectangle(cornerRadius: 6.0))
-            default:
-                Text("")
-            }
+            BusCrowdingLabel(load: arrivalInfo.load)
             if arrivalTime != "" {
-                HStack(alignment: .center, spacing: 4.0) {
-                    if arrivalInfo.feature == .wheelchairAccessible {
-                        Image(systemName: "figure.roll")
-                            .font(.body)
-                            .foregroundColor(.secondary)
-                    } else {
-                        Text("")
-                    }
-                    switch arrivalInfo.type {
-                    case .doubleDeck:
-                        Image(systemName: "bus.doubledecker")
-                            .font(.body)
-                            .foregroundColor(.secondary)
-                    case .none:
-                        Text("")
-                    default:
-                        Image(systemName: "bus")
-                            .font(.body)
-                            .foregroundColor(.secondary)
-                    }
-                }
+                BusAttributeIcons(feature: arrivalInfo.feature, type: arrivalInfo.type, font: .body)
                 if let date = arrivalInfo.estimatedArrivalTimeAsDate() {
                     Divider()
                     Button {
