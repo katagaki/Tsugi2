@@ -83,18 +83,22 @@ private struct LockScreenArrivalView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0.0) {
             HStack(alignment: .center, spacing: 8.0) {
-                ServicePlate(serviceNo: context.attributes.serviceNo, fontSize: 18.0)
-                    .frame(height: 30.0)
+                OutlinedServicePlate(serviceNo: context.attributes.serviceNo)
                 Text(context.attributes.busStopName)
                     .font(.subheadline.weight(.semibold))
                     .lineLimit(1)
                 Spacer(minLength: 0.0)
-                BusAttributesView(state: context.state)
+                if let loadText = LoadBadge.text(for: context.state.load) {
+                    Text(loadText)
+                        .font(.caption.weight(.bold))
+                }
+                BusAttributesView(state: context.state, showsLoad: false)
             }
             .foregroundStyle(.white)
             .padding(.horizontal, 16.0)
             .padding(.vertical, 10.0)
-            .background(Color("AccentColor").opacity(0.45))
+            // The bar takes the color of how crowded the bus is
+            .background((LoadBadge.color(for: context.state.load) ?? Color("AccentColor")).opacity(0.45))
             HStack(alignment: .center, spacing: 16.0) {
                 VStack(alignment: .leading, spacing: 4.0) {
                     ArrivalCountdown(nextArrival: context.state.nextArrival)
@@ -155,10 +159,13 @@ private struct FollowingArrivalView: View {
 private struct BusAttributesView: View {
 
     var state: ArrivalAttributes.ContentState
+    var showsLoad: Bool = true
 
     var body: some View {
         HStack(alignment: .center, spacing: 6.0) {
-            LoadBadge(load: state.load)
+            if showsLoad {
+                LoadBadge(load: state.load)
+            }
             if state.isWheelchairAccessible {
                 Image(systemName: "figure.roll")
             }
@@ -181,15 +188,26 @@ struct LoadBadge: View {
     var load: BusLoad?
 
     var body: some View {
+        if let text = Self.text(for: load), let color = Self.color(for: load) {
+            badge(text, color: color)
+        }
+    }
+
+    static func text(for load: BusLoad?) -> LocalizedStringKey? {
         switch load {
-        case .seatsAvailable:
-            badge("LiveActivity.Load.Seats", color: .green)
-        case .standingAvailable:
-            badge("LiveActivity.Load.Standing", color: .orange)
-        case .limitedStanding:
-            badge("Shared.BusArrival.Crowded", color: .red)
-        default:
-            EmptyView()
+        case .seatsAvailable: return "LiveActivity.Load.Seats"
+        case .standingAvailable: return "LiveActivity.Load.Standing"
+        case .limitedStanding: return "Shared.BusArrival.Crowded"
+        default: return nil
+        }
+    }
+
+    static func color(for load: BusLoad?) -> Color? {
+        switch load {
+        case .seatsAvailable: return .green
+        case .standingAvailable: return .orange
+        case .limitedStanding: return .red
+        default: return nil
         }
     }
 
@@ -222,6 +240,26 @@ private struct ActivityButtons: View {
         .buttonBorderShape(.circle)
         .tint(Color("AccentColor"))
         .font(.body.weight(.bold))
+    }
+
+}
+
+/// The service number in an outline, for use on colored backgrounds.
+private struct OutlinedServicePlate: View {
+
+    var serviceNo: String
+
+    var body: some View {
+        Text(serviceNo)
+            .font(Font.custom("LTA-Identity", fixedSize: 18.0))
+            .lineLimit(1)
+            .padding(.horizontal, 8.0)
+            .padding(.bottom, 1.0)
+            .frame(minWidth: 45.0, minHeight: 28.0)
+            .overlay {
+                RoundedRectangle(cornerRadius: 6.0)
+                    .strokeBorder(lineWidth: 1.5)
+            }
     }
 
 }
