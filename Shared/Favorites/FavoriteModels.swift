@@ -16,8 +16,9 @@ final class FavoriteLocation {
     var nickname: String?
     var usesLiveBusStopData: Bool = false
     var viewIndex: Int = 0
+    /// Optional because CloudKit requires every relationship to be.
     @Relationship(deleteRule: .cascade, inverse: \FavoriteBusService.location)
-    var busServices: [FavoriteBusService] = []
+    var busServices: [FavoriteBusService]?
 
     init(busStopCode: String?, nickname: String?, usesLiveBusStopData: Bool = false, viewIndex: Int = 0) {
         self.busStopCode = busStopCode
@@ -28,7 +29,7 @@ final class FavoriteLocation {
 
     /// SwiftData relationships are unordered, so order is kept in `viewIndex`.
     var sortedBusServices: [FavoriteBusService] {
-        busServices.sorted { $0.viewIndex < $1.viewIndex }
+        (busServices ?? []).sorted { $0.viewIndex < $1.viewIndex }
     }
 }
 
@@ -48,16 +49,29 @@ final class FavoriteBusService {
 
 enum FavoritesStore {
 
+    static let cloudKitContainerIdentifier = "iCloud.com.tsubuzaki.Tsugi2"
+
     /// Stored in the App Group so widgets and Live Activities can read favorites.
+    /// Only the app syncs with iCloud, as more than one process syncing the same store causes conflicts.
     static let container: ModelContainer = {
         let schema = Schema([FavoriteLocation.self, FavoriteBusService.self])
         // An explicit URL rather than groupContainer:, which traps when the App Group is unavailable
         let directory = AppGroup.containerURL.appending(path: "Library/Application Support",
                                                          directoryHint: .isDirectory)
         try? FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
-        let configuration = ModelConfiguration("Favorites", schema: schema,
-                                               url: directory.appending(path: "Favorites.store"))
+        let url = directory.appending(path: "Favorites.store")
+        let isExtension = Bundle.main.bundleURL.pathExtension == "appex"
+        if !isExtension {
+            do {
+                let configuration = ModelConfiguration("Favorites", schema: schema, url: url,
+                                                       cloudKitDatabase: .private(cloudKitContainerIdentifier))
+                return try ModelContainer(for: schema, configurations: configuration)
+            } catch {
+                log("Could not open favorites store with iCloud: \(error.localizedDescription)", level: .error)
+            }
+        }
         do {
+            let configuration = ModelConfiguration("Favorites", schema: schema, url: url, cloudKitDatabase: .none)
             return try ModelContainer(for: schema, configurations: configuration)
         } catch {
             log("Could not open favorites store: \(error.localizedDescription)", level: .error)

@@ -5,6 +5,7 @@
 //  Created by 堅書 on 2023/04/23.
 //
 
+import CoreData
 import SwiftData
 import SwiftUI
 import WidgetKit
@@ -19,12 +20,32 @@ class FavoritesManager {
 
     var updateViewFlag = false
 
+    @ObservationIgnored private var syncTask: Task<Void, Never>?
+
     init(container: ModelContainer = FavoritesStore.container) {
         context = container.mainContext
         LegacyFavoritesMigrator.migrateIfNeeded(into: context)
         reloadData()
         normalizeViewIndexes()
         log("Favorites data loaded.")
+        syncTask = Task { [weak self] in
+            await self?.reloadOnSync()
+        }
+    }
+
+    /// Picks up favorites changed on other devices once iCloud has finished importing them.
+    private func reloadOnSync() async {
+        let events = NotificationCenter.default
+            .notifications(named: NSPersistentCloudKitContainer.eventChangedNotification)
+            .compactMap { notification in
+                notification.userInfo?[NSPersistentCloudKitContainer.eventNotificationUserInfoKey]
+                    as? NSPersistentCloudKitContainer.Event
+            }
+        for await event in events where event.type == .import && event.endDate != nil && event.succeeded {
+            log("Favorites imported from iCloud.")
+            reloadData()
+            WidgetCenter.shared.reloadAllTimelines()
+        }
     }
 
     func reloadData() {
@@ -74,7 +95,7 @@ class FavoritesManager {
                                                  stopCode: String,
                                                  serviceNo: String) {
         let favoriteBusService = FavoriteBusService(busStopCode: stopCode, serviceNo: serviceNo,
-                                                    viewIndex: favoriteLocation.busServices.count)
+                                                    viewIndex: favoriteLocation.busServices?.count ?? 0)
         context.insert(favoriteBusService)
         favoriteBusService.location = favoriteLocation
         log("Favorite bus service added to favorite location.")
@@ -172,7 +193,7 @@ class FavoritesManager {
     }
 
     func find(_ serviceNo: String, in favoriteLocation: FavoriteLocation) -> Bool {
-        return favoriteLocation.busServices.contains { $0.serviceNo == serviceNo }
+        return (favoriteLocation.busServices ?? []).contains { $0.serviceNo == serviceNo }
     }
 
     private func save(reloading: Bool = true) {

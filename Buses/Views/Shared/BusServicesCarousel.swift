@@ -98,7 +98,7 @@ struct BusServicesCarousel: View {
             } else {
                 HStack(alignment: .center) {
                     if dataDisplayMode == .favoriteLocationCustomData {
-                        if (favoriteLocation?.busServices.count ?? 0) == 0 {
+                        if (favoriteLocation?.busServices?.count ?? 0) == 0 {
                             Text("Favorites.Hint.NoBusServices")
                                 .font(.body)
                                 .foregroundColor(.secondary)

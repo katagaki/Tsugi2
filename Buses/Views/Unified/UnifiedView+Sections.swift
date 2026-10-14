@@ -198,7 +198,7 @@ extension UnifiedView {
                     .buttonStyle(.borderless)
                     Spacer()
                     if !location.usesLiveBusStopData &&
-                        !location.busServices.isEmpty {
+                        !(location.busServices ?? []).isEmpty {
                         Button {
                             locationPendingBusServiceEdit = location
                             isBusServiceEditPending = true
