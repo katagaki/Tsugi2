@@ -12,7 +12,7 @@ import SwiftUI
 class CoordinateManager {
 
     var coordinates: [Coordinate] = []
-    var polyline: String?
+    var routeCoordinates: [CLLocationCoordinate2D] = []
     var liveBuses: [LiveBus] = []
     var updateCameraFlag: Bool = false
 
@@ -34,7 +34,7 @@ class CoordinateManager {
 
     func removeAll() {
         self.coordinates.removeAll()
-        self.polyline = nil
+        self.routeCoordinates.removeAll()
         self.liveBuses.removeAll()
     }
 

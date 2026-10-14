@@ -6,7 +6,6 @@
 //
 
 import MapKit
-import Polyline
 import SwiftUI
 
 struct KatsuView: View {
@@ -37,10 +36,8 @@ struct KatsuView: View {
                         Text(coordinate.busStop.description ?? "")
                     }
                 }
-                if let polylineString = coordinateManager.polyline,
-                   let decodedCoordinates: [CLLocationCoordinate2D] = decodePolyline(polylineString) {
-                    MapPolyline(MKPolyline(coordinates: decodedCoordinates,
-                                           count: decodedCoordinates.count))
+                if coordinateManager.routeCoordinates.count > 1 {
+                    MapPolyline(coordinates: coordinateManager.routeCoordinates)
                     .stroke(Color.init(uiColor: UIColor(named: "AccentColor")!),
                             lineWidth: 5.0)
                     .mapOverlayLevel(level: .aboveRoads)

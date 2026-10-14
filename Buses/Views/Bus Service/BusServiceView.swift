@@ -6,6 +6,7 @@
 //
 
 import MapKit
+import Polyline
 import SwiftUI
 
 struct BusServiceView: View {
@@ -171,13 +172,25 @@ struct BusServiceView: View {
         coordinateManager.liveBuses = LiveBus.buses(of: busService)
         if settings.showRoute {
             coordinateManager.replaceWithCoordinates(from: busStopsForMapDisplay)
-            coordinateManager.polyline = (encodedPolyline == "" ? nil : encodedPolyline)
+            coordinateManager.routeCoordinates = routeCoordinates()
         } else if let busStop = dataManager.busStop(code: busStopCode) {
             // Frames the bus stop together with the buses heading to it
             coordinateManager.addCoordinate(from: busStop)
         }
         coordinateManager.updateCameraFlag.toggle()
         log("Bus service view updated displayed coordinates.")
+    }
+
+    /// The road-following route when one is available, otherwise a line through the route's bus stops.
+    func routeCoordinates() -> [CLLocationCoordinate2D] {
+        if !encodedPolyline.isEmpty,
+           let decodedCoordinates: [CLLocationCoordinate2D] = decodePolyline(encodedPolyline) {
+            return decodedCoordinates
+        }
+        return busStopsForMapDisplay.compactMap { busStop in
+            guard let latitude = busStop.latitude, let longitude = busStop.longitude else { return nil }
+            return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        }
     }
 
     func addToFavorites(_ location: FavoriteLocation) async {
