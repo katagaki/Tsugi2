@@ -45,7 +45,7 @@ extension UnifiedView {
                 Button {
                     isNotificationsSheetPresented = true
                 } label: {
-                    Image(systemName: "bell.fill")
+                    Image(systemName: "bell")
                 }
             }
         }
