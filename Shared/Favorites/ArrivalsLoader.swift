@@ -56,10 +56,7 @@ enum ArrivalsLoader {
 
     static func arrivals(for location: Location) async throws -> [ServiceArrival] {
         if location.usesLiveBusStopData {
-            let busStop = try await transit.busArrivals(for: location.busStopCode)
-            return (busStop.arrivals ?? [])
-                .sorted { $0.serviceNo.toInt() ?? 9999 < $1.serviceNo.toInt() ?? 9999 }
-                .map { serviceArrival($0, at: location.busStopCode) }
+            return try await arrivals(atBusStop: location.busStopCode)
         }
         var busStops: [String: BusStop] = [:]
         for busStopCode in Set(location.services.map(\.busStopCode)) {
@@ -71,6 +68,14 @@ enum ArrivalsLoader {
             }
             return ServiceArrival(serviceNo: serviceNo, busStopCode: busStopCode, arrivals: [])
         }
+    }
+
+    /// Every service arriving at a bus stop, in service number order.
+    static func arrivals(atBusStop busStopCode: String) async throws -> [ServiceArrival] {
+        let busStop = try await transit.busArrivals(for: busStopCode)
+        return (busStop.arrivals ?? [])
+            .sorted { $0.serviceNo.toInt() ?? 9999 < $1.serviceNo.toInt() ?? 9999 }
+            .map { serviceArrival($0, at: busStopCode) }
     }
 
     private static func serviceArrival(_ busService: BusService, at busStopCode: String) -> ServiceArrival {

@@ -15,7 +15,8 @@ Guidance for coding agents working in this repository.
 - `Shared/` is compiled into both targets. Put models, API code, Live Activity attributes and intents used by both the app and the extension there.
 - The app and extension share data through the App Group `group.com.tsubuzaki.Tsugi2`: favorites (SwiftData), cached transit data, and `UserDefaults.shared`.
 - Favorites sync with iCloud through the CloudKit container `iCloud.com.tsubuzaki.Tsugi2`. Only the app syncs; the extension opens the same store without CloudKit. CloudKit requires every model attribute to be optional or have a default, every relationship to be optional, and no unique constraints.
-- New user-facing strings go into `Buses/Strings/Localizable.xcstrings` with translations for every supported language.
+- New user-facing strings go into `Buses/Strings/Localizable.xcstrings` with translations for every supported language. Siri phrases for App Shortcuts go into `Buses/Strings/AppShortcuts.xcstrings`, and every phrase must contain `${applicationName}`.
+- Siri and Shortcuts intents live in `Buses/Intents` and run in the app's process.
 
 ## Building
 

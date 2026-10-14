@@ -8,8 +8,9 @@
 import Foundation
 import Observation
 
+@MainActor
 @Observable
-class NavigationManager {
+final class NavigationManager {
 
     var mainPath: [ViewPath] = []
 

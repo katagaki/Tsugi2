@@ -5,6 +5,7 @@
 //  Created by 堅書 on 2022/06/12.
 //
 
+import AppIntents
 import BackgroundTasks
 import SwiftUI
 
@@ -23,6 +24,12 @@ struct TsugiApp: App {
     @State var toaster = Toaster()
 
     @Environment(\.scenePhase) var scenePhase
+
+    init() {
+        // Lets intents that open the app navigate to what they show
+        let navigationManager = navigationManager
+        AppDependencyManager.shared.add { navigationManager }
+    }
 
     var body: some Scene {
         WindowGroup {
