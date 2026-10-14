@@ -93,4 +93,16 @@ extension UnifiedView {
         }
     }
 
+    // MARK: - Screenshots
+
+    func stage(_ scene: ScreenshotScene) {
+        selectedDetent = scene.detent
+        if let searchTerm = scene.searchTerm {
+            self.searchTerm = searchTerm
+        }
+        if let path = scene.path(dataManager: dataManager) {
+            navigationManager.open(path)
+        }
+    }
+
 }

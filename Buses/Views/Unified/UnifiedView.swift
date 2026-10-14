@@ -136,6 +136,11 @@ struct UnifiedView: View {
         .onChange(of: scenePhase) { _, newPhase in
             handleScenePhaseChange(newPhase)
         }
+        .onChange(of: isNearbyBusStopsDetermined) { _, isDetermined in
+            if isDetermined, let scene = ScreenshotScene.current {
+                stage(scene)
+            }
+        }
     }
 
 }

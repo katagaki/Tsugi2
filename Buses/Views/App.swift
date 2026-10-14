@@ -17,7 +17,8 @@ struct TsugiApp: App {
     @State var navigationManager: NavigationManager
     @State var networkMonitor = NetworkMonitor()
     @State var dataManager = DataManager()
-    @State var favorites = FavoritesManager()
+    @State var favorites = ScreenshotScene.current.map { FavoritesManager(container: $0.favoritesContainer()) }
+        ?? FavoritesManager()
     @State var regionManager = RegionManager()
     @State var coordinateManager = CoordinateManager()
     @State var locationManager = LocationManager()
