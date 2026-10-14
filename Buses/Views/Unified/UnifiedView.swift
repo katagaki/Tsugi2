@@ -53,6 +53,8 @@ struct UnifiedView: View {
         NavigationStack(path: $navigationManager.mainPath) {
             listContent
         }
+        // Alerts bring up the keyboard over the sheet, which should not squeeze the list behind them
+        .ignoresSafeArea(.keyboard, edges: isNewPending || isRenamePending ? .bottom : [])
         .modifier(FavoriteAlertsModifier(
             isNewPending: $isNewPending,
             favoriteLocationNewNickname: $favoriteLocationNewNickname,

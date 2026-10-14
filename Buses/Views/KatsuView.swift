@@ -110,6 +110,8 @@ struct KatsuView: View {
                     .interactiveDismissDisabled()
             }
             .safeAreaPadding(.bottom, safeAreaPadding())
+            // The keyboard belongs to the sheet or an alert, so the map stays where it is
+            .ignoresSafeArea(.keyboard)
             .mapScope(mapScope)
             .mapStyle(.standard(pointsOfInterest: .including([.publicTransport])))
             .mapControls {
