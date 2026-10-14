@@ -97,8 +97,7 @@ private struct LockScreenArrivalView: View {
             .foregroundStyle(.white)
             .padding(.horizontal, 16.0)
             .padding(.vertical, 10.0)
-            // The bar takes the color of how crowded the bus is
-            .background((LoadBadge.color(for: context.state.load) ?? Color("AccentColor")).opacity(0.45))
+            .background(TitleBarColor.color(for: context.state.load))
             HStack(alignment: .center, spacing: 16.0) {
                 VStack(alignment: .leading, spacing: 4.0) {
                     ArrivalCountdown(nextArrival: context.state.nextArrival)
@@ -242,6 +241,17 @@ private struct ActivityButtons: View {
         .font(.body.weight(.bold))
     }
 
+}
+
+/// The title bar is the bus plate green when seats are available, and warns when the bus is crowded.
+private enum TitleBarColor {
+    static func color(for load: BusLoad?) -> Color {
+        switch load {
+        case .standingAvailable: return .orange
+        case .limitedStanding: return .red
+        default: return Color("PlateColor")
+        }
+    }
 }
 
 /// The service number in an outline, for use on colored backgrounds.
