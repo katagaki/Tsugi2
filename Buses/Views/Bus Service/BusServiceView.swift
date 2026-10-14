@@ -155,16 +155,14 @@ struct BusServiceView: View {
     }
 
     func reloadBusRoutes() {
-        let busRoutePoints = dataManager.busRoute(for: busService.serviceNo,
-                                                  direction: busService.direction ?? .backward)
+        let direction = routeDirection()
+        let busRoutePoints = dataManager.busRoute(for: busService.serviceNo, direction: direction)
         for busRoutePoint in busRoutePoints {
             if let busStop = dataManager.busStop(code: busRoutePoint.stopCode) {
                 busStopsForMapDisplay.append(busStop)
             }
         }
-        encodedPolyline = dataManager
-            .busRoutePolyline(for: busService.serviceNo,
-                              direction: busService.direction ?? .init(rawValue: 1)!)
+        encodedPolyline = dataManager.busRoutePolyline(for: busService.serviceNo, direction: direction)
     }
 
     func updateMapDisplay() {
@@ -180,18 +178,6 @@ struct BusServiceView: View {
         }
         coordinateManager.updateCameraFlag.toggle()
         log("Bus service view updated displayed coordinates.")
-    }
-
-    /// The road-following route when one is available, otherwise a line through the route's bus stops.
-    func routeCoordinates() -> [CLLocationCoordinate2D] {
-        if !encodedPolyline.isEmpty,
-           let decodedCoordinates: [CLLocationCoordinate2D] = decodePolyline(encodedPolyline) {
-            return decodedCoordinates
-        }
-        return busStopsForMapDisplay.compactMap { busStop in
-            guard let latitude = busStop.latitude, let longitude = busStop.longitude else { return nil }
-            return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        }
     }
 
     func addToFavorites(_ location: FavoriteLocation) async {
@@ -279,6 +265,34 @@ struct BusServiceView: View {
         } catch {
             log("Could not start Live Activity: \(error.localizedDescription)", level: .error)
             toaster.showToast(localized("LiveActivity.Error"), type: .exclamation, hidesAutomatically: true)
+        }
+    }
+
+}
+
+extension BusServiceView {
+
+    /// Arrivals do not say which way a bus is going, so the direction is the one that passes this bus stop.
+    func routeDirection() -> BusRouteDirection {
+        if let direction = busService.direction {
+            return direction
+        }
+        let passesBusStop = { (direction: BusRouteDirection) in
+            dataManager.busRoute(for: busService.serviceNo, direction: direction)
+                .contains { $0.direction == direction && $0.stopCode == busStopCode }
+        }
+        return passesBusStop(.backward) && !passesBusStop(.forward) ? .backward : .forward
+    }
+
+    /// The road-following route when one is available, otherwise a line through the route's bus stops.
+    func routeCoordinates() -> [CLLocationCoordinate2D] {
+        if !encodedPolyline.isEmpty,
+           let decodedCoordinates: [CLLocationCoordinate2D] = decodePolyline(encodedPolyline) {
+            return decodedCoordinates
+        }
+        return busStopsForMapDisplay.compactMap { busStop in
+            guard let latitude = busStop.latitude, let longitude = busStop.longitude else { return nil }
+            return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         }
     }
 
