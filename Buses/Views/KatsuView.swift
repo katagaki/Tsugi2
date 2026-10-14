@@ -126,11 +126,13 @@ struct KatsuView: View {
                     .padding(.trailing, 16.0)
                     // The sheet's height is already part of the safe area, so this is the gap above it
                     .padding(.bottom, 12.0)
+                    .offset(y: locationButtonOffset)
                     .transition(.opacity)
                 }
             }
             .animation(.smooth, value: selectedDetent)
-            .safeAreaPadding(.bottom, safeAreaPadding())
+            // Fixed rather than following the sheet, as changing it moves the map while the sheet is moving
+            .safeAreaPadding(.bottom, PresentationDetent.halfHeight)
             // The keyboard belongs to the sheet or an alert, so the map stays where it is
             .ignoresSafeArea(.keyboard)
             .mapScope(mapScope)
@@ -173,6 +175,11 @@ struct KatsuView: View {
         StrokeStyle(lineWidth: lineWidth, lineCap: .round, lineJoin: .round)
     }
 
+    /// The map's inset stays at the half sheet's height, so the button moves down to sit above a shorter sheet.
+    var locationButtonOffset: CGFloat {
+        selectedDetent == .collapsed ? PresentationDetent.halfHeight - PresentationDetent.collapsedHeight : 0.0
+    }
+
     func updateCamera() {
         let points = coordinateManager.coordinates.map { $0.clCoordinate() } +
             coordinateManager.liveBuses.map(\.coordinate)
@@ -181,14 +188,6 @@ struct KatsuView: View {
             position = .region(MKCoordinateRegion(center: point, latitudinalMeters: 500.0, longitudinalMeters: 500.0))
         } else {
             position = .automatic
-        }
-    }
-
-    func safeAreaPadding() -> CGFloat {
-        switch selectedDetent {
-        case .half: return 450.0
-        case .collapsed: return PresentationDetent.collapsedHeight
-        default: return 0.0
         }
     }
 }

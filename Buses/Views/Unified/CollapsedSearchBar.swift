@@ -10,9 +10,10 @@ import SwiftUI
 extension PresentationDetent {
     /// The sheet shrunk down to just a search bar, leaving the map almost entirely visible.
     static let collapsed = PresentationDetent.height(collapsedHeight)
-    static let half = PresentationDetent.height(450.0)
+    static let half = PresentationDetent.height(halfHeight)
 
     static let collapsedHeight: CGFloat = 76.0
+    static let halfHeight: CGFloat = 450.0
 }
 
 /// A search field shown in the collapsed sheet, which opens search when tapped.
