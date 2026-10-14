@@ -52,12 +52,18 @@ struct KatsuView: View {
                     BlurGradientView()
                         .frame(height: metrics.safeAreaInsets.top + 12.0)
                         .ignoresSafeArea(edges: .top)
-                    MapUserLocationButton(scope: mapScope)
-                        .mapControlVisibility(.visible)
-                        .buttonBorderShape(.circle)
-                        .glassEffect(.regular.interactive())
-                        .shadow(radius: 2.5)
+                    VStack(spacing: 12.0) {
+                        MapUserLocationButton(scope: mapScope)
+                            .mapControlVisibility(.visible)
+                            .buttonBorderShape(.circle)
+                            .glassEffect(.regular.interactive())
+                            .shadow(radius: 2.5)
+                        MapCompass(scope: mapScope)
+                    }
+                    .padding()
+                    MapScaleView(scope: mapScope)
                         .padding()
+                        .frame(maxWidth: .infinity, alignment: .topLeading)
                     Color.clear
                 }
             }
@@ -87,8 +93,12 @@ struct KatsuView: View {
             }
             .safeAreaPadding(.bottom, safeAreaPadding())
             .mapScope(mapScope)
+            .mapStyle(.standard(pointsOfInterest: .including([.publicTransport])))
             .mapControls {
+                // Shown in the overlay instead, so they do not collide with the location button
                 MapCompass()
+                    .mapControlVisibility(.hidden)
+                MapScaleView()
                     .mapControlVisibility(.hidden)
             }
             .onChange(of: coordinateManager.updateCameraFlag) { _, _ in
