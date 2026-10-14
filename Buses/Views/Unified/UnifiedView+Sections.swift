@@ -38,11 +38,7 @@ extension UnifiedView {
         .searchFocused($isSearchFocused)
         .toolbar {
             ToolbarItemGroup(placement: .topBarLeading) {
-                Button {
-                    isMoreSheetPresented = true
-                } label: {
-                    Image(systemName: "ellipsis")
-                }
+                MoreMenu()
             }
             ToolbarSpacer(.fixed, placement: .topBarLeading)
             ToolbarItemGroup(placement: .topBarLeading) {
@@ -96,11 +92,6 @@ extension UnifiedView {
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $isNotificationsSheetPresented) {
             NotificationsView()
-                .presentationDetents([.medium, .large])
-                .presentationDragIndicator(.visible)
-        }
-        .sheet(isPresented: $isMoreSheetPresented) {
-            MoreView()
                 .presentationDetents([.medium, .large])
                 .presentationDragIndicator(.visible)
         }

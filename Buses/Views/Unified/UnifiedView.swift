@@ -29,7 +29,6 @@ struct UnifiedView: View {
 
     @State var isInitialLoad: Bool = true
     @State var isNotificationsSheetPresented: Bool = false
-    @State var isMoreSheetPresented: Bool = false
 
     // Search
     @State var searchTerm: String = ""
