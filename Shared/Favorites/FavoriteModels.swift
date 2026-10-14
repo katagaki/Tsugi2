@@ -10,6 +10,8 @@ import SwiftData
 
 @Model
 final class FavoriteLocation {
+    /// Stable identifier used by widgets to refer to this location.
+    var identifier: UUID = UUID()
     var busStopCode: String?
     var nickname: String?
     var usesLiveBusStopData: Bool = false

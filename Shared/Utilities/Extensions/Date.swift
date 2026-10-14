@@ -9,8 +9,8 @@ import Foundation
 
 extension Date {
 
-    func arrivalFormat(style: DateComponentsFormatter.UnitsStyle = .short) -> String {
-        let interval: TimeInterval = self.timeIntervalSinceReferenceDate - Date().timeIntervalSinceReferenceDate
+    func arrivalFormat(style: DateComponentsFormatter.UnitsStyle = .short, relativeTo now: Date = Date()) -> String {
+        let interval: TimeInterval = self.timeIntervalSinceReferenceDate - now.timeIntervalSinceReferenceDate
         let seconds = NSInteger(interval) % 60
         let minutes = (NSInteger(interval) / 60) % 60
         if minutes == 0 {

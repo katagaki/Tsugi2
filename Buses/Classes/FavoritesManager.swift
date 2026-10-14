@@ -7,6 +7,7 @@
 
 import SwiftData
 import SwiftUI
+import WidgetKit
 
 @MainActor
 @Observable
@@ -179,6 +180,7 @@ class FavoritesManager {
             if context.hasChanges {
                 try context.save()
                 log("Favorites saved.")
+                WidgetCenter.shared.reloadAllTimelines()
             }
         } catch {
             log(error.localizedDescription)

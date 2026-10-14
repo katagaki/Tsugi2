@@ -217,7 +217,7 @@ private struct ActivityButtons: View {
 
 }
 
-private struct ServicePlate: View {
+struct ServicePlate: View {
 
     var serviceNo: String
     var fontSize: CGFloat
