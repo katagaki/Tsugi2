@@ -85,7 +85,7 @@ private struct LockScreenArrivalView: View {
             HStack(alignment: .center, spacing: 8.0) {
                 OutlinedServicePlate(serviceNo: context.attributes.serviceNo)
                 Text(context.attributes.busStopName)
-                    .font(.subheadline.weight(.semibold))
+                    .font(Font.custom("LTA-Identity", size: 18.0))
                     .lineLimit(1)
                 Spacer(minLength: 0.0)
                 if let loadText = LoadBadge.text(for: context.state.load) {

@@ -294,7 +294,7 @@ private struct RectangularArrivalsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 1.0) {
             Text(entry.locationName)
-                .font(.headline)
+                .font(Font.custom("LTA-Identity", size: 16.0))
                 .widgetAccentable()
                 .lineLimit(1)
             switch entry.status {
@@ -302,7 +302,7 @@ private struct RectangularArrivalsView: View {
                 ForEach(entry.services.prefix(2)) { service in
                     HStack {
                         Text(service.serviceNo)
-                            .fontWeight(.semibold)
+                            .font(Font.custom("LTA-Identity", size: 13.0))
                         Spacer()
                         Text(service.label(at: entry.date))
                     }
@@ -334,7 +334,7 @@ private struct CircularArrivalView: View {
             if let service = entry.services.first {
                 VStack(spacing: 0.0) {
                     Text(service.serviceNo)
-                        .font(.system(size: 13.0, weight: .bold))
+                        .font(Font.custom("LTA-Identity", size: 15.0))
                         .widgetAccentable()
                         .minimumScaleFactor(0.6)
                     Text(service.label(at: entry.date, style: .abbreviated))
