@@ -60,7 +60,7 @@ struct ArrivalsEntry: TimelineEntry {
     var locationID: UUID?
     var locationName: String = ""
     var services: [ServiceArrival] = []
-    /// The page the user moved to with the page button. Views wrap it to the pages they have.
+    /// The page the user moved to with the page buttons. Views clamp it to the pages they have.
     var page: Int = 0
 
     static let placeholder = ArrivalsEntry(date: .now, status: .loaded, locationName: "City Hall", services: [
@@ -193,8 +193,8 @@ enum WidgetPages {
         UserDefaults.shared.integer(forKey: key(for: locationID))
     }
 
-    static func advance(for locationID: UUID) {
-        UserDefaults.shared.set(page(for: locationID) + 1, forKey: key(for: locationID))
+    static func setPage(_ page: Int, for locationID: UUID) {
+        UserDefaults.shared.set(max(page, 0), forKey: key(for: locationID))
     }
 
     private static func key(for locationID: UUID) -> String {

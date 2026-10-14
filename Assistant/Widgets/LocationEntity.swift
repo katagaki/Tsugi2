@@ -82,26 +82,30 @@ struct RefreshArrivalsIntent: AppIntent {
 
 }
 
-/// Shows the next page of services. WidgetKit refreshes the timeline after the intent runs.
-struct NextPageIntent: AppIntent {
+/// Moves a widget to another page of services. WidgetKit refreshes the timeline after the intent runs.
+struct ChangePageIntent: AppIntent {
 
-    static let title: LocalizedStringResource = "Widget.NextPage"
+    static let title: LocalizedStringResource = "Widget.ChangePage"
     static let isDiscoverable = false
 
     @Parameter(title: "Widget.Location")
     var locationID: String
 
+    @Parameter(title: "Widget.Page")
+    var page: Int
+
     init() {
         // Required by AppIntent
     }
 
-    init(locationID: UUID) {
+    init(locationID: UUID, page: Int) {
         self.locationID = locationID.uuidString
+        self.page = page
     }
 
     func perform() async throws -> some IntentResult {
         if let locationID = UUID(uuidString: locationID) {
-            WidgetPages.advance(for: locationID)
+            WidgetPages.setPage(page, for: locationID)
         }
         return .result()
     }

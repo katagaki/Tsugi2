@@ -92,7 +92,7 @@ private struct SystemArrivalsView: View {
     }
 
     var page: Int {
-        entry.page % pageCount
+        min(entry.page, pageCount - 1)
     }
 
 }
@@ -113,24 +113,14 @@ private struct TitleBar: View {
                 .lineLimit(1)
             Spacer(minLength: 0.0)
             if let locationID, pageCount > 1 {
-                Button(intent: NextPageIntent(locationID: locationID)) {
-                    HStack(spacing: 4.0) {
-                        Text(verbatim: "\(page + 1)/\(pageCount)")
-                            .font(.footnote.weight(.semibold).monospacedDigit())
-                        Image(systemName: "chevron.right")
-                            .font(.footnote.weight(.bold))
-                    }
-                    .padding(.horizontal, 10.0)
-                    .frame(height: 30.0)
-                    .background(.white.opacity(0.22), in: .capsule)
+                HStack(spacing: 8.0) {
+                    pageButton("chevron.left", to: page - 1, isEnabled: page > 0, locationID: locationID)
+                    pageButton("chevron.right", to: page + 1, isEnabled: page < pageCount - 1,
+                               locationID: locationID)
                 }
-                .buttonStyle(.plain)
             }
             Button(intent: RefreshArrivalsIntent()) {
-                Image(systemName: "arrow.clockwise")
-                    .font(.footnote.weight(.bold))
-                    .frame(width: 30.0, height: 30.0)
-                    .background(.white.opacity(0.22), in: .circle)
+                TitleBarIcon(systemName: "arrow.clockwise")
             }
             .buttonStyle(.plain)
         }
@@ -143,6 +133,28 @@ private struct TitleBar: View {
             LinearGradient(colors: [Color("AccentColor").mix(with: .orange, by: 0.45), Color("AccentColor")],
                            startPoint: .top, endPoint: .bottom)
         }
+    }
+
+    func pageButton(_ systemName: String, to page: Int, isEnabled: Bool, locationID: UUID) -> some View {
+        Button(intent: ChangePageIntent(locationID: locationID, page: page)) {
+            TitleBarIcon(systemName: systemName)
+        }
+        .buttonStyle(.plain)
+        .disabled(!isEnabled)
+        .opacity(isEnabled ? 1.0 : 0.4)
+    }
+
+}
+
+private struct TitleBarIcon: View {
+
+    var systemName: String
+
+    var body: some View {
+        Image(systemName: systemName)
+            .font(.footnote.weight(.bold))
+            .frame(width: 30.0, height: 30.0)
+            .background(.white.opacity(0.22), in: .circle)
     }
 
 }
