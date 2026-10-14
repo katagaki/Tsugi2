@@ -139,9 +139,9 @@ private struct TitleBar: View {
         .padding(.trailing, 10.0)
         .padding(.vertical, 7.0)
         .background {
-            // Runs from the accent color into a warmer orange, like the app icon
-            LinearGradient(colors: [Color("AccentColor"), Color("AccentColor").mix(with: .orange, by: 0.45)],
-                           startPoint: .leading, endPoint: .trailing)
+            // Lighter on top and deepening into the accent color, like the app icon
+            LinearGradient(colors: [Color("AccentColor").mix(with: .orange, by: 0.45), Color("AccentColor")],
+                           startPoint: .top, endPoint: .bottom)
         }
     }
 
