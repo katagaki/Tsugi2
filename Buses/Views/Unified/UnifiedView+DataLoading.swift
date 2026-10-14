@@ -47,12 +47,19 @@ extension UnifiedView {
             log("Reloaded nearby bus stop data.")
             regionManager.updateRegion(newRegion: locationManager.region)
             log("Updated Map region.")
-            coordinateManager.removeAll()
-            coordinateManager.replaceWithCoordinates(from: nearbyBusStops)
-            coordinateManager.updateCameraFlag.toggle()
-            log("Updated displayed coordinates.")
+            // The map belongs to whichever view is open, so it only shows nearby bus stops on the main list
+            if navigationManager.mainPath.isEmpty {
+                showNearbyBusStopsOnMap()
+            }
             isNearbyBusStopsDetermined = true
         }
+    }
+
+    func showNearbyBusStopsOnMap() {
+        coordinateManager.removeAll()
+        coordinateManager.replaceWithCoordinates(from: nearbyBusStops)
+        coordinateManager.updateCameraFlag.toggle()
+        log("Updated displayed coordinates.")
     }
 
 }

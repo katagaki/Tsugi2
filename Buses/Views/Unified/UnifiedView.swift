@@ -114,6 +114,11 @@ struct UnifiedView: View {
         .onChange(of: networkMonitor.isConnected) { _, isConnected in
             handleNetworkChange(isConnected)
         }
+        .onChange(of: navigationManager.mainPath.isEmpty) { _, isAtRoot in
+            if isAtRoot && isNearbyBusStopsDetermined {
+                showNearbyBusStopsOnMap()
+            }
+        }
         .onChange(of: scenePhase) { _, newPhase in
             handleScenePhaseChange(newPhase)
         }
