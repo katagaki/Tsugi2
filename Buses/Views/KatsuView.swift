@@ -99,10 +99,26 @@ struct KatsuView: View {
                 MapCompass()
                 MapScaleView()
             }
+            .onOpenURL { url in
+                open(url)
+            }
             .onChange(of: coordinateManager.updateCameraFlag) { _, _ in
                 updateCamera()
             }
         }
+    }
+
+    func open(_ url: URL) {
+        guard let deepLink = DeepLink(url: url) else { return }
+        switch deepLink {
+        case .busService(let serviceNo, let busStopCode, let locationName):
+            navigationManager.open(.busServiceNamed(serviceNo, atLocation: locationName,
+                                                    forBusStopCode: busStopCode))
+            if selectedDetent == .height(200) {
+                selectedDetent = .height(450)
+            }
+        }
+        log("Opened deep link \(url.absoluteString).")
     }
 
     func updateCamera() {

@@ -16,15 +16,28 @@ struct ArrivalsWidgetView: View {
     var entry: ArrivalsEntry
 
     var body: some View {
+        Group {
+            switch family {
+            case .accessoryInline:
+                InlineArrivalsView(entry: entry)
+            case .accessoryCircular:
+                CircularArrivalView(entry: entry)
+            case .accessoryRectangular:
+                RectangularArrivalsView(entry: entry)
+            default:
+                SystemArrivalsView(entry: entry, maximumRows: maximumRows)
+            }
+        }
+        .widgetURL(widgetURL)
+    }
+
+    /// Lock Screen widgets open the first bus they show. Home Screen widgets link each bus instead.
+    var widgetURL: URL? {
         switch family {
-        case .accessoryInline:
-            InlineArrivalsView(entry: entry)
-        case .accessoryCircular:
-            CircularArrivalView(entry: entry)
-        case .accessoryRectangular:
-            RectangularArrivalsView(entry: entry)
+        case .accessoryInline, .accessoryCircular, .accessoryRectangular:
+            return entry.services.first?.deepLink(locationName: entry.locationName).url
         default:
-            SystemArrivalsView(entry: entry, maximumRows: maximumRows)
+            return nil
         }
     }
 
@@ -42,6 +55,10 @@ extension ServiceArrival {
     /// Buses that have already passed by the entry's date are replaced by the one after.
     func upcoming(at date: Date) -> Arrival? {
         arrivals.first { $0.date >= date.addingTimeInterval(-60) }
+    }
+
+    func deepLink(locationName: String) -> DeepLink {
+        .busService(serviceNo: serviceNo, busStopCode: busStopCode, locationName: locationName)
     }
 
     func label(at date: Date, style: DateComponentsFormatter.UnitsStyle = .short) -> String {
@@ -70,7 +87,8 @@ private struct SystemArrivalsView: View {
                     StatusMessage(text: "Shared.BusStop.BusServices.None")
                 case .loaded:
                     ArrivalsGrid(services: Array(entry.services.dropFirst(page * pageSize).prefix(pageSize)),
-                                 date: entry.date, isCompact: family == .systemSmall)
+                                 date: entry.date, locationName: entry.locationName,
+                                 isCompact: family == .systemSmall)
                 case .noLocations:
                     StatusMessage(text: "Widget.NoLocations")
                 case .failed:
@@ -163,6 +181,7 @@ private struct ArrivalsGrid: View {
 
     var services: [ServiceArrival]
     var date: Date
+    var locationName: String
     var isCompact: Bool
 
     var body: some View {
@@ -183,9 +202,12 @@ private struct ArrivalsGrid: View {
 
     @ViewBuilder func cell(_ service: ServiceArrival) -> some View {
         if isCompact {
+            // Small widgets are a single tap target, so cells cannot link anywhere
             CompactArrivalCell(service: service, date: date)
         } else {
-            ArrivalCell(service: service, date: date)
+            Link(destination: service.deepLink(locationName: locationName).url) {
+                ArrivalCell(service: service, date: date)
+            }
         }
     }
 

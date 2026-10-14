@@ -70,6 +70,7 @@ struct UnifiedView: View {
         }
         .onAppear {
             log("Main view appeared.")
+            navigationManager.stackDidAppear()
             if !locationManager.isInUsableState() {
                 locationManager.requestWhenInUseAuthorization()
             } else {
