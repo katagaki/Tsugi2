@@ -57,24 +57,13 @@ struct KatsuView: View {
                 UserAnnotation()
             }
             .overlay {
-                ZStack(alignment: .topTrailing) {
+                ZStack(alignment: .top) {
                     BlurGradientView()
                         .frame(height: metrics.safeAreaInsets.top + 12.0)
                         .ignoresSafeArea(edges: .top)
-                    VStack(spacing: 12.0) {
-                        MapUserLocationButton(scope: mapScope)
-                            .mapControlVisibility(.visible)
-                            .buttonBorderShape(.circle)
-                            .glassEffect(.regular.interactive())
-                            .shadow(radius: 2.5)
-                        MapCompass(scope: mapScope)
-                    }
-                    .padding()
-                    MapScaleView(scope: mapScope)
-                        .padding()
-                        .frame(maxWidth: .infinity, alignment: .topLeading)
                     Color.clear
                 }
+                .allowsHitTesting(false)
             }
             .overlay {
                 ZStack(alignment: .topLeading) {
@@ -104,11 +93,11 @@ struct KatsuView: View {
             .mapScope(mapScope)
             .mapStyle(.standard(pointsOfInterest: .including([.publicTransport])))
             .mapControls {
-                // Shown in the overlay instead, so they do not collide with the location button
+                // System map controls use Liquid Glass and are laid out together without overlapping
+                MapUserLocationButton()
+                    .mapControlVisibility(.visible)
                 MapCompass()
-                    .mapControlVisibility(.hidden)
                 MapScaleView()
-                    .mapControlVisibility(.hidden)
             }
             .onChange(of: coordinateManager.updateCameraFlag) { _, _ in
                 updateCamera()
