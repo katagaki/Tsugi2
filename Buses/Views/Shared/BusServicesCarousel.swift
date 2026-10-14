@@ -20,7 +20,7 @@ struct BusServicesCarousel: View {
     @State var busServices: [BusService] = []
     var locationName: String
     var busStopCode: String?
-    var favoriteLocation: Binding<FavoriteLocation>?
+    var favoriteLocation: FavoriteLocation?
 
     let timer = Timer.publish(every: 10.0, tolerance: 5.0, on: .main, in: .common).autoconnect()
 
@@ -98,7 +98,7 @@ struct BusServicesCarousel: View {
             } else {
                 HStack(alignment: .center) {
                     if dataDisplayMode == .favoriteLocationCustomData {
-                        if (favoriteLocation?.wrappedValue.busServices.count ?? 0) == 0 {
+                        if (favoriteLocation?.busServices.count ?? 0) == 0 {
                             Text("Favorites.Hint.NoBusServices")
                                 .font(.body)
                                 .foregroundColor(.secondary)
@@ -154,10 +154,11 @@ struct BusServicesCarousel: View {
                     lhs.serviceNo.toInt() ?? 9999 < rhs.serviceNo.toInt() ?? 9999
                 })
             case .favoriteLocationCustomData:
-                if let favoriteLocation = favoriteLocation {
-                    let favoriteBusServicesSorted = favoriteLocation.wrappedValue.sortedBusServices
+                // A deleted location can still be on screen while its row animates away
+                if let favoriteLocation, !favoriteLocation.isDeleted {
+                    let favoriteBusServicesSorted = favoriteLocation.sortedBusServices
                     log("Reloading arrival times for a favorite location using custom data.")
-                    try await reloadArrivalTimes(for: favoriteLocation.wrappedValue,
+                    try await reloadArrivalTimes(for: favoriteLocation,
                                                  favoriteBusServices: favoriteBusServicesSorted)
                 }
             case .notificationItem:
