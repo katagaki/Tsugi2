@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BusServicesCarousel: View {
 
+    @Environment(\.scenePhase) var scenePhase
     @Environment(DataManager.self) var dataManager
     @Environment(FavoritesManager.self) var favorites
     @Environment(SettingsManager.self) var settings
@@ -125,6 +126,14 @@ struct BusServicesCarousel: View {
                 log("Arrival time data updated.")
             }
         })
+        .onChange(of: scenePhase) { _, newPhase in
+            // Timers do not fire in the background, so arrivals are out of date on returning to the app
+            if newPhase == .active {
+                Task {
+                    await reloadArrivalTimes()
+                }
+            }
+        }
         .onChange(of: favorites.updateViewFlag, { _, _ in
             if dataDisplayMode != .busStop && dataDisplayMode != .notificationItem {
                 log("View update signal received from favorites handler.")

@@ -11,6 +11,7 @@ import SwiftUI
 
 struct BusServiceView: View {
 
+    @Environment(\.scenePhase) var scenePhase
     @Environment(DataManager.self) var dataManager
     @Environment(FavoritesManager.self) var favorites
     @Environment(CoordinateManager.self) var coordinateManager
@@ -93,6 +94,14 @@ struct BusServiceView: View {
                 await reloadArrivalTimes()
             }
         })
+        .onChange(of: scenePhase) { _, newPhase in
+            // Timers do not fire in the background, so arrivals are out of date on returning to the app
+            if newPhase == .active {
+                Task {
+                    await reloadArrivalTimes()
+                }
+            }
+        }
         .navigationTitle(busService.serviceNo)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -163,21 +172,6 @@ struct BusServiceView: View {
             }
         }
         encodedPolyline = dataManager.busRoutePolyline(for: busService.serviceNo, direction: direction)
-    }
-
-    func updateMapDisplay() {
-        coordinateManager.removeAll()
-        coordinateManager.liveBuses = LiveBus.buses(of: busService)
-        if settings.showRoute {
-            coordinateManager.replaceWithCoordinates(from: busStopsForMapDisplay)
-            coordinateManager.routeCoordinates = routeCoordinates()
-            coordinateManager.highlightedBusStopCode = busStopCode
-        } else if let busStop = dataManager.busStop(code: busStopCode) {
-            // Frames the bus stop together with the buses heading to it
-            coordinateManager.addCoordinate(from: busStop)
-        }
-        coordinateManager.updateCameraFlag.toggle()
-        log("Bus service view updated displayed coordinates.")
     }
 
     func addToFavorites(_ location: FavoriteLocation) async {
@@ -271,6 +265,21 @@ struct BusServiceView: View {
 }
 
 extension BusServiceView {
+
+    func updateMapDisplay() {
+        coordinateManager.removeAll()
+        coordinateManager.liveBuses = LiveBus.buses(of: busService)
+        if settings.showRoute {
+            coordinateManager.replaceWithCoordinates(from: busStopsForMapDisplay)
+            coordinateManager.routeCoordinates = routeCoordinates()
+            coordinateManager.highlightedBusStopCode = busStopCode
+        } else if let busStop = dataManager.busStop(code: busStopCode) {
+            // Frames the bus stop together with the buses heading to it
+            coordinateManager.addCoordinate(from: busStop)
+        }
+        coordinateManager.updateCameraFlag.toggle()
+        log("Bus service view updated displayed coordinates.")
+    }
 
     /// Arrivals do not say which way a bus is going, so the direction is the one that passes this bus stop.
     func routeDirection() -> BusRouteDirection {

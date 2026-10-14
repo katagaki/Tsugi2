@@ -10,6 +10,7 @@ import SwiftUI
 
 struct BusStopView: View {
 
+    @Environment(\.scenePhase) var scenePhase
     @Environment(FavoritesManager.self) var favorites
     @Environment(CoordinateManager.self) var coordinateManager
     @Environment(Toaster.self) var toaster
@@ -57,6 +58,12 @@ struct BusStopView: View {
         .onReceive(timer, perform: { _ in
             reloadBusArrivals()
         })
+        .onChange(of: scenePhase) { _, newPhase in
+            // Timers do not fire in the background, so arrivals are out of date on returning to the app
+            if newPhase == .active {
+                reloadBusArrivals()
+            }
+        }
         .overlay {
             if isInitialDataLoading {
                 HStack(alignment: .center, spacing: 16.0) {
