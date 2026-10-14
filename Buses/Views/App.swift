@@ -21,7 +21,6 @@ struct TsugiApp: App {
     @State var regionManager = RegionManager()
     @State var coordinateManager = CoordinateManager()
     @State var locationManager = LocationManager()
-    @State var settings = SettingsManager()
     @State var toaster = Toaster()
 
     @State var notificationHandler: NotificationHandler
@@ -29,6 +28,8 @@ struct TsugiApp: App {
     @Environment(\.scenePhase) var scenePhase
 
     init() {
+        Settings.registerDefaults()
+        Settings.performLaunchMaintenance()
         let navigationManager = NavigationManager()
         _navigationManager = State(initialValue: navigationManager)
         // Lets intents that open the app navigate to what they show
@@ -53,7 +54,6 @@ struct TsugiApp: App {
                 .environment(regionManager)
                 .environment(coordinateManager)
                 .environment(locationManager)
-                .environment(settings)
                 .environment(toaster)
                 .task(id: scenePhase) {
                     if scenePhase == .active {

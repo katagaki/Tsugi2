@@ -11,7 +11,7 @@ struct ImageWithCheck: View {
 
     @State var image: String
     @State var label: String
-    @Binding var checked: Bool
+    var checked: Bool
 
     var body: some View {
         VStack {

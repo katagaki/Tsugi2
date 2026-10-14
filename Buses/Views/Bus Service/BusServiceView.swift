@@ -15,7 +15,7 @@ struct BusServiceView: View {
     @Environment(DataManager.self) var dataManager
     @Environment(FavoritesManager.self) var favorites
     @Environment(CoordinateManager.self) var coordinateManager
-    @Environment(SettingsManager.self) var settings
+    @AppStorage(SettingsKey.showRoute) var showRoute: Bool = false
     @Environment(Toaster.self) var toaster
 
     @State var isLiveActivityActive: Bool = false
@@ -50,7 +50,7 @@ struct BusServiceView: View {
                                        setNotification: self.setNotification)
                 }
             }
-            if !dataManager.isBusRouteListLoaded && settings.showRoute {
+            if !dataManager.isBusRouteListLoaded && showRoute {
                 Section {
                     HStack(alignment: .center, spacing: 8.0) {
                         ProgressView()
@@ -66,7 +66,7 @@ struct BusServiceView: View {
             isLiveActivityActive = ArrivalActivityController.activity(serviceNo: busService.serviceNo,
                                                                       busStopCode: busStopCode) != nil
             do {
-                if settings.showRoute {
+                if showRoute {
                     try await dataManager.reloadBusRoutes()
                     try await dataManager.reloadBusRoutePolylines()
                     reloadBusRoutes()
@@ -85,7 +85,7 @@ struct BusServiceView: View {
             }
         }
         .onChange(of: dataManager.isBusRouteListLoaded, { _, newValue in
-            if newValue && settings.showRoute {
+            if newValue && showRoute {
                 reloadBusRoutes()
             }
         })
@@ -269,7 +269,7 @@ extension BusServiceView {
     func updateMapDisplay() {
         coordinateManager.removeAll()
         coordinateManager.liveBuses = LiveBus.buses(of: busService)
-        if settings.showRoute {
+        if showRoute {
             coordinateManager.replaceWithCoordinates(from: busStopsForMapDisplay)
             coordinateManager.routeCoordinates = routeCoordinates()
             coordinateManager.highlightedBusStopCode = busStopCode

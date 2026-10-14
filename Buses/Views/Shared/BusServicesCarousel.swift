@@ -12,7 +12,7 @@ struct BusServicesCarousel: View {
     @Environment(\.scenePhase) var scenePhase
     @Environment(DataManager.self) var dataManager
     @Environment(FavoritesManager.self) var favorites
-    @Environment(SettingsManager.self) var settings
+    @AppStorage(SettingsKey.carouselDisplayMode) var carouselDisplayMode: CarouselDisplayMode = .full
 
     var dataDisplayMode: DataDisplayMode
 
@@ -29,7 +29,6 @@ struct BusServicesCarousel: View {
     }
 
     var body: some View {
-        @Bindable var settings = settings
         HStack {
             if !isInitialDataLoaded {
                 HStack {
@@ -47,11 +46,11 @@ struct BusServicesCarousel: View {
                                                                       forBusStopCode: busStopCode ?? "")) {
                                 VStack(alignment: .center, spacing: 2.0) {
                                     BusNumberPlateView(
-                                        carouselDisplayMode: $settings.carouselDisplayMode,
+                                        carouselDisplayMode: $carouselDisplayMode,
                                         serviceNo: bus.serviceNo
                                     )
                                     Group {
-                                        switch settings.carouselDisplayMode {
+                                        switch carouselDisplayMode {
                                         case .full:
                                             Text(bus.nextBus?.estimatedArrivalTimeAsDate()?.arrivalFormat(style: .short) ??
                                                  localized("Shared.BusArrival.NotInService"))
@@ -85,8 +84,8 @@ struct BusServicesCarousel: View {
                                     }
                                     .offset(y: fontHackOffset)
                                 }
-                                .frame(minWidth: settings.carouselDisplayMode.width(),
-                                       maxWidth: settings.carouselDisplayMode.width(),
+                                .frame(minWidth: carouselDisplayMode.width(),
+                                       maxWidth: carouselDisplayMode.width(),
                                        minHeight: 0,
                                        maxHeight: .infinity,
                                        alignment: .center)

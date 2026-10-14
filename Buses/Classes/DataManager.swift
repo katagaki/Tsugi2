@@ -92,7 +92,7 @@ class DataManager {
 
     private func reloadBusStopListFromServer() async throws {
         var busStops = try await transit.busStops()
-        if defaults.bool(forKey: "UseProperText") {
+        if defaults.bool(forKey: SettingsKey.useProperText) {
             busStops = await withTaskGroup(of: BusStop.self, returning: [BusStop].self, body: { group in
                 for busStop in busStops {
                     group.addTask {

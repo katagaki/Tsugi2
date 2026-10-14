@@ -23,7 +23,6 @@ struct UnifiedView: View {
     @Environment(LocationManager.self) var locationManager
     @Environment(RegionManager.self) var regionManager
     @Environment(CoordinateManager.self) var coordinateManager
-    @Environment(SettingsManager.self) var settings
     @Environment(Toaster.self) var toaster
 
     @State var isInitialLoad: Bool = true

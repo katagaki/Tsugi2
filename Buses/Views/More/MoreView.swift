@@ -12,47 +12,48 @@ struct MoreView: View {
     @Environment(\.dismiss) var dismiss
 
     @Environment(DataManager.self) var dataManager
-    @Environment(SettingsManager.self) var settings
+    @AppStorage(SettingsKey.carouselDisplayMode) var carouselDisplayMode: CarouselDisplayMode = .full
+    @AppStorage(SettingsKey.showRoute) var showRoute: Bool = false
+    @AppStorage(SettingsKey.useProperText) var useProperText: Bool = true
     @Environment(Toaster.self) var toaster
 
     @State var showLogsView: Bool = false
 
     var body: some View {
-        @Bindable var settings = settings
         NavigationStack {
             List {
                 Section {
                     HStack(alignment: .center, spacing: 0.0) {
                         Button {
-                            settings.setCarouselDisplayMode(.full)
+                            carouselDisplayMode = .full
                         } label: {
                             ImageWithCheck(image: "Carousel.Full",
                                            label: localized("More.Customization.CarouselSize.Full"),
-                                           checked: $settings.carouselDisplayModeIsFull)
+                                           checked: carouselDisplayMode == .full)
                         }
                         .buttonStyle(.borderless)
                         .frame(maxWidth: .infinity)
                         Button {
-                            settings.setCarouselDisplayMode(.small)
+                            carouselDisplayMode = .small
                         } label: {
                             ImageWithCheck(image: "Carousel.Small",
                                            label: localized("More.Customization.CarouselSize.Small"),
-                                           checked: $settings.carouselDisplayModeIsSmall)
+                                           checked: carouselDisplayMode == .small)
                         }
                         .buttonStyle(.borderless)
                         .frame(maxWidth: .infinity)
                         Button {
-                            settings.setCarouselDisplayMode(.minimal)
+                            carouselDisplayMode = .minimal
                         } label: {
                             ImageWithCheck(image: "Carousel.Minimal",
                                            label: localized("More.Customization.CarouselSize.Minimal"),
-                                           checked: $settings.carouselDisplayModeIsMinimal)
+                                           checked: carouselDisplayMode == .minimal)
                         }
                         .buttonStyle(.borderless)
                         .frame(maxWidth: .infinity)
                     }
-                    Toggle("More.Customization.ShowRoute", isOn: $settings.showRoute)
-                    Toggle("More.Customization.ProperText", isOn: $settings.useProperText)
+                    Toggle("More.Customization.ShowRoute", isOn: $showRoute)
+                    Toggle("More.Customization.ProperText", isOn: $useProperText)
                         .disabled(dataManager.shouldReloadBusStopList)
                 } header: {
                     Text("More.Customization")
@@ -79,12 +80,8 @@ struct MoreView: View {
                     Color.clear
                 }
             }
-            .onChange(of: settings.useProperText) { _, newValue in
-                settings.setProperText(newValue)
+            .onChange(of: useProperText) { _, _ in
                 dataManager.shouldReloadBusStopList = true
-            }
-            .onChange(of: settings.showRoute) { _, newValue in
-                settings.setShowRoute(newValue)
             }
             .navigationTitle("ViewTitle.More")
             .navigationBarTitleDisplayMode(.inline)
