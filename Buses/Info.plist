@@ -6,6 +6,22 @@
 	<array>
 		<string>com.tsubuzaki.Tsugi2-assistant.refresh</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.tsubuzaki.Tsugi2</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>tsugi2</string>
+			</array>
+		</dict>
+	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>UIAppFonts</key>

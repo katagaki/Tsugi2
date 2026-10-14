@@ -45,6 +45,18 @@ extension UnifiedView {
         }
     }
 
+    // MARK: - Search
+
+    func openSearch() {
+        navigationManager.popToRoot()
+        selectedDetent = .large
+        Task {
+            // The search field only exists once the sheet has expanded
+            try? await Task.sleep(for: .milliseconds(350))
+            isSearchFocused = true
+        }
+    }
+
     // MARK: - Favorites Editing
 
     func moveLocations(from source: IndexSet, to destination: Int) {
@@ -78,6 +90,18 @@ extension UnifiedView {
             locationManager.shouldUpdateLocationAsSoonAsPossible = true
         @unknown default:
             log("Scene change detected, but we don't know what the change was!")
+        }
+    }
+
+    // MARK: - Screenshots
+
+    func stage(_ scene: ScreenshotScene) {
+        selectedDetent = scene.detent
+        if let searchTerm = scene.searchTerm {
+            self.searchTerm = searchTerm
+        }
+        if let path = scene.path(dataManager: dataManager) {
+            navigationManager.open(path)
         }
     }
 

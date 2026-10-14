@@ -59,6 +59,12 @@
             "state" : "translated",
             "value" : "取消"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
+          }
         }
       }
     },
@@ -111,6 +117,12 @@
             "state" : "translated",
             "value" : "创建"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "建立"
+          }
         }
       }
     },
@@ -160,6 +172,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "取消"
@@ -216,6 +234,12 @@
             "state" : "translated",
             "value" : "保存"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存"
+          }
         }
       }
     },
@@ -270,6 +294,12 @@
             "state" : "translated",
             "value" : "确定"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "確定"
+          }
         }
       }
     },
@@ -323,6 +353,12 @@
             "state" : "translated",
             "value" : "正在获取公交路线数据…"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在取得巴士路線資料…"
+          }
         }
       }
     },
@@ -372,6 +408,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴士站"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "巴士站"
@@ -429,6 +471,12 @@
             "state" : "translated",
             "value" : "按字母顺序（升序）"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按字母排序（遞增）"
+          }
         }
       }
     },
@@ -481,6 +529,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "按字母顺序（降序）"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按字母排序（遞減）"
           }
         }
       }
@@ -535,6 +589,12 @@
             "state" : "translated",
             "value" : "距离（最近的优先）"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "距離（最近優先）"
+          }
         }
       }
     },
@@ -587,6 +647,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "正在获取巴士站的信息…"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在取得巴士站資料…"
           }
         }
       }
@@ -641,6 +707,12 @@
             "state" : "translated",
             "value" : "票价计算器"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "車費計算機"
+          }
         }
       }
     },
@@ -693,6 +765,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "搜索结果"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜尋結果"
           }
         }
       }
@@ -748,6 +826,12 @@
             "state" : "translated",
             "value" : "有用信息"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "實用資訊"
+          }
         }
       }
     },
@@ -800,6 +884,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "这个地点"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "這個地點"
           }
         }
       }
@@ -854,6 +944,12 @@
             "state" : "translated",
             "value" : "确定要删除%1吗？"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "確定要刪除%1嗎？"
+          }
         }
       }
     },
@@ -906,6 +1002,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "删除地点"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除地點"
           }
         }
       }
@@ -960,6 +1062,12 @@
             "state" : "translated",
             "value" : "编辑%1"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯%1"
+          }
         }
       }
     },
@@ -1012,6 +1120,12 @@
             "state" : "translated",
             "value" : "要将公交车添加到这个地点，请打开巴士到站详情页并选择右上角的“添加到地点”按钮。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如要將巴士路線加入這個地點，請先找到並打開該巴士路線，然後點一下右上角的「加入地點」按鈕。"
+          }
         }
       }
     },
@@ -1022,49 +1136,55 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No locations saved.\nTo create a new location, tap the + button in the Locations section header.\nYou can also add a bus stop as a location."
+            "value" : "Tap + to add a location, or add a bus stop from its page."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "追加した場所はありません。\n新しい場所を作成するには、右上の新規場所ボタンを選択してください。\nバス停を直接的に追加することもできます。"
+            "value" : "＋をタップして場所を追加するか、バス停の画面から追加できます。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "저장된 장소가 없습니다.\n새 장소를 만들려면 이 탭의 오른쪽 상단에 있는 장소 추가 버튼을 탭하세요.\n버스 정류장을 장소로 추가할 수도 있습니다."
+            "value" : "+를 탭하여 장소를 추가하거나 버스 정류장 화면에서 추가하세요."
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tiada lokasi disimpan.\nUntuk mencipta lokasi baharu, ketik butang Tambah Lokasi di bahagian atas kanan tab ini.\nAnda juga boleh menambah perhentian bas sebagai lokasi."
+            "value" : "Ketik + untuk menambah lokasi, atau tambah perhentian bas dari halamannya."
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "இடங்கள் எதுவும் சேமிக்கப்படவில்லை.\nபுதிய இடத்தை உருவாக்க, இந்த தாவலின் மேல் வலதுபுறத்தில் உள்ள இடத்தைச் சேர் பொத்தானைத் தட்டவும்.\nபேருந்து நிறுத்தத்தையும் ஒரு இடமாகச் சேர்க்கலாம்."
+            "value" : "இடத்தைச் சேர்க்க + ஐத் தட்டவும், அல்லது பேருந்து நிறுத்தப் பக்கத்திலிருந்து சேர்க்கவும்."
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ไม่มีตำแหน่งที่บันทึกไว้\nหากต้องการสร้างตำแหน่งใหม่ ให้แตะปุ่มเพิ่มตำแหน่งที่มุมบนขวาของแท็บนี้\nคุณยังสามารถเพิ่มป้ายรถเมล์เป็นตำแหน่งได้"
+            "value" : "แตะ + เพื่อเพิ่มตำแหน่ง หรือเพิ่มป้ายรถเมล์จากหน้าของป้าย"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chưa có địa điểm nào được lưu.\nĐể tạo địa điểm mới, nhấn nút Thêm Địa Điểm ở góc trên bên phải của tab này.\nBạn cũng có thể thêm trạm xe buýt làm địa điểm."
+            "value" : "Nhấn + để thêm địa điểm, hoặc thêm trạm xe buýt từ trang của trạm."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "没有地点添加到您的收藏夹。\n点击此选项卡右上角的“添加地点“按钮以创建新地点。\n巴士站也可以添加作为地点。"
+            "value" : "点击＋添加地点，或在巴士站页面中添加。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "點一下＋加入地點，或在巴士站頁面中加入。"
           }
         }
       }
@@ -1119,6 +1239,12 @@
             "state" : "translated",
             "value" : "没有地点"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有地點"
+          }
         }
       }
     },
@@ -1171,6 +1297,12 @@
             "state" : "translated",
             "value" : "新地点"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增地點"
+          }
         }
       }
     },
@@ -1222,6 +1354,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "编辑地点名称"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新命名地點"
           }
         }
       }
@@ -1279,6 +1417,130 @@
             "state" : "translated",
             "value" : "%1到达"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1到達"
+          }
+        }
+      }
+    },
+    "LiveActivity.Disabled" : {
+      "comment" : "Live Activity",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live Activities are turned off for this app in Settings."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定でこのアプリのライブアクティビティがオフになっています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정에서 이 앱의 실시간 현황이 꺼져 있습니다."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktiviti Langsung dimatikan untuk apl ini dalam Tetapan."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அமைப்புகளில் இந்த ஆப்பிற்கான நேரலை செயல்பாடுகள் முடக்கப்பட்டுள்ளன."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "การตั้งค่าปิดกิจกรรมสดของแอปนี้อยู่"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoạt Động Trực Tiếp đang tắt cho ứng dụng này trong Cài đặt."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此应用的实时活动已在设置中关闭。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已在「設定」中關閉此 App 的即時動態。"
+          }
+        }
+      }
+    },
+    "LiveActivity.Error" : {
+      "comment" : "Live Activity",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Live Activity could not be started."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ライブアクティビティを開始できませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "실시간 현황을 시작할 수 없습니다."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktiviti Langsung tidak dapat dimulakan."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "நேரலை செயல்பாட்டைத் தொடங்க முடியவில்லை."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ไม่สามารถเริ่มกิจกรรมสดได้"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể bắt đầu Hoạt Động Trực Tiếp."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法开始实时活动。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法開始即時動態。"
+          }
         }
       }
     },
@@ -1331,6 +1593,484 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "预计到达时间"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "預計到達時間"
+          }
+        }
+      }
+    },
+    "LiveActivity.Identifier" : {
+      "comment" : "Live Activity intent parameter",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live Activity"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ライブアクティビティ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "실시간 현황"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktiviti Langsung"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "நேரலை செயல்பாடு"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "กิจกรรมสด"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoạt Động Trực Tiếp"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "实时活动"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "即時動態"
+          }
+        }
+      }
+    },
+    "LiveActivity.Load.Seats" : {
+      "comment" : "Bus load badge",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SEATS"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空席あり"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "좌석 있음"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ADA TEMPAT"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இருக்கைகள்"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "มีที่นั่ง"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CÒN GHẾ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "有座位"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "有座位"
+          }
+        }
+      }
+    },
+    "LiveActivity.Load.Standing" : {
+      "comment" : "Bus load badge",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "STANDING"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "立席のみ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "입석"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BERDIRI"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "நின்று மட்டும்"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ยืนเท่านั้น"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CHỈ ĐỨNG"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "仅站位"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "僅限站立"
+          }
+        }
+      }
+    },
+    "LiveActivity.Refresh" : {
+      "comment" : "Live Activity",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refresh"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更新"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "새로 고침"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muat Semula"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "புதுப்பி"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "รีเฟรช"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Làm Mới"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刷新"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新整理"
+          }
+        }
+      }
+    },
+    "LiveActivity.Start" : {
+      "comment" : "Live Activity",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Track on Lock Screen"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ロック画面で追跡"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "잠금 화면에서 추적"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jejak di Skrin Kunci"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பூட்டுத் திரையில் கண்காணி"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ติดตามบนหน้าจอล็อก"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theo Dõi Trên Màn Hình Khóa"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在锁定屏幕上追踪"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在鎖定畫面上追蹤"
+          }
+        }
+      }
+    },
+    "LiveActivity.Started" : {
+      "comment" : "Live Activity",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can now follow this bus on your Lock Screen."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ロック画面でこのバスを追跡できるようになりました。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이제 잠금 화면에서 이 버스를 추적할 수 있습니다."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anda kini boleh mengikuti bas ini di Skrin Kunci."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இப்போது இந்தப் பேருந்தை உங்கள் பூட்டுத் திரையில் பின்தொடரலாம்."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "คุณสามารถติดตามรถเมล์คันนี้บนหน้าจอล็อกได้แล้ว"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bây giờ bạn có thể theo dõi xe buýt này trên Màn Hình Khóa."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "现在可以在锁定屏幕上追踪此巴士。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現在可以在鎖定畫面上追蹤這班巴士。"
+          }
+        }
+      }
+    },
+    "LiveActivity.Stop" : {
+      "comment" : "Live Activity",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop Tracking"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "追跡を停止"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "추적 중지"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berhenti Menjejak"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கண்காணிப்பை நிறுத்து"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "หยุดติดตาม"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dừng Theo Dõi"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "停止追踪"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "停止追蹤"
+          }
+        }
+      }
+    },
+    "LiveActivity.Updating" : {
+      "comment" : "Live Activity",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Updating…"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更新中…"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "업데이트 중…"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mengemas kini…"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "புதுப்பிக்கிறது…"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "กำลังอัปเดต…"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đang cập nhật…"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在更新…"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在更新…"
           }
         }
       }
@@ -1385,6 +2125,12 @@
             "state" : "translated",
             "value" : "作者版权"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版權聲明"
+          }
         }
       }
     },
@@ -1437,6 +2183,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "作者版权"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版權聲明"
           }
         }
       }
@@ -1491,6 +2243,12 @@
             "state" : "translated",
             "value" : "个性化"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "個人化"
+          }
         }
       }
     },
@@ -1540,6 +2298,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "大"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "大"
@@ -1597,6 +2361,12 @@
             "state" : "translated",
             "value" : "小"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "小"
+          }
         }
       }
     },
@@ -1650,217 +2420,11 @@
             "state" : "translated",
             "value" : "中"
           }
-        }
-      }
-    },
-    "More.Customization.ProperText" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Expand Bus Stop Names"
-          }
         },
-        "ja" : {
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "バス停名の略語を復元"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "버스 정류장 이름 확장"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kembangkan Nama Perhentian Bas"
-          }
-        },
-        "ta" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "பேருந்து நிறுத்தப் பெயர்களை விரிவாக்கு"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ขยายชื่อป้ายรถเมล์"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mở Rộng Tên Trạm Xe Buýt"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "恢复巴士站名称缩写"
-          }
-        }
-      }
-    },
-    "More.Customization.ProperText.Subtitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Replace abbreviations in bus stop names to make bus stops easier to find."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "バス停名にある略語を元の言葉にし、分かりやすくします。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "버스 정류장 이름의 약어를 풀어서 버스 정류장을 더 쉽게 찾을 수 있게 합니다."
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gantikan singkatan dalam nama perhentian bas untuk memudahkan pencarian."
-          }
-        },
-        "ta" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "பேருந்து நிறுத்தங்களை எளிதாகக் கண்டறிய, பேருந்து நிறுத்தப் பெயர்களில் உள்ள சுருக்கங்களை மாற்றவும்."
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "แทนที่ตัวย่อในชื่อป้ายรถเมล์เพื่อให้ค้นหาป้ายรถเมล์ได้ง่ายขึ้น"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Thay thế các chữ viết tắt trong tên trạm xe buýt để dễ tìm kiếm hơn."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "公交车站名称中的缩写改为原词，使其更容易理解。"
-          }
-        }
-      }
-    },
-    "More.Customization.ShowRoute" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Show Route"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ルートを表示"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "노선 표시"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tunjukkan Laluan"
-          }
-        },
-        "ta" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "வழித்தடத்தைக் காட்டு"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "แสดงเส้นทาง"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hiển Thị Tuyến Đường"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "显示路线"
-          }
-        }
-      }
-    },
-    "More.Customization.ShowRoute.Subtitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Shows the route taken by bus services in the map."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "マップにバスのルートが表示されます。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "지도에서 버스 서비스의 경로를 표시합니다."
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Menunjukkan laluan yang dilalui oleh perkhidmatan bas di peta."
-          }
-        },
-        "ta" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "வரைபடத்தில் பேருந்து சேவைகள் செல்லும் வழித்தடத்தைக் காட்டுகிறது."
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "แสดงเส้นทางที่บริการรถเมล์วิ่งบนแผนที่"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hiển thị tuyến đường của dịch vụ xe buýt trên bản đồ."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在地图上显示巴士服务的路线。"
+            "value" : "中"
           }
         }
       }
@@ -1916,6 +2480,12 @@
             "state" : "translated",
             "value" : "通用"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一般"
+          }
         }
       }
     },
@@ -1968,6 +2538,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "默认标签页"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "預設標籤頁"
           }
         }
       }
@@ -2022,6 +2598,12 @@
             "state" : "translated",
             "value" : "源代码"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "原始碼"
+          }
         }
       }
     },
@@ -2074,6 +2656,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "帮助"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "說明與支援"
           }
         }
       }
@@ -2128,6 +2716,12 @@
             "state" : "translated",
             "value" : "发邮件"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "傳送電郵"
+          }
         }
       }
     },
@@ -2177,6 +2771,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ktgk.public@icloud.com"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "ktgk.public@icloud.com"
@@ -2234,6 +2834,12 @@
             "state" : "translated",
             "value" : "查看源代码"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看原始碼"
+          }
         }
       }
     },
@@ -2283,6 +2889,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "katagaki/Tsugi2"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "katagaki/Tsugi2"
@@ -2340,6 +2952,12 @@
             "state" : "translated",
             "value" : "X上发布"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 X 上發文"
+          }
         }
       }
     },
@@ -2389,6 +3007,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "@katagaki_"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "@katagaki_"
@@ -2446,6 +3070,12 @@
             "state" : "translated",
             "value" : "通知"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知"
+          }
         }
       }
     },
@@ -2497,6 +3127,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "应用日志"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App 日誌"
           }
         }
       }
@@ -2552,6 +3188,12 @@
             "state" : "translated",
             "value" : "附近没有公交车站。\n请移动到公交车站附近或确认位置信息的设定。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "附近沒有巴士站。\n請移動到巴士站附近，或檢查「定位服務」設定。"
+          }
         }
       }
     },
@@ -2604,6 +3246,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "附近没有公交车站"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "附近沒有巴士站"
           }
         }
       }
@@ -2754,6 +3402,24 @@
               }
             }
           }
+        },
+        "zh-Hant" : {
+          "variations" : {
+            "device" : {
+              "iphone" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "「定位服務」未啟用。如要在不啟用「定位服務」的情況下告訴巴士精靈你的位置，請選擇下方的按鈕。"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "「定位服務」未啟用。"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -2806,6 +3472,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "位置不可用"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法取得位置"
           }
         }
       }
@@ -2860,6 +3532,12 @@
             "state" : "translated",
             "value" : "%1巴士将在%2到达。\n尽快前往公共汽车停下来，以免迟到。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1號巴士預計於%2到達。\n請提早前往巴士站，以免錯過巴士。"
+          }
         }
       }
     },
@@ -2912,6 +3590,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "巴士要到达%1"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴士即將於%1到達"
           }
         }
       }
@@ -2966,6 +3650,12 @@
             "state" : "translated",
             "value" : "设置通知时出错。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定通知時發生錯誤。"
+          }
         }
       }
     },
@@ -3018,6 +3708,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "设置通知需要通知权限。 请在设置APP中检查“巴士精灵”APP的通知权限。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴士精靈尚未獲准傳送通知。請在「設定」App 中檢查巴士精靈的通知權限。"
           }
         }
       }
@@ -3073,6 +3769,12 @@
             "state" : "translated",
             "value" : "您将在该巴士预定到达时间前2分钟收到通知。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你將在這班巴士預計到達前 2 分鐘收到通知。"
+          }
         }
       }
     },
@@ -3127,6 +3829,12 @@
             "state" : "translated",
             "value" : "到达通知"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "到站提醒"
+          }
         }
       }
     },
@@ -3179,6 +3887,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "没有设置到达通知。\n要设置新到达通知，请打开总线服务的到达信息页面，然后单击要设置到达警报的总线的铃铛图标。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尚未設定到站提醒。\n如要設定新的到站提醒，請打開巴士路線的到站資訊頁面，然後點一下想設定提醒的巴士旁的鈴鐺圖示。"
           }
         }
       }
@@ -3233,6 +3947,12 @@
             "state" : "translated",
             "value" : "即将抵达"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "即將到站"
+          }
         }
       }
     },
@@ -3286,6 +4006,12 @@
             "state" : "translated",
             "value" : "即将抵达"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "即將到站"
+          }
         }
       }
     },
@@ -3337,6 +4063,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拥挤"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "擁擠"
           }
         }
       }
@@ -3391,6 +4123,12 @@
             "state" : "translated",
             "value" : "已离开"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已離開"
+          }
         }
       }
     },
@@ -3443,6 +4181,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已经离开"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剛剛離開"
           }
         }
       }
@@ -3497,6 +4241,12 @@
             "state" : "translated",
             "value" : "正在获得公交路线..."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在載入路線…"
+          }
         }
       }
     },
@@ -3550,6 +4300,12 @@
             "state" : "translated",
             "value" : "停止服务"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "暫停服務"
+          }
         }
       }
     },
@@ -3601,6 +4357,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此巴士此刻不提供服务。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此巴士路線目前暫停服務。"
           }
         }
       }
@@ -3655,6 +4417,12 @@
             "state" : "translated",
             "value" : "下一班车："
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下一班："
+          }
         }
       }
     },
@@ -3707,6 +4475,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1已添加到%2。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已將%1加入%2。"
           }
         }
       }
@@ -3761,6 +4535,12 @@
             "state" : "translated",
             "value" : "巴士服务"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴士路線"
+          }
         }
       }
     },
@@ -3812,6 +4592,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此巴士站目前没有能提供的巴士服务。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此巴士站目前沒有巴士路線服務。"
           }
         }
       }
@@ -3866,6 +4652,12 @@
             "state" : "translated",
             "value" : "巴士站代码"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴士站編號"
+          }
         }
       }
     },
@@ -3917,6 +4709,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "复制巴士站代码"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "複製巴士站編號"
           }
         }
       }
@@ -3971,6 +4769,12 @@
             "state" : "translated",
             "value" : "无法获得"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不適用"
+          }
         }
       }
     },
@@ -4022,6 +4826,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "复制巴士站名"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "複製巴士站名稱"
           }
         }
       }
@@ -4077,6 +4887,12 @@
             "state" : "translated",
             "value" : "无名巴士站"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未命名巴士站"
+          }
         }
       }
     },
@@ -4129,6 +4945,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "无路名"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不適用"
           }
         }
       }
@@ -4183,6 +5005,12 @@
             "state" : "translated",
             "value" : "%1已保存为地点。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已將%1加入你的地點。"
+          }
         }
       }
     },
@@ -4236,6 +5064,12 @@
             "state" : "translated",
             "value" : "连接时出现问题。请确认网络后再试一次。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "網絡連線似乎已中斷。請檢查網絡連線後再試一次。"
+          }
         }
       }
     },
@@ -4285,6 +5119,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "取消"
@@ -4342,6 +5182,12 @@
             "state" : "translated",
             "value" : "搜索"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜尋"
+          }
         }
       }
     },
@@ -4394,6 +5240,12 @@
             "state" : "translated",
             "value" : "收藏夹"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "地點"
+          }
         }
       }
     },
@@ -4443,6 +5295,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "附近"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "附近"
@@ -4500,6 +5358,12 @@
             "state" : "translated",
             "value" : "票价计算器"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "車費計算機"
+          }
         }
       }
     },
@@ -4548,6 +5412,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更多"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "更多"
@@ -4605,6 +5475,12 @@
             "state" : "translated",
             "value" : "作者版权"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版權聲明"
+          }
         }
       }
     },
@@ -4654,6 +5530,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "通知"
@@ -4710,6 +5592,12 @@
             "state" : "translated",
             "value" : "MRT路线图"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MRT 路線圖"
+          }
         }
       }
     },
@@ -4761,6 +5649,2018 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已设置的通知"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已排定的通知"
+          }
+        }
+      }
+    },
+    "Widget.ChangePage" : {
+      "comment" : "Widget buttons that move between pages of bus services",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change Page"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ページを切り替え"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "페이지 이동"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tukar Halaman"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பக்கத்தை மாற்று"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "เปลี่ยนหน้า"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chuyển Trang"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "切换页面"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "切換頁面"
+          }
+        }
+      }
+    },
+    "Widget.Description" : {
+      "comment" : "Widget",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See upcoming buses at one of your locations."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存した場所に到着するバスを表示します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장한 위치에 도착하는 버스를 확인합니다."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat bas yang akan tiba di salah satu lokasi anda."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "உங்கள் இடங்களில் ஒன்றில் வரவிருக்கும் பேருந்துகளைப் பார்க்கவும்."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ดูรถเมล์ที่กำลังจะมาถึงในตำแหน่งที่คุณบันทึกไว้"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xem các chuyến xe buýt sắp đến tại một trong các địa điểm của bạn."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看您的某个地点即将到站的巴士。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看你其中一個地點即將到站的巴士。"
+          }
+        }
+      }
+    },
+    "Widget.Location" : {
+      "comment" : "Widget configuration parameter",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "場所"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위치"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lokasi"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இடம்"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ตำแหน่ง"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Địa Điểm"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "地点"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "地點"
+          }
+        }
+      }
+    },
+    "Widget.NoLocations" : {
+      "comment" : "Widget",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a location in Buses to see arrivals here."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "到着時刻を表示するには、アプリで場所を追加してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "도착 시간을 보려면 앱에서 위치를 추가하세요."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah lokasi dalam apl untuk melihat ketibaan di sini."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "வருகைகளை இங்கே பார்க்க, ஆப்பில் ஓர் இடத்தைச் சேர்க்கவும்."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "เพิ่มตำแหน่งในแอปเพื่อดูเวลารถมาถึงที่นี่"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thêm một địa điểm trong ứng dụng để xem giờ đến tại đây."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在应用中添加地点即可在此查看到站时间。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在巴士精靈中加入地點，即可在此查看到站時間。"
+          }
+        }
+      }
+    },
+    "Widget.Page" : {
+      "comment" : "Widget intent parameter",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Page"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ページ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "페이지"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halaman"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பக்கம்"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "หน้า"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trang"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "页面"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "頁面"
+          }
+        }
+      }
+    },
+    "Widget.SelectLocation" : {
+      "comment" : "Widget configuration intent",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select Location"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "場所を選択"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위치 선택"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih Lokasi"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இடத்தைத் தேர்ந்தெடு"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "เลือกตำแหน่ง"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chọn Địa Điểm"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择地点"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇地點"
+          }
+        }
+      }
+    },
+    "Widget.Title" : {
+      "comment" : "Widget",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arrivals"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "到着時刻"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "도착 시간"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketibaan"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "வருகைகள்"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "เวลารถมาถึง"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giờ Đến"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "到站时间"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "到站時間"
+          }
+        }
+      }
+    },
+    "Intents.BusStop" : {
+      "comment" : "Siri and Shortcuts: bus stop parameter and type",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bus Stop"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "バス停"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "버스 정류장"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perhentian Bas"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பேருந்து நிறுத்தம்"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ป้ายรถเมล์"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trạm Xe Buýt"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴士站"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴士站"
+          }
+        }
+      }
+    },
+    "Intents.Service" : {
+      "comment" : "Siri and Shortcuts: optional bus service number",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bus Service"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "バス"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "버스 노선"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perkhidmatan Bas"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பேருந்து சேவை"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "สายรถเมล์"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tuyến Xe Buýt"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴士服务"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴士路線"
+          }
+        }
+      }
+    },
+    "Intents.GetArrivals.Title" : {
+      "comment" : "Siri and Shortcuts action",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get Bus Arrivals"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "バスの到着時刻を取得"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "버스 도착 시간 가져오기"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dapatkan Ketibaan Bas"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பேருந்து வருகை நேரங்களைப் பெறு"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ดูเวลารถเมล์มาถึง"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xem Giờ Xe Buýt Đến"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "获取巴士到站时间"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取得巴士到站時間"
+          }
+        }
+      }
+    },
+    "Intents.GetArrivals.Description" : {
+      "comment" : "Siri and Shortcuts action description",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finds out when the next buses arrive at a bus stop."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "バス停に次のバスがいつ到着するかを確認します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "버스 정류장에 다음 버스가 언제 도착하는지 확인합니다."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mengetahui bila bas seterusnya tiba di perhentian bas."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ஒரு பேருந்து நிறுத்தத்திற்கு அடுத்த பேருந்துகள் எப்போது வரும் என்பதைக் கண்டறியும்."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ดูว่ารถเมล์คันถัดไปจะมาถึงป้ายเมื่อไร"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xem khi nào các chuyến xe buýt tiếp theo đến trạm."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看下一班巴士何时到达巴士站。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看下一班巴士何時到達巴士站。"
+          }
+        }
+      }
+    },
+    "Intents.GetLocationArrivals.Title" : {
+      "comment" : "Siri and Shortcuts action",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get Bus Arrivals at Location"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "場所のバス到着時刻を取得"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "장소의 버스 도착 시간 가져오기"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dapatkan Ketibaan Bas di Lokasi"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இடத்தில் பேருந்து வருகை நேரங்களைப் பெறு"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ดูเวลารถเมล์มาถึงที่ตำแหน่ง"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xem Giờ Xe Buýt Đến Tại Địa Điểm"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "获取地点的巴士到站时间"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取得地點的巴士到站時間"
+          }
+        }
+      }
+    },
+    "Intents.GetLocationArrivals.Description" : {
+      "comment" : "Siri and Shortcuts action description",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finds out when the next buses arrive at one of your locations."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存した場所に次のバスがいつ到着するかを確認します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "내 장소에 다음 버스가 언제 도착하는지 확인합니다."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mengetahui bila bas seterusnya tiba di salah satu lokasi anda."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "உங்கள் இடங்களில் ஒன்றிற்கு அடுத்த பேருந்துகள் எப்போது வரும் என்பதைக் கண்டறியும்."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ดูว่ารถเมล์คันถัดไปจะมาถึงตำแหน่งของคุณเมื่อไร"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xem khi nào các chuyến xe buýt tiếp theo đến một địa điểm của bạn."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看下一班巴士何时到达您保存的地点。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看下一班巴士何時到達你儲存的地點。"
+          }
+        }
+      }
+    },
+    "Intents.GetNearbyBusStops.Title" : {
+      "comment" : "Siri and Shortcuts action",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Find Nearby Bus Stops"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "付近のバス停を検索"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "근처 버스 정류장 찾기"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cari Perhentian Bas Berdekatan"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அருகிலுள்ள பேருந்து நிறுத்தங்களைக் கண்டறி"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ค้นหาป้ายรถเมล์ใกล้เคียง"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tìm Trạm Xe Buýt Gần Đây"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查找附近的巴士站"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尋找附近的巴士站"
+          }
+        }
+      }
+    },
+    "Intents.GetNearbyBusStops.Description" : {
+      "comment" : "Siri and Shortcuts action description",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finds the bus stops closest to you."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現在地に最も近いバス停を検索します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "가장 가까운 버스 정류장을 찾습니다."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mencari perhentian bas yang paling dekat dengan anda."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "உங்களுக்கு மிக அருகிலுள்ள பேருந்து நிறுத்தங்களைக் கண்டறியும்."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ค้นหาป้ายรถเมล์ที่ใกล้คุณที่สุด"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tìm các trạm xe buýt gần bạn nhất."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查找离您最近的巴士站。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尋找離你最近的巴士站。"
+          }
+        }
+      }
+    },
+    "Intents.OpenBusStop.Title" : {
+      "comment" : "Siri and Shortcuts action",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Bus Stop"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "バス停を開く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "버스 정류장 열기"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka Perhentian Bas"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பேருந்து நிறுத்தத்தைத் திற"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "เปิดป้ายรถเมล์"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mở Trạm Xe Buýt"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开巴士站"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打開巴士站"
+          }
+        }
+      }
+    },
+    "Intents.OpenBusStop.Description" : {
+      "comment" : "Siri and Shortcuts action description",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shows a bus stop and its arrivals in the app."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリでバス停とその到着時刻を表示します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱에서 버스 정류장과 도착 시간을 표시합니다."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menunjukkan perhentian bas dan ketibaannya dalam app."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பேருந்து நிறுத்தத்தையும் அதன் வருகை நேரங்களையும் ஆப்பில் காட்டும்."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "แสดงป้ายรถเมล์และเวลามาถึงในแอป"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiển thị trạm xe buýt và giờ xe đến trong ứng dụng."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在应用中显示巴士站及其到站时间。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 App 中顯示巴士站及其到站時間。"
+          }
+        }
+      }
+    },
+    "Intents.Dialog.Arrivals" : {
+      "comment" : "Siri reply. %1 is the place, %2 a list such as: bus 7 in 3 min and bus 14 is arriving now",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "At %1, %2."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1では、%2。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1: %2."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Di %1, %2."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1 இல், %2."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ที่ %1 %2"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tại %1, %2."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1：%2。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1：%2。"
+          }
+        }
+      }
+    },
+    "Intents.Dialog.ServiceArriving" : {
+      "comment" : "Part of a Siri reply. %1 is the bus number, %2 the minutes",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bus %1 comes in %2 min"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1番は%2分後"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1번 버스는 %2분 후 도착"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bas %1 tiba dalam %2 min"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பேருந்து %1 %2 நிமிடத்தில் வரும்"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "สาย %1 มาถึงในอีก %2 นาที"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "xe %1 đến sau %2 phút"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1路巴士%2分钟后到达"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1號巴士%2分鐘後到達"
+          }
+        }
+      }
+    },
+    "Intents.Dialog.ServiceArrivingNow" : {
+      "comment" : "Part of a Siri reply. %1 is the bus number",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bus %1 is arriving now"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1番はまもなく到着"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1번 버스는 곧 도착"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bas %1 sedang tiba"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பேருந்து %1 இப்போது வருகிறது"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "สาย %1 กำลังจะถึง"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "xe %1 đang đến"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1路巴士即将抵达"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1號巴士即將到站"
+          }
+        }
+      }
+    },
+    "Intents.Dialog.NoArrivals" : {
+      "comment" : "Siri reply. %1 is the place",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No buses are arriving at %1 right now."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現在、%1に到着予定のバスはありません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "현재 %1에 도착 예정인 버스가 없습니다."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiada bas yang akan tiba di %1 sekarang."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இப்போது %1 இற்கு எந்தப் பேருந்தும் வரவில்லை."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ขณะนี้ไม่มีรถเมล์มาถึง %1"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiện không có xe buýt nào đến %1."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "目前没有巴士到达%1。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "目前沒有巴士到達%1。"
+          }
+        }
+      }
+    },
+    "Intents.Dialog.ServiceNotArriving" : {
+      "comment" : "Siri reply. %1 is the bus number, %2 the place",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bus %1 isn't arriving at %2 right now."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現在、%1番は%2に到着予定がありません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "현재 %1번 버스는 %2에 도착 예정이 없습니다."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bas %1 tidak akan tiba di %2 sekarang."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இப்போது பேருந்து %1 %2 இற்கு வரவில்லை."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ขณะนี้รถเมล์สาย %1 ไม่มีกำหนดมาถึง %2"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiện xe buýt %1 không đến %2."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "目前%1路巴士不会到达%2。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1號巴士目前不會到達%2。"
+          }
+        }
+      }
+    },
+    "Intents.Dialog.NearbyBusStops" : {
+      "comment" : "Siri reply. %1 is a list of bus stops with distances",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The closest bus stops are %1."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最寄りのバス停は、%1です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "가장 가까운 버스 정류장은 %1입니다."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perhentian bas yang paling dekat ialah %1."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மிக அருகிலுள்ள பேருந்து நிறுத்தங்கள்: %1."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ป้ายรถเมล์ที่ใกล้ที่สุดคือ %1"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Các trạm xe buýt gần nhất là %1."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最近的巴士站是%1。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最近的巴士站是%1。"
+          }
+        }
+      }
+    },
+    "Intents.Dialog.BusStopDistance" : {
+      "comment" : "Part of a Siri reply. %1 is the bus stop, %2 the distance",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1 (%2)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1（%2）"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1(%2)"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1 (%2)"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1 (%2)"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1 (%2)"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1 (%2)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1（%2）"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1（%2）"
+          }
+        }
+      }
+    },
+    "Intents.Dialog.NoNearbyBusStops" : {
+      "comment" : "Siri reply",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There are no bus stops within 500 metres of you."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "500メートル以内にバス停はありません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "500미터 이내에 버스 정류장이 없습니다."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiada perhentian bas dalam lingkungan 500 meter dari anda."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "உங்களிடமிருந்து 500 மீட்டருக்குள் பேருந்து நிறுத்தங்கள் இல்லை."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ไม่มีป้ายรถเมล์ภายในระยะ 500 เมตรจากคุณ"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không có trạm xe buýt nào trong vòng 500 mét quanh bạn."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您附近500米内没有巴士站。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你附近 500 米內沒有巴士站。"
+          }
+        }
+      }
+    },
+    "Intents.Error.BusStopsUnavailable" : {
+      "comment" : "Siri error",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bus stops could not be loaded. Check your internet connection and try again."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "バス停を読み込めませんでした。インターネット接続を確認して、もう一度お試しください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "버스 정류장을 불러올 수 없습니다. 인터넷 연결을 확인하고 다시 시도하세요."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perhentian bas tidak dapat dimuatkan. Semak sambungan internet anda dan cuba lagi."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பேருந்து நிறுத்தங்களை ஏற்ற முடியவில்லை. உங்கள் இணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ไม่สามารถโหลดป้ายรถเมล์ได้ ตรวจสอบการเชื่อมต่ออินเทอร์เน็ตแล้วลองอีกครั้ง"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể tải trạm xe buýt. Hãy kiểm tra kết nối internet và thử lại."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法加载巴士站。请检查网络连接后重试。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法載入巴士站。請檢查網絡連線後再試一次。"
+          }
+        }
+      }
+    },
+    "Intents.Error.ArrivalsUnavailable" : {
+      "comment" : "Siri error",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bus arrivals could not be loaded. Check your internet connection and try again."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "バスの到着時刻を読み込めませんでした。インターネット接続を確認して、もう一度お試しください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "버스 도착 시간을 불러올 수 없습니다. 인터넷 연결을 확인하고 다시 시도하세요."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketibaan bas tidak dapat dimuatkan. Semak sambungan internet anda dan cuba lagi."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பேருந்து வருகை நேரங்களை ஏற்ற முடியவில்லை. உங்கள் இணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ไม่สามารถโหลดเวลารถเมล์มาถึงได้ ตรวจสอบการเชื่อมต่ออินเทอร์เน็ตแล้วลองอีกครั้ง"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể tải giờ xe buýt đến. Hãy kiểm tra kết nối internet và thử lại."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法加载巴士到站时间。请检查网络连接后重试。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法載入巴士到站時間。請檢查網絡連線後再試一次。"
+          }
+        }
+      }
+    },
+    "Intents.Error.LocationUnavailable" : {
+      "comment" : "Siri error",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your location is unavailable. Open Buses and allow it to use your location."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現在地を取得できません。Busesを開いて、位置情報の使用を許可してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위치를 확인할 수 없습니다. Buses를 열고 위치 사용을 허용하세요."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lokasi anda tidak tersedia. Buka Buses dan benarkan ia menggunakan lokasi anda."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "உங்கள் இருப்பிடம் கிடைக்கவில்லை. Buses ஐத் திறந்து உங்கள் இருப்பிடத்தைப் பயன்படுத்த அனுமதிக்கவும்."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ไม่สามารถระบุตำแหน่งของคุณได้ เปิด Buses และอนุญาตให้ใช้ตำแหน่งของคุณ"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không xác định được vị trí của bạn. Hãy mở Buses và cho phép sử dụng vị trí."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法获取您的位置。请打开Buses并允许其使用您的位置。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法取得你的位置。請打開巴士精靈並允許它使用你的位置。"
+          }
+        }
+      }
+    },
+    "Intents.Shortcut.LocationArrivals" : {
+      "comment" : "App Shortcut title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location Arrivals"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "場所の到着時刻"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "장소 도착 시간"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketibaan di Lokasi"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இட வருகைகள்"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "เวลามาถึงที่ตำแหน่ง"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giờ Đến Tại Địa Điểm"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "地点到站时间"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "地點到站時間"
+          }
+        }
+      }
+    },
+    "Intents.Shortcut.BusStopArrivals" : {
+      "comment" : "App Shortcut title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bus Stop Arrivals"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "バス停の到着時刻"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정류장 도착 시간"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketibaan di Perhentian"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "நிறுத்த வருகைகள்"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "เวลามาถึงที่ป้าย"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giờ Đến Tại Trạm"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴士站到站时间"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巴士站到站時間"
+          }
+        }
+      }
+    },
+    "Intents.Shortcut.NearbyBusStops" : {
+      "comment" : "App Shortcut title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nearby Bus Stops"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "付近のバス停"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "근처 버스 정류장"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perhentian Bas Berdekatan"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அருகிலுள்ள நிறுத்தங்கள்"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ป้ายรถเมล์ใกล้เคียง"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trạm Xe Buýt Gần Đây"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "附近的巴士站"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "附近的巴士站"
+          }
+        }
+      }
+    },
+    "Get bus arrivals at ${busStop}" : {
+      "comment" : "Shortcuts action summary",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get bus arrivals at ${busStop}"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "${busStop}のバス到着時刻を取得"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "${busStop}의 버스 도착 시간 가져오기"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dapatkan ketibaan bas di ${busStop}"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "${busStop} இல் பேருந்து வருகைகளைப் பெறு"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ดูเวลารถเมล์มาถึงที่ ${busStop}"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xem giờ xe buýt đến tại ${busStop}"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "获取${busStop}的巴士到站时间"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取得${busStop}的巴士到站時間"
+          }
+        }
+      }
+    },
+    "Get bus arrivals at ${location}" : {
+      "comment" : "Shortcuts action summary",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get bus arrivals at ${location}"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "${location}のバス到着時刻を取得"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "${location}의 버스 도착 시간 가져오기"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dapatkan ketibaan bas di ${location}"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "${location} இல் பேருந்து வருகைகளைப் பெறு"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ดูเวลารถเมล์มาถึงที่ ${location}"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xem giờ xe buýt đến tại ${location}"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "获取${location}的巴士到站时间"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取得${location}的巴士到站時間"
+          }
+        }
+      }
+    },
+    "Shared.Search" : {
+      "comment" : "Collapsed sheet search bar",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "検索"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "검색"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cari"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தேடு"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ค้นหา"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tìm kiếm"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜索"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜尋"
           }
         }
       }

@@ -8,11 +8,12 @@
 import Foundation
 import SwiftUI
 
-class Toaster: ObservableObject {
+@Observable
+class Toaster {
 
-    @Published var isToastShowing: Bool = false
-    @Published var toastMessage: String = ""
-    @Published var toastType: ToastType = .none
+    var isToastShowing: Bool = false
+    var toastMessage: String = ""
+    var toastType: ToastType = .none
 
     func showToast(_ message: String,
                    type: ToastType = .none,

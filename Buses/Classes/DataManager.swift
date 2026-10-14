@@ -8,21 +8,23 @@
 import Foundation
 import SwiftUI
 
-class DataManager: ObservableObject {
+@MainActor
+@Observable
+class DataManager {
 
-    let defaults = UserDefaults.standard
+    @ObservationIgnored let defaults = UserDefaults.standard
 
-    @Published var busStopList: BusStopList = BusStopList()
-    @Published var shouldReloadBusStopList: Bool = false
+    var busStopList: BusStopList = BusStopList()
+    var shouldReloadBusStopList: Bool = false
 
-    @Published var busRouteList: BusRouteList = BusRouteList()
-    @Published var isBusRouteListLoaded: Bool = false
+    var busRouteList: BusRouteList = BusRouteList()
+    var isBusRouteListLoaded: Bool = false
 
-    @Published var busRoutePolylines: [BusRoutePolyline] = []
-    @Published var isBusRoutePolylinesLoaded: Bool = false
+    var busRoutePolylines: [BusRoutePolyline] = []
+    var isBusRoutePolylinesLoaded: Bool = false
 
-    @Published var updatedDate: String = ""
-    @Published var updatedTime: String = ""
+    var updatedDate: String = ""
+    var updatedTime: String = ""
 
     var busStops: [BusStop] {
         get {
@@ -60,76 +62,98 @@ class DataManager: ObservableObject {
     }
 
     func busRoutePolyline(for serviceNo: String, direction: BusRouteDirection) -> String {
-        if let busRoutePolyline = busRoutePolylines.filter({ busRoutePolyline in
-            busRoutePolyline.serviceNo == serviceNo
-        }).first {
+        if let busRoutePolyline = busRoutePolylines.first(where: { $0.serviceNo == serviceNo }),
+           busRoutePolyline.encodedPolylines.indices.contains(direction.rawValue - 1) {
             return busRoutePolyline.encodedPolylines[direction.rawValue - 1]
         }
         return ""
     }
 
-    func reloadBusStopListFromServer() async throws {
-        busStopList.busStops = try await getAllBusStops()
-        if defaults.bool(forKey: "UseProperText") {
-            busStopList.busStops = await withTaskGroup(of: BusStop.self, returning: [BusStop].self, body: { group in
-                var busStops: [BusStop] = []
-                for busStop in busStopList.busStops {
-                    group.addTask {
-                        busStop.originalDescription = busStop.description
-                        busStop.description = properName(for: busStop.name())
-                        busStop.roadName = properName(for: busStop.roadName ??
-                                                      localized("Shared.BusStop.Description.None"))
-                        return busStop
-                    }
-                }
-                for await result in group {
-                    busStops.append(result)
-                }
-                return busStops
-            })
-            log("ProperText was applied.")
+    /// Loads bus stops from the cache, going to the server when the cache is missing or stale.
+    /// A stale cache is still used when the server cannot be reached.
+    func reloadBusStopList(forceServer: Bool = false) async throws {
+        let cached = TransitCache.load([BusStop].self, from: .busStops)
+        // Bus stops cached without full names came from when restoring them was a setting
+        if !forceServer, let cached, !cached.isStale, cached.value.first?.originalDescription != nil {
+            busStopList.busStops = cached.value
+            setLastUpdatedTime(cached.updatedAt)
+            log("Loaded \(cached.value.count) bus stop(s) from cache.")
+        } else {
+            do {
+                try await reloadBusStopListFromServer()
+            } catch {
+                guard let cached else { throw error }
+                busStopList.busStops = cached.value
+                setLastUpdatedTime(cached.updatedAt)
+                log("Could not refresh bus stops, using cache from \(cached.updatedAt).", level: .error)
+            }
         }
-        busStopList.busStops.sort(by: { lhs, rhs in
+        shouldReloadBusStopList = false
+    }
+
+    private func reloadBusStopListFromServer() async throws {
+        var busStops = try await transit.busStops()
+        // LTA abbreviates names, so full names are restored for display and the original kept for searching
+        busStops = await withTaskGroup(of: BusStop.self, returning: [BusStop].self, body: { group in
+            for busStop in busStops {
+                group.addTask {
+                    busStop.originalDescription = busStop.description
+                    busStop.description = properName(for: busStop.name())
+                    busStop.roadName = properName(for: busStop.roadName ??
+                                                  localized("Shared.BusStop.Description.None"))
+                    return busStop
+                }
+            }
+            var busStops: [BusStop] = []
+            for await result in group {
+                busStops.append(result)
+            }
+            return busStops
+        })
+        log("ProperText was applied.")
+        busStops.sort(by: { lhs, rhs in
             lhs.description?.lowercased() ?? "" < rhs.description?.lowercased() ?? ""
         })
-        setStoredBusStopList(busStopList)
-        setStoredBusStopListUpdatedDate(Date.now)
+        busStopList.busStops = busStops
+        TransitCache.store(busStops, as: .busStops)
         setLastUpdatedTime()
-        DispatchQueue.main.async { [self] in
-            shouldReloadBusStopList = false
-        }
+        log("Reloaded \(busStops.count) bus stop(s) from server.")
     }
 
-    func reloadBusStopListFromStoredMemory(_ storedBusStopListJSON: String,
-                                           updatedAt storedUpdatedDate: Date) async throws {
-        if let storedBusStopList: BusStopList = decode(fromData: storedBusStopListJSON.data(using: .utf8) ?? Data()) {
-            busStopList.metadata = storedBusStopList.metadata
-            busStopList.busStops = storedBusStopList.busStops
-            setLastUpdatedTime(storedUpdatedDate)
-            log("Fetched bus stop data from memory with \(busStopList.busStops.count) bus stop(s).")
+    func reloadBusRoutes() async throws {
+        guard !isBusRouteListLoaded else { return }
+        let cached = TransitCache.load(BusRouteList.self, from: .busRoutes)
+        if let cached, !cached.isStale {
+            busRouteList = cached.value
         } else {
-            log("Could not decode stored data successfully, re-fetching bus stop data from server...", level: .error)
-            try await reloadBusStopListFromServer()
+            do {
+                let busRouteListFetched = try await transit.busRoutes()
+                TransitCache.store(busRouteListFetched, as: .busRoutes)
+                busRouteList = busRouteListFetched
+            } catch {
+                guard let cached else { throw error }
+                busRouteList = cached.value
+            }
         }
-        DispatchQueue.main.async { [self] in
-            shouldReloadBusStopList = false
-        }
+        isBusRouteListLoaded = true
     }
 
-    func reloadBusRoutesFromServer() async throws {
-        if !isBusRouteListLoaded {
-            let busRouteListFetched = try await getAllBusRoutes()
-            busRouteList.busRoutePoints = busRouteListFetched.busRoutePoints
-            busRouteList.metadata = busRouteListFetched.metadata
-            isBusRouteListLoaded = true
+    func reloadBusRoutePolylines() async throws {
+        guard !isBusRoutePolylinesLoaded else { return }
+        let cached = TransitCache.load([BusRoutePolyline].self, from: .busRoutePolylines)
+        if let cached, !cached.isStale {
+            busRoutePolylines = cached.value
+        } else {
+            do {
+                let busRoutePolylinesFetched = try await transit.busRoutePolylines()
+                TransitCache.store(busRoutePolylinesFetched, as: .busRoutePolylines)
+                busRoutePolylines = busRoutePolylinesFetched
+            } catch {
+                guard let cached else { throw error }
+                busRoutePolylines = cached.value
+            }
         }
-    }
-
-    func reloadBusRoutePolylinesFromServer() async throws {
-        if !isBusRoutePolylinesLoaded {
-            busRoutePolylines = try await getAllBusRoutePolylines()
-            isBusRoutePolylinesLoaded = true
-        }
+        isBusRoutePolylinesLoaded = true
     }
 
     func setLastUpdatedTime(_ date: Date = Date.now) {
@@ -137,26 +161,8 @@ class DataManager: ObservableObject {
         let timeFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         timeFormatter.timeStyle = .medium
-        DispatchQueue.main.async { [self] in
-            updatedDate = dateFormatter.string(from: date)
-            updatedTime = timeFormatter.string(from: date)
-        }
-    }
-
-    func setStoredBusStopList(_ newValue: BusStopList) {
-        defaults.set(encode(newValue), forKey: "StoredBusStopList")
-    }
-
-    func setStoredBusStopListUpdatedDate(_ newValue: Date) {
-        defaults.set(newValue, forKey: "StoredBusStopListUpdatedDate")
-    }
-
-    func storedBusStopList() -> String? {
-        return defaults.string(forKey: "StoredBusStopList")
-    }
-
-    func storedBusStopListUpdatedDate() -> Date? {
-        return defaults.object(forKey: "StoredBusStopListUpdatedDate") as? Date
+        updatedDate = dateFormatter.string(from: date)
+        updatedTime = timeFormatter.string(from: date)
     }
 
 }

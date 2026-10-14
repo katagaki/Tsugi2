@@ -8,11 +8,15 @@
 import CoreLocation
 import SwiftUI
 
-class CoordinateManager: ObservableObject {
+@Observable
+class CoordinateManager {
 
-    @Published var coordinates: [Coordinate] = []
-    @Published var polyline: String?
-    @Published var updateCameraFlag: Bool = false
+    var coordinates: [Coordinate] = []
+    var routeCoordinates: [CLLocationCoordinate2D] = []
+    var liveBuses: [LiveBus] = []
+    /// The bus stop a route is being viewed from, which stands out from the rest of the route's stops.
+    var highlightedBusStopCode: String?
+    var updateCameraFlag: Bool = false
 
     func addCoordinate(from busStop: BusStop) {
         self.coordinates.append(Coordinate(busStop: busStop))
@@ -32,7 +36,9 @@ class CoordinateManager: ObservableObject {
 
     func removeAll() {
         self.coordinates.removeAll()
-        self.polyline = nil
+        self.routeCoordinates.removeAll()
+        self.liveBuses.removeAll()
+        self.highlightedBusStopCode = nil
     }
 
 }

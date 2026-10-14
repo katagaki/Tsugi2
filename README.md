@@ -14,22 +14,22 @@ At the time the project was first developed, there were no good public transit c
 While there are some decent options out there now developed by other developers, I still believe in the Tsugi experience.
 
 The codebase for the old Tsugi project was lost after an incident with macOS Big Sur, leading to this rewrite in SwiftUI. 
-The rewrite also aims to improve how API calls and persistent data are handled, by using Core Data and new async/await features. 
-New features will also be added, such as the viewing of bus service routes, service alerts, and more robust notifications and Siri shortcuts.
-
-Buses 2 will be built on the iOS 16 API, and will support iOS 16.2 and above.
+Version 2.0 moves the app onto SwiftData, Observation, and async/await, and supports iOS 26 and above.
 
 ## Development
 
 ### What works
 - Viewing bus stops and bus arrival times
 - Viewing of bus service routes (with thanks to BusRouter SG for the polyline data)
+- Live positions of incoming buses on the map, colored by how crowded they are
+- Look Around previews of bus stops
 - Searching bus stops
 - Quickly getting information about nearby bus stops
 - Adding, reordering, and deleting Locations (previously known as Favorites)
 - Additional customization, such as setting the startup tab and app icon
 - Arrival notifications
-- Live Activities (rudimentary support)
+- Live Activities with a self-updating countdown, the following bus, and refresh and stop buttons
+- Home Screen and Lock Screen widgets for any of your Locations
 - MRT service map (WebView)
 - Localization for English, Japanese, and Chinese
 
@@ -38,10 +38,9 @@ Buses 2 will be built on the iOS 16 API, and will support iOS 16.2 and above.
 - Service alerts for trains
 - MRT service map (native)
 - Siri shortcuts
-- Support for Home Screen widgets
 
 ### What's being decided
-- Live Activities (full support with push notifications)
+- Live Activity updates with push notifications
 
 ## Building
 
@@ -53,4 +52,4 @@ If not, duplicate and rename `APIKeys-Sample.plist` to `APIKeys.plist`, then ins
 
 ### Step 2: Build with Xcode
 
-Once you have added your LTA DataMall account key, it is only a matter of opening the `Buses2.xcodeproj` Xcode project, and building.
+Once you have added your LTA DataMall account key, it is only a matter of opening the `Buses 2.xcodeproj` Xcode project, and building.

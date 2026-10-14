@@ -5,21 +5,19 @@
 //  Created by 堅書 on 2022/06/15.
 //
 
-#if canImport(ActivityKit)
-import ActivityKit
-#endif
 import MapKit
+import Polyline
 import SwiftUI
 
 struct BusServiceView: View {
 
-    @EnvironmentObject var dataManager: DataManager
-    @EnvironmentObject var favorites: FavoritesManager
-    @EnvironmentObject var coordinateManager: CoordinateManager
-    @EnvironmentObject var settings: SettingsManager
-    @EnvironmentObject var toaster: Toaster
+    @Environment(\.scenePhase) var scenePhase
+    @Environment(DataManager.self) var dataManager
+    @Environment(FavoritesManager.self) var favorites
+    @Environment(CoordinateManager.self) var coordinateManager
+    @Environment(Toaster.self) var toaster
 
-    @State var liveActivityID: String = ""
+    @State var isLiveActivityActive: Bool = false
 
     @State var isInitialDataLoading: Bool = true
     @State var busService: BusService
@@ -51,7 +49,7 @@ struct BusServiceView: View {
                                        setNotification: self.setNotification)
                 }
             }
-            if !dataManager.isBusRouteListLoaded && settings.showRoute {
+            if !dataManager.isBusRouteListLoaded {
                 Section {
                     HStack(alignment: .center, spacing: 8.0) {
                         ProgressView()
@@ -64,27 +62,19 @@ struct BusServiceView: View {
         .listStyle(.insetGrouped)
         .task {
             await reloadArrivalTimes()
-            startLiveActivity()
+            isLiveActivityActive = ArrivalActivityController.activity(serviceNo: busService.serviceNo,
+                                                                      busStopCode: busStopCode) != nil
             do {
-                if settings.showRoute {
-                    try await dataManager.reloadBusRoutesFromServer()
-                    try await dataManager.reloadBusRoutePolylinesFromServer()
-                    reloadBusRoutes()
-                }
-                updateMapDisplay()
+                try await dataManager.reloadBusRoutes()
+                try await dataManager.reloadBusRoutePolylines()
+                reloadBusRoutes()
             } catch {
                 log(error.localizedDescription)
             }
+            updateMapDisplay()
         }
         .onDisappear {
-#if canImport(ActivityKit) && canImport(WidgetKit)
-            Task {
-                if let liveActivity = Activity<AssistantAttributes>.activities.first(where: {$0.id == liveActivityID}) {
-                    await liveActivity.end(nil, dismissalPolicy: .immediate)
-                    log("Live Activity \(liveActivityID) ended.")
-                }
-            }
-#endif
+            coordinateManager.liveBuses.removeAll()
         }
         .refreshable {
             Task {
@@ -92,7 +82,7 @@ struct BusServiceView: View {
             }
         }
         .onChange(of: dataManager.isBusRouteListLoaded, { _, newValue in
-            if newValue && settings.showRoute {
+            if newValue {
                 reloadBusRoutes()
             }
         })
@@ -101,6 +91,14 @@ struct BusServiceView: View {
                 await reloadArrivalTimes()
             }
         })
+        .onChange(of: scenePhase) { _, newPhase in
+            // Timers do not fire in the background, so arrivals are out of date on returning to the app
+            if newPhase == .active {
+                Task {
+                    await reloadArrivalTimes()
+                }
+            }
+        }
         .navigationTitle(busService.serviceNo)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -109,23 +107,34 @@ struct BusServiceView: View {
                                          subtitle: locationName)
             }
             ToolbarItem(placement: .primaryAction) {
-                HStack(alignment: .center, spacing: 0.0) {
-                    if showsAddToLocationButton {
-                        Menu {
-                            ForEach(favorites.favoriteLocations, id: \.hash) { location in
-                                if !location.usesLiveBusStopData {
-                                    Button(location.nickname ?? localized("Shared.BusStop.Description.None")) {
-                                        Task {
-                                            await addToFavorites(location)
-                                        }
+                Button {
+                    Task {
+                        await toggleLiveActivity()
+                    }
+                } label: {
+                    if isLiveActivityActive {
+                        Label("LiveActivity.Stop", systemImage: "pin.slash")
+                    } else {
+                        Label("LiveActivity.Start", systemImage: "pin")
+                    }
+                }
+                .disabled(busService.nextBus?.estimatedArrivalTimeAsDate() == nil && !isLiveActivityActive)
+            }
+            if showsAddToLocationButton {
+                ToolbarItem(placement: .primaryAction) {
+                    Menu {
+                        ForEach(favorites.favoriteLocations, id: \.persistentModelID) { location in
+                            if !location.usesLiveBusStopData {
+                                Button(location.nickname ?? localized("Shared.BusStop.Description.None")) {
+                                    Task {
+                                        await addToFavorites(location)
                                     }
-                                    .disabled(favorites.find(busService.serviceNo, in: location))
                                 }
+                                .disabled(favorites.find(busService.serviceNo, in: location))
                             }
-                        } label: {
-                            Image(systemName: "rectangle.stack.badge.plus")
-                                .font(.body)
                         }
+                    } label: {
+                        Image(systemName: "rectangle.stack.badge.plus")
                     }
                 }
             }
@@ -134,12 +143,15 @@ struct BusServiceView: View {
 
     func reloadArrivalTimes() async {
         do {
-            let fetchedBusStop = try await getBusArrivals(for: busStopCode)
+            let fetchedBusStop = try await transit.busArrivals(for: busStopCode)
             let serviceNo = busService.serviceNo
             if let busService = fetchedBusStop.arrivals?.first(where: { busService in
                 busService.serviceNo == serviceNo
             }) {
                 self.busService = busService
+                withAnimation {
+                    coordinateManager.liveBuses = LiveBus.buses(of: busService)
+                }
             }
             log("Arrival time data updated.")
             isInitialDataLoading = false
@@ -149,26 +161,14 @@ struct BusServiceView: View {
     }
 
     func reloadBusRoutes() {
-        let busRoutePoints = dataManager.busRoute(for: busService.serviceNo,
-                                                  direction: busService.direction ?? .backward)
+        let direction = routeDirection()
+        let busRoutePoints = dataManager.busRoute(for: busService.serviceNo, direction: direction)
         for busRoutePoint in busRoutePoints {
             if let busStop = dataManager.busStop(code: busRoutePoint.stopCode) {
                 busStopsForMapDisplay.append(busStop)
             }
         }
-        encodedPolyline = dataManager
-            .busRoutePolyline(for: busService.serviceNo,
-                              direction: busService.direction ?? .init(rawValue: 1)!)
-    }
-
-    func updateMapDisplay() {
-        coordinateManager.removeAll()
-        if settings.showRoute {
-            coordinateManager.replaceWithCoordinates(from: busStopsForMapDisplay)
-            coordinateManager.polyline = (encodedPolyline == "" ? nil : encodedPolyline)
-            coordinateManager.updateCameraFlag.toggle()
-        }
-        log("Bus service view updated displayed coordinates.")
+        encodedPolyline = dataManager.busRoutePolyline(for: busService.serviceNo, direction: direction)
     }
 
     func addToFavorites(_ location: FavoriteLocation) async {
@@ -234,25 +234,72 @@ struct BusServiceView: View {
         }
     }
 
-    func startLiveActivity() {
-#if canImport(ActivityKit) && canImport(WidgetKit)
-        let initialContentState = AssistantAttributes.ContentState(busService: busService)
-        let activityAttributes = AssistantAttributes(serviceNo: busService.serviceNo, currentDate: Date())
-        let activityContent = ActivityContent(state: initialContentState,
-                                              staleDate: Calendar.current.date(byAdding: .second,
-                                                                               value: 15,
-                                                                               to: Date()))
-        if ActivityAuthorizationInfo().areActivitiesEnabled {
-            do {
-                var liveActivity: Activity<AssistantAttributes>?
-                liveActivity = try Activity.request(attributes: activityAttributes, content: activityContent)
-                liveActivityID = liveActivity?.id ?? ""
-                log("Live Activity requested with id \(liveActivityID).")
-            } catch {
-                log(error.localizedDescription)
-            }
+    func toggleLiveActivity() async {
+        if let activity = ArrivalActivityController.activity(serviceNo: busService.serviceNo,
+                                                             busStopCode: busStopCode) {
+            await ArrivalActivityController.end(activity)
+            isLiveActivityActive = false
+            return
         }
-#endif
+        guard ArrivalActivityController.areActivitiesEnabled else {
+            toaster.showToast(localized("LiveActivity.Disabled"), type: .exclamation, hidesAutomatically: true)
+            return
+        }
+        do {
+            try await ArrivalActivityController.start(serviceNo: busService.serviceNo,
+                                                      busStopCode: busStopCode,
+                                                      busStopName: locationName,
+                                                      busService: busService)
+            isLiveActivityActive = true
+            ArrivalActivityController.scheduleBackgroundRefresh()
+            toaster.showToast(localized("LiveActivity.Started"), type: .checkmark, hidesAutomatically: true)
+        } catch {
+            log("Could not start Live Activity: \(error.localizedDescription)", level: .error)
+            toaster.showToast(localized("LiveActivity.Error"), type: .exclamation, hidesAutomatically: true)
+        }
+    }
+
+}
+
+extension BusServiceView {
+
+    func updateMapDisplay() {
+        coordinateManager.removeAll()
+        coordinateManager.liveBuses = LiveBus.buses(of: busService)
+        if !busStopsForMapDisplay.isEmpty {
+            coordinateManager.replaceWithCoordinates(from: busStopsForMapDisplay)
+            coordinateManager.routeCoordinates = routeCoordinates()
+            coordinateManager.highlightedBusStopCode = busStopCode
+        } else if let busStop = dataManager.busStop(code: busStopCode) {
+            // Without a route, frames the bus stop together with the buses heading to it
+            coordinateManager.addCoordinate(from: busStop)
+        }
+        coordinateManager.updateCameraFlag.toggle()
+        log("Bus service view updated displayed coordinates.")
+    }
+
+    /// Arrivals do not say which way a bus is going, so the direction is the one that passes this bus stop.
+    func routeDirection() -> BusRouteDirection {
+        if let direction = busService.direction {
+            return direction
+        }
+        let passesBusStop = { (direction: BusRouteDirection) in
+            dataManager.busRoute(for: busService.serviceNo, direction: direction)
+                .contains { $0.direction == direction && $0.stopCode == busStopCode }
+        }
+        return passesBusStop(.backward) && !passesBusStop(.forward) ? .backward : .forward
+    }
+
+    /// The road-following route when one is available, otherwise a line through the route's bus stops.
+    func routeCoordinates() -> [CLLocationCoordinate2D] {
+        if !encodedPolyline.isEmpty,
+           let decodedCoordinates: [CLLocationCoordinate2D] = decodePolyline(encodedPolyline) {
+            return decodedCoordinates
+        }
+        return busStopsForMapDisplay.compactMap { busStop in
+            guard let latitude = busStop.latitude, let longitude = busStop.longitude else { return nil }
+            return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        }
     }
 
 }

@@ -35,20 +35,17 @@ extension UnifiedView {
             reloadNearbyBusStops()
         }
         .searchable(text: $searchTerm)
+        .searchFocused($isSearchFocused)
         .toolbar {
             ToolbarItemGroup(placement: .topBarLeading) {
-                Button {
-                    isMoreSheetPresented = true
-                } label: {
-                    Image(systemName: "ellipsis")
-                }
+                MoreMenu()
             }
             ToolbarSpacer(.fixed, placement: .topBarLeading)
             ToolbarItemGroup(placement: .topBarLeading) {
                 Button {
                     isNotificationsSheetPresented = true
                 } label: {
-                    Image(systemName: "bell.fill")
+                    Image(systemName: "bell")
                 }
             }
         }
@@ -95,11 +92,6 @@ extension UnifiedView {
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $isNotificationsSheetPresented) {
             NotificationsView()
-                .presentationDetents([.medium, .large])
-                .presentationDragIndicator(.visible)
-        }
-        .sheet(isPresented: $isMoreSheetPresented) {
-            MoreView()
                 .presentationDetents([.medium, .large])
                 .presentationDragIndicator(.visible)
         }
@@ -157,22 +149,22 @@ extension UnifiedView {
     @ViewBuilder var locationsSection: some View {
         Section {
             if favorites.favoriteLocations.isEmpty {
-                ContentUnavailableView {
-                    Label {
-                        Text(localized("Favorites.Hint.NoLocations.Title"))
-                    } icon: {
-                        Image(systemName: "info.circle.fill")
-                    }
-                } description: {
+                // Kept compact so the Nearby section still shows below it
+                VStack(spacing: 4.0) {
+                    Text(localized("Favorites.Hint.NoLocations.Title"))
+                        .font(.headline)
                     Text(localized("Favorites.Hint.NoLocations"))
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
                 }
-                .listRowInsets(EdgeInsets())
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 8.0)
                 .listRowBackground(Color.clear)
             } else {
-                ForEach($favorites.favoriteLocations, id: \.objectID) { $location in
-                    if !location.isFault && !location.isDeleted {
-                        locationRow(location: $location)
-                    }
+                // Locations are passed directly, as bindings into the array point past its end once a row is deleted
+                ForEach(favorites.favoriteLocations, id: \.persistentModelID) { location in
+                    locationRow(location: location)
                 }
                 .onMove(perform: moveLocations)
                 .onDelete(perform: deleteLocations)
@@ -182,15 +174,15 @@ extension UnifiedView {
         }
     }
 
-    @ViewBuilder func locationRow(location: Binding<FavoriteLocation>) -> some View {
+    @ViewBuilder func locationRow(location: FavoriteLocation) -> some View {
         VStack(alignment: .leading, spacing: 8.0) {
             HStack {
-                Text(location.wrappedValue.nickname ?? location.wrappedValue.busStopCode ?? "")
+                Text(location.nickname ?? location.busStopCode ?? "")
                     .font(Font.custom("LTA-Identity", size: 20.0))
                 if isEditing {
                     Button {
-                        locationPendingRename = location.wrappedValue
-                        renameText = location.wrappedValue.nickname ?? location.wrappedValue.busStopCode ?? ""
+                        locationPendingRename = location
+                        renameText = location.nickname ?? location.busStopCode ?? ""
                         isRenamePending = true
                     } label: {
                         Image(systemName: "pencil")
@@ -198,10 +190,10 @@ extension UnifiedView {
                     }
                     .buttonStyle(.borderless)
                     Spacer()
-                    if !location.wrappedValue.usesLiveBusStopData &&
-                        (location.wrappedValue.busServices ?? []).count != 0 {
+                    if !location.usesLiveBusStopData &&
+                        !(location.busServices ?? []).isEmpty {
                         Button {
-                            locationPendingBusServiceEdit = location.wrappedValue
+                            locationPendingBusServiceEdit = location
                             isBusServiceEditPending = true
                         } label: {
                             Image(systemName: "arrow.left.arrow.right")
@@ -213,12 +205,12 @@ extension UnifiedView {
             }
             .padding(.horizontal)
             BusServicesCarousel(
-                dataDisplayMode: location.wrappedValue.usesLiveBusStopData
+                dataDisplayMode: location.usesLiveBusStopData
                     ? .favoriteLocationLiveData
                     : .favoriteLocationCustomData,
-                locationName: location.wrappedValue.nickname ?? "",
-                busStopCode: location.wrappedValue.usesLiveBusStopData
-                    ? location.wrappedValue.busStopCode
+                locationName: location.nickname ?? "",
+                busStopCode: location.usesLiveBusStopData
+                    ? location.busStopCode
                     : nil,
                 favoriteLocation: location
             )

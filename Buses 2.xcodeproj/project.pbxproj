@@ -50,13 +50,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		E493F5CF2F62269A002C936C /* Exceptions for "Assistant" folder in "Buses" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				AssistantLiveActivity.swift,
-			);
-			target = E4406AA727EF182300819CDC /* Buses */;
-		};
 		E493F5D02F62269A002C936C /* Exceptions for "Assistant" folder in "AssistantExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -75,39 +68,20 @@
 		E493F6C82F6226ED002C936C /* Exceptions for "Buses" folder in "AssistantExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				API/API.swift,
-				API/BusArrivalInfo.swift,
-				API/BusOperator.swift,
-				API/BusRouteDirection.swift,
-				API/BusRouteList.swift,
-				API/BusRoutePoint.swift,
-				API/BusRoutePolyline.swift,
-				API/BusService.swift,
-				API/BusServiceList.swift,
-				API/BusStop.swift,
-				API/BusStopList.swift,
 				Assets.xcassets,
-				Enums/CarouselDisplayMode.swift,
 				"Fonts/LTA-Identity.ttf",
 				Strings/Localizable.xcstrings,
-				Utilities/Extensions/Bundle.swift,
-				Utilities/Extensions/Date.swift,
-				Utilities/Extensions/String.swift,
-				Utilities/Global/DateFormatter.swift,
-				Utilities/Global/Logging.swift,
-				Utilities/Global/Notifications.swift,
-				Utilities/JSONUtilities.swift,
-				Utilities/ProperText/ProperText.swift,
-				Utilities/ProperText/PTCapitalization.plist,
-				Utilities/ProperText/PTTerms.plist,
-				Views/Shared/BusNumberPlateView.swift,
-				Views/Shared/ProgressBarView.swift,
 			);
 			target = E482AC8E29AC53B2008DAD30 /* AssistantExtension */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		E40F5A012F7A000000C0FFEE /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		E493F5C42F62268C002C936C /* ci_scripts */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = ci_scripts;
@@ -116,7 +90,6 @@
 		E493F5C92F62269A002C936C /* Assistant */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				E493F5CF2F62269A002C936C /* Exceptions for "Assistant" folder in "Buses" target */,
 				E493F5D02F62269A002C936C /* Exceptions for "Assistant" folder in "AssistantExtension" target */,
 			);
 			path = Assistant;
@@ -162,6 +135,7 @@
 			children = (
 				E493F5C42F62268C002C936C /* ci_scripts */,
 				E493F65C2F6226ED002C936C /* Buses */,
+				E40F5A012F7A000000C0FFEE /* Shared */,
 				E493F5C92F62269A002C936C /* Assistant */,
 				E4406A7327EF13E300819CDC /* Products */,
 				E4FFCAC02801604300DCA0EC /* Frameworks */,
@@ -208,6 +182,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				E493F65C2F6226ED002C936C /* Buses */,
+				E40F5A012F7A000000C0FFEE /* Shared */,
 			);
 			name = Buses;
 			packageProductDependencies = (
@@ -234,6 +209,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				E493F5C92F62269A002C936C /* Assistant */,
+				E40F5A012F7A000000C0FFEE /* Shared */,
 			);
 			name = AssistantExtension;
 			productName = AssistantExtension;
@@ -527,7 +503,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsubuzaki.Tsugi2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
@@ -567,7 +543,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsubuzaki.Tsugi2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
@@ -586,6 +562,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = Assistant/Assistant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -599,7 +576,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsubuzaki.Tsugi2.Assistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -619,6 +596,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = Assistant/Assistant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -632,7 +610,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsubuzaki.Tsugi2.Assistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

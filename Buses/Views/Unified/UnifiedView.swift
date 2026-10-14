@@ -16,24 +16,25 @@ struct UnifiedView: View {
 
     @Environment(\.scenePhase) var scenePhase
 
-    @EnvironmentObject var navigationManager: NavigationManager
-    @EnvironmentObject var networkMonitor: NetworkMonitor
-    @EnvironmentObject var dataManager: DataManager
-    @EnvironmentObject var favorites: FavoritesManager
-    @EnvironmentObject var locationManager: LocationManager
-    @EnvironmentObject var regionManager: RegionManager
-    @EnvironmentObject var coordinateManager: CoordinateManager
-    @EnvironmentObject var settings: SettingsManager
-    @EnvironmentObject var toaster: Toaster
+    @Environment(NavigationManager.self) var navigationManager
+    @Environment(NetworkMonitor.self) var networkMonitor
+    @Environment(DataManager.self) var dataManager
+    @Environment(FavoritesManager.self) var favorites
+    @Environment(LocationManager.self) var locationManager
+    @Environment(RegionManager.self) var regionManager
+    @Environment(CoordinateManager.self) var coordinateManager
+    @Environment(Toaster.self) var toaster
+
+    @Binding var selectedDetent: PresentationDetent
 
     @State var isInitialLoad: Bool = true
     @State var isNotificationsSheetPresented: Bool = false
-    @State var isMoreSheetPresented: Bool = false
 
     // Search
     @State var searchTerm: String = ""
     @State var previousSearchTerm: String = ""
     @State var searchResults: [BusStop] = []
+    @FocusState var isSearchFocused: Bool
 
     // Nearby
     @State var isNearbyBusStopsDetermined: Bool = false
@@ -50,9 +51,27 @@ struct UnifiedView: View {
     @State var isBusServiceEditPending: Bool = false
 
     var body: some View {
-        NavigationStack(path: $navigationManager.mainPath) {
-            listContent
+        @Bindable var navigationManager = navigationManager
+        ZStack {
+            // Kept loaded while collapsed so that it is as the user left it when the sheet is raised again
+            NavigationStack(path: $navigationManager.mainPath) {
+                listContent
+            }
+            .opacity(selectedDetent == .collapsed ? 0.0 : 1.0)
+            .allowsHitTesting(selectedDetent != .collapsed)
+            if selectedDetent == .collapsed {
+                CollapsedSearchBar(action: openSearch)
+                    .transition(.opacity)
+            }
         }
+        .animation(.smooth, value: selectedDetent == .collapsed)
+        .onChange(of: selectedDetent) { _, newDetent in
+            if newDetent == .collapsed {
+                isSearchFocused = false
+            }
+        }
+        // Alerts bring up the keyboard over the sheet, which should not squeeze the list behind them
+        .ignoresSafeArea(.keyboard, edges: isNewPending || isRenamePending ? .bottom : [])
         .modifier(FavoriteAlertsModifier(
             isNewPending: $isNewPending,
             favoriteLocationNewNickname: $favoriteLocationNewNickname,
@@ -69,6 +88,7 @@ struct UnifiedView: View {
         }
         .onAppear {
             log("Main view appeared.")
+            navigationManager.stackDidAppear()
             if !locationManager.isInUsableState() {
                 locationManager.requestWhenInUseAuthorization()
             } else {
@@ -79,13 +99,9 @@ struct UnifiedView: View {
             let searchTermTrimmed = searchTerm.trimmingCharacters(in: .whitespaces)
             if searchTermTrimmed.count > 1 {
                 if searchTermTrimmed.contains(previousSearchTerm) {
-                    searchResults = searchResults.filter { stop in
-                        stop.name().similarTo(searchTermTrimmed)
-                    }
+                    searchResults = searchResults.filter { $0.matches(searchTermTrimmed) }
                 } else {
-                    searchResults = dataManager.busStops.filter { stop in
-                        stop.name().similarTo(searchTermTrimmed)
-                    }
+                    searchResults = dataManager.busStops.filter { $0.matches(searchTermTrimmed) }
                 }
                 previousSearchTerm = searchTermTrimmed
             }
@@ -112,8 +128,18 @@ struct UnifiedView: View {
         .onChange(of: networkMonitor.isConnected) { _, isConnected in
             handleNetworkChange(isConnected)
         }
+        .onChange(of: navigationManager.mainPath.isEmpty) { _, isAtRoot in
+            if isAtRoot && isNearbyBusStopsDetermined {
+                showNearbyBusStopsOnMap()
+            }
+        }
         .onChange(of: scenePhase) { _, newPhase in
             handleScenePhaseChange(newPhase)
+        }
+        .onChange(of: isNearbyBusStopsDetermined) { _, isDetermined in
+            if isDetermined, let scene = ScreenshotScene.current {
+                stage(scene)
+            }
         }
     }
 

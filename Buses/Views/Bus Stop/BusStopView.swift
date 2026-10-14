@@ -10,22 +10,35 @@ import SwiftUI
 
 struct BusStopView: View {
 
-    @EnvironmentObject var favorites: FavoritesManager
-    @EnvironmentObject var coordinateManager: CoordinateManager
-    @EnvironmentObject var toaster: Toaster
+    @Environment(\.scenePhase) var scenePhase
+    @Environment(FavoritesManager.self) var favorites
+    @Environment(CoordinateManager.self) var coordinateManager
+    @Environment(Toaster.self) var toaster
 
     @State var busStop: BusStop
     @State var busArrivals: [BusService] = []
     @State var isInitialDataLoading: Bool = true
+    @State var lookAroundScene: MKLookAroundScene?
 
     let timer = Timer.publish(every: 10.0, tolerance: 5.0, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        List(busArrivals, id: \.serviceNo) { bus in
-            NavigationLink(value: ViewPath.busService(bus,
-                                                      atLocation: busStop.name(),
-                                                      forBusStopCode: busStop.code)) {
-                ListBusServiceRow(bus: .constant(bus))
+        List {
+            if let lookAroundScene {
+                Section {
+                    LookAroundPreview(initialScene: lookAroundScene)
+                        .frame(height: 160.0)
+                        .listRowInsets(EdgeInsets())
+                }
+            }
+            Section {
+                ForEach(busArrivals, id: \.serviceNo) { bus in
+                    NavigationLink(value: ViewPath.busService(bus,
+                                                              atLocation: busStop.name(),
+                                                              forBusStopCode: busStop.code)) {
+                        ListBusServiceRow(bus: .constant(bus))
+                    }
+                }
             }
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -39,9 +52,18 @@ struct BusStopView: View {
             }
             updateMapDisplay()
         }
+        .task {
+            await loadLookAroundScene()
+        }
         .onReceive(timer, perform: { _ in
             reloadBusArrivals()
         })
+        .onChange(of: scenePhase) { _, newPhase in
+            // Timers do not fire in the background, so arrivals are out of date on returning to the app
+            if newPhase == .active {
+                reloadBusArrivals()
+            }
+        }
         .overlay {
             if isInitialDataLoading {
                 HStack(alignment: .center, spacing: 16.0) {
@@ -112,12 +134,24 @@ struct BusStopView: View {
 
     func reloadBusArrivals() {
         Task {
-            let busStopsFetched = try await getBusArrivals(for: busStop.code)
+            let busStopsFetched = try await transit.busArrivals(for: busStop.code)
             busArrivals = busStopsFetched.arrivals ?? []
             busArrivals.sort(by: { lhs, rhs in
                 lhs.serviceNo.toInt() ?? 9999 < rhs.serviceNo.toInt() ?? 9999
             })
             isInitialDataLoading = false
+        }
+    }
+
+    /// Street-level imagery helps find the right side of the road. Not every bus stop has coverage.
+    func loadLookAroundScene() async {
+        guard let latitude = busStop.latitude, let longitude = busStop.longitude else { return }
+        let request = MKLookAroundSceneRequest(coordinate: CLLocationCoordinate2D(latitude: latitude,
+                                                                                  longitude: longitude))
+        do {
+            lookAroundScene = try await request.scene
+        } catch {
+            log("Look Around is unavailable for bus stop \(busStop.code): \(error.localizedDescription)")
         }
     }
 

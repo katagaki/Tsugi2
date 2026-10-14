@@ -8,21 +8,24 @@
 import CoreLocation
 import Foundation
 import MapKit
+import Observation
 
-class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+@Observable
+class LocationManager: NSObject, CLLocationManagerDelegate {
 
-    @Published var shouldUpdateLocationAsSoonAsPossible: Bool = false
+    var shouldUpdateLocationAsSoonAsPossible: Bool = false
 
-    var shared: CLLocationManager = CLLocationManager()
+    @ObservationIgnored var shared: CLLocationManager = CLLocationManager()
 
+    @ObservationIgnored
     var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 1.354454, longitude: 103.946362),
                                     latitudinalMeters: 250.0,
                                     longitudinalMeters: 250.0)
-    var completion: () -> Void = {
+    @ObservationIgnored var completion: () -> Void = {
         // Empty completion handler
     }
 
-    @Published var authorizationStatus: CLAuthorizationStatus?
+    var authorizationStatus: CLAuthorizationStatus?
 
     override init() {
         super.init()

@@ -9,9 +9,10 @@ import SwiftUI
 
 struct BusServicesCarousel: View {
 
-    @EnvironmentObject var dataManager: DataManager
-    @EnvironmentObject var favorites: FavoritesManager
-    @EnvironmentObject var settings: SettingsManager
+    @Environment(\.scenePhase) var scenePhase
+    @Environment(DataManager.self) var dataManager
+    @Environment(FavoritesManager.self) var favorites
+    @AppStorage(SettingsKey.carouselDisplayMode) var carouselDisplayMode: CarouselDisplayMode = .full
 
     var dataDisplayMode: DataDisplayMode
 
@@ -19,7 +20,7 @@ struct BusServicesCarousel: View {
     @State var busServices: [BusService] = []
     var locationName: String
     var busStopCode: String?
-    var favoriteLocation: Binding<FavoriteLocation>?
+    var favoriteLocation: FavoriteLocation?
 
     let timer = Timer.publish(every: 10.0, tolerance: 5.0, on: .main, in: .common).autoconnect()
 
@@ -45,11 +46,11 @@ struct BusServicesCarousel: View {
                                                                       forBusStopCode: busStopCode ?? "")) {
                                 VStack(alignment: .center, spacing: 2.0) {
                                     BusNumberPlateView(
-                                        carouselDisplayMode: $settings.carouselDisplayMode,
+                                        carouselDisplayMode: $carouselDisplayMode,
                                         serviceNo: bus.serviceNo
                                     )
                                     Group {
-                                        switch settings.carouselDisplayMode {
+                                        switch carouselDisplayMode {
                                         case .full:
                                             Text(bus.nextBus?.estimatedArrivalTimeAsDate()?.arrivalFormat(style: .short) ??
                                                  localized("Shared.BusArrival.NotInService"))
@@ -83,8 +84,8 @@ struct BusServicesCarousel: View {
                                     }
                                     .offset(y: fontHackOffset)
                                 }
-                                .frame(minWidth: settings.carouselDisplayMode.width(),
-                                       maxWidth: settings.carouselDisplayMode.width(),
+                                .frame(minWidth: carouselDisplayMode.width(),
+                                       maxWidth: carouselDisplayMode.width(),
                                        minHeight: 0,
                                        maxHeight: .infinity,
                                        alignment: .center)
@@ -96,7 +97,7 @@ struct BusServicesCarousel: View {
             } else {
                 HStack(alignment: .center) {
                     if dataDisplayMode == .favoriteLocationCustomData {
-                        if (favoriteLocation?.wrappedValue.busServices?.count ?? 0) == 0 {
+                        if (favoriteLocation?.busServices?.count ?? 0) == 0 {
                             Text("Favorites.Hint.NoBusServices")
                                 .font(.body)
                                 .foregroundColor(.secondary)
@@ -124,6 +125,14 @@ struct BusServicesCarousel: View {
                 log("Arrival time data updated.")
             }
         })
+        .onChange(of: scenePhase) { _, newPhase in
+            // Timers do not fire in the background, so arrivals are out of date on returning to the app
+            if newPhase == .active {
+                Task {
+                    await reloadArrivalTimes()
+                }
+            }
+        }
         .onChange(of: favorites.updateViewFlag, { _, _ in
             if dataDisplayMode != .busStop && dataDisplayMode != .notificationItem {
                 log("View update signal received from favorites handler.")
@@ -139,19 +148,16 @@ struct BusServicesCarousel: View {
             switch dataDisplayMode {
             case .busStop, .favoriteLocationLiveData:
                 log("Reloading arrival times for a bus stop type location or favorite location using live data.")
-                busServices = (try await getBusArrivals(for: busStopCode ?? "").arrivals ?? [])
+                busServices = (try await transit.busArrivals(for: busStopCode ?? "").arrivals ?? [])
                     .sorted(by: { lhs, rhs in
                     lhs.serviceNo.toInt() ?? 9999 < rhs.serviceNo.toInt() ?? 9999
                 })
             case .favoriteLocationCustomData:
-                if let favoriteLocation = favoriteLocation,
-                   let favoriteBusServices = favoriteLocation.wrappedValue.busServices?.array as? [FavoriteBusService] {
-                    let favoriteBusServicesSorted = (
-                        favoriteBusServices.sorted(by: { lhs, rhs in
-                           lhs.viewIndex < rhs.viewIndex
-                       }))
+                // A deleted location can still be on screen while its row animates away
+                if let favoriteLocation, !favoriteLocation.isDeleted {
+                    let favoriteBusServicesSorted = favoriteLocation.sortedBusServices
                     log("Reloading arrival times for a favorite location using custom data.")
-                    try await reloadArrivalTimes(for: favoriteLocation.wrappedValue,
+                    try await reloadArrivalTimes(for: favoriteLocation,
                                                  favoriteBusServices: favoriteBusServicesSorted)
                 }
             case .notificationItem:
@@ -173,7 +179,7 @@ struct BusServicesCarousel: View {
             })
         var fetchedBusServices: [BusService] = []
         for busService in busServices {
-            if var fetchedBusService = try await getBusArrivals(
+            if var fetchedBusService = try await transit.busArrivals(
                 for: busService.busStopCode ?? "").arrivals?
                 .first(where: { fetchedBusService in
                     fetchedBusService.serviceNo == busService.serviceNo

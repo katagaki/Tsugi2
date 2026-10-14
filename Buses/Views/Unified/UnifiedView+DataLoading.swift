@@ -18,19 +18,7 @@ extension UnifiedView {
                           type: .spinner,
                           hidesAutomatically: false)
         do {
-            if dataManager.storedBusStopList() == nil || forceServer {
-                try await dataManager.reloadBusStopListFromServer()
-                log("Reloaded bus stop data from server.")
-            } else {
-                if let storedBusStopList = dataManager.storedBusStopList(),
-                   let storedBusStopListUpdatedDate = dataManager.storedBusStopListUpdatedDate() {
-                    try await dataManager.reloadBusStopListFromStoredMemory(
-                        storedBusStopList,
-                        updatedAt: storedBusStopListUpdatedDate
-                    )
-                    log("Reloaded bus stop data from memory.")
-                }
-            }
+            try await dataManager.reloadBusStopList(forceServer: forceServer)
             toaster.hideToast()
         } catch {
             log(error.localizedDescription)
@@ -59,12 +47,19 @@ extension UnifiedView {
             log("Reloaded nearby bus stop data.")
             regionManager.updateRegion(newRegion: locationManager.region)
             log("Updated Map region.")
-            coordinateManager.removeAll()
-            coordinateManager.replaceWithCoordinates(from: nearbyBusStops)
-            coordinateManager.updateCameraFlag.toggle()
-            log("Updated displayed coordinates.")
+            // The map belongs to whichever view is open, so it only shows nearby bus stops on the main list
+            if navigationManager.mainPath.isEmpty {
+                showNearbyBusStopsOnMap()
+            }
             isNearbyBusStopsDetermined = true
         }
+    }
+
+    func showNearbyBusStopsOnMap() {
+        coordinateManager.removeAll()
+        coordinateManager.replaceWithCoordinates(from: nearbyBusStops)
+        coordinateManager.updateCameraFlag.toggle()
+        log("Updated displayed coordinates.")
     }
 
 }

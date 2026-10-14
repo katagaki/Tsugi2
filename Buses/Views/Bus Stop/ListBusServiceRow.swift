@@ -21,25 +21,7 @@ struct ListBusServiceRow: View {
                     Text(bus.nextBus?.estimatedArrivalTimeAsDate()?.arrivalFormat() ??
                          localized("Shared.BusArrival.NotInService"))
                         .font(.body)
-                    if bus.nextBus?.feature == .wheelchairAccessible {
-                        Image(systemName: "figure.roll")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    } else {
-                        Text("")
-                    }
-                    switch bus.nextBus?.type {
-                    case .doubleDeck:
-                        Image(systemName: "bus.doubledecker")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    case .none:
-                        Text("")
-                    default:
-                        Image(systemName: "bus")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
+                    BusAttributeIcons(feature: bus.nextBus?.feature, type: bus.nextBus?.type)
                 }
                 if let arrivalTime = bus.nextBus2?.estimatedArrivalTimeAsDate() {
                     Text(localized("Shared.BusArrival.Subsequent") + arrivalTime.arrivalFormat())

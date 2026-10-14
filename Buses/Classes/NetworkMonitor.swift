@@ -9,18 +9,17 @@ import Network
 import SwiftUI
 
 // From https://www.danijelavrzan.com/posts/2022/11/network-connection-alert-swiftui/
-class NetworkMonitor: ObservableObject {
-    private let networkMonitor = NWPathMonitor()
-    private let workerQueue = DispatchQueue(label: "Monitor")
+@Observable
+class NetworkMonitor {
+    @ObservationIgnored private let networkMonitor = NWPathMonitor()
+    @ObservationIgnored private let workerQueue = DispatchQueue(label: "Monitor")
     var isConnected = false
 
     init() {
         networkMonitor.pathUpdateHandler = { path in
-            self.isConnected = path.status == .satisfied
-            Task {
-                await MainActor.run {
-                    self.objectWillChange.send()
-                }
+            let isConnected = path.status == .satisfied
+            Task { @MainActor in
+                self.isConnected = isConnected
             }
         }
         networkMonitor.start(queue: workerQueue)
