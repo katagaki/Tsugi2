@@ -140,7 +140,10 @@ private struct FollowingArrivalView: View {
             if isStale {
                 Label("LiveActivity.Updating", systemImage: "arrow.trianglehead.2.clockwise")
             } else if let followingArrival = state.followingArrival {
-                Text("Shared.BusArrival.Subsequent") + Text(followingArrival, style: .time)
+                HStack(spacing: 0.0) {
+                    Text("Shared.BusArrival.Subsequent")
+                    Text(followingArrival, style: .time)
+                }
             }
         }
         .font(.caption)
