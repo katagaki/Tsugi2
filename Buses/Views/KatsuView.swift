@@ -22,6 +22,8 @@ struct KatsuView: View {
     @State var camera: MapCamera?
     /// Room left for the sheet at the bottom of the map, which keeps content and the Maps legal notice above it.
     @State var bottomInset: CGFloat = PresentationDetent.halfHeight
+    /// Holds the location button where it was when the inset changes, so that it can glide to its new place.
+    @State var locationButtonShift: CGFloat = 0.0
 
     var body: some View {
         GeometryReader { metrics in
@@ -131,6 +133,7 @@ struct KatsuView: View {
                             .padding(.trailing, 16.0)
                             // The sheet's height is already part of the safe area, so this is the gap above it
                             .padding(.bottom, 12.0)
+                            .offset(y: locationButtonShift)
                             .transition(.opacity)
                         }
                     }
@@ -189,7 +192,8 @@ struct KatsuView: View {
     }
 
     /// Changes the room left for the sheet without moving what is on the map.
-    /// Animating the inset instead moves the map separately from the sheet, so the camera is shifted to make up for it.
+    /// Animating the inset moves the map separately from the sheet,
+    /// so it changes at once and the camera makes up for it.
     func setBottomInset(_ newInset: CGFloat, proxy: MapProxy) {
         let change = bottomInset - newInset
         guard change != 0.0 else { return }
@@ -205,6 +209,11 @@ struct KatsuView: View {
                                              heading: camera.heading, pitch: camera.pitch))
             }
             bottomInset = newInset
+            locationButtonShift = -change
+        }
+        // The map cannot animate this without zooming out and back in, but the button can
+        withAnimation(.smooth) {
+            locationButtonShift = 0.0
         }
     }
 
