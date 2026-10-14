@@ -34,16 +34,13 @@ extension String {
         return Int(digits)
     }
 
+    /// Whether every word in the search term is part of a word in this string.
     func similarTo(_ string: String) -> Bool {
-        let searchTermTokens = string.lowercased().components(separatedBy: .whitespaces)
+        let searchTermTokens = string.lowercased().components(separatedBy: .whitespaces).filter { !$0.isEmpty }
         let searchTargetTokens = self.lowercased().components(separatedBy: .whitespaces)
-        var numberOfTokensMatched: Int = 0
-        for searchTargetToken in searchTargetTokens {
-            for searchTermToken in searchTermTokens where searchTargetToken.contains(searchTermToken) {
-                numberOfTokensMatched += 1
-            }
+        return searchTermTokens.allSatisfy { searchTermToken in
+            searchTargetTokens.contains { $0.contains(searchTermToken) }
         }
-        return numberOfTokensMatched >= searchTermTokens.count
     }
 
 }
