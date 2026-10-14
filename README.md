@@ -53,7 +53,3 @@ If not, duplicate and rename `APIKeys-Sample.plist` to `APIKeys.plist`, then ins
 ### Step 2: Build with Xcode
 
 Once you have added your LTA DataMall account key, it is only a matter of opening the `Buses 2.xcodeproj` Xcode project, and building.
-
-### Running without an account key
-
-Without an LTA DataMall account key, the app uses generated data for bus stops around City Hall, so it can still be run and tested. To use generated data even when a key is present, launch the app with the `-UseMockData YES` argument.

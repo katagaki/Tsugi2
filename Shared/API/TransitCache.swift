@@ -55,9 +55,7 @@ enum TransitCache {
     }
 
     private static func url(for entry: Entry) -> URL {
-        // Mock data is kept apart so it never mixes with real data
-        let prefix = transit is MockTransitAPI ? "Mock" : ""
-        return AppGroup.cachesURL.appending(path: "\(prefix)\(entry.rawValue).json")
+        AppGroup.cachesURL.appending(path: "\(entry.rawValue).json")
     }
 
 }

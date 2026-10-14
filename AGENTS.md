@@ -11,10 +11,9 @@ Guidance for coding agents working in this repository.
 
 - Xcode project: `Buses 2.xcodeproj`, schemes `Buses` (app) and `AssistantExtension` (widgets and Live Activities).
 - Deployment target is iOS 26. Folders are file system synchronized groups, so new files are picked up automatically by the target that owns the folder.
-- The LTA DataMall key is read from `Buses/APIKeys.plist` (see `APIKeys-Sample.plist`), which is not committed. The app shares it with the extension through the App Group.
+- The LTA DataMall key is read from `Buses/APIKeys.plist` (see `APIKeys-Sample.plist`), which is not committed; never commit a real key. The app shares it with the extension through the App Group.
 - `Shared/` is compiled into both targets. Put models, API code, Live Activity attributes and intents used by both the app and the extension there.
 - The app and extension share data through the App Group `group.com.tsubuzaki.Tsugi2`: favorites (SwiftData), cached transit data, and `UserDefaults.shared`.
-- Without an API key, or with the launch argument `-UseMockData YES`, `transit` returns `MockTransitAPI`, which generates arrivals around City Hall. Use it for testing; never commit a real key.
 - New user-facing strings go into `Buses/Strings/Localizable.xcstrings` with translations for every supported language.
 
 ## Building

@@ -20,12 +20,8 @@ enum TransitAPIError: Error {
 }
 
 /// The data source used throughout the app and extension.
-/// Falls back to mock data when no LTA DataMall key is available, or when `UseMockData` is set.
 var transit: TransitAPI {
-    if UserDefaults.shared.bool(forKey: "UseMockData") || apiKeys["LTA"] == nil {
-        return MockTransitAPI()
-    }
-    return LTADataMallAPI()
+    LTADataMallAPI()
 }
 
 /// Only the app bundles `APIKeys.plist`, so the app shares it with the extension through the App Group.
