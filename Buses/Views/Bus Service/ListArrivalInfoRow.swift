@@ -11,7 +11,6 @@ struct ListArrivalInfoRow: View {
 
     var busService: BusService
     var arrivalInfo: BusArrivalInfo
-    @State var arrivalTime: String = ""
 
     var setNotification: (BusArrivalInfo) -> Void
 
@@ -51,15 +50,11 @@ struct ListArrivalInfoRow: View {
                 }
             }
         }
-        .onAppear {
-            if let estimatedArrivalTime = arrivalInfo.estimatedArrivalTimeAsDate() {
-                let dateFormatter = DateFormatter()
-                dateFormatter.timeStyle = .short
-                arrivalTime = dateFormatter.string(from: estimatedArrivalTime)
-            } else {
-                arrivalTime = ""
-            }
-        }
+    }
+
+    /// Worked out on every update because rows move up as buses leave, and a stored time would belong to another bus.
+    var arrivalTime: String {
+        arrivalInfo.estimatedArrivalTimeAsDate()?.formatted(date: .omitted, time: .shortened) ?? ""
     }
 
 }
