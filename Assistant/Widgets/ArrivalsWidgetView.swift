@@ -97,7 +97,9 @@ private struct SystemArrivalsView: View {
             }
             .padding(.horizontal, 12.0)
             .padding(.vertical, 10.0)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            // Medium widgets fit two rows almost exactly, so centering them avoids a gap underneath
+            .frame(maxWidth: .infinity, maxHeight: .infinity,
+                   alignment: family == .systemMedium ? .center : .top)
         }
     }
 
