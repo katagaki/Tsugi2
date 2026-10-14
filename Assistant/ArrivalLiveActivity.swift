@@ -201,18 +201,20 @@ private struct ActivityButtons: View {
     var activityID: String
 
     var body: some View {
-        HStack(spacing: 8.0) {
+        HStack(spacing: 10.0) {
             Button(intent: RefreshArrivalActivityIntent(activityID: activityID)) {
                 Image(systemName: "arrow.clockwise")
+                    .frame(width: 26.0, height: 26.0)
             }
             Button(intent: EndArrivalActivityIntent(activityID: activityID)) {
                 Image(systemName: "xmark")
+                    .frame(width: 26.0, height: 26.0)
             }
         }
         .buttonStyle(.bordered)
         .buttonBorderShape(.circle)
         .tint(Color("AccentColor"))
-        .font(.caption.weight(.semibold))
+        .font(.body.weight(.bold))
     }
 
 }
