@@ -18,22 +18,37 @@ struct KatsuView: View {
 
     @State var position: MapCameraPosition = .automatic
     @State var selectedDetent: PresentationDetent = .height(450)
+    @State var isZoomedIn: Bool = false
 
     var body: some View {
         GeometryReader { metrics in
             Map(position: $position, scope: mapScope) {
                 ForEach(coordinateManager.coordinates, id: \.id) { coordinate in
-                    Annotation(coordinate: coordinate.clCoordinate()) {
-                        Button {
-                            navigationManager.push(ViewPath.busStop(coordinate.busStop))
+                    if isRouteStop(coordinate) {
+                        // Routes pass dozens of stops, so they are drawn as dots and named only up close
+                        Annotation(coordinate: coordinate.clCoordinate(), anchor: .center) {
+                            Button {
+                                navigationManager.push(ViewPath.busStop(coordinate.busStop))
+                            } label: {
+                                RouteStopDot()
+                            }
                         } label: {
-                            Image(.listIconBus)
-                                .resizable()
-                                .frame(minWidth: 20.0, maxWidth: 20.0, minHeight: 20.0, maxHeight: 20.0)
-                                .shadow(radius: 6.0)
+                            Text(coordinate.busStop.description ?? "")
                         }
-                    } label: {
-                        Text(coordinate.busStop.description ?? "")
+                        .annotationTitles(isZoomedIn ? .automatic : .hidden)
+                    } else {
+                        Annotation(coordinate: coordinate.clCoordinate()) {
+                            Button {
+                                navigationManager.push(ViewPath.busStop(coordinate.busStop))
+                            } label: {
+                                Image(.listIconBus)
+                                    .resizable()
+                                    .frame(minWidth: 20.0, maxWidth: 20.0, minHeight: 20.0, maxHeight: 20.0)
+                                    .shadow(radius: 6.0)
+                            }
+                        } label: {
+                            Text(coordinate.busStop.description ?? "")
+                        }
                     }
                 }
                 if coordinateManager.routeCoordinates.count > 1 {
@@ -105,6 +120,9 @@ struct KatsuView: View {
             .onChange(of: coordinateManager.updateCameraFlag) { _, _ in
                 updateCamera()
             }
+            .onMapCameraChange(frequency: .onEnd) { context in
+                isZoomedIn = context.region.span.latitudeDelta < 0.015
+            }
         }
     }
 
@@ -119,6 +137,11 @@ struct KatsuView: View {
             }
         }
         log("Opened deep link \(url.absoluteString).")
+    }
+
+    func isRouteStop(_ coordinate: Coordinate) -> Bool {
+        coordinateManager.routeCoordinates.count > 1 &&
+            coordinate.busStop.code != coordinateManager.highlightedBusStopCode
     }
 
     func updateCamera() {
@@ -139,4 +162,18 @@ struct KatsuView: View {
         default: return 0.0
         }
     }
+}
+
+private struct RouteStopDot: View {
+
+    var body: some View {
+        Circle()
+            .fill(.white)
+            .stroke(Color("AccentColor"), lineWidth: 2.5)
+            .frame(width: 9.0, height: 9.0)
+            // Keeps the dot easy to tap without making it look bigger
+            .frame(width: 28.0, height: 28.0)
+            .contentShape(.circle)
+    }
+
 }

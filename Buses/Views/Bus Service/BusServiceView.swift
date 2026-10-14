@@ -173,6 +173,7 @@ struct BusServiceView: View {
         if settings.showRoute {
             coordinateManager.replaceWithCoordinates(from: busStopsForMapDisplay)
             coordinateManager.routeCoordinates = routeCoordinates()
+            coordinateManager.highlightedBusStopCode = busStopCode
         } else if let busStop = dataManager.busStop(code: busStopCode) {
             // Frames the bus stop together with the buses heading to it
             coordinateManager.addCoordinate(from: busStop)

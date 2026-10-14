@@ -14,6 +14,8 @@ class CoordinateManager {
     var coordinates: [Coordinate] = []
     var routeCoordinates: [CLLocationCoordinate2D] = []
     var liveBuses: [LiveBus] = []
+    /// The bus stop a route is being viewed from, which stands out from the rest of the route's stops.
+    var highlightedBusStopCode: String?
     var updateCameraFlag: Bool = false
 
     func addCoordinate(from busStop: BusStop) {
@@ -36,6 +38,7 @@ class CoordinateManager {
         self.coordinates.removeAll()
         self.routeCoordinates.removeAll()
         self.liveBuses.removeAll()
+        self.highlightedBusStopCode = nil
     }
 
 }
