@@ -111,8 +111,19 @@ struct KatsuView: View {
                     .mapControlVisibility(.hidden)
             }
             .onChange(of: coordinateManager.updateCameraFlag) { _, _ in
-                position = .automatic
+                updateCamera()
             }
+        }
+    }
+
+    func updateCamera() {
+        let points = coordinateManager.coordinates.map { $0.clCoordinate() } +
+            coordinateManager.liveBuses.map(\.coordinate)
+        if points.count == 1, let point = points.first {
+            // Framing a single point automatically zooms in all the way, so show the surrounding streets instead
+            position = .region(MKCoordinateRegion(center: point, latitudinalMeters: 500.0, longitudinalMeters: 500.0))
+        } else {
+            position = .automatic
         }
     }
 
