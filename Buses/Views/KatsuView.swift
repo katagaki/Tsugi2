@@ -18,24 +18,26 @@ struct KatsuView: View {
 
     @State var position: MapCameraPosition = .automatic
     @State var selectedDetent: PresentationDetent = .height(450)
-    @State var isZoomedIn: Bool = false
+    @State var mapSpan: CLLocationDegrees = .greatestFiniteMagnitude
 
     var body: some View {
         GeometryReader { metrics in
             Map(position: $position, scope: mapScope) {
                 ForEach(coordinateManager.coordinates, id: \.id) { coordinate in
                     if isRouteStop(coordinate) {
-                        // Routes pass dozens of stops, so they are drawn as dots and named only up close
-                        Annotation(coordinate: coordinate.clCoordinate(), anchor: .center) {
-                            Button {
-                                navigationManager.push(ViewPath.busStop(coordinate.busStop))
+                        // Routes pass dozens of stops, so they only appear as the map is zoomed in
+                        if mapSpan < 0.04 {
+                            Annotation(coordinate: coordinate.clCoordinate(), anchor: .center) {
+                                Button {
+                                    navigationManager.push(ViewPath.busStop(coordinate.busStop))
+                                } label: {
+                                    RouteStopDot()
+                                }
                             } label: {
-                                RouteStopDot()
+                                Text(coordinate.busStop.description ?? "")
                             }
-                        } label: {
-                            Text(coordinate.busStop.description ?? "")
+                            .annotationTitles(mapSpan < 0.012 ? .automatic : .hidden)
                         }
-                        .annotationTitles(isZoomedIn ? .automatic : .hidden)
                     } else {
                         Annotation(coordinate: coordinate.clCoordinate()) {
                             Button {
@@ -52,20 +54,23 @@ struct KatsuView: View {
                     }
                 }
                 if coordinateManager.routeCoordinates.count > 1 {
+                    // The white casing keeps the route apart from roads drawn in similar colors
                     MapPolyline(coordinates: coordinateManager.routeCoordinates)
-                    .stroke(Color.init(uiColor: UIColor(named: "AccentColor")!),
-                            lineWidth: 5.0)
-                    .mapOverlayLevel(level: .aboveRoads)
+                        .stroke(.white, style: routeStrokeStyle(lineWidth: 8.0))
+                        .mapOverlayLevel(level: .aboveRoads)
+                    MapPolyline(coordinates: coordinateManager.routeCoordinates)
+                        .stroke(Color("AccentColor"), style: routeStrokeStyle(lineWidth: 5.0))
+                        .mapOverlayLevel(level: .aboveRoads)
                 }
                 ForEach(coordinateManager.liveBuses) { bus in
                     Annotation(bus.serviceNo, coordinate: bus.coordinate) {
                         Image(systemName: bus.symbolName)
-                            .font(.caption)
+                            .font(.system(size: 10.0, weight: .semibold))
                             .foregroundStyle(.white)
-                            .padding(6.0)
+                            .frame(width: 22.0, height: 22.0)
                             .background(bus.color, in: .circle)
                             .overlay(Circle().stroke(.white, lineWidth: 2.0))
-                            .shadow(radius: 3.0)
+                            .shadow(radius: 2.0)
                     }
                     .annotationTitles(.hidden)
                 }
@@ -121,7 +126,7 @@ struct KatsuView: View {
                 updateCamera()
             }
             .onMapCameraChange(frequency: .onEnd) { context in
-                isZoomedIn = context.region.span.latitudeDelta < 0.015
+                mapSpan = context.region.span.latitudeDelta
             }
         }
     }
@@ -142,6 +147,10 @@ struct KatsuView: View {
     func isRouteStop(_ coordinate: Coordinate) -> Bool {
         coordinateManager.routeCoordinates.count > 1 &&
             coordinate.busStop.code != coordinateManager.highlightedBusStopCode
+    }
+
+    func routeStrokeStyle(lineWidth: CGFloat) -> StrokeStyle {
+        StrokeStyle(lineWidth: lineWidth, lineCap: .round, lineJoin: .round)
     }
 
     func updateCamera() {
@@ -167,10 +176,11 @@ struct KatsuView: View {
 private struct RouteStopDot: View {
 
     var body: some View {
+        // Sits inside the route line like a station on a transit map
         Circle()
             .fill(.white)
-            .stroke(Color("AccentColor"), lineWidth: 2.5)
-            .frame(width: 9.0, height: 9.0)
+            .stroke(Color("AccentColor"), lineWidth: 1.5)
+            .frame(width: 7.0, height: 7.0)
             // Keeps the dot easy to tap without making it look bigger
             .frame(width: 28.0, height: 28.0)
             .contentShape(.circle)
