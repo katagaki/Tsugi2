@@ -112,17 +112,17 @@ private struct TitleBar: View {
                 .foregroundStyle(.white)
                 .lineLimit(1)
             Spacer(minLength: 0.0)
-            if let locationID, pageCount > 1 {
-                HStack(spacing: 8.0) {
+            HStack(spacing: 8.0) {
+                Button(intent: RefreshArrivalsIntent()) {
+                    TitleBarIcon(systemName: "arrow.clockwise")
+                }
+                .buttonStyle(.plain)
+                if let locationID, pageCount > 1 {
                     pageButton("chevron.left", to: page - 1, isEnabled: page > 0, locationID: locationID)
                     pageButton("chevron.right", to: page + 1, isEnabled: page < pageCount - 1,
                                locationID: locationID)
                 }
             }
-            Button(intent: RefreshArrivalsIntent()) {
-                TitleBarIcon(systemName: "arrow.clockwise")
-            }
-            .buttonStyle(.plain)
         }
         .foregroundStyle(.white)
         .padding(.leading, 14.0)
