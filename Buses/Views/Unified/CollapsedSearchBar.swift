@@ -31,13 +31,12 @@ struct CollapsedSearchBar: View {
             .foregroundStyle(.secondary)
             .padding(.horizontal, 16.0)
             .frame(maxWidth: .infinity, minHeight: 48.0)
-            .background(.fill.tertiary, in: .capsule)
             .contentShape(.capsule)
         }
         .buttonStyle(.plain)
+        .glassEffect(.regular.interactive(), in: .capsule)
         .padding(.horizontal, 16.0)
-        // Leaves room for the drag indicator above
-        .padding(.top, 8.0)
+        // Centered, which leaves room for the drag indicator above
         .frame(maxHeight: .infinity)
     }
 
